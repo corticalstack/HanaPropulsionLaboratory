@@ -119,7 +119,26 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 	gamepad_button_down: function(e) {
-		
+		var message = '';
+		if (e.control == 'FACE_4') {
+		  if (window.direction == 'DF') {
+			  window.direction = 'DR';
+		  }
+		  else
+		  {
+			  window.direction = 'DF';
+		  }
+		  
+	  	  
+	      }
+
+
+		if (e.control == 'FACE_3') {
+			 message = message + 'X:]';	
+			   window.socket.emit( 'dashboard', message );
+		  	  
+		      }
+
 	},
 
 
@@ -131,23 +150,37 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 
 	gamepad_axis_changed: function(e) {
+	  var message = '';
 
-      if (e.axis == 'RIGHT_BOTTOM_SHOULDER') {
-		   var message = '';
-
-		   var speed = parseFloat(e.value);
-		   speed = speed * 100;
-		   var speed1 = speed.toFixed(0);	
+	  if (e.axis == 'RIGHT_BOTTOM_SHOULDER') {
+    	  var speed = parseFloat(e.value);
+		  speed = speed * 100;
+		  var speed1 = speed.toFixed(0);	
 		   
 		   if (speed1 < 5) {
 			   speed1 = 0;
 		   }
 		   
-		   message = message + 'DF:' + 'V' + speed1 + ':';	
-		   message = message + ']';        	        
-		   window.socket.emit( 'dashboard', message );
+		   message = message + window.direction + ':'  + 'V' + speed1 + ':';
+		  
+		  
+
   	  
       }
+      
+      if (e.axis == 'LEFT_STICK_X') {
+    	  var heading = parseFloat(e.value);
+		   heading = heading * 100;
+		   var heading1 = heading.toFixed(0);	
+		   	   
+		   message = message + 'H'  + heading1 + ':';
+
+      }
+
+      
+      message = message + ']';        	        
+	  window.socket.emit( 'dashboard', message );
+
 		
 	},
 

@@ -78,67 +78,6 @@ function buildDrivePanel(oController,oLayout){
 	);
 
 	
-	//11. Slider
-	var oSlider = new sap.ui.commons.Slider("Sli", {
-				height: "300px", 
-				min: 0,
-				max: 100,
-				value: 1, 
-				tooltip: "Slider ",
-				vertical: true,
-				smallStepWidth: 5,
-				totalUnits: 5,
-				stepLabels: true,
-				change : function(oEvent){
-			      	  oController.execute(oEvent,oController); }
-				});
-
-//	var oSlider1 = new sap.ui.commons.Slider("Sli1", { 
-	//	width: "300px",
-//		min: -90,
-//		max: 90,
-//		value: 0, 
-//		tooltip: "Slider 11",
-//		vertical: false,
-//		smallStepWidth: 5,
-//		totalUnits: 6,
-//		stepLabels: true
-//		});
-	
-	
-	
-	 var oButton1 = new sap.ui.commons.Button("btnForward",{
-	        text : oBundle.getText("btnForward"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-	 
-	 var oButton2 = new sap.ui.commons.Button("btnStop",{
-	        text : oBundle.getText("btnStop"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-	 
-	 var oButton3 = new sap.ui.commons.Button("btnReverse",{
-	        text : oBundle.getText("btnReverse"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-
-	 var oButton4 = new sap.ui.commons.Button("btnClockwise",{
-	        text : oBundle.getText("btnClockwise"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-
-	 
-	 var oButton5 = new sap.ui.commons.Button("btnCounterClockwise",{
-	        text : oBundle.getText("btnCounterClockwise"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-
-
 	
 	 var oHtml = new sap.ui.core.HTML({  
 	      content: '<iframe id="myiframe" width="640" height="480">No frame loaded</iframe>',
@@ -155,72 +94,13 @@ function buildDrivePanel(oController,oLayout){
 	    }
 	 });
 	 
-	 var oButton6 = new sap.ui.commons.Button("btnPanLeft",{
-	        text : oBundle.getText("btnPanLeft"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-	 
-	 var oButton7 = new sap.ui.commons.Button("btnPanRight",{
-	        text : oBundle.getText("btnPanRight"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-	 
-	 var oButton8 = new sap.ui.commons.Button("btnTiltUp",{
-	        text : oBundle.getText("btnTiltUp"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-
-	 var oButton9 = new sap.ui.commons.Button("btnTiltDown",{
-	        text : oBundle.getText("btnTiltDown"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-
-	 
-	 var oButton10 = new sap.ui.commons.Button("btnCamSweep",{
-	        text : oBundle.getText("btnCamSweep"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-
-	 
-	 var oButton11 = new sap.ui.commons.Button("btnLightsOn",{
-	        text : oBundle.getText("btnLightsOn"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-
-	 
-	 var oButton12 = new sap.ui.commons.Button("btnLightsOff",{
-	        text : oBundle.getText("btnLightsOff"),
-	        press : function(oEvent){
-	      	  oController.execute(oEvent,oController); }
-	    });
-	
 	
 	    oLyt.createRow(oTvStatus);
-	    
-	 
-	    
-		oLyt.createRow(oSlider);
-		oLyt.createRow(oButton1, oButton2, oButton3, oButton4, oButton5);
-		
-		oLayout.createRow(oLyt);
+	    oLayout.createRow(oLyt);
 		
 		oLyt1.createRow(oHtml);		 
 		oLayout.createRow(oLyt1);
-	 	
-		oLyt.createRow(oButton6, oButton7, oButton8, oButton9, oButton10);
-		oLayout.createRow(oLyt);
-
-		oLyt.createRow(oButton11, oButton12);
-		oLayout.createRow(oLyt);
-
-	// oLayoutNew.createRow(oSlider1);
-	// 
+	 	 
 };
 
 
