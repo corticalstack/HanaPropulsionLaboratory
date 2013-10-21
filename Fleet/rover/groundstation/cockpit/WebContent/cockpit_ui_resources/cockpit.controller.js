@@ -118,6 +118,40 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 	},
 	
+	gamepad_button_down: function(e) {
+		
+	},
+
+
+	gamepad_button_up: function(e) {
+
+		
+
+	},
+
+
+	gamepad_axis_changed: function(e) {
+
+      if (e.axis == 'RIGHT_BOTTOM_SHOULDER') {
+		   var message = '';
+
+		   var speed = parseFloat(e.value);
+		   speed = speed * 100;
+		   var speed1 = speed.toFixed(0);	
+		   
+		   if (speed1 < 5) {
+			   speed1 = 0;
+		   }
+		   
+		   message = message + 'DF:' + 'V' + speed1 + ':';	
+		   message = message + ']';        	        
+		   window.socket.emit( 'dashboard', message );
+  	  
+      }
+		
+	},
+
+	
 	executeConfirm: function(bResult,oController){
 	 },
 	

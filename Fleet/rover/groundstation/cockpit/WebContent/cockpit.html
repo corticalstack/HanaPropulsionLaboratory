@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   		<script src="http://192.168.1.62:8090/socket.io/socket.io.js"></script>  
-		<script src="/Gamepad/gamepad.js"></script>
+		<script src="/gamepad/gamepad.js"></script>
               <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
@@ -139,18 +139,29 @@
 			});
 
 			gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
-				$('#log-' + e.gamepad.index).append('<li>' + e.control + ' down</li>');
-				console.log(e.control);
+				try {
+        			sap.ui.getCore().byId("cockpit_view").getController().gamepad_button_down(e);
+        			
+        		}
+        		catch(err){}
 			});
 		
 			gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
-				$('#log-' + e.gamepad.index).append('<li>' + e.control + ' up</li>');
-				console.log(e.control);
+				try {
+        			sap.ui.getCore().byId("cockpit_view").getController().gamepad_button_up(e);
+        			
+        		}
+        		catch(err){}
+
 			});
 
 			gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
-				$('#log-' + e.gamepad.index).append('<li>' + e.axis + ' changed to ' + e.value + '</li>');
-				console.log(e.control);
+				try {
+        			sap.ui.getCore().byId("cockpit_view").getController().gamepad_axis_changed(e);
+        			
+        		}
+        		catch(err){}
+
 			});
 
 			if (!gamepad.init()) {
