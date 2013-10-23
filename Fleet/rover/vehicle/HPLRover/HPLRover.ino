@@ -11,6 +11,9 @@
 #include <HPLRover_Sensors.h>
 
 
+// Local modules
+#include "constants.h"
+
 
 
 HPLRover_Radio hplrover_radio;
@@ -23,12 +26,16 @@ HPLRover_Sensors hplrover_sensors;
 Timer scheduler;
 
 
+// Commands received
+boolean     cmd_process               = false;
+
  
 // Setup is called when the sketch starts
 void setup() {
   Serial.begin(9600);        
 
-
+  init();
+ 
   scheduler.every(200, hplrover_gps.update_gps, 0);
   scheduler.every(200, hplrover_compass.update_compass, 0);
   scheduler.every(200, hplrover_sensors.read_sensors, 0); 
@@ -63,4 +70,28 @@ void one_second_loop(void* context)
 }
 
 
+void init() {
+  HPLRover_Radio::radio_cmd_in.velocity_rx = false;
+  HPLRover_Radio::radio_cmd_in.velocity_val = 0;
+  
+  HPLRover_Radio::radio_cmd_in.direction_rx = false;
+  HPLRover_Radio::radio_cmd_in.direction_val = 0;
+  
+  HPLRover_Radio::radio_cmd_in.heading_rx = false;
+  HPLRover_Radio::radio_cmd_in.heading_val = 0;
+  
+  HPLRover_Radio::radio_cmd_in.rotate_rx = false;
 
+  
+  HPLRover_Radio::radio_cmd_in.stop_rx = false;
+  HPLRover_Radio::radio_cmd_in.step_rx = false;
+  
+  HPLRover_Radio::radio_cmd_in.lights_mainbeam_rx = false;
+  HPLRover_Radio::radio_cmd_in.lights_mainbeam_val = 0;
+
+  HPLRover_Radio::radio_cmd_in.cam_pan_rx = false;
+
+  HPLRover_Radio::radio_cmd_in.cam_tilt_rx = false;
+
+  HPLRover_Radio::radio_cmd_in.cam_sweep_rx = false;
+}
