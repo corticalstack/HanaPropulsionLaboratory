@@ -1,26 +1,9 @@
 #include "Arduino.h"
 #include "HPLRover_Radio.h"
+#include "HPLRover_Common.h"
 
-extern char cmd_process;
-extern const char cmd_velocity;
-extern const char cmd_direction;            
-extern const char cmd_heading;
-extern const char   cmd_rotate;
-extern const char   cmd_stop;
-extern const char   cmd_step;
-extern const char   cmd_cam_pan;
-extern const char   cmd_cam_tilt;
-extern const char   cmd_cam_sweep;
-extern const char   cmd_lights_mainbeam;
-extern const char   cmd_val_on;
-extern const char   cmd_val_off;
-extern const int    cmd_velocity_val_allstop;
-extern const char   cmd_val_forward;
-extern const char   cmd_val_left;
-extern const char   cmd_val_right;
-extern const char   cmd_val_up;
-extern const char   cmd_val_down;
-extern const char   null_terminator;
+
+struct HPLRover_Radio::data_stream_command_in_type HPLRover_Radio::radio_cmd_in;
 
 HPLRover_Radio::HPLRover_Radio()
 {
@@ -161,4 +144,11 @@ void HPLRover_Radio::clear_buffer() { // empties command buffer from serial conn
 
   serial_count = 0; // reset buffer placement
   buffer[serial_count] = null_terminator; 
+}
+
+
+void HPLRover_Radio::test_call() { 
+
+  Serial.println("Radio test call executed");
+
 }

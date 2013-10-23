@@ -47,7 +47,8 @@ class HPLRover_Radio
 	void read_radio_data_stream();
 	
 	static void send_radio_data_stream(void* context);
-	
+	void clear_buffer();
+	void test_call();
 	
 	
 	
@@ -57,7 +58,7 @@ class HPLRover_Radio
 	char buffer[100];                             // buffer for serial commands
 	
 	void stream_register(char command[], int command_length);
-	void clear_buffer();
+	
 };
 
 #endif

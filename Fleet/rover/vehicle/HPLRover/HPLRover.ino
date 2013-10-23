@@ -1,4 +1,4 @@
-
+#include <HPLRover_Common.h>
 
 #include <Event.h>
 #include <Timer.h>
@@ -11,11 +11,6 @@
 #include <HPLRover_Sensors.h>
 
 
-// Local modules
-#include "constants.h"
-
-
-
 HPLRover_Radio hplrover_radio;
 HPLRover_Motors hplrover_motors;
 HPLRover_GPS hplrover_gps;
@@ -23,18 +18,15 @@ HPLRover_Compass hplrover_compass;
 HPLRover_Sensors hplrover_sensors;
 
 
+
 Timer scheduler;
-
-
-// Commands received
-boolean     cmd_process               = false;
 
  
 // Setup is called when the sketch starts
 void setup() {
   Serial.begin(9600);        
 
-  init();
+  init_commands();
  
   scheduler.every(200, hplrover_gps.update_gps, 0);
   scheduler.every(200, hplrover_compass.update_compass, 0);
@@ -59,7 +51,7 @@ void loop() {
 void fast_loop() {
   Serial.println("fast loop");
   hplrover_radio.read_radio_data_stream();
-  hplrover_motors.output();
+  hplrover_motors.output(hplrover_radio);
 }  
   
 
@@ -70,7 +62,8 @@ void one_second_loop(void* context)
 }
 
 
-void init() {
+void init_commands() {
+  
   HPLRover_Radio::radio_cmd_in.velocity_rx = false;
   HPLRover_Radio::radio_cmd_in.velocity_val = 0;
   
@@ -94,4 +87,5 @@ void init() {
   HPLRover_Radio::radio_cmd_in.cam_tilt_rx = false;
 
   HPLRover_Radio::radio_cmd_in.cam_sweep_rx = false;
+  
 }
