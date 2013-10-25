@@ -1,9 +1,8 @@
-#include <HPLRover_Common.h>
-
 #include <Event.h>
 #include <Timer.h>
 
-
+#include <HPLRover_Common.h>
+#include <HPLRover_Command.h>
 #include <HPLRover_Radio.h>
 #include <HPLRover_Motors.h>
 #include <HPLRover_GPS.h>
@@ -11,9 +10,11 @@
 #include <HPLRover_Sensors.h>
 
 
-HPLRover_Radio hplrover_radio;
-HPLRover_Motors hplrover_motors;
-HPLRover_GPS hplrover_gps;
+
+HPLRover_Command hplrover_command;
+HPLRover_Radio   hplrover_radio;
+HPLRover_Motors  hplrover_motors;
+HPLRover_GPS     hplrover_gps;
 HPLRover_Compass hplrover_compass;
 HPLRover_Sensors hplrover_sensors;
 
@@ -23,7 +24,7 @@ Timer scheduler;
 
  
 // Setup is called when the sketch starts
-void setup() {
+void setup(void) {
   Serial.begin(9600);        
 
   init_commands();
@@ -39,7 +40,7 @@ void setup() {
 
 
 // loop() is called rapidly while the sketch is running
-void loop() {
+void loop(void) {
  scheduler.update();
  
  fast_loop();
@@ -48,10 +49,10 @@ void loop() {
 
 
 
-void fast_loop() {
+void fast_loop(void) {
   Serial.println("fast loop");
-  hplrover_radio.read_radio_data_stream();
-  hplrover_motors.output(hplrover_radio);
+  hplrover_radio.read_radio_data_stream(hplrover_command);
+  hplrover_motors.output(hplrover_command);
 }  
   
 
@@ -62,30 +63,8 @@ void one_second_loop(void* context)
 }
 
 
-void init_commands() {
+void init_commands(void) {
   
-  HPLRover_Radio::radio_cmd_in.velocity_rx = false;
-  HPLRover_Radio::radio_cmd_in.velocity_val = 0;
-  
-  HPLRover_Radio::radio_cmd_in.direction_rx = false;
-  HPLRover_Radio::radio_cmd_in.direction_val = 0;
-  
-  HPLRover_Radio::radio_cmd_in.heading_rx = false;
-  HPLRover_Radio::radio_cmd_in.heading_val = 0;
-  
-  HPLRover_Radio::radio_cmd_in.rotate_rx = false;
-
-  
-  HPLRover_Radio::radio_cmd_in.stop_rx = false;
-  HPLRover_Radio::radio_cmd_in.step_rx = false;
-  
-  HPLRover_Radio::radio_cmd_in.lights_mainbeam_rx = false;
-  HPLRover_Radio::radio_cmd_in.lights_mainbeam_val = 0;
-
-  HPLRover_Radio::radio_cmd_in.cam_pan_rx = false;
-
-  HPLRover_Radio::radio_cmd_in.cam_tilt_rx = false;
-
-  HPLRover_Radio::radio_cmd_in.cam_sweep_rx = false;
+ 
   
 }

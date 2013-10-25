@@ -1,25 +1,21 @@
 #include "Arduino.h"
 #include "HPLRover_Radio.h"
 #include "HPLRover_Common.h"
+#include "HPLRover_Command.h"
 
 
-struct HPLRover_Radio::data_stream_command_in_type HPLRover_Radio::radio_cmd_in;
-
-HPLRover_Radio::HPLRover_Radio()
-{
+HPLRover_Radio::HPLRover_Radio() {
 	serial_count = 0;   
 }
 
 
 // Init
-void HPLRover_Radio::init()
-{
+void HPLRover_Radio::init() {
  
 }
 
 
-void HPLRover_Radio::read_radio_data_stream()
-{
+void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command) {
 
   Serial.println("Read radio data stream");
   
@@ -30,7 +26,7 @@ void HPLRover_Radio::read_radio_data_stream()
     switch (serial_char) {
       case ':' :  
         buffer[serial_count] = null_terminator;
-        stream_register(buffer, serial_count);
+        command_register(command, buffer, serial_count);
         clear_buffer();
         break;
       case ']' :
@@ -50,92 +46,68 @@ void HPLRover_Radio::read_radio_data_stream()
 }
 
 
-void HPLRover_Radio::send_radio_data_stream(void* context)
-{
+void HPLRover_Radio::send_radio_data_stream(void* context) {
   Serial.println("Send radio data stream");
 }
 
 
-void HPLRover_Radio::stream_register(char command[], int command_length) {   // deals with standardized input from serial connection
+void HPLRover_Radio::command_register(HPLRover_Command &command, char buffer[], int command_length) {   // deals with standardized input from serial connection
 
-  if (command[0] == cmd_stop) 
-  {
-    HPLRover_Radio::radio_cmd_in.stop_rx = true;
-  }
+	if (buffer[0] == cmd_velocity) {
+		command.cmd_in_motors.velocity_rx = true;
+		command.cmd_in_motors.velocity_val = (int)strtod(&buffer[1], NULL);
+	}
+ 
+	
+	if (buffer[0] == cmd_stop) {
+		command.cmd_in_motors.stop_rx = true;
+	}
  
  
-  if (command[0] == cmd_step) 
-  {
-    HPLRover_Radio::radio_cmd_in.step_rx = true;
-  }
- 
-
-  if (command[0] == cmd_cam_sweep) 
-  {
-    HPLRover_Radio::radio_cmd_in.cam_sweep_rx = true;
-  }
+	if (buffer[0] == cmd_step) {
+		command.cmd_in_motors.step_rx = true;
+	}
 
   
-  if (command[0] == cmd_velocity) 
-  {
-    HPLRover_Radio::radio_cmd_in.velocity_rx = true;
-    HPLRover_Radio::radio_cmd_in.velocity_val = (int)strtod(&command[1], NULL);
-  }
- 
+	if (buffer[0] == cmd_direction) {
+		command.cmd_in_motors.direction_rx = true;
+		command.cmd_in_motors.direction_val = buffer[1];
+	}
   
-  if (command[0] == cmd_direction) 
-  {
-    HPLRover_Radio::radio_cmd_in.direction_rx = true;
-    HPLRover_Radio::radio_cmd_in.direction_val = command[1];
-  }
+
+	if (buffer[0] == cmd_heading) {
+		command.cmd_in_motors.heading_rx = true;
+		command.cmd_in_motors.heading_val = (int)strtod(&buffer[1], NULL);
+	}
 
 
-  if (command[0] == cmd_cam_pan) 
-  {
-    HPLRover_Radio::radio_cmd_in.cam_pan_rx = true;
-    HPLRover_Radio::radio_cmd_in.cam_pan_val = command[1];
-  }
+	if (buffer[0] == cmd_rotate) {
+		command.cmd_in_motors.rotate_rx = true;
+		command.cmd_in_motors.rotate_val = buffer[1];
+	}
+	
+	
+	if (buffer[0] == cmd_cam_sweep) {
+		command.cmd_in_cam.cam_sweep_rx = true;
+	}
 
-
-  if (command[0] == cmd_cam_tilt) 
-  {
-    HPLRover_Radio::radio_cmd_in.cam_tilt_rx = true;
-    HPLRover_Radio::radio_cmd_in.cam_tilt_val = command[1];
-  }
  
-  
-  if (command[0] == cmd_heading)
-  {
-    HPLRover_Radio::radio_cmd_in.heading_rx = true;
-    HPLRover_Radio::radio_cmd_in.heading_val = (int)strtod(&command[1], NULL);
-  }
+	if (buffer[0] == cmd_cam_pan) {
+		command.cmd_in_cam.cam_pan_rx = true;
+		command.cmd_in_cam.cam_pan_val = buffer[1];
+	}
 
 
-  if (command[0] == cmd_rotate) 
-  {
-    HPLRover_Radio::radio_cmd_in.rotate_rx = true;
-    HPLRover_Radio::radio_cmd_in.rotate_val = command[1];
-  }
+	if (buffer[0] == cmd_cam_tilt) {
+		command.cmd_in_cam.cam_tilt_rx = true;
+		command.cmd_in_cam.cam_tilt_val = buffer[1];
+	}
+   
 
-
-  if (command[0] == cmd_cam_pan) 
-  {
-    HPLRover_Radio::radio_cmd_in.cam_pan_rx = true;
-    HPLRover_Radio::radio_cmd_in.cam_pan_val = (int)strtod(&command[1], NULL);
-  }
-
-
-  if (command[0] == cmd_cam_tilt) 
-  {
-    HPLRover_Radio::radio_cmd_in.cam_tilt_rx = true;
-    HPLRover_Radio::radio_cmd_in.cam_tilt_val = (int)strtod(&command[1], NULL);
-  }
-
-  if (command[0] == cmd_lights_mainbeam) 
-  {
-    HPLRover_Radio::radio_cmd_in.lights_mainbeam_rx = true;
-    HPLRover_Radio::radio_cmd_in.lights_mainbeam_val = command[1];
-  }
+	if (buffer[0] == cmd_lights_mainbeam) {
+		command.cmd_in_lights.lights_mainbeam_rx = true;
+		command.cmd_in_lights.lights_mainbeam_val = buffer[1];
+	}
 
 }
 
