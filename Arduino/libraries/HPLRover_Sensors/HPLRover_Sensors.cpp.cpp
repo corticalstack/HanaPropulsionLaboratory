@@ -8,7 +8,7 @@ HPLRover_Sensors::HPLRover_Sensors()
 void HPLRover_Sensors::read_sensors(void* context)
 {
 
-  Serial.println("Read sensors");
+//  Serial.println("Read sensors");
 
 }
 

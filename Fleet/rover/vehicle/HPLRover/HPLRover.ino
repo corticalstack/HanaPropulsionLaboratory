@@ -1,6 +1,8 @@
 #include <Event.h>
 #include <Timer.h>
 
+#include <Servo.h>
+
 #include <HPLRover_Common.h>
 #include <HPLRover_Command.h>
 #include <HPLRover_Radio.h>
@@ -22,6 +24,11 @@ HPLRover_Sensors hplrover_sensors;
 
 Timer scheduler;
 
+Servo servo_leftmotors,
+      servo_rightmotors,
+      servo_cam_pan,
+      servo_cam_tilt;
+      
  
 // Setup is called when the sketch starts
 void setup(void) {
@@ -29,6 +36,9 @@ void setup(void) {
 
   init_commands();
  
+  servo_leftmotors.attach(pin_leftmotor);             // Use PWM pin 2 to control Sabertooth.
+  servo_rightmotors.attach(pin_rightmotor);           // Use PWM 3 to control Sabertooth.
+  
   scheduler.every(200, hplrover_gps.update_gps, 0);
   scheduler.every(200, hplrover_compass.update_compass, 0);
   scheduler.every(200, hplrover_sensors.read_sensors, 0); 
@@ -50,21 +60,17 @@ void loop(void) {
 
 
 void fast_loop(void) {
-  Serial.println("fast loop");
   hplrover_radio.read_radio_data_stream(hplrover_command);
-  hplrover_motors.output(hplrover_command);
+  hplrover_motors.output(hplrover_command, servo_leftmotors, servo_rightmotors );
 }  
   
 
 void one_second_loop(void* context) 
 {
-    Serial.println("One second loop");
 //    read_power();
 }
 
 
 void init_commands(void) {
-  
- 
-  
+   
 }

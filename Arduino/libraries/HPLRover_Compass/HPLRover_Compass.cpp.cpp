@@ -7,5 +7,5 @@ HPLRover_Compass::HPLRover_Compass()
 
 void HPLRover_Compass::update_compass(void* context)
 {
-Serial.println("Update Compass");
+//Serial.println("Update Compass");
 }

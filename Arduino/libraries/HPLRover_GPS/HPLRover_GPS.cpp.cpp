@@ -7,5 +7,5 @@ HPLRover_GPS::HPLRover_GPS()
 
 void HPLRover_GPS::update_gps(void* context)
 {
-Serial.println("Update Gps");
+//Serial.println("Update Gps");
 }

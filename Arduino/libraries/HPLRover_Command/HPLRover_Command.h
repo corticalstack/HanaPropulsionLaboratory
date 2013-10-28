@@ -7,8 +7,8 @@ class HPLRover_Command {
 	public:
   
 		struct command_in_motors_type {
-			boolean velocity_rx;
-			int     velocity_val;
+			boolean throttle_rx;
+			int     throttle_val;
 		
 			boolean direction_rx;
 			char    direction_val;

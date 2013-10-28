@@ -14,8 +14,8 @@ HPLRover_Command::HPLRover_Command() {
 // Init
 void HPLRover_Command::init(void) {
 
-	HPLRover_Command::cmd_in_motors.velocity_rx = false;
-	HPLRover_Command::cmd_in_motors.velocity_val = 0;  
+	HPLRover_Command::cmd_in_motors.throttle_rx = false;
+	HPLRover_Command::cmd_in_motors.throttle_val = 0;  
 	HPLRover_Command::cmd_in_motors.direction_rx = false;
 	HPLRover_Command::cmd_in_motors.direction_val = 0;  
 	HPLRover_Command::cmd_in_motors.heading_rx = false;

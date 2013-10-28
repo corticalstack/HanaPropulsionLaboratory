@@ -17,7 +17,7 @@ void HPLRover_Radio::init() {
 
 void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command) {
 
-  Serial.println("Read radio data stream");
+//  Serial.println("Read radio data stream");
   
   if (Serial.available()) 
   {
@@ -47,15 +47,15 @@ void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command) {
 
 
 void HPLRover_Radio::send_radio_data_stream(void* context) {
-  Serial.println("Send radio data stream");
+  //Serial.println("Send radio data stream");
 }
 
 
 void HPLRover_Radio::command_register(HPLRover_Command &command, char buffer[], int command_length) {   // deals with standardized input from serial connection
 
-	if (buffer[0] == cmd_velocity) {
-		command.cmd_in_motors.velocity_rx = true;
-		command.cmd_in_motors.velocity_val = (int)strtod(&buffer[1], NULL);
+	if (buffer[0] == cmd_throttle) {
+		command.cmd_in_motors.throttle_rx = true;
+		command.cmd_in_motors.throttle_val = (int)strtod(&buffer[1], NULL);
 	}
  
 	
