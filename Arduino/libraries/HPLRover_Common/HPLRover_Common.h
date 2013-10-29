@@ -3,6 +3,10 @@
 
 #include "Arduino.h"
 
+static uint32_t current_time_ms;
+static uint32_t last_gcs_heartbeat_ms;
+static uint32_t last_cam_pass_ms;
+
 // Ardupilot digital output pin assignments
 const int 		pin_leftmotor 						= 12;
 const int 		pin_rightmotor 						= 11;
@@ -62,17 +66,21 @@ const int 		max_right_throttle_forward_val      = 160;
 static int 		cam_last_pan_pos 					= 0;
 static int 		cam_last_tilt_pos 					= 0;
 static int 		cam_pos_goto 						= 0;
+static int 		cam_last_pan_val						= 0;
+static int 		cam_last_tilt_val					= 0;
 
 const float 	cam_pan_curve_power 				= 2.6959;
 const float 	cam_tilt_curve_power 				= 2.6959;
+const int 		cam_pan_deadzone_val       			= 1;
+const int 		cam_tilt_deadzone_val       		= 1;
 
 const int 		cam_pan_val_min       				= 0;
 const int 		cam_pan_val_max       				= 180;
 const int 		cam_pan_val_centre    				= 90;
 
-const int 		cam_tilt_val_min      				= 20;
-const int 		cam_tilt_val_max      				= 70;
-const int 		cam_tilt_val_centre   				= 45;
+const int 		cam_tilt_val_min      				= 5;
+const int 		cam_tilt_val_max      				= 100;
+const int 		cam_tilt_val_centre   				= 55;
 
 const int 		cam_sweep_delay       				= 25;
 

@@ -23,18 +23,18 @@ void HPLRover_Motors::output(HPLRover_Command &command, Servo &servo_leftmotors,
        return;
     }
 
-
-	internal_heading_val  = get_heading_curved(command.cmd_in_motors.heading_val);
-	internal_throttle_val = get_throttle_curved(command.cmd_in_motors.throttle_val);
 	
-	   
 	internal_heading_val  = command.cmd_in_motors.heading_val;
 	if (internal_heading_val < 0) {
 		internal_heading_val = internal_heading_val * -1;
 		heading_anti_clockwise = true;
 	}
+
+
+	internal_heading_val  = get_heading_curved(internal_heading_val);
+	internal_throttle_val = get_throttle_curved(command.cmd_in_motors.throttle_val);
 	
-	
+	   
 	
     if (command.cmd_in_motors.stop_rx || internal_throttle_val <= throttle_deadzone_val) {
       allstop(command, servo_leftmotors, servo_rightmotors);

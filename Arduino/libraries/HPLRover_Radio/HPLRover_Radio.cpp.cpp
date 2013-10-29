@@ -53,6 +53,8 @@ void HPLRover_Radio::send_radio_data_stream(void* context) {
 
 void HPLRover_Radio::command_register(HPLRover_Command &command, char buffer[], int command_length) {   // deals with standardized input from serial connection
 
+    last_gcs_heartbeat_ms = millis();
+	
 	if (buffer[0] == cmd_throttle) {
 		command.cmd_in_motors.throttle_rx = true;
 		command.cmd_in_motors.throttle_val = (int)strtod(&buffer[1], NULL);

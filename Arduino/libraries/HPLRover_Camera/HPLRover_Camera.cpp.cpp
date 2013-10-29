@@ -5,21 +5,25 @@
 #include "HPLRover_Common.h"
 #include <HPLRover_Command.h>
 
-
 HPLRover_Camera::HPLRover_Camera() {
 }
 
 void HPLRover_Camera::output(HPLRover_Command &command, Servo &servo_pancam, Servo &servo_tiltcam) {
-
 	int internal_pan_val;
 	int internal_tilt_val;	
     bool pan_negative_val = false;
 	bool tilt_negative_val = false;
 
-	internal_pan_val  = get_pan_curved(command.cmd_in_cam.pan_val);
-	internal_tilt_val = get_tilt_curved(command.cmd_in_cam.tilt_val);
+	
+	if (command.cmd_in_cam.pan_rx == false && command.cmd_in_cam.tilt_rx == false) {
+       return;
+    }
 
 
+	internal_pan_val  = command.cmd_in_cam.pan_val;
+	internal_tilt_val = command.cmd_in_cam.tilt_val;
+	
+	
 	if (internal_pan_val < 0) {
 		internal_pan_val = internal_pan_val * -1;
 		pan_negative_val = true;
@@ -29,6 +33,20 @@ void HPLRover_Camera::output(HPLRover_Command &command, Servo &servo_pancam, Ser
 	if (internal_tilt_val < 0) {
 		internal_tilt_val = internal_tilt_val * -1;
 		tilt_negative_val = true;
+	}
+
+	
+	internal_pan_val  = get_pan_curved(internal_pan_val);
+	internal_tilt_val = get_tilt_curved(internal_tilt_val);
+	
+	
+	if (internal_pan_val <= cam_pan_deadzone_val ) {
+		internal_pan_val = 0;
+	}
+	
+	
+	if (internal_tilt_val <= cam_tilt_deadzone_val) {
+		internal_tilt_val = 0;
 	}
 
 	
@@ -48,6 +66,7 @@ void HPLRover_Camera::output(HPLRover_Command &command, Servo &servo_pancam, Ser
 	}
 	
 	servo_pancam.write(cam_pos_goto);
+	cam_last_pan_pos = cam_pos_goto;
 	
 
 	if (tilt_negative_val == true) {	
@@ -65,7 +84,21 @@ void HPLRover_Camera::output(HPLRover_Command &command, Servo &servo_pancam, Ser
 	}
 	
 	servo_tiltcam.write(cam_pos_goto);
+	cam_last_tilt_pos = cam_pos_goto;
+	
+	cam_last_pan_val = internal_pan_val;
+	cam_last_tilt_val = internal_tilt_val;
+	
+	if (internal_pan_val < cam_last_pan_val) {
+		command.cmd_in_cam.pan_rx = 0;
+		command.cmd_in_cam.pan_val = 0;
+	}
 
+	if (internal_tilt_val < cam_last_tilt_val) {
+		command.cmd_in_cam.tilt_rx = 0;
+		command.cmd_in_cam.tilt_val = 0;
+	}
+	
 }
 
 
