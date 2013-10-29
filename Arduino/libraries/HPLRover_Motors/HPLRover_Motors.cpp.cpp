@@ -12,20 +12,28 @@ HPLRover_Motors::HPLRover_Motors() {
 void HPLRover_Motors::output(HPLRover_Command &command, Servo &servo_leftmotors, Servo &servo_rightmotors) {
 
 	int internal_throttle_val;
+	int internal_heading_val;	
 	int left_throttle_val;
 	int right_throttle_val;
+    bool heading_anti_clockwise = false;
 
-
-	int internal_heading_val;	
 	
 	
 	if (command.cmd_in_motors.stop_rx == false && command.cmd_in_motors.direction_rx == false && command.cmd_in_motors.heading_rx == false) {
        return;
     }
-       
-	   
+
+
 	internal_heading_val  = get_heading_curved(command.cmd_in_motors.heading_val);
 	internal_throttle_val = get_throttle_curved(command.cmd_in_motors.throttle_val);
+	
+	   
+	internal_heading_val  = command.cmd_in_motors.heading_val;
+	if (internal_heading_val < 0) {
+		internal_heading_val = internal_heading_val * -1;
+		heading_anti_clockwise = true;
+	}
+	
 	
 	
     if (command.cmd_in_motors.stop_rx || internal_throttle_val <= throttle_deadzone_val) {
@@ -45,12 +53,12 @@ void HPLRover_Motors::output(HPLRover_Command &command, Servo &servo_leftmotors,
 //           Serial.println("Forward");
            left_throttle_val = left_throttle_val + 90;
            right_throttle_val = right_throttle_val + 90;
-           if (internal_heading_val > 0) {
+           if (heading_anti_clockwise == false) {
              left_throttle_val = left_throttle_val + internal_heading_val;
            }
            else
            {
-             right_throttle_val = right_throttle_val - internal_heading_val;
+             right_throttle_val = right_throttle_val + internal_heading_val;
            }
        }
        else
@@ -58,7 +66,7 @@ void HPLRover_Motors::output(HPLRover_Command &command, Servo &servo_leftmotors,
 //           Serial.println("Reverse");
            left_throttle_val = 90 - left_throttle_val;
            right_throttle_val = 90 - right_throttle_val;         
-           if (internal_heading_val > 0) {
+           if (heading_anti_clockwise == false) {
              left_throttle_val = left_throttle_val - internal_heading_val;
            }
            else
@@ -85,9 +93,6 @@ void HPLRover_Motors::output(HPLRover_Command &command, Servo &servo_leftmotors,
       right_throttle_val = max_right_throttle_forward_val;
     } 
     
-
-
-    
     
 //    Serial.println("Going with these velocities");
 //    Serial.println(left_throttle_val);
@@ -95,7 +100,6 @@ void HPLRover_Motors::output(HPLRover_Command &command, Servo &servo_leftmotors,
     
     servo_leftmotors.write(left_throttle_val);
     servo_rightmotors.write(right_throttle_val);	
-	
 	
 }
 
@@ -126,20 +130,8 @@ int HPLRover_Motors::get_throttle_curved(int throttle_val) {
 
 
 int HPLRover_Motors::get_heading_curved(int heading_val) {
-    int temp_heading_val;
-
-	temp_heading_val = heading_val;
 	
-	if (temp_heading_val < 0) {
-		heading_val = temp_heading_val * -1;
-	}
-	
-	heading_val = pow(heading_val, heading_curve_power) / 10000;
-	
-	if (temp_heading_val < 0) {
-		heading_val = heading_val * -1;
-	}
-	
+	heading_val = pow(heading_val, heading_curve_power) / 10000;	
 	return heading_val;
 }
 

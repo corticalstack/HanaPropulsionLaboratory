@@ -31,13 +31,13 @@ class HPLRover_Command {
 	
 	
 		struct command_in_cam_type {	
-			boolean cam_pan_rx;
-			char    cam_pan_val;
+			boolean pan_rx;
+			int     pan_val;
 				
-			boolean cam_tilt_rx;
-			char    cam_tilt_val;
+			boolean tilt_rx;
+			int     tilt_val;
 		
-			boolean cam_sweep_rx;		
+			boolean sweep_rx;		
 		};		
 	
 		static struct command_in_motors_type 	cmd_in_motors;

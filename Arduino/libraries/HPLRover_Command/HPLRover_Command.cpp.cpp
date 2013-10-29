@@ -27,9 +27,11 @@ void HPLRover_Command::init(void) {
 	HPLRover_Command::cmd_in_lights.lights_mainbeam_rx = false;
 	HPLRover_Command::cmd_in_lights.lights_mainbeam_val = 0;
 
-	HPLRover_Command::cmd_in_cam.cam_pan_rx = false;
-	HPLRover_Command::cmd_in_cam.cam_tilt_rx = false;
-	HPLRover_Command::cmd_in_cam.cam_sweep_rx = false;
+	HPLRover_Command::cmd_in_cam.pan_rx = false;
+	HPLRover_Command::cmd_in_cam.pan_val = 0;  
+	HPLRover_Command::cmd_in_cam.tilt_rx = false;
+	HPLRover_Command::cmd_in_cam.tilt_val = 0;  
+	HPLRover_Command::cmd_in_cam.sweep_rx = false;
 
 }
 

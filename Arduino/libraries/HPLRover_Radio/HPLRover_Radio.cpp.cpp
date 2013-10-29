@@ -88,19 +88,19 @@ void HPLRover_Radio::command_register(HPLRover_Command &command, char buffer[], 
 	
 	
 	if (buffer[0] == cmd_cam_sweep) {
-		command.cmd_in_cam.cam_sweep_rx = true;
+		command.cmd_in_cam.sweep_rx = true;
 	}
 
  
 	if (buffer[0] == cmd_cam_pan) {
-		command.cmd_in_cam.cam_pan_rx = true;
-		command.cmd_in_cam.cam_pan_val = buffer[1];
+		command.cmd_in_cam.pan_rx = true;
+		command.cmd_in_cam.pan_val = (int)strtod(&buffer[1], NULL);
 	}
 
 
 	if (buffer[0] == cmd_cam_tilt) {
-		command.cmd_in_cam.cam_tilt_rx = true;
-		command.cmd_in_cam.cam_tilt_val = buffer[1];
+		command.cmd_in_cam.tilt_rx = true;
+		command.cmd_in_cam.tilt_val = (int)strtod(&buffer[1], NULL);
 	}
    
 

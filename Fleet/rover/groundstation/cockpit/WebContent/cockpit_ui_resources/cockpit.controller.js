@@ -177,7 +177,24 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
       }
 
-      
+      if (e.axis == 'RIGHT_STICK_X') {
+    	  var pan = parseFloat(e.value);
+		   pan = pan * 100;
+		   var pan1 = pan.toFixed(0);	
+		   	   
+		   message = message + 'P'  + pan1 + ':';
+
+      }
+
+      if (e.axis == 'RIGHT_STICK_Y') {
+    	  var tilt = parseFloat(e.value);
+		   tilt = tilt * 100;
+		   var tilt1 = tilt.toFixed(0);	
+		   	   
+		   message = message + 'T'  + tilt1 + ':';
+
+      }
+
       message = message + ']';        	        
 	  window.socket.emit( 'dashboard', message );
 

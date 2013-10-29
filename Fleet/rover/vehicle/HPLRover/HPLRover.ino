@@ -1,3 +1,4 @@
+
 #include <Event.h>
 #include <Timer.h>
 
@@ -10,7 +11,7 @@
 #include <HPLRover_GPS.h>
 #include <HPLRover_Compass.h>
 #include <HPLRover_Sensors.h>
-
+#include <HPLRover_Camera.h>
 
 
 HPLRover_Command hplrover_command;
@@ -19,25 +20,24 @@ HPLRover_Motors  hplrover_motors;
 HPLRover_GPS     hplrover_gps;
 HPLRover_Compass hplrover_compass;
 HPLRover_Sensors hplrover_sensors;
-
+HPLRover_Camera  hplrover_camera;
 
 
 Timer scheduler;
 
 Servo servo_leftmotors,
       servo_rightmotors,
-      servo_cam_pan,
-      servo_cam_tilt;
+      servo_pancam,
+      servo_tiltcam;
       
  
 // Setup is called when the sketch starts
 void setup(void) {
-  Serial.begin(9600);        
+  rover_init();
+  
 
-  init_commands();
- 
-  servo_leftmotors.attach(pin_leftmotor);             // Use PWM pin 2 to control Sabertooth.
-  servo_rightmotors.attach(pin_rightmotor);           // Use PWM 3 to control Sabertooth.
+   
+  
   
   scheduler.every(200, hplrover_gps.update_gps, 0);
   scheduler.every(200, hplrover_compass.update_compass, 0);
@@ -62,6 +62,7 @@ void loop(void) {
 void fast_loop(void) {
   hplrover_radio.read_radio_data_stream(hplrover_command);
   hplrover_motors.output(hplrover_command, servo_leftmotors, servo_rightmotors );
+  hplrover_camera.output(hplrover_command, servo_pancam, servo_tiltcam );
 }  
   
 
@@ -71,6 +72,18 @@ void one_second_loop(void* context)
 }
 
 
-void init_commands(void) {
-   
+void rover_init(void) {
+  Serial.begin(9600);        
+
+  servo_leftmotors.attach(pin_leftmotor);             // Use PWM pin 2 to control Sabertooth.
+  servo_rightmotors.attach(pin_rightmotor);           // Use PWM 3 to control Sabertooth.
+
+  servo_pancam.attach(pin_pancam);             
+  servo_tiltcam.attach(pin_tiltcam);           
+  rover_arm();
+}
+
+
+void rover_arm(void) {
+   hplrover_camera.sweep(servo_pancam, servo_tiltcam );
 }
