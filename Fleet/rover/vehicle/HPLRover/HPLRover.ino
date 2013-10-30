@@ -63,6 +63,7 @@ void fast_loop(void) {
   hplrover_radio.read_radio_data_stream(hplrover_command);
   hplrover_motors.output(hplrover_command, servo_leftmotors, servo_rightmotors);
   hplrover_gps.update(hplrover_gps);
+  hplrover_gps.output(hplrover_gps);
 }  
   
 

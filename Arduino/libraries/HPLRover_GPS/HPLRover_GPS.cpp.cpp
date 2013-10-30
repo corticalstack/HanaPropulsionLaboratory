@@ -144,6 +144,7 @@ void HPLRover_GPS::enableMsg(unsigned char id, boolean enable) {
 
 
 void HPLRover_GPS::set_nav_posllh_gps_ms(HPLRover_GPS &gps, long val) {
+	Serial.println(val);
 	gps.gps_msg_nav_posllh.gps_ms = val;
 }
 
@@ -246,33 +247,57 @@ void HPLRover_GPS::sendCmd(unsigned char len, byte data[]) {
 
 
 
-void output(HPLRover_GPS &gps) {
+void HPLRover_GPS::output(HPLRover_GPS &gps) {
 	Serial.println("PosLLH message");
 	Serial.print("GPS MS");
-	Serial.println(gps.gps_msg_nav_posllh.gps_ms;
+	Serial.println(gps.gps_msg_nav_posllh.gps_ms);
 	
 	Serial.print("Longitude");
-	Serial.println( gps.gps_msg_nav_posllh.longitude;
+	Serial.println(gps.gps_msg_nav_posllh.longitude);
 	
 	Serial.print("Lattitude");
-	Serial.println( gps.gps_msg_nav_posllh.lattitude;
+	Serial.println(gps.gps_msg_nav_posllh.lattitude);
 	
-	Serial.print("Lattitude");
-	Serial.println( gps.gps_msg_nav_posllh.height;
-	Serial.println( gps.gps_msg_nav_posllh.height_msl;
-	Serial.println( gps.gps_msg_nav_posllh.hori_acc_est;
-	Serial.println( gps.gps_msg_nav_posllh.vert_acc_est;		
+	Serial.print("Height");
+	Serial.println(gps.gps_msg_nav_posllh.height);
+	
+	Serial.print("Height MSL");
+	Serial.println(gps.gps_msg_nav_posllh.height_msl);
+	
+	Serial.print("Horizontal accuracy estimate");	
+	Serial.println(gps.gps_msg_nav_posllh.hori_acc_est);
+	
+	Serial.print("Vertical accuracy estimate");		
+	Serial.println(gps.gps_msg_nav_posllh.vert_acc_est);		
 
+	
 	Serial.println(" ");
 	Serial.println("Velned message");
-	Serial.println( gps.gps_msg_nav_velned.gps_ms;
-	Serial.println( gps.gps_msg_nav_velned.north_velocity_cm_s;
-	Serial.println( gps.gps_msg_nav_velned.east_velocity_cm_s;
-	Serial.println( gps.gps_msg_nav_velned.down_velocity_cm_s;
-	Serial.println( gps.gps_msg_nav_velned.speed_3d_cm_s;
-	Serial.println( gps.gps_msg_nav_velned.ground_speed_2d_cm_s;
-	Serial.println( gps.gps_msg_nav_velned.heading;
-	Serial.println( gps.gps_msg_nav_velned.speed_acc_est;
-	Serial.println( gps.gps_msg_nav_velned.course_acc_est;
+	Serial.print("GPS MS");
+	Serial.println(gps.gps_msg_nav_velned.gps_ms);
+	
+	Serial.print("North velocity cm/s");
+	Serial.println(gps.gps_msg_nav_velned.north_velocity_cm_s);
+	
+	Serial.print("East velocity cm/s");
+	Serial.println(gps.gps_msg_nav_velned.east_velocity_cm_s);
+	
+	Serial.print("Down velocity cm/s");
+	Serial.println(gps.gps_msg_nav_velned.down_velocity_cm_s);
+	
+	Serial.print("Speed 3D cm/s");
+	Serial.println(gps.gps_msg_nav_velned.speed_3d_cm_s);
+	
+	Serial.print("Ground speed 2D cm/s");
+	Serial.println(gps.gps_msg_nav_velned.ground_speed_2d_cm_s);
+	
+	Serial.print("Heading");
+	Serial.println(gps.gps_msg_nav_velned.heading);
+	
+	Serial.print("Speed accuracy estimate");
+	Serial.println(gps.gps_msg_nav_velned.speed_acc_est);
+	
+	Serial.print("Course accuracy estimate");
+	Serial.println(gps.gps_msg_nav_velned.course_acc_est);
 
 }
