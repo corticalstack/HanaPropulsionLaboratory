@@ -17,7 +17,7 @@ const int 		pin_tiltcam 						= 7;
 
 
 
-static boolean  cmd_process               			= false;
+static bool  	cmd_process               			= false;
 
 // Control commands
 const char   	cmd_throttle             			= 'V';
@@ -83,6 +83,35 @@ const int 		cam_tilt_val_max      				= 100;
 const int 		cam_tilt_val_centre   				= 55;
 
 const int 		cam_sweep_delay       				= 25;
+
+
+// GPS
+
+#define MAX_LENGTH 512
+
+const byte gps_posllh_msg = 0x02;
+const byte gps_sbas_msg   = 0x32;
+const byte gps_velned_msg = 0x12;
+const byte gps_status_msg = 0x03;
+const byte gps_sol_msg    = 0x06;
+const byte gps_dop_msg    = 0x04;
+const byte gps_dgps_msg   = 0x31;
+
+#define LONG(X)    *(long*)(&data[X])
+#define ULONG(X)   *(unsigned long*)(&data[X])
+#define INT(X)     *(int*)(&data[X])
+#define UINT(X)    *(unsigned int*)(&data[X])
+
+
+static unsigned char  state, lstate, code, id, chk1, chk2, ck1, ck2;
+static unsigned int  length, idx, cnt;
+
+static unsigned char data[MAX_LENGTH];
+
+static long lastTime = 0;
+
+
+
 
 
 

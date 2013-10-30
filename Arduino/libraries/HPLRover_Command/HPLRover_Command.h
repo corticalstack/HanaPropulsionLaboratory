@@ -7,37 +7,37 @@ class HPLRover_Command {
 	public:
   
 		struct command_in_motors_type {
-			boolean throttle_rx;
+			bool throttle_rx;
 			int     throttle_val;
 		
-			boolean direction_rx;
+			bool direction_rx;
 			char    direction_val;
 		
-			boolean heading_rx;
+			bool heading_rx;
 			int     heading_val;
 		
-			boolean rotate_rx;
+			bool rotate_rx;
 			char    rotate_val;
 		
-			boolean stop_rx;
-			boolean step_rx;
+			bool stop_rx;
+			bool step_rx;
 		};	
 	
 	
 		struct command_in_lights_type {					
-			boolean lights_mainbeam_rx;
+			bool lights_mainbeam_rx;
 			int     lights_mainbeam_val;
 		};		
 	
 	
 		struct command_in_cam_type {	
-			boolean pan_rx;
+			bool pan_rx;
 			int     pan_val;
 				
-			boolean tilt_rx;
+			bool tilt_rx;
 			int     tilt_val;
 		
-			boolean sweep_rx;		
+			bool sweep_rx;		
 		};		
 	
 		static struct command_in_motors_type 	cmd_in_motors;
