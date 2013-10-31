@@ -1,5 +1,3 @@
-#include <PString.h>
-
 #include <Event.h>
 #include <Timer.h>
 #include <Servo.h>
@@ -49,34 +47,28 @@ void setup(void) {
 
 
 // loop() is called rapidly while the sketch is running
-void loop(void) {
- 
+void loop(void) { 
  scheduler.update();
-
- fast_loop();
- 
+ fast_loop(); 
 }  
 
 
-
-void fast_loop(void) {
-  hplrover_radio.read_radio_data_stream(hplrover_command);
+void fast_loop(void) {  
+  hplrover_radio.read_radio_data_stream(hplrover_command);  
   hplrover_motors.output(hplrover_command, servo_leftmotors, servo_rightmotors);
   hplrover_gps.update(hplrover_gps);
-  hplrover_gps.output(hplrover_gps);
 }  
   
 
 void ms5_loop(void* context) 
 {
   hplrover_camera.output(hplrover_command, servo_pancam, servo_tiltcam);
-
 }
 
 
-void one_second_loop(void* context) 
-{
+void one_second_loop(void* context) {
 //    read_power();
+  hplrover_gps.output(hplrover_gps);
 }
 
 
@@ -91,7 +83,7 @@ void rover_init(void) {
   servo_tiltcam.attach(pin_tiltcam);           
 
   hplrover_gps.init();  
-  rover_arm();
+//  rover_arm();
 
 
 }

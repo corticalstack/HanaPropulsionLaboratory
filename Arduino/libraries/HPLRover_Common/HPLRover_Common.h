@@ -66,7 +66,7 @@ const int 		max_right_throttle_forward_val      = 160;
 static int 		cam_last_pan_pos 					= 0;
 static int 		cam_last_tilt_pos 					= 0;
 static int 		cam_pos_goto 						= 0;
-static int 		cam_last_pan_val						= 0;
+static int 		cam_last_pan_val					= 0;
 static int 		cam_last_tilt_val					= 0;
 
 const float 	cam_pan_curve_power 				= 2.6959;
@@ -110,13 +110,14 @@ static unsigned char data[MAX_LENGTH];
 
 static long lastTime = 0;
 
+const char msg_gps = 'G';
+const String msg_gps_nav_sol = "NS";
+const String msg_gps_nav_posllh = "NP";
+const String msg_gps_nav_velned = "NV";
 
-
-
-
-
-
+const char 		comma_separator             		= ',';
 const char 		null_terminator             		= '\0';
+const String 	msg_terminator             		    = ":]";
 
 
 class HPLRover_Common

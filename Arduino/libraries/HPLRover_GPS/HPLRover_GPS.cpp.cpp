@@ -1,9 +1,11 @@
 #include "Arduino.h"
 #include "HPLRover_GPS.h"
 #include "HPLRover_Common.h"
+#include <PString.h>
 
-struct HPLRover_GPS::gps_msg_nav_posllh_type HPLRover_GPS::gps_msg_nav_posllh;
-struct HPLRover_GPS::gps_msg_nav_velned_type HPLRover_GPS::gps_msg_nav_velned;
+struct HPLRover_GPS::gps_msg_nav_sol_type 		HPLRover_GPS::gps_msg_nav_sol;
+struct HPLRover_GPS::gps_msg_nav_posllh_type 	HPLRover_GPS::gps_msg_nav_posllh;
+struct HPLRover_GPS::gps_msg_nav_velned_type 	HPLRover_GPS::gps_msg_nav_velned;
 
 
 HPLRover_GPS::HPLRover_GPS() {
@@ -16,11 +18,12 @@ void HPLRover_GPS::init() {
 	lstate = state = 0;
   
 	// Modify these to control which messages are sent from module
-	enable_msg(gps_posllh_msg, true); 	
-	enable_msg(gps_sbas_msg, false);    
-	enable_msg(gps_velned_msg, true);   
 	enable_msg(gps_status_msg, false);  
-	enable_msg(gps_sol_msg, false);     
+	enable_msg(gps_posllh_msg, true); 	
+	enable_msg(gps_velned_msg, true);   
+	
+	enable_msg(gps_sbas_msg, false);    
+	enable_msg(gps_sol_msg, true);     
 	enable_msg(gps_dop_msg, false);     
 	enable_msg(gps_dgps_msg, false);    
   
@@ -102,6 +105,12 @@ void HPLRover_GPS::update(HPLRover_GPS &gps) {
 									set_nav_posllh_hori_acc_est(gps, ULONG(20));
 									set_nav_posllh_vert_acc_est(gps, ULONG(24));	
 									break;
+								case 0x06:  // NAV-SOL
+									set_nav_sol_gps_ms(gps, LONG(0));	 
+									set_nav_sol_fix_type(gps, data[10]);
+									set_nav_sol_acc_est_3d(gps, ULONG(24));
+									set_nav_sol_number_sv(gps, data[47]);
+									break;
 								case 0x12:  // NAV-VELNED
 									set_nav_velned_gps_ms(gps, LONG(0));
 									set_nav_velned_north_velocity_cm_s(gps, LONG(4));
@@ -144,6 +153,27 @@ void HPLRover_GPS::send_cmd(unsigned char len, byte data[]) {
   
 	Serial1.write(chk1);
 	Serial1.write(chk2);
+}
+
+
+
+void HPLRover_GPS::set_nav_sol_gps_ms(HPLRover_GPS &gps, long val) {
+	gps.gps_msg_nav_sol.gps_ms = val;
+}
+
+
+void HPLRover_GPS::set_nav_sol_fix_type(HPLRover_GPS &gps, long val) {
+	gps.gps_msg_nav_sol.fix_type = val;
+}
+
+
+void HPLRover_GPS::set_nav_sol_acc_est_3d(HPLRover_GPS &gps, long val) {
+	gps.gps_msg_nav_sol.acc_est_3d = val;
+}
+
+
+void HPLRover_GPS::set_nav_sol_number_sv(HPLRover_GPS &gps, long val) {
+	gps.gps_msg_nav_sol.number_sv = val;
 }
 
 
@@ -227,6 +257,87 @@ void HPLRover_GPS::set_nav_velned_course_acc_est(HPLRover_GPS &gps, long val) {
 
 
 void HPLRover_GPS::output(HPLRover_GPS &gps) {
+  
+	char nav_sol_buffer[30];
+	PString nav_sol_str(nav_sol_buffer, sizeof(nav_sol_buffer));
+	nav_sol_str += msg_gps;
+	nav_sol_str += msg_gps_nav_sol;
+	nav_sol_str += gps.gps_msg_nav_sol.gps_ms;
+	nav_sol_str += comma_separator;
+	nav_sol_str += gps.gps_msg_nav_sol.fix_type;
+	nav_sol_str += comma_separator;
+	nav_sol_str += gps.gps_msg_nav_sol.acc_est_3d;
+	nav_sol_str += comma_separator;
+	nav_sol_str += gps.gps_msg_nav_sol.number_sv;
+	nav_sol_str += msg_terminator;  
+	Serial.println(nav_sol_str);
+
+
+	char nav_posllh_buffer[80];
+	PString nav_posllh_str(nav_posllh_buffer, sizeof(nav_posllh_buffer));
+	nav_posllh_str += msg_gps;
+	nav_posllh_str += msg_gps_nav_posllh;
+	nav_posllh_str += gps.gps_msg_nav_posllh.gps_ms;
+	nav_posllh_str += comma_separator;
+	nav_posllh_str += gps.gps_msg_nav_posllh.longitude;
+	nav_posllh_str += comma_separator;
+	nav_posllh_str += gps.gps_msg_nav_posllh.lattitude;
+	nav_posllh_str += comma_separator;
+	nav_posllh_str += gps.gps_msg_nav_posllh.height;
+	nav_posllh_str += comma_separator;
+	nav_posllh_str += gps.gps_msg_nav_posllh.height_msl;
+	nav_posllh_str += comma_separator;
+	nav_posllh_str += gps.gps_msg_nav_posllh.hori_acc_est;
+	nav_posllh_str += comma_separator;
+	nav_posllh_str += gps.gps_msg_nav_posllh.vert_acc_est;			
+	nav_posllh_str += msg_terminator;
+	Serial.println(nav_posllh_str);
+		
+	
+	char nav_velned_buffer[80];
+	PString nav_velned_str(nav_velned_buffer, sizeof(nav_velned_buffer));
+	nav_velned_str += msg_gps;
+	nav_velned_str += msg_gps_nav_velned;
+	nav_velned_str += gps.gps_msg_nav_velned.gps_ms;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.north_velocity_cm_s;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.east_velocity_cm_s;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.down_velocity_cm_s;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.speed_3d_cm_s;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.ground_speed_2d_cm_s;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.heading;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.speed_acc_est;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.course_acc_est;
+	nav_velned_str += msg_terminator;  
+	Serial.println(nav_velned_str);
+
+}
+
+
+void HPLRover_GPS::log(HPLRover_GPS &gps) {
+
+	Serial.println(" ");
+	Serial.println("SOL message");
+	Serial.print("GPS MS");
+	Serial.println(gps.gps_msg_nav_sol.gps_ms);
+
+	Serial.print("Fix type");
+	Serial.println(gps.gps_msg_nav_sol.fix_type);
+
+	Serial.print("Accuracy estimate 3D");
+	Serial.println(gps.gps_msg_nav_sol.acc_est_3d);
+
+	Serial.print("Number of SV in estimate");
+	Serial.println(gps.gps_msg_nav_sol.number_sv);
+
+	
 	Serial.println(" ");
 	Serial.println("PosLLH message");
 	Serial.print("GPS MS");

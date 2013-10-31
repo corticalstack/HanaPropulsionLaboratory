@@ -8,7 +8,15 @@ class HPLRover_GPS
   public:
   
   public:
-  
+
+		struct gps_msg_nav_sol_type {					
+			long 	gps_ms;
+			int		fix_type;
+			int 	acc_est_3d;
+			int     number_sv;
+		};		
+
+		
 		struct gps_msg_nav_posllh_type {
 			long 	gps_ms;
 			long 	longitude;
@@ -31,24 +39,28 @@ class HPLRover_GPS
 			int 	speed_acc_est;
 			int 	course_acc_est;
 		};		
-	
+
 		
-		static struct gps_msg_nav_posllh_type gps_msg_nav_posllh;
-		static struct gps_msg_nav_velned_type gps_msg_nav_velned;
+		static struct gps_msg_nav_sol_type 		gps_msg_nav_sol;
+		static struct gps_msg_nav_posllh_type 	gps_msg_nav_posllh;
+		static struct gps_msg_nav_velned_type 	gps_msg_nav_velned;
 		
 		
     HPLRover_GPS();        //Constructor
 	 void init(void);
      void update(HPLRover_GPS &gps);
-
-
-
 	 void output(HPLRover_GPS &gps);
-	 
+	 void log(HPLRover_GPS &gps);
   
   private:
      void enable_msg(unsigned char id, boolean enable);
 	 void send_cmd(unsigned char len, byte data[]);
+	 
+	 void set_nav_sol_gps_ms(HPLRover_GPS &gps, long val);	 
+	 void set_nav_sol_fix_type(HPLRover_GPS &gps, long val);
+	 void set_nav_sol_acc_est_3d(HPLRover_GPS &gps, long val);
+	 void set_nav_sol_number_sv(HPLRover_GPS &gps, long val);
+	 
 	 void set_nav_posllh_gps_ms(HPLRover_GPS &gps, long val);
 	 void set_nav_posllh_longitude(HPLRover_GPS &gps, long val);
 	 void set_nav_posllh_lattitude(HPLRover_GPS &gps, long val);
