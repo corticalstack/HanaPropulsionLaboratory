@@ -65,8 +65,12 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,3) == 'GNP') {
 			var gps_msg_nav_posllh_fields = data.split(',');
 			sap.ui.getCore().byId("TvGpsNavPosllhGpsMs").setText('Nav Posllh Gps Ms ' + gps_msg_nav_posllh_fields[0].substr(3));
-			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText('Nav Posllh Longitude ' + gps_msg_nav_posllh_fields[1]);
-			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText('Nav Posllh Lattitude ' + gps_msg_nav_posllh_fields[2]);
+			var longitude = parseFloat(gps_msg_nav_posllh_fields[1], 10);
+			longitude = longitude / 10000000;
+			var lattitude = parseFloat(gps_msg_nav_posllh_fields[2], 10);
+			lattitude = lattitude / 10000000; 
+			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText('Nav Posllh Longitude ' + longitude);
+			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText('Nav Posllh Lattitude ' + lattitude);
 			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText('Nav Posllh height ' + gps_msg_nav_posllh_fields[3]);
 			sap.ui.getCore().byId("TvGpsNavPosllhHeightMsl").setText('Nav Posllh height msl ' + gps_msg_nav_posllh_fields[4]);			
 			sap.ui.getCore().byId("TvGpsNavPosllhHoriAccEst").setText('Nav Posllh hori acc est ' + gps_msg_nav_posllh_fields[5]);			
@@ -89,7 +93,6 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 				
-		
 		//sap.ui.getCore().byId("tvSharpir1").setText(data.substr(3));
 		
 //		var sharpir_value = parseInt(data.substr(3));

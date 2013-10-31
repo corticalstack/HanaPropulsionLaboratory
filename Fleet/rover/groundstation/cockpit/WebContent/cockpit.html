@@ -3,6 +3,7 @@
   		<script src="http://192.168.1.62:8090/socket.io/socket.io.js"></script>  
 		<script src="/gamepad/gamepad.js"></script>
               <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>              
 
 
        	 
@@ -172,6 +173,23 @@
 			}
 		});
 		</script>
+				<script type="text/javascript">
+        var geocoder;
+        var map;
+        function initialize_map() {
+                geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(-34.397, 150.644);
+                var myOptions = {
+                        zoom : 15,
+                        center : latlng,
+                        mapTypeId : google.maps.MapTypeId.ROADMAP
+                }
+                map = new google.maps.Map($('#map_canvas').get(0), myOptions);
+        }
+
+       
+		</script>
+		
   			       
        </body>
 </html>

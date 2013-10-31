@@ -1,3 +1,5 @@
+
+
 sap.ui.jsview("cockpit_ui_resources.cockpit", {
 
 	
@@ -80,7 +82,7 @@ function buildDrivePanel(oController,oLayout){
 
 	/////
 
-	
+	$().ready(window.initialize_map);
 
 	
 	var oTvGpsNavSolGpsMs = new sap.ui.commons.TextView("TvGpsNavSolGpsMs",{
@@ -205,6 +207,27 @@ function buildDrivePanel(oController,oLayout){
 	 });
 	 
 	 
+	 var oMap = new sap.ui.core.HTML({  
+	      content: '<iframe id="myiframe" width="640" height="480">No frame loaded</iframe>',
+	      preferDOM : true,   
+	      afterRendering: function() {  
+	          newSrc = 'https://maps.google.com/maps?q=46.477746,6.883965&amp;num=1&amp;t=h&amp;vpsrc=0&amp;ie=UTF8&amp;ll=46.475293,6.890788&amp;spn=0.007514,0.016512&amp;z=14&amp;output=embed';
+	          
+	          $("#myiframe").load(function() {  
+	        	  $("#myiframe").attr("height",480).attr("width",640);  
+	          
+	              
+	          }).attr("src",newSrc);  
+	          
+	    }
+	 });
+	 
+
+     //Add the map canvas
+//     var oMap = new sap.ui.core.HTML({
+  //           content : "<div id='map_canvas' style='width: 600px; height: 200px;'>https://maps.google.com/maps?q=46.475293+6.8928362&hl=en&sll=37.0625,-95.677068&sspn=68.973951,135.263672&t=h&z=17</div>"
+    //                                 });
+     
 	 	
 		
 	    oLyt.createRow(oTvGpsNavSolGpsMs);
@@ -275,8 +298,12 @@ function buildDrivePanel(oController,oLayout){
 	    oLayout.createRow(oLyt);
 	    
 	    
-		oLyt1.createRow(oHtml);		 
-		oLayout.createRow(oLyt1);
+//		oLyt1.createRow(oHtml);		 
+	//	oLayout.createRow(oLyt1);
+		
+     	oLyt1.createRow(oMap);
+	    oLayout.createRow(oLyt1);
+
 	 	 
 };
 
