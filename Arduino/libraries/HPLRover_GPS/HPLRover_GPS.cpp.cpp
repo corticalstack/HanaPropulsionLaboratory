@@ -317,7 +317,7 @@ void HPLRover_GPS::output(HPLRover_GPS &gps) {
 	nav_velned_str += gps.gps_msg_nav_velned.course_acc_est;
 	nav_velned_str += msg_terminator;  
 	Serial.println(nav_velned_str);
-
+	
 }
 
 

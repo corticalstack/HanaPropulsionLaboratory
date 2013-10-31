@@ -17,15 +17,15 @@ stream = new BufferStream({encoding:'utf8', size:'flexible'})
 stream.split(':', '\r', '\n', '[', ']');
 
 
-var index = require('fs').readFileSync(__dirname + '/dashboard.html');
-console.log(__dirname);
-console.log(index);
+//var index = require('fs').readFileSync(__dirname + '/dashboard.html');
+//console.log(__dirname);
+//console.log(index);
 
-var app = http.createServer(function (req, res) {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(index);
-      console.log(res.end(index));
-    });
+//var app = http.createServer(function (req, res) {
+//      res.writeHead(200, { 'Content-Type': 'text/html' });
+//      res.end(index);
+//      console.log(res.end(index));
+ //   });
 
 
 
@@ -51,18 +51,37 @@ io.sockets.on('connection', function(socket) {
 
 
 
-        serial.on("data", function(chunk){
+        serial.on("data", function(chunk){	
+				console.log(chunk);		
                 stream.write(chunk);
         });
 
         stream.on('split', function (chunk, token) {
         var mychunk = chunk.toString();
+		console.log(chunk);
         switch (mychunk.substr(0,3)) {
+				
                 case "":
                         break;
                 case "SR1":
                         socket.emit("feed", chunk.toString());
                         break;
+
+				case "GNS":
+                        socket.emit("feed", chunk.toString());
+						console.log(chunk);
+                        break;
+
+                case "GNP":
+                        socket.emit("feed", chunk.toString());
+						console.log(chunk);
+                        break;
+
+                case "GNV":
+                        socket.emit("feed", chunk.toString());
+						console.log(chunk);
+                        break;
+
                 default:
  }
 //      socket.emit("feed", chunk.toString());
