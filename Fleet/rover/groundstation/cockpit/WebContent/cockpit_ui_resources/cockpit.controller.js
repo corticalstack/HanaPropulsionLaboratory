@@ -161,6 +161,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 	gamepad_button_down: function(e) {
+		initialize();  
+	     calcRoute('New York','Chicago');  
 		var message = '';
 		if (e.control == 'FACE_4') {
 		  if (window.direction == 'DF') {

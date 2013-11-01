@@ -207,20 +207,16 @@ function buildDrivePanel(oController,oLayout){
 	 });
 	 
 	 
-	 var oMap = new sap.ui.core.HTML({  
-	      content: '<iframe id="myiframe" width="640" height="480">No frame loaded</iframe>',
-	      preferDOM : true,   
-	      afterRendering: function() {  
-	          newSrc = 'https://maps.google.com/maps?q=46.477746,6.883965&amp;num=1&amp;t=h&amp;vpsrc=0&amp;ie=UTF8&amp;ll=46.475293,6.890788&amp;spn=0.007514,0.016512&amp;z=14&amp;output=embed';
-	          
-	          $("#myiframe").load(function() {  
-	        	  $("#myiframe").attr("height",480).attr("width",640);  
-	          
-	              
-	          }).attr("src",newSrc);  
-	          
-	    }
-	 });
+	 var mapPannel = new sap.ui.commons.Panel('mapPanel');  
+	  
+     mapPannel.addContent(new sap.ui.core.HTML(  
+                                             {  
+                                                       content : "<div id='map_canvas' style='width: 100%; height: 400px;'></div>"  
+                                             }));  
+
+   var mTitle = new sap.ui.commons.Title('mTitle');     
+   mTitle.setText("Fligth Map");     
+   mapPannel.setTitle(mTitle);  
 	 
 
      //Add the map canvas
@@ -301,7 +297,7 @@ function buildDrivePanel(oController,oLayout){
 //		oLyt1.createRow(oHtml);		 
 	//	oLayout.createRow(oLyt1);
 		
-     	oLyt1.createRow(oMap);
+     	oLyt1.createRow(mapPannel);
 	    oLayout.createRow(oLyt1);
 
 	 	 

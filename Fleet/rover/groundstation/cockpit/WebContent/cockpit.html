@@ -6,9 +6,61 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>              
 
 
-       	 
   			 
        <head>
+       ////
+       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+	var geocoder;
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+	var map;
+	function initialize() {
+		directionsDisplay = new google.maps.DirectionsRenderer();
+//		geocoder = new google.maps.Geocoder();
+		var latlng = new google.maps.LatLng(-34.397, 150.644);
+		var myOptions = {
+			zoom : 15,
+			center : latlng,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		}
+		map = new google.maps.Map($('#map_canvas').get(0), myOptions);
+		directionsDisplay.setMap(map);
+	}
+
+	function codeAddress(departureCity,destinationCity) {
+		geocoder.geocode({
+			'address' : departureCity
+		}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				map.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+					map : map,
+					position : results[0].geometry.location
+				});
+			} else {
+				alert("Geocode was not successful for the following reason: "
+						+ status);
+			}
+		});
+	}
+	
+	function calcRoute(departureCity,destinationCity) {
+
+		  var request = {
+		    origin:departureCity,
+		    destination:destinationCity,
+		    travelMode: google.maps.TravelMode.DRIVING
+		  };
+		  directionsService.route(request, function(result, status) {
+		    if (status == google.maps.DirectionsStatus.OK) {
+		      directionsDisplay.setDirections(result);
+		    }
+		  });
+	}
+</script>
+       
+       ////
    			  <script src="/sap/ui5/1/resources/sap-ui-core.js"
                       id="sap-ui-bootstrap"
                       data-sap-ui-libs="sap.ui.ux3,sap.ui.commons,sap.viz"
