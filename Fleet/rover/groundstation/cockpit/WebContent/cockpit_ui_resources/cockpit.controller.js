@@ -55,41 +55,47 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 		if (data.substr(0,3) == 'GNS') {
 			var gps_msg_nav_sol_fields = data.split(',');
-			sap.ui.getCore().byId("TvGpsNavSolGpsMs").setText('Nav Sol Gps Ms ' + gps_msg_nav_sol_fields[0].substr(3));
-			sap.ui.getCore().byId("TvGpsNavSolFixType").setText('Nav Sol Fix Type ' + gps_msg_nav_sol_fields[1]);
-			sap.ui.getCore().byId("TvGpsNavSolAccEst3d").setText('Nav Sol Acc Est 3D ' + gps_msg_nav_sol_fields[2]);
-			sap.ui.getCore().byId("TvGpsNavSolNumberSv").setText('Nav Sol Number Sv ' + gps_msg_nav_sol_fields[3]);
+		//	sap.ui.getCore().byId("TvGpsNavSolGpsMs").setText(gps_msg_nav_sol_fields[0].substr(3));
+			sap.ui.getCore().byId("TvGpsNavSolFixType").setText(gps_msg_nav_sol_fields[1]);
+	//		sap.ui.getCore().byId("TvGpsNavSolAccEst3d").setText(gps_msg_nav_sol_fields[2]);
+			sap.ui.getCore().byId("TvGpsNavSolNumberSv").setText(gps_msg_nav_sol_fields[3]);
 		};
 		
 
 		if (data.substr(0,3) == 'GNP') {
 			var gps_msg_nav_posllh_fields = data.split(',');
-			sap.ui.getCore().byId("TvGpsNavPosllhGpsMs").setText('Nav Posllh Gps Ms ' + gps_msg_nav_posllh_fields[0].substr(3));
+		//	sap.ui.getCore().byId("TvGpsNavPosllhGpsMs").setText(gps_msg_nav_posllh_fields[0].substr(3));
 			var longitude = parseFloat(gps_msg_nav_posllh_fields[1], 10);
 			longitude = longitude / 10000000;
 			var lattitude = parseFloat(gps_msg_nav_posllh_fields[2], 10);
 			lattitude = lattitude / 10000000; 
-			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText('Nav Posllh Longitude ' + longitude);
-			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText('Nav Posllh Lattitude ' + lattitude);
-			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText('Nav Posllh height ' + gps_msg_nav_posllh_fields[3]);
-			sap.ui.getCore().byId("TvGpsNavPosllhHeightMsl").setText('Nav Posllh height msl ' + gps_msg_nav_posllh_fields[4]);			
-			sap.ui.getCore().byId("TvGpsNavPosllhHoriAccEst").setText('Nav Posllh hori acc est ' + gps_msg_nav_posllh_fields[5]);			
-			sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText('Nav Posllh vert acc est ' + gps_msg_nav_posllh_fields[6]);			
-			sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText('Nav Posllh vert acc est ' + gps_msg_nav_posllh_fields[7]);
+			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText(longitude);
+			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText(lattitude);
+			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[3]);
+			mapUpdateCounter += 1;
+			if (mapUpdateCounter > 5) {
+				set_map(lattitude, longitude);
+				mapUpdateCounter = 0;
+			}
+	//		set_map(lattitude, longitude);
+		//	sap.ui.getCore().byId("TvGpsNavPosllhHeightMsl").setText(gps_msg_nav_posllh_fields[4]);			
+	//		sap.ui.getCore().byId("TvGpsNavPosllhHoriAccEst").setText(gps_msg_nav_posllh_fields[5]);			
+		//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[6]);			
+		//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[7]);
 		};
 
 
 		if (data.substr(0,3) == 'GNV') {
 			var gps_msg_nav_velned_fields = data.split(',');
-			sap.ui.getCore().byId("TvGpsNavVelnedGpsMs").setText('Nav Velned Gps Ms ' + gps_msg_nav_velned_fields[0].substr(3));
-			sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText('Nav Velned North Velocity cm/s ' + gps_msg_nav_velned_fields[1]);
-			sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText('Nav Velned East Velocity cm/s ' + gps_msg_nav_velned_fields[2]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedDownVelCms").setText('Nav Velned Down Velocity cm/s ' + gps_msg_nav_velned_fields[3]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedSpeed3dCms").setText('Nav Velned Speed 3D cm/s ' + gps_msg_nav_velned_fields[4]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedGroundSpeed2dCms").setText('Nav Velned Ground Speed 2D cm/s ' + gps_msg_nav_velned_fields[5]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedHeading").setText('Nav Velned Heading ' + gps_msg_nav_velned_fields[6]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText('Nav Velned Speed Acc Est ' + gps_msg_nav_velned_fields[7]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText('Nav Velned Course Acc Est ' + gps_msg_nav_velned_fields[8]);			
+//			sap.ui.getCore().byId("TvGpsNavVelnedGpsMs").setText(gps_msg_nav_velned_fields[0].substr(3));
+			sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText(gps_msg_nav_velned_fields[1]);
+			sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText(gps_msg_nav_velned_fields[2]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedDownVelCms").setText(gps_msg_nav_velned_fields[3]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedSpeed3dCms").setText(gps_msg_nav_velned_fields[4]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedGroundSpeed2dCms").setText(gps_msg_nav_velned_fields[5]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedHeading").setText(gps_msg_nav_velned_fields[6]);			
+//			sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText(gps_msg_nav_velned_fields[7]);			
+	//		sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);			
 		};
 
 				
@@ -161,7 +167,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 	gamepad_button_down: function(e) {
-		initialize();  
+		
+		set_map('46.475241', '6.892743');  
 	     calcRoute('New York','Chicago');  
 		var message = '';
 		if (e.control == 'FACE_4') {

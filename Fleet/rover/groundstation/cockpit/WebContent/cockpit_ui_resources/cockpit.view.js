@@ -16,13 +16,308 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	  
     	  ////
     	 var oLayout = new sap.ui.commons.layout.MatrixLayout();
-//    	 buildSharpPanel(oController,oLayout);
-    	 buildDrivePanel(oController,oLayout); 	       
+    	 buildBanner(oController,oLayout);
+    	 buildCamMap(oController,oLayout);
+    	 buildDashboard(oController,oLayout);
+    	 
+//    	 buildDrivePanel(oController,oLayout); 	       
     	 
   	     return oLayout;
       }
 
 });
+
+
+function buildBanner(oController,oLayout){
+	
+    
+	 var oMlBanner = new sap.ui.commons.layout.MatrixLayout({width:"1920px"});
+	 
+	 var oRowBanner = new sap.ui.commons.layout.MatrixLayoutRow();
+     var oCellPlayer = new sap.ui.commons.layout.MatrixLayoutCell();
+     var oCellVehicle = new sap.ui.commons.layout.MatrixLayoutCell();
+     var oCellPoints = new sap.ui.commons.layout.MatrixLayoutCell();
+     var oCellStatus = new sap.ui.commons.layout.MatrixLayoutCell();
+     var oCellHeartbeat = new sap.ui.commons.layout.MatrixLayoutCell();
+    
+     
+     var oLblPlayer = new sap.ui.commons.Label("lblPlayer");
+     oLblPlayer.setText("Player");
+     oLblPlayer.setDesign(sap.ui.commons.LabelDesign.Bold);     
+     var oTvPlayer = new sap.ui.commons.TextView();
+     oTvPlayer.setText("  JP");
+
+     
+     var oLblVehicle = new sap.ui.commons.Label("lblVehicle");
+     oLblVehicle.setText("Vehicle");
+     oLblVehicle.setDesign(sap.ui.commons.LabelDesign.Bold);
+     var oTvVehicle = new sap.ui.commons.TextView();
+     oTvVehicle.setText("  Slice of Life");
+
+     
+     var oLblPoints = new sap.ui.commons.Label("lblPoints");
+     oLblPoints.setText("Points");
+     oLblPoints.setDesign(sap.ui.commons.LabelDesign.Bold);
+     var oTvPoints = new sap.ui.commons.TextView();
+     oTvPoints.setText("  1000");
+
+     
+     
+     var oLblStatus = new sap.ui.commons.Label("lblStatus");
+     oLblStatus.setText("Status");
+     oLblStatus.setDesign(sap.ui.commons.LabelDesign.Bold);     
+     var oTvStatus = new sap.ui.commons.TextView();
+     oTvStatus.setText("  Online");
+     
+
+     var oLblHeartbeat = new sap.ui.commons.Label("lblHeartbeat");
+     oLblHeartbeat.setText("Heartbeat");
+     oLblHeartbeat.setDesign(sap.ui.commons.LabelDesign.Bold);
+     var oTvHeartbeat = new sap.ui.commons.TextView();
+     oTvHeartbeat.setText("  Healthy");
+
+     
+     oCellPlayer.addContent(oLblPlayer);
+     oCellPlayer.addContent(oTvPlayer);
+     
+     
+     oCellVehicle.addContent(oLblVehicle);
+     oCellVehicle.addContent(oTvVehicle);
+     
+     
+     oCellPoints.addContent(oLblPoints); 
+     oCellPoints.addContent(oTvPoints);
+     
+     
+     oCellStatus.addContent(oLblStatus); 
+     oCellStatus.addContent(oTvStatus);
+     
+     
+     oCellHeartbeat.addContent(oLblHeartbeat);
+     oCellHeartbeat.addContent(oTvHeartbeat);
+     
+     var oCell = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 1});
+     oCell.addContent(new sap.ui.commons.HorizontalDivider());
+     
+     oLayout.createRow(oCell);
+     
+     oRowBanner.addCell(oCellPlayer);
+     oRowBanner.addCell(oCellVehicle); 
+     oRowBanner.addCell(oCellPoints); 
+     oRowBanner.addCell(oCellStatus); 
+     oRowBanner.addCell(oCellHeartbeat);
+     oMlBanner.addRow(oRowBanner);
+     oLayout.createRow(oMlBanner);    
+	
+}
+
+function buildCamMap(oController,oLayout){
+		
+	var oMlCamMap = new sap.ui.commons.layout.MatrixLayout({width:"1650px"});
+	 
+	var oRowCamMap = new sap.ui.commons.layout.MatrixLayoutRow();
+    var oCellCam = new sap.ui.commons.layout.MatrixLayoutCell();
+    var oCellMap = new sap.ui.commons.layout.MatrixLayoutCell();
+
+
+    
+    
+	 var oHtmlRadioCamStream = new sap.ui.core.HTML({  
+	      content: '<iframe id="myiframe" width="825px" height="625px" frameBorder="0">No frame loaded</iframe>',
+	      preferDOM : true,   
+	      afterRendering: function() {  
+	          newSrc = 'radiocamstream.html';
+	          
+	          $("#myiframe").load(function() {  
+	        	//  $("#myiframe").attr("height",960).attr("width",720);  
+	          
+	              
+	          }).attr("src",newSrc);  
+	          
+	    }
+	 });
+
+	 oCellCam.addContent(oHtmlRadioCamStream);
+	 
+	 
+	 var oHtmlMap = new sap.ui.core.HTML({  
+           content : "<div id='map_canvas' style='width: 825px; height: 625px;'></div>"  
+       });  
+
+	 oCellMap.addContent(oHtmlMap);
+	 
+	 
+    
+    
+    var oCell = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 1});
+    oCell.addContent(new sap.ui.commons.HorizontalDivider());
+    
+    oLayout.createRow(oCell);
+    
+    oRowCamMap.addCell(oCellCam);
+    oRowCamMap.addCell(oCellMap); 
+    oMlCamMap.addRow(oRowCamMap);
+    oLayout.createRow(oMlCamMap);    
+	
+}
+
+
+function buildDashboard(oController,oLayout){
+	
+    
+	
+   
+    
+    // Create a TabStrip instance
+    var oTabStrip1 = new sap.ui.commons.TabStrip("TabStrip1");
+    oTabStrip1.setWidth("825px");
+    oTabStrip1.setHeight("300px");
+    oTabStrip1.attachClose( function (oEvent) {
+            var oTabStrip = oEvent.oSource;
+            oTabStrip.closeTab(oEvent.getParameter("index"));
+    });
+
+    // 1. tab: general data (use createTab)
+    var oLayout1 = new sap.ui.commons.layout.MatrixLayout("Matrix1", {columns: 2, width: "100%"});
+    oLayout1.setWidths(['150px']);
+
+    var oTF = new sap.ui.commons.TextField("TextField-Altitude", {tooltip: 'Altitude', editable: false, value: '1', width: '200px'});
+    var oLabel = new sap.ui.commons.Label("Label-Altitude", {text: 'Altitude', labelFor: oTF});
+    oLayout1.createRow(oLabel, oTF);
+    
+    
+    oTF = new sap.ui.commons.TextField("TextField-Groundspeed", {tooltip: 'Groundspeed', editable: false, value: '2', width: '200px'});
+    oLabel = new sap.ui.commons.Label("Label-Groundspeed", {text: 'Groundspeed (m/s)', labelFor: oTF});
+    oLayout1.createRow(oLabel, oTF);
+    
+
+    oTabStrip1.createTab("Quick",oLayout1);
+
+    
+    
+    // 2. tab: address data (use separate tab element)
+    oTab2 = new sap.ui.commons.Tab("tab2");
+    oTab2.setTooltip("Telemetry");
+    oTab2.setTitle(new sap.ui.commons.Title("TitleTelemetry",{text:"Telemetry"}));
+
+    var oLayout2 = new sap.ui.commons.layout.MatrixLayout("Matrix2", {columns: 2, width: "100%"});
+    oLayout2.setWidths(['150px']);
+
+    var oTvGpsNavSolFixType = new sap.ui.commons.TextView("TvGpsNavSolFixType",{
+		text : "0",
+		tooltip : "Nav Sol Fix Type" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("Label-fixtype", {text: 'Fix Type', labelFor: oTvGpsNavSolFixType});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavSolFixType);
+    
+
+    
+    
+    
+    
+    var oTvGpsNavSolNumberSv = new sap.ui.commons.TextView("TvGpsNavSolNumberSv",{
+		text : "0",
+		tooltip : "Nav Sol Number Sv" }
+	);
+    oLabel = new sap.ui.commons.Label("Label-numbersv", {text: 'Satellites', labelFor: oTvGpsNavSolFixType});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavSolNumberSv);
+    
+    
+    
+    var oTvGpsNavPosllhLongitude = new sap.ui.commons.TextView("TvGpsNavPosllhLongitude",{
+		text : "0",
+		tooltip : "Nav Posllh Longitude" }
+	);
+    oLabel = new sap.ui.commons.Label("Label-longitude", {text: 'Longitude', labelFor: oTvGpsNavPosllhLongitude});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavPosllhLongitude);
+    
+
+	var oTvGpsNavPosllhLattitude = new sap.ui.commons.TextView("TvGpsNavPosllhLattitude",{
+		text : "0",
+		tooltip : "Nav Posllh Lattitude" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-lattitude", {text: 'Lattitude', labelFor: oTvGpsNavPosllhLattitude});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavPosllhLattitude);
+    
+    
+
+	var oTvGpsNavPosllhHeight = new sap.ui.commons.TextView("TvGpsNavPosllhHeight",{
+		text : "0",
+		tooltip : "Nav Posllh height" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-height", {text: 'Height', labelFor: oTvGpsNavPosllhHeight});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavPosllhHeight);
+    
+	
+	var oTvGpsNavVelnedNorthVelCms = new sap.ui.commons.TextView("TvGpsNavVelnedNorthVelCms",{
+		text : "0",
+		tooltip : "Nav Velned North Velocity cm/s" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-nvelocitycms", {text: 'North Velocity cm/s', labelFor: oTvGpsNavVelnedNorthVelCms});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavVelnedNorthVelCms);
+    
+    
+	var oTvGpsNavVelnedEastVelCms = new sap.ui.commons.TextView("TvGpsNavVelnedEastVelCms",{
+		text : "0",
+		tooltip : "Nav Velned East Velocity cm/s" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-evelocitycms", {text: 'East Velocity cm/s', labelFor: oTvGpsNavVelnedEastVelCms});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavVelnedEastVelCms);
+    
+    
+	var oTvGpsNavVelnedDownVelCms = new sap.ui.commons.TextView("TvGpsNavVelnedDownVelCms",{
+		text : "0",
+		tooltip : "Nav Velned Down Velocity cm/s" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-dvelocitycms", {text: 'Down Velocity cm/s', labelFor: oTvGpsNavVelnedDownVelCms});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavVelnedDownVelCms);
+    
+
+	var oTvGpsNavVelnedSpeed3dCms = new sap.ui.commons.TextView("TvGpsNavVelnedSpeed3dCms",{
+		text : "0",
+		tooltip : "Nav Velned Speed 3D cm/s" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-speed3dcms", {text: 'Speed 3D cm/s', labelFor: oTvGpsNavVelnedSpeed3dCms});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavVelnedSpeed3dCms);
+    
+    
+	var oTvGpsNavVelnedGroundSpeed2dCms = new sap.ui.commons.TextView("TvGpsNavVelnedGroundSpeed2dCms",{
+		text : "0",
+		tooltip : "Nav Velned Ground Speed 2D cm/s" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-groundspeedcms", {text: 'Ground Speed cm/s', labelFor: oTvGpsNavVelnedGroundSpeed2dCms});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavVelnedGroundSpeed2dCms);
+    
+
+	var oTvGpsNavVelnedHeading = new sap.ui.commons.TextView("TvGpsNavVelnedHeading",{
+		text : "0",
+		tooltip : "Nav Velned Heading" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-heading", {text: 'Heading', labelFor: oTvGpsNavVelnedHeading});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout2.createRow(oLabel, oTvGpsNavVelnedHeading);
+    
+	
+	oTab2.addContent(oLayout2);
+    oTabStrip1.addTab(oTab2);
+    oLayout.createRow(oTabStrip1);   
+	
+}
+
+
+
+
 
 
 function buildSharpPanel(oController,oLayout){
@@ -69,7 +364,7 @@ function buildDrivePanel(oController,oLayout){
 	// oDrivePanel.addContent(olayoutNew);
 	 
 	// create a simple slider with ticks
-	oLyt = new sap.ui.commons.layout.MatrixLayout("matrix_hori", { width: "800px" });
+	oLyt = new sap.ui.commons.layout.MatrixLayout("matrix_hori", { width: "1200px" });
 	oLyt1 = new sap.ui.commons.layout.MatrixLayout("matrix_hor1", { width: "800px" });
 	
 	
