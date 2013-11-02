@@ -7,6 +7,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 */
    onInit: function() {
 	   //alert('Controller on init');
+  
    },
 
 /**
@@ -41,6 +42,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	connect: function(data) {
 
 		//sap.ui.getCore().byId("tvStatus").setText(data);
+		 
 	},
 	
 	
@@ -51,7 +53,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 
 	feed: function(data) {
-		
+		//initialise_map('46.475241', '6.892743');
+		if (mapInitialised == 0) {
+			  initialise_map('46.475241', '6.892743');
+			  mapInitialised = 1;
+		}
 		
 		if (data.substr(0,3) == 'GNS') {
 			var gps_msg_nav_sol_fields = data.split(',');
@@ -74,7 +80,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[3]);
 			mapUpdateCounter += 1;
 			if (mapUpdateCounter > 5) {
-				set_map(lattitude, longitude);
+				 initialise_map(lattitude, longitude);
 				mapUpdateCounter = 0;
 			}
 	//		set_map(lattitude, longitude);
@@ -167,9 +173,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 	gamepad_button_down: function(e) {
-		
-		set_map('46.475241', '6.892743');  
-	     calcRoute('New York','Chicago');  
+					     
 		var message = '';
 		if (e.control == 'FACE_4') {
 		  if (window.direction == 'DF') {
