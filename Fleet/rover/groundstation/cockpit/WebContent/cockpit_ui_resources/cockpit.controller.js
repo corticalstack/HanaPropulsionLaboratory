@@ -175,21 +175,25 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	gamepad_button_down: function(e) {
 					     
 		var message = '';
-		if (e.control == 'FACE_4') {
-		  if (window.direction == 'DF') {
-			  window.direction = 'DR';
+		if (e.control == 'FACE_4' && cmd_throttle_val < 30) { 
+		  cmd_direction_tx = true;
+		  if (direction == 'DF') {
+			  direction = 'DR';
 		  }
 		  else
 		  {
-			  window.direction = 'DF';
+			  direction = 'DF';
 		  }
 		  
-	  	  
+		  cmd_direction_val= direction;
+		  message = direction + ':'  + 'V' + cmd_throttle_val + ':]';
+		  window.socket.emit( 'dashboard', message );
 	      }
 
 
 		if (e.control == 'FACE_3') {
-			 message = message + 'X:]';	
+			cmd_stop_tx = true;
+			 message = message + 'X:]';			 
 			   window.socket.emit( 'dashboard', message );
 		  	  
 		      }
@@ -206,17 +210,30 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 	gamepad_axis_changed: function(e) {
 	  var message = '';
+	  
+	  
 
 	  if (e.axis == 'RIGHT_BOTTOM_SHOULDER') {
+		  
     	  var speed = parseFloat(e.value);
 		  speed = speed * 100;
 		  var speed1 = speed.toFixed(0);	
-		   
-		   if (speed1 < 5) {
-			   speed1 = 0;
+
+		  if (speed1 < 7) {
+			  speed1 = 0;
 		   }
 		   
-		   message = message + window.direction + ':'  + 'V' + speed1 + ':';
+		   if (speed1 == 0) {
+			   cmd_stop_tx = false;
+		   }
+		  
+		  if (cmd_stop_tx == false && speed1 != cmd_throttle_val) {
+			  cmd_throttle_tx = true;
+			  cmd_throttle_val = speed1;
+			   message = message + direction + ':'  + 'V' + speed1 + ':';
+		  }
+		   
+
 		  
 		  
 
@@ -224,6 +241,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
       }
       
       if (e.axis == 'LEFT_STICK_X') {
+    	  cmd_heading_tx = true;
     	  var heading = parseFloat(e.value);
 		   heading = heading * 100;
 		   var heading1 = heading.toFixed(0);	
@@ -232,15 +250,17 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
       }
 
-      if (e.axis == 'RIGHT_STICK_X') {
-    	  var pan = parseFloat(e.value);
-		   pan = pan * 100;
-		   var pan1 = pan.toFixed(0);	
+      if (e.axis == 'RIGHT_STICK_X' && cmd_throttle_val == 0) {
+    	  cmd_rotate_tx = true;
+    	  var rotate = parseFloat(e.value);
+		   rotate = rotate * 100;
+		   var rotate1 = rotate.toFixed(0);	
 		   	   
-		   message = message + 'P'  + pan1 + ':';
+		   message = message + 'R'  + rotate1 + ':';
 
       }
 
+      /*
       if (e.axis == 'RIGHT_STICK_Y') {
     	  var tilt = parseFloat(e.value);
 		   tilt = tilt * 100;
@@ -249,9 +269,12 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		   message = message + 'T'  + tilt1 + ':';
 
       }
+      */
 
-      message = message + ']';        	        
-	  window.socket.emit( 'dashboard', message );
+      if (message != '') {
+    	  message = message + ']';        	        
+    	  window.socket.emit( 'dashboard', message );
+      }
 
 		
 	},

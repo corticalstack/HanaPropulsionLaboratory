@@ -10,6 +10,28 @@
     var poLoops = 0;
     var soLoops = 0;
     
+    
+    
+    ////
+    var direction = 'DF';
+    var cmd_throttle_tx = false;
+	var cmd_throttle_val = 0;
+
+	var cmd_direction_tx = false;
+	var cmd_direction_val = 0;
+	
+	var cmd_heading_tx = false;
+	var cmd_heading_val = 0;
+
+	var cmd_rotate_tx = false;
+	var cmd_rotate_val = 0;
+
+	var cmd_stop_tx = false;
+	var cmd_step_tx = false;
+    
+    
+    /////
+    
 	/*************** Hijacking for Gold Reflection *************/
 	if (sap.ui.getCore().getConfiguration().getTheme() == "sap_goldreflection") { // this line is a hack, the rest of this coding is what a BusyIndicator hijacker could do
 		sap.ui.core.BusyIndicator.attachOpen(function(oEvent) {

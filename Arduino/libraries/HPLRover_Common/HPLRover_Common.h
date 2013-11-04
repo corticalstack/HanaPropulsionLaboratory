@@ -44,22 +44,25 @@ const char   	cmd_val_forward          			= 'F';
 
 
 // Motor control
-const int 		internal_velocity_map_ratio 		= 70;
-const int 		internal_heading_map_ratio  		= 50;
+const int 		internal_velocity_map_ratio 		= 60;
+const int 		internal_heading_map_ratio  		= 65;
+const int 		internal_rotate_map_ratio  			= 65;
 const float 	throttle_curve_power 				= 3.1359;
 const float 	heading_curve_power 				= 2.6959;
-const int 		throttle_deadzone_val       		= 1;
+const int 		throttle_deadzone_val       		= 6;
+const int 		heading_deadzone_val       			= 2;
+const int 		rotate_deadzone_val       			= 2;
 
 
 const int 		motor_calibration_adjust    		= 10;
 const int 		left_motors_trim_val        		= 0;
 const int 		right_motors_trim_val       		= 0;
 
-const int 		max_left_throttle_reverse_val       = 20;
-const int 		max_left_throttle_forward_val       = 160;
+const int 		max_left_throttle_reverse_val       = 40;
+const int 		max_left_throttle_forward_val       = 140;
 
-const int 		max_right_throttle_reverse_val      = 20;
-const int 		max_right_throttle_forward_val      = 160;
+const int 		max_right_throttle_reverse_val      = 40;
+const int 		max_right_throttle_forward_val      = 140;
 
 
 // Camera Control

@@ -8,16 +8,16 @@ class HPLRover_Command {
   
 		struct command_in_motors_type {
 			bool throttle_rx;
-			int     throttle_val;
+			int  throttle_val;
 		
 			bool direction_rx;
-			char    direction_val;
+			char direction_val;
 		
 			bool heading_rx;
-			int     heading_val;
+			int  heading_val;
 		
 			bool rotate_rx;
-			char    rotate_val;
+			int  rotate_val;
 		
 			bool stop_rx;
 			bool step_rx;
@@ -26,16 +26,16 @@ class HPLRover_Command {
 	
 		struct command_in_lights_type {					
 			bool lights_mainbeam_rx;
-			int     lights_mainbeam_val;
+			int  lights_mainbeam_val;
 		};		
 	
 	
 		struct command_in_cam_type {	
 			bool pan_rx;
-			int     pan_val;
+			int  pan_val;
 				
 			bool tilt_rx;
-			int     tilt_val;
+			int  tilt_val;
 		
 			bool sweep_rx;		
 		};		

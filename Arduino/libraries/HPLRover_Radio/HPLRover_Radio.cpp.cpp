@@ -85,7 +85,7 @@ void HPLRover_Radio::command_register(HPLRover_Command &command, char buffer[], 
 
 	if (buffer[0] == cmd_rotate) {
 		command.cmd_in_motors.rotate_rx = true;
-		command.cmd_in_motors.rotate_val = buffer[1];
+		command.cmd_in_motors.rotate_val = (int)strtod(&buffer[1], NULL);
 	}
 	
 	

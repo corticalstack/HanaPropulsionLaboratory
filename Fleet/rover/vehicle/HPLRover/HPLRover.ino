@@ -1,7 +1,7 @@
 #include <Event.h>
 #include <Timer.h>
 #include <Servo.h>
-
+#include <PString.h>
 
 #include <HPLRover_Common.h>
 #include <HPLRover_Command.h>
