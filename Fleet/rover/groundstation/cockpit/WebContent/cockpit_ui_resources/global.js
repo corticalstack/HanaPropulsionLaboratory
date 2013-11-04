@@ -1,85 +1,93 @@
-	/*************** Language Resource Loader *************/
-    jQuery.sap.require("jquery.sap.resources");
-    var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
-    var oBundle = jQuery.sap.resources({url : "./i18n/messagebundle.hdbtextbundle", locale: sLocale});
-    var oBarModel = new sap.ui.model.json.JSONModel();
-    var phase1 = 0;
-    var phase2 = 0;
-    var phase3 = 0;
-    var phase4 = 0;
-    var poLoops = 0;
-    var soLoops = 0;
+jQuery.sap.require("jquery.sap.resources");
+var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+var oBundle = jQuery.sap.resources({url : "./i18n/messagebundle.hdbtextbundle", locale: sLocale});
+var oBarModel = new sap.ui.model.json.JSONModel();
     
-    
-    
-    ////
-    var direction = 'DF';
-    var cmd_throttle_tx = false;
-	var cmd_throttle_val = 0;
-
-	var cmd_direction_tx = false;
-	var cmd_direction_val = 0;
+// Groundstation
+var groundStationSocketURL				= 'http://192.168.1.62:8090'
 	
-	var cmd_heading_tx = false;
-	var cmd_heading_val = 0;
+// Cockpit
+var socketEventCockpit                  = 'cockpit';
 
-	var cmd_rotate_tx = false;
-	var cmd_rotate_val = 0;
-
-	var cmd_stop_tx = false;
-	var cmd_step_tx = false;
+//Vehicle 
+var vehicleName                         = 'Slice of Life';
     
     
-    /////
+// Vehicle commands
+var cmdThrottle             			= 'V';
+var cmdDirection            			= 'D';
+var cmdHeading              			= 'H';
+var cmdRotate               			= 'R';
+var cmdStop                 			= 'X:]';
+var cmdCamPanLeft          				= 'P-5:]';
+var cmdCamPanRight         				= 'P5:]';
+var cmdCamPanStop         				= 'P0:]';
+var cmdCamTiltUp             			= 'T5:]';
+var cmdCamTiltDown             			= 'T-5:]';
+var cmdCamTiltStop             			= 'T0:]';
+var cmdCamSweep            				= 'W';
+
+var vehicleDirectionForward 			= 'DF';
+var vehicleDirectionReverse 			= 'DR';
+var vehicleDirection        			= vehicleDirectionForward;
     
-	/*************** Hijacking for Gold Reflection *************/
-	if (sap.ui.getCore().getConfiguration().getTheme() == "sap_goldreflection") { // this line is a hack, the rest of this coding is what a BusyIndicator hijacker could do
-		sap.ui.core.BusyIndicator.attachOpen(function(oEvent) {
-			$Busy = oEvent.getParameter("$Busy");
-			iBusyPageWidth = jQuery(document.body).width();
-			$Busy.css("top", "0").css("width", iBusyPageWidth + "px");
-			bBusyAnimate = true;
-			iBusyLeft = $Busy[0].offsetLeft;
-			window.setTimeout(animationStep, iBusyTimeStep);
-		});
-		sap.ui.core.BusyIndicator.attachClose(function(oEvent) {
-			bBusyAnimate = false;
-		});
-	}
+    
+var cmdThrottleTx 						= false;
+var cmdThrottleValLast 					= 0;
 
-	var bBusyAnimate = false;
-	var iBusyLeft = 0;
-	var iBusyDelta = 60;
-	var iBusyTimeStep = 50;
-	var iBusyWidth = 500;
-	var iBusyPageWidth;
-	var $Busy;
+var cmdDirectionTx 						= false;
+var cmdDirectionValLast 				= 0;
+	
+var cmdHeadingTx 						= false;
+var cmdHeadingValLast 					= 0;
+
+var cmdRotateTx 						= false;
+var cmdRotateValLast 					= 0;
+
+var cmdStopTx 							= false;
+
+var throttleDeadzoneVal       			= 7;
+var throttleMaxForDirectionChange       = 30;
+
+var msgTerminator             			= ':]';
+
+
+// Gamepad Mapping
+var gamepadCmdDirection                 = 'FACE_4';
+var gamepadCmdStop                      = 'FACE_3';
+var gamepadCmdThrottle                  = 'RIGHT_BOTTOM_SHOULDER';
+var gamepadCmdHeading                   = 'LEFT_STICK_X';
+var gamepadCmdRotate                    = 'RIGHT_STICK_X';
+var gamepadCmdCamPanLeft                = 'DPAD_LEFT';
+var gamepadCmdCamPanRight               = 'DPAD_RIGHT';
+var gamepadCmdCamTiltUp                 = 'DPAD_UP';
+var gamepadCmdCamTiltDown               = 'DPAD_DOWN';
+
+
+// Google Maps
+var googleMap;
+var googleMapUpdateCounter 				= 0;
+var googleMapInitialised 				= false;
+
+
+function googleMapInitialise(lattitude,longitude) {
+	var latlng = new google.maps.LatLng(lattitude, longitude);
+    var myOptions = {
+    		zoom : 20,
+            center : latlng,
+            mapTypeId : google.maps.MapTypeId.ROADMAP
+    }
+    
+    map = new google.maps.Map($('#map_canvas').get(0), myOptions);
+    var marker = new google.maps.Marker({
+    	position: latlng,
+        map: map,
+        title: vehicleName
+    });
+}
+
 
 	
-	
-function animationStep() {
-		if (bBusyAnimate) {
-			iBusyLeft += iBusyDelta;
-			if (iBusyLeft > iBusyPageWidth) {
-				iBusyLeft = -iBusyWidth;
-			}
-			$Busy.css("background-position", iBusyLeft + "px 0px");
-			window.setTimeout(animationStep, iBusyTimeStep);
-			
-		}
-	}
-	/*************** END of Hijacking for Gold Reflection *************/
 
-	/*** Numeric Formatter for Quantities ***/
-	function numericSimpleFormatter(val){
-		   if(val==undefined){ return '0';}
-		   else{
-		   jQuery.sap.require("sap.ui.core.format.NumberFormat");
-		   var oNumberFormat = sap.ui.core.format.NumberFormat.getIntegerInstance({
-		      maxFractionDigits: 0,
-		      minFractionDigits: 0,
-		      groupingEnabled: true });
-		   return oNumberFormat.format(val); }
-		   
-	}
-	
+
+

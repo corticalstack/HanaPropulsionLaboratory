@@ -28,6 +28,13 @@ void HPLRover_Camera::pancam(HPLRover_Command &command, Servo &servo_pancam) {
 	
 	internal_pan_val  = command.cmd_in_cam.pan_val;
 	
+	if (internal_pan_val == 0) {
+		command.cmd_in_cam.pan_rx = false;
+		command.cmd_in_cam.pan_val = 0;	
+		return;
+	}
+	
+	
 	if (internal_pan_val < 0) {
 		internal_pan_val = internal_pan_val * -1;
 		pan_negative_val = true;
@@ -52,8 +59,7 @@ void HPLRover_Camera::pancam(HPLRover_Command &command, Servo &servo_pancam) {
 	servo_pancam.write(cam_pos_goto);
 	cam_last_pan_pos = cam_pos_goto;
 	
-	command.cmd_in_cam.pan_rx = false;
-	command.cmd_in_cam.pan_val = 0;	
+	
 }
 
 
@@ -62,6 +68,13 @@ void HPLRover_Camera::tiltcam(HPLRover_Command &command, Servo &servo_tiltcam) {
 	bool tilt_negative_val = false;
 	
 	internal_tilt_val = command.cmd_in_cam.tilt_val;
+	
+	if (internal_tilt_val == 0) {
+		command.cmd_in_cam.tilt_rx = false;
+		command.cmd_in_cam.tilt_val = 0;	
+		return;
+	}
+	
 	
 	if (internal_tilt_val < 0) {
 		internal_tilt_val = internal_tilt_val * -1;
@@ -86,9 +99,6 @@ void HPLRover_Camera::tiltcam(HPLRover_Command &command, Servo &servo_tiltcam) {
 	servo_tiltcam.write(cam_pos_goto);
 	cam_last_tilt_pos = cam_pos_goto;
 
-
-	command.cmd_in_cam.tilt_rx = false;
-	command.cmd_in_cam.tilt_val = 0;	
 }
 
 

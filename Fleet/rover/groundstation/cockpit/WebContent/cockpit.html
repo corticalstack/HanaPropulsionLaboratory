@@ -1,264 +1,103 @@
 <!DOCTYPE HTML>
 <html>
-  		<script src="http://192.168.1.62:8090/socket.io/socket.io.js"></script>  
-		<script src="/gamepad/gamepad.js"></script>
-              <meta http-equiv="X-UA-Compatible" content="IE=edge">
-              
-
-
+	<script src="http://192.168.1.62:8090/socket.io/socket.io.js"></script>  
+	<script src="/gamepad/gamepad.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
   			 
-       <head>
-       
-       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
-	var geocoder;
-	var mapUpdateCounter = 0;
-	var mapInitialised = 0;
-	var directionsDisplay;
-	var directionsService = new google.maps.DirectionsService();
-	var map;
-	function initialise_map(lattitude,longitude) {
-
-//            geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(lattitude, longitude);
-            var myOptions = {
-                    zoom : 20,
-//                    panControl: false,
-  //                  zoomControl: false,
-                    center : latlng,
-                    mapTypeId : google.maps.MapTypeId.ROADMAP
-            }
-            map = new google.maps.Map($('#map_canvas').get(0), myOptions);
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                title: 'Rover'
-            });
-    }
-
-	function set_map_latlng(lattitude,longitude) {
-		var latlng = new google.maps.LatLng(lattitude, longitude);
-        var myOptions = {
-                center : latlng
-        }
-        map.setOptions({center : latlng});
-        var marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            title: 'Rover'
-        });
-        
-    function set_center(lattitude,longitude) {
-		var latlng = new google.maps.LatLng(lattitude, longitude);
-    
-            map.setCentre(latlng);
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                title: 'Rover'
-            });
-    }
-}
-	
-
-	function codeAddress(departureCity,destinationCity) {
-		geocoder.geocode({
-			'address' : departureCity
-		}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				map.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map : map,
-					position : results[0].geometry.location
-				});
-			} else {
-				alert("Geocode was not successful for the following reason: "
-						+ status);
-			}
-		});
-	}
-	
-	function calcRoute(departureCity,destinationCity) {
-
-		  var request = {
-		    origin:departureCity,
-		    destination:destinationCity,
-		    travelMode: google.maps.TravelMode.DRIVING
-		  };
-		  directionsService.route(request, function(result, status) {
-		    if (status == google.maps.DirectionsStatus.OK) {
-		      directionsDisplay.setDirections(result);
-		    }
-		  });
-	}
-</script>
+    <head>
+    	<script type="text/javascript" 
+    			src="https://maps.googleapis.com/maps/api/js?sensor=false">
+    	</script>
        
        
-   			  <script src="/sap/ui5/1/resources/sap-ui-core.js"
-                      id="sap-ui-bootstrap"
-                      data-sap-ui-libs="sap.ui.ux3,sap.ui.commons,sap.viz"
-                      data-sap-ui-theme="sap_goldreflection" >
-              </script>              
-              <!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
-  			  <script type="text/javascript" src="./cockpit_ui_resources/global.js" ></script> 
-   			  <script>   			 		 
-			         sap.ui.localResources("cockpit_ui_resources");
-                     var view = sap.ui.view({id:"viewCockpit", viewName:"cockpit_ui_resources.cockpit", type:sap.ui.core.mvc.ViewType.JS});
-   			         view.placeAt("content");     			         
-   			  </script>
+   		<script src="/sap/ui5/1/resources/sap-ui-core.js"
+                id="sap-ui-bootstrap"
+                data-sap-ui-libs="sap.ui.ux3,sap.ui.commons,sap.viz"
+                data-sap-ui-theme="sap_goldreflection" >
+        </script>
+                      
+        <!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+  		<script type="text/javascript" 
+  				src="./cockpit_ui_resources/global.js" >
+  		</script> 
+   		<script>sap.ui.localResources("cockpit_ui_resources");
+                var view = sap.ui.view({id:"viewCockpit", viewName:"cockpit_ui_resources.cockpit", type:sap.ui.core.mvc.ViewType.JS});
+   			    view.placeAt("content");     			         
+   		</script>
    			 
   
-       </head>
-      <body class="sapUiBody" role="application">
-              <div id="content"></div>
-              <script type="text/javascript">
-              </script>    			  
-  		 <script type="text/javascript">
-  		
-	        	socket = io.connect('http://192.168.1.62:8090');
-	        	socket.on('connect', function(data){
-	        		try {	        			
+	</head>
+    <body class="sapUiBody" role="application">
+    	<div id="content"></div>
+	 	<script type="text/javascript">
+       		socket = io.connect(groundStationSocketURL);
+	        socket.on('connect', function(data){
+	        	try { 
 	        			sap.ui.getCore().byId("viewCockpit").getController().connect(data);
-	        			
-	        		}
-	        		catch(err){}
+	        	}
+	        	catch(err){}
 	        	});
 
-	        	socket.on('wildcard', function(){
-	        		try {
+	        
+	        socket.on('wildcard', function(){
+	        	try {			
 	        			sap.ui.getCore().byId("viewCockpit").getController().wildcard();
-	        			
 	        		}
-	        		catch(err){}
+	        	catch(err){}
 	        	});
 	        	
-	        	socket.on('feed', function(data){
-	        		try {
+        	socket.on('feed', function(data){
+       			try {
 	        			sap.ui.getCore().byId("viewCockpit").getController().feed(data);
-	        			
 	        		}
-	        		catch(err){}
+	        	catch(err){}
 	        	});
-
 		</script>
 		<script>
-		$(document).ready(function() {
-			
-			
-			var gamepad = new Gamepad();
+			$(document).ready(function() {
+				var gamepad = new Gamepad();
+				gamepad.bind(Gamepad.Event.CONNECTED, function(device) {
+				});
 
-			gamepad.bind(Gamepad.Event.CONNECTED, function(device) {
-				console.log('Connected', device);
-
-				$('#gamepads').append('<li id="gamepad-' + device.index + '"><h1>Gamepad #' + device.index + ': &quot;' + device.id + '&quot;</h1></li>');
-			
-				var mainWrap = $('#gamepad-' + device.index),
-					statesWrap,
-					logWrap,
-					control,
-					value,
-					i	;
-			
-				mainWrap.append('<strong>State</strong><ul id="states-' + device.index + '"></ul>');
-				mainWrap.append('<strong>Events</strong><ul id="log-' + device.index + '"></ul>');
-
-				statesWrap = $('#states-' + device.index)
-				logWrap = $('#log-' + device.index)
-
-				for (control in device.state) {
-					value = device.state[control];
 				
-					statesWrap.append('<li>' + control + ': <span id="state-' + device.index + '-' + control + '">' + value + '</span></li>');
-				}
-				for (i = 0; i < device.buttons.length; i++) {
-					value = device.buttons[i];
-					statesWrap.append('<li>Raw Button ' + i + ': <span id="button-' + device.index + '-' + i + '">' + value + '</span></li>');
-				}
-				for (i = 0; i < device.axes.length; i++) {
-					value = device.axes[i];
-					statesWrap.append('<li>Raw Axis ' + i + ': <span id="axis-' + device.index + '-' + i + '">' + value + '</span></li>');
-				}
+				gamepad.bind(Gamepad.Event.DISCONNECTED, function(device) {
+					$('#gamepad-' + device.index).remove();
+				});
+
 			
-				$('#connect-notice').hide();
-			});
+				gamepad.bind(Gamepad.Event.TICK, function(gamepads) {
+				});
 
-			gamepad.bind(Gamepad.Event.DISCONNECTED, function(device) {
-				console.log('Disconnected', device);
 			
-				$('#gamepad-' + device.index).remove();
-			
-				if (gamepad.count() == 0) {
-					$('#connect-notice').show();
-				}
-			});
-
-			gamepad.bind(Gamepad.Event.TICK, function(gamepads) {
-				var gamepad,
-					wrap,
-					control,
-					value,
-					i,
-					j;
-			
-				for (i = 0; i < gamepads.length; i++) {
-					gamepad = gamepads[i];
-					wrap = $('#gamepad-' + i);
-
-					if (gamepad) {
-						for (control in gamepad.state) {
-							value = gamepad.state[control];
-							console.log(value);
-
-							$('#state-' + gamepad.index + '-' + control + '').html(value);
-						}
-						for (j = 0; j < gamepad.buttons.length; j++) {
-							value = gamepad.buttons[j];
-							console.log(value);
-
-							$('#button-' + gamepad.index + '-' + j + '').html(value);
-						}
-						for (j = 0; j < gamepad.axes.length; j++) {
-							value = gamepad.axes[j];
-							console.log(value);
-
-							$('#axis-' + gamepad.index + '-' + j + '').html(value);
-						}
-					}
-				}
-			});
-
-			gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
-				try {
-        			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(e);
-        			
-        			
-        		}
-        		catch(err){alert('Error');}
-			});
+				gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
+					try {
+        					sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(e);
+        			}
+        			catch(err){alert('Error');}
+				});
 		
-			gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
-				try {
-        			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_up(e);
-        			
-        		}
-        		catch(err){}
+			
+				gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
+					try {
+        					sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_up(e);
+        			}
+        			catch(err){}
+				});
 
+				
+				gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
+					try {
+        					sap.ui.getCore().byId("viewCockpit").getController().gamepad_axis_changed(e);
+        			}
+        			catch(err){}
+				});
+
+			
+				if (!gamepad.init()) {
+					alert('Your browser does not support gamepads, get the latest Google Chrome or Firefox.');
+				}
 			});
-
-			gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
-				try {
-        			sap.ui.getCore().byId("viewCockpit").getController().gamepad_axis_changed(e);
-        			
-        		}
-        		catch(err){}
-
-			});
-
-			if (!gamepad.init()) {
-				alert('Your browser does not support gamepads, get the latest Google Chrome or Firefox.');
-			}
-		});
 		</script>
  			       
-       </body>
+	</body>
 </html>
