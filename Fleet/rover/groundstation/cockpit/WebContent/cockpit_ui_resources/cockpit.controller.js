@@ -197,6 +197,31 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			   window.socket.emit( 'dashboard', message );
 		  	  
 		      }
+		
+		if (e.control == 'DPAD_LEFT') {
+			 message = 'P-5:]';			 
+			   window.socket.emit( 'dashboard', message );
+		  	  
+		      }
+		
+		if (e.control == 'DPAD_RIGHT') {
+			 message = 'P5:]';			 
+			   window.socket.emit( 'dashboard', message );
+		  	  
+		      }
+		
+		if (e.control == 'DPAD_UP') {
+			 message = 'T-5:]';			 
+			   window.socket.emit( 'dashboard', message );
+		  	  
+		      }
+
+		if (e.control == 'DPAD_DOWN') {
+			 message = 'T5:]';			 
+			   window.socket.emit( 'dashboard', message );
+		  	  
+		      }
+
 
 	},
 

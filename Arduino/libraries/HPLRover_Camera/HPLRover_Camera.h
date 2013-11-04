@@ -15,9 +15,8 @@ class HPLRover_Camera {
 		void sweep(Servo &servo_pancam, Servo &servo_tiltcam);
 		
 	private:
-		int get_pan_curved(int pan_val);
-		int get_tilt_curved(int tilt_val);
-
+		void pancam(HPLRover_Command &command, Servo &servo_pancam);
+		void tiltcam(HPLRover_Command &command, Servo &servo_tiltcam);
 };
 
 #endif
