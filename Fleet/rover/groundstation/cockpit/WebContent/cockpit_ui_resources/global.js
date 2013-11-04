@@ -62,29 +62,59 @@ var gamepadCmdCamPanLeft                = 'DPAD_LEFT';
 var gamepadCmdCamPanRight               = 'DPAD_RIGHT';
 var gamepadCmdCamTiltUp                 = 'DPAD_UP';
 var gamepadCmdCamTiltDown               = 'DPAD_DOWN';
+var gamepadCmdGoogleMapTypeChange       = 'LEFT_TOP_SHOULDER';
+var gamepadCmdGoogleMapZoom 	        = 'LEFT_BOTTOM_SHOULDER';
 
 
 // Google Maps
 var googleMap;
 var googleMapUpdateCounter 				= 0;
 var googleMapInitialised 				= false;
+var googleMapLastLattitude              = '46.475241';
+var googleMapLastLongitude              = '6.892743';
+var googleMapMapTypeRoad 				= google.maps.MapTypeId.ROADMAP;
+var googleMapMapTypeSatellite			= google.maps.MapTypeId.SATELLITE;
+var googleMapLastMapType 				= google.maps.MapTypeId.ROADMAP;
+var googleMapZoomBase                   = 11;
+var googleMapLastZoom                   = 11;
 
 
-function googleMapInitialise(lattitude,longitude) {
-	var latlng = new google.maps.LatLng(lattitude, longitude);
+function googleMapInitialise() {
+	var latlng = new google.maps.LatLng(googleMapLastLattitude, googleMapLastLongitude);
     var myOptions = {
-    		zoom : 20,
+    		zoom : googleMapLastZoom,
             center : latlng,
-            mapTypeId : google.maps.MapTypeId.ROADMAP
+            mapTypeId : googleMapLastMapType
     }
     
     map = new google.maps.Map($('#map_canvas').get(0), myOptions);
     var marker = new google.maps.Marker({
-    	position: latlng,
-        map: map,
-        title: vehicleName
+    		position: latlng,
+    		map: map,
+    		title: vehicleName
     });
-}
+}    
+    
+
+function googleMapSet() {
+    var latlng = new google.maps.LatLng(googleMapLastLattitude, googleMapLastLongitude);
+
+    var zoom = parseInt(googleMapLastZoom, 10) + parseInt(googleMapZoomBase, 10);
+
+
+    var myOptions = {
+    		zoom : zoom,
+            center : latlng,
+            mapTypeId : googleMapLastMapType
+    }
+        
+    map = new google.maps.Map($('#map_canvas').get(0), myOptions);
+    var marker = new google.maps.Marker({
+      		position: latlng,
+            map: map,
+            title: vehicleName
+        });
+    }
 
 
 	

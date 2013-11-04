@@ -55,7 +55,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	feed: function(data) {
 
 		if (googleMapInitialised == false) {
-			googleMapInitialise('46.475241', '6.892743');
+			googleMapLastLattitude = '46.475241';
+			googleMapLastLongitude = '6.892743';
+			googleMapInitialise();
 			googleMapInitialised = true;
 		}
 		
@@ -74,14 +76,16 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			//	sap.ui.getCore().byId("TvGpsNavPosllhGpsMs").setText(gps_msg_nav_posllh_fields[0].substr(3));
 			var longitude = parseFloat(gps_msg_nav_posllh_fields[1], 10);
 			longitude = longitude / 10000000;
+			googleMapLastLongitude = longitude;
 			var lattitude = parseFloat(gps_msg_nav_posllh_fields[2], 10);
 			lattitude = lattitude / 10000000; 
+			googleMapLastLattitude = lattitude;
 			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText(longitude);
 			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText(lattitude);
 			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[3]);
 			mapUpdateCounter += 1;
 			if (mapUpdateCounter > 5) {
-				googleMapInitialise(lattitude, longitude);
+				googleMapSet();
 				mapUpdateCounter = 0;
 			}
 			//	set_map(lattitude, longitude);
@@ -165,7 +169,22 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (gamepadEvent.control == gamepadCmdCamTiltDown) {
 			window.socket.emit(socketEventCockpit, cmdCamTiltDown);
 		}
+		
 
+		if (gamepadEvent.control == gamepadCmdGoogleMapTypeChange) {
+			switch (googleMapLastMapType) {
+				case googleMapMapTypeRoad:
+					googleMapLastMapType = googleMapMapTypeSatellite;
+					break;
+				case googleMapMapTypeSatellite:
+					googleMapLastMapType = googleMapMapTypeRoad;
+					break;
+				default:
+					googleMapLastMapType = googleMapMapTypeRoad;
+			}
+			googleMapSet();
+		}
+				
 	},
 
 
@@ -226,9 +245,23 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		}
 
     
+
 		if (socketMessage != '') {
 			socketMessage = socketMessage + ']';        	        
 			window.socket.emit(socketEventCockpit, socketMessage);
+		}
+
+		
+		if (gamepadEvent.axis == gamepadCmdGoogleMapZoom) {
+			var zoom = parseFloat(gamepadEvent.value);
+		
+			zoom = zoom * 10;
+			zoom = zoom.toFixed(0);
+		
+			if (zoom != googleMapLastZoom) {
+				googleMapLastZoom = zoom;
+				googleMapSet();			
+			}
 		}
 
 		

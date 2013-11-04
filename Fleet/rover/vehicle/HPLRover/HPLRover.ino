@@ -83,7 +83,7 @@ void rover_init(void) {
   servo_tiltcam.attach(pin_tiltcam);           
 
   hplrover_gps.init();  
-//  rover_arm();
+  rover_arm();
 
 
 }
