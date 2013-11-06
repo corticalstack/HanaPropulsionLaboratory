@@ -53,7 +53,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 
 	feed: function(data) {
-
+		console.log(data);
 		if (googleMapInitialised == false) {
 			googleMapLastLattitude = '46.475241';
 			googleMapLastLongitude = '6.892743';
@@ -61,6 +61,12 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			googleMapInitialised = true;
 		}
 		
+
+		if (data.substr(0,3) == 'CPS') {
+			var compass_msg_fields = data.split(',');
+			sap.ui.getCore().byId("TvCompassHeading").setText(compass_msg_fields[0].substr(3));
+		};
+
 		
 		if (data.substr(0,3) == 'GNS') {
 			var gps_msg_nav_sol_fields = data.split(',');

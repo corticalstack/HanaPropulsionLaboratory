@@ -4,10 +4,11 @@ var oBundle = jQuery.sap.resources({url : "./i18n/messagebundle.hdbtextbundle", 
 var oBarModel = new sap.ui.model.json.JSONModel();
     
 // Groundstation
-var groundStationSocketURL				= 'http://192.168.1.62:8090'
+var groundStationSocketURL				= 'http://192.168.1.62:8090';
 	
 // Cockpit
 var socketEventCockpit                  = 'cockpit';
+var cockpitHeartbeatTick 				= setInterval(function(){cockpitHeartbeat()},250);
 
 //Vehicle 
 var vehicleName                         = 'Slice of Life';
@@ -25,7 +26,8 @@ var cmdCamPanStop         				= 'P0:]';
 var cmdCamTiltUp             			= 'T5:]';
 var cmdCamTiltDown             			= 'T-5:]';
 var cmdCamTiltStop             			= 'T0:]';
-var cmdCamSweep            				= 'W';
+var cmdCockpitHeartbeat        			= 'B:]';
+
 
 var vehicleDirectionForward 			= 'DF';
 var vehicleDirectionReverse 			= 'DR';
@@ -79,6 +81,7 @@ var googleMapZoomBase                   = 11;
 var googleMapLastZoom                   = 11;
 
 
+
 function googleMapInitialise() {
 	var latlng = new google.maps.LatLng(googleMapLastLattitude, googleMapLastLongitude);
     var myOptions = {
@@ -113,9 +116,13 @@ function googleMapSet() {
       		position: latlng,
             map: map,
             title: vehicleName
-        });
-    }
+    });
+}
 
+
+function cockpitHeartbeat() {
+	window.socket.emit(socketEventCockpit, cmdCockpitHeartbeat);
+}
 
 	
 

@@ -30,7 +30,7 @@ void HPLRover_GPS::init() {
 }
 
 
-void HPLRover_GPS::update(HPLRover_GPS &gps) {
+void HPLRover_GPS::read(HPLRover_GPS &gps) {
   
 	if (Serial1.available()) {
 		unsigned char cc = Serial1.read();

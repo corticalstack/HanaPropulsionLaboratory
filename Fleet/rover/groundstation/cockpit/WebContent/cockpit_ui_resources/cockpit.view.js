@@ -177,19 +177,20 @@ function buildDashboard(oController,oLayout){
             oTabStrip.closeTab(oEvent.getParameter("index"));
     });
 
-    // 1. tab: general data (use createTab)
+    
     var oLayout1 = new sap.ui.commons.layout.MatrixLayout("Matrix1", {columns: 2, width: "100%"});
     oLayout1.setWidths(['150px']);
-
-    var oTF = new sap.ui.commons.TextField("TextField-Altitude", {tooltip: 'Altitude', editable: false, value: '1', width: '200px'});
-    var oLabel = new sap.ui.commons.Label("Label-Altitude", {text: 'Altitude', labelFor: oTF});
-    oLayout1.createRow(oLabel, oTF);
     
+    // 1. tab: general data (use createTab)
+    var oTvCompassHeading = new sap.ui.commons.TextView("TvCompassHeading",{
+		text : "0",
+		tooltip : "Compass Heading" }
+	);
     
-    oTF = new sap.ui.commons.TextField("TextField-Groundspeed", {tooltip: 'Groundspeed', editable: false, value: '2', width: '200px'});
-    oLabel = new sap.ui.commons.Label("Label-Groundspeed", {text: 'Groundspeed (m/s)', labelFor: oTF});
-    oLayout1.createRow(oLabel, oTF);
-    
+    oLabel = new sap.ui.commons.Label("LblCompassHeading", {text: 'Compass Heading', labelFor: oTvCompassHeading});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvCompassHeading);
+        
 
     oTabStrip1.createTab("Quick",oLayout1);
 

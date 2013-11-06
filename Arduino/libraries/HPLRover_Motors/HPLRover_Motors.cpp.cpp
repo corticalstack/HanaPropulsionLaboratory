@@ -4,23 +4,32 @@
 #include "HPLRover_Motors.h"
 #include "HPLRover_Common.h"
 #include <HPLRover_Command.h>
+#include <HPLRover_Notify.h>
 
 
 HPLRover_Motors::HPLRover_Motors() {
 }
 
-void HPLRover_Motors::output(HPLRover_Command &command, Servo &servo_leftmotors, Servo &servo_rightmotors) {
+void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify, Servo &servo_leftmotors, Servo &servo_rightmotors) {
 
-	int internal_throttle_val = 0;
-	int left_throttle_val = 0;
-	int right_throttle_val = 0;
+	int internal_throttle_val 	= 0;
+	int left_throttle_val 		= 0;
+	int right_throttle_val 		= 0;
     
-	int internal_heading_val = 0;	
+	int internal_heading_val 	= 0;	
 	bool heading_anti_clockwise = false;
 	
-	int internal_rotate_val = 0;	
-	bool rotate_anti_clockwise = false;
+	int internal_rotate_val 	= 0;	
+	bool rotate_anti_clockwise 	= false;
 
+		
+	if ((notify.notify.cockpit_heartbeat == false) |
+		((millis() - notify.notify.cockpit_heartbeat_tick) > cockpit_heartbeat_threshold)) {
+		allstop(command, servo_leftmotors, servo_rightmotors);
+		reset_motors(command);
+		notify.notify.cockpit_heartbeat = false;
+		return;
+	}
 //	Serial.println("Motors output");
 	
 	if (command.cmd_in_motors.stop_rx == false && command.cmd_in_motors.direction_rx == false && command.cmd_in_motors.rotate_rx == false) {

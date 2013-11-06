@@ -2,7 +2,7 @@
 #include "HPLRover_Radio.h"
 #include "HPLRover_Common.h"
 #include "HPLRover_Command.h"
-
+#include "HPLRover_Notify.h"
 
 HPLRover_Radio::HPLRover_Radio() {
 	serial_count = 0;   
@@ -15,7 +15,7 @@ void HPLRover_Radio::init() {
 }
 
 
-void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command) {
+void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command, HPLRover_Notify &notify) {
 
 //  Serial.println("Read radio data stream");
   
@@ -26,7 +26,7 @@ void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command) {
     switch (serial_char) {
       case ':' :  
         buffer[serial_count] = null_terminator;
-        command_register(command, buffer, serial_count);
+        command_register(command, notify, buffer, serial_count);
         clear_buffer();
         break;
       case ']' :
@@ -51,9 +51,13 @@ void HPLRover_Radio::send_radio_data_stream(void* context) {
 }
 
 
-void HPLRover_Radio::command_register(HPLRover_Command &command, char buffer[], int command_length) {   // deals with standardized input from serial connection
+void HPLRover_Radio::command_register(HPLRover_Command &command, HPLRover_Notify &notify, char buffer[], int command_length) {   // deals with standardized input from serial connection
 
-    last_gcs_heartbeat_ms = millis();
+	if (buffer[0] == cmd_cockpit_heartbeat) {
+		notify.notify.cockpit_heartbeat = true;
+		notify.notify.cockpit_heartbeat_tick = millis();
+	}
+
 	
 	if (buffer[0] == cmd_throttle) {
 		command.cmd_in_motors.throttle_rx = true;

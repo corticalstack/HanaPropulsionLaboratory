@@ -6,8 +6,6 @@
 class HPLRover_GPS
 {
   public:
-  
-  public:
 
 		struct gps_msg_nav_sol_type {					
 			long 	gps_ms;
@@ -46,9 +44,9 @@ class HPLRover_GPS
 		static struct gps_msg_nav_velned_type 	gps_msg_nav_velned;
 		
 		
-    HPLRover_GPS();        //Constructor
+     HPLRover_GPS();        //Constructor
 	 void init(void);
-     void update(HPLRover_GPS &gps);
+     void read(HPLRover_GPS &gps);
 	 void output(HPLRover_GPS &gps);
 	 void log(HPLRover_GPS &gps);
   
