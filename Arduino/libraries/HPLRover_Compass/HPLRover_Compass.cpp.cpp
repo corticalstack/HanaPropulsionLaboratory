@@ -81,12 +81,12 @@ void HPLRover_Compass::output(HPLRover_Compass &compass) {
 	char msg_buffer[40];
 	PString msg_compass_str(msg_buffer, sizeof(msg_buffer));
 	msg_compass_str += msg_compass;
-	msg_compass_str += compass.compass_msg.magx;
-	msg_compass_str += comma_separator;
-	msg_compass_str += compass.compass_msg.magy;
-	msg_compass_str += comma_separator;
-	msg_compass_str += compass.compass_msg.magz;	
-	msg_compass_str += comma_separator;
+//	msg_compass_str += compass.compass_msg.magx;
+//	msg_compass_str += comma_separator;
+//	msg_compass_str += compass.compass_msg.magy;
+//	msg_compass_str += comma_separator;
+//	msg_compass_str += compass.compass_msg.magz;	
+//	msg_compass_str += comma_separator;
 	msg_compass_str += compass.compass_msg.heading_degrees;
 	msg_compass_str += msg_terminator;  
 	Serial.println(msg_compass_str);

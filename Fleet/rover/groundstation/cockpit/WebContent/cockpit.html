@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-	<script src="http://192.168.1.62:8090/socket.io/socket.io.js"></script>  
+	<script src="http://192.168.1.38:8090/socket.io/socket.io.js"></script>  
 	<script src="/gamepad/gamepad.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
   			 
@@ -30,7 +30,7 @@
     <body class="sapUiBody" role="application">
     	<div id="content"></div>
 	 	<script type="text/javascript">
-       		socket = io.connect('http://192.168.1.62:8090');
+       		socket = io.connect('http://192.168.1.38:8090');
 	        socket.on('connect', function(data){
 	        	try { 
 	        			sap.ui.getCore().byId("viewCockpit").getController().connect(data);

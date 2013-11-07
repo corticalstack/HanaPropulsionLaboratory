@@ -47,7 +47,9 @@ class HPLRover_GPS
      HPLRover_GPS();        //Constructor
 	 void init(void);
      void read(HPLRover_GPS &gps);
-	 void output(HPLRover_GPS &gps);
+	 void output_sol(HPLRover_GPS &gps);
+	 void output_posllh(HPLRover_GPS &gps);
+	 void output_velned(HPLRover_GPS &gps);
 	 void log(HPLRover_GPS &gps);
   
   private:

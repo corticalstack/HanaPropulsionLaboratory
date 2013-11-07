@@ -52,36 +52,41 @@ io.sockets.on('connection', function(socket) {
 
 
         serial.on("data", function(chunk){	
-				console.log(chunk);		
                 stream.write(chunk);
         });
 
         stream.on('split', function (chunk, token) {
         var mychunk = chunk.toString();
-		console.log(chunk);
-        switch (mychunk.substr(0,3)) {
+        switch (mychunk.substr(0,1)) {
 				
                 case "":
                         break;
-                case "SR1":
-                        socket.emit("feed", chunk.toString());
-                        break;
 
-				case "GNS":
+				case "S":
                         socket.emit("feed", chunk.toString());
 						console.log(chunk);
                         break;
 
-                case "GNP":
+                case "P":
                         socket.emit("feed", chunk.toString());
 						console.log(chunk);
                         break;
 
-                case "GNV":
+                case "V":
                         socket.emit("feed", chunk.toString());
 						console.log(chunk);
                         break;
 
+                case "C":
+                        socket.emit("feed", chunk.toString());
+						console.log(chunk);
+                        break;
+
+				case "I":
+                        socket.emit("feed", chunk.toString());
+						console.log(chunk);
+                        break;
+						
                 default:
  }
 //      socket.emit("feed", chunk.toString());

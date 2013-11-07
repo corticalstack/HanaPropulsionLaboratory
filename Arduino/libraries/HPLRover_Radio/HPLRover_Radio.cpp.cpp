@@ -35,7 +35,7 @@ void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command, HPLRover_
       default:
         buffer[serial_count] = serial_char;                   // add byte to buffer string
         serial_count++;
-        if (serial_count > 100)                      // overflow, dump and restart
+        if (serial_count > 300)                      // overflow, dump and restart
         {
           clear_buffer();
           Serial.flush();

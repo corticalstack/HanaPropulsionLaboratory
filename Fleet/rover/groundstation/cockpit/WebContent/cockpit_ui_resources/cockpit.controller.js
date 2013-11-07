@@ -62,13 +62,25 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		}
 		
 
-		if (data.substr(0,3) == 'CPS') {
+		if (data.substr(0,1) == 'C') {
 			var compass_msg_fields = data.split(',');
-			sap.ui.getCore().byId("TvCompassHeading").setText(compass_msg_fields[0].substr(3));
+			sap.ui.getCore().byId("TvCompassHeading").setText(compass_msg_fields[0].substr(1));
+		};
+
+
+		
+		if (data.substr(0,1) == 'I') {
+			var inertialsensor_msg_fields = data.split(',');
+			sap.ui.getCore().byId("TvInsAccelX").setText(inertialsensor_msg_fields[0].substr(1));
+			sap.ui.getCore().byId("TvInsAccelY").setText(inertialsensor_msg_fields[1]);
+			sap.ui.getCore().byId("TvInsAccelZ").setText(inertialsensor_msg_fields[2]);
+			sap.ui.getCore().byId("TvInsGyroX").setText(inertialsensor_msg_fields[3]);
+			sap.ui.getCore().byId("TvInsGyroY").setText(inertialsensor_msg_fields[4]);
+			sap.ui.getCore().byId("TvInsGyroZ").setText(inertialsensor_msg_fields[5]);
 		};
 
 		
-		if (data.substr(0,3) == 'GNS') {
+		if (data.substr(0,1) == 'S') {
 			var gps_msg_nav_sol_fields = data.split(',');
 			//	sap.ui.getCore().byId("TvGpsNavSolGpsMs").setText(gps_msg_nav_sol_fields[0].substr(3));
 			sap.ui.getCore().byId("TvGpsNavSolFixType").setText(gps_msg_nav_sol_fields[1]);
@@ -77,18 +89,18 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 		
 
-		if (data.substr(0,3) == 'GNP') {
+		if (data.substr(0,1) == 'P') {
 			var gps_msg_nav_posllh_fields = data.split(',');
 			//	sap.ui.getCore().byId("TvGpsNavPosllhGpsMs").setText(gps_msg_nav_posllh_fields[0].substr(3));
-			var longitude = parseFloat(gps_msg_nav_posllh_fields[1], 10);
+			var longitude = parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
 			longitude = longitude / 10000000;
 			googleMapLastLongitude = longitude;
-			var lattitude = parseFloat(gps_msg_nav_posllh_fields[2], 10);
+			var lattitude = parseFloat(gps_msg_nav_posllh_fields[1], 10);
 			lattitude = lattitude / 10000000; 
 			googleMapLastLattitude = lattitude;
 			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText(longitude);
 			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText(lattitude);
-			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[3]);
+			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[2]);
 			mapUpdateCounter += 1;
 			if (mapUpdateCounter > 5) {
 				googleMapSet();
@@ -102,15 +114,15 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 
-		if (data.substr(0,3) == 'GNV') {
+		if (data.substr(0,2) == 'V') {
 			var gps_msg_nav_velned_fields = data.split(',');
 			//		sap.ui.getCore().byId("TvGpsNavVelnedGpsMs").setText(gps_msg_nav_velned_fields[0].substr(3));
-			sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText(gps_msg_nav_velned_fields[1]);
-			sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText(gps_msg_nav_velned_fields[2]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedDownVelCms").setText(gps_msg_nav_velned_fields[3]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedSpeed3dCms").setText(gps_msg_nav_velned_fields[4]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedGroundSpeed2dCms").setText(gps_msg_nav_velned_fields[5]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedHeading").setText(gps_msg_nav_velned_fields[6]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText(gps_msg_nav_velned_fields[0]);
+			sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText(gps_msg_nav_velned_fields[1]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedDownVelCms").setText(gps_msg_nav_velned_fields[2]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedSpeed3dCms").setText(gps_msg_nav_velned_fields[3]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedGroundSpeed2dCms").setText(gps_msg_nav_velned_fields[4]);			
+			sap.ui.getCore().byId("TvGpsNavVelnedHeading").setText(gps_msg_nav_velned_fields[5]);			
 			//		sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText(gps_msg_nav_velned_fields[7]);			
 			//	sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);			
 		};
@@ -134,7 +146,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	gamepad_button_down: function(gamepadEvent) {
 		var socketMessage = '';
-		if (gamepadEvent.control == gamepadCmdDirection && cmdThrottleValLast < throttleMaxForDirectionChange) { 
+		if (gamepadEvent.control == gamepadCmdDirection && cmdThrottleValLast < throttleMaxForDirectionChange && cmdStopTx == false) { 
 			cmdDirectionTx = true;
 			if (vehicleDirection == vehicleDirectionForward) {
 				vehicleDirection = vehicleDirectionReverse;

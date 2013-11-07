@@ -192,6 +192,65 @@ function buildDashboard(oController,oLayout){
     oLayout1.createRow(oLabel, oTvCompassHeading);
         
 
+	
+    var oTvInsAccelX = new sap.ui.commons.TextView("TvInsAccelX",{
+		text : "0",
+		tooltip : "Accel X" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblInsAccelX", {text: 'Accel X', labelFor: oTvInsAccelX});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvInsAccelX);
+
+    var oTvInsAccelY = new sap.ui.commons.TextView("TvInsAccelY",{
+		text : "0",
+		tooltip : "Accel Y" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblInsAccelY", {text: 'Accel Y', labelFor: oTvInsAccelY});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvInsAccelY);
+
+    var oTvInsAccelZ = new sap.ui.commons.TextView("TvInsAccelZ",{
+		text : "0",
+		tooltip : "Accel Z" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblInsAccelZ", {text: 'Accel Z', labelFor: oTvInsAccelZ});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvInsAccelZ);
+
+
+    var oTvInsGyroX = new sap.ui.commons.TextView("TvInsGyroX",{
+		text : "0",
+		tooltip : "Gyro X" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblInsGyroX", {text: 'Gyro X', labelFor: oTvInsAccelX});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvInsGyroX);
+
+    var oTvInsGyroY = new sap.ui.commons.TextView("TvInsGyroY",{
+		text : "0",
+		tooltip : "Gyro Y" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblInsGyroY", {text: 'Gyro Y', labelFor: oTvInsGyroY});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvInsGyroY);
+
+    var oTvInsGyroZ = new sap.ui.commons.TextView("TvInsGyroZ",{
+		text : "0",
+		tooltip : "Gyro Z" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblInsGyroZ", {text: 'Gyro Z', labelFor: oTvInsGyroZ});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvInsGyroZ);
+
+    
+   
+    
     oTabStrip1.createTab("Quick",oLayout1);
 
     
