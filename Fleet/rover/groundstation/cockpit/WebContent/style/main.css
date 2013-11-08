@@ -1,0 +1,31 @@
+/* put your styles here */
+html {
+	height: 100%;
+	width: 100%;
+	}
+body {
+}
+
+#canvas {
+	position: absolute;
+	left: 20px;
+	top: 640px;
+}
+
+#top {
+    position: absolute;
+	left: 850px;
+	top: 730px;
+	width: 360px;
+	height: 360px;
+	background: transparent url(../images/tool_320.png) no-repeat;
+
+
+}
+
+#canvaswrapper {
+    position: absolute;
+	left: 870px;
+	top: 746px;
+
+}

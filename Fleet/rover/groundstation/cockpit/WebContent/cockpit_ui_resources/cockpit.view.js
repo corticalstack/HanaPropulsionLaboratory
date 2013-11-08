@@ -116,10 +116,11 @@ function buildCamMap(oController,oLayout){
 	var oMlCamMap = new sap.ui.commons.layout.MatrixLayout({width:"1650px"});
 	 
 	var oRowCamMap = new sap.ui.commons.layout.MatrixLayoutRow();
+	var oRowArt = new sap.ui.commons.layout.MatrixLayoutRow();
     var oCellCam = new sap.ui.commons.layout.MatrixLayoutCell();
     var oCellMap = new sap.ui.commons.layout.MatrixLayoutCell();
-
-
+    var oCellArt = new sap.ui.commons.layout.MatrixLayoutCell();
+    var oCellArtback = new sap.ui.commons.layout.MatrixLayoutCell();
     
     
 	 var oHtmlRadioCamStream = new sap.ui.core.HTML({  
@@ -139,14 +140,28 @@ function buildCamMap(oController,oLayout){
 
 	 oCellCam.addContent(oHtmlRadioCamStream);
 	 
+	
 	 
 	 var oHtmlMap = new sap.ui.core.HTML({  
-           content : "<div id='map_canvas' style='width: 825px; height: 625px;'></div>"  
-       });  
+         content : "<div id='map_canvas' style='width: 825px; height: 625px;'></div>"  
+     });  
 
 	 oCellMap.addContent(oHtmlMap);
 	 
 	 
+	 
+	 var oHtmlArt = new sap.ui.core.HTML({  
+         content : "<div id='canvaswrapper'><canvas id='horizon' width='272' height='272'></canvas></div>"  
+     });  
+
+	 oCellArt.addContent(oHtmlArt);
+
+	 var oHtmlArtback = new sap.ui.core.HTML({  
+         content : "<div id='top' width='360px' height='360px'></div>"  
+     });  
+
+	 oCellArtback.addContent(oHtmlArtback);
+
     
     
     var oCell = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 1});
@@ -156,7 +171,11 @@ function buildCamMap(oController,oLayout){
     
     oRowCamMap.addCell(oCellCam);
     oRowCamMap.addCell(oCellMap); 
+    oRowArt.addCell(oCellArt);
+    oRowArt.addCell(oCellArtback);
     oMlCamMap.addRow(oRowCamMap);
+    oMlCamMap.addRow(oRowCamMap);
+    oMlCamMap.addRow(oRowArt);
     oLayout.createRow(oMlCamMap);    
 	
 }
@@ -562,22 +581,6 @@ function buildDrivePanel(oController,oLayout){
 	 });
 	 
 	 
-	 var mapPannel = new sap.ui.commons.Panel('mapPanel');  
-	  
-     mapPannel.addContent(new sap.ui.core.HTML(  
-                                             {  
-                                                       content : "<div id='map_canvas' style='width: 100%; height: 400px;'></div>"  
-                                             }));  
-
-   var mTitle = new sap.ui.commons.Title('mTitle');     
-   mTitle.setText("Fligth Map");     
-   mapPannel.setTitle(mTitle);  
-	 
-
-     //Add the map canvas
-//     var oMap = new sap.ui.core.HTML({
-  //           content : "<div id='map_canvas' style='width: 600px; height: 200px;'>https://maps.google.com/maps?q=46.475293+6.8928362&hl=en&sll=37.0625,-95.677068&sspn=68.973951,135.263672&t=h&z=17</div>"
-    //                                 });
      
 	 	
 		
@@ -647,13 +650,6 @@ function buildDrivePanel(oController,oLayout){
 	    
 	    oLyt.createRow(oTvGpsNavVelnedCourseAccEst);
 	    oLayout.createRow(oLyt);
-	    
-	    
-//		oLyt1.createRow(oHtml);		 
-	//	oLayout.createRow(oLyt1);
-		
-     	oLyt1.createRow(mapPannel);
-	    oLayout.createRow(oLyt1);
 
 	 	 
 };

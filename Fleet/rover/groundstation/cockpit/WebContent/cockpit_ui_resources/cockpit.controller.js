@@ -61,6 +61,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			googleMapInitialised = true;
 		}
 		
+	
 
 		if (data.substr(0,1) == 'C') {
 			var compass_msg_fields = data.split(',');
@@ -77,6 +78,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvInsGyroX").setText(inertialsensor_msg_fields[3]);
 			sap.ui.getCore().byId("TvInsGyroY").setText(inertialsensor_msg_fields[4]);
 			sap.ui.getCore().byId("TvInsGyroZ").setText(inertialsensor_msg_fields[5]);
+            			
+
+//			updateAccelerations(inertialsensor_msg_fields[0].substr(1), inertialsensor_msg_fields[1], inertialsensor_msg_fields[2]);
+
+//			draw();
 		};
 
 		
@@ -103,7 +109,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[2]);
 			mapUpdateCounter += 1;
 			if (mapUpdateCounter > 5) {
-				googleMapSet();
+				latlng = new google.maps.LatLng(googleMapLastLattitude, googleMapLastLongitude);
+			    googleMapMarker.setPosition(latlng);
+				googleMap.panTo(googleMapMarker.getPosition());
 				mapUpdateCounter = 0;
 			}
 			//	set_map(lattitude, longitude);
@@ -192,15 +200,16 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (gamepadEvent.control == gamepadCmdGoogleMapTypeChange) {
 			switch (googleMapLastMapType) {
 				case googleMapMapTypeRoad:
+					googleMap.setMapTypeId(googleMapMapTypeSatellite);
 					googleMapLastMapType = googleMapMapTypeSatellite;
 					break;
 				case googleMapMapTypeSatellite:
-					googleMapLastMapType = googleMapMapTypeRoad;
+					googleMap.setMapTypeId(googleMapMapTypeRoad);
+					googleMapLastMapType = googleMapMapTypeRoad; 
 					break;
 				default:
 					googleMapLastMapType = googleMapMapTypeRoad;
 			}
-			googleMapSet();
 		}
 				
 	},
@@ -272,13 +281,19 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 		if (gamepadEvent.axis == gamepadCmdGoogleMapZoom) {
 			var zoom = parseFloat(gamepadEvent.value);
-		
 			zoom = zoom * 10;
 			zoom = zoom.toFixed(0);
+			if (zoom == 0) {
+				zoom = 11;
+			}
+
 		
 			if (zoom != googleMapLastZoom) {
 				googleMapLastZoom = zoom;
-				googleMapSet();			
+			    var tempzoom = parseInt(googleMapLastZoom, 10) + parseInt(googleMapZoomBase, 10); 
+				googleMap.setZoom(tempzoom);
+				googleMap.setCenter(googleMapMarker.getPosition());
+				//googleMapSet();			
 			}
 		}
 
