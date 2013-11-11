@@ -46,8 +46,7 @@ Servo servo_leftmotors,
       servo_pancam,
       servo_tiltcam;
 
- 
-// Setup is called when the sketch starts
+
 void setup(void) {
   rover_init();
  
@@ -59,7 +58,6 @@ void setup(void) {
 
 
 
-// loop() is called rapidly while the sketch is running
 void loop(void) { 
   hpl_scheduler.update();
   fast_loop(); 
@@ -68,7 +66,17 @@ void loop(void) {
 
 void fast_loop(void) {  
   hplrover_radio.read_radio_data_stream(hplrover_command, hplrover_notify);  
-  hplrover_motors.output(hplrover_command, hplrover_notify, servo_leftmotors, servo_rightmotors);
+  
+  #if defined DEBUG_MOTORS
+    start_ms = millis();
+  #endif
+  hplrover_motors.output(hplrover_command, hplrover_notify, servo_leftmotors, servo_rightmotors);  
+  #if defined DEBUG_MOTORS
+    stop_ms = millis();
+    Serial.print("Motors output - ");
+    Serial.println(stop_ms - start_ms);
+  #endif
+   
   hplrover_gps.read(hplrover_gps);
 }  
   
@@ -123,7 +131,7 @@ void one_second_loop(void* context) {
 
 
 void rover_init(void) {
-  Serial.begin(9600);        
+  Serial.begin(57600);        
  
   servo_leftmotors.attach(pin_leftmotor);            
   servo_rightmotors.attach(pin_rightmotor);          

@@ -107,13 +107,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText(longitude);
 			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText(lattitude);
 			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[2]);
-			mapUpdateCounter += 1;
-			if (mapUpdateCounter > 5) {
+			googleMapUpdateCounter += 1;
+//			if (googleMapUpdateCounter > 5) {
 				latlng = new google.maps.LatLng(googleMapLastLattitude, googleMapLastLongitude);
 			    googleMapMarker.setPosition(latlng);
 				googleMap.panTo(googleMapMarker.getPosition());
-				mapUpdateCounter = 0;
-			}
+				googleMapUpdateCounter = 0;
+	//		}
 			//	set_map(lattitude, longitude);
 			//	sap.ui.getCore().byId("TvGpsNavPosllhHeightMsl").setText(gps_msg_nav_posllh_fields[4]);			
 			//	sap.ui.getCore().byId("TvGpsNavPosllhHoriAccEst").setText(gps_msg_nav_posllh_fields[5]);			

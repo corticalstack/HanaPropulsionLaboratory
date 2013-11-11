@@ -44,6 +44,11 @@ void HPLRover_InertialSensor::init(AP_InertialSensor_MPU6000 &insmpu6000, Arduin
 
 
 void HPLRover_InertialSensor::read(HPLRover_InertialSensor &ins, AP_InertialSensor_MPU6000 &insmpu6000) {
+
+	#if defined debug_inertial
+		start_ms = millis();
+	#endif
+
 	Vector3f accel;
     Vector3f gyro;
     float temperature;
@@ -70,11 +75,23 @@ void HPLRover_InertialSensor::read(HPLRover_InertialSensor &ins, AP_InertialSens
 	ins.ins_msg.gyro_x 		= gyro.x;
 	ins.ins_msg.gyro_y 		= gyro.y;
 	ins.ins_msg.gyro_z 		= gyro.z;
-	ins.ins_msg.temperature = temperature;			   
+	ins.ins_msg.temperature = temperature;		
+
+	#if defined debug_inertial
+		stop_ms = millis();
+		Serial.print("Inertial read - ");
+		Serial.println(stop_ms - start_ms);
+	#endif
+
 }
 
 
 void HPLRover_InertialSensor::output(HPLRover_InertialSensor &ins) {  
+	
+	#if defined DEBUG_INERTIAL
+		start_ms = millis();
+	#endif
+	
 	char ins_buffer[50];
 	PString ins_str(ins_buffer, sizeof(ins_buffer));
 	ins_str += msg_ins;
@@ -95,6 +112,13 @@ void HPLRover_InertialSensor::output(HPLRover_InertialSensor &ins) {
 //	ins_str += ins.ins_msg.temperature;
 	ins_str += msg_terminator;  
 	Serial.println(ins_str);	
+	
+	#if defined DEBUG_INERTIAL
+		stop_ms = millis();
+		Serial.print("Inertial output - ");
+		Serial.println(stop_ms - start_ms);
+	#endif
+	
 }
 
 

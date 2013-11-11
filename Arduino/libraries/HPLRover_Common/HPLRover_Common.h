@@ -2,10 +2,19 @@
 #define HPLRover_Common_h
 
 #include "Arduino.h"
+//#define DEBUG_RADIO
+//#define DEBUG_MOTORS
+//#define DEBUG_GPS
+//#define DEBUG_COMPASS
+//#define DEBUG_INERTIAL
+//#define DEBUG_SENSORS
+//#define DEBUG_CAMERA
 
 static 					uint32_t current_time_ms;
 static 					uint32_t last_gcs_heartbeat_ms;
 static 					uint32_t last_cam_pass_ms;
+static 					uint32_t start_ms;
+static 					uint32_t stop_ms;
 
 const unsigned long 	cockpit_heartbeat_threshold 		= 1000;
 static bool  			cmd_process               			= false;
@@ -126,8 +135,7 @@ static unsigned int  	length,
 
 static unsigned char 	data[MAX_LENGTH];
 
-static long 			lastTime 							= 0;
-
+const int 				gps_read_tick_max	 				= 10;
 const char 				msg_gps_nav_sol 					= 'S';
 const char 				msg_gps_nav_posllh 					= 'P';
 const char 				msg_gps_nav_velned 					= 'V';

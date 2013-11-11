@@ -10,6 +10,10 @@ HPLRover_Camera::HPLRover_Camera() {
 
 void HPLRover_Camera::output(HPLRover_Command &command, Servo &servo_pancam, Servo &servo_tiltcam) {
 
+	#if defined DEBUG_CAMERA
+		start_ms = millis();
+	#endif
+
 	if (command.cmd_in_cam.pan_rx) {
 		pancam(command, servo_pancam);
 	}
@@ -19,6 +23,12 @@ void HPLRover_Camera::output(HPLRover_Command &command, Servo &servo_pancam, Ser
 		tiltcam(command, servo_tiltcam);
 	}
 			
+	#if defined DEBUG_CAMERA
+		stop_ms = millis();
+		Serial.print("camera output - ");
+		Serial.println(stop_ms - start_ms);
+	#endif
+
 }
 
 

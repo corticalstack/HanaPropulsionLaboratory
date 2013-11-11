@@ -17,32 +17,38 @@ void HPLRover_Radio::init() {
 
 void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command, HPLRover_Notify &notify) {
 
-//  Serial.println("Read radio data stream");
+	#if defined DEBUG_RADIO
+		start_ms = millis();
+	#endif
   
-  if (Serial.available()) 
-  {
-    serial_char = Serial.read();                               // read individual byte from serial connection
+	if (Serial.available()) {
+		serial_char = Serial.read();                               		// read individual byte from serial connection
   
-    switch (serial_char) {
-      case ':' :  
-        buffer[serial_count] = null_terminator;
-        command_register(command, notify, buffer, serial_count);
-        clear_buffer();
-        break;
-      case ']' :
-        cmd_process = true;
-        break;
-      default:
-        buffer[serial_count] = serial_char;                   // add byte to buffer string
-        serial_count++;
-        if (serial_count > 300)                      // overflow, dump and restart
-        {
-          clear_buffer();
-          Serial.flush();
-        }            
-    }
-  }
+		switch (serial_char) {
+			case ':' :  
+				buffer[serial_count] = null_terminator;
+				command_register(command, notify, buffer, serial_count);
+				clear_buffer();
+				break;
+			case ']' :
+				cmd_process = true;
+				break;
+			default:
+				buffer[serial_count] = serial_char;                   	// add byte to buffer string
+				serial_count++;
+				if (serial_count > 300) {                     			// overflow, dump and restart
+					clear_buffer();
+					Serial.flush();
+				}            
+		}
+	}
 
+	#if defined DEBUG_RADIO
+		stop_ms = millis();
+		Serial.print("Read radio - ");
+		Serial.println(stop_ms - start_ms);
+	#endif
+		
 }
 
 
@@ -120,13 +126,13 @@ void HPLRover_Radio::command_register(HPLRover_Command &command, HPLRover_Notify
 
 void HPLRover_Radio::clear_buffer() { // empties command buffer from serial connection
 
-  serial_count = 0; // reset buffer placement
-  buffer[serial_count] = null_terminator; 
+	serial_count = 0; // reset buffer placement
+	buffer[serial_count] = null_terminator; 
 }
 
 
 void HPLRover_Radio::test_call() { 
 
-  Serial.println("Radio test call executed");
+	Serial.println("Radio test call executed");
 
 }

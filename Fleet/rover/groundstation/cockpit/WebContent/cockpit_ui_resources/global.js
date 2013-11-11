@@ -8,7 +8,7 @@ var groundStationSocketURL				= 'http://192.168.1.62:8090';
 	
 // Cockpit
 var socketEventCockpit                  = 'cockpit';
-//var cockpitHeartbeatTick 				= setInterval(function(){cockpitHeartbeat()},250);
+var cockpitHeartbeatTick 				= setInterval(function(){cockpitHeartbeat()},250);
 
 //Vehicle 
 var vehicleName                         = 'Slice of Life';
@@ -91,6 +91,7 @@ function googleMapInitialise() {
     var myOptions = {
     		zoom : googleMapLastZoom,
             center : latlng,
+            tilt: 0,
             mapTypeId : googleMapLastMapType
     }
     

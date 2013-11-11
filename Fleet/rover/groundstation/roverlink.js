@@ -42,7 +42,7 @@ socketioWildcard = require( 'socket.io-wildcard' ),
 io = socketioWildcard( socketio ).listen( 8090 );
 
 
-serial = new SerialPort (port, {baudrate: 9600});
+serial = new SerialPort (port, {baudrate: 57600});
 
 
 io.sockets.on('connection', function(socket) {

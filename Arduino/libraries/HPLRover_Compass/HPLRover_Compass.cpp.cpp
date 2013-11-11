@@ -22,6 +22,11 @@ void HPLRover_Compass::init() {
 
 
 void HPLRover_Compass::read(HPLRover_Compass &compass) {
+
+	#if defined DEBUG_COMPASS
+		start_ms = millis();
+	#endif
+
 	int   magx 				= 0;
 	int   magy 				= 0;
 	int   magz 				= 0; 
@@ -73,11 +78,22 @@ void HPLRover_Compass::read(HPLRover_Compass &compass) {
 	compass.compass_msg.magz 			= magz_adjusted;
 	compass.compass_msg.heading_degrees = heading_degrees;
 	
+	
+	#if defined DEBUG_COMPASS
+		stop_ms = millis();
+		Serial.print("Compass read - ");
+		Serial.println(stop_ms - start_ms);
+	#endif
+	
 }
 
 
 void HPLRover_Compass::output(HPLRover_Compass &compass) {
-  
+  	
+	#if defined DEBUG_COMPASS
+		start_ms = millis();
+	#endif
+	
 	char msg_buffer[40];
 	PString msg_compass_str(msg_buffer, sizeof(msg_buffer));
 	msg_compass_str += msg_compass;
@@ -90,4 +106,11 @@ void HPLRover_Compass::output(HPLRover_Compass &compass) {
 	msg_compass_str += compass.compass_msg.heading_degrees;
 	msg_compass_str += msg_terminator;  
 	Serial.println(msg_compass_str);
+	
+	#if defined DEBUG_COMPASS
+		stop_ms = millis();
+		Serial.print("Compass output - ");
+		Serial.println(stop_ms - start_ms);
+	#endif
+	
 }	
