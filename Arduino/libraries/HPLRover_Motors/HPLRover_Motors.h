@@ -5,6 +5,7 @@
 #include "Servo.h"
 
 #include <HPLRover_Command.h>
+#include <HPLRover_SharpSensor.h>
 #include <HPLRover_Notify.h>
 
 			  
@@ -12,7 +13,7 @@ class HPLRover_Motors {
 
 	public:
 		HPLRover_Motors();        //Constructor
-		void output(HPLRover_Command &command, HPLRover_Notify &notify, Servo &servo_leftmotors, Servo &servo_rightmotors);
+		void output(HPLRover_Command &command, HPLRover_Notify &notify, HPLRover_SharpSensor &sharpsensor, Servo &servo_leftmotors, Servo &servo_rightmotors);
 	
 	private:
 			

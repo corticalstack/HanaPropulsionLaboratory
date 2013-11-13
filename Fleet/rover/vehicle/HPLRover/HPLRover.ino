@@ -1,4 +1,3 @@
-
 #include <Event.h>
 #include <Timer.h>
 #include <Servo.h>
@@ -13,7 +12,7 @@
 #include <HPLRover_GPS.h>
 #include <HPLRover_Compass.h>
 #include <HPLRover_InertialSensor.h>
-#include <HPLRover_Sensors.h>
+#include <HPLRover_SharpSensor.h>
 #include <HPLRover_Camera.h>
 #include <stdlib.h>
 #include <SPI.h>
@@ -32,7 +31,7 @@ HPLRover_Motors              hplrover_motors;
 HPLRover_GPS                 hplrover_gps;
 HPLRover_Compass             hplrover_compass;
 HPLRover_InertialSensor      hplrover_inertialsensor;
-HPLRover_Sensors             hplrover_sensors;
+HPLRover_SharpSensor         hplrover_sharpsensor;
 HPLRover_Camera              hplrover_camera;
 Arduino_Mega_ISR_Registry    isr_registry;
 AP_TimerProcess              apm_scheduler;
@@ -50,8 +49,10 @@ Servo servo_leftmotors,
 void setup(void) {
   rover_init();
  
+  hpl_scheduler.every(10, ms10_loop, 0);
   hpl_scheduler.every(50, ms50_loop, 0);
   hpl_scheduler.every(100, ms100_loop, 0);
+  hpl_scheduler.every(200, ms200_loop, 0);
   hpl_scheduler.every(1000, one_second_loop, 0);
     
 }
@@ -66,29 +67,30 @@ void loop(void) {
 
 void fast_loop(void) {  
   hplrover_radio.read_radio_data_stream(hplrover_command, hplrover_notify);  
-  
+
   #if defined DEBUG_MOTORS
     start_ms = millis();
   #endif
-  hplrover_motors.output(hplrover_command, hplrover_notify, servo_leftmotors, servo_rightmotors);  
+  hplrover_motors.output(hplrover_command, hplrover_notify, hplrover_sharpsensor, servo_leftmotors, servo_rightmotors);  
   #if defined DEBUG_MOTORS
     stop_ms = millis();
     Serial.print("Motors output - ");
     Serial.println(stop_ms - start_ms);
   #endif
    
-  hplrover_gps.read(hplrover_gps);
+//  hplrover_gps.read(hplrover_gps);
 }  
   
 
 
 void ms10_loop(void* context) {
-
+  hplrover_gps.read(hplrover_gps);
 }
 
 
 void ms50_loop(void* context) {
   hplrover_camera.output(hplrover_command, servo_pancam, servo_tiltcam);
+  hplrover_sharpsensor.read_bumpers(hplrover_sharpsensor);
 }
 
 
@@ -112,11 +114,11 @@ void ms100_loop(void* context) {
 
 
 void ms200_loop(void* context) {
+  hplrover_sharpsensor.read_cam_mounted(hplrover_sharpsensor);
 }
 
 
 void ms500_loop(void* context) {
-
 
 }
 

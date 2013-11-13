@@ -5,12 +5,12 @@
 #include "HPLRover_Common.h"
 #include <HPLRover_Command.h>
 #include <HPLRover_Notify.h>
-
+#include <HPLRover_SharpSensor.h>
 
 HPLRover_Motors::HPLRover_Motors() {
 }
 
-void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify, Servo &servo_leftmotors, Servo &servo_rightmotors) {
+void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify, HPLRover_SharpSensor &sharpsensor, Servo &servo_leftmotors, Servo &servo_rightmotors) {
 	
 	int internal_throttle_val 	= 0;
 	int left_throttle_val 		= 0;
@@ -31,6 +31,19 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
 		return;
 	}
 
+	if (command.cmd_in_motors.direction_val == cmd_val_forward && sharpsensor.sharpsensor_msg.sensor2_valuecm < sensor_bumper_front_min_distcm) {
+		allstop(command, servo_leftmotors, servo_rightmotors);
+		reset_motors(command);
+		return;
+	}
+
+
+	if (command.cmd_in_motors.direction_val == cmd_val_reverse && sharpsensor.sharpsensor_msg.sensor1_valuecm < sensor_bumper_rear_min_distcm) {
+		allstop(command, servo_leftmotors, servo_rightmotors);
+		reset_motors(command);
+		return;
+	}
+	
 	
 	if (command.cmd_in_motors.stop_rx == false && command.cmd_in_motors.direction_rx == false && command.cmd_in_motors.rotate_rx == false) {
        return;

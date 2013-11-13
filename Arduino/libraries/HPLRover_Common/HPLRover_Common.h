@@ -28,7 +28,9 @@ const int 				pin_light_left_mainbeam 			= 6;
 const int 				pin_light_right_mainbeam 			= 3;
 const int 				pin_pancam 							= 8;
 const int 				pin_tiltcam 						= 7;
-
+const int               pin_sharp2d120x_1_rear              = 8;
+const int               pin_sharp2d120x_2_front             = 6;
+const int               pin_sharp2y0a02_cam_mounted         = 7;
 
 
 
@@ -56,6 +58,7 @@ const char   			cmd_val_on               			= '1';
 const char   			cmd_val_off              			= '0';
 const int    			cmd_velocity_val_allstop 			= 90;
 const char   			cmd_val_forward          			= 'F';
+const char   			cmd_val_reverse          			= 'R';
 
 
 
@@ -159,6 +162,38 @@ const float 			compass_magx_scale 					= 0.95639;
 #define 				CONFIG_APM_HARDWARE 				APM_HARDWARE_APM2
 
 const char				msg_ins								= 'I';
+
+
+//Sharp Sensors
+
+const int               sensor_sharp_smooth_num_readings    = 5;
+const float 			sensor_sharp2d120x_min_distcm       = 4.0;
+const float 			sensor_sharp2d120x_max_distcm       = 30.0;
+
+const float 			sensor_sharp2y0a02_min_distcm       = 20.0;
+const float 			sensor_sharp2y0a02_max_distcm       = 150.0;
+
+const float 			sensor_bumper_front_min_distcm		= 7.0;
+const float 			sensor_bumper_rear_min_distcm		= 8.0;
+
+static float 			sharp2d120x_sensor_out[] 			= { 30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.5, 21.0, 
+																20.5, 20.0, 19.5, 19.0, 18.5, 18.0, 17.5, 17.0, 16.5, 16.0, 
+																15.5, 15.0, 14.5, 14.0, 13.5, 13.0, 12.5, 12.0, 11.5, 11.0, 
+																10.5, 10.0, 9.5, 9.0, 8.5, 8.0, 7.5, 7.0, 6.5, 6.0, 
+																5.5, 5.0, 4.5, 4.0, 3.5, 3.0, 0 };  // 48
+
+static float			sharp2d120x_1_sensor_in[]  			= { 80, 84, 88, 92, 96, 100, 104, 108, 109, 112, 116, 
+																119, 123, 124, 128, 132, 137, 140, 144, 152, 156, 
+																160, 167, 171, 179, 183, 191, 196, 207, 215, 222, 
+																234, 245, 257, 272, 287, 303, 322, 340, 366, 392, 
+																425, 452, 493, 546, 586, 615, 999 }; 
+
+
+static float 			sharp2d120x_2_sensor_in[]  			= { 73, 77, 81, 85, 90, 94, 98, 102, 106, 110, 114, 
+																117, 118, 121, 125, 129, 133, 137, 141, 145, 149,
+																157, 160, 169, 173, 180, 188, 192, 200, 211, 216,
+																227, 239, 249, 265, 280, 296, 314, 337, 363, 392,
+																418, 447, 483, 532, 590, 618, 999 }; 
 
 
 //Misc
