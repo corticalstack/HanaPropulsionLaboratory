@@ -16,6 +16,7 @@ static 					uint32_t last_cam_pass_ms;
 static 					uint32_t start_ms;
 static 					uint32_t stop_ms;
 
+
 const unsigned long 	cockpit_heartbeat_threshold 		= 1000;
 static bool  			cmd_process               			= false;
 static int  			scheduler_switch                    = 0;
@@ -31,8 +32,19 @@ const int 				pin_tiltcam 						= 7;
 const int               pin_sharp2d120x_1_rear              = 8;
 const int               pin_sharp2d120x_2_front             = 6;
 const int               pin_sharp2y0a02_cam_mounted         = 7;
+const int               pin_current					        = 12;
+const int               pin_voltage					        = 13;
 
 
+// Power
+const float				power_pack_capacity_mah_max			= 5000.00;
+const float				power_pack_capacity_mah_min			= 500.00;
+const float				power_pack_volt_min   				= 7.4;
+const float				power_volt_multiplier				= 10.45;
+const float				power_current_amp_offset            = 0;
+const float				power_amp_per_volt		            = 17;
+const uint32_t          power_low_volt_timeout_ms           = 10000;
+const char 				msg_power		 					= 'B';
 
 
 // Control commands
@@ -206,6 +218,9 @@ class HPLRover_Common
 {
   public:
     HPLRover_Common();        //Constructor
+	
+	uint32_t 			last_time_millis;
+	uint32_t 			last_time_micros;
 };
 
 #endif

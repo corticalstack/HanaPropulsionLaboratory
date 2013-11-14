@@ -6,6 +6,7 @@
 
 #include <HPLRover_Common.h>
 #include <HPLRover_Command.h>
+#include <HPLRover_Power.h>
 #include <HPLRover_Notify.h>
 #include <HPLRover_Radio.h>
 #include <HPLRover_Motors.h>
@@ -25,6 +26,7 @@
 
 
 HPLRover_Command             hplrover_command;
+HPLRover_Power               hplrover_power;
 HPLRover_Notify              hplrover_notify;
 HPLRover_Radio               hplrover_radio;
 HPLRover_Motors              hplrover_motors;
@@ -44,6 +46,7 @@ Servo servo_leftmotors,
       servo_rightmotors,
       servo_pancam,
       servo_tiltcam;
+
 
 
 void setup(void) {
@@ -66,6 +69,7 @@ void loop(void) {
 
 
 void fast_loop(void) {  
+  hplrover_power.power_msg.last_time_micros = micros();
   hplrover_radio.read_radio_data_stream(hplrover_command, hplrover_notify);  
 
   #if defined DEBUG_MOTORS
@@ -85,6 +89,9 @@ void fast_loop(void) {
 
 void ms10_loop(void* context) {
   hplrover_gps.read(hplrover_gps);
+   
+    Serial.print("Last time");
+    Serial.println(last_time_microsjp);    
 }
 
 
@@ -110,6 +117,9 @@ void ms100_loop(void* context) {
       hplrover_gps.output_velned(hplrover_gps);      
       break;
   }  
+  
+  hplrover_power.read(hplrover_power);
+  hplrover_power.log(hplrover_power);
 }
 
 
@@ -126,7 +136,6 @@ void ms500_loop(void* context) {
 
 void one_second_loop(void* context) {
   
-//    read_power();
   hplrover_gps.output_sol(hplrover_gps);
 
 }
