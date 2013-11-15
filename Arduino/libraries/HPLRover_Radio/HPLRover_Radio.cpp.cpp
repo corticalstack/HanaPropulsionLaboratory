@@ -17,12 +17,12 @@ void HPLRover_Radio::init() {
 
 void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command, HPLRover_Notify &notify) {
 
-	#if defined DEBUG_RADIO
+	 #if defined DEBUG_RADIO
 		start_ms = millis();
 	#endif
   
 	if (Serial.available()) {
-		serial_char = Serial.read();                               		// read individual byte from serial connection
+		serial_char = Serial.read();                               		// read individual byte from serial connection	
   
 		switch (serial_char) {
 			case ':' :  
@@ -47,7 +47,7 @@ void HPLRover_Radio::read_radio_data_stream(HPLRover_Command &command, HPLRover_
 		stop_ms = millis();
 		Serial.print("Read radio - ");
 		Serial.println(stop_ms - start_ms);
-	#endif
+	#endif */
 		
 }
 

@@ -18,7 +18,8 @@ class HPLRover_SharpSensor
 		
     HPLRover_SharpSensor();        //Constructor
 	void init(void);
-    void read_bumpers(HPLRover_SharpSensor &sharpsensor);
+    void read_front_bumper(HPLRover_SharpSensor &sharpsensor);
+	void read_rear_bumper(HPLRover_SharpSensor &sharpsensor);	
 	void read_cam_mounted(HPLRover_SharpSensor &sharpsensor);
 	float sensor_map_sharp2d120x(float sensor_val, float * sensor_in, float * sensor_out, uint8_t size);
 	float sensor_map_sharp2y0a02(float sensor_val);

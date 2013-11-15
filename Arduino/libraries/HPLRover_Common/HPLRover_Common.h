@@ -83,6 +83,7 @@ const float 			heading_curve_power 				= 2.6959;
 const int 				throttle_deadzone_val       		= 7;
 const int 				heading_deadzone_val       			= 1;
 const int 				rotate_deadzone_val       			= 7;
+const int 				rotate_offset		       			= 4;
 
 
 const int 				motor_calibration_adjust    		= 10;
@@ -150,10 +151,11 @@ static unsigned int  	length,
 
 static unsigned char 	data[MAX_LENGTH];
 
-const int 				gps_read_tick_max	 				= 10;
+const int 				gps_read_tick_max	 				= 30;
 const char 				msg_gps_nav_sol 					= 'S';
 const char 				msg_gps_nav_posllh 					= 'P';
 const char 				msg_gps_nav_velned 					= 'V';
+
 
 
 // Compass

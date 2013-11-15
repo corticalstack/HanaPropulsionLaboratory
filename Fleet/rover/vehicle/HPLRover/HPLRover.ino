@@ -1,8 +1,10 @@
+#include <FastSerial.h>
 #include <Event.h>
 #include <Timer.h>
 #include <Servo.h>
 #include <Wire.h>
 #include <PString.h>
+
 
 #include <HPLRover_Common.h>
 #include <HPLRover_Command.h>
@@ -21,10 +23,13 @@
 #include <AP_PeriodicProcess.h>
 #include <AP_ADC.h>
 #include <AP_InertialSensor.h>
+#include <AP_GPS.h>
 #include <AP_Math.h>
 #include <AP_Common.h>
 
 
+
+HPLRover_Common              hplrover_common;
 HPLRover_Command             hplrover_command;
 HPLRover_Power               hplrover_power;
 HPLRover_Notify              hplrover_notify;
@@ -48,15 +53,17 @@ Servo servo_leftmotors,
       servo_tiltcam;
 
 
+AP_GPS_UBLOX gps(&Serial1);
 
 void setup(void) {
   rover_init();
  
-  hpl_scheduler.every(10, ms10_loop, 0);
+  hpl_scheduler.every(20, ms20_loop, 0);
   hpl_scheduler.every(50, ms50_loop, 0);
   hpl_scheduler.every(100, ms100_loop, 0);
   hpl_scheduler.every(200, ms200_loop, 0);
   hpl_scheduler.every(1000, one_second_loop, 0);
+  hpl_scheduler.every(2000, two_second_loop, 0);
     
 }
 
@@ -68,8 +75,7 @@ void loop(void) {
 }  
 
 
-void fast_loop(void) {  
-  hplrover_power.power_msg.last_time_micros = micros();
+void fast_loop(void) {   
   hplrover_radio.read_radio_data_stream(hplrover_command, hplrover_notify);  
 
   #if defined DEBUG_MOTORS
@@ -82,22 +88,17 @@ void fast_loop(void) {
     Serial.println(stop_ms - start_ms);
   #endif
    
-//  hplrover_gps.read(hplrover_gps);
 }  
   
 
 
-void ms10_loop(void* context) {
-  hplrover_gps.read(hplrover_gps);
-   
-    Serial.print("Last time");
-    Serial.println(last_time_microsjp);    
+void ms20_loop(void* context) {
+  hplrover_gps.read(hplrover_gps, gps);
 }
 
 
 void ms50_loop(void* context) {
   hplrover_camera.output(hplrover_command, servo_pancam, servo_tiltcam);
-  hplrover_sharpsensor.read_bumpers(hplrover_sharpsensor);
 }
 
 
@@ -108,22 +109,22 @@ void ms100_loop(void* context) {
       scheduler_switch = 1;
       hplrover_inertialsensor.read(hplrover_inertialsensor, insmpu6000);
       hplrover_compass.read(hplrover_compass);
+      hplrover_inertialsensor.output(hplrover_inertialsensor);    
+      hplrover_compass.output(hplrover_compass);  
       break;
     case 1:
       scheduler_switch = 0;
-      hplrover_inertialsensor.output(hplrover_inertialsensor);    
-      hplrover_compass.output(hplrover_compass);  
       hplrover_gps.output_posllh(hplrover_gps);
       hplrover_gps.output_velned(hplrover_gps);      
       break;
   }  
   
-  hplrover_power.read(hplrover_power);
-  hplrover_power.log(hplrover_power);
 }
 
 
 void ms200_loop(void* context) {
+  hplrover_sharpsensor.read_front_bumper(hplrover_sharpsensor);
+  hplrover_sharpsensor.read_rear_bumper(hplrover_sharpsensor);
   hplrover_sharpsensor.read_cam_mounted(hplrover_sharpsensor);
 }
 
@@ -135,15 +136,26 @@ void ms500_loop(void* context) {
 
 
 void one_second_loop(void* context) {
-  
-  hplrover_gps.output_sol(hplrover_gps);
+  hplrover_power.read(hplrover_power, hplrover_common);
+  hplrover_power.output(hplrover_power);
 
+  hplrover_common.last_time_millis = millis();
+  hplrover_common.last_time_micros = micros();
 }
+
+
+void two_second_loop(void* context) {
+  hplrover_gps.output_sol(hplrover_gps); 
+  hplrover_notify.notify.power_failsafe = hplrover_power.exhausted(hplrover_power, hplrover_common);
+}  
 
 
 void rover_init(void) {
   Serial.begin(57600);        
  
+  hplrover_common.last_time_millis = millis();
+  hplrover_common.last_time_micros = micros();
+
   servo_leftmotors.attach(pin_leftmotor);            
   servo_rightmotors.attach(pin_rightmotor);          
 
@@ -152,7 +164,7 @@ void rover_init(void) {
   
   scheduler_switch = 0;
   
-  hplrover_gps.init();  
+  hplrover_gps.init(gps);  
   hplrover_inertialsensor.init(insmpu6000, isr_registry, apm_scheduler);  
   hplrover_compass.init();  
   rover_arm();

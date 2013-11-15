@@ -331,5 +331,204 @@ function test(){
 	 initAndRun();
 	}, false);
 
+	
+	
+		$(document).ready(function() {
+			var gamepad = new Gamepad();
+			gamepad.bind(Gamepad.Event.CONNECTED, function(device) {
+			});
+
+			
+			gamepad.bind(Gamepad.Event.DISCONNECTED, function(device) {
+				$('#gamepad-' + device.index).remove();
+			});
+
+		
+			gamepad.bind(Gamepad.Event.TICK, function(gamepads) {
+			});
+
+		
+			gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
+				try {
+    					gamepad_button_down(e);
+    			}
+    			catch(err){alert('Error');}
+			});
+	
+		
+			gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
+				try {
+    					gamepad_button_up(e);
+    			}
+    			catch(err){}
+			});
+
+			
+			gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
+				try {
+    					gamepad_axis_changed(e);
+    			}
+    			catch(err){}
+			});
+
+		
+			if (!gamepad.init()) {
+				alert('Your browser does not support gamepads, get the latest Google Chrome or Firefox.');
+			}
+		});
+
+
+		function gamepad_button_down(gamepadEvent) {
+			var socketMessage = '';
+			if (gamepadEvent.control == gamepadCmdDirection && cmdThrottleValLast < throttleMaxForDirectionChange && cmdStopTx == false) { 
+				cmdDirectionTx = true;
+				if (vehicleDirection == vehicleDirectionForward) {
+					vehicleDirection = vehicleDirectionReverse;
+				}
+				else
+				{
+					vehicleDirection = vehicleDirectionForward;
+				}
+			  
+			  
+				cmdDirectionVal = vehicleDirection;
+				socketMessage = vehicleDirection + ':'  + cmdThrottle + cmdThrottleValLast + msgTerminator;
+				window.socket.emit(socketEventCockpit, socketMessage);
+			}
+
+
+			if (gamepadEvent.control == gamepadCmdStop) {
+				cmdStopTx = true;		 
+				window.socket.emit(socketEventCockpit, cmdStop);
+			}
+
+
+			if (gamepadEvent.control == gamepadCmdCamPanLeft) {
+				window.socket.emit(socketEventCockpit, cmdCamPanLeft);
+			}
+			
+		
+			if (gamepadEvent.control == gamepadCmdCamPanRight) {
+				window.socket.emit(socketEventCockpit, cmdCamPanRight);
+			}
+
+		
+			if (gamepadEvent.control == gamepadCmdCamTiltUp) {
+				window.socket.emit(socketEventCockpit, cmdCamTiltUp);
+			}
+
+		
+			if (gamepadEvent.control == gamepadCmdCamTiltDown) {
+				window.socket.emit(socketEventCockpit, cmdCamTiltDown);
+			}
+			
+
+			if (gamepadEvent.control == gamepadCmdGoogleMapTypeChange) {
+				switch (googleMapLastMapType) {
+					case googleMapMapTypeRoad:
+						googleMap.setMapTypeId(googleMapMapTypeSatellite);
+						googleMapLastMapType = googleMapMapTypeSatellite;
+						break;
+					case googleMapMapTypeSatellite:
+						googleMap.setMapTypeId(googleMapMapTypeRoad);
+						googleMapLastMapType = googleMapMapTypeRoad; 
+						break;
+					default:
+						googleMapLastMapType = googleMapMapTypeRoad;
+				}
+			}
+					
+		}
+
+
+		function gamepad_button_up(gamepadEvent) {
+
+			if (gamepadEvent.control == gamepadCmdCamPanLeft || gamepadEvent.control == gamepadCmdCamPanRight) {
+				window.socket.emit(socketEventCockpit, cmdCamPanStop);
+			}
+			
+			
+			if (gamepadEvent.control == gamepadCmdCamTiltUp || gamepadEvent.control == gamepadCmdCamTiltDown ) {
+				window.socket.emit(socketEventCockpit, cmdCamTiltStop);
+			}
+		
+		};
+
+
+		function gamepad_axis_changed(gamepadEvent) {
+			var socketMessage = '';
+
+			if (gamepadEvent.axis == gamepadCmdThrottle) {
+				var speed = parseFloat(gamepadEvent.value);
+				speed = speed * 100;
+				var speed1 = speed.toFixed(0);	
+				if (speed1 < throttleDeadzoneVal) {
+					speed1 = 0;
+				}
+			   
+
+				if (speed1 == 0) {
+					cmdStopTx = false;
+				}
+			  
+
+				if (cmdStopTx == false && speed1 != cmdThrottleValLast) {
+					cmdThrottleTx = true;
+					cmdThrottleValLast = speed1;
+					socketMessage = socketMessage + vehicleDirection + ':'  + cmdThrottle + speed1 + ':';
+				}
+			}
+	    
+		
+			if (gamepadEvent.axis == gamepadCmdHeading) {
+				cmd_heading_tx = true;
+				var heading = parseFloat(gamepadEvent.value);
+				heading = heading * 100;
+				var heading1 = heading.toFixed(0);	
+				socketMessage = socketMessage + cmdHeading  + heading1 + ':';
+			}
+
+	    
+			if (gamepadEvent.axis == gamepadCmdRotate && cmdThrottleValLast == 0) {
+				cmd_rotate_tx = true;
+				var rotate = parseFloat(gamepadEvent.value);
+				rotate = rotate * 100;
+				var rotate1 = rotate.toFixed(0);	
+				if (rotate1 != cmdRotateValLast) {
+					cmdRotateValLast = rotate1;
+					socketMessage = socketMessage + cmdRotate  + rotate1 + ':';
+				}
+			}
+
+	    
+
+			if (socketMessage != '') {
+				socketMessage = socketMessage + ']';        	        
+				window.socket.emit(socketEventCockpit, socketMessage);
+			}
+
+			
+			if (gamepadEvent.axis == gamepadCmdGoogleMapZoom) {
+				var zoom = parseFloat(gamepadEvent.value);
+				zoom = zoom * 10;
+				zoom = zoom.toFixed(0);
+				if (zoom == 0) {
+					zoom = 11;
+				}
+
+			
+				if (zoom != googleMapLastZoom) {
+					googleMapLastZoom = zoom;
+				    var tempzoom = parseInt(googleMapLastZoom, 10) + parseInt(googleMapZoomBase, 10); 
+					googleMap.setZoom(tempzoom);
+					googleMap.setCenter(googleMapMarker.getPosition());
+					//googleMapSet();			
+				}
+			}
+
+			
+		};
+
+	
 	google.maps.event.addDomListener(window, 'load', googleMapInitialise);
 

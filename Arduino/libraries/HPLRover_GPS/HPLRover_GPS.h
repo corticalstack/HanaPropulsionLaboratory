@@ -68,6 +68,7 @@ class HPLRover_GPS
 	 void set_nav_posllh_height_msl(HPLRover_GPS &gps, long val);
 	 void set_nav_posllh_hori_acc_est(HPLRover_GPS &gps, long val);
 	 void set_nav_posllh_vert_acc_est(HPLRover_GPS &gps, unsigned long val);
+
 	 void set_nav_velned_gps_ms(HPLRover_GPS &gps, long val);
 	 void set_nav_velned_north_velocity_cm_s(HPLRover_GPS &gps, long val);
 	 void set_nav_velned_east_velocity_cm_s(HPLRover_GPS &gps, long val);
@@ -77,7 +78,10 @@ class HPLRover_GPS
 	 void set_nav_velned_heading(HPLRover_GPS &gps, long val);
 	 void set_nav_velned_speed_acc_est(HPLRover_GPS &gps, long val);
 	 void set_nav_velned_course_acc_est(HPLRover_GPS &gps, long val);
-	
+	 
+	 bool latest_sol_msg_consumed;
+	 bool latest_posllh_msg_consumed;
+	 bool latest_velned_msg_consumed;	
 	   
 };
 

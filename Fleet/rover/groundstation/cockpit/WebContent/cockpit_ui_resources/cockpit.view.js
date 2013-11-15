@@ -120,6 +120,7 @@ function buildCamMap(oController,oLayout){
     var oCellCam = new sap.ui.commons.layout.MatrixLayoutCell();
     var oCellMap = new sap.ui.commons.layout.MatrixLayoutCell();
     var oCellArt = new sap.ui.commons.layout.MatrixLayoutCell();
+    var oCellController = new sap.ui.commons.layout.MatrixLayoutCell();
     var oCellArtback = new sap.ui.commons.layout.MatrixLayoutCell();
     
     
@@ -162,6 +163,12 @@ function buildCamMap(oController,oLayout){
 
 	 oCellArtback.addContent(oHtmlArtback);
 
+	 
+	 
+	 //
+	 
+	 //
+	 
     
     
     var oCell = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 1});

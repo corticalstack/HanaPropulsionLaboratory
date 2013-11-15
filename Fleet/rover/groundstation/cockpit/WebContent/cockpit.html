@@ -50,51 +50,7 @@
 	        	catch(err){}
 	        	});
 		</script>
-		<script>
-			$(document).ready(function() {
-				var gamepad = new Gamepad();
-				gamepad.bind(Gamepad.Event.CONNECTED, function(device) {
-				});
 
-				
-				gamepad.bind(Gamepad.Event.DISCONNECTED, function(device) {
-					$('#gamepad-' + device.index).remove();
-				});
-
-			
-				gamepad.bind(Gamepad.Event.TICK, function(gamepads) {
-				});
-
-			
-				gamepad.bind(Gamepad.Event.BUTTON_DOWN, function(e) {
-					try {
-        					sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(e);
-        			}
-        			catch(err){alert('Error');}
-				});
-		
-			
-				gamepad.bind(Gamepad.Event.BUTTON_UP, function(e) {
-					try {
-        					sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_up(e);
-        			}
-        			catch(err){}
-				});
-
-				
-				gamepad.bind(Gamepad.Event.AXIS_CHANGED, function(e) {
-					try {
-        					sap.ui.getCore().byId("viewCockpit").getController().gamepad_axis_changed(e);
-        			}
-        			catch(err){}
-				});
-
-			
-				if (!gamepad.init()) {
-					alert('Your browser does not support gamepads, get the latest Google Chrome or Firefox.');
-				}
-			});
-		</script>
  			       
 	</body>
 </html>

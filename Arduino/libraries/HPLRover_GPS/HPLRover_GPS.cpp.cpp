@@ -15,7 +15,12 @@ HPLRover_GPS::HPLRover_GPS() {
 
 void HPLRover_GPS::init() {
 	Serial1.begin(38400);
-	lstate = state = 0;
+
+	lstate 						= state = 0;	
+	latest_sol_msg_consumed		= true;	
+	latest_posllh_msg_consumed 	= true;
+	latest_velned_msg_consumed 	= true;
+
   
 	// Modify these to control which messages are sent from module
 	enable_msg(gps_status_msg, false);  
@@ -36,9 +41,11 @@ void HPLRover_GPS::read(HPLRover_GPS &gps) {
 		start_ms = millis();
 	#endif
 	
-	int gps_tick = 0;
+//	int gps_tick = 0;
   
-	while( gps_tick < gps_read_tick_max ) {
+//    int gps_msg_count = 0;
+	
+//	while( gps_tick < gps_read_tick_max ) {
 
 		if (Serial1.available()) {
 			unsigned char cc = Serial1.read();
@@ -105,6 +112,7 @@ void HPLRover_GPS::read(HPLRover_GPS &gps) {
 							case 0x01:      // NAV-
 								switch (id) {
 									case 0x02:  // NAV-POSLLH
+										latest_posllh_msg_consumed = false;
 										set_nav_posllh_gps_ms(gps, LONG(0));
 										set_nav_posllh_longitude(gps, LONG(4));
 										set_nav_posllh_lattitude(gps, LONG(8));
@@ -114,12 +122,15 @@ void HPLRover_GPS::read(HPLRover_GPS &gps) {
 										set_nav_posllh_vert_acc_est(gps, ULONG(24));	
 										break;
 									case 0x06:  // NAV-SOL
+										latest_sol_msg_consumed	= false;	
 										set_nav_sol_gps_ms(gps, LONG(0));	 
 										set_nav_sol_fix_type(gps, data[10]);
 										set_nav_sol_acc_est_3d(gps, ULONG(24));
 										set_nav_sol_number_sv(gps, data[47]);
+										
 										break;
 									case 0x12:  // NAV-VELNED
+										latest_velned_msg_consumed = false;
 										set_nav_velned_gps_ms(gps, LONG(0));
 										set_nav_velned_north_velocity_cm_s(gps, LONG(4));
 										set_nav_velned_east_velocity_cm_s(gps, LONG(8));
@@ -139,8 +150,13 @@ void HPLRover_GPS::read(HPLRover_GPS &gps) {
 			}
 		
 		}
-	    gps_tick +=1;
-    }
+//		if (gps_msg_count == 3) {
+//			Serial.print("Gps tick  ");
+//			Serial.println(gps_tick);
+//			gps_tick = 100;
+//		}
+//	    gps_tick +=1;
+    //}
 	
 	
 	#if defined DEBUG_GPS
@@ -275,6 +291,10 @@ void HPLRover_GPS::set_nav_velned_course_acc_est(HPLRover_GPS &gps, long val) {
 
 
 void HPLRover_GPS::output_sol(HPLRover_GPS &gps) {  
+	if (latest_sol_msg_consumed) {
+		return;
+	}
+	
   	#if defined DEBUG_GPS
 		start_ms = millis();
 	#endif
@@ -291,6 +311,7 @@ void HPLRover_GPS::output_sol(HPLRover_GPS &gps) {
 	nav_sol_str += gps.gps_msg_nav_sol.number_sv;
 	nav_sol_str += msg_terminator;  
 	Serial.println(nav_sol_str);
+	latest_sol_msg_consumed = true;
 	
 	#if defined DEBUG_GPS
 		stop_ms = millis();
@@ -302,6 +323,10 @@ void HPLRover_GPS::output_sol(HPLRover_GPS &gps) {
 
 
 void HPLRover_GPS::output_posllh(HPLRover_GPS &gps) {
+	if (latest_posllh_msg_consumed) {
+		return;
+	}
+
   	#if defined DEBUG_GPS
 		start_ms = millis();
 	#endif
@@ -322,6 +347,7 @@ void HPLRover_GPS::output_posllh(HPLRover_GPS &gps) {
 //	nav_posllh_str += gps.gps_msg_nav_posllh.vert_acc_est;			
 	nav_posllh_str += msg_terminator;
 	Serial.println(nav_posllh_str);
+	latest_posllh_msg_consumed = true;
 	
 	#if defined DEBUG_GPS
 		stop_ms = millis();
@@ -333,6 +359,10 @@ void HPLRover_GPS::output_posllh(HPLRover_GPS &gps) {
 
 		
 void HPLRover_GPS::output_velned(HPLRover_GPS &gps) {	
+	if (latest_velned_msg_consumed) {
+		return;
+	}
+	
 	#if defined DEBUG_GPS
 		start_ms = millis();
 	#endif
@@ -357,6 +387,7 @@ void HPLRover_GPS::output_velned(HPLRover_GPS &gps) {
 //	nav_velned_str += gps.gps_msg_nav_velned.course_acc_est;
 	nav_velned_str += msg_terminator;  
 	Serial.println(nav_velned_str);	
+	latest_velned_msg_consumed = true;
 	
 	#if defined DEBUG_GPS
 		stop_ms = millis();
