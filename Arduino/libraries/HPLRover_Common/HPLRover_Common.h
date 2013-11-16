@@ -25,19 +25,19 @@ static int  			scheduler_switch                    = 0;
 // Ardupilot digital output pin assignments
 const int 				pin_leftmotor 						= 12;
 const int 				pin_rightmotor 						= 11;
-const int 				pin_light_left_mainbeam 			= 6;
-const int 				pin_light_right_mainbeam 			= 3;
-const int 				pin_pancam 							= 8;
-const int 				pin_tiltcam 						= 7;
-const int               pin_sharp2d120x_1_rear              = 8;
-const int               pin_sharp2d120x_2_front             = 6;
+const int 				pin_light_mainbeam_left 			= 2;
+const int 				pin_light_mainbeam_right 			= 3;
+const int 				pin_pancam 							= 7;
+const int 				pin_tiltcam 						= 8;
+const int               pin_sharp2d120x_1_rear              = 6;
+const int               pin_sharp2d120x_2_front             = 8;
 const int               pin_sharp2y0a02_cam_mounted         = 7;
 const int               pin_current					        = 12;
 const int               pin_voltage					        = 13;
 
 
 // Power
-const float				power_pack_capacity_mah_max			= 5000.00;
+const float				power_pack_capacity_mah_max			= 10000.00;
 const float				power_pack_capacity_mah_min			= 500.00;
 const float				power_pack_volt_min   				= 7.4;
 const float				power_volt_multiplier				= 10.45;
@@ -62,7 +62,7 @@ const char   			cmd_cam_pan              			= 'P';
 const char   			cmd_cam_tilt             			= 'T';
 const char   			cmd_cam_sweep            			= 'W';
 
-const char   			cmd_lights_mainbeam      			= 'L';
+const char   			cmd_lights_toggle_headlights		= 'L';
 
 
 // Command values
@@ -111,11 +111,11 @@ const int 				cam_tilt_deadzone_val       		= 1;
 
 const int 				cam_pan_val_min       				= 0;
 const int 				cam_pan_val_max       				= 180;
-const int 				cam_pan_val_centre    				= 90;
+const int 				cam_pan_val_centre    				= 78;
 
-const int 				cam_tilt_val_min      				= 5;
-const int 				cam_tilt_val_max      				= 100;
-const int 				cam_tilt_val_centre   				= 55;
+const int 				cam_tilt_val_min      				= 80;
+const int 				cam_tilt_val_max      				= 180;
+const int 				cam_tilt_val_centre   				= 145;
 
 const int 				cam_sweep_delay       				= 25;
 
@@ -158,6 +158,7 @@ const char 				msg_gps_nav_velned 					= 'V';
 
 
 
+
 // Compass
 #define 				compass_address 					0x1E //0011110b, I2C 7bit address of HMC5883
 const char				msg_compass							= 'C';
@@ -179,7 +180,7 @@ const char				msg_ins								= 'I';
 
 
 //Sharp Sensors
-
+const char 				msg_sharpsensor 					= 'D';
 const int               sensor_sharp_smooth_num_readings    = 5;
 const float 			sensor_sharp2d120x_min_distcm       = 4.0;
 const float 			sensor_sharp2d120x_max_distcm       = 30.0;

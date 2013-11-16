@@ -24,12 +24,6 @@ class HPLRover_Command {
 		};	
 	
 	
-		struct command_in_lights_type {					
-			bool lights_mainbeam_rx;
-			int  lights_mainbeam_val;
-		};		
-	
-	
 		struct command_in_cam_type {	
 			bool pan_rx;
 			int  pan_val;
@@ -39,10 +33,17 @@ class HPLRover_Command {
 		
 			bool sweep_rx;		
 		};		
-	
+
+		
+		struct command_in_lights_type {	
+			bool toggle_headlights_rx;
+		};
+		
+		
 		static struct command_in_motors_type 	cmd_in_motors;
-		static struct command_in_lights_type 	cmd_in_lights;
 		static struct command_in_cam_type 		cmd_in_cam;		
+		static struct command_in_lights_type 	cmd_in_lights;		
+		
 		
 		//Constructor
 		HPLRover_Command();       

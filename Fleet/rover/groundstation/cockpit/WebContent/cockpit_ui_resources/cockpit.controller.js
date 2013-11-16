@@ -69,6 +69,25 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 
+		if (data.substr(0,1) == 'D') {
+			var inertialsensor_msg_fields = data.split(',');
+			sap.ui.getCore().byId("TvProximitySensorRear").setText(inertialsensor_msg_fields[0].substr(1));
+			sap.ui.getCore().byId("TvProximitySensorFront").setText(inertialsensor_msg_fields[1]);
+			sap.ui.getCore().byId("TvProximitySensorCam").setText(inertialsensor_msg_fields[2]);
+		};
+
+
+		
+		if (data.substr(0,1) == 'B') {
+			var inertialsensor_msg_fields = data.split(',');
+			sap.ui.getCore().byId("TvPowerVoltage").setText(inertialsensor_msg_fields[0].substr(1));
+			sap.ui.getCore().byId("TvPowerCurrent").setText(inertialsensor_msg_fields[1]);
+			sap.ui.getCore().byId("TvPowerAmps").setText(inertialsensor_msg_fields[2]);
+			sap.ui.getCore().byId("TvConsumedCurrentMah").setText(inertialsensor_msg_fields[3]);
+			sap.ui.getCore().byId("TvPowerRemainingPct").setText(inertialsensor_msg_fields[4]);			
+		};
+
+		
 		
 		if (data.substr(0,1) == 'I') {
 			var inertialsensor_msg_fields = data.split(',');

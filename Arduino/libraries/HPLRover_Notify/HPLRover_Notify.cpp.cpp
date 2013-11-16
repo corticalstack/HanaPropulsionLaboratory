@@ -19,6 +19,7 @@ void HPLRover_Notify::init(void) {
 	HPLRover_Notify::notify.gps_failsafe				= false;
 	HPLRover_Notify::notify.cockpit_heartbeat			= false;
 	HPLRover_Notify::notify.cockpit_heartbeat_tick		= 0;
+	HPLRover_Notify::notify.headlamps_on				= false;
 
 }
 

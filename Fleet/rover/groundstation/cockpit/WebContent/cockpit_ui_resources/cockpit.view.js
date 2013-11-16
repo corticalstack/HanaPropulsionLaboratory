@@ -274,14 +274,44 @@ function buildDashboard(oController,oLayout){
     oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
     oLayout1.createRow(oLabel, oTvInsGyroZ);
 
+
     
-   
+    var oTvProximitySensorFront = new sap.ui.commons.TextView("TvProximitySensorFront",{
+		text : "0",
+		tooltip : "Proximity Sensor Front" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblProximitySensorFront", {text: 'Sensor Front (cm)', labelFor: oTvProximitySensorFront});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvProximitySensorFront);
+
+    
+    var oTvProximitySensorRear = new sap.ui.commons.TextView("TvProximitySensorRear",{
+		text : "0",
+		tooltip : "Sensor Rear" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblProximitySensorRear", {text: 'Sensor Rear (cm)', labelFor: oTvProximitySensorRear});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvProximitySensorRear);
+
+
+    var oTvProximitySensorCam = new sap.ui.commons.TextView("TvProximitySensorCam",{
+		text : "0",
+		tooltip : "Sensor Cam" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("LblProximitySensorCam", {text: 'Sensor Cam (cm)', labelFor: oTvProximitySensorCam});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout1.createRow(oLabel, oTvProximitySensorCam);
+
+    
     
     oTabStrip1.createTab("Quick",oLayout1);
 
     
     
-    // 2. tab: address data (use separate tab element)
+    // 2. tab: Telemetry
     oTab2 = new sap.ui.commons.Tab("tab2");
     oTab2.setTooltip("Telemetry");
     oTab2.setTitle(new sap.ui.commons.Title("TitleTelemetry",{text:"Telemetry"}));
@@ -397,6 +427,77 @@ function buildDashboard(oController,oLayout){
 	
 	oTab2.addContent(oLayout2);
     oTabStrip1.addTab(oTab2);
+    
+    
+    
+    // 3. tab: Power
+    oTab3 = new sap.ui.commons.Tab("tab3");
+    oTab3.setTooltip("Power");
+    oTab3.setTitle(new sap.ui.commons.Title("TitlePower",{text:"Power"}));
+
+    var oLayout3 = new sap.ui.commons.layout.MatrixLayout("Matrix3", {columns: 2, width: "100%"});
+    oLayout3.setWidths(['150px']);
+
+    //Voltage
+    var oTvPowerVoltage = new sap.ui.commons.TextView("TvPowerVoltage",{
+		text : "0",
+		tooltip : "Voltage" }
+	);
+    
+    
+    oLabel = new sap.ui.commons.Label("Label-voltage", {text: 'Voltage', labelFor: oTvPowerVoltage});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout3.createRow(oLabel, oTvPowerVoltage);
+    
+
+    //Current
+    var oTvPowerCurrent = new sap.ui.commons.TextView("TvPowerCurrent",{
+		text : "0",
+		tooltip : "Current" }
+	);
+    
+    oLabel = new sap.ui.commons.Label("Label-current", {text: 'Current', labelFor: oTvPowerCurrent});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout3.createRow(oLabel, oTvPowerCurrent);
+    
+    
+    //Amps
+    var oTvPowerAmps = new sap.ui.commons.TextView("TvPowerAmps",{
+		text : "0",
+		tooltip : "Amps" }
+	);
+    oLabel = new sap.ui.commons.Label("Label-amps", {text: 'Amps', labelFor: oTvPowerAmps});
+    oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout3.createRow(oLabel, oTvPowerAmps);
+    
+
+    //Consumed current mah
+	var oTvConsumedCurrentMah = new sap.ui.commons.TextView("TvConsumedCurrentMah",{
+		text : "0",
+		tooltip : "Consumed current mAh" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-mah", {text: 'Consumed current mah', labelFor: oTvConsumedCurrentMah});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout3.createRow(oLabel, oTvConsumedCurrentMah);
+    
+    
+    //Remaining Pct
+	var oTvPowerRemainingPct = new sap.ui.commons.TextView("TvPowerRemainingPct",{
+		text : "0",
+		tooltip : "Remaining Pct" }
+	);
+	oLabel = new sap.ui.commons.Label("Label-remainingpct", {text: 'Remaining %', labelFor: oTvPowerRemainingPct});
+	oLabel.setDesign(sap.ui.commons.LabelDesign.Bold);
+    oLayout3.createRow(oLabel, oTvPowerRemainingPct);
+    
+
+	oTab3.addContent(oLayout3);
+    oTabStrip1.addTab(oTab3);
+
+
+    
+    
+    
     oLayout.createRow(oTabStrip1);   
 	
 }

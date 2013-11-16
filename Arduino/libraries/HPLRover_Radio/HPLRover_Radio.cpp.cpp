@@ -116,9 +116,8 @@ void HPLRover_Radio::command_register(HPLRover_Command &command, HPLRover_Notify
 	}
    
 
-	if (buffer[0] == cmd_lights_mainbeam) {
-		command.cmd_in_lights.lights_mainbeam_rx = true;
-		command.cmd_in_lights.lights_mainbeam_val = buffer[1];
+	if (buffer[0] == cmd_lights_toggle_headlights) {
+		command.cmd_in_lights.toggle_headlights_rx = true;
 	}
 
 }

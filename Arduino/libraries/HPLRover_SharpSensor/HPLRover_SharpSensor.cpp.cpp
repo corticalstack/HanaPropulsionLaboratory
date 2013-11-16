@@ -64,7 +64,18 @@ float HPLRover_SharpSensor::sensor_map_sharp2d120x(float sensor_val, float * sen
 
 
 void HPLRover_SharpSensor::output(HPLRover_SharpSensor &sharpsensor) {
-  	
+
+	char msg_buffer[20];
+	PString msg_sharpsensor_str(msg_buffer, sizeof(msg_buffer));
+	msg_sharpsensor_str += msg_sharpsensor;
+	msg_sharpsensor_str += sharpsensor.sharpsensor_msg.sensor1_valuecm;
+	msg_sharpsensor_str += comma_separator;
+	msg_sharpsensor_str += sharpsensor.sharpsensor_msg.sensor2_valuecm;
+	msg_sharpsensor_str += comma_separator;
+	msg_sharpsensor_str += sharpsensor.sharpsensor_msg.sensor3_valuecm;
+	msg_sharpsensor_str += msg_terminator;  
+	Serial.println(msg_sharpsensor_str);
+		
 }	
 
 

@@ -112,22 +112,21 @@ void HPLRover_Camera::tiltcam(HPLRover_Command &command, Servo &servo_tiltcam) {
 }
 
 
+void HPLRover_Camera::centre(Servo &servo_pancam, Servo &servo_tiltcam) {
+	servo_tiltcam.write(cam_tilt_val_centre);
+    servo_pancam.write(cam_pan_val_centre);              
+}
+
 
 void HPLRover_Camera::sweep(Servo &servo_pancam, Servo &servo_tiltcam) {
-
+	
   for (cam_last_pan_pos = cam_pan_val_centre; cam_last_pan_pos < cam_pan_val_max; cam_last_pan_pos += 1) {
     servo_pancam.write(cam_last_pan_pos);
     delay(cam_sweep_delay);                      
   }
 
   
-  for (cam_last_tilt_pos = cam_tilt_val_min; cam_last_tilt_pos < cam_tilt_val_max; cam_last_tilt_pos += 1) { 
-    servo_tiltcam.write(cam_last_tilt_pos); 
-    delay(cam_sweep_delay);
-  }
-
-
-  for (cam_last_tilt_pos = cam_tilt_val_max; cam_last_tilt_pos>=cam_tilt_val_min; cam_last_tilt_pos -= 1) {                               
+  for (cam_last_tilt_pos = cam_tilt_val_centre; cam_last_tilt_pos>=cam_tilt_val_min; cam_last_tilt_pos -= 1) {                               
     servo_tiltcam.write(cam_last_tilt_pos);
     delay(cam_sweep_delay);                       
   }
@@ -154,5 +153,7 @@ void HPLRover_Camera::sweep(Servo &servo_pancam, Servo &servo_tiltcam) {
   }
 
 }
+
+
 
 

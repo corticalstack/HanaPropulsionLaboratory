@@ -1,4 +1,3 @@
-#include <FastSerial.h>
 #include <Event.h>
 #include <Timer.h>
 #include <Servo.h>
@@ -17,51 +16,53 @@
 #include <HPLRover_InertialSensor.h>
 #include <HPLRover_SharpSensor.h>
 #include <HPLRover_Camera.h>
+#include <HPLRover_Lights.h>
 #include <stdlib.h>
 #include <SPI.h>
 #include <Arduino_Mega_ISR_Registry.h>
 #include <AP_PeriodicProcess.h>
 #include <AP_ADC.h>
 #include <AP_InertialSensor.h>
-#include <AP_GPS.h>
 #include <AP_Math.h>
 #include <AP_Common.h>
 
 
-
-HPLRover_Common              hplrover_common;
-HPLRover_Command             hplrover_command;
-HPLRover_Power               hplrover_power;
-HPLRover_Notify              hplrover_notify;
-HPLRover_Radio               hplrover_radio;
-HPLRover_Motors              hplrover_motors;
-HPLRover_GPS                 hplrover_gps;
-HPLRover_Compass             hplrover_compass;
-HPLRover_InertialSensor      hplrover_inertialsensor;
-HPLRover_SharpSensor         hplrover_sharpsensor;
-HPLRover_Camera              hplrover_camera;
-Arduino_Mega_ISR_Registry    isr_registry;
-AP_TimerProcess              apm_scheduler;
-AP_InertialSensor_MPU6000    insmpu6000;
+HPLRover_Common                hplrover_common;
+HPLRover_Command               hplrover_command;
+HPLRover_Power                 hplrover_power;
+HPLRover_Notify                hplrover_notify;
+HPLRover_Radio                 hplrover_radio;
+HPLRover_Motors                hplrover_motors;
+HPLRover_GPS                   hplrover_gps;
+HPLRover_Compass               hplrover_compass;
+HPLRover_InertialSensor        hplrover_inertialsensor;
+HPLRover_SharpSensor           hplrover_sharpsensor;
+HPLRover_Camera                hplrover_camera;
+HPLRover_Lights                hplrover_lights;
 
 
-Timer hpl_scheduler;
-
-Servo servo_leftmotors,
-      servo_rightmotors,
-      servo_pancam,
-      servo_tiltcam;
+Arduino_Mega_ISR_Registry      isr_registry;
+AP_TimerProcess                apm_scheduler;
+AP_InertialSensor_MPU6000      insmpu6000;
 
 
-AP_GPS_UBLOX gps(&Serial1);
+Timer                          hpl_scheduler;
+
+Servo                          servo_leftmotors,
+                               servo_rightmotors,
+                               servo_pancam,
+                               servo_tiltcam;
+
 
 void setup(void) {
   rover_init();
  
-  hpl_scheduler.every(20, ms20_loop, 0);
+//  hpl_scheduler.every(10, ms10_loop, 0);
+//  hpl_scheduler.every(20, ms20_loop, 0);
   hpl_scheduler.every(50, ms50_loop, 0);
   hpl_scheduler.every(100, ms100_loop, 0);
   hpl_scheduler.every(200, ms200_loop, 0);
+  hpl_scheduler.every(500, ms500_loop, 0);
   hpl_scheduler.every(1000, one_second_loop, 0);
   hpl_scheduler.every(2000, two_second_loop, 0);
     
@@ -87,13 +88,18 @@ void fast_loop(void) {
     Serial.print("Motors output - ");
     Serial.println(stop_ms - start_ms);
   #endif
-   
+  
+  hplrover_gps.read(hplrover_gps);
 }  
   
 
+void ms10_loop(void* context) {
+
+}
+
 
 void ms20_loop(void* context) {
-  hplrover_gps.read(hplrover_gps, gps);
+  
 }
 
 
@@ -126,11 +132,12 @@ void ms200_loop(void* context) {
   hplrover_sharpsensor.read_front_bumper(hplrover_sharpsensor);
   hplrover_sharpsensor.read_rear_bumper(hplrover_sharpsensor);
   hplrover_sharpsensor.read_cam_mounted(hplrover_sharpsensor);
+  hplrover_sharpsensor.output(hplrover_sharpsensor);
 }
 
 
 void ms500_loop(void* context) {
-
+  hplrover_lights.toggle_headlights(hplrover_command, hplrover_notify);
 }
 
 
@@ -157,22 +164,27 @@ void rover_init(void) {
   hplrover_common.last_time_micros = micros();
 
   servo_leftmotors.attach(pin_leftmotor);            
-  servo_rightmotors.attach(pin_rightmotor);          
+  servo_rightmotors.attach(pin_rightmotor);  
+ 
+  pinMode(pin_light_mainbeam_left, OUTPUT);     
+  pinMode(pin_light_mainbeam_right, OUTPUT);    
 
-  servo_pancam.attach(pin_pancam);             
-  servo_tiltcam.attach(pin_tiltcam);           
-  
+
   scheduler_switch = 0;
   
-  hplrover_gps.init(gps);  
+  hplrover_gps.init();  
   hplrover_inertialsensor.init(insmpu6000, isr_registry, apm_scheduler);  
   hplrover_compass.init();  
+  
+  servo_pancam.attach(pin_pancam);             
+  servo_tiltcam.attach(pin_tiltcam);           
+
   rover_arm();
 }
 
 
 void rover_arm(void) {  
-   hplrover_camera.sweep(servo_pancam, servo_tiltcam);
+   hplrover_camera.centre(servo_pancam, servo_tiltcam);
 }
 
 

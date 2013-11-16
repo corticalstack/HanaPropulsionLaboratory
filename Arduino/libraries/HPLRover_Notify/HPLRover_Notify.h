@@ -13,6 +13,7 @@ class HPLRover_Notify {
 			bool power_failsafe;
 			bool gps_failsafe;
 			bool cockpit_heartbeat;
+			bool headlamps_on;
 			unsigned long cockpit_heartbeat_tick;
 		};	
 	
