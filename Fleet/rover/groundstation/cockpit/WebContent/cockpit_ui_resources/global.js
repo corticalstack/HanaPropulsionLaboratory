@@ -8,7 +8,7 @@ var groundStationSocketURL				= 'http://192.168.1.62:8090';
 	
 // Cockpit
 var socketEventCockpit                  = 'cockpit';
-//var cockpitHeartbeatTick 				= setInterval(function(){cockpitHeartbeat()},250);
+var cockpitHeartbeatTick 				= setInterval(function(){cockpitHeartbeat()},250);
 
 //Vehicle 
 var vehicleName                         = 'Slice of Life';
@@ -54,6 +54,10 @@ var throttleMaxForDirectionChange       = 30;
 
 var msgTerminator             			= ':]';
 
+var infoPanelIndex                      = 0;
+var infoPanelIndexMin                   = 0;
+var infoPanelIndexMax                   = 2;
+
 
 // Gamepad Mapping
 var gamepadCmdToggleHeadlights          = 'FACE_2';
@@ -68,6 +72,9 @@ var gamepadCmdCamTiltUp                 = 'DPAD_UP';
 var gamepadCmdCamTiltDown               = 'DPAD_DOWN';
 var gamepadCmdGoogleMapTypeChange       = 'LEFT_TOP_SHOULDER';
 var gamepadCmdGoogleMapZoom 	        = 'LEFT_BOTTOM_SHOULDER';
+var gamepadCmdThrottlePadLeft    		= 'SELECT_BACK';
+var gamepadCmdThrottlePadRight    		= 'START_FORWARD';
+
 
 
 // Google Maps
@@ -353,7 +360,7 @@ $(document).ready(function() {
 			gamepad_button_down(e);
     	}
     	
-		catch(err){alert('Error');}
+		catch(err){alert(err);}
 	});
 	
 		
@@ -444,7 +451,17 @@ function gamepad_button_down(gamepadEvent) {
 	if (gamepadEvent.control == gamepadCmdToggleHeadlights) {
 		window.socket.emit(socketEventCockpit, cmdToggleHeadlights);
 	}
-					
+
+	
+	if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
+		sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
+	}
+
+	
+	if (gamepadEvent.control == gamepadCmdThrottlePadRight) {
+		sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
+	}
+
 }
 
 

@@ -165,6 +165,36 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 	
+	gamepad_button_down: function(gamepadEvent) {
+	
+
+		if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
+			infoPanelIndex--;
+			
+			if (infoPanelIndex < infoPanelIndexMin) {
+			   infoPanelIndex = infoPanelIndexMax;
+			}
+			
+			sap.ui.getCore().byId("TabStrip1").setSelectedIndex(infoPanelIndex);
+		}
+		
+		
+		if (gamepadEvent.control == gamepadCmdThrottlePadRight) {
+			infoPanelIndex++;
+			
+			if (infoPanelIndex > infoPanelIndexMax) {
+			   infoPanelIndex = infoPanelIndexMin;
+			}
+
+			sap.ui.getCore().byId("TabStrip1").setSelectedIndex(infoPanelIndex);
+		}
+
+		
+	},
+	
+	
+	
+	
 	execute: function(oEvent,oController){
 	
 	},
