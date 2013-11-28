@@ -31,7 +31,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     
-	//Outbound vehicle messages
+	//Outbound vehicle to Ground Control Station messages
 	stream.on('split', function (chunk, token) {
 		var mychunk = chunk.toString();
         switch (mychunk.substr(0,1)) {
@@ -75,10 +75,10 @@ io.sockets.on('connection', function(socket) {
     });
 
 	
-	//Inbound Ground Control Station messages
+	//Inbound Ground Control Station to vehicle messages
     socket.on("*", function(message) {
 	    serial.write(message.args[0]);
-		//console.log(message.args[0]);
+		console.log(message.args[0]);
     });
 	
 });
