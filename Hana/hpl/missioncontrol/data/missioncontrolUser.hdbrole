@@ -1,0 +1,17 @@
+role hpl.missioncontrol.data::missioncontrolUser {
+	catalog schema "MISSIONCONTROL": SELECT;
+	
+	sql object hpl.missioncontrol.data:T006.hdbtable,
+	           hpl.missioncontrol.data:T006A.hdbtable,
+	           hpl.missioncontrol.data:TCURC.hdbtable,
+	           hpl.missioncontrol.data:TCURF.hdbtable,
+	           hpl.missioncontrol.data:TCURN.hdbtable,
+	           hpl.missioncontrol.data:TCURR.hdbtable,
+	           hpl.missioncontrol.data:TCURT.hdbtable,
+	           hpl.missioncontrol.data:TCURV.hdbtable,
+	           hpl.missioncontrol.data:TCURW.hdbtable,
+	           hpl.missioncontrol.data:TCURX.hdbtable: SELECT;
+	
+	         
+        application privilege: hpl.missioncontrol::Basic;
+}

@@ -1,0 +1,10 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;
+table.description = "Vehicle Message Log";
+table.columns = [
+	{name = "VehicleId";    	sqlType = NVARCHAR; nullable = false; length = 3;                                    comment = "Vehicle ID"; },
+	{name = "MessageId";      	sqlType = NVARCHAR; nullable = false; length = 3;                                    comment = "Message ID"; },
+	{name = "LoggedAt";      	sqlType = BIGINT; nullable = false; 				                                 comment = "Logged At"; },	
+	{name = "Feed";		      	sqlType = NVARCHAR; nullable = false; length = 256;                                  comment = "Feed"; }
+];
+table.primaryKey.pkcolumns = ["VehicleId","MessageId","LoggedAt"];

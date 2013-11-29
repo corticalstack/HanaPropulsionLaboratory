@@ -1,0 +1,2 @@
+listCsvFile csvFiles;
+import csvFiles "MISSIONCONTROL" "hpl.missioncontrol.data::TCURC";

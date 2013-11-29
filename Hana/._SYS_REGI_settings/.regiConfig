@@ -1,0 +1,9 @@
+{
+"name":"Hana",
+"hostname":"hanaserver:30015",
+"user":"SYSTEM",
+"key":"",
+"regi_version":"0000.0013.0003",
+"client_format_version":"0001.0000.0000",
+"trackedPackages":["hpl.missioncontrol"]
+}

@@ -1,0 +1,26 @@
+{
+  "caption": {
+    "content": "",
+    "lang": "",
+    "max_length": "16",
+    "text_id": "caption",
+    "text_type": "caption"
+  },
+  "metadata": {
+    "activated_at": "2013-11-29 14:18:14.8950000",
+    "activated_by": "SYSTEM",
+    "delivery_unit": "",
+    "du_vendor": "",
+    "du_version": "",
+    "du_version_patch": "",
+    "du_version_sp": "",
+    "edit": "true",
+    "format_version": "",
+    "object_status": "0",
+    "type": "1",
+    "version_id": "2"
+  },
+  "version": {
+    "versionType": "1"
+  }
+}

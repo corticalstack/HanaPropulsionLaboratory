@@ -1,0 +1,2 @@
+implements hpl.missioncontrol.data:T006A.hdbtim;
+csvFiles = ["hpl.missioncontrol.data:T006A.csv"];

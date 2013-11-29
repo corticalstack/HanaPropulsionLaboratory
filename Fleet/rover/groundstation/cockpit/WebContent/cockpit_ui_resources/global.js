@@ -551,3 +551,9 @@ function gamepad_axis_changed(gamepadEvent) {
 	
 google.maps.event.addDomListener(window, 'load', googleMapInitialise);
 
+
+function procesJSON(){
+	
+}
+
+

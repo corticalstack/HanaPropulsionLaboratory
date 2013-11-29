@@ -1,0 +1,6 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;  
+table.columns = [ 
+	{name = "CURRKEY"; sqlType = NVARCHAR; length = 5; nullable = true; defaultValue = "";  },
+	{name = "CURRDEC"; sqlType = SMALLINT; nullable = true; defaultValue = "0";  } ];
+table.primaryKey.pkcolumns = ["CURRKEY"];

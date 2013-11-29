@@ -1,0 +1,2 @@
+implements hpl.missioncontrol.data:TCURF.hdbtim;
+csvFiles = ["hpl.missioncontrol.data:TCURF.csv"];

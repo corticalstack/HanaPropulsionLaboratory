@@ -132,12 +132,35 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			    googleMapMarker.setPosition(latlng);
 				googleMap.panTo(googleMapMarker.getPosition());
 				googleMapUpdateCounter = 0;
-	//		}
+//			}
 			//	set_map(lattitude, longitude);
 			//	sap.ui.getCore().byId("TvGpsNavPosllhHeightMsl").setText(gps_msg_nav_posllh_fields[4]);			
 			//	sap.ui.getCore().byId("TvGpsNavPosllhHoriAccEst").setText(gps_msg_nav_posllh_fields[5]);			
 			//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[6]);			
 			//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[7]);
+	//			var datenow = new Date;
+		//		var timenow = new Timestamp(System.currentTimeMillis());  
+			//	var msg = data.substr(0,1) + '  ' + '001' + timenow + gps_msg_nav_posllh_fields[0] + 
+		//		gps_msg_nav_posllh_fields[1] +
+		//		gps_msg_nav_posllh_fields[2];
+				var msg = '001GPS1380559499000ABCDEFG';
+				//console.log(msg);
+				var datenow = new Date();
+				
+				var msg = '001GPS' + datenow.getTime() + 'ABCDE';
+				console.log(msg);
+				 var jURL = 'http://hanaserver:8000/hpl/missioncontrol/services/VehicleMessageLog.xsjs';
+				 jQuery.ajax({
+				        url:jURL,
+				        jsonpCallback: 'processJSON',
+				        dataType: 'jsonp',
+				        data: {msg : msg},
+				        type: 'GET',
+				        headers : {"Access-Control-Allow-Origin" : "*"},
+				        crossDomain: true,
+				        success: function(result) { console.log(result); },
+				        error: function() { console.log('Failed!'); }
+				 });
 		};
 
 

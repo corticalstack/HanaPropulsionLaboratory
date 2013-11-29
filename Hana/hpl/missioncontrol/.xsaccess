@@ -1,0 +1,6 @@
+{
+	"exposed":true,
+	"cors" : { "enabled" : true }
+ 
+	
+}
