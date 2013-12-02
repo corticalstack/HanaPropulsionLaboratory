@@ -53,7 +53,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 
 	feed: function(data) {
-		console.log(data);
+		var datenow;
+		
 		if (googleMapInitialised == false) {
 			googleMapLastLattitude = '46.475241';
 			googleMapLastLongitude = '6.892743';
@@ -66,6 +67,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'C') {
 			var compass_msg_fields = data.split(',');
 			sap.ui.getCore().byId("TvCompassHeading").setText(compass_msg_fields[0].substr(1));
+			datenow = new Date();
+			message.messageCategoryId = 'NAV';
+			message.messageId = 'C';	
+			message.loggedAt = datenow.getTime();
+			message.feed = data.substr(1);
+			messageLogPump(message);
+
 		};
 
 
@@ -74,6 +82,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvProximitySensorRear").setText(inertialsensor_msg_fields[0].substr(1));
 			sap.ui.getCore().byId("TvProximitySensorFront").setText(inertialsensor_msg_fields[1]);
 			sap.ui.getCore().byId("TvProximitySensorCam").setText(inertialsensor_msg_fields[2]);
+			datenow = new Date();
+			message.messageCategoryId = 'SEN';
+			message.messageId = 'D';	
+			message.loggedAt = datenow.getTime();
+			message.feed = data.substr(1);
+			messageLogPump(message);
+
 		};
 
 
@@ -84,7 +99,14 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvPowerCurrent").setText(inertialsensor_msg_fields[1]);
 			sap.ui.getCore().byId("TvPowerAmps").setText(inertialsensor_msg_fields[2]);
 			sap.ui.getCore().byId("TvConsumedCurrentMah").setText(inertialsensor_msg_fields[3]);
-			sap.ui.getCore().byId("TvPowerRemainingPct").setText(inertialsensor_msg_fields[4]);			
+			sap.ui.getCore().byId("TvPowerRemainingPct").setText(inertialsensor_msg_fields[4]);
+			datenow = new Date();
+			message.messageCategoryId = 'POW';
+			message.messageId = 'B';	
+			message.loggedAt = datenow.getTime();
+			message.feed = data.substr(1);
+			messageLogPump(message);
+
 		};
 
 		
@@ -102,6 +124,12 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 //			updateAccelerations(inertialsensor_msg_fields[0].substr(1), inertialsensor_msg_fields[1], inertialsensor_msg_fields[2]);
 
 //			draw();
+			message.messageCategoryId = 'SEN';
+			message.messageId = 'I';	
+			message.loggedAt = datenow.getTime();
+			message.feed = data.substr(1);
+			messageLogPump(message);
+
 		};
 
 		
@@ -111,6 +139,15 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvGpsNavSolFixType").setText(gps_msg_nav_sol_fields[1]);
 			//	sap.ui.getCore().byId("TvGpsNavSolAccEst3d").setText(gps_msg_nav_sol_fields[2]);
 			sap.ui.getCore().byId("TvGpsNavSolNumberSv").setText(gps_msg_nav_sol_fields[3]);
+			
+			datenow = new Date();
+			message.messageCategoryId = 'NAV';
+			message.messageId = 'S';	
+			message.loggedAt = datenow.getTime();
+			message.feed = data.substr(1);
+			messageLogPump(message);
+
+
 		};
 		
 
@@ -143,24 +180,15 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			//	var msg = data.substr(0,1) + '  ' + '001' + timenow + gps_msg_nav_posllh_fields[0] + 
 		//		gps_msg_nav_posllh_fields[1] +
 		//		gps_msg_nav_posllh_fields[2];
-				var msg = '001GPS1380559499000ABCDEFG';
-				//console.log(msg);
-				var datenow = new Date();
 				
-				var msg = '001GPS' + datenow.getTime() + 'ABCDE';
-				console.log(msg);
-				 var jURL = 'http://hanaserver:8000/hpl/missioncontrol/services/VehicleMessageLog.xsjs';
-				 jQuery.ajax({
-				        url:jURL,
-				        jsonpCallback: 'processJSON',
-				        dataType: 'jsonp',
-				        data: {msg : msg},
-				        type: 'GET',
-				        headers : {"Access-Control-Allow-Origin" : "*"},
-				        crossDomain: true,
-				        success: function(result) { console.log(result); },
-				        error: function() { console.log('Failed!'); }
-				 });
+				
+				datenow = new Date();
+				message.messageCategoryId = 'NAV';
+				message.messageId = 'P';	
+				message.loggedAt = datenow.getTime();
+				message.feed = data.substr(1);
+				messageLogPump(message);
+				
 		};
 
 
@@ -174,7 +202,14 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvGpsNavVelnedGroundSpeed2dCms").setText(gps_msg_nav_velned_fields[4]);			
 			sap.ui.getCore().byId("TvGpsNavVelnedHeading").setText(gps_msg_nav_velned_fields[5]);			
 			//		sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText(gps_msg_nav_velned_fields[7]);			
-			//	sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);			
+			//	sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);		
+			datenow = new Date();
+			message.messageCategoryId = 'NAV';
+			message.messageId = 'V';	
+			message.loggedAt = datenow.getTime();
+			message.feed = data.substr(1);
+			messageLogPump(message);
+
 		};
 
 				

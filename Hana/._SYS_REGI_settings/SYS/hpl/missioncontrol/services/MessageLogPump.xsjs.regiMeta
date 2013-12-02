@@ -1,7 +1,13 @@
 {
-  "content_texts": [],
+  "caption": {
+    "content": "",
+    "lang": "",
+    "max_length": "16",
+    "text_id": "caption",
+    "text_type": "caption"
+  },
   "metadata": {
-    "activated_at": "2013-11-28 18:33:51.9950000",
+    "activated_at": "2013-12-02 13:50:13.5560000",
     "activated_by": "SYSTEM",
     "delivery_unit": "",
     "du_vendor": "",
@@ -12,9 +18,8 @@
     "format_version": "",
     "object_status": "0",
     "type": "1",
-    "version_id": "1"
+    "version_id": "3"
   },
-  "texts": [],
   "version": {
     "versionType": "1"
   }

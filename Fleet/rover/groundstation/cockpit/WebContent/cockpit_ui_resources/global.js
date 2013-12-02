@@ -59,6 +59,16 @@ var infoPanelIndexMin                   = 0;
 var infoPanelIndexMax                   = 2;
 
 
+
+// Message Pump
+var message = new Object();
+var datenow;
+var missionId = '000001';
+var vehicleId = '001';
+var pilotId   = '001';
+
+
+
 // Gamepad Mapping
 var gamepadCmdToggleHeadlights          = 'FACE_2';
 var gamepadCmdDirection                 = 'FACE_4';
@@ -402,32 +412,72 @@ function gamepad_button_down(gamepadEvent) {
 		cmdDirectionVal = vehicleDirection;
 		socketMessage = vehicleDirection + ':'  + cmdThrottle + cmdThrottleValLast + msgTerminator;
 		window.socket.emit(socketEventCockpit, socketMessage);
+		datenow = new Date();
+		message.messageCategoryId = 'DRI';
+		message.messageId = 'M';	
+		message.loggedAt = datenow.getTime();
+		message.feed = socketMessage;
+		messageLogPump(message);
 	}
 
 
 	if (gamepadEvent.control == gamepadCmdStop) {
 		cmdStopTx = true;		 
 		window.socket.emit(socketEventCockpit, cmdStop);
+		datenow = new Date();
+		message.messageCategoryId = 'DRI';
+		message.messageId = 'M';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdStop;
+		messageLogPump(message);
+
 	}
 
 
 	if (gamepadEvent.control == gamepadCmdCamPanLeft) {
 		window.socket.emit(socketEventCockpit, cmdCamPanLeft);
+		datenow = new Date();
+		message.messageCategoryId = 'SEN';
+		message.messageId = 'C';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdCamPanLeft;
+		messageLogPump(message);
+
 	}
 			
 		
 	if (gamepadEvent.control == gamepadCmdCamPanRight) {
 		window.socket.emit(socketEventCockpit, cmdCamPanRight);
+		datenow = new Date();
+		message.messageCategoryId = 'SEN';
+		message.messageId = 'C';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdCamPanRight;
+		messageLogPump(message);
+
 	}
 
 		
 	if (gamepadEvent.control == gamepadCmdCamTiltUp) {
 		window.socket.emit(socketEventCockpit, cmdCamTiltUp);
+		datenow = new Date();
+		message.messageCategoryId = 'SEN';
+		message.messageId = 'C';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdCamTiltUp;
+		messageLogPump(message);
+
 	}
 
 		
 	if (gamepadEvent.control == gamepadCmdCamTiltDown) {
 		window.socket.emit(socketEventCockpit, cmdCamTiltDown);
+		datenow = new Date();
+		message.messageCategoryId = 'SEN';
+		message.messageId = 'C';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdCamTiltDown;
+		messageLogPump(message);
 	}
 			
 
@@ -450,6 +500,12 @@ function gamepad_button_down(gamepadEvent) {
 			
 	if (gamepadEvent.control == gamepadCmdToggleHeadlights) {
 		window.socket.emit(socketEventCockpit, cmdToggleHeadlights);
+		datenow = new Date();
+		message.messageCategoryId = 'LIT';
+		message.messageId = 'L';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdToggleHeadlights;
+		messageLogPump(message);
 	}
 
 	
@@ -468,11 +524,23 @@ function gamepad_button_down(gamepadEvent) {
 function gamepad_button_up(gamepadEvent) {
 	if (gamepadEvent.control == gamepadCmdCamPanLeft || gamepadEvent.control == gamepadCmdCamPanRight) {
 		window.socket.emit(socketEventCockpit, cmdCamPanStop);
+		datenow = new Date();
+		message.messageCategoryId = 'LIT';
+		message.messageId = 'L';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdCamPanStop;
+		messageLogPump(message);
 	}
 			
 			
 	if (gamepadEvent.control == gamepadCmdCamTiltUp || gamepadEvent.control == gamepadCmdCamTiltDown ) {
 		window.socket.emit(socketEventCockpit, cmdCamTiltStop);
+		datenow = new Date();
+		message.messageCategoryId = 'LIT';
+		message.messageId = 'L';	
+		message.loggedAt = datenow.getTime();
+		message.feed = cmdCamTiltStop;
+		messageLogPump(message);
 	}
 		
 };
@@ -527,6 +595,13 @@ function gamepad_axis_changed(gamepadEvent) {
 	if (socketMessage != '') {
 		socketMessage = socketMessage + ']';        	        
 		window.socket.emit(socketEventCockpit, socketMessage);
+		datenow = new Date();
+		message.messageCategoryId = 'DRI';
+		message.messageId = 'M';	
+		message.loggedAt = datenow.getTime();
+		message.feed = socketMessage;
+		messageLogPump(message);
+
 	}
 
 			
@@ -557,3 +632,24 @@ function procesJSON(){
 }
 
 
+
+function messageLogPump(message) {
+	
+  message.missionId = missionId;
+  message.vehicleId = vehicleId;
+  message.pilotId	= pilotId;
+
+	
+  var jURL = 'http://hanaserver:8000/hpl/missioncontrol/services/MessageLogPump.xsjs';
+	 jQuery.ajax({
+	        url:jURL,
+	        jsonpCallback: 'processJSON',
+	        dataType: 'jsonp',
+	        data: {missionId : message.missionId, vehicleId : message.vehicleId, pilotId : message.pilotId, messageCategoryId : message.messageCategoryId, messageId : message.messageId, loggedAt : message.loggedAt, feed : message.feed },
+	        type: 'GET',
+	        headers : {"Access-Control-Allow-Origin" : "*"},
+	        crossDomain: true,
+	        success: function(result) { console.log(result); },
+	        error: function() { console.log('Failed!'); }
+	 });	
+}
