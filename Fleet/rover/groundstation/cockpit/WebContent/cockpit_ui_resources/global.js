@@ -640,7 +640,7 @@ function messageLogPump(message) {
   message.pilotId	= pilotId;
 
 	
-  var jURL = 'http://hanaserver:8000/hpl/missioncontrol/services/MessageLogPump.xsjs';
+  var jURL = 'http://hanaserver:8000/hpl/missioncontrol/services/messageLogPump.xsjs';
 	 jQuery.ajax({
 	        url:jURL,
 	        jsonpCallback: 'processJSON',

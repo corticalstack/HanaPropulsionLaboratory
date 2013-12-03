@@ -1,5 +1,5 @@
-function MessageLogPump(){
-	var conn = $.db.getConnection("hpl.missioncontrol.services::AnonConn");
+function messageLogPump(){
+	var conn = $.db.getConnection("hpl.missioncontrol.services::anonConn");
 	var missionId = $.request.parameters.get('missionId');
 	var vehicleId = $.request.parameters.get('vehicleId');
 	var pilotId = $.request.parameters.get('pilotId');
@@ -28,4 +28,4 @@ function MessageLogPump(){
 	 
 }
 
-MessageLogPump();
+messageLogPump();
