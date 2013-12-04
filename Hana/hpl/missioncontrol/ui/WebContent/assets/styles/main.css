@@ -1,0 +1,94 @@
+html { 
+	-webkit-animation: bgFadeIn 10s;
+	-webkit-animation-delay: 6s;
+	background-color: rgb(0,0,0);
+	background: url(../images/bg.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	font-size: 1em;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;}
+
+}
+
+html.sapUiTheme-sap_goldreflection body.sapUiBody {
+	background-color: transparent;	
+    font: normal 100% PT+Sans, Arial, Helvetica, sans-serif;
+	
+}
+
+
+body { 
+	background-color: rgb(0,0,0);
+}
+
+
+
+
+#content {
+		position: absolute;
+		left: 0px,
+		top: 0px;
+		background-color: transparent;
+}
+
+#mlKeyToStart {
+	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  	margin-left: -100px;
+  	margin-top: -430px;
+	background-color: transparent;	
+}
+
+
+#lblKeyToStart {
+	-webkit-animation: pulse 1.5s;
+	-webkit-animation-delay: 16s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	background-color: transparent;	
+	color: rgb(255,255,255);
+	opacity: 0;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;
+	
+}
+
+
+@-webkit-keyframes bgFadeIn {
+	0% 	{
+  			opacity:0;
+	   	}
+
+	30% {
+  			opacity:0;
+	   	}
+
+	50% {
+  			opacity:0;
+	   	}
+	   	
+	100% {
+			opacity:1;
+		}
+}
+
+
+@-webkit-keyframes pulse {
+	0% 	{
+  			opacity:0;
+	   	}
+
+	   	
+	100% {
+			opacity:1;
+		}
+}
+
+
