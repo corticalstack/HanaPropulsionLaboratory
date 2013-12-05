@@ -31,7 +31,10 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
 function buildBanner(oController,oLayout){
 	
     
-	 var oMlBanner = new sap.ui.commons.layout.MatrixLayout({width:"1920px"});
+	 var oMlBanner = new sap.ui.commons.layout.MatrixLayout({
+		  id : "mlBanner",
+		  width:"1920px"
+	 });
 	 
 	 var oRowBanner = new sap.ui.commons.layout.MatrixLayoutRow();
      var oCellPlayer = new sap.ui.commons.layout.MatrixLayoutCell();

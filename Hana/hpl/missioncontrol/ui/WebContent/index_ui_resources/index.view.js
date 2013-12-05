@@ -68,17 +68,17 @@ function buildMainMenu(oController,oLayout){
 
 	var oLinkFreeride = new sap.ui.commons.Link({
 		id : "lnkFreeride",
-		text: "Freeride", 
-		press: function() {alert('Alert from ' + oLinkFreeride.getText());}});
+		text: "Freeride",
+		href: "localhost:8080/cockpit.html"});
 
 	var oLinkSettings = new sap.ui.commons.Link({
 		id : "lnkSettings",
 		text: "Settings", 
-		press: function() {alert('Alert from ' + oLinkSettings.getText());}});
+		press: function() {oLayout.setContent(sap.ui.getCore().byId("viewCockpit"));    }});
 
 	var oLinkQuit = new sap.ui.commons.Link({
 		id : "lnkQuit",
-		text: "Quit", 
+		text: "Quit", 	
 		press: function() {alert('Alert from ' + oLinkQuit.getText());}});
 
     oCellSoloCampaign.addContent(oLinkSoloCampaign);
