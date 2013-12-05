@@ -14,7 +14,7 @@ var groundStationSocketURL				= 'http://192.168.1.62:8090';
 	
 // Cockpit
 var socketEventCockpit                  = 'cockpit';
-var cockpitHeartbeatTick 				= setInterval(function(){cockpitHeartbeat()},250);
+//var cockpitHeartbeatTick 				= setInterval(function(){cockpitHeartbeat()},250);
 
 //Vehicle 
 var vehicleName                         = 'Slice of Life';
@@ -692,3 +692,15 @@ function setHomeContent() {
 	oAbsoluteLayoutHome.addContent(pilotmenuView);
 	
 }
+
+$(document).bind("keydown", function(e) {
+	   
+	$("#lblKeyToStart").hide();
+	$("#mlMainMenu").show();	
+	$("#lnkSoloCampaign").show();
+	$("#lnkMultiplayer").show();
+	$("#lnkFreeride").show();
+	$("#lnkSettings").show();
+	$("#lnkQuit").show();
+	
+	});

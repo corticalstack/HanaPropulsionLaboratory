@@ -7,7 +7,7 @@ sap.ui.jsview("mainmenu_ui_resources.mainmenu", {
       createContent : function(oController) {
     	 var oLayout = new sap.ui.commons.layout.MatrixLayout();
 
-//    	 buildKeyToStart(oController,oLayout);    	 
+    	 buildKeyToStart(oController,oLayout);    	 
     	 buildMainMenu(oController,oLayout);
   	     return oLayout;
       }
@@ -27,7 +27,7 @@ function buildKeyToStart(oController,oLayout){
     var oLblKeyToStart 	= new sap.ui.commons.Label("lblKeyToStart");
     
     
-    oLblKeyToStart.setText("PRESS KEY TO START");
+    oLblKeyToStart.setText("PRESS ANY KEY TO START");
     
     oCellKeyToStart.addContent(oLblKeyToStart);
     oRowKeyToStart.addCell(oCellKeyToStart);
@@ -46,16 +46,16 @@ function buildMainMenu(oController,oLayout){
 	});
 
 	
-	var oRowKeyToStart 	= new sap.ui.commons.layout.MatrixLayoutRow();
-	var oCellKeyToStart = new sap.ui.commons.layout.MatrixLayoutCell();
-    var oLblKeyToStart 	= new sap.ui.commons.Label("lblKeyToStart");
+//	var oRowKeyToStart 	= new sap.ui.commons.layout.MatrixLayoutRow();
+//	var oCellKeyToStart = new sap.ui.commons.layout.MatrixLayoutCell();
+//    var oLblKeyToStart 	= new sap.ui.commons.Label("lblKeyToStart");
     
     
-    oLblKeyToStart.setText("PRESS KEY TO START");
+//    oLblKeyToStart.setText("PRESS ANY KEY TO START");
     
-    oCellKeyToStart.addContent(oLblKeyToStart);
-    oRowKeyToStart.addCell(oCellKeyToStart);
-    oMlMainMenu.addRow(oRowKeyToStart);
+ //   oCellKeyToStart.addContent(oLblKeyToStart);
+//    oRowKeyToStart.addCell(oCellKeyToStart);
+//    oMlMainMenu.addRow(oRowKeyToStart);
 //    oLayout.createRow(oMlKeyToStart);    	
     
 
@@ -74,28 +74,33 @@ function buildMainMenu(oController,oLayout){
     
 	var oLinkSoloCampaign = new sap.ui.commons.Link({
 		id : "lnkSoloCampaign",
-		text: "Solo Campaign", 
+		text: "SOLO CAMPAIGN",
+		width: "250px",
 		press: function() {alert('Alert from ' + oLinkSoloCampaign.getText());}});
 	
 	var oLinkMultiplayer = new sap.ui.commons.Link({
 		id : "lnkMultiplayer",
-		text: "Multiplayer", 
+		text: "MULTIPLAYER",
+		width: "250px",
 		press: function() {alert('Alert from ' + oLinkMultiplayer.getText());}});
 
 	var oLinkFreeride = new sap.ui.commons.Link({
 		id : "lnkFreeride",
-		text: "Freeride",
+		text: "FREERIDE",
+		width: "250px",
 		press: function() {alert('Alert from ' + oLinkFreeride.getText());}});
 
 
 	var oLinkSettings = new sap.ui.commons.Link({
 		id : "lnkSettings",
-		text: "Settings", 
+		text: "SETTINGS",
+		width: "250px",
 		press:function() {setHomeContent()}});   
 
 	var oLinkQuit = new sap.ui.commons.Link({
 		id : "lnkQuit",
-		text: "Quit", 	
+		text: "QUIT", 	
+		width: "250px",
 		press: function() {alert('Alert from ' + oLinkQuit.getText());}});
 
     oCellSoloCampaign.addContent(oLinkSoloCampaign);

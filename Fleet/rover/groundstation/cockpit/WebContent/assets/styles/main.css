@@ -51,17 +51,14 @@ img.bg {
 	background-color: transparent;
 }
 
-#mlKeyToStart {
-	position: fixed;
-  	top: 50%;
-  	left: 50%;
-  	margin-left: -100px;
-  	margin-top: -430px;
-	background-color: transparent;	
-}
 
 
 #lblKeyToStart {
+	position: fixed;
+	top: 50%;
+  	left: 50%;
+  	margin-left: -100px;
+  	margin-top: -430px;
 	-webkit-animation: pulse 1.5s;
 	-webkit-animation-delay: 19.5s;
 	-webkit-animation-iteration-count: infinite;
@@ -69,15 +66,18 @@ img.bg {
 	background-color: transparent;	
 	color: rgb(255,255,255);
 	opacity: 0;
+	display: inline;
 	font-family: "PT Sans", serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 2em;
-	
+	font-size: 2em;	
 }
 
 
 #mlMainMenu {
+	-webkit-animation: pulse 1.5s;
+  	-webkit-animation-fill-mode: forwards;
+  	display: none;
 	position: fixed;
   	top: 40%;
   	left: 5%;
@@ -105,55 +105,151 @@ img.bg {
 }
 
 #lnkSoloCampaign {
-	-webkit-animation: pulse 1.5s;
-	-webkit-animation-delay: 19.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
+	background-size:1px 400px;  
 	background-color: transparent;	
+	-webkit-animation: borderPulse 1s;
+  	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;	
+	 -webkit-animation-play-state:paused;
 	color: rgb(255,255,255);
-	opacity: 0;
 	font-family: "PT Sans", serif;
 	font-weight: 400;
 	font-style: normal;
 	font-size: 2em;
 	line-height: 120%;
 	text-decoration: none;
-	
+	padding-left: 10px;
 }
+
+
+#lnkSoloCampaign:hover {
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+    -webkit-animation-play-state:running;
+	color: rgb(255,255,255);	
+	border-left: 7px solid;
+	border-color: blue;
+	padding-left: 3px;
+}
+
 
 
 #lnkMultiplayer {
-	-webkit-animation: pulse 1.5s;
-	-webkit-animation-delay: 19.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
+	background-size:1px 400px;  
 	background-color: transparent;	
+	-webkit-animation: borderPulse 1s;
+  	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;	
+	 -webkit-animation-play-state:paused;
 	color: rgb(255,255,255);
-	opacity: 0;
 	font-family: "PT Sans", serif;
 	font-weight: 400;
 	font-style: normal;
 	font-size: 2em;
 	line-height: 120%;
 	text-decoration: none;
+	padding-left: 10px;
 }
 
 
+#lnkMultiplayer:hover {
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+    -webkit-animation-play-state:running;
+	color: rgb(255,255,255);	
+	border-left: 7px solid;
+	border-color: blue;
+	padding-left: 3px;
+}
+
+
+
 #lnkFreeride {
-	-webkit-animation: pulse 1.5s;
-	-webkit-animation-delay: 19.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
+	background-size:1px 400px;  
 	background-color: transparent;	
+	-webkit-animation: borderPulse 1s;
+  	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;	
+	 -webkit-animation-play-state:paused;
 	color: rgb(255,255,255);
-	opacity: 0;
 	font-family: "PT Sans", serif;
 	font-weight: 400;
 	font-style: normal;
 	font-size: 2em;
-	line-height:120%;
+	line-height: 120%;
 	text-decoration: none;
+	padding-left: 10px;
 }
+
+
+#lnkFreeride:hover {
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+    -webkit-animation-play-state:running;
+	color: rgb(255,255,255);	
+	border-left: 7px solid;
+	border-color: blue;
+	padding-left: 3px;
+
+}
+
+
+
+
+#lnkSettings {
+	background-size:1px 400px;  
+	background-color: transparent;	
+	-webkit-animation: borderPulse 1s;
+  	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;	
+	 -webkit-animation-play-state:paused;
+	color: rgb(255,255,255);
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;
+	line-height: 120%;
+	text-decoration: none;
+	padding-left: 10px;
+}
+
+
+#lnkSettings:hover {
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+    -webkit-animation-play-state:running;
+	color: rgb(255,255,255);	
+	border-left: 7px solid;
+	border-color: blue;
+	padding-left: 3px;
+
+}
+
+
+
+#lnkQuit {
+	background-size:1px 400px;  
+	background-color: transparent;	
+	-webkit-animation: borderPulse 1s;
+  	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;	
+	 -webkit-animation-play-state:paused;
+	color: rgb(255,255,255);
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;
+	line-height: 120%;
+	text-decoration: none;
+	padding-left: 10px;
+}
+
+
+#lnkQuit:hover {
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+    -webkit-animation-play-state:running;
+	color: rgb(255,255,255);	
+	border-left: 7px solid;
+	border-color: blue;
+	padding-left: 3px;
+}
+
 
 #lblPlayer {
 	color: rgb(255,255,255);
@@ -161,41 +257,10 @@ img.bg {
 	font-family: "PT Sans", serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 2em;
+	font-size: 2em;		
 	z-index:10;
 }
 
-#lnkSettings {
-	-webkit-animation: pulse 1.5s;
-	-webkit-animation-delay: 19.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	background-color: transparent;	
-	color: rgb(255,255,255);
-	opacity: 0;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;
-	line-height: 120%;
-	text-decoration: none;
-}
-
-#lnkQuit {
-	-webkit-animation: pulse 1.5s;
-	-webkit-animation-delay: 19.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	background-color: transparent;	
-	color: rgb(255,255,255);
-	opacity: 0;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;
-	line-height: 120%;
-	text-decoration: none;
-}
 
 @-webkit-keyframes bgFadeIn {
 	0% 	{
@@ -227,3 +292,17 @@ img.bg {
 		}
 }
 
+
+@-webkit-keyframes borderPulse {
+	0% 	{
+  			border-color: blue;
+  			 background-position:0px;
+
+	   	}
+	100% {
+		  	border-color: transparent;  	
+		  	 background-position:-150px;		
+
+		}
+
+}
