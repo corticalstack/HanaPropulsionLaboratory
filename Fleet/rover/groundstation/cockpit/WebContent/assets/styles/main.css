@@ -98,10 +98,10 @@ img.bg {
 #mlPilotMenu {
 	position: fixed;
   	top: 35%;
-  	left: 40%;
+  	left: 35%;
   	margin-left: -10px;
   	margin-top: -10px;
-	background-color: transparent;	
+	background-image: -webkit-linear-gradient(left, rgba(6, 15, 40, 0), rgba(6, 15, 40, 1));
 }
 
 #lnkSoloCampaign {
@@ -259,6 +259,76 @@ img.bg {
 	font-style: normal;
 	font-size: 2em;		
 	z-index:10;
+}
+
+
+
+
+#LBLPILOT1 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#LBLPILOTJP {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#LBLFACTION1 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+#LBLFACTIONJP {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#LBLCOMPL {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+
+.sapUiCrslPrevBtn:hover {
+	background-color: rgb(51, 94, 169);
+}
+
+
+.sapUiCrslNextBtn:hover {
+	background-color: rgb(51, 94, 169);
 }
 
 
