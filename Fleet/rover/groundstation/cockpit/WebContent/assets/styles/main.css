@@ -101,7 +101,7 @@ img.bg {
   	left: 35%;
   	margin-left: -10px;
   	margin-top: -10px;
-	background-image: -webkit-linear-gradient(left, rgba(6, 15, 40, 0), rgba(6, 15, 40, 1));
+	background-image: -webkit-linear-gradient(left, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 }
 
 #lnkSoloCampaign {
@@ -264,7 +264,7 @@ img.bg {
 
 
 
-#LBLPILOT1 {
+#lblPilot {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family: "PT Sans", serif;
@@ -275,7 +275,7 @@ img.bg {
 	padding-top: 10px;
 }
 
-#LBLPILOTJP {
+#lblPilotName {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family: "PT Sans", serif;
@@ -286,30 +286,7 @@ img.bg {
 	padding-top: 10px;
 }
 
-#LBLFACTION1 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-
-#LBLFACTIONJP {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#LBLCOMPL {
+#lblClan {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family: "PT Sans", serif;
@@ -321,6 +298,203 @@ img.bg {
 }
 
 
+
+#lblComplChallenges {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+#lblPilot1 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilotName1 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblClan1 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+
+#lblComplChallenges1 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilot2 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilotName2 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblClan2 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+
+#lblComplChallenges2 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+#lblPilot3 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilotName3 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblClan3 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+
+#lblComplChallenges3 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilot4 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilotName4 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblClan4 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+
+#lblComplChallenges4 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
 
 .sapUiCrslPrevBtn:hover {
 	background-color: rgb(51, 94, 169);

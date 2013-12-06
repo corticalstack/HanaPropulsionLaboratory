@@ -88,14 +88,14 @@ function buildMainMenu(oController,oLayout){
 		id : "lnkFreeride",
 		text: "FREERIDE",
 		width: "250px",
-		press: function() {alert('Alert from ' + oLinkFreeride.getText());}});
+		press:function() {setHomeContent()}});   
 
 
 	var oLinkSettings = new sap.ui.commons.Link({
 		id : "lnkSettings",
 		text: "SETTINGS",
 		width: "250px",
-		press:function() {setHomeContent()}});   
+		press: function() {alert('Alert from ' + oLinkSettings.getText());}});
 
 	var oLinkQuit = new sap.ui.commons.Link({
 		id : "lnkQuit",
