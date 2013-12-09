@@ -27,6 +27,10 @@ body {
 }
 
 
+
+/* ---------------------------
+		    Home View
+   --------------------------- */
 img.bg {
 	min-height: 100%;
   	min-width: 1024px;
@@ -40,18 +44,6 @@ img.bg {
   	-webkit-animation-delay: 10.5s;
   	-webkit-animation-fill-mode: forwards;
 }
-
-
-#viewCockpit {
-	position: absolute;
-	left: 0px,
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	background-color: transparent;
-}
-
-
 
 #lblKeyToStart {
 	position: fixed;
@@ -86,23 +78,12 @@ img.bg {
 	background-color: transparent;	
 }
 
-#mlBanner {
-	position: fixed;
-  	top: 5%;
-  	left: 5%;
-  	margin-left: -10px;
-  	margin-top: -10px;
-	background-color: transparent;	
-}
 
-#mlPilotMenu {
-	position: fixed;
-  	top: 35%;
-  	left: 35%;
-  	margin-left: -10px;
-  	margin-top: -10px;
-	background-image: -webkit-linear-gradient(left, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
-}
+
+
+/* ---------------------------
+		Main Menu View
+   --------------------------- */
 
 #lnkSoloCampaign {
 	background-size:1px 400px;  
@@ -121,7 +102,6 @@ img.bg {
 	padding-left: 10px;
 }
 
-
 #lnkSoloCampaign:hover {
 	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
     -webkit-animation-play-state:running;
@@ -130,7 +110,6 @@ img.bg {
 	border-color: blue;
 	padding-left: 3px;
 }
-
 
 
 #lnkMultiplayer {
@@ -150,7 +129,6 @@ img.bg {
 	padding-left: 10px;
 }
 
-
 #lnkMultiplayer:hover {
 	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
     -webkit-animation-play-state:running;
@@ -159,8 +137,6 @@ img.bg {
 	border-color: blue;
 	padding-left: 3px;
 }
-
-
 
 #lnkFreeride {
 	background-size:1px 400px;  
@@ -179,7 +155,6 @@ img.bg {
 	padding-left: 10px;
 }
 
-
 #lnkFreeride:hover {
 	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
     -webkit-animation-play-state:running;
@@ -189,9 +164,6 @@ img.bg {
 	padding-left: 3px;
 
 }
-
-
-
 
 #lnkSettings {
 	background-size:1px 400px;  
@@ -210,7 +182,6 @@ img.bg {
 	padding-left: 10px;
 }
 
-
 #lnkSettings:hover {
 	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
     -webkit-animation-play-state:running;
@@ -220,8 +191,6 @@ img.bg {
 	padding-left: 3px;
 
 }
-
-
 
 #lnkQuit {
 	background-size:1px 400px;  
@@ -251,31 +220,21 @@ img.bg {
 }
 
 
-#lblPlayer {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;		
-	z-index:10;
+
+
+/* ---------------------------
+		   Pilot View
+   --------------------------- */
+#mlPilotCarousel {
+	position: fixed;
+  	top: 35%;
+  	left: 35%;
+  	margin-left: -10px;
+  	margin-top: -10px;
+	background-image: -webkit-linear-gradient(left, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 }
 
-
-
-
-#lblPilot {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilotName {
+[id^="lblPilot"] {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family: "PT Sans", serif;
@@ -286,7 +245,7 @@ img.bg {
 	padding-top: 10px;
 }
 
-#lblClan {
+[id^="lblPilotName"] {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family: "PT Sans", serif;
@@ -297,43 +256,7 @@ img.bg {
 	padding-top: 10px;
 }
 
-
-
-#lblComplChallenges {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-
-#lblPilot1 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilotName1 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblClan1 {
+[id^="lblClan"] {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family: "PT Sans", serif;
@@ -346,40 +269,7 @@ img.bg {
 
 
 
-#lblComplChallenges1 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilot2 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilotName2 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblClan2 {
+[id^="lblComplChallenges"] {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family: "PT Sans", serif;
@@ -391,214 +281,74 @@ img.bg {
 }
 
 
-
-#lblComplChallenges2 {
+[id^="lnkLaunch"] {
+	background-size:1px 400px;  
+	background-color: transparent;	
+	-webkit-animation: borderPulse 1s;
+  	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;	
+	 -webkit-animation-play-state:paused;
 	color: rgb(255,255,255);
-	opacity: 1;
 	font-family: "PT Sans", serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
+	font-size: 2em;
+	line-height: 120%;
+	text-decoration: none;
+	padding-left: 10px;
+	text-align: center; 
 }
 
+[id^="lnkLaunch"]:hover {
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+    -webkit-animation-play-state:running;
+	color: rgb(255,255,255);	
+	border-left: 7px solid;
+	border-color: blue;
+	padding-left: 3px;
 
-#lblPilot3 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilotName3 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblClan3 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
 }
 
 
 
-#lblComplChallenges3 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilot4 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilotName4 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblClan4 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
+/* ---------------------------
+		  Cockpit View
+   --------------------------- */
+#viewCockpit {
+	position: absolute;
+	left: 0px,
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
 }
 
 
 
-#lblComplChallenges4 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
 
-#lblPilot5 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilotName5 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblClan5 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-
-
-#lblComplChallenges5 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilot6 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblPilotName6 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-#lblClan6 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-
-
-#lblComplChallenges6 {
-	color: rgb(255,255,255);
-	opacity: 1;
-	font-family: "PT Sans", serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 2em;	
-	line-height: 120%;	
-	padding-top: 10px;
-}
-
-
+/* ---------------------------
+	   SAP Theme Overrides
+   --------------------------- */
 .sapUiCrslPrevBtn:hover {
 	background-color: rgb(51, 94, 169);
 }
-
 
 .sapUiCrslNextBtn:hover {
 	background-color: rgb(51, 94, 169);
 }
 
+.sapUiLnk:hover {
+	text-decoration: none;
+}	
 
+.sapUiLnk:visited {
+	text-decoration: none;
+}	
+
+
+/* ---------------------------
+	   Animation Keyframes
+   --------------------------- */   
 @-webkit-keyframes bgFadeIn {
 	0% 	{
   			opacity:0;
@@ -617,7 +367,6 @@ img.bg {
 		}
 }
 
-
 @-webkit-keyframes pulse {
 	0% 	{
   			opacity:0;
@@ -628,7 +377,6 @@ img.bg {
 			opacity:1;
 		}
 }
-
 
 @-webkit-keyframes borderPulse {
 	0% 	{

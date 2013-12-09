@@ -6,7 +6,6 @@ sap.ui.controller("home_ui_resources.home", {
 	 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 	 */
 	onInit: function() {
-	   //alert('Controller on init');
   
 	},
 
@@ -16,7 +15,7 @@ sap.ui.controller("home_ui_resources.home", {
 	 * (NOT before the first rendering! onInit() is used for that one!).
 	 */
 	onBeforeRendering: function() {
-		//   alert('Controller before rendering');
+
 	},
 
 	
@@ -35,68 +34,5 @@ sap.ui.controller("home_ui_resources.home", {
 	//   onExit: function() {
 	//
 	//   }
-	
-	
-	getTableSizes: function(oController){
 		
-	},
-	
-	
-
-	
-	execute: function(oEvent,oController){
-	
-	},
-	
-	
-	
-
-	
-	executeConfirm: function(bResult,oController){
-	},
-	
-	
-	updateReplicateProgress: function(){
-	},
-	
-	
-	triggerReplicatePO: function(oController){
-	}, 
-
-	
-	triggerReplicateSO: function(oController){
-	},	
-	
-	
-	toggleGenerate: function(oEvent,oController){
-	},
-
-	
-	onReseedComplete: function(myTxt,oController,oObject){
-	},
-
-	
-	onReseedComplete2: function(myTxt,oController,oObject){
-	},
-
-	
-	onSynonymComplete: function(myTxt,oController){	
-	},
-	
-	
-	onResequenceComplete: function(myTxt,oController,oObject){
-	},
-
-	
-	onPOComplete: function(myTxt,oController,i){
-	},	
-
-	
-	onSOComplete: function(myTxt,oController,i){
-	},	
-
-	
-	getUniqueTime: function(){
-	}	
-
 });

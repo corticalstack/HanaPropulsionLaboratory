@@ -15,8 +15,7 @@ sap.ui.jsview("home_ui_resources.home", {
 
 
 
-function buildHome(oController,oLayout){
-	
+function buildHome(oController,oLayout){	
 	oAbsoluteLayoutHome.addContent(mainmenuView);
 	oLayout.createRow(oAbsoluteLayoutHome);    
 }

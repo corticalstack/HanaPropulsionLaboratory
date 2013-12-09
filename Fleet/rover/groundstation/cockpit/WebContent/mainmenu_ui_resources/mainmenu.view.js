@@ -16,117 +16,106 @@ sap.ui.jsview("mainmenu_ui_resources.mainmenu", {
 
 
 function buildKeyToStart(oController,oLayout){
-	var oMlKeyToStart 	= new sap.ui.commons.layout.MatrixLayout({
-		   id : "mlKeyToStart",
-		   width:"100%"
+	var oMlKeyToStart = new sap.ui.commons.layout.MatrixLayout({
+		   id: 		"mlKeyToStart",
+		   width:	"100%"
 	});
 	
 	
-	var oRowKeyToStart 	= new sap.ui.commons.layout.MatrixLayoutRow();
-	var oCellKeyToStart = new sap.ui.commons.layout.MatrixLayoutCell();
-    var oLblKeyToStart 	= new sap.ui.commons.Label("lblKeyToStart");
+	var omlRowKeyToStart = new sap.ui.commons.layout.MatrixLayoutRow();
+	var omlCellKeyToStart= new sap.ui.commons.layout.MatrixLayoutCell();
+    var oLblKeyToStart 	 = new sap.ui.commons.Label({
+    		id: 	"lblKeyToStart",
+    		text: 	otextBundle.getText("pressanykeytostart"),
+    });
     
     
-    oLblKeyToStart.setText("PRESS ANY KEY TO START");
-    
-    oCellKeyToStart.addContent(oLblKeyToStart);
-    oRowKeyToStart.addCell(oCellKeyToStart);
-    oMlKeyToStart.addRow(oRowKeyToStart);
+    omlCellKeyToStart.addContent(oLblKeyToStart);
+    omlRowKeyToStart.addCell(omlCellKeyToStart);
+    oMlKeyToStart.addRow(omlRowKeyToStart);
     oLayout.createRow(oMlKeyToStart);    	
 }
 
 
-function buildMainMenu(oController,oLayout){
-	
-	
-	
-	var oMlMainMenu 	= new sap.ui.commons.layout.MatrixLayout({
-		   id : "mlMainMenu",
-		   width:"100%"
+function buildMainMenu(oController,oLayout){	
+	var omlMainMenu = new sap.ui.commons.layout.MatrixLayout({
+		   id: 		"mlMainMenu",
+		   width:	"100%"
 	});
 
 	
-//	var oRowKeyToStart 	= new sap.ui.commons.layout.MatrixLayoutRow();
-//	var oCellKeyToStart = new sap.ui.commons.layout.MatrixLayoutCell();
-//    var oLblKeyToStart 	= new sap.ui.commons.Label("lblKeyToStart");
-    
-    
-//    oLblKeyToStart.setText("PRESS ANY KEY TO START");
-    
- //   oCellKeyToStart.addContent(oLblKeyToStart);
-//    oRowKeyToStart.addCell(oCellKeyToStart);
-//    oMlMainMenu.addRow(oRowKeyToStart);
-//    oLayout.createRow(oMlKeyToStart);    	
-    
-
-	var oRowSoloCampaign 	= new sap.ui.commons.layout.MatrixLayoutRow();
-	var oRowMultiplayer 	= new sap.ui.commons.layout.MatrixLayoutRow();
-	var oRowFreeride 	= new sap.ui.commons.layout.MatrixLayoutRow();
-	var oRowSettings 	= new sap.ui.commons.layout.MatrixLayoutRow();
-	var oRowQuit 	= new sap.ui.commons.layout.MatrixLayoutRow();
+	var omlRowSoloCampaign 	= new sap.ui.commons.layout.MatrixLayoutRow();
+	var omlRowMultiplayer 	= new sap.ui.commons.layout.MatrixLayoutRow();
+	var omlRowFreeride 		= new sap.ui.commons.layout.MatrixLayoutRow();
+	var omlRowSettings 		= new sap.ui.commons.layout.MatrixLayoutRow();
+	var omlRowQuit 			= new sap.ui.commons.layout.MatrixLayoutRow();
 	
-	var oCellSoloCampaign = new sap.ui.commons.layout.MatrixLayoutCell();
-	var oCellMultiplayer = new sap.ui.commons.layout.MatrixLayoutCell();
-	var oCellFreeride = new sap.ui.commons.layout.MatrixLayoutCell();
-	var oCellSettings = new sap.ui.commons.layout.MatrixLayoutCell();
-	var oCellQuit = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellSoloCampaign = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellMultiplayer 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellFreeride 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellSettings 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellQuit 		= new sap.ui.commons.layout.MatrixLayoutCell();
 
     
-	var oLinkSoloCampaign = new sap.ui.commons.Link({
-		id : "lnkSoloCampaign",
-		text: "SOLO CAMPAIGN",
-		width: "250px",
-		press: function() {alert('Alert from ' + oLinkSoloCampaign.getText());}});
+	var olnkSoloCampaign = new sap.ui.commons.Link({
+			id: 	"lnkSoloCampaign",
+			text:  	otextBundle.getText("solo"),	
+			width: 	"250px",
+			press:function() {setHomeContent()}
+		});
 	
-	var oLinkMultiplayer = new sap.ui.commons.Link({
-		id : "lnkMultiplayer",
-		text: "MULTIPLAYER",
-		width: "250px",
-		press: function() {alert('Alert from ' + oLinkMultiplayer.getText());}});
+	
+	var olnkMultiplayer = new sap.ui.commons.Link({
+			id: 	"lnkMultiplayer",
+			text: 	otextBundle.getText("multiplayer"),
+			width: 	"250px",
+			press:function() {setHomeContent()}
+	});
 
-	var oLinkFreeride = new sap.ui.commons.Link({
-		id : "lnkFreeride",
-		text: "FREERIDE",
-		width: "250px",
-		press:function() {setHomeContent()}});   
+	
+	var olnkFreeride = new sap.ui.commons.Link({
+			id: 	"lnkFreeride",
+			text: 	otextBundle.getText("freeride"),
+			width: 	"250px",
+			press:function() {setHomeContent()}
+	});   
 
 
-	var oLinkSettings = new sap.ui.commons.Link({
-		id : "lnkSettings",
-		text: "SETTINGS",
-		width: "250px",
-		press: function() {alert('Alert from ' + oLinkSettings.getText());}});
+	var olnkSettings = new sap.ui.commons.Link({
+			id: 	"lnkSettings",
+			text: 	otextBundle.getText("settings"),
+			width: 	"250px",
+			press:function() {setHomeContent()}
+	});
 
-	var oLinkQuit = new sap.ui.commons.Link({
-		id : "lnkQuit",
-		text: "QUIT", 	
-		width: "250px",
-		press: function() {alert('Alert from ' + oLinkQuit.getText());}});
+	
+	var olnkQuit = new sap.ui.commons.Link({
+			id: 	"lnkQuit",
+			text: 	otextBundle.getText("quit"), 	
+			width: 	"250px",
+			press:function() {setHomeContent()}
+	});
 
-    oCellSoloCampaign.addContent(oLinkSoloCampaign);
-    oRowSoloCampaign.addCell(oCellSoloCampaign);    
-    oMlMainMenu.addRow(oRowSoloCampaign);
+	
+    omlCellSoloCampaign.addContent(olnkSoloCampaign);
+    omlRowSoloCampaign.addCell(omlCellSoloCampaign);    
+    omlMainMenu.addRow(omlRowSoloCampaign);
 
-    oCellMultiplayer.addContent(oLinkMultiplayer);
-    oRowMultiplayer.addCell(oCellMultiplayer);    
-    oMlMainMenu.addRow(oRowMultiplayer);
+    omlCellMultiplayer.addContent(olnkMultiplayer);
+    omlRowMultiplayer.addCell(omlCellMultiplayer);    
+    omlMainMenu.addRow(omlRowMultiplayer);
 
-    oCellFreeride.addContent(oLinkFreeride);
-    oRowFreeride.addCell(oCellFreeride);    
-    oMlMainMenu.addRow(oRowFreeride);
+    omlCellFreeride.addContent(olnkFreeride);
+    omlRowFreeride.addCell(omlCellFreeride);    
+    omlMainMenu.addRow(omlRowFreeride);
     
-    oCellSettings.addContent(oLinkSettings);
-    oRowSettings.addCell(oCellSettings);    
-   oMlMainMenu.addRow(oRowSettings);
+    omlCellSettings.addContent(olnkSettings);
+    omlRowSettings.addCell(omlCellSettings);    
+    omlMainMenu.addRow(omlRowSettings);
     
-    oCellQuit.addContent(oLinkQuit);
-    oRowQuit.addCell(oCellQuit);    
-    oMlMainMenu.addRow(oRowQuit);
+    omlCellQuit.addContent(olnkQuit);
+    omlRowQuit.addCell(omlCellQuit);    
+    omlMainMenu.addRow(omlRowQuit);
        
-    oLayout.createRow(oMlMainMenu);    	
+    oLayout.createRow(omlMainMenu);    	
 }
-
-
-
-
-

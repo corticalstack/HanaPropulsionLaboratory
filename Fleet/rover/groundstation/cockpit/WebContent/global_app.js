@@ -1,15 +1,14 @@
+//Constants
+
+var servicePilotsUri = 'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json';
+	
+
 ////
 jQuery.sap.require("jquery.sap.resources");
 var sLocale 							= sap.ui.getCore().getConfiguration().getLanguage();
-var oBundle 							= jQuery.sap.resources({url : "./i18n/messagebundle.hdbtextbundle", locale: sLocale});
-//var oModelJSON_Pilots = new sap.ui.model.json.JSONModel();
+var otextBundle 						= jQuery.sap.resources({url : "./assets/i18n/messagebundle.hdbtextbundle", locale: sLocale});
 
 var pilotList = [];
-getPilots();
-    
-
-///
-
 
 ///
 // Groundstation
@@ -133,6 +132,37 @@ var rotationCorrection 					= 0;
 
 
 var art_test = 0;
+
+
+var oAbsoluteLayoutHome = new sap.ui.commons.layout.AbsoluteLayout({width: "100%", height: "100%"});
+
+
+getPilots();
+
+
+sap.ui.localResources("mainmenu_ui_resources");
+var mainmenuView = sap.ui.view({  
+    	id: 		"viewMainMenu",  
+    	viewName:	"mainmenu_ui_resources.mainmenu",  
+    	type: 		sap.ui.core.mvc.ViewType.JS  
+	});  
+
+
+sap.ui.localResources("cockpit_ui_resources");
+var cockpitView = sap.ui.view({  
+    	id: 		"viewCockpit",  
+    	viewName: 	"cockpit_ui_resources.cockpit",  
+    	type: 		sap.ui.core.mvc.ViewType.JS  
+	});  
+
+
+sap.ui.localResources("pilot_ui_resources");
+var pilotView = sap.ui.view({  
+    	id: 		"viewPilot",  
+    	viewName: 	"pilot_ui_resources.pilot",  
+    	type: 		sap.ui.core.mvc.ViewType.JS  
+	});  
+
 
 
 function googleMapInitialise() {
@@ -633,7 +663,7 @@ function gamepad_axis_changed(gamepadEvent) {
 };
 
 	
-google.maps.event.addDomListener(window, 'load', googleMapInitialise);
+
 
 
 function procesJSON(){
@@ -667,81 +697,47 @@ function messageLogPump(message) {
 ////
 
 
-var oAbsoluteLayoutHome = new sap.ui.commons.layout.AbsoluteLayout({width: "100%", height: "100%"});
-	
-sap.ui.localResources("mainmenu_ui_resources");
-var mainmenuView = sap.ui.view({  
-    id: "viewMainMenu",  
-    viewName : "mainmenu_ui_resources.mainmenu",  
-    type: sap.ui.core.mvc.ViewType.JS  
-});  
-
-
-sap.ui.localResources("cockpit_ui_resources");
-var cockpitView = sap.ui.view({  
-    id: "viewCockpit",  
-    viewName : "cockpit_ui_resources.cockpit",  
-    type: sap.ui.core.mvc.ViewType.JS  
-});  
-
-sap.ui.localResources("pilotmenu_ui_resources");
-var pilotmenuView = sap.ui.view({  
-    id: "viewPilotMenu",  
-    viewName : "pilotmenu_ui_resources.pilotmenu",  
-    type: sap.ui.core.mvc.ViewType.JS  
-});  
 
 
 function setHomeContent() {
 	oAbsoluteLayoutHome.removeContent(mainmenuView);
-	oAbsoluteLayoutHome.addContent(pilotmenuView);
+	oAbsoluteLayoutHome.addContent(pilotView);
 	
 }
 
-$(document).bind("keydown", function(e) {
-	   
-	$("#lblKeyToStart").hide();
-	$("#mlMainMenu").show();	
-	$("#lnkSoloCampaign").show();
-	$("#lnkMultiplayer").show();
-	$("#lnkFreeride").show();
-	$("#lnkSettings").show();
-	$("#lnkQuit").show();
+
+function setLaunch(oControlEvent) {
+	alert("You clicked on Link " + oControlEvent.getSource().getId());
 	
-	});
-
-
-
-
-function getPilots() {
-	alert('Get Pilots');
-	var urlPilots = 'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json';
 	
-	 
+}
+
+
+
+
+function getPilots() {		
 	$.ajax({ type: 'GET',
-	         url: urlPilots,
+	         url: servicePilotsUri,
 	         dataType: 'json',
 	         crossDomain: true,
 	         async: false, 
 	         success: onLoadPilots,
-	         error: onErrorCall });
+	         error: onErrorCall 
+	});
 }
 	
 	
 function onLoadPilots(myJSON) {
-	for( var i = 0; i<myJSON.d.results.length; i++)
-	{
+	for (var i = 0; i<myJSON.d.results.length; i++) {
 		var pilot = {
-				pilotId: myJSON.d.results[i].pilotId,
-				name: myJSON.d.results[i].name,
-				avatarUrl: myJSON.d.results[i].avatarUrl,
-				clanName: myJSON.d.results[i].clanName,
-				clanUrl: myJSON.d.results[i].clanUrl
+				pilotId: 	myJSON.d.results[i].pilotId,
+				name: 		myJSON.d.results[i].name,
+				avatarUri: 	myJSON.d.results[i].avatarUri,
+				clanName: 	myJSON.d.results[i].clanName,
+				clanUri: 	myJSON.d.results[i].clanUri
 		};
 		pilotList.push(pilot);
-	}
-		
-	alert('Pushed Pilots');
+	}		
 }
 
 
@@ -753,4 +749,22 @@ function onErrorCall(jqXHR, textStatus, errorThrown){
 			 oBundle.getText("error_action") );		
 	return;
 }
+
+
+$(document).bind("keydown", function(e) {
+	   
+	$("#lblKeyToStart").hide();
+	$("#mlMainMenu").show();	
+	$("#lnkSoloCampaign").show();
+	$("#lnkMultiplayer").show();
+	$("#lnkFreeride").show();
+	$("#lnkSettings").show();
+	$("#lnkQuit").show();
+	
+});
+
+
+google.maps.event.addDomListener(window, 'load', googleMapInitialise);
+
+
 

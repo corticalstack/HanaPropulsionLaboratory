@@ -1,4 +1,4 @@
-sap.ui.controller("pilotmenu_ui_resources.pilotmenu", {
+sap.ui.controller("pilot_ui_resources.pilot", {
 	
 
 	/**
