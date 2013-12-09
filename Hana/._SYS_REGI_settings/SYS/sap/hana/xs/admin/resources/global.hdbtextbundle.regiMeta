@@ -1,0 +1,723 @@
+{
+  "content_texts": [{
+    "content": "Algorithm",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ALGORITHM_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Allow Public Access For Sub-Packages",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ALLOW_PUBLIC_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Anonymous Browsing",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ANONYMOUS_BROWSING",
+    "text_type": "XMSG"
+  }, {
+    "content": "Application Objects",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "APPLICATION_OBJECTS_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Assigned by",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ASSIGNED_BY_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Authentication",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "AUTHENTICATION_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Authentication Type",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "AUTH_TYPE_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Base Url",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "BASE_URL_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Basic",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "BASIC_AUTH_TYPE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Cancel",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CANCEL_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Certificate List",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CERTIFICATE_LIST_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Certificate Request",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CERTIFICATE_REQUEST_DIALOG_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Certificate Response",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CERT_RESPONSE_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Common Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "COMMON_NAME_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Confirmation",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CONFIRM_DIALOG_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Country Code",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "COUNTRY_CODE_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Create",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CREATE_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Create Cert Request",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CREATE_CERT_REQUEST_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "IDP successfully created",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CREATE_IDP_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Trust store successfully created",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CREATE_TRUST_STORE_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Create Trust Store",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "CREATE_TRUST_STORE_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Delete",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DELETE_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Do you want to delete the IDP ?",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DELETE_IDP_CONFIRM",
+    "text_type": "XMSG"
+  }, {
+    "content": "IDP successfully deleted",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DELETE_IDP_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Do you want to delete the runtime configuration ?",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DELETE_RUNTIME_CONF_CONFIRM",
+    "text_type": "XMSG"
+  }, {
+    "content": "Runtime Configuration successfully deleted",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DELETE_RUNTIME_CONF_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Delete Trust Store",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DELETE_TRUST_STORE_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Trust store successfully deleted",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DELETE_TRUST_STORE_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Description",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DESCRIPTION_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Destination",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "DESTINATION_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Edit",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EDIT_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "HTTP Destination successfully saved",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EDIT_DESTINATION_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "IDP successfully saved",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EDIT_IDP_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Runtime Configuration successfully saved",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EDIT_RUNTIME_CONF_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Service provider metadata successfully saved",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EDIT_SP_METADATA_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "SQLCC values successfully saved",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EDIT_SQLCC_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Email",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EMAIL_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Enable Client Authentication",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ENABLE_CLIENT_AUTHENTICATION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Extend",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EXTEND_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "HTTP Destination extension successfully created",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EXTEND_DESTINATION_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Extend Destination",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EXTEND_DESTINATION_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Extension Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EXTENSION_NAME_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Extension Package",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EXTENSION_PACKAGE_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Filter",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "FILTER_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Force SSL",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "FORCE_SSL_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Form based",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "FORM_AUTH_TYPE",
+    "text_type": "XMSG"
+  }, {
+    "content": "General Data",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "GENERAL_DATA_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Host",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "HOST_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "HTTP Destination",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "HTTP_DESTINATION_FORM_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "HTTP Destinations",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "HTTP_DEST_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Identity Provider",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "IDENTITY_PROVIDER_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "IDP Metadata",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "IDP_METADATA_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Import Certificate",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "IMPORT_CERTIFICATE_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Import Private Key",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "IMPORT_PRIVATE_KEY_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Invalid HTTP Destination",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "INVALID_DESTINATION_ERROR",
+    "text_type": "XMSG"
+  }, {
+    "content": "Issuer",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ISSUER_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "SAP logon ticket",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "LOGON_TICKET_AUTH_TYPE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Metadata",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "METADATA_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Metadata",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "METADATA_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Misc",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "MISC_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Missing IDP value for SAML",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "MISSING_IDP_ERROR",
+    "text_type": "XMSG"
+  }, {
+    "content": "Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "NAME_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "New IDP",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "NEW_IDP_FORM_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "None",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "NONE_AUTH_TYPE",
+    "text_type": "XMSG"
+  }, {
+    "content": "OK",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "OK_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Error opening HTTP Destination",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "OPEN_DESTINATION_ERROR",
+    "text_type": "XMSG"
+  }, {
+    "content": "Organisation Display Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ORGANISATION_DISPLAY_NAME_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Organisation",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ORGANISATION_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Organisation Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ORGANISATION_NAME_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Organisation URL",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ORGANISATION_URL_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Org. unit (OU)",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ORG_UNIT_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Own Certificate",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "OWN_CERTIFICATE_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Package",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PACKAGE_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Parse",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PARSE_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Metadata successfully parsed",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PARSE_METADATA_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Password",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PASSWORD_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Path Prefix",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PATH_PREFIX_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Port",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PORT_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Prevent Public Access For Sub-Packages",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PREVENT_PUBLIC_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Proxy",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PROXY_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Public (no authentication required)",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PUBLIC_AUTH_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Put Cert Response",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "PUT_CERT_RESPONSE_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "You were successfully relogged in",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "RELOG_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Runtime Configurations",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "RUNTIME_CONF_FORM_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Runtime Configurations",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "RUNTIME_CONF_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "SAML",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SAML_AUTH_TYPE",
+    "text_type": "XMSG"
+  }, {
+    "content": "SAML configuration",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SAML_CONFIGURATION_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "SAML Identity Provider",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SAML_IDP_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Save",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SAVE_BUTTON",
+    "text_type": "XMSG"
+  }, {
+    "content": "Security",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SECURITY_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Serial Number",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SERIAL_NUMBER_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Service Provider Information",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SERVICE_PROVIDER_INFO_FORM_SECTION",
+    "text_type": "XMSG"
+  }, {
+    "content": "Service Provider",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SERVICE_PROVIDER_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Session Expired",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SESSION_EXPIRED_DIALOG_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Your session expired, please relog",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SESSION_EXPIRED_ERROR",
+    "text_type": "XMSG"
+  }, {
+    "content": "SingleLogout URL (PostBinding)",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SLO_URL_POST_BINDING",
+    "text_type": "XMSG"
+  }, {
+    "content": "SingleLogout URL (RedirectBinding)",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SLO_URL_REDIRECT_BINDING_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "SQL Connection",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SQLCC_FORM_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "SQL Connections",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SQLCC_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "SingleSignOn URL (PostBinding)",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SSO_URL_POST_BINDING_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "SingleSignOn URL (RedirectBinding)",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SSO_URL_REDIRECT_BINDING_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Subject",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SUBJECT_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Sync XSAccess - Runtime Configurations",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SYNC_XSACCESS_RUNTIMECONF",
+    "text_type": "XMSG"
+  }, {
+    "content": "Do you really want to synchronise your XSAccess files and your Runtime Configurations ? This will override every related Runtime Configurations",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SYNC_XSACCESS_RUNTIMECONF_CONFIRM",
+    "text_type": "XMSG"
+  }, {
+    "content": "XSAccess and Runtime Configurations successfully synchronised",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "SYNC_XSACCESS_RUNTIMECONF_SUCCESS",
+    "text_type": "XMSG"
+  }, {
+    "content": "Timeout",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "TIMEOUT_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Trust Manager",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "TRUST_MANAGER_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Trust Store",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "TRUST_STORE_FORM_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "Trust Store",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "TRUST_STORE_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Enable Dynamic User Creation",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "USER_CREATION_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "User",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "USER_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Use Proxy",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "USE_PROXY_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Use SSL",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "USE_SSL_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "Validity",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "VALIDITY_LABEL",
+    "text_type": "XMSG"
+  }, {
+    "content": "X509",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "X509_AUTH_TYPE",
+    "text_type": "XMSG"
+  }, {
+    "content": "HANA XS Administration Tool",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "XS_ADMIN_APP_TITLE",
+    "text_type": "XMSG"
+  }, {
+    "content": "XS Applications",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "XS_APPLICATIONS_TITLE",
+    "text_type": "XMSG"
+  }],
+  "metadata": {
+    "activated_at": "2013-10-22 11:11:09.8920000",
+    "activated_by": "SYSTEM",
+    "delivery_unit": "HANA_XS_BASE",
+    "du_vendor": "sap.com",
+    "du_version": "1",
+    "du_version_patch": "17",
+    "du_version_sp": "0",
+    "edit": "false",
+    "format_version": "",
+    "object_status": "0",
+    "type": "1",
+    "version_id": "2"
+  },
+  "texts": [],
+  "version": {
+    "versionType": "1"
+  }
+}

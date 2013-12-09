@@ -6,7 +6,6 @@ sap.ui.controller("pilotmenu_ui_resources.pilotmenu", {
 	 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 	 */
 	onInit: function() {
-	   //alert('Controller on init');
   
 	},
 

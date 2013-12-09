@@ -1,0 +1,111 @@
+{
+  "content_texts": [{
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "ProductId",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Product_Category",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Product_Currency",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Product_Description",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Product_Id",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Product_Name",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Product_Price",
+    "text_type": "XCOL"
+  }, {
+    "content": "TypeCode",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Product_TypeCode",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Supplier_Building",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Supplier_City",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Supplier_CompanyName",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Supplier_Country",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Supplier_PostalCode",
+    "text_type": "XCOL"
+  }, {
+    "content": " ",
+    "lang": "",
+    "max_length": "120",
+    "text_id": "Supplier_Street",
+    "text_type": "XCOL"
+  }],
+  "metadata": {
+    "activated_at": "2013-10-22 11:28:48.6070000",
+    "activated_by": "SYSTEM",
+    "delivery_unit": "HCO_DEMOCONTENT",
+    "du_vendor": "sap.com",
+    "du_version": "1",
+    "du_version_patch": "0",
+    "du_version_sp": "0",
+    "edit": "false",
+    "format_version": "",
+    "object_status": "0",
+    "type": "1",
+    "version_id": "1"
+  },
+  "texts": [{
+    "content": "Product With Details",
+    "lang": "",
+    "max_length": "255",
+    "text_id": "caption",
+    "text_type": "XTIT"
+  }],
+  "version": {
+    "versionType": "1"
+  }
+}

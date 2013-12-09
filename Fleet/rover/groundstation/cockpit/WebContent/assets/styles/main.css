@@ -496,6 +496,99 @@ img.bg {
 	padding-top: 10px;
 }
 
+#lblPilot5 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilotName5 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblClan5 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+
+#lblComplChallenges5 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilot6 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblPilotName6 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+#lblClan6 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
+
+#lblComplChallenges6 {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family: "PT Sans", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
 .sapUiCrslPrevBtn:hover {
 	background-color: rgb(51, 94, 169);
 }

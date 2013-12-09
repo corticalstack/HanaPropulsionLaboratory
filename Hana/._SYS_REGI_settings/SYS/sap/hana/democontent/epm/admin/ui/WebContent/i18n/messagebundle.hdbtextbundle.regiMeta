@@ -1,0 +1,243 @@
+{
+  "content_texts": [{
+    "content": "About",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "about",
+    "text_type": "XMSG"
+  }, {
+    "content": "EPM Admin",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "attendee",
+    "text_type": "XMSG"
+  }, {
+    "content": "Demo Model Table Size",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "bartitle",
+    "text_type": "XMSG"
+  }, {
+    "content": "Execute",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "btnExecute",
+    "text_type": "XMSG"
+  }, {
+    "content": "Reload Master Data",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cb1",
+    "text_type": "XMSG"
+  }, {
+    "content": "Reload Transaction Data",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cb2",
+    "text_type": "XMSG"
+  }, {
+    "content": "Create Synonyms",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cb2a",
+    "text_type": "XMSG"
+  }, {
+    "content": "Reset Sequences",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cb3",
+    "text_type": "XMSG"
+  }, {
+    "content": "Generate Data",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cb4",
+    "text_type": "XMSG"
+  }, {
+    "content": "Reload the Master Data Tables (addresses, businessPartner, constants, employees, messages, products, texts)",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cbt1",
+    "text_type": "XMSG"
+  }, {
+    "content": "Drop Sales Order and Purchase Order tables and reload the data seed",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cbt2",
+    "text_type": "XMSG"
+  }, {
+    "content": "For the currency conversion, currency tables need synonyms without the package name  ",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cbt2a",
+    "text_type": "XMSG"
+  }, {
+    "content": "Reset Sequences (number ranges) - Recommended if reloading complete transactional data",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cbt3",
+    "text_type": "XMSG"
+  }, {
+    "content": "Generate new Sales Order or Purchase Order records appended to existing data",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "cbt4",
+    "text_type": "XMSG"
+  }, {
+    "content": "Are you sure you want to continue? Existing data will be replaced",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "confirm_delete",
+    "text_type": "XMSG"
+  }, {
+    "content": "Enterprise Procurement Model Admin Console",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "console",
+    "text_type": "XMSG"
+  }, {
+    "content": "Model Data Volume",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "datavolume",
+    "text_type": "XMSG"
+  }, {
+    "content": "{0} of {1} orders generated",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "generatedPG",
+    "text_type": "XMSG"
+  }, {
+    "content": "Help",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "help",
+    "text_type": "XMSG"
+  }, {
+    "content": "Help Menu",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "helpm",
+    "text_type": "XMSG"
+  }, {
+    "content": "Report Incident",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "incident",
+    "text_type": "XMSG"
+  }, {
+    "content": "Num. of Purchase Orders:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "lblPO",
+    "text_type": "XMSG"
+  }, {
+    "content": "Phase:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "lblPhase",
+    "text_type": "XMSG"
+  }, {
+    "content": "Num. of Sales Orders:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "lblSO",
+    "text_type": "XMSG"
+  }, {
+    "content": "Progress Log",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "log",
+    "text_type": "XMSG"
+  }, {
+    "content": "Logout Button has been clicked.\\nThe application can now do whatever is required.\\nThis example page will just clear the screen.",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "logoff1",
+    "text_type": "XMSG"
+  }, {
+    "content": "Logout had been pressed, screen has been cleared.",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "logoff2",
+    "text_type": "XMSG"
+  }, {
+    "content": "Personalize",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "personalize",
+    "text_type": "XMSG"
+  }, {
+    "content": "{0} of {1} tables reloaded",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "reloadedPG",
+    "text_type": "XMSG"
+  }, {
+    "content": "{0} of {1} sequences recreated",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "resequencePG",
+    "text_type": "XMSG"
+  }, {
+    "content": "Settings",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "settings",
+    "text_type": "XMSG"
+  }, {
+    "content": "Number of Records",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "size",
+    "text_type": "XMSG"
+  }, {
+    "content": "Memory Size in KB",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "size2",
+    "text_type": "XMSG"
+  }, {
+    "content": "Table",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "table",
+    "text_type": "XMSG"
+  }, {
+    "content": "Are you sure?",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "title_delete",
+    "text_type": "XMSG"
+  }, {
+    "content": "Welcome to the wonderful world of SAP HANA",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "welcome",
+    "text_type": "XMSG"
+  }, {
+    "content": "Data Generator",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "worklist",
+    "text_type": "XMSG"
+  }],
+  "metadata": {
+    "activated_at": "2013-10-22 11:28:48.6070000",
+    "activated_by": "SYSTEM",
+    "delivery_unit": "HCO_DEMOCONTENT",
+    "du_vendor": "sap.com",
+    "du_version": "1",
+    "du_version_patch": "0",
+    "du_version_sp": "0",
+    "edit": "false",
+    "format_version": "",
+    "object_status": "0",
+    "type": "1",
+    "version_id": "1"
+  },
+  "texts": [],
+  "version": {
+    "versionType": "1"
+  }
+}

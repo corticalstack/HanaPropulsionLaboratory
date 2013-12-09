@@ -2,12 +2,12 @@ table.schemaName = "MISSIONCONTROL";
 table.tableType = COLUMNSTORE;
 table.description = "Message Log";
 table.columns = [
-	{name = "MissionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
-	{name = "VehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Vehicle ID"; },
-	{name = "PilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },	
-	{name = "MessageCategoryId";      	sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message Category ID"; },
-	{name = "MessageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },	
-	{name = "LoggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; },	
-	{name = "Feed";		      			sqlType = NVARCHAR; nullable = false; length = 256;             comment = "Feed"; }
+	{name = "missionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
+	{name = "vehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Vehicle ID"; },
+	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },	
+	{name = "messageCategoryId";      	sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message Category ID"; },
+	{name = "messageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },	
+	{name = "loggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; },	
+	{name = "feed";		      			sqlType = NVARCHAR; nullable = false; length = 256;             comment = "Feed"; }
 ];
-table.primaryKey.pkcolumns = ["MissionId","VehicleId","PilotId","MessageCategoryId","MessageId","LoggedAt"];
+table.primaryKey.pkcolumns = ["missionId","vehicleId","pilotId","messageCategoryId","messageId","loggedAt"];

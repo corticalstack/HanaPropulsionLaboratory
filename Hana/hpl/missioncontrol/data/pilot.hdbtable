@@ -1,0 +1,11 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;
+table.description = "Pilot";
+table.columns = [
+	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;				comment = "Pilot ID"; },
+	{name = "name";    					sqlType = NVARCHAR; nullable = false; length = 30;              comment = "Name"; },	
+	{name = "avatarUrl";      			sqlType = NVARCHAR; nullable = false; length = 128;             comment = "Avatar URL"; },
+	{name = "clanName";      			sqlType = NVARCHAR; nullable = false; length = 30;             	comment = "Clan Name"; },
+	{name = "clanUrl";      			sqlType = NVARCHAR; nullable = false; length = 128;             comment = "Clan URL"; }	
+];
+table.primaryKey.pkcolumns = ["pilotId"];

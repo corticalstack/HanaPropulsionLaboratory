@@ -1,0 +1,531 @@
+{
+  "content_texts": [{
+    "content": "Currency",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PO_TBL_COL_CURR",
+    "text_type": "NOTR"
+  }, {
+    "content": "Product Details",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_DETAIL_HDR",
+    "text_type": "NOTR"
+  }, {
+    "content": "Description:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_LBL_DESC",
+    "text_type": "NOTR"
+  }, {
+    "content": "ID \/ Name:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_LBL_IDNAME",
+    "text_type": "NOTR"
+  }, {
+    "content": "Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_LBL_NAME",
+    "text_type": "NOTR"
+  }, {
+    "content": "Picture:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_LBL_PICT",
+    "text_type": "NOTR"
+  }, {
+    "content": "Price",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_LBL_PRICE",
+    "text_type": "NOTR"
+  }, {
+    "content": "No picture available",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_NO_PIC",
+    "text_type": "NOTR"
+  }, {
+    "content": "Supplier Details",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_SUPP_DETAIL_HDR",
+    "text_type": "NOTR"
+  }, {
+    "content": "Company:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_SUPP_LBL_COMP",
+    "text_type": "NOTR"
+  }, {
+    "content": "Country \/ ZIP \/ City:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_SUPP_LBL_COUNTRYZIPCITY",
+    "text_type": "NOTR"
+  }, {
+    "content": "Street \/ Number:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_SUPP_LBL_STREET",
+    "text_type": "NOTR"
+  }, {
+    "content": "ID",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_TBL_COL_ID",
+    "text_type": "NOTR"
+  }, {
+    "content": "Products",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "EPM_PROD_TBL_HDR",
+    "text_type": "NOTR"
+  }, {
+    "content": "About",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "about",
+    "text_type": "NOTR"
+  }, {
+    "content": "Accept",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "accept",
+    "text_type": "NOTR"
+  }, {
+    "content": "Actions",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "actions",
+    "text_type": "NOTR"
+  }, {
+    "content": "PO Approval",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "approval",
+    "text_type": "NOTR"
+  }, {
+    "content": "The Selected Purchase Order has been {0}ed successfully",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "approve_success",
+    "text_type": "NOTR"
+  }, {
+    "content": "TechEd Attendee",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "attendee",
+    "text_type": "NOTR"
+  }, {
+    "content": "Attribute:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "attribute",
+    "text_type": "NOTR"
+  }, {
+    "content": "Bus. Part ID",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "bpart",
+    "text_type": "NOTR"
+  }, {
+    "content": "Last Changed By",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "changeby",
+    "text_type": "NOTR"
+  }, {
+    "content": "City",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "city",
+    "text_type": "NOTR"
+  }, {
+    "content": "Company Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "company",
+    "text_type": "NOTR"
+  }, {
+    "content": "PO Confirmation",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "confirm",
+    "text_type": "NOTR"
+  }, {
+    "content": "Are you sure you want to delete Purchase Order: {0}",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "confirm_delete",
+    "text_type": "NOTR"
+  }, {
+    "content": "Are you sure you want to {0} Purchase Order: {1}",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "confirm_po",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Order {0}",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "confirm_title",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Order Console",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "console",
+    "text_type": "NOTR"
+  }, {
+    "content": "Create New Purchase Order",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "create",
+    "text_type": "NOTR"
+  }, {
+    "content": "Currency",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "currency",
+    "text_type": "NOTR"
+  }, {
+    "content": "Delete",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "delete",
+    "text_type": "NOTR"
+  }, {
+    "content": "The Selected Purchase Order has been deleted successfully",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "delete_success",
+    "text_type": "NOTR"
+  }, {
+    "content": "Edit",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "edit",
+    "text_type": "NOTR"
+  }, {
+    "content": "Employee Responsible",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "employee",
+    "text_type": "NOTR"
+  }, {
+    "content": "Empty",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "empty",
+    "text_type": "NOTR"
+  }, {
+    "content": "Error with action",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "error_action",
+    "text_type": "NOTR"
+  }, {
+    "content": "Please select a valid purchase order line",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "error_select",
+    "text_type": "NOTR"
+  }, {
+    "content": "Export to Excel",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "excel",
+    "text_type": "NOTR"
+  }, {
+    "content": "Filter By",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "filter",
+    "text_type": "NOTR"
+  }, {
+    "content": "General Data",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "general",
+    "text_type": "NOTR"
+  }, {
+    "content": "Gross Amt.",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "gross",
+    "text_type": "NOTR"
+  }, {
+    "content": "Group By Criteria",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "group_by",
+    "text_type": "NOTR"
+  }, {
+    "content": "Help",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "help",
+    "text_type": "NOTR"
+  }, {
+    "content": "Help Menu",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "helpm",
+    "text_type": "NOTR"
+  }, {
+    "content": "Report Incident",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "incident",
+    "text_type": "NOTR"
+  }, {
+    "content": "Order Item",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "item",
+    "text_type": "NOTR"
+  }, {
+    "content": "Items",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "items",
+    "text_type": "NOTR"
+  }, {
+    "content": "PO Lifecycle",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "lifecycle",
+    "text_type": "NOTR"
+  }, {
+    "content": "Logout Button has been clicked.\\nThe application can now do whatever is required.\\nThis example page will just clear the screen.",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "logoff1",
+    "text_type": "NOTR"
+  }, {
+    "content": "Logout had been pressed, screen has been cleared.",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "logoff2",
+    "text_type": "NOTR"
+  }, {
+    "content": "Net Amt.",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "net",
+    "text_type": "NOTR"
+  }, {
+    "content": "New",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "new",
+    "text_type": "NOTR"
+  }, {
+    "content": "Notes",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "notes",
+    "text_type": "NOTR"
+  }, {
+    "content": "PO Ordering",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "ordering",
+    "text_type": "NOTR"
+  }, {
+    "content": "Personalize",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "personalize",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Orders",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "po",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Order Items",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "po_item",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Order Id",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "poid",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Orders({0})",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "pos",
+    "text_type": "NOTR"
+  }, {
+    "content": "Postal Code",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "postal",
+    "text_type": "NOTR"
+  }, {
+    "content": "Product ID",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "product",
+    "text_type": "NOTR"
+  }, {
+    "content": "Product Category",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "product_cat",
+    "text_type": "NOTR"
+  }, {
+    "content": "Product Description",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "product_desc",
+    "text_type": "NOTR"
+  }, {
+    "content": " Product Name",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "product_name",
+    "text_type": "NOTR"
+  }, {
+    "content": "Quantity",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "quantity",
+    "text_type": "NOTR"
+  }, {
+    "content": "Qty. Unit",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "quantity_unit",
+    "text_type": "NOTR"
+  }, {
+    "content": "Reject",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "reject",
+    "text_type": "NOTR"
+  }, {
+    "content": "Reports",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "reports",
+    "text_type": "NOTR"
+  }, {
+    "content": "Group By: ",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "s_group_by",
+    "text_type": "NOTR"
+  }, {
+    "content": "Super Search:",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "s_search",
+    "text_type": "NOTR"
+  }, {
+    "content": "Pur. Ord. ID",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "spoid",
+    "text_type": "NOTR"
+  }, {
+    "content": "Summary of PO Gross Value in {0}",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "sum_gross",
+    "text_type": "NOTR"
+  }, {
+    "content": "Note for Supplier",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "supplier_note",
+    "text_type": "NOTR"
+  }, {
+    "content": "Additional Actions",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "t_actions",
+    "text_type": "NOTR"
+  }, {
+    "content": "Delete Selected Purchase Order",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "t_delete",
+    "text_type": "NOTR"
+  }, {
+    "content": "Edit Selected Purchase Order",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "t_edit",
+    "text_type": "NOTR"
+  }, {
+    "content": "Export Current PO List to Excel",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "t_excel",
+    "text_type": "NOTR"
+  }, {
+    "content": "Tax Amt.",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "tax",
+    "text_type": "NOTR"
+  }, {
+    "content": "Approval Status Change Successful",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "title_approve_success",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Order Deletion",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "title_delete",
+    "text_type": "NOTR"
+  }, {
+    "content": "Deletion Successful",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "title_delete_success",
+    "text_type": "NOTR"
+  }, {
+    "content": "Welcome to the wonderful world of SAP HANA",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "welcome",
+    "text_type": "NOTR"
+  }, {
+    "content": "Purchase Order Worklist",
+    "lang": "",
+    "max_length": "0",
+    "text_id": "worklist",
+    "text_type": "NOTR"
+  }],
+  "metadata": {
+    "activated_at": "2013-10-22 11:28:48.6070000",
+    "activated_by": "SYSTEM",
+    "delivery_unit": "HCO_DEMOCONTENT",
+    "du_vendor": "sap.com",
+    "du_version": "1",
+    "du_version_patch": "0",
+    "du_version_sp": "0",
+    "edit": "false",
+    "format_version": "",
+    "object_status": "0",
+    "type": "1",
+    "version_id": "1"
+  },
+  "texts": [],
+  "version": {
+    "versionType": "1"
+  }
+}

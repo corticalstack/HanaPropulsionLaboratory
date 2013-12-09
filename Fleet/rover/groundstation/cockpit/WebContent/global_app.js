@@ -2,7 +2,10 @@
 jQuery.sap.require("jquery.sap.resources");
 var sLocale 							= sap.ui.getCore().getConfiguration().getLanguage();
 var oBundle 							= jQuery.sap.resources({url : "./i18n/messagebundle.hdbtextbundle", locale: sLocale});
-var oBarModel 							= new sap.ui.model.json.JSONModel();
+//var oModelJSON_Pilots = new sap.ui.model.json.JSONModel();
+
+var pilotList = [];
+getPilots();
     
 
 ///
@@ -662,6 +665,8 @@ function messageLogPump(message) {
 
 
 ////
+
+
 var oAbsoluteLayoutHome = new sap.ui.commons.layout.AbsoluteLayout({width: "100%", height: "100%"});
 	
 sap.ui.localResources("mainmenu_ui_resources");
@@ -704,3 +709,48 @@ $(document).bind("keydown", function(e) {
 	$("#lnkQuit").show();
 	
 	});
+
+
+
+
+function getPilots() {
+	alert('Get Pilots');
+	var urlPilots = 'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json';
+	
+	 
+	$.ajax({ type: 'GET',
+	         url: urlPilots,
+	         dataType: 'json',
+	         crossDomain: true,
+	         async: false, 
+	         success: onLoadPilots,
+	         error: onErrorCall });
+}
+	
+	
+function onLoadPilots(myJSON) {
+	for( var i = 0; i<myJSON.d.results.length; i++)
+	{
+		var pilot = {
+				pilotId: myJSON.d.results[i].pilotId,
+				name: myJSON.d.results[i].name,
+				avatarUrl: myJSON.d.results[i].avatarUrl,
+				clanName: myJSON.d.results[i].clanName,
+				clanUrl: myJSON.d.results[i].clanUrl
+		};
+		pilotList.push(pilot);
+	}
+		
+	alert('Pushed Pilots');
+}
+
+
+
+function onErrorCall(jqXHR, textStatus, errorThrown){
+	sap.ui.core.BusyIndicator.hide();		
+	sap.ui.commons.MessageBox.show(jqXHR.responseText, 
+			 "ERROR",
+			 oBundle.getText("error_action") );		
+	return;
+}
+
