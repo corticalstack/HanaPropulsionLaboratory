@@ -61,7 +61,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkSoloCampaign",
 			text:  	otextBundle.getText("solo"),	
 			width: 	"250px",
-			press:function() {setHomeContent()}
+			press:  setViewContent
 		});
 	
 	
@@ -69,7 +69,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkMultiplayer",
 			text: 	otextBundle.getText("multiplayer"),
 			width: 	"250px",
-			press:function() {setHomeContent()}
+			press:  setViewContent
 	});
 
 	
@@ -77,7 +77,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkFreeride",
 			text: 	otextBundle.getText("freeride"),
 			width: 	"250px",
-			press:function() {setHomeContent()}
+			press:  setViewContent
 	});   
 
 
@@ -85,7 +85,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkSettings",
 			text: 	otextBundle.getText("settings"),
 			width: 	"250px",
-			press:function() {setHomeContent()}
+			press:  setViewContent
 	});
 
 	
@@ -93,7 +93,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkQuit",
 			text: 	otextBundle.getText("quit"), 	
 			width: 	"250px",
-			press:function() {setHomeContent()}
+			press:  setViewContent
 	});
 
 	

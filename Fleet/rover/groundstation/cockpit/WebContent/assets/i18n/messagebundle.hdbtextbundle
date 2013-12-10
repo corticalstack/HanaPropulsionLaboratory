@@ -8,4 +8,5 @@ pressanykeytostart=PRESS ANY KEY TO START
 pilot=Pilot
 completedchallenges=Completed Mission Challenges
 launch=LAUNCH
+error=An error occurred, please contact System Administrator
 generatedPG={0} of {1} orders generated

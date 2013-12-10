@@ -314,15 +314,43 @@ img.bg {
 /* ---------------------------
 		  Cockpit View
    --------------------------- */
-#viewCockpit {
-	position: absolute;
-	left: 0px,
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	background-color: transparent;
+#mlPilotCam {
+	position: fixed;
+	top: 130px;
+  	left: 300px;
+	background-color: transparent;	
 }
 
+
+#mlcockpitMap {
+	position: fixed;
+	top: 10px;
+  	left:1500px;
+  	width:	300px;
+  	height:	300px;
+	background-color: transparent;	
+}
+
+#mlcockpitGauge {
+	position: fixed;
+	top: 400px;
+  	left:1500px;
+}
+
+#cockpitGauge1, #cockpitGauge2, #cockpitGauge3, #cockpitGauge4, #cockpitGauge5, #cockpitGauge6 {
+        width:100px; height:80px;
+        display: inline-block;
+        margin: 1em;
+      }
+
+#mapCanvas {
+	position: fixed;
+	top: 10px;
+  	left:1500px;
+  	width:	100px;
+  	height:	100px;
+	background-color: transparent;	
+}
 
 
 

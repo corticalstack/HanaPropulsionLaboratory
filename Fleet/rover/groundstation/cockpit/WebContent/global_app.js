@@ -8,6 +8,7 @@ jQuery.sap.require("jquery.sap.resources");
 var sLocale 							= sap.ui.getCore().getConfiguration().getLanguage();
 var otextBundle 						= jQuery.sap.resources({url : "./assets/i18n/messagebundle.hdbtextbundle", locale: sLocale});
 
+
 var pilotList = [];
 
 ///
@@ -164,6 +165,7 @@ var pilotView = sap.ui.view({
 	});  
 
 
+var currentViewContent = mainmenuView;
 
 function googleMapInitialise() {
 
@@ -174,7 +176,7 @@ function googleMapInitialise() {
             mapTypeId : googleMapLastMapType
     }
     
-    googleMap = new google.maps.Map($('#map_canvas').get(0), myOptions);
+    googleMap = new google.maps.Map($('#cockpitMap').get(0), myOptions);
     
     googleMapMarker = new google.maps.Marker({
     	position: latlng,
@@ -699,18 +701,103 @@ function messageLogPump(message) {
 
 
 
-function setHomeContent() {
-	oAbsoluteLayoutHome.removeContent(mainmenuView);
-	oAbsoluteLayoutHome.addContent(pilotView);
+function setViewContent(oControlEvent) {
+	oAbsoluteLayoutHome.removeContent(currentViewContent);
 	
+	switch (oControlEvent.getSource().getId())
+	{
+		case "lnkSoloCampaign":
+			currentViewContent = pilotView;
+			oAbsoluteLayoutHome.addContent(currentViewContent);
+			break;
+		case "lnkMultiplayer":
+			currentViewContent = pilotView;
+			oAbsoluteLayoutHome.addContent(currentViewContent);
+			break;
+			
+		case "lnkFreeride":
+			currentViewContent = pilotView;
+			oAbsoluteLayoutHome.addContent(currentViewContent);
+			break;
+			
+		case "lnkSettings":
+//			currentViewContent = settingsView;
+			break;
+			
+		case "lnkQuit":
+//			currentViewContent = quitView;
+			break;
+		
+		case "lnkLaunch" + oControlEvent.getSource().getId().slice("lnkLaunch".length):
+			currentViewContent = cockpitView;
+			oAbsoluteLayoutHome.addContent(currentViewContent);
+			googleMapInitialise();
+			newGuage();
+			
+			break;
+	}
+}	
+
+function newGuage() {
+	var cockpitGauge1 = new JustGage({
+        id: "cockpitGauge1", 
+        value: getRandomInt(0, 100), 
+        min: 0,
+        max: 100,
+        title: "Battery Status",
+        label: "mAh"
+      });
+
+	var cockpitGauge2 = new JustGage({
+        id: "cockpitGauge2", 
+        value: getRandomInt(0, 100), 
+        min: 0,
+        max: 100,
+        title: "Speed",
+        label: "m/s"
+      });
+
+	var cockpitGauge3 = new JustGage({
+        id: "cockpitGauge3", 
+        value: getRandomInt(0, 100), 
+        min: 0,
+        max: 100,
+        title: "Drive",
+        label: "%"
+      });
+
+	var cockpitGauge4 = new JustGage({
+        id: "cockpitGauge4", 
+        value: getRandomInt(0, 100), 
+        min: 0,
+        max: 100,
+        title: "Rear Sensor",
+        label: "cm"
+      });
+
+	var cockpitGauge5 = new JustGage({
+        id: "cockpitGauge5", 
+        value: getRandomInt(0, 100), 
+        min: 0,
+        max: 100,
+        title: "Front Sensor",
+        label: "cm"
+      });
+
+	var cockpitGauge6 = new JustGage({
+        id: "cockpitGauge6", 
+        value: getRandomInt(0, 100), 
+        min: 0,
+        max: 100,
+        title: "Pan Sensor",
+        label: "cm"
+      });
+
 }
 
 
-function setLaunch(oControlEvent) {
-	alert("You clicked on Link " + oControlEvent.getSource().getId());
-	
-	
-}
+
+
 
 
 
@@ -746,7 +833,7 @@ function onErrorCall(jqXHR, textStatus, errorThrown){
 	sap.ui.core.BusyIndicator.hide();		
 	sap.ui.commons.MessageBox.show(jqXHR.responseText, 
 			 "ERROR",
-			 oBundle.getText("error_action") );		
+			 otextBundle.getText("error") );		
 	return;
 }
 
@@ -764,7 +851,7 @@ $(document).bind("keydown", function(e) {
 });
 
 
-google.maps.event.addDomListener(window, 'load', googleMapInitialise);
+//google.maps.event.addDomListener(window, 'load', googleMapInitialise);
 
 
 

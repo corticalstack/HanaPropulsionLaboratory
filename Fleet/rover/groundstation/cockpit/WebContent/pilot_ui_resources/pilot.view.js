@@ -46,15 +46,15 @@ function buildPilotCarousel(oController,oLayout){
     
 	
 	for (var i=0; i < pilotList.length; i++) {
-        var imgAvatarId 			= 'imgAvatar' + i,
-         	lblPilotId 				= 'lblPilot' + i,
-         	lblPilotNameId 			= 'lblPilotName' + i,
-         	lblComplChallengesId 	= 'lblComplChallenges' + i,
-         	prgIndId 				= 'prgInd' + i,
-         	lblClanId 				= 'lblClan' + i,
-         	imgClanId 				= 'imgClan' + i,
-         	mlPilotId 				= 'mlPilot' + i,
-         	lnkLaunchId				= 'lnkLaunch' + i;
+        var imgAvatarId 			= 'imgAvatar' + pilotList[i].pilotId,
+         	lblPilotId 				= 'lblPilot' + pilotList[i].pilotId,
+         	lblPilotNameId 			= 'lblPilotName' + pilotList[i].pilotId,
+         	lblComplChallengesId 	= 'lblComplChallenges' + pilotList[i].pilotId,
+         	prgIndId 				= 'prgInd' + pilotList[i].pilotId,
+         	lblClanId 				= 'lblClan' + pilotList[i].pilotId,
+         	imgClanId 				= 'imgClan' + pilotList[i].pilotId,
+         	mlPilotId 				= 'mlPilot' + pilotList[i].pilotId,
+         	lnkLaunchId				= 'lnkLaunch' + pilotList[i].pilotId;
         
         
         pilotCard.oimgAvatar = new sap.ui.commons.Image({
@@ -116,8 +116,8 @@ function buildPilotCarousel(oController,oLayout){
         pilotCard.olnkLaunch = new sap.ui.commons.Link({
 		 	id: 	lnkLaunchId,
 		 	text: 	otextBundle.getText("launch"),
-		 	width: "100%",
-		 	press:setLaunch
+		 	width: 	"100%",
+		 	press:	setViewContent
         });
 
         

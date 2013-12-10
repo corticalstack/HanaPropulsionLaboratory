@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr">
+	<head>
+		<title>Pilot Cam</title>
+	</head>
+	<body>
+		<video id="videoPilotCam" width="1280" height="960" autoplay></video>
+		<script>
+			window.addEventListener("DOMContentLoaded", function() {	
+				var video = document.getElementById("videoPilotCam"),
+				videoObj = { "video": true },
+				errBack = function(error) {
+					console.log("Video capture error: ", error.code); 
+				};
+
+
+				if(navigator.getUserMedia) { 
+					navigator.getUserMedia(videoObj, function(stream) {
+						video.src = stream;
+						video.play();
+					}, errBack);
+				} else if(navigator.webkitGetUserMedia) { 
+					navigator.webkitGetUserMedia(videoObj, function(stream){
+						video.src = window.webkitURL.createObjectURL(stream);
+						video.play();
+					}, errBack);
+				}
+			}, false);
+		</script>
+	</body>
+</html>
