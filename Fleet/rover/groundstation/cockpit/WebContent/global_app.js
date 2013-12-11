@@ -740,13 +740,29 @@ function setViewContent(oControlEvent) {
 
 function newGuage() {
 	var cockpitGauge1 = new JustGage({
-        id: "cockpitGauge1", 
-        value: getRandomInt(0, 100), 
-        min: 0,
-        max: 100,
-        title: "Battery Status",
-        label: "mAh"
-      });
+		id: "cockpitGauge1",
+		  title: "Battery Remaining",
+	        label: "%",
+	    value : 40,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 100,
+	    gaugeWidthScale: 0.6,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
 
 	var cockpitGauge2 = new JustGage({
         id: "cockpitGauge2", 
@@ -792,6 +808,16 @@ function newGuage() {
         title: "Pan Sensor",
         label: "cm"
       });
+	
+	var cockpitGauge7 = new JustGage({
+        id: "cockpitGauge7", 
+        value: getRandomInt(0, 100), 
+        min: 0,
+        max: 100,
+        title: "Primary Systems Temp",
+        label: "C"
+      });
+
 
 }
 
@@ -830,11 +856,47 @@ function onLoadPilots(myJSON) {
 
 
 function onErrorCall(jqXHR, textStatus, errorThrown){
-	sap.ui.core.BusyIndicator.hide();		
-	sap.ui.commons.MessageBox.show(jqXHR.responseText, 
-			 "ERROR",
-			 otextBundle.getText("error") );		
-	return;
+//	sap.ui.core.BusyIndicator.hide();		
+//	sap.ui.commons.MessageBox.show(jqXHR.responseText, 
+//			 "ERROR",
+//			 otextBundle.getText("error") );		
+//	return;
+	var pilot = {
+			pilotId: 	'001',
+			name: 		'JP',
+			avatarUri: 	'assets/images/pilots/avatarJP.png',
+			clanName: 	'Wolf',
+			clanUri: 	'assets/images/emblems/Wolf.jpg'
+	};
+	pilotList.push(pilot);
+	
+	var pilot = {
+			pilotId: 	'002',
+			name: 		'Nadia',
+			avatarUri: 	'assets/images/pilots/avatarNadia.png',
+			clanName: 	'Black Widow',
+			clanUri: 	'assets/images/emblems/Black Widow.jpg'
+	};
+	pilotList.push(pilot);
+	
+	var pilot = {
+			pilotId: 	'006',
+			name: 		'Jane',
+			avatarUri: 	'assets/images/pilots/avatarJane.png',
+			clanName: 	'Snake',
+			clanUri: 	'assets/images/emblems/Snake.jpg'
+	};
+	pilotList.push(pilot);
+
+	var pilot = {
+			pilotId: 	'007',
+			name: 		'Joe',
+			avatarUri: 	'assets/images/pilots/avatarJoe.png',
+			clanName: 	'Wasp',
+			clanUri: 	'assets/images/emblems/Wasp.jpg'
+	};
+	pilotList.push(pilot);
+
 }
 
 
