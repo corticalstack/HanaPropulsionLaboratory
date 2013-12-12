@@ -16,7 +16,7 @@ sap.ui.jsview("mainmenu_ui_resources.mainmenu", {
 
 
 function buildKeyToStart(oController,oLayout){
-	var oMlKeyToStart = new sap.ui.commons.layout.MatrixLayout({
+	var omlKeyToStart = new sap.ui.commons.layout.MatrixLayout({
 		   id: 		"mlKeyToStart",
 		   width:	"100%"
 	});
@@ -32,8 +32,8 @@ function buildKeyToStart(oController,oLayout){
     
     omlCellKeyToStart.addContent(oLblKeyToStart);
     omlRowKeyToStart.addCell(omlCellKeyToStart);
-    oMlKeyToStart.addRow(omlRowKeyToStart);
-    oLayout.createRow(oMlKeyToStart);    	
+    omlKeyToStart.addRow(omlRowKeyToStart);
+    oLayout.createRow(omlKeyToStart);    	
 }
 
 

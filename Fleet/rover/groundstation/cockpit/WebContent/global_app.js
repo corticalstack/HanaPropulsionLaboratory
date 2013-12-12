@@ -732,18 +732,49 @@ function setViewContent(oControlEvent) {
 			currentViewContent = cockpitView;
 			oAbsoluteLayoutHome.addContent(currentViewContent);
 			googleMapInitialise();
-			newGuage();
+			newGauge();
 			
 			break;
 	}
 }	
 
-function newGuage() {
+function newGauge() {
+	/*
 	var cockpitGauge1 = new JustGage({
-		id: "cockpitGauge1",
-		  title: "Battery Remaining",
-	        label: "%",
+        id: "cockpitGauge1",
+          title: "Battery Remaining",
+        label: "%",
+    value : 40,
+    valueFontColor: "#ffffff",
+    min: 0,
+    max: 100,
+    gaugeWidthScale: 0.6,
+    customSectors: [{
+      color : "#ff0000",
+      lo : 0,
+      hi : 20
+    },{
+      color : "#ffff00",
+      lo : 20,
+      hi : 50
+    }, {
+      color : "#00ff00",
+      lo : 50,
+      hi : 100
+    }],
+    counter: true
+  });
+  */
+	
+	var gaugeBattRemaining = new JustGage({
+		id: "gaugeBattRemaining",
+		title: "BATTERY REMAINING",
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "%",
+		labelMinFontSize: 10,
 	    value : 40,
+	    valueMinFontSize: 16,
 	    valueFontColor: "#ffffff",
 	    min: 0,
 	    max: 100,
@@ -763,62 +794,40 @@ function newGuage() {
 	    }],
 	    counter: true
 	  });
-
-	var cockpitGauge2 = new JustGage({
-        id: "cockpitGauge2", 
-        value: getRandomInt(0, 100), 
-        min: 0,
-        max: 100,
-        title: "Speed",
-        label: "m/s"
-      });
-
-	var cockpitGauge3 = new JustGage({
-        id: "cockpitGauge3", 
-        value: getRandomInt(0, 100), 
-        min: 0,
-        max: 100,
-        title: "Drive",
-        label: "%"
-      });
-
-	var cockpitGauge4 = new JustGage({
-        id: "cockpitGauge4", 
-        value: getRandomInt(0, 100), 
-        min: 0,
-        max: 100,
-        title: "Rear Sensor",
-        label: "cm"
-      });
-
-	var cockpitGauge5 = new JustGage({
-        id: "cockpitGauge5", 
-        value: getRandomInt(0, 100), 
-        min: 0,
-        max: 100,
-        title: "Front Sensor",
-        label: "cm"
-      });
-
-	var cockpitGauge6 = new JustGage({
-        id: "cockpitGauge6", 
-        value: getRandomInt(0, 100), 
-        min: 0,
-        max: 100,
-        title: "Pan Sensor",
-        label: "cm"
-      });
+	  
 	
-	var cockpitGauge7 = new JustGage({
-        id: "cockpitGauge7", 
-        value: getRandomInt(0, 100), 
-        min: 0,
-        max: 100,
-        title: "Primary Systems Temp",
-        label: "C"
-      });
+	
+	var gaugeThrust = new JustGage({
+		id: "gaugeThrust",
+		title: "THRUST",
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "%",
+		labelMinFontSize: 10,
+	    value : 40,
+	    valueMinFontSize: 16,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 100,
+	    gaugeWidthScale: 0.6,
+	    customSectors: [{
+      color : "#00ff00",
+	      lo : 0,
+	      hi : 60
+	    },{
+	      color : "#ff8000",
+	      lo : 60,
+	      hi : 80
+	    }, {
+	      color : "#ff0000",
+	      lo : 80,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+	
 
-
+	
 }
 
 
