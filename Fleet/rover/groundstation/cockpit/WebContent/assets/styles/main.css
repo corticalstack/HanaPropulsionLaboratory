@@ -333,8 +333,8 @@ img.bg {
 
 /* ---------------------------
 		  Cockpit View
-   --------------------------- */
-#mlPilotCam {
+   --------------------------- */   
+#mlPanePilotCam {
 	position: fixed;
 	top: 131px;
   	left: 150px;
@@ -369,7 +369,7 @@ img.bg {
 }
 
 
-#mlDrivePanel {
+#mlPaneDrive {
 	position: fixed;
 	top: 	0px;
   	left:	0px;
@@ -411,7 +411,75 @@ img.bg {
 }
 
 
-[id^="lblPanel"] {
+
+
+[id^="lblPane"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em;
+	text-align: center; 
+	padding-top: 2px;
+}
+
+
+[id^="lblInd"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em;
+	text-align: center; 
+	padding: 2px;
+	margin: 4px;
+
+	width: "100px";
+	
+	background-image: -webkit-linear-gradient(top, #ee432e 0%, #c63929 50%, #b51700 50%, #891100 100%);
+border: 1px solid #951100;
+border-radius: 0px;
+box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+padding: 10px 5px 10px 5px;
+text-decoration: none;
+
+text-align: center;
+text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
+	
+}
+
+[id^="lblStatus"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1em;
+	text-align: center; 
+	padding-top: 2px;
+}
+
+[id^="lblVal"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1em;
+	text-align: center; 
+	padding-top: 2px;
+}
+
+
+[id^="lblVoltage"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em;
+	text-align: center; 
+	padding-top: 2px;
+}
+
+[id^="lblConsumedMah"] {
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
@@ -448,7 +516,9 @@ img.bg {
 	border-color: blue;
 }
 
-
+#mlPowerPanel1 {
+	vertical-align: top;
+}	
 #mlcockpitGauge {
 	position: fixed;
 	top: 400px;
@@ -460,8 +530,8 @@ img.bg {
         display: inline-block;
 }
 
-#cockpitGauge7 {
-        width:70px; height:50px;
+#gaugeCurrent, #gaugeAmps  {
+        width:95px; height:60px;
         display: inline-block;
 }
 
@@ -539,6 +609,7 @@ img.bg {
 
 .sapUiMltPadRight {
 	padding: 0px;
+	vertical-align: top;
 }	
 
 /* ---------------------------

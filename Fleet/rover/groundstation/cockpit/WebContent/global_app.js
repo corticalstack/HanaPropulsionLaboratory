@@ -827,7 +827,64 @@ function newGauge() {
 	  });
 	
 
-	
+	var gaugeCurrent = new JustGage({
+		id: "gaugeCurrent",
+		title: "CURRENT",
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 12,	
+	    label: "%",
+		labelMinFontSize: 12,
+	    value : 40,
+	    valueMinFontSize: 12,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 100,
+	    gaugeWidthScale: 0.6,
+	    customSectors: [{
+      color : "#00ff00",
+	      lo : 0,
+	      hi : 60
+	    },{
+	      color : "#ff8000",
+	      lo : 60,
+	      hi : 80
+	    }, {
+	      color : "#ff0000",
+	      lo : 80,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+
+	var gaugeAmps = new JustGage({
+		id: "gaugeAmps",
+		title: "AMPS",
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 10,	
+	    label: "%",
+		labelMinFontSize: 10,
+	    value : 40,
+	    valueMinFontSize: 10,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 100,
+	    gaugeWidthScale: 0.6,
+	    customSectors: [{
+      color : "#00ff00",
+	      lo : 0,
+	      hi : 60
+	    },{
+	      color : "#ff8000",
+	      lo : 60,
+	      hi : 80
+	    }, {
+	      color : "#ff0000",
+	      lo : 80,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+
 }
 
 
