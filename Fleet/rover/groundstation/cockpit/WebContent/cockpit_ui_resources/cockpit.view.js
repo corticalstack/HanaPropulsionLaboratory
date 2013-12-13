@@ -12,16 +12,16 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 var oLayout = new sap.ui.commons.layout.MatrixLayout();
     	 buildPanePilotCam(oController,oLayout);
     	 buildPaneDrive(oController,oLayout);
-    	 buildWeaponsPanel(oController,oLayout);
-    	 buildPowerPanel(oController,oLayout);
-    	 buildEarthTime(oController,oLayout);
+    	 buildPaneWeapons(oController,oLayout);
+    	 buildPanePower(oController,oLayout);
+    	 buildPaneEarthTime(oController,oLayout);
   //  	 buildCommsPanel(oController,oLayout);
     	 
     	 buildNavigationPanel(oController,oLayout);
     	 buildMissionControlPanel(oController,oLayout);
 //    	 buildGauge(oController,oLayout);
-    	 buildPrimarySystemsStatusPanel(oController,oLayout);
-    	 buildSecondarySystemsStatusPanel(oController,oLayout);
+//    	 buildPrimarySystemsStatusPanel(oController,oLayout);
+//    	 buildSecondarySystemsStatusPanel(oController,oLayout);
     	 buildBearingIndicators(oController,oLayout);
 
   	     return oLayout;
@@ -34,8 +34,9 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
 function buildPanePilotCam(oController,oLayout){
 		
 	var omlPanePilotCam = new sap.ui.commons.layout.MatrixLayout({
-			id: 	"mlPanePilotCam",
-			width:	"1280px"
+			id: 			"mlPanePilotCam",
+			layoutFixed: 	true,
+			width:			"1280px"
 		});
 	 
 	
@@ -60,18 +61,19 @@ function buildPanePilotCam(oController,oLayout){
 function buildPaneDrive(oController,oLayout){
 	
 	var omlPaneDrive = new sap.ui.commons.layout.MatrixLayout({
-			id:			"mlPaneDrive",
-			width: 		"150px",		
+			id:				"mlPaneDrive",
+			layoutFixed: 	true,
+			width: 			"160px",		
 			
 	});	
 	
 	
 	var omlPaneDrive1 = new sap.ui.commons.layout.MatrixLayout({
-        	id: 		"mlPaneDrive1",
-        	layoutFixed: true,
-        	width: 		"150px",
-        	columns : 	2,
-        	widths: 	["75px", "75px"]  
+        	id: 			"mlPaneDrive1",
+        	layoutFixed: 	true,
+        	width: 			"150px",
+        	columns : 		2,
+        	widths: 		["120px", "30px"]  
 	});
 	
 	
@@ -85,8 +87,8 @@ function buildPaneDrive(oController,oLayout){
 
 	 
 	 var omlRowPaneDriveTitle 		= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-	 var omlRowDriveDirection		= new sap.ui.commons.layout.MatrixLayoutRow({id: "omlRowDriveDirection", height: "50px"});
-	 var omlRowDriveStop			= new sap.ui.commons.layout.MatrixLayoutRow({height: "50px"});
+	 var omlRowDriveDirection		= new sap.ui.commons.layout.MatrixLayoutRow({height: "35px"});
+	 var omlRowDriveStop			= new sap.ui.commons.layout.MatrixLayoutRow({height: "35px"});
 	 var omlRowLeftEngineThrust		= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 	 var omlRowRightEngineThrust	= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 	 var omlRowGaugeThrust			= new sap.ui.commons.layout.MatrixLayoutRow({height: "120px"});
@@ -100,42 +102,48 @@ function buildPaneDrive(oController,oLayout){
 	    });
 	 
 	 var olblIndDriveDirection = new sap.ui.commons.Label({
-	    	id: 	"lblIndDriveDirection",
-	    	text: 	otextBundle.getText("forward"),
+	    	id: 		"lblIndDriveDirection",
+	    	text: 		otextBundle.getText("forward"),
 	    	textAlign: 	"Center",
-	    	width: 		"100px"
+	    	width: 		"145px"
 	    });
 	
 	 
 	 var olblIndStop = new sap.ui.commons.Label({
-	    	id: 	"lblIndStop",
-	    	text: 	otextBundle.getText("stop"),
+	    	id: 		"lblIndStop",
+	    	text: 		otextBundle.getText("stop"),
 	    	textAlign: 	"Center",
-	    	width: 		"100px"
+	    	width: 		"145px"
 	    });
 
 	 
 	 var olblStatusLeftEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblStatusLeftEngineThrust",
-	    	text: 	otextBundle.getText("leftenginethrust")
+	    	text: 	otextBundle.getText("leftenginethrust"),
+	    	width: 	"120px"
 	    });
 	
 	 
 	 var olblValLeftEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblValLeftEngineThrust",
-	    	text: 	"10"
+	    	text: 	"99",
+	    	textAlign: 	"Right",
+	    	width: 	"30px"	    	
 	    });
 	 
 	 
 	 var olblStatusRightEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblStatusRightEngineThrust",
-	    	text: 	otextBundle.getText("rightenginethrust")
+	    	text: 	otextBundle.getText("rightenginethrust"),
+	    	width: 	"120px"	    	
 	    });
 	 
 	 
 	 var olblValRightEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblValRightEngineThrust",
-	    	text: 	"20"
+	    	text: 	"-20",
+	    	textAlign: 	"Right",
+	    	width: 	"30px"	    		    	
 	    });
 
 	 
@@ -166,7 +174,8 @@ function buildPaneDrive(oController,oLayout){
 	 omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
 	 omlCell1.addContent(olblStatusLeftEngineThrust);
 	 omlCell2.addContent(olblValLeftEngineThrust);
-	 omlRowLeftEngineThrust.addCell(omlCell1, omlCell2);
+	 omlRowLeftEngineThrust.addCell(omlCell1);
+	 omlRowLeftEngineThrust.addCell(omlCell2);
 	 omlPaneDrive1.addRow(omlRowLeftEngineThrust);
 
 
@@ -174,7 +183,8 @@ function buildPaneDrive(oController,oLayout){
 	 omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
 	 omlCell1.addContent(olblStatusRightEngineThrust);
 	 omlCell2.addContent(olblValRightEngineThrust);
-	 omlRowRightEngineThrust.addCell(omlCell1, omlCell2);
+	 omlRowRightEngineThrust.addCell(omlCell1);
+	 omlRowRightEngineThrust.addCell(omlCell2);
 	 omlPaneDrive1.addRow(omlRowRightEngineThrust);
 	 
 	 
@@ -217,51 +227,52 @@ function buildCommsPanel(oController,oLayout){
 }
 
 
-function buildEarthTime(oController,oLayout){
+function buildPaneEarthTime(oController,oLayout){
 	
-	var omlEarthTime = new sap.ui.commons.layout.MatrixLayout({
-			id: 	"mlEarthTime",
-			width: "220px"
-		});
+	var omlPaneEarthTime = new sap.ui.commons.layout.MatrixLayout({
+			id: 	"mlPaneEarthTime",
+			width: "300px"
+	});
 	 
 	
-    var omlCellEarthTime = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCellEarthTimePanelTitle = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlRowEarthTimePanelTitle = new sap.ui.commons.layout.MatrixLayoutRow();
-	var omlRowEarthTime = new sap.ui.commons.layout.MatrixLayoutRow();
+    var omlCellPaneEarthTime 		= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellPaneEarthTimeTitle 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlRowPaneEarthTimeTitle 	= new sap.ui.commons.layout.MatrixLayoutRow();
+	var omlRowPaneEarthTime 		= new sap.ui.commons.layout.MatrixLayoutRow();
 
-	var olblEarthTimePanel = new sap.ui.commons.Label({
-    	id: 		"lblPanelEarthTime",
-    	text: 		otextBundle.getText("earthtime"),
-    	textAlign: 	"Center",
-    	width: 		"100%"
+	var olblPaneEarthTime = new sap.ui.commons.Label({
+    		id: 		"lblPaneEarthTime",
+    		text: 		otextBundle.getText("earthtime"),
+    		textAlign: 	"Center",
+    		width: 		"100%"
     });
 	
 	
 	var ohtmlIframeEarthTime = new sap.ui.core.HTML({  
-	    	content: '<iframe id="iframeEarthTime" width="200px" height="100px" frameBorder="0">Earth Time Offline!!!</iframe>',
+	    	content: '<iframe id="iframeEarthTime" width="300px" height="100px" frameBorder="0">Earth Time Offline!!!</iframe>',
 	    	preferDOM : true,   
 	    	afterRendering: function() {  
 	    		newSrc = 'earthtime.html';
 	    		$("#iframeEarthTime").load(function() {  
-	    			$("#iframeEarthTime").attr("width","200px").attr("height","100px");  
+	    			$("#iframeEarthTime").attr("width","300px").attr("height","100px");  
 	    		}).attr("src",newSrc);  
 	    	}
-	 });
+	});
 
-	 omlCellEarthTimePanelTitle.addContent(olblEarthTimePanel);
-	 omlRowEarthTimePanelTitle.addCell(omlCellEarthTimePanelTitle);
-	 omlEarthTime.addRow(omlRowEarthTimePanelTitle);
+	
+	omlCellPaneEarthTimeTitle.addContent(olblPaneEarthTime);
+	omlRowPaneEarthTimeTitle.addCell(omlCellPaneEarthTimeTitle);
+	omlPaneEarthTime.addRow(omlRowPaneEarthTimeTitle);
 	 
-	 omlCellEarthTime.addContent(ohtmlIframeEarthTime);
-	 omlRowEarthTime.addCell(omlCellEarthTime);
-	 omlEarthTime.addRow(omlRowEarthTime);
-	 oLayout.createRow(omlEarthTime);    
+	omlCellPaneEarthTime.addContent(ohtmlIframeEarthTime);
+	omlRowPaneEarthTime.addCell(omlCellPaneEarthTime);
+	omlPaneEarthTime.addRow(omlRowPaneEarthTime);
+	oLayout.createRow(omlPaneEarthTime);    
 	
 }
 
 
-function buildPowerPanel(oController,oLayout){
+function buildPanePower(oController,oLayout){
 
 	var omlPanePower = new sap.ui.commons.layout.MatrixLayout({
 	        id: 			"mlPanePower",
@@ -402,31 +413,30 @@ function buildMissionControlPanel(oController,oLayout){
 }
 
 
-function buildWeaponsPanel(oController,oLayout){
-	var omlWeaponsPanel = new sap.ui.commons.layout.MatrixLayout({
-			id:		"mlWeaponsPanel",
-			width:	"150px"
+function buildPaneWeapons(oController,oLayout){
+	var omlPaneWeapons = new sap.ui.commons.layout.MatrixLayout({
+			id:		"mlPaneWeapons",
+			width:	"160px"
 	});	
 	
 	 
-	var olblWeaponsPanel = new sap.ui.commons.Label({
-    	id: 		"lblPanelWeapons",
-    	text: 		otextBundle.getText("weapons"),
-    	textAlign: 	"Center",
-    	width: 		"100%"
+	var olblPaneWeapons = new sap.ui.commons.Label({
+    		id: 		"lblPanelWeapons",
+    		text: 		otextBundle.getText("weapons"),
+    		textAlign: 	"Center",
+    		width: 		"100%"
     });
 
 
-	 var omlCellWeaponsPanelTitle = new sap.ui.commons.layout.MatrixLayoutCell();
-	 var omlRowWeaponsPanelTitle = new sap.ui.commons.layout.MatrixLayoutRow();
+	 var omlCellPaneWeaponsTitle = new sap.ui.commons.layout.MatrixLayoutCell();
+	 var omlRowPaneWeaponsTitle = new sap.ui.commons.layout.MatrixLayoutRow();
 		
 	
-	 omlCellWeaponsPanelTitle.addContent(olblWeaponsPanel);
-	 omlRowWeaponsPanelTitle.addCell(omlCellWeaponsPanelTitle);
-	 omlWeaponsPanel.addRow(omlRowWeaponsPanelTitle);
-	
-	
-	 oLayout.createRow(omlWeaponsPanel);   
+	 omlCellPaneWeaponsTitle.addContent(olblPaneWeapons);
+	 omlRowPaneWeaponsTitle.addCell(omlCellPaneWeaponsTitle);
+	 omlPaneWeapons.addRow(omlRowPaneWeaponsTitle);
+		
+	 oLayout.createRow(omlPaneWeapons);   
 
 }
 

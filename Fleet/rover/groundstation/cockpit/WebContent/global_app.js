@@ -871,7 +871,7 @@ function newGauge() {
 	    valueFontColor: "#ffffff",
 	    min: 0,
 	    max: 100,
-	    gaugeWidthScale: 0.6,
+	    gaugeWidthScale: 0.7,
 	    customSectors: [{
       color : "#00ff00",
 	      lo : 0,
