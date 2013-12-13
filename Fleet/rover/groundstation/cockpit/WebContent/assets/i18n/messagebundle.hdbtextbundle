@@ -28,5 +28,6 @@ rightenginethrust=RIGHT ENGINE THRUST
 earthtime=EARTH TIME
 voltage=VOLTAGE
 consumedmah=CONSUMED MAH
+battremaining=BATTERY REMAINING
 error=An error occurred, please contact System Administrator
 generatedPG={0} of {1} orders generated

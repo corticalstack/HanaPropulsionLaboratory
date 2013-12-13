@@ -15,7 +15,7 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildWeaponsPanel(oController,oLayout);
     	 buildPowerPanel(oController,oLayout);
     	 buildEarthTime(oController,oLayout);
-    	 buildCommsPanel(oController,oLayout);
+  //  	 buildCommsPanel(oController,oLayout);
     	 
     	 buildNavigationPanel(oController,oLayout);
     	 buildMissionControlPanel(oController,oLayout);
@@ -58,19 +58,21 @@ function buildPanePilotCam(oController,oLayout){
 
 
 function buildPaneDrive(oController,oLayout){
+	
 	var omlPaneDrive = new sap.ui.commons.layout.MatrixLayout({
-			id:		"mlPaneDrive",
-			width: "150px",		
+			id:			"mlPaneDrive",
+			width: 		"150px",		
 			
 	});	
 	
 	
-	omlPaneDrive1 = new sap.ui.commons.layout.MatrixLayout({
-        id: 			"mlPaneDrive1",
-        layoutFixed: 	true,
-        width: 			"150px",
-        columns : 		2,
-        widths: 		["75px", "75px"]  });
+	var omlPaneDrive1 = new sap.ui.commons.layout.MatrixLayout({
+        	id: 		"mlPaneDrive1",
+        	layoutFixed: true,
+        	width: 		"150px",
+        	columns : 	2,
+        	widths: 	["75px", "75px"]  
+	});
 	
 	
 
@@ -219,7 +221,7 @@ function buildEarthTime(oController,oLayout){
 	
 	var omlEarthTime = new sap.ui.commons.layout.MatrixLayout({
 			id: 	"mlEarthTime",
-			width: "160px"
+			width: "220px"
 		});
 	 
 	
@@ -237,12 +239,12 @@ function buildEarthTime(oController,oLayout){
 	
 	
 	var ohtmlIframeEarthTime = new sap.ui.core.HTML({  
-	    	content: '<iframe id="iframeEarthTime" width="140px" height="58px" frameBorder="0">Earth Time Offline!!!</iframe>',
+	    	content: '<iframe id="iframeEarthTime" width="200px" height="100px" frameBorder="0">Earth Time Offline!!!</iframe>',
 	    	preferDOM : true,   
 	    	afterRendering: function() {  
 	    		newSrc = 'earthtime.html';
 	    		$("#iframeEarthTime").load(function() {  
-	    			$("#iframeEarthTime").attr("width","140px").attr("height","58px");  
+	    			$("#iframeEarthTime").attr("width","200px").attr("height","100px");  
 	    		}).attr("src",newSrc);  
 	    	}
 	 });
@@ -261,89 +263,70 @@ function buildEarthTime(oController,oLayout){
 
 function buildPowerPanel(oController,oLayout){
 
-	omlPowerPanel = new sap.ui.commons.layout.MatrixLayout({
-	        id: 			"mlPowerPanel",
+	var omlPanePower = new sap.ui.commons.layout.MatrixLayout({
+	        id: 			"mlPanePower",
 	        layoutFixed: 	true,
-	        width: 			"570px",
-	        columns : 		3,
-	        widths: 		["160px", "290px", "120px"]  });
+	        width: 			"550px",
+	        columns : 		4,
+	        widths: 		["100px", "150px", "150px", "150px"]  });
 		
-    
-      
-		oCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-		oCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
-		oCell3 = new sap.ui.commons.layout.MatrixLayoutCell();
-		oCell4 = new sap.ui.commons.layout.MatrixLayoutCell();
+
+	var omlPanePower1 = new sap.ui.commons.layout.MatrixLayout({
+        id: 			"mlPanePower1",
+        layoutFixed: 	true,
+        width: 			"100px",
+	});
+
+	var omlCell1 				= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell2 				= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell3 				= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell4 				= new sap.ui.commons.layout.MatrixLayoutCell();	
+	var omlCellPanePowerTitle 	= new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 4});
 	
 	
-		
-		 
-		 var ohtmlGaugeBattRemaining = new sap.ui.core.HTML({  
-	         content : "<div id='gaugeBattRemaining'></div>"
-	     });
-		 
-		 
-		 var olblVoltage = new sap.ui.commons.Label({
-	      	 	id: "lblVoltage",
-	      	 	text: otextBundle.getText("voltage")
-		     });
-		  
-		 var olblVoltageVal = new sap.ui.commons.Label({
-	   	 	id: "lblVoltageVal",
-	   	 	text: "8.13"
-		     });
-		 
-
-		 var olblConsumedMah = new sap.ui.commons.Label({
-	   	 	id: "lblConsumedMah",
-	   	 	text: otextBundle.getText("consumedmah")
-		     });
-		  
-		 var olblConsumedMahVal = new sap.ui.commons.Label({
-		 	id: "lblConsumedMahVal",
-		 	text: "1000"
-		     });
-		 
-		oCell1.addContent( ohtmlGaugeBattRemaining);		
-		
-		
-		omlPowerPanel1 = new sap.ui.commons.layout.MatrixLayout({
-	        id: 			"mlPowerPanel1",
-	        layoutFixed: 	true,
-	        width: 			"290px",
-	        columns : 		2,
-	        widths: 		["145px", "145px"]  });
-		
-		omlPowerPanel1.createRow(olblVoltage,  olblVoltageVal);
-		omlPowerPanel1.createRow( olblConsumedMah,  olblConsumedMahVal);	 
-
-		
-		omlPowerPanel2 = new sap.ui.commons.layout.MatrixLayout({
-	        id: 			"mlPowerPanel2",
-	        layoutFixed: 	true,
-	        width: 			"120px",
+	var omlRowPanePowerTitle 	= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
+	
+	var olblPanePower = new sap.ui.commons.Label({
+			id: 		"lblPanePower",
+		    text: 		otextBundle.getText("power"),	
+		    textAlign: 	"Center",
+		    width: 		"100%"
 		});
-
-		
-		  
-		 var ohtmlGaugeCurrent = new sap.ui.core.HTML({  
-	         content : "<div id='gaugeCurrent'></div>"
-	     });
 	
-		 var ohtmlGaugeAmps = new sap.ui.core.HTML({  
-		      content : "<div id='gaugeAmps'></div>"
-		  });
-		 
-		omlPowerPanel2.createRow(ohtmlGaugeCurrent);
-		omlPowerPanel2.createRow(ohtmlGaugeAmps);
-		
-		omlPowerPanel.createRow(oCell1,  omlPowerPanel1,  omlPowerPanel2);
-		
+	 
+	var ohtmlGaugeBattRemaining = new sap.ui.core.HTML({  
+	    	content: "<div id='gaugeBattRemaining'></div>"
+	});
+
+	var ohtmlGaugeVoltage = new sap.ui.core.HTML({  
+    		content: "<div id='gaugeVoltage'></div>"
+	});
+
+	var ohtmlGaugeConsumedMah = new sap.ui.core.HTML({  
+    		content: "<div id='gaugeConsumedMah'></div>"
+	});
+
+
+	var ohtmlGaugeCurrent = new sap.ui.core.HTML({  
+	        content: "<div id='gaugeCurrent'></div>"
+	});
+
+	var ohtmlGaugeAmps = new sap.ui.core.HTML({  
+	    	content : "<div id='gaugeAmps'></div>"
+	});
+
+	 
+	omlCellPanePowerTitle.addContent(olblPanePower);
+	omlRowPanePowerTitle.addCell(omlCellPanePowerTitle);
+	omlPanePower.addRow(omlRowPanePowerTitle);
+	 
+
+	omlPanePower1.createRow(ohtmlGaugeCurrent);
+	omlPanePower1.createRow(ohtmlGaugeAmps);	
 
 		
-	 
-	 
-	 oLayout.createRow(omlPowerPanel);   
+  	omlPanePower.createRow(omlPanePower1, ohtmlGaugeConsumedMah, ohtmlGaugeVoltage, ohtmlGaugeBattRemaining );
+	oLayout.createRow(omlPanePower);   
 
 }
 

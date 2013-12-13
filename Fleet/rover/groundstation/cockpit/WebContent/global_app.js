@@ -731,6 +731,7 @@ function setViewContent(oControlEvent) {
 		case "lnkLaunch" + oControlEvent.getSource().getId().slice("lnkLaunch".length):
 			currentViewContent = cockpitView;
 			oAbsoluteLayoutHome.addContent(currentViewContent);
+			$.fn.hideBackgroundImage();
 			googleMapInitialise();
 			newGauge();
 			
@@ -768,17 +769,19 @@ function newGauge() {
 	
 	var gaugeBattRemaining = new JustGage({
 		id: "gaugeBattRemaining",
-		title: "BATTERY REMAINING",
+		donut: true,
+		title: otextBundle.getText("battremaining"),	
 		titleFontColor: "#ffffff",
 		titleMinFontSize: 14,	
 	    label: "%",
-		labelMinFontSize: 10,
-	    value : 40,
-	    valueMinFontSize: 16,
+		labelMinFontSize: 16,
+	    value : 19,
+	    valueMinFontSize: 14,
 	    valueFontColor: "#ffffff",
 	    min: 0,
 	    max: 100,
-	    gaugeWidthScale: 0.6,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
 	    customSectors: [{
 	      color : "#ff0000",
 	      lo : 0,
@@ -795,7 +798,66 @@ function newGauge() {
 	    counter: true
 	  });
 	  
+	var gaugeVoltage = new JustGage({
+		id: "gaugeVoltage",
+		title: otextBundle.getText("voltage"),	
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "V",
+		labelMinFontSize: 16,
+	    value : 8,
+	    valueMinFontSize: 14,
+	    valueFontColor: "#ffffff",
+	    min: 7,
+	    max: 9,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
 	
+	var gaugeConsumedMah = new JustGage({
+		id: "gaugeConsumedMah",
+		donut: true,
+		title: otextBundle.getText("consumedmah"),	
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "Mah",
+		labelMinFontSize: 16,
+	    value : 5000,
+	    valueMinFontSize: 14,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 10000,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
 	
 	var gaugeThrust = new JustGage({
 		id: "gaugeThrust",
@@ -832,7 +894,7 @@ function newGauge() {
 		title: "CURRENT",
 		titleFontColor: "#ffffff",
 		titleMinFontSize: 12,	
-	    label: "%",
+	    label: "~",
 		labelMinFontSize: 12,
 	    value : 40,
 	    valueMinFontSize: 12,
@@ -861,7 +923,7 @@ function newGauge() {
 		title: "AMPS",
 		titleFontColor: "#ffffff",
 		titleMinFontSize: 10,	
-	    label: "%",
+	    label: "A",
 		labelMinFontSize: 10,
 	    value : 40,
 	    valueMinFontSize: 10,
@@ -964,19 +1026,6 @@ function onErrorCall(jqXHR, textStatus, errorThrown){
 	pilotList.push(pilot);
 
 }
-
-
-$(document).bind("keydown", function(e) {
-	   
-	$("#lblKeyToStart").hide();
-	$("#mlMainMenu").show();	
-	$("#lnkSoloCampaign").show();
-	$("#lnkMultiplayer").show();
-	$("#lnkFreeride").show();
-	$("#lnkSettings").show();
-	$("#lnkQuit").show();
-	
-});
 
 
 //google.maps.event.addDomListener(window, 'load', googleMapInitialise);

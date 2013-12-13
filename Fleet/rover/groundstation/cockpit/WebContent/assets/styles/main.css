@@ -336,11 +336,54 @@ img.bg {
    --------------------------- */   
 #mlPanePilotCam {
 	position: fixed;
-	top: 131px;
+	top: 165px;
   	left: 150px;
 	background-color: transparent;	
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgb(6, 15, 40);
 }
 
+
+#mlPanePower {
+	position: fixed;
+	top: 	0px;
+  	left:	0px;
+  	width:	552px;
+  	height:	162px;
+	background-color: transparent;	
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	border-top: 2px solid rgb(6, 15, 40);
+	border-left: 2px solid rgb(6, 15, 40);
+	border-bottom: 2px solid rgb(6, 15, 40);	
+}
+
+
+#mlPaneDrive {
+	position: fixed;
+	top: 	165px;
+  	left:	0px;
+  	width:	200px;
+  	height:	580px;
+	background-color: transparent;	
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	border-top: 2px solid rgb(6, 15, 40);
+	border-left: 2px solid rgb(6, 15, 40);
+	border-bottom: 2px solid rgb(6, 15, 40);
+}
+
+
+#mlEarthTime {	
+	position: fixed;
+	top: 0px;
+  	left:	552px;
+  	width:	140px;
+  	height:	162px;
+	background-color: transparent;	
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	border-top: 2px solid rgb(6, 15, 40);
+	border-bottom: 2px solid rgb(6, 15, 40);
+}
 
 #mlNavigationPanel {
 	position: fixed;
@@ -349,11 +392,15 @@ img.bg {
   	width:	490px;
   	height:	580px;
 	background-color: transparent;	
-	background-image: -webkit-linear-gradient(top, rgba(6, 15, 40, 1) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
 	border-style: solid;
-	border-color: blue;
+	border-color: rgb(6, 15, 40);
 }
+
+
+
+
 
 #mlMissionControlPanel {
 	position: fixed;
@@ -362,25 +409,14 @@ img.bg {
   	width:	490px;
   	height:	580px;
 	background-color: transparent;	
-	background-image: -webkit-linear-gradient(top, rgba(6, 15, 40, 1) 0%, rgba(6, 15, 40, 1) 50%);
+background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
 	border-style: solid;
-	border-color: blue;
+	border-color: rgb(6, 15, 40);
 }
 
 
-#mlPaneDrive {
-	position: fixed;
-	top: 	0px;
-  	left:	0px;
-  	width:	150px;
-  	height:	580px;
-	background-color: transparent;	
-	background-image: -webkit-linear-gradient(top, rgba(6, 15, 40, 1) 0%, rgba(6, 15, 40, 1) 50%);
-	border-width: 2px;
-	border-style: solid;
-	border-color: blue;
-}
+
 
 
 #mlWeaponsPanel {
@@ -390,10 +426,10 @@ img.bg {
   	width:	150px;
   	height:	580px;
 	background-color: transparent;	
-	background-image: -webkit-linear-gradient(top, rgba(6, 15, 40, 1) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
 	border-style: solid;
-	border-color: blue;
+	border-color: rgb(6, 15, 40);
 }
 
 
@@ -404,21 +440,21 @@ img.bg {
   	width:	570px;
   	height:	130px;
 	background-color: transparent;	
-	background-image: -webkit-linear-gradient(top, rgba(6, 15, 40, 1) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
 	border-style: solid;
-	border-color: blue;
+	border-color: rgb(6, 15, 40);
 }
 
 
 
 
 [id^="lblPane"] {
-	color: rgb(255,255,255);
+	color: rgb(8,100,191);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 1.2em;
+	font-size: 1.3em;
 	text-align: center; 
 	padding-top: 2px;
 }
@@ -490,42 +526,36 @@ text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
 }
 
 
-#mlEarthTime {	
-	position: fixed;
-	top: 0px;
-  	left:	720px;
-  	width:	140px;
-  	height:	130px;
-	background-color: transparent;	
-	background-image: -webkit-linear-gradient(top, rgba(6, 15, 40, 1) 0%, rgba(6, 15, 40, 1) 50%);
-	border-width: 2px;
-	border-style: solid;
-	border-color: blue;
-}
 
-#mlPowerPanel {
-	position: fixed;
-	top: 	0px;
-  	left:	150px;
-  	width:	570px;
-  	height:	130px;
-	background-color: transparent;	
-	background-image: -webkit-linear-gradient(top, rgba(6, 15, 40, 1) 0%, rgba(6, 15, 40, 1) 50%);
-	border-width: 2px;
-	border-style: solid;
-	border-color: blue;
-}
 
-#mlPowerPanel1 {
-	vertical-align: top;
-}	
+
+
+
 #mlcockpitGauge {
 	position: fixed;
 	top: 400px;
   	left:1500px;
 }
 
-#gaugeBattRemaining, #gaugeThrust, #cockpitGauge1 {
+
+#gaugeBattRemaining {
+        width:140px; height:125px;
+        display: inline-block;
+}
+
+#gaugeVoltage {	
+        width:150px; height:135px;
+		margin-top: -15px;
+        display: inline-block;
+}
+
+#gaugeConsumedMah {
+        width:140px; height:125px;
+        display: inline-block;
+}
+
+
+#gaugeThrust, #cockpitGauge1 {
         width:140px; height:100px;
         display: inline-block;
 }
@@ -533,6 +563,7 @@ text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
 #gaugeCurrent, #gaugeAmps  {
         width:95px; height:60px;
         display: inline-block;
+
 }
 
 #mapCanvas {
