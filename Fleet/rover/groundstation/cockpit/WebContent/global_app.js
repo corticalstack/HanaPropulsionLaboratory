@@ -947,7 +947,69 @@ function newGauge() {
 	    counter: true
 	  });
 	
-	 alert('Created Gauges');
+	var gaugeShield = new JustGage({
+		id: "gaugeShield",
+		donut: true,
+		title: otextBundle.getText("shield"),	
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "%",
+		labelMinFontSize: 16,
+	    value : 100,
+	    valueMinFontSize: 14,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 100,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+
+	
+	var gaugeCoreTemp = new JustGage({
+		id: "gaugeCoreTemp",
+		title: otextBundle.getText("coretemp"),	
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "Deg",
+		labelMinFontSize: 16,
+	    value : 20,
+	    valueMinFontSize: 14,
+	    valueFontColor: "#ffffff",
+	    min: 10,
+	    max: 90,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+
+	
 	/*
 	var gaugeProximityCam = new JustGage({
 		id: "gaugeProximityCam",

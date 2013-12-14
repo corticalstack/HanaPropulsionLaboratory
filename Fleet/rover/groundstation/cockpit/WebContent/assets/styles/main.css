@@ -386,7 +386,7 @@ img.bg {
 	border-bottom: 2px solid rgb(6, 15, 40);
 }
 
-#mlPaneComms {
+#mlPanePrimarySystems {
 	position: fixed;
 	top: 	0px;
   	left:	890px;
@@ -580,6 +580,20 @@ img.bg {
         display: inline-block;
 
 }
+
+
+#gaugeShield {
+        width:140px; height:125px;
+        display: inline-block;
+}
+
+
+#gaugeCoreTemp {	
+        width:150px; height:135px;
+		margin-top: -15px;
+        display: inline-block;
+}
+
 
 #mapCanvas {
 	position: fixed;
