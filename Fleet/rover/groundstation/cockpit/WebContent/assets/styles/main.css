@@ -378,7 +378,7 @@ img.bg {
 	position: fixed;
 	top: 0px;
   	left:	551px;
-  	width:	300px;
+  	width:	340px;
   	height:	162px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -386,11 +386,24 @@ img.bg {
 	border-bottom: 2px solid rgb(6, 15, 40);
 }
 
-#mlNavigationPanel {
+#mlPaneComms {
+	position: fixed;
+	top: 	0px;
+  	left:	890px;
+  	width:	552px;
+  	height:	162px;
+	background-color: transparent;	
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	border-top: 2px solid rgb(6, 15, 40);
+	border-right: 2px solid rgb(6, 15, 40);
+	border-bottom: 2px solid rgb(6, 15, 40);
+}
+
+#mlPaneNavigation {
 	position: fixed;
 	top: 0px;
-  	left:1430px;
-  	width:	490px;
+  	left:1450px;
+  	width:	470px;
   	height:	580px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -403,7 +416,7 @@ img.bg {
 
 
 
-#mlMissionControlPanel {
+#mlPaneMissionControl {
 	position: fixed;
 	top: 580px;
   	left:1430px;
@@ -432,18 +445,6 @@ img.bg {
 }
 
 
-#mlCommsPanel {
-	position: fixed;
-	top: 	0px;
-  	left:	860px;
-  	width:	570px;
-  	height:	130px;
-	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
-	border-width: 2px;
-	border-style: solid;
-	border-color: rgb(6, 15, 40);
-}
 
 
 
@@ -544,6 +545,25 @@ img.bg {
         display: inline-block;
 }
 
+#gaugeProximityCam {	
+        width:150px; height:135px;
+		margin-top: -15px;
+        display: inline-block;
+}
+
+#gaugeProximityFront {	
+        width:150px; height:135px;
+		margin-top: -15px;
+        display: inline-block;
+}
+
+#gaugeProximityRear {	
+        width:150px; height:135px;
+		margin-top: -15px;
+        display: inline-block;
+}
+
+
 #gaugeConsumedMah {
         width:140px; height:125px;
         display: inline-block;
@@ -594,7 +614,7 @@ img.bg {
 #mlBearingIndicators {
 	position: fixed;
 	top: 175px;
-  	left:550px;
+  	left:480px;
 }
 
 #compassBearing {

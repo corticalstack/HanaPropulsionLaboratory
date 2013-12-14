@@ -15,10 +15,10 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPaneWeapons(oController,oLayout);
     	 buildPanePower(oController,oLayout);
     	 buildPaneEarthTime(oController,oLayout);
-  //  	 buildCommsPanel(oController,oLayout);
+    	 buildPaneComms(oController,oLayout);
     	 
-    	 buildNavigationPanel(oController,oLayout);
-    	 buildMissionControlPanel(oController,oLayout);
+//    	 buildPaneNavigation(oController,oLayout);
+    	 buildPaneMissionControl(oController,oLayout);
 //    	 buildGauge(oController,oLayout);
 //    	 buildPrimarySystemsStatusPanel(oController,oLayout);
 //    	 buildSecondarySystemsStatusPanel(oController,oLayout);
@@ -200,29 +200,28 @@ function buildPaneDrive(oController,oLayout){
 }
 
 
-function buildCommsPanel(oController,oLayout){
-	var omlCommsPanel = new sap.ui.commons.layout.MatrixLayout({
-			id:		"mlCommsPanel",
-			width: "570px"
+function buildPaneComms(oController,oLayout){
+
+	var omlPaneComms = new sap.ui.commons.layout.MatrixLayout({
+			id:		"mlPaneComms",
+			width:	"552px"
 	});	
 	
+	var omlCellPaneCommsTitle 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlRowPaneComms 		= new sap.ui.commons.layout.MatrixLayoutRow();
 	
-	var olblCommsPanel = new sap.ui.commons.Label({
-    	id: 		"lblPanelComms",
-    	text: 		otextBundle.getText("comms"),
-    	textAlign: 	"Center",
-    	width: 		"100%"
+	var olblPaneComms = new sap.ui.commons.Label({
+    		id: 		"lblPaneComms",
+    		text: 		otextBundle.getText("comms"),
+    		textAlign: 	"Center",
+    		width: 		"100%"
     });
 
 
-	 var omlCellCommsPanelTitle = new sap.ui.commons.layout.MatrixLayoutCell();
-	 var omlRowCommsPanel = new sap.ui.commons.layout.MatrixLayoutRow();
-		
-	
-	 omlCellCommsPanelTitle.addContent(olblCommsPanel);
-	 omlRowCommsPanel.addCell(omlCellCommsPanelTitle);
-	 omlCommsPanel.addRow(omlRowCommsPanel);
-	 oLayout.createRow(omlCommsPanel);   
+	 omlCellPaneCommsTitle.addContent(olblPaneComms);
+	 omlRowPaneComms.addCell(omlCellPaneCommsTitle);
+	 omlPaneComms.addRow(omlRowPaneComms);
+	 oLayout.createRow(omlPaneComms);   
 
 }
 
@@ -231,7 +230,7 @@ function buildPaneEarthTime(oController,oLayout){
 	
 	var omlPaneEarthTime = new sap.ui.commons.layout.MatrixLayout({
 			id: 	"mlPaneEarthTime",
-			width: "300px"
+			width: "340px"
 	});
 	 
 	
@@ -249,12 +248,12 @@ function buildPaneEarthTime(oController,oLayout){
 	
 	
 	var ohtmlIframeEarthTime = new sap.ui.core.HTML({  
-	    	content: '<iframe id="iframeEarthTime" width="300px" height="100px" frameBorder="0">Earth Time Offline!!!</iframe>',
+	    	content: '<iframe id="iframeEarthTime" width="340px" height="100px" frameBorder="0">Earth Time Offline!!!</iframe>',
 	    	preferDOM : true,   
 	    	afterRendering: function() {  
 	    		newSrc = 'earthtime.html';
 	    		$("#iframeEarthTime").load(function() {  
-	    			$("#iframeEarthTime").attr("width","300px").attr("height","100px");  
+	    			$("#iframeEarthTime").attr("width","340px").attr("height","100px");  
 	    		}).attr("src",newSrc);  
 	    	}
 	});
@@ -344,47 +343,12 @@ function buildPanePower(oController,oLayout){
 
 
 
-function buildNavigationPanel(oController,oLayout){
-	var omlNavigationPanel = new sap.ui.commons.layout.MatrixLayout({
-			id:		"mlNavigationPanel",
-			width:	"490px"
-	});	
-	
-	 
-	var olblNavigationPanel = new sap.ui.commons.Label({
-    	id: 		"lblPanelNavigation",
-    	text: 		otextBundle.getText("navigation"),
-    	textAlign: 	"Center",
-    	width: 		"100%"
-    });
+function buildPaneNavigation(oController,oLayout){
 
-
-	 var omlCellNavigationPanelTitle = new sap.ui.commons.layout.MatrixLayoutCell();
-	 var omlRowNavigationPanelTitle = new sap.ui.commons.layout.MatrixLayoutRow();
-		
-	
-	 omlCellNavigationPanelTitle.addContent(olblNavigationPanel);
-	 omlRowNavigationPanelTitle.addCell(omlCellNavigationPanelTitle);
-	 omlNavigationPanel.addRow(omlRowNavigationPanelTitle);
-	
-	
-    var omlCellMap = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlRowMap = new sap.ui.commons.layout.MatrixLayoutRow();
-		
-	var ohtmlMap = new sap.ui.core.HTML({  
-	         content : "<div id='cockpitMap' style='width: 470px; height: 470px;'></div>"  
-	     });
-	
-		
-	 
-	 omlCellMap.addContent(ohtmlMap);
-	 omlRowMap.addCell(omlCellMap);
-	 omlNavigationPanel.addRow(omlRowMap);
-	 oLayout.createRow(omlNavigationPanel);   
 
 }
 
-function buildMissionControlPanel(oController,oLayout){
+function buildPaneMissionControl(oController,oLayout){
 	var omlMissionControlPanel = new sap.ui.commons.layout.MatrixLayout({
 			id:		"mlMissionControlPanel",
 			width:	"490px"

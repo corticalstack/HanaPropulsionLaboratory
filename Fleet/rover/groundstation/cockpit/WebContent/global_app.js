@@ -732,7 +732,7 @@ function setViewContent(oControlEvent) {
 			currentViewContent = cockpitView;
 			oAbsoluteLayoutHome.addContent(currentViewContent);
 			$.fn.hideBackgroundImage();
-			googleMapInitialise();
+			//googleMapInitialise();
 			newGauge();
 			
 			break;
@@ -946,6 +946,102 @@ function newGauge() {
 	    }],
 	    counter: true
 	  });
+	
+	 alert('Created Gauges');
+	/*
+	var gaugeProximityCam = new JustGage({
+		id: "gaugeProximityCam",
+		title: otextBundle.getText("proximitycam"),	
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "CM",
+		labelMinFontSize: 16,
+	    value : 8,
+	    valueMinFontSize: 14,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 24,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+
+
+	var gaugeProximityFront = new JustGage({
+		id: "gaugeProximityFront",
+		title: otextBundle.getText("proximityfront"),	
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "CM",
+		labelMinFontSize: 16,
+	    value : 8,
+	    valueMinFontSize: 14,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 24,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+	
+
+	var gaugeProximityRear = new JustGage({
+		id: "gaugeProximityRear",
+		title: otextBundle.getText("proximityrear"),	
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+	    label: "CM",
+		labelMinFontSize: 16,
+	    value : 8,
+	    valueMinFontSize: 14,
+	    valueFontColor: "#ffffff",
+	    min: 0,
+	    max: 24,
+	    showMinMax : false,
+	    gaugeWidthScale: 0.7,
+	    customSectors: [{
+	      color : "#ff0000",
+	      lo : 0,
+	      hi : 20
+	    },{
+	      color : "#ffff00",
+	      lo : 20,
+	      hi : 50
+	    }, {
+	      color : "#00ff00",
+	      lo : 50,
+	      hi : 100
+	    }],
+	    counter: true
+	  });
+
+	*/
 
 }
 
