@@ -405,6 +405,7 @@ img.bg {
   	left:1450px;
   	width:	470px;
   	height:	580px;
+  	vertical-align: top;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
@@ -418,10 +419,10 @@ img.bg {
 
 #mlPaneMissionControl {
 	position: fixed;
-	top: 580px;
-  	left:1430px;
-  	width:	490px;
-  	height:	580px;
+	top: 586px;
+  	left:1450px;
+  	width:	470px;
+  	height:	500px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;

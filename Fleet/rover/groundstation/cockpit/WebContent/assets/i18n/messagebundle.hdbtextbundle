@@ -35,5 +35,14 @@ commsfailsafe=COMMS FAILSAFE
 thrustfailsafe=THRUST FAILSAFE
 gpslock=GPS LOCK
 coretemp=CORE TEMP
+horiaccest=HORIZONTAL ACCURACY
+vertaccest=VERTICAL ACCURACY
+speedcms=SPEED CM/S
+altitude=ALTITUDE
+lattitude=LATTITUDE
+longitude=LONGITUDE
+satellites=SATELLITES
+fixtype=FIX TYPE
+
 error=An error occurred, please contact System Administrator
 generatedPG={0} of {1} orders generated

@@ -732,7 +732,7 @@ function setViewContent(oControlEvent) {
 			currentViewContent = cockpitView;
 			oAbsoluteLayoutHome.addContent(currentViewContent);
 			$.fn.hideBackgroundImage();
-			//googleMapInitialise();
+			googleMapInitialise();
 			newGauge();
 			
 			break;
