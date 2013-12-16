@@ -337,7 +337,7 @@ img.bg {
 #mlPanePilotCam {
 	position: fixed;
 	top: 157px;
-  	left: 165px;
+  	left: 129px;
 	background-color: transparent;	
 	border-width: 2px;
 	border-style: solid;
@@ -364,8 +364,8 @@ img.bg {
 	position: fixed;
 	top: 	157px;
   	left:	0px;
-  	width:	160px;
-  	height:	300px;
+  	width:	125px;
+  	height:	255px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -379,7 +379,7 @@ img.bg {
 	position: fixed;
 	top: 0px;
   	left:	447px;
-  	width:	575px;
+  	width:	566px;
   	height:	152px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -389,11 +389,12 @@ img.bg {
 	border-right: 2px solid rgb(6, 15, 40);
 }
 
+
 #mlPanePrimarySystems {
 	position: fixed;
 	top: 	0px;
-  	left:	1027px;
-  	width:	417px;
+  	left:	1018px;
+  	width:	390px;
   	height:	152px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -402,11 +403,12 @@ img.bg {
 	border-bottom: 2px solid rgb(6, 15, 40);
 }
 
+
 #mlPaneNavigation {
 	position: fixed;
 	top: 0px;
-  	left:1450px;
-  	width:	470px;
+  	left: 1413px;
+  	width: 507px;
   	height:	580px;
   	vertical-align: top;
 	background-color: transparent;	
@@ -417,14 +419,11 @@ img.bg {
 }
 
 
-
-
-
 #mlPaneMissionControl {
 	position: fixed;
 	top: 586px;
-  	left:1450px;
-  	width:	470px;
+  	left: 1413px;
+  	width: 507px;
   	height:	500px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -436,10 +435,10 @@ img.bg {
 
 #mlPaneWeapons {
 	position: fixed;
-	top: 	467px;
+	top: 	417px;
   	left:	0px;
-  	width:	160px;
-  	height:	580px;
+  	width:	125x;
+  	height:	300px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -472,7 +471,7 @@ img.bg {
 
 
 #lblPanePrimarySystems {
-	margin-left: -15px;
+	
 }
 
 
@@ -489,7 +488,7 @@ img.bg {
 	border: 1px solid rgb(0, 20, 78);
 	border-radius: 0px;
 	box-shadow: inset 0px 0px 0px 1px rgba(6, 15, 40, 0.4), 0 1px 3px #333333;
-	padding: 7px 5px 7px 5px;
+	padding: 4px 5px 2px 5px;
 	text-decoration: none;
 	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8);
 	
@@ -538,7 +537,9 @@ img.bg {
 }
 
 
-
+#imgWeapon {
+	margin-left: 10px;
+}
 
 
 #gaugeCurrent {
@@ -598,37 +599,42 @@ img.bg {
 
 
 #gaugeProximityCam {	
-        width:150px; height:135px;
-		margin-top: -15px;
-        display: inline-block;
+	width: 150px; 
+	height: 135px;
+	margin-top: -15px;
+	display: inline-block;
 }
+
 
 #gaugeProximityFront {	
-        width:150px; height:135px;
-		margin-top: -15px;
-        display: inline-block;
+	width:150px; 
+	height:135px;
+	margin-top: -15px;
+	display: inline-block;
 }
+
 
 #gaugeProximityRear {	
-        width:150px; height:135px;
-		margin-top: -15px;
-        display: inline-block;
+	width:150px; 
+	height:135px;
+	margin-top: -15px;
+	display: inline-block;
 }
 
 
-
-
-#gaugeThrust, #cockpitGauge1 {
-        width:150px; height:135px;
-        display: inline-block;
+#gaugeThrust {
+	width: 120px; 
+    height: 120px;
+    margin-top: -30px;
+    display: inline-block;
 }
 
 
-
-
-
-
-
+#gaugeAmmo {
+	width: 120px; 
+    height: 120px;
+    display: inline-block;
+}
 
 
 #mapCanvas {

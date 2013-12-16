@@ -843,7 +843,7 @@ function newGauge() {
 		label: "VOLTAGE",
 		labelMinFontSize: 16,
 		value: 8,
-		valueMinFontSize: 14,
+		valueMinFontSize: 22,
 		valueFontColor: "#ffffff",
 		min: 7,
 		max: 9,
@@ -900,34 +900,65 @@ function newGauge() {
 	
 	
 	var gaugeThrust = new JustGage({
-		id: "gaugeThrust",
+			id: "gaugeThrust",
+			title: "",
+			titleFontColor: "#ffffff",
+			titleMinFontSize: 14,	
+			label: "THRUST %",
+			labelMinFontSize: 16,
+			value: 40,
+			valueMinFontSize: 22,
+			valueFontColor: "#ffffff",
+			min: 0,
+			max: 100,
+			gaugeWidthScale: 0.5,
+			customSectors: [{
+								color : "#00ff00",
+								lo: 0,
+								hi: 60
+							},{
+								color: "#ff8000",
+								lo: 60,
+								hi: 80
+							}, {
+								color: "#ff0000",
+								lo: 80,
+								hi: 100
+							}],
+			counter: true
+	});
+
+	
+	var gaugeAmmo = new JustGage({
+		id: "gaugeAmmo",
+		donut: true,
 		title: "",
 		titleFontColor: "#ffffff",
 		titleMinFontSize: 14,	
-	    label: "THRUST %",
-		labelMinFontSize: 10,
-	    value : 40,
-	    valueMinFontSize: 16,
-	    valueFontColor: "#ffffff",
-	    min: 0,
-	    max: 100,
-	    gaugeWidthScale: 0.5,
-	    customSectors: [{
-      color : "#00ff00",
-	      lo : 0,
-	      hi : 60
-	    },{
-	      color : "#ff8000",
-	      lo : 60,
-	      hi : 80
-	    }, {
-	      color : "#ff0000",
-	      lo : 80,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
-	
+		label: "AMMO %",
+		labelMinFontSize: 16,
+		value: 40,
+		valueMinFontSize: 22,
+		valueFontColor: "#ffffff",
+		min: 0,
+		max: 100,
+		gaugeWidthScale: 0.5,
+		customSectors: [{
+							color : "#00ff00",
+							lo: 0,
+							hi: 60
+						},{
+							color: "#ff8000",
+							lo: 60,
+							hi: 80
+						}, {
+							color: "#ff0000",
+							lo: 80,
+							hi: 100
+						}],
+		counter: true
+	});
+
 
 	
 	var gaugeShield = new JustGage({
@@ -970,7 +1001,7 @@ function newGauge() {
 			label: "CORE TEMP",
 			labelMinFontSize: 16,
 			value: 20,
-			valueMinFontSize: 14,
+			valueMinFontSize: 22,
 			valueFontColor: "#ffffff",
 			min: 10,
 			max: 90,
