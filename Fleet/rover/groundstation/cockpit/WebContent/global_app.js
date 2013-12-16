@@ -733,145 +733,185 @@ function setViewContent(oControlEvent) {
 			oAbsoluteLayoutHome.addContent(currentViewContent);
 			$.fn.hideBackgroundImage();
 			googleMapInitialise();
-			newGauge();
+			newGauge();			
+			newFlot();
 			
 			break;
 	}
 }	
 
 function newGauge() {
-	/*
-	var cockpitGauge1 = new JustGage({
-        id: "cockpitGauge1",
-          title: "Battery Remaining",
-        label: "%",
-    value : 40,
-    valueFontColor: "#ffffff",
-    min: 0,
-    max: 100,
-    gaugeWidthScale: 0.6,
-    customSectors: [{
-      color : "#ff0000",
-      lo : 0,
-      hi : 20
-    },{
-      color : "#ffff00",
-      lo : 20,
-      hi : 50
-    }, {
-      color : "#00ff00",
-      lo : 50,
-      hi : 100
-    }],
-    counter: true
-  });
-  */
+
 	
-	var gaugeBattRemaining = new JustGage({
-		id: "gaugeBattRemaining",
-		donut: true,
-		title: otextBundle.getText("battremaining"),	
-		titleFontColor: "#ffffff",
-		titleMinFontSize: 14,	
-	    label: "%",
-		labelMinFontSize: 16,
-	    value : 19,
-	    valueMinFontSize: 14,
-	    valueFontColor: "#ffffff",
-	    min: 0,
-	    max: 100,
-	    showMinMax : false,
-	    gaugeWidthScale: 0.7,
-	    customSectors: [{
-	      color : "#ff0000",
-	      lo : 0,
-	      hi : 20
-	    },{
-	      color : "#ffff00",
-	      lo : 20,
-	      hi : 50
-	    }, {
-	      color : "#00ff00",
-	      lo : 50,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
-	  
-	var gaugeVoltage = new JustGage({
-		id: "gaugeVoltage",
-		title: otextBundle.getText("voltage"),	
-		titleFontColor: "#ffffff",
-		titleMinFontSize: 14,	
-	    label: "V",
-		labelMinFontSize: 16,
-	    value : 8,
-	    valueMinFontSize: 14,
-	    valueFontColor: "#ffffff",
-	    min: 7,
-	    max: 9,
-	    showMinMax : false,
-	    gaugeWidthScale: 0.7,
-	    customSectors: [{
-	      color : "#ff0000",
-	      lo : 0,
-	      hi : 20
-	    },{
-	      color : "#ffff00",
-	      lo : 20,
-	      hi : 50
-	    }, {
-	      color : "#00ff00",
-	      lo : 50,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
+	var gaugeCurrent = new JustGage({
+			id: "gaugeCurrent",
+			title: "",
+			titleFontColor: "#ffffff",
+			titleMinFontSize: 12,	
+			label: "CURRENT",
+			labelMinFontSize: 12,
+			value: 40,
+			valueMinFontSize: 12,
+			valueFontColor: "#ffffff",
+			min: 0,
+			max: 100,
+			gaugeWidthScale: 0.4,
+			customSectors: [{
+								color: "#00ff00",
+								lo: 0,
+								hi: 60
+							},{
+								color: "#ff8000",
+								lo: 60,
+								hi: 80
+							}, {
+								color: "#ff0000",
+								lo: 80,
+								hi: 100
+							}],
+			counter: true
+	});
+
+	
+	var gaugeAmps = new JustGage({
+			id: "gaugeAmps",
+			title: "",
+			titleFontColor: "#ffffff",
+			titleMinFontSize: 12,	
+			label: "AMPS",
+			labelMinFontSize: 12,
+			value: 40,
+			valueMinFontSize: 12,
+			valueFontColor: "#ffffff",
+			min: 0,
+			max: 100,
+			gaugeWidthScale: 0.4,
+			customSectors: [{
+								color: "#00ff00",
+								lo: 0,
+								hi: 60
+							},{
+								color: "#ff8000",
+								lo: 60,
+								hi: 80
+							}, {
+								color: "#ff0000",
+								lo: 80,
+								hi: 100
+							}],
+			counter: true
+	});
+	
 	
 	var gaugeConsumedMah = new JustGage({
 		id: "gaugeConsumedMah",
 		donut: true,
-		title: otextBundle.getText("consumedmah"),	
+		title: "",	
 		titleFontColor: "#ffffff",
 		titleMinFontSize: 14,	
-	    label: "Mah",
+		label: "CONSUMED MAH",
 		labelMinFontSize: 16,
-	    value : 5000,
-	    valueMinFontSize: 14,
-	    valueFontColor: "#ffffff",
-	    min: 0,
-	    max: 10000,
-	    showMinMax : false,
-	    gaugeWidthScale: 0.7,
-	    customSectors: [{
-	      color : "#ff0000",
-	      lo : 0,
-	      hi : 20
-	    },{
-	      color : "#ffff00",
-	      lo : 20,
-	      hi : 50
-	    }, {
-	      color : "#00ff00",
-	      lo : 50,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
+		value: 5000,
+		valueMinFontSize: 14,
+		valueFontColor: "#ffffff",
+		min: 0,
+		max: 10000,
+		showMinMax: false,
+		gaugeWidthScale: 0.5,
+		customSectors: [{
+							color: "#ff0000",
+							lo: 0,
+							hi: 20
+						},{
+							color: "#ffff00",
+							lo: 20,
+							hi: 50
+						}, {
+							color: "#00ff00",
+							lo: 50,
+							hi: 100
+						}],
+		counter: true
+	});
+	
+	
+	var gaugeVoltage = new JustGage({
+		id: "gaugeVoltage",
+		title: "",
+		titleFontColor: "#ffffff",
+		titleMinFontSize: 14,	
+		label: "VOLTAGE",
+		labelMinFontSize: 16,
+		value: 8,
+		valueMinFontSize: 14,
+		valueFontColor: "#ffffff",
+		min: 7,
+		max: 9,
+		showMinMax: false,
+		gaugeWidthScale: 0.5,
+		customSectors: [{
+							color: "#ff0000",
+							lo: 0,
+							hi: 20
+						},{
+							color: "#ffff00",
+							lo: 20,
+							hi: 50
+						}, {
+							color: "#00ff00",
+							lo: 50,
+							hi: 100
+						}],
+		counter: true
+	});
+	
+	
+	var gaugeBattRemaining = new JustGage({
+			id: "gaugeBattRemaining",
+			donut: true,
+			title: "",
+			titleFontColor: "#ffffff",
+			titleMinFontSize: 14,	
+			label: "BATTERY %",
+			labelMinFontSize: 16,
+			value: 19,
+			valueMinFontSize: 14,
+			valueFontColor: "#ffffff",
+			min: 0,
+			max: 100,
+			showMinMax : false,
+			gaugeWidthScale: 0.5,
+			customSectors: [{
+								color: "#ff0000",
+								lo: 0,
+								hi: 20
+							},{
+								color: "#ffff00",
+								lo: 20,
+								hi: 50
+							}, {
+								color: "#00ff00",
+								lo: 50,
+								hi: 100
+							}],
+			counter: true
+	});
+	
+	
 	
 	var gaugeThrust = new JustGage({
 		id: "gaugeThrust",
-		title: "THRUST",
+		title: "",
 		titleFontColor: "#ffffff",
 		titleMinFontSize: 14,	
-	    label: "%",
+	    label: "THRUST %",
 		labelMinFontSize: 10,
 	    value : 40,
 	    valueMinFontSize: 16,
 	    valueFontColor: "#ffffff",
 	    min: 0,
 	    max: 100,
-	    gaugeWidthScale: 0.7,
+	    gaugeWidthScale: 0.5,
 	    customSectors: [{
       color : "#00ff00",
 	      lo : 0,
@@ -889,125 +929,68 @@ function newGauge() {
 	  });
 	
 
-	var gaugeCurrent = new JustGage({
-		id: "gaugeCurrent",
-		title: "CURRENT",
-		titleFontColor: "#ffffff",
-		titleMinFontSize: 12,	
-	    label: "~",
-		labelMinFontSize: 12,
-	    value : 40,
-	    valueMinFontSize: 12,
-	    valueFontColor: "#ffffff",
-	    min: 0,
-	    max: 100,
-	    gaugeWidthScale: 0.6,
-	    customSectors: [{
-      color : "#00ff00",
-	      lo : 0,
-	      hi : 60
-	    },{
-	      color : "#ff8000",
-	      lo : 60,
-	      hi : 80
-	    }, {
-	      color : "#ff0000",
-	      lo : 80,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
-
-	var gaugeAmps = new JustGage({
-		id: "gaugeAmps",
-		title: "AMPS",
-		titleFontColor: "#ffffff",
-		titleMinFontSize: 10,	
-	    label: "A",
-		labelMinFontSize: 10,
-	    value : 40,
-	    valueMinFontSize: 10,
-	    valueFontColor: "#ffffff",
-	    min: 0,
-	    max: 100,
-	    gaugeWidthScale: 0.6,
-	    customSectors: [{
-      color : "#00ff00",
-	      lo : 0,
-	      hi : 60
-	    },{
-	      color : "#ff8000",
-	      lo : 60,
-	      hi : 80
-	    }, {
-	      color : "#ff0000",
-	      lo : 80,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
 	
 	var gaugeShield = new JustGage({
-		id: "gaugeShield",
-		donut: true,
-		title: otextBundle.getText("shield"),	
-		titleFontColor: "#ffffff",
-		titleMinFontSize: 14,	
-	    label: "%",
-		labelMinFontSize: 16,
-	    value : 100,
-	    valueMinFontSize: 14,
-	    valueFontColor: "#ffffff",
-	    min: 0,
-	    max: 100,
-	    showMinMax : false,
-	    gaugeWidthScale: 0.7,
-	    customSectors: [{
-	      color : "#ff0000",
-	      lo : 0,
-	      hi : 20
-	    },{
-	      color : "#ffff00",
-	      lo : 20,
-	      hi : 50
-	    }, {
-	      color : "#00ff00",
-	      lo : 50,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
+			id: "gaugeShield",
+			donut: true,
+			title: "",	
+			titleFontColor: "#ffffff",
+			titleMinFontSize: 14,	
+			label: "SHIELD %",
+			labelMinFontSize: 16,
+			value: 100,
+			valueMinFontSize: 14,
+			valueFontColor: "#ffffff",
+			min: 0,
+			max: 100,
+			showMinMax: false,
+			gaugeWidthScale: 0.5,
+			customSectors: [{
+								color: "#ff0000",
+								lo: 0,
+								hi: 20
+							},{
+								color : "#ffff00",
+								lo: 20,
+								hi: 50
+							}, {
+								color: "#00ff00",
+								lo: 50,
+								hi: 100
+							}],
+			counter: true
+	});
 
-	
+
 	var gaugeCoreTemp = new JustGage({
-		id: "gaugeCoreTemp",
-		title: otextBundle.getText("coretemp"),	
-		titleFontColor: "#ffffff",
-		titleMinFontSize: 14,	
-	    label: "Deg",
-		labelMinFontSize: 16,
-	    value : 20,
-	    valueMinFontSize: 14,
-	    valueFontColor: "#ffffff",
-	    min: 10,
-	    max: 90,
-	    showMinMax : false,
-	    gaugeWidthScale: 0.7,
-	    customSectors: [{
-	      color : "#ff0000",
-	      lo : 0,
-	      hi : 20
-	    },{
-	      color : "#ffff00",
-	      lo : 20,
-	      hi : 50
-	    }, {
-	      color : "#00ff00",
-	      lo : 50,
-	      hi : 100
-	    }],
-	    counter: true
-	  });
+			id: "gaugeCoreTemp",
+			title: "",	
+			titleFontColor: "#ffffff",
+			titleMinFontSize: 14,	
+			label: "CORE TEMP",
+			labelMinFontSize: 16,
+			value: 20,
+			valueMinFontSize: 14,
+			valueFontColor: "#ffffff",
+			min: 10,
+			max: 90,
+			showMinMax: false,
+			gaugeWidthScale: 0.5,
+			customSectors: [{
+								color: "#ff0000",
+								lo: 0,
+								hi: 20
+							},{
+								color: "#ffff00",
+								lo: 20,
+								hi: 50
+							}, {
+								color: "#00ff00",
+								lo: 50,
+								hi: 100
+							}],
+			counter: true
+	});
 
 	
 	/*
@@ -1189,4 +1172,92 @@ function onErrorCall(jqXHR, textStatus, errorThrown){
 //google.maps.event.addDomListener(window, 'load', googleMapInitialise);
 
 
+
+function newFlot() {
+	$(function() {
+
+		// We use an inline data source in the example, usually data would
+		// be fetched from a server
+
+		var data = [],
+			totalPoints = 300;
+
+		function getRandomData() {
+
+			if (data.length > 0)
+				data = data.slice(1);
+
+			// Do a random walk
+
+			while (data.length < totalPoints) {
+
+				var prev = data.length > 0 ? data[data.length - 1] : 50,
+					y = prev + Math.random() * 10 - 5;
+
+				if (y < 0) {
+					y = 0;
+				} else if (y > 100) {
+					y = 100;
+				}
+
+				data.push(y);
+			}
+
+			// Zip the generated y values with the x values
+
+			var res = [];
+			for (var i = 0; i < data.length; ++i) {
+				res.push([i, data[i]])
+			}
+
+			return res;
+		}
+
+		// Set up the control widget
+
+		var updateInterval = 30;
+		$("#updateInterval").val(updateInterval).change(function () {
+			var v = $(this).val();
+			if (v && !isNaN(+v)) {
+				updateInterval = +v;
+				if (updateInterval < 1) {
+					updateInterval = 1;
+				} else if (updateInterval > 2000) {
+					updateInterval = 2000;
+				}
+				$(this).val("" + updateInterval);
+			}
+		});
+
+		var plot = $.plot("#placeholder", [ getRandomData() ], {
+			series: {
+				shadowSize: 0	// Drawing is faster without shadows
+			},
+			yaxis: {
+				min: 0,
+				max: 100
+			},
+			xaxis: {
+				show: false
+			}
+		});
+
+		function update() {
+
+			plot.setData([getRandomData()]);
+
+			// Since the axes don't change, we don't need to call plot.setupGrid()
+
+			plot.draw();
+			setTimeout(update, updateInterval);
+		}
+
+		update();
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+}
 
