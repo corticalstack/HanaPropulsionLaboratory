@@ -338,10 +338,6 @@ img.bg {
 	position: fixed;
 	top: 157px;
   	left: 129px;
-	background-color: transparent;	
-	border-width: 2px;
-	border-style: solid;
-	border-color: rgb(6, 15, 40);
 }
 
 
@@ -379,7 +375,7 @@ img.bg {
 	position: fixed;
 	top: 0px;
   	left:	447px;
-  	width:	566px;
+  	width:	493px;
   	height:	152px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -393,7 +389,7 @@ img.bg {
 #mlPanePrimarySystems {
 	position: fixed;
 	top: 	0px;
-  	left:	1018px;
+  	left:	945px;
   	width:	390px;
   	height:	152px;
 	background-color: transparent;	
@@ -407,8 +403,8 @@ img.bg {
 #mlPaneNavigation {
 	position: fixed;
 	top: 0px;
-  	left: 1413px;
-  	width: 507px;
+  	left: 1340px;
+  	width: 580px;
   	height:	580px;
   	vertical-align: top;
 	background-color: transparent;	
@@ -421,10 +417,10 @@ img.bg {
 
 #mlPaneMissionControl {
 	position: fixed;
-	top: 586px;
-  	left: 1413px;
-  	width: 507px;
-  	height:	500px;
+	top: 585px;
+  	left: 1340px;
+  	width: 570px;
+  	height:	479px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
@@ -447,14 +443,27 @@ img.bg {
 	border-bottom: 2px solid rgb(6, 15, 40);
 }
 
+#mlPaneFooter {
+	position: fixed;
+	top: 	1069px;
+  	left:	0px;
+  	width:	1920x;
+  	height:	45px;
+	background-color: transparent;	
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	border-top: 2px solid rgb(6, 15, 40);
+	border-left: 2px solid rgb(6, 15, 40);
+	border-right: 2px solid rgb(6, 15, 40);
+	border-bottom: 2px solid rgb(6, 15, 40);
+}
 
 
 #placeholder {
 	position: fixed;
-	top: 	900px;
-  	left:	0px;
-  	width:	100px;
-  	height:	100px;
+	top: 	1033px;
+  	left:	10px;
+  	width:	300px;
+  	height:	80px;
   	color: rgb(6, 15, 40);
 }
 
