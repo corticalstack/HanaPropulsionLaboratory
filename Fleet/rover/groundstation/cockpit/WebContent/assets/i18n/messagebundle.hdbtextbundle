@@ -1,5 +1,6 @@
 # TRANSLATE
 hpl=HANA PROPULSION LABORATORY
+dummy=DUMMY
 solo=SOLO CAMPAIGN
 multiplayer=MULTIPLAYER
 freeride=FREERIDE
@@ -46,6 +47,7 @@ satellites=SATELLITES
 fixtype=FIX TYPE
 heading=HEADING
 distancewp=DISTANCE WP
+bearingwp=BEARING WP
 armed=ARMED
 error=An error occurred, please contact System Administrator
 generatedPG={0} of {1} orders generated
