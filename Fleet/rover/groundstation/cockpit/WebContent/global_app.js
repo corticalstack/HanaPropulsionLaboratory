@@ -1,5 +1,10 @@
 //Constants
 
+
+
+
+console.log(myHplApp.model.vehicle.getCmdThrottle());
+
 var servicePilotsUri = 'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json';
 	
 
@@ -14,6 +19,9 @@ var pilotList = [];
 ///
 // Groundstation
 var groundStationSocketURL				= 'http://192.168.1.62:8090';
+
+//Han Mission Control
+var hanaMissionControlOnline            = false;
 	
 // Cockpit
 var socketEventCockpit                  = 'cockpit';
@@ -111,7 +119,18 @@ var googleMapMarker;
 var latlng = new google.maps.LatLng(googleMapLastLattitude, googleMapLastLongitude);
 
 
-// Artifical
+// Gauges
+var gaugeCurrent;
+var gaugeAmps;
+var gaugeConsumedMah;
+var gaugeVoltage;
+var gaugeBattRemaining;
+var gaugeThrust;
+var gaugeAmmo;
+var gaugeShield;
+var gaugeCoreTemp;
+
+
 //Artificial horizon
 
 
@@ -471,6 +490,7 @@ function gamepad_button_down(gamepadEvent) {
 		message.loggedAt = datenow.getTime();
 		message.feed = cmdStop;
 		messageLogPump(message);
+		gaugeThrust.refresh(0);
 
 	}
 
@@ -608,6 +628,7 @@ function gamepad_axis_changed(gamepadEvent) {
 			cmdThrottleTx = true;
 			cmdThrottleValLast = speed1;
 			socketMessage = socketMessage + vehicleDirection + ':'  + cmdThrottle + speed1 + ':';
+			gaugeThrust.refresh(speed1);
 		}
 	}
 	    
@@ -676,6 +697,10 @@ function procesJSON(){
 
 function messageLogPump(message) {
 	
+  if (!hanaMissionControlOnline) {
+	  return;
+  }
+  
   message.missionId = missionId;
   message.vehicleId = vehicleId;
   message.pilotId	= pilotId;
@@ -743,7 +768,7 @@ function setViewContent(oControlEvent) {
 function newGauge() {
 
 	
-	var gaugeCurrent = new JustGage({
+	 gaugeCurrent = new JustGage({
 			id: "gaugeCurrent",
 			title: "",
 			titleFontColor: "#ffffff",
@@ -773,7 +798,7 @@ function newGauge() {
 	});
 
 	
-	var gaugeAmps = new JustGage({
+	 gaugeAmps = new JustGage({
 			id: "gaugeAmps",
 			title: "",
 			titleFontColor: "#ffffff",
@@ -803,7 +828,7 @@ function newGauge() {
 	});
 	
 	
-	var gaugeConsumedMah = new JustGage({
+	 gaugeConsumedMah = new JustGage({
 		id: "gaugeConsumedMah",
 		donut: true,
 		title: "",	
@@ -835,7 +860,7 @@ function newGauge() {
 	});
 	
 	
-	var gaugeVoltage = new JustGage({
+	gaugeVoltage = new JustGage({
 		id: "gaugeVoltage",
 		title: "",
 		titleFontColor: "#ffffff",
@@ -866,7 +891,7 @@ function newGauge() {
 	});
 	
 	
-	var gaugeBattRemaining = new JustGage({
+	gaugeBattRemaining = new JustGage({
 			id: "gaugeBattRemaining",
 			donut: true,
 			title: "",
@@ -899,7 +924,7 @@ function newGauge() {
 	
 	
 	
-	var gaugeThrust = new JustGage({
+	gaugeThrust = new JustGage({
 			id: "gaugeThrust",
 			title: "",
 			titleFontColor: "#ffffff",
@@ -929,7 +954,7 @@ function newGauge() {
 	});
 
 	
-	var gaugeAmmo = new JustGage({
+	 gaugeAmmo = new JustGage({
 		id: "gaugeAmmo",
 		donut: true,
 		title: "",
@@ -961,7 +986,7 @@ function newGauge() {
 
 
 	
-	var gaugeShield = new JustGage({
+	 gaugeShield = new JustGage({
 			id: "gaugeShield",
 			donut: true,
 			title: "",	
@@ -993,7 +1018,7 @@ function newGauge() {
 	});
 
 
-	var gaugeCoreTemp = new JustGage({
+	 gaugeCoreTemp = new JustGage({
 			id: "gaugeCoreTemp",
 			title: "",	
 			titleFontColor: "#ffffff",

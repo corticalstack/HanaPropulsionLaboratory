@@ -2,7 +2,13 @@ jQuery.sap.require("jquery.sap.resources");
 var sLocale 							= sap.ui.getCore().getConfiguration().getLanguage();
 var oBundle 							= jQuery.sap.resources({url : "./i18n/messagebundle.hdbtextbundle", locale: sLocale});
 var oBarModel 							= new sap.ui.model.json.JSONModel();
-    
+
+
+
+
+
+myHplApp.model.vehicle.nestedMessage();
+
 // Groundstation
 var groundStationSocketURL				= 'http://192.168.1.62:8090';
 	
