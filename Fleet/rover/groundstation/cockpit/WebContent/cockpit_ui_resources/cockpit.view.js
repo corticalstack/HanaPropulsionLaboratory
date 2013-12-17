@@ -685,25 +685,86 @@ function buildPaneMissionControl(oController,oLayout){
 			width:			"580px"
 	});	
 	
+	var omlPaneMissionControl1 = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneMissionControl1",
+			layoutFixed: 	true,
+			width:			"565px"
+	});	
 	 
 	var olblPaneMissionControl = new sap.ui.commons.Label({
-    	id: 		"lblPaneMissionControl",
-    	text: 		otextBundle.getText("missioncontrol"),
-    	textAlign: 	"Center",
-    	width: 		"100%"
+    		id: 		"lblPaneMissionControl",
+    		text: 		otextBundle.getText("missioncontrol"),
+    		textAlign: 	"Center",
+    		width: 		"100%"
     });
 
-
-	 var omlCellPaneMissionControlTitle = new sap.ui.commons.layout.MatrixLayoutCell();
-	 var omlRowPaneMissionControlTitle = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
+	var omlLayoutTab = new sap.ui.commons.layout.MatrixLayout({
+			id: 		"mlLayoutTab", 
+			width: 		"100%"
+	});
+	
+	
+	var omlCellPaneMissionControlTitle 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlRowPaneMissionControlTitle 	= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 		
 	
-	 omlCellPaneMissionControlTitle.addContent(olblPaneMissionControl);
-	 omlRowPaneMissionControlTitle.addCell(omlCellPaneMissionControlTitle);
-	 omlPaneMissionControl.addRow(omlRowPaneMissionControlTitle);
+	omlCellPaneMissionControlTitle.addContent(olblPaneMissionControl);
+	omlRowPaneMissionControlTitle.addCell(omlCellPaneMissionControlTitle);
+	omlPaneMissionControl.addRow(omlRowPaneMissionControlTitle);
+//////
+	 
+	  // Create a TabStrip instance
+    var otstrMissionControl = new sap.ui.commons.TabStrip({
+    		id: "tstrMissionControl",
+    		width: "565px",
+    		height: "435px"
+    });
+    
+    
+    otstrMissionControl.attachClose( function (oEvent) { var otstrSource = oEvent.oSource;
+    													 otstrSource.closeTab(oEvent.getParameter("index"));
+    });
+
+    
+    olbl1 = new sap.ui.commons.Label("lbl1", {text: 'Offline 1'});
+    olbl1.setDesign(sap.ui.commons.LabelDesign.Bold);
+    omlLayoutTab.createRow(olbl1);
+    
+    olbl2 = new sap.ui.commons.Label("lbl2", {text: 'ETA'});
+    olbl2.setDesign(sap.ui.commons.LabelDesign.Bold);
+    omlLayoutTab.createRow(olbl2);
+
+    
+    otstrMissionControl.createTab("Mission",omlLayoutTab);
+
+    
+    
+    // 2. tab: Telemetry
+    otab2 = new sap.ui.commons.Tab({
+    		id: "tab2"
+    });
+    
+    
+    otab2.setTooltip("Waypoints");
+    otab2.setTitle(new sap.ui.commons.Title("TitleWaypoints",{text:"Waypoints"}));
+
+    var omlLayoutTabWaypoints = new sap.ui.commons.layout.MatrixLayout({
+		id: 		"mlLayoutWaypoints", 
+		width: 		"100%"
+    });
+    
+
+    olblWaypoint1 = new sap.ui.commons.Label("lblWaypoint1", {text: 'Waypoint 1'});
+    olblWaypoint1.setDesign(sap.ui.commons.LabelDesign.Bold);
+    omlLayoutTabWaypoints.createRow(olblWaypoint1);
 	
-	
-	 oLayout.createRow(omlPaneMissionControl);   
+	otab2.addContent(omlLayoutTabWaypoints);
+	otstrMissionControl.addTab(otab2);
+    
+
+	omlPaneMissionControl1.createRow(otstrMissionControl);
+    omlPaneMissionControl.createRow(omlPaneMissionControl1);   
+    oLayout.createRow(omlPaneMissionControl);   
 
 }
 

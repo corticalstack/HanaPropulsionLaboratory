@@ -431,10 +431,15 @@ img.bg {
   	width: 570px;
   	height:	479px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
 	border-style: solid;
 	border-color: rgb(6, 15, 40);
+}
+
+
+#mlPaneMissionControl1 {
+	margin-top: 5px;
+	margin-left: 7px;	
 }
 
 
@@ -717,6 +722,10 @@ img.bg {
 /* ---------------------------
 	   SAP Theme Overrides
    --------------------------- */
+
+
+
+
 .sapUiCrslPrevBtn:hover {
 	background-color: rgb(51, 94, 169);
 }
@@ -736,6 +745,44 @@ img.bg {
 .sapUiMltPadRight {
 	padding: 0px;
 	vertical-align: top;
+}	
+
+.sapUiTabSel {
+	background-color: rgb(0, 46, 119);
+	border-color: rgb(6, 15, 40);
+	text-decoration: none;
+	border: none;
+}
+
+.sapUiTabSel:focus {
+	outline: 0;
+}	
+
+
+.sapUiTab {
+	background-color: rgb(83, 83, 83);
+	border-color: rgb(6, 15, 40);	
+	color: rgb(255, 255, 255);
+}
+
+.sapUiTab:hover {
+	background-color: rgb(7, 17, 46);
+	border-color: rgb(6, 15, 40);	
+}
+
+.sapUiTab:hover, .sapUiTab:visted, .sapUiTab:link, .sapUiTab:active {
+	text-decoration: none;
+}
+
+
+.sapUiTabPanel {
+	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	border: 2px solid rgb(4, 11, 30);
+}
+
+
+.sapUiTabBarCnt {
+	border-bottom-color: rgb(0, 46, 119);
 }	
 
 /* ---------------------------
