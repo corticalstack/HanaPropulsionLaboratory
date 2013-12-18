@@ -1,6 +1,6 @@
 (function(myHplApp) {
  
-	myHplApp.cockpit.controller = myHplApp.cockpit.cockpit.controller || {};
+	myHplApp.cockpit.controller = myHplApp.cockpit.controller || {};
 	
 	var cockpitModel = myHplApp.cockpit.model;
 	

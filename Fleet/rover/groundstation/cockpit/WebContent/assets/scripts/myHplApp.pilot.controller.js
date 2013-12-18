@@ -28,12 +28,12 @@
 					clanUri: 	myJSON.d.results[i].clanUri
 			};
 			pilotModel.roster.push(pilot);
-		}		
+		};		
 	};
 
 
 
-	myHplApp.pilot.controller.onErrorCall(jqXHR, textStatus, errorThrown){
+	myHplApp.pilot.controller.onErrorCall = function(jqXHR, textStatus, errorThrown){
 //		sap.ui.core.BusyIndicator.hide();		
 //		sap.ui.commons.MessageBox.show(jqXHR.responseText, 
 //				 "ERROR",

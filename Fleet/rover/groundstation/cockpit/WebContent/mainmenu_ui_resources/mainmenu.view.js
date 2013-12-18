@@ -26,7 +26,7 @@ function buildKeyToStart(oController,oLayout){
 	var omlCellKeyToStart= new sap.ui.commons.layout.MatrixLayoutCell();
     var oLblKeyToStart 	 = new sap.ui.commons.Label({
     		id: 	"lblKeyToStart",
-    		text: 	otextBundle.getText("pressanykeytostart"),
+    		text: 	myHplApp.controller.getTextFromBundle("pressanykeytostart"),
     });
     
     
@@ -59,7 +59,7 @@ function buildMainMenu(oController,oLayout){
     
 	var olnkSoloCampaign = new sap.ui.commons.Link({
 			id: 	"lnkSoloCampaign",
-			text:  	otextBundle.getText("solo"),	
+			text:  	myHplApp.controller.getTextFromBundle("solo"),	
 			width: 	"250px",
 			press:  setViewContent
 		});
@@ -67,7 +67,7 @@ function buildMainMenu(oController,oLayout){
 	
 	var olnkMultiplayer = new sap.ui.commons.Link({
 			id: 	"lnkMultiplayer",
-			text: 	otextBundle.getText("multiplayer"),
+			text: 	myHplApp.controller.getTextFromBundle("multiplayer"),
 			width: 	"250px",
 			press:  setViewContent
 	});
@@ -75,7 +75,7 @@ function buildMainMenu(oController,oLayout){
 	
 	var olnkFreeride = new sap.ui.commons.Link({
 			id: 	"lnkFreeride",
-			text: 	otextBundle.getText("freeride"),
+			text: 	myHplApp.controller.getTextFromBundle("freeride"),
 			width: 	"250px",
 			press:  setViewContent
 	});   
@@ -83,7 +83,7 @@ function buildMainMenu(oController,oLayout){
 
 	var olnkSettings = new sap.ui.commons.Link({
 			id: 	"lnkSettings",
-			text: 	otextBundle.getText("settings"),
+			text: 	myHplApp.controller.getTextFromBundle("settings"),
 			width: 	"250px",
 			press:  setViewContent
 	});
@@ -91,7 +91,7 @@ function buildMainMenu(oController,oLayout){
 	
 	var olnkQuit = new sap.ui.commons.Link({
 			id: 	"lnkQuit",
-			text: 	otextBundle.getText("quit"), 	
+			text: 	myHplApp.controller.getTextFromBundle("quit"), 	
 			width: 	"250px",
 			press:  setViewContent
 	});

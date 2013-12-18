@@ -6,9 +6,9 @@
 	
 	
 	myHplApp.controller.init = function() {
-		console.log('Initialising app controller');
-		model.config.sLocale  		= sap.ui.getCore().getConfiguration().getLanguage();
-		model.config.otextBundle  	= jQuery.sap.resources({url : "./assets/i18n/messagebundle.hdbtextbundle", locale: sLocale});
+		console.log('Initialising app controller');	
+		model.setConfigSlocale();		
+		model.setConfigOtextBundle();
 		sap.ui.localResources("mainmenu_ui_resources");
 		model.config.mainmenuView = sap.ui.view({  
 		    	id: 		"viewMainMenu",  
@@ -37,6 +37,12 @@
 		model.config.currentViewContent  = model.config.mainmenuView;
 
 	};
+	
+	
+	myHplApp.controller.getTextFromBundle = function(textId) {
+		model.getOtextBundle().getText(textId);
+	}
+	
 	
 	
 	myHplApp.controller.init();

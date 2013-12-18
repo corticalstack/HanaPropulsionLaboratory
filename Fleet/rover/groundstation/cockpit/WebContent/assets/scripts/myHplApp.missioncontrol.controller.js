@@ -7,11 +7,10 @@
 
 	myHplApp.missioncontrol.controller.init = function() { 
 		console.log('Initialising missioncontrol controller');
-		missioncontrolModel.state.missionControlOnline 	= false;
-		
-		missioncontrolModel.activeMission.missionId 	= '000001';
-		missioncontrolModel.activeMission.vehicleId 	= '001';
-		missioncontrolModel.activeMission.pilotId   	= '001';
+		missioncontrolModel.setStateMissioncontrolOnline(false);
+		missioncontrolModel.setActiveMissionId('000001');
+		missioncontrolModel.setActiveMissionVehicleId('001');
+		missioncontrolModel.setActiveMissionPilotId('001');
 
     };
 
