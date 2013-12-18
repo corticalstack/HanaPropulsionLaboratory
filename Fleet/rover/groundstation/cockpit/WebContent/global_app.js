@@ -1226,7 +1226,7 @@ function onErrorCall(jqXHR, textStatus, errorThrown){
 
 
 //google.maps.event.addDomListener(window, 'load', googleMapInitialise);
-
+ 
 
 
 function newFlot() {

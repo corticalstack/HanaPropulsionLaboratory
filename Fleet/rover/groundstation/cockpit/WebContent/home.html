@@ -20,10 +20,30 @@
         <!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required --> 
         <script src="./assets/scripts/app_jquery.js"></script>	
         <script src="./assets/scripts/myHplApp.js"></script>
-        <script src="./assets/scripts/myHplApp.model.js"></script>        
-        <script src="./assets/scripts/myHplApp.model.vehicle.js"></script>
+        <script src="./assets/scripts/myHplApp.model.js"></script>
+        <script src="./assets/scripts/myHplApp.pilot.js"></script>
+        <script src="./assets/scripts/myHplApp.cockpit.js"></script>        
+        <script src="./assets/scripts/myHplApp.vehicle.js"></script>        
+        <script src="./assets/scripts/myHplApp.groundstation.js"></script>        
+        <script src="./assets/scripts/myHplApp.missioncontrol.js"></script>        
         
-  		<script src="global_app.js" ></script>
+        <script src="./assets/scripts/myHplApp.pilot.model.js"></script>
+        <script src="./assets/scripts/myHplApp.cockpit.model.js"></script>
+        <script src="./assets/scripts/myHplApp.cockpit.controls.model.js"></script>
+        <script src="./assets/scripts/myHplApp.cockpit.maps.model.js"></script>                
+        <script src="./assets/scripts/myHplApp.vehicle.model.js"></script>
+        <script src="./assets/scripts/myHplApp.vehicle.cmd.model.js"></script>                
+        <script src="./assets/scripts/myHplApp.groundstation.model.js"></script>        
+        <script src="./assets/scripts/myHplApp.missioncontrol.model.js"></script>        
+
+        <script src="./assets/scripts/myHplApp.controller.js"></script>
+        <script src="./assets/scripts/myHplApp.pilot.controller.js"></script>        
+        <script src="./assets/scripts/myHplApp.cockpit.controller.js"></script>
+        <script src="./assets/scripts/myHplApp.cockpit.controls.controller.js"></script>
+        <script src="./assets/scripts/myHplApp.cockpit.maps.controller.js"></script>
+        <script src="./assets/scripts/myHplApp.groundstation.controller.js"></script>
+        <script src="./assets/scripts/myHplApp.missioncontrol.controller.js"></script>        
+
    		<script>sap.ui.localResources("home_ui_resources");
                 var view = sap.ui.view({id:"viewHome", viewName:"home_ui_resources.home", type:sap.ui.core.mvc.ViewType.JS});
    			    view.placeAt("content");     			         
@@ -37,30 +57,5 @@
     <body class="sapUiBody" role="application">
 		<img src="./assets/images/bg.jpg" class="bg">
     	<div id="content"></div>
-    		<script>
-       		socket = io.connect('http://192.168.1.38:8090');
-	        socket.on('connect', function(data){
-	        	try { 
-	        			sap.ui.getCore().byId("viewCockpit").getController().connect(data);
-	        	}
-	        	catch(err){}
-	        	});
-
-	        
-	        socket.on('wildcard', function(){
-	        	try {			
-	        			sap.ui.getCore().byId("viewCockpit").getController().wildcard();
-	        		}
-	        	catch(err){}
-	        	});
-	        	
-        	socket.on('feed', function(data){
-       			try {
-	        			sap.ui.getCore().byId("viewCockpit").getController().feed(data);
-	        		}
-	        	catch(err){}
-	        	});
-		</script>
-    	
 	</body>
 </html>
