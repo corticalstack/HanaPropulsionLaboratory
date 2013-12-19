@@ -1,6 +1,6 @@
 sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
-
+	
 	/**
 	 * Called when a controller is instantiated and its View controls (if available) are already created.
 	 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -37,10 +37,6 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	//   }
 	
 	
-	getTableSizes: function(oController){
-		
-	},
-	
 	
 	connect: function(data) {
 		//sap.ui.getCore().byId("tvStatus").setText(data);		 
@@ -53,107 +49,68 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 
 	feed: function(data) {
-		var datenow;
-		
-		if (googleMapInitialised == false) {
-			googleMapLastLattitude = '46.475241';
-			googleMapLastLongitude = '6.892743';
-			googleMapInitialise();
-			googleMapInitialised = true;
-		}
+		var missioncontrolController = myHplApp.missioncontrol.controller;
+		var message;
 		
 	
-
 		if (data.substr(0,1) == 'C') {
 			var compass_msg_fields = data.split(',');
-			sap.ui.getCore().byId("TvCompassHeading").setText(compass_msg_fields[0].substr(1));
-			datenow = new Date();
-			message.messageCategoryId = 'NAV';
-			message.messageId = 'C';	
-			message.loggedAt = datenow.getTime();
-			message.feed = data.substr(1);
-			messageLogPump(message);
-
+			message = data.substr(1);
+			sap.ui.getCore().byId("lblCompassVal").setText(compass_msg_fields[0].substr(1));			
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdCompass(), message );
 		};
 
 
 		if (data.substr(0,1) == 'D') {
 			var inertialsensor_msg_fields = data.split(',');
-			sap.ui.getCore().byId("TvProximitySensorRear").setText(inertialsensor_msg_fields[0].substr(1));
-			sap.ui.getCore().byId("TvProximitySensorFront").setText(inertialsensor_msg_fields[1]);
-			sap.ui.getCore().byId("TvProximitySensorCam").setText(inertialsensor_msg_fields[2]);
-			datenow = new Date();
-			message.messageCategoryId = 'SEN';
-			message.messageId = 'D';	
-			message.loggedAt = datenow.getTime();
-			message.feed = data.substr(1);
-			messageLogPump(message);
-
+			message = data.substr(1);
+//			sap.ui.getCore().byId("TvProximitySensorRear").setText(inertialsensor_msg_fields[0].substr(1));
+//			sap.ui.getCore().byId("TvProximitySensorFront").setText(inertialsensor_msg_fields[1]);
+//			sap.ui.getCore().byId("TvProximitySensorCam").setText(inertialsensor_msg_fields[2]);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdDistance(), message );
 		};
 
 
 		
 		if (data.substr(0,1) == 'B') {
 			var inertialsensor_msg_fields = data.split(',');
-			sap.ui.getCore().byId("TvPowerVoltage").setText(inertialsensor_msg_fields[0].substr(1));
-			sap.ui.getCore().byId("TvPowerCurrent").setText(inertialsensor_msg_fields[1]);
-			sap.ui.getCore().byId("TvPowerAmps").setText(inertialsensor_msg_fields[2]);
-			sap.ui.getCore().byId("TvConsumedCurrentMah").setText(inertialsensor_msg_fields[3]);
-			sap.ui.getCore().byId("TvPowerRemainingPct").setText(inertialsensor_msg_fields[4]);
-			datenow = new Date();
-			message.messageCategoryId = 'POW';
-			message.messageId = 'B';	
-			message.loggedAt = datenow.getTime();
-			message.feed = data.substr(1);
-			messageLogPump(message);
-
+			message = data.substr(1);
+			cockpitModel.refreshGauge({id: 'gaugeVoltage', val: inertialsensor_msg_fields[0].substr(1)});
+			cockpitModel.refreshGauge({id: 'gaugeCurrent', val: inertialsensor_msg_fields[1]});
+			cockpitModel.refreshGauge({id: 'gaugeAmps', val: inertialsensor_msg_fields[2]});
+			cockpitModel.refreshGauge({id: 'gaugeConsumedMah', val: inertialsensor_msg_fields[3]});
+			cockpitModel.refreshGauge({id: 'gaugeBattRemaining', val: inertialsensor_msg_fields[4]});
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdPower(), missioncontrolModel.getMessageIdBattery(), message );
 		};
 
 		
 		
 		if (data.substr(0,1) == 'I') {
 			var inertialsensor_msg_fields = data.split(',');
-			sap.ui.getCore().byId("TvInsAccelX").setText(inertialsensor_msg_fields[0].substr(1));
-			sap.ui.getCore().byId("TvInsAccelY").setText(inertialsensor_msg_fields[1]);
-			sap.ui.getCore().byId("TvInsAccelZ").setText(inertialsensor_msg_fields[2]);
-			sap.ui.getCore().byId("TvInsGyroX").setText(inertialsensor_msg_fields[3]);
-			sap.ui.getCore().byId("TvInsGyroY").setText(inertialsensor_msg_fields[4]);
-			sap.ui.getCore().byId("TvInsGyroZ").setText(inertialsensor_msg_fields[5]);
-            			
-
-//			updateAccelerations(inertialsensor_msg_fields[0].substr(1), inertialsensor_msg_fields[1], inertialsensor_msg_fields[2]);
-
-//			draw();
-			message.messageCategoryId = 'SEN';
-			message.messageId = 'I';	
-			message.loggedAt = datenow.getTime();
-			message.feed = data.substr(1);
-			messageLogPump(message);
-
+			message = data.substr(1);
+//			sap.ui.getCore().byId("TvInsAccelX").setText(inertialsensor_msg_fields[0].substr(1));
+//			sap.ui.getCore().byId("TvInsAccelY").setText(inertialsensor_msg_fields[1]);
+//			sap.ui.getCore().byId("TvInsAccelZ").setText(inertialsensor_msg_fields[2]);
+//			sap.ui.getCore().byId("TvInsGyroX").setText(inertialsensor_msg_fields[3]);
+//			sap.ui.getCore().byId("TvInsGyroY").setText(inertialsensor_msg_fields[4]);
+//			sap.ui.getCore().byId("TvInsGyroZ").setText(inertialsensor_msg_fields[5]);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdInertial(), message );
 		};
 
 		
 		if (data.substr(0,1) == 'S') {
 			var gps_msg_nav_sol_fields = data.split(',');
-			//	sap.ui.getCore().byId("TvGpsNavSolGpsMs").setText(gps_msg_nav_sol_fields[0].substr(3));
-			sap.ui.getCore().byId("TvGpsNavSolFixType").setText(gps_msg_nav_sol_fields[1]);
-			//	sap.ui.getCore().byId("TvGpsNavSolAccEst3d").setText(gps_msg_nav_sol_fields[2]);
-			sap.ui.getCore().byId("TvGpsNavSolNumberSv").setText(gps_msg_nav_sol_fields[3]);
-			
-			datenow = new Date();
-			message.messageCategoryId = 'NAV';
-			message.messageId = 'S';	
-			message.loggedAt = datenow.getTime();
-			message.feed = data.substr(1);
-			messageLogPump(message);
-
-
+			message = data.substr(1);
+			sap.ui.getCore().byId("lblValFixType").setText(gps_msg_nav_sol_fields[1]);
+			sap.ui.getCore().byId("lblValSatellites").setText(gps_msg_nav_sol_fields[3]);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsSol(), message );
 		};
 		
 
 		if (data.substr(0,1) == 'P') {
 			var gps_msg_nav_posllh_fields = data.split(',');
-			//	sap.ui.getCore().byId("TvGpsNavPosllhGpsMs").setText(gps_msg_nav_posllh_fields[0].substr(3));
+			message = data.substr(1);
+
 			var longitude = parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
 			longitude = longitude / 10000000;
 			googleMapLastLongitude = longitude;
@@ -182,18 +139,14 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		//		gps_msg_nav_posllh_fields[2];
 				
 				
-				datenow = new Date();
-				message.messageCategoryId = 'NAV';
-				message.messageId = 'P';	
-				message.loggedAt = datenow.getTime();
-				message.feed = data.substr(1);
-				messageLogPump(message);
+				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
 				
 		};
 
 
 		if (data.substr(0,2) == 'V') {
 			var gps_msg_nav_velned_fields = data.split(',');
+			message = data.substr(1);
 			//		sap.ui.getCore().byId("TvGpsNavVelnedGpsMs").setText(gps_msg_nav_velned_fields[0].substr(3));
 			sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText(gps_msg_nav_velned_fields[0]);
 			sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText(gps_msg_nav_velned_fields[1]);			
@@ -203,12 +156,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("TvGpsNavVelnedHeading").setText(gps_msg_nav_velned_fields[5]);			
 			//		sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText(gps_msg_nav_velned_fields[7]);			
 			//	sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);		
-			datenow = new Date();
-			message.messageCategoryId = 'NAV';
-			message.messageId = 'V';	
-			message.loggedAt = datenow.getTime();
-			message.feed = data.substr(1);
-			messageLogPump(message);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
 
 		};
 
@@ -257,55 +205,5 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	},
 	
-	
-	
-
-	
-	executeConfirm: function(bResult,oController){
-	},
-	
-	
-	updateReplicateProgress: function(){
-	},
-	
-	
-	triggerReplicatePO: function(oController){
-	}, 
-
-	
-	triggerReplicateSO: function(oController){
-	},	
-	
-	
-	toggleGenerate: function(oEvent,oController){
-	},
-
-	
-	onReseedComplete: function(myTxt,oController,oObject){
-	},
-
-	
-	onReseedComplete2: function(myTxt,oController,oObject){
-	},
-
-	
-	onSynonymComplete: function(myTxt,oController){	
-	},
-	
-	
-	onResequenceComplete: function(myTxt,oController,oObject){
-	},
-
-	
-	onPOComplete: function(myTxt,oController,i){
-	},	
-
-	
-	onSOComplete: function(myTxt,oController,i){
-	},	
-
-	
-	getUniqueTime: function(){
-	}	
 
 });

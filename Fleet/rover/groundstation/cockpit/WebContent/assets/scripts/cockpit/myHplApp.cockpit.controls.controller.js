@@ -8,6 +8,7 @@
 	var vehicleModel 						= myHplApp.vehicle.model;	
 	
 	var cockpitController 					= myHplApp.cockpit.controller;
+	var cockpitModel 						= myHplApp.cockpit.model;
 	var cockpitControlsModel 				= myHplApp.cockpit.controls.model;
 	var cockpitMapsModel 					= myHplApp.cockpit.maps.model;
 
@@ -185,6 +186,8 @@
 				vehicleModel.setStateThrottleVal(speed1);
 				message = message + vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle() + speed1 + ':';
 			}
+			
+			cockpitModel.refreshGauge({id: 'gaugeThrust', val: speed1});
 		}
 		    
 			

@@ -459,7 +459,7 @@ function buildPaneNavigation(oController,oLayout){
  
 	var olblValSatellites = new sap.ui.commons.Label({
     		id: 		"lblValSatellites",
-    		text: 		"11",
+    		text: 		"0",
     		textAlign: 	"Right",
     		width: 		"50px"	    	
 	});
@@ -474,7 +474,7 @@ function buildPaneNavigation(oController,oLayout){
 	 
 	var olblValFixType = new sap.ui.commons.Label({
 	    	id: 		"lblValFixType",
-	    	text: 		"3D",
+	    	text: 		"",
 	    	textAlign: 	"Right",
 	    	width: 		"50px"	    	
 	});
@@ -898,9 +898,9 @@ function buildBearingIndicators(oController,oLayout){
 	});	
 	
 
-	var omlCellCompassIndicator = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCellPanIndicator = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCellHomeIndicator = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellCompassIndicator 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellCamPanIndicator 		= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCellWaypointIndicator 	= new sap.ui.commons.layout.MatrixLayoutCell();
 	
 	var omlRowBearingIndicators = new sap.ui.commons.layout.MatrixLayoutRow();
 		
@@ -911,29 +911,96 @@ function buildBearingIndicators(oController,oLayout){
         height: "120px"
     });
 
-    oimgPanIndicator = new sap.ui.commons.Image({
-    	id: 'imgPanindicator',
+    oimgCamPanIndicator = new sap.ui.commons.Image({
+    	id: 'imgCamPanindicator',
     	src: 'assets/images/hud/Compass.png',
         width: "82px",
         height: "120px"
     });
 
-    oimgHomeIndicator = new sap.ui.commons.Image({
-    	id: 'imgHomeIndicator',
+    oimgWaypointIndicator = new sap.ui.commons.Image({
+    	id: 'imgWaypointIndicator',
     	src: 'assets/images/hud/Compass.png',
         width: "82px",
         height: "120px"
     });
 
-    omlCellCompassIndicator.addContent(oimgCompassIndicator);
-    omlCellPanIndicator.addContent(oimgPanIndicator);
-    omlCellHomeIndicator.addContent(oimgHomeIndicator);
+	var olblCompass = new sap.ui.commons.Label({
+    	id: 		"lblCompass",
+    	text: 		myHplApp.controller.getTextFromBundle("compass"),
+    	textAlign: 	"Center",
+    	width: 		"100%"
+    });
+
+	var olblCompassVal = new sap.ui.commons.Label({
+    	id: 		"lblCompassVal",
+    	text: 		"0",
+    	textAlign: 	"Center",
+    	width: 		"100%"
+    });
+
+	var olblCamPan = new sap.ui.commons.Label({
+    	id: 		"lblCamPan",
+    	text: 		myHplApp.controller.getTextFromBundle("campan"),
+    	textAlign: 	"Center",
+    	width: 		"100%"
+    });
+
+	var olblCamPanVal = new sap.ui.commons.Label({
+    	id: 		"lblCamPanVal",
+    	text: 		"0",
+    	textAlign: 	"Center",
+    	width: 		"100%"
+    });
+
+	var olblWaypoint = new sap.ui.commons.Label({
+    	id: 		"lblWaypoint",
+    	text: 		myHplApp.controller.getTextFromBundle("waypoint"),
+    	textAlign: 	"Center",
+    	width: 		"100%"
+    });
+
+	var olblWaypointVal = new sap.ui.commons.Label({
+    	id: 		"lblWaypointVal",
+    	text: 		"0",
+    	textAlign: 	"Center",
+    	width: 		"100%"
+    });
+	
     
+	omlCellCompassIndicator.addContent(oimgCompassIndicator);
+    omlCellCamPanIndicator.addContent(oimgCamPanIndicator);
+    omlCellWaypointIndicator.addContent(oimgWaypointIndicator);    
     omlRowBearingIndicators.addCell(omlCellCompassIndicator);
-    omlRowBearingIndicators.addCell(omlCellPanIndicator);
-    omlRowBearingIndicators.addCell(omlCellHomeIndicator);
-    
+    omlRowBearingIndicators.addCell(omlCellCamPanIndicator);
+    omlRowBearingIndicators.addCell(omlCellWaypointIndicator);    
     omlBearingIndicators.addRow(omlRowBearingIndicators);
+    
+    
+    omlCellCompassIndicator 		= new sap.ui.commons.layout.MatrixLayoutCell();
+	omlCellCamPanIndicator 			= new sap.ui.commons.layout.MatrixLayoutCell();
+	omlCellWaypointHomeIndicator 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	omlRowBearingIndicators 		= new sap.ui.commons.layout.MatrixLayoutRow();
+	omlCellCompassIndicator.addContent(olblCompass);
+    omlCellCamPanIndicator.addContent(olblCamPan);
+    omlCellWaypointIndicator.addContent(olblWaypoint);    
+    omlRowBearingIndicators.addCell(omlCellCompassIndicator);
+    omlRowBearingIndicators.addCell(omlCellCamPanIndicator);
+    omlRowBearingIndicators.addCell(omlCellWaypointIndicator);    
+    omlBearingIndicators.addRow(omlRowBearingIndicators);
+    
+    omlCellCompassIndicator 		= new sap.ui.commons.layout.MatrixLayoutCell();
+	omlCellCamPanIndicator 			= new sap.ui.commons.layout.MatrixLayoutCell();
+	omlCellWaypointHomeIndicator 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	omlRowBearingIndicators 		= new sap.ui.commons.layout.MatrixLayoutRow();
+	omlCellCompassIndicator.addContent(olblCompassVal);
+    omlCellCamPanIndicator.addContent(olblCamPanVal);
+    omlCellWaypointIndicator.addContent(olblWaypointVal);    
+    omlRowBearingIndicators.addCell(omlCellCompassIndicator);
+    omlRowBearingIndicators.addCell(omlCellCamPanIndicator);
+    omlRowBearingIndicators.addCell(omlCellWaypointIndicator);    
+    omlBearingIndicators.addRow(omlRowBearingIndicators);
+	
 	oLayout.createRow(omlBearingIndicators);   
 
 }
