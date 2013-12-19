@@ -23,16 +23,27 @@
 	};
 	
 	
+	//Get methods for config	
 	myHplApp.cockpit.maps.model.getConfigGoogleMapRoad = function() {
 		return config.googleMapRoad;
 	};
 
+	
 	myHplApp.cockpit.maps.model.getConfigGoogleMapSatellite = function() {
 		return config.googleMapSatellite;
 	};
 
+	
 	myHplApp.cockpit.maps.model.getConfigGoogleMapZoomBase = function() {
 		return config.googleMapZoomBase;
+	};
+	
+	
+	
+	
+	//Get methods for state
+	myHplApp.cockpit.maps.model.getStateLatLng = function() {
+		return state.latlng;
 	};
 	
 	
@@ -40,39 +51,19 @@
 		return state.googleMapInitialised;
 	};
 
-	myHplApp.cockpit.maps.model.setStateGoogleMapInitialisedTrue = function() {
-		state.googleMapInitialised = true;
-	};
-
-	myHplApp.cockpit.maps.model.getStateGoogleMapInitialisedFalse = function() {
-		state.googleMapInitialised = false;
-	};
-	
-
-	myHplApp.cockpit.maps.model.setStateLatLng = function() {
-		state.latlng = new google.maps.LatLng(state.googleMapLastLattitude, state.googleMapLastLongitude);
-	};
-	
-	
-	myHplApp.cockpit.maps.model.getStateLatLng = function() {
-		return state.latlng;
-	};
-	
-	
-	myHplApp.cockpit.maps.model.setStateGoogleMapLastLattitude = function(val) {
-		state.googleMapLastLattitude = val;
-	};
-
-	myHplApp.cockpit.maps.model.setStateGoogleMapLastLongitude = function(val) {
-		state.googleMapLastLongitude = val;
-	};
 	
 	myHplApp.cockpit.maps.model.getStateGoogleMapLastLattitude = function(val) {
 		return state.googleMapLastLattitude;
 	};
 
+	
 	myHplApp.cockpit.maps.model.getStateGoogleMapLastLongitude = function(val) {
 		return state.googleMapLastLongitude;
+	};
+
+	
+	myHplApp.cockpit.maps.model.getStateGoogleMapLastMapType = function() {
+		return state.googleMapLastMapType;
 	};
 
 	
@@ -80,12 +71,47 @@
 		return state.googleMapLastZoom;
 	};
 
-	myHplApp.cockpit.maps.model.getStateGoogleMapLastMapType = function() {
-		return state.googleMapLastMapType;
+
+	
+	
+	//Set methods for state
+	myHplApp.cockpit.maps.model.setStateGoogleMap = function(options) {
+		console.log('Set state GoogleMap');
+		state.googleMap = new google.maps.Map($('#cockpitMap').get(0), options);
+	};
+	
+	
+	myHplApp.cockpit.maps.model.setStateGoogleMapMarker = function(title) {
+		console.log('Set state GoogleMap Marker');
+		state.googleMapMarker = new google.maps.Marker({
+			position: 	state.latlng,
+			map: 		state.googleMap,
+			title: 		title
+		});
 	};
 
-	myHplApp.cockpit.maps.model.setMapTypeIdSatellite = function() {
-		googleMap.setMapTypeId(googleMapMapTypeSatellite);
+	
+	myHplApp.cockpit.maps.model.setStateGoogleMapInitialised = function(val) {
+		state.googleMapInitialised = val;
+	};
+
+	
+	myHplApp.cockpit.maps.model.setStateLatLng = function() {
+		state.latlng = new google.maps.LatLng(state.googleMapLastLattitude, state.googleMapLastLongitude);
+	};
+	
+
+	myHplApp.cockpit.maps.model.setStateGoogleMapLastLattitude = function(val) {
+		state.googleMapLastLattitude = val;
+	};
+
+	
+	myHplApp.cockpit.maps.model.setStateGoogleMapLastLongitude = function(val) {
+		state.googleMapLastLongitude = val;
+	};
+	
+	
+	myHplApp.cockpit.maps.model.setMapTypeIdSatellite = function() {	
 		state.googleMap.setMapTypeId(config.googleMapSatellite);
 		state.googleMapLastMapType = config.googleMapSatellite;
 	};

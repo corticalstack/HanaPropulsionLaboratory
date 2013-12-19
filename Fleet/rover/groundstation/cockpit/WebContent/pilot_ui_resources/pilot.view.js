@@ -18,6 +18,7 @@ sap.ui.jsview("pilot_ui_resources.pilot", {
 function buildPilotCarousel(oController,oLayout){
     var pilotCarouselContent = [];	
     var roster = myHplApp.pilot.model.getRoster();
+    console.log(roster);
     pilotCard = new Object();
 
     
@@ -68,7 +69,7 @@ function buildPilotCarousel(oController,oLayout){
         
         pilotCard.olblPilot = new sap.ui.commons.Label({
         	id: 	lblPilotId,
-            text: 	otextBundle.getText("pilot")
+            text: 	myHplApp.controller.getTextFromBundle("pilot")
         });    	
 	
         
@@ -80,7 +81,7 @@ function buildPilotCarousel(oController,oLayout){
 		
         pilotCard.olblComplChallanges = new sap.ui.commons.Label({
         	id: lblComplChallengesId,
-        	text: otextBundle.getText("completedchallenges")
+        	text: myHplApp.controller.getTextFromBundle("completedchallenges")
         });
         
         
@@ -116,9 +117,9 @@ function buildPilotCarousel(oController,oLayout){
         
         pilotCard.olnkLaunch = new sap.ui.commons.Link({
 		 	id: 	lnkLaunchId,
-		 	text: 	otextBundle.getText("launch"),
+		 	text: 	myHplApp.controller.getTextFromBundle("launch"),
 		 	width: 	"100%",
-		 	press:	setViewContent
+		 	press:	myHplApp.controller.setViewContent
         });
 
         

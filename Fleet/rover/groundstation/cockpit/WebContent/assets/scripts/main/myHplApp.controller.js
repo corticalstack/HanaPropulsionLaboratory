@@ -2,23 +2,20 @@
  
 	myHplApp.controller = myHplApp.controller || {};
 	
-	var model = myHplApp.model;
-	var cockpitMapsController = myHplApp.cockpit.maps.controller; 
+	var model 				  = myHplApp.model;
+//	var cockpitMapsController = myHplApp.cockpit.maps.controller; 
 	
 	
 	myHplApp.controller.init = function() {
 		console.log('Initialising app controller');	
 		model.setConfigSlocale();		
 		model.setConfigOtextBundle();
-		model.setConfigViews();
-		model.initLayoutHome();
-		model.setConfigCurrentViewContent(model.getConfigMainmenuView());
 
 	};
 	
 	
 	myHplApp.controller.getTextFromBundle = function(textId) {
-		model.getOtextBundle().getText(textId);
+		return model.getOtextBundle().getText(textId);
 	};
 	
 	
@@ -28,17 +25,17 @@
 		switch (oControlEvent.getSource().getId())
 		{
 			case "lnkSoloCampaign":
-				model.setConfigCurrentViewContent(pilotView);
-				model.setLayoutHomeContent(model.config.currentViewContent);
+				model.setConfigCurrentViewContent(model.getConfigPilotView());
+				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
 				break;
 			case "lnkMultiplayer":
-				model.setConfigCurrentViewContent(pilotView);
-				model.setLayoutHomeContent(model.config.currentViewContent);
+				model.setConfigCurrentViewContent(model.getConfigPilotView());
+				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
 				break;
 				
 			case "lnkFreeride":
-				model.setConfigCurrentViewContent(pilotView);
-				model.setLayoutHomeContent(model.config.currentViewContent);
+				model.setConfigCurrentViewContent(model.getConfigPilotView());
+				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
 				break;
 				
 			case "lnkSettings":
@@ -50,11 +47,11 @@
 				break;
 			
 			case "lnkLaunch" + oControlEvent.getSource().getId().slice("lnkLaunch".length):
-				model.config.currentViewContent = model.config.cockpitView;
-				model.config.oAbsoluteLayoutHome.addContent(model.config.currentViewContent);
+				model.setConfigCurrentViewContent(model.getConfigCockpitView());
+				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
 				$.fn.hideBackgroundImage();
-				cockpitMapsController.googleMapInitialise();
-				//newGauge();			
+				myHplApp.cockpit.maps.controller.googleMapInitialise();
+				myHplApp.cockpit.controller.initGauges();			
 				//newFlot();
 				
 				break;

@@ -23,14 +23,8 @@
 	            mapTypeId : mapsModel.getStateGoogleMapLastMapType()
 	    };
 	    
-		mapsModel.config.googleMap = new google.maps.Map($('#cockpitMap').get(0), myOptions);
-	    
-		mapsModel.config.googleMapMarker = new google.maps.Marker({
-	    	position: 	mapsModel.config.latlng,
-	        map: 		mapsModel.config.googleMap,
-	        title: 		'vehicleName'
-	    });
-		
+		mapsModel.setStateGoogleMap(myOptions);
+		mapsModel.setStateGoogleMapMarker("vehicleName");
 		mapsModel.setMapTypeIdRoad();
 	   
 	};    

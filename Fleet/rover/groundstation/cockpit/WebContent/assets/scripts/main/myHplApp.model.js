@@ -28,7 +28,7 @@
 
 		
 	myHplApp.model.setConfigOtextBundle = function() {
-  	    config.otextBundle = jQuery.sap.resources({url : "./assets/i18n/messagebundle.hdbtextbundle", locale: config.sLocale});
+  	    config.otextBundle = jQuery.sap.resources({url : "/assets/i18n/messagebundle.hdbtextbundle", locale: config.sLocale});
 	};
 
 
@@ -92,7 +92,11 @@
 	myHplApp.model.setConfigCurrentViewContent = function(view) {
 		config.currentViewContent = view;
 	};
-	
+
+	myHplApp.model.getConfigCurrentViewContent = function(view) {
+		return config.currentViewContent;
+	};
+
 } (myHplApp = window.myHplApp || {}));
 
 

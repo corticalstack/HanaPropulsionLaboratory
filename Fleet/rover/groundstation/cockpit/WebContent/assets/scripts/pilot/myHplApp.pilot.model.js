@@ -8,5 +8,11 @@
 	myHplApp.pilot.model.getRoster = function() {
 		return roster;
 	};
-    
+
+	
+	myHplApp.pilot.model.pushRoster = function(pilot) {
+		roster.push(pilot);
+	};
+
+	
 } (myHplApp = window.myHplApp || {}));

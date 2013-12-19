@@ -15,11 +15,16 @@
 		window.socket.emit(cockpitModel.config.socketEvent, message);
 	};
 	
-
 	myHplApp.cockpit.controller.init = function() {
-		console.log('Initialising cockpit controller');
-		cockpitModel.config.gaugeCurrent = new JustGage({
-			id: "gaugeCurrent",
+		console.log('Initialising cockpit controller');		
+	};
+	
+	myHplApp.cockpit.controller.initGauges = function() {
+		console.log('Initialising cockpit controller gauges');
+		
+		var gaugeId = "gaugeCurrent";		 
+		var ogauge 	= new JustGage({
+			id: gaugeId,
 			title: "",
 			titleFontColor: "#ffffff",
 			titleMinFontSize: 12,	
@@ -46,10 +51,13 @@
 							}],
 			counter: true
 		});
-
 		
-		cockpitModel.config.gaugeAmps = new JustGage({
-			id: "gaugeAmps",
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		
+		
+		gaugeId = "gaugeAmps";
+		ogauge 	= new JustGage({
+			id: gaugeId,
 			title: "",
 			titleFontColor: "#ffffff",
 			titleMinFontSize: 12,	
@@ -77,9 +85,12 @@
 			counter: true
 		});
 		
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 		
-		cockpitModel.config.gaugeConsumedMah = new JustGage({
-			id: "gaugeConsumedMah",
+		
+		gaugeId = "gaugeConsumedMah";
+		ogauge 	= new JustGage({
+			id: gaugeId,
 			donut: true,
 			title: "",	
 			titleFontColor: "#ffffff",
@@ -109,9 +120,12 @@
 			counter: true
 		});
 		
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 		
-		cockpitModel.config.gaugeVoltage = new JustGage({
-			id: "gaugeVoltage",
+		
+		gaugeId = "gaugeVoltage";
+		ogauge 	= new JustGage({
+			id: gaugeId,
 			title: "",
 			titleFontColor: "#ffffff",
 			titleMinFontSize: 14,	
@@ -140,9 +154,12 @@
 			counter: true
 		});
 		
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 		
-		cockpitModel.config.gaugeBattRemaining = new JustGage({
-				id: "gaugeBattRemaining",
+		
+		gaugeId = "gaugeBattRemaining";
+		ogauge 	= new JustGage({
+				id: gaugeId,
 				donut: true,
 				title: "",
 				titleFontColor: "#ffffff",
@@ -172,9 +189,12 @@
 				counter: true
 		});
 		
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 		
-		cockpitModel.config.gaugeThrust = new JustGage({
-				id: "gaugeThrust",
+		
+		gaugeId = "gaugeThrust";
+		ogauge 	= new JustGage({
+				id: gaugeId,
 				title: "",
 				titleFontColor: "#ffffff",
 				titleMinFontSize: 14,	
@@ -202,9 +222,12 @@
 				counter: true
 		});
 
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 		
-		cockpitModel.config.gaugeAmmo = new JustGage({
-			id: "gaugeAmmo",
+		
+		gaugeId = "gaugeAmmo";
+		ogauge 	= new JustGage({
+			id: gaugeId,
 			donut: true,
 			title: "",
 			titleFontColor: "#ffffff",
@@ -233,10 +256,13 @@
 			counter: true
 		});
 
-
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 		
-		cockpitModel.config.gaugeShield = new JustGage({
-				id: "gaugeShield",
+		
+		
+		gaugeId = "gaugeShield";
+		ogauge 	= new JustGage({
+				id: gaugeId,
 				donut: true,
 				title: "",	
 				titleFontColor: "#ffffff",
@@ -265,10 +291,14 @@
 								}],
 				counter: true
 		});
-
-
-		cockpitModel.config.gaugeCoreTemp = new JustGage({
-				id: "gaugeCoreTemp",
+		
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		
+		
+		
+		gaugeId = "gaugeCoreTemp";
+		ogauge 	= new JustGage({
+				id: gaugeId,
 				title: "",	
 				titleFontColor: "#ffffff",
 				titleMinFontSize: 14,	
@@ -296,6 +326,8 @@
 								}],
 				counter: true
 		});
+		
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 
 	};
 	

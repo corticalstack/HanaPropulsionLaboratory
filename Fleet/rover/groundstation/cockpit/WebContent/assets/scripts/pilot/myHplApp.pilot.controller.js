@@ -6,6 +6,14 @@
 	var missioncontrolModel 	= myHplApp.missioncontrol.model;
 	
 	
+	
+	
+	myHplApp.pilot.controller.init = function() {
+		console.log('Initialising pilot controller');	
+		myHplApp.pilot.controller.setPilotRoster();
+	};
+	
+	
 	myHplApp.pilot.controller.setPilotRoster = function() { 
 		$.ajax({ type: 'GET',
 	         url: missioncontrolModel.getConfigServicePilotsUri(),
@@ -13,12 +21,13 @@
 	         crossDomain: true,
 	         async: false, 
 	         success: myHplApp.pilot.controller.onLoadPilots,
-	         error: myHplApp.pilot.controller.onLoadPilots.onErrorCall 
+	         error: myHplApp.pilot.controller.onErrorCall 
 		});
 	};
 	
 		
 	myHplApp.pilot.controller.onLoadPilots = function(myJSON) {
+		console.log('Pilot roster uploaded from mission control');
 		for (var i = 0; i<myJSON.d.results.length; i++) {
 			var pilot = {
 					pilotId: 	myJSON.d.results[i].pilotId,
@@ -27,7 +36,7 @@
 					clanName: 	myJSON.d.results[i].clanName,
 					clanUri: 	myJSON.d.results[i].clanUri
 			};
-			pilotModel.roster.push(pilot);
+			pilotModel.pushRoster(pilot);
 		};		
 	};
 
@@ -39,6 +48,7 @@
 //				 "ERROR",
 //				 otextBundle.getText("error") );		
 //		return;
+		console.log('Pilot roster default set');
 		var pilot = {
 				pilotId: 	'001',
 				name: 		'JP',
@@ -46,7 +56,7 @@
 				clanName: 	'Wolf',
 				clanUri: 	'assets/images/emblems/Wolf.jpg'
 		};
-		pilotModel.roster.push(pilot);
+		pilotModel.pushRoster(pilot);
 		
 		var pilot = {
 				pilotId: 	'002',
@@ -55,7 +65,7 @@
 				clanName: 	'Black Widow',
 				clanUri: 	'assets/images/emblems/Black Widow.jpg'
 		};
-		pilotModel.roster.push(pilot);
+		pilotModel.pushRoster(pilot);
 		
 		var pilot = {
 				pilotId: 	'006',
@@ -64,7 +74,7 @@
 				clanName: 	'Snake',
 				clanUri: 	'assets/images/emblems/Snake.jpg'
 		};
-		pilotModel.roster.push(pilot);
+		pilotModel.pushRoster(pilot);
 
 		var pilot = {
 				pilotId: 	'007',
@@ -73,10 +83,11 @@
 				clanName: 	'Wasp',
 				clanUri: 	'assets/images/emblems/Wasp.jpg'
 		};
-		pilotModel.roster.push(pilot);
+		pilotModel.pushRoster(pilot);
 
 	};
 	
 	
+	myHplApp.pilot.controller.init();
 	
 } (myHplApp = window.myHplApp || {}));

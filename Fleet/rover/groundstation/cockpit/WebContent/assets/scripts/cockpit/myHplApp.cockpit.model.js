@@ -16,5 +16,11 @@
 	};
 	
     
+	myHplApp.cockpit.model.setGauge = function(mygauge) {
+		var result 		= mygauge['id'];
+		config[result] 	= mygauge['gauge'];
+	};
+
+	
 } (myHplApp = window.myHplApp || {}));	
 	
