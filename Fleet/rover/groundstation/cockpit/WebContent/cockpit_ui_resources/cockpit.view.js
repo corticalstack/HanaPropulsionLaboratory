@@ -85,14 +85,14 @@ function buildPaneDrive(oController,oLayout){
 
 	 var olblPaneDrive = new sap.ui.commons.Label({
 	    	id: 		"lblPaneDrive",
-	    	text: 		otextBundle.getText("drive"),	
+	    	text: 		myHplApp.controller.getTextFromBundle("drive"),	
 	    	textAlign: 	"Center",
 	    	width: 		"100%"
 	    });
 	 
 	 var olblIndDriveDirection = new sap.ui.commons.Label({
 	    	id: 		"lblIndDriveDirection",
-	    	text: 		otextBundle.getText("forward"),
+	    	text: 		myHplApp.controller.getTextFromBundle("forward"),
 	    	textAlign: 	"Center",
 	    	width: 		"100px"
 	    });
@@ -100,7 +100,7 @@ function buildPaneDrive(oController,oLayout){
 	 
 	 var olblIndStop = new sap.ui.commons.Label({
 	    	id: 		"lblIndStop",
-	    	text: 		otextBundle.getText("stop"),
+	    	text: 		myHplApp.controller.getTextFromBundle("stop"),
 	    	textAlign: 	"Center",
 	    	width: 		"100px"
 	    });
@@ -108,7 +108,7 @@ function buildPaneDrive(oController,oLayout){
 	 
 	 var olblStatusLeftEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblStatusLeftEngineThrust",
-	    	text: 	otextBundle.getText("leftenginethrust"),
+	    	text: 	myHplApp.controller.getTextFromBundle("leftenginethrust"),
 	    	width: 	"90px"
 	    });
 	
@@ -123,7 +123,7 @@ function buildPaneDrive(oController,oLayout){
 	 
 	 var olblStatusRightEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblStatusRightEngineThrust",
-	    	text: 	otextBundle.getText("rightenginethrust"),
+	    	text: 	myHplApp.controller.getTextFromBundle("rightenginethrust"),
 	    	width: 	"90px"	    	
 	 });
 	 
@@ -220,7 +220,7 @@ function buildPanePrimarySystems(oController,oLayout){
 	
 	var olblPanePrimarySystems = new sap.ui.commons.Label({
     		id: 		"lblPanePrimarySystems",
-    		text: 		otextBundle.getText("primarysystems"),
+    		text: 		myHplApp.controller.getTextFromBundle("primarysystems"),
     		textAlign: 	"Center",
     		width: 		"100%"
     });
@@ -228,7 +228,7 @@ function buildPanePrimarySystems(oController,oLayout){
 	
 	var olblIndPowerFailsafe = new sap.ui.commons.Label({
 	   		id: 		"lblIndPowerFailsafe",
-	    	text: 		otextBundle.getText("powerfailsafe"),
+	    	text: 		myHplApp.controller.getTextFromBundle("powerfailsafe"),
 	    	textAlign: 	"Center",
 	    	width: 		"90px"
 	});
@@ -236,7 +236,7 @@ function buildPanePrimarySystems(oController,oLayout){
 	 
 	var olblIndCommsFailsafe = new sap.ui.commons.Label({
 	    	id: 		"lblIndCommsFailsafe",
-	    	text: 		otextBundle.getText("commsfailsafe"),
+	    	text: 		myHplApp.controller.getTextFromBundle("commsfailsafe"),
 	    	textAlign: 	"Center",
 	    	width: 		"90px"
 	});
@@ -244,7 +244,7 @@ function buildPanePrimarySystems(oController,oLayout){
 
 	var olblIndThrustFailsafe = new sap.ui.commons.Label({
 	    	id: 		"lblIndThrustFailsafe",
-	    	text: 		otextBundle.getText("thrustfailsafe"),
+	    	text: 		myHplApp.controller.getTextFromBundle("thrustfailsafe"),
 	    	textAlign: 	"Center",
 	    	width: 		"90px"
 	});
@@ -307,7 +307,7 @@ function buildPaneEarthTime(oController,oLayout){
 
 	var olblPaneEarthTime = new sap.ui.commons.Label({
     		id: 		"lblPaneEarthTime",
-    		text: 		otextBundle.getText("earthtime"),
+    		text: 		myHplApp.controller.getTextFromBundle("earthtime"),
     		textAlign: 	"Center",
     		width: 		"100%"
     });
@@ -362,7 +362,7 @@ function buildPanePower(oController,oLayout){
 	
 	var olblPanePower = new sap.ui.commons.Label({
 			id: 		"lblPanePower",
-		    text: 		otextBundle.getText("power"),	
+		    text: 		myHplApp.controller.getTextFromBundle("power"),	
 		    textAlign: 	"Center",
 		    width: 		"100%"
 		});
@@ -435,7 +435,7 @@ function buildPaneNavigation(oController,oLayout){
 	
 	var olblPaneNavigation = new sap.ui.commons.Label({
 			id: 			"lblPaneNavigation",
-			text: 			otextBundle.getText("navigation"),
+			text: 			myHplApp.controller.getTextFromBundle("navigation"),
 			textAlign: 		"Center",
 			width: 			"100%"
 	});
@@ -452,7 +452,7 @@ function buildPaneNavigation(oController,oLayout){
 	
 	var olblStatusSatellites = new sap.ui.commons.Label({
     		id: 		"lblStatusSatellites",
-    		text: 		otextBundle.getText("satellites"),
+    		text: 		myHplApp.controller.getTextFromBundle("satellites"),
     		width: 		"100px"
 	});
 
@@ -467,7 +467,7 @@ function buildPaneNavigation(oController,oLayout){
 
 	var olblStatusFixType = new sap.ui.commons.Label({
 	    	id: 		"lblStatusFixType",
-	    	text: 		otextBundle.getText("fixtype"),
+	    	text: 		myHplApp.controller.getTextFromBundle("fixtype"),
 	    	width: 		"100px"
 	});
 	
@@ -482,7 +482,7 @@ function buildPaneNavigation(oController,oLayout){
 
 	var olblStatusLattitude = new sap.ui.commons.Label({
 	    	id: 		"lblStatusLattitude",
-	    	text: 		otextBundle.getText("lattitude"),
+	    	text: 		myHplApp.controller.getTextFromBundle("lattitude"),
 	    	width: 		"100px"
 	});
 	
@@ -497,7 +497,7 @@ function buildPaneNavigation(oController,oLayout){
 
 	var olblStatusLongitude = new sap.ui.commons.Label({
 		    id: 		"lblStatusLongitude",
-		    text: 		otextBundle.getText("longitude"),
+		    text: 		myHplApp.controller.getTextFromBundle("longitude"),
 		    width: 		"100px"
 	});
 		
@@ -512,7 +512,7 @@ function buildPaneNavigation(oController,oLayout){
 
 	var olblStatusAltitude = new sap.ui.commons.Label({
 		    id: 		"lblStatusAltitude",
-		    text: 		otextBundle.getText("altitude"),
+		    text: 		myHplApp.controller.getTextFromBundle("altitude"),
 		    width: 		"100px"
 	});
 		
@@ -527,7 +527,7 @@ function buildPaneNavigation(oController,oLayout){
 
 	var olblStatusSpeedCms = new sap.ui.commons.Label({
 	   		id: 		"lblStatusSpeedCms",
-			text: 		otextBundle.getText("speedcms"),
+			text: 		myHplApp.controller.getTextFromBundle("speedcms"),
 			width: 		"100px"
 	});
 			
@@ -542,7 +542,7 @@ function buildPaneNavigation(oController,oLayout){
 
 	var olblStatusHeading = new sap.ui.commons.Label({
 			id: 		"lblStatusHeading",
-			text: 		otextBundle.getText("heading"),
+			text: 		myHplApp.controller.getTextFromBundle("heading"),
 			width: 		"100px"
 	});
 			
@@ -557,7 +557,7 @@ function buildPaneNavigation(oController,oLayout){
 	
 	var olblStatusDistanceWp = new sap.ui.commons.Label({
 			id: 		"lblStatusDistanceWp",
-			text: 		otextBundle.getText("distancewp"),
+			text: 		myHplApp.controller.getTextFromBundle("distancewp"),
 			width: 		"100px"
 	});
 		
@@ -572,7 +572,7 @@ function buildPaneNavigation(oController,oLayout){
 	
 	var olblStatusBearingWp = new sap.ui.commons.Label({
 			id: 		"lblStatusBearingWp",
-			text: 		otextBundle.getText("bearingwp"),
+			text: 		myHplApp.controller.getTextFromBundle("bearingwp"),
 			width: 		"100px"
 	});
 	
@@ -693,7 +693,7 @@ function buildPaneMissionControl(oController,oLayout){
 	 
 	var olblPaneMissionControl = new sap.ui.commons.Label({
     		id: 		"lblPaneMissionControl",
-    		text: 		otextBundle.getText("missioncontrol"),
+    		text: 		myHplApp.controller.getTextFromBundle("missioncontrol"),
     		textAlign: 	"Center",
     		width: 		"100%"
     });
@@ -784,14 +784,14 @@ function buildPaneWeapons(oController,oLayout){
 
 	var olblPaneWeapons = new sap.ui.commons.Label({
     		id: 		"lblPaneWeapons",
-    		text: 		otextBundle.getText("weapons"),	
+    		text: 		myHplApp.controller.getTextFromBundle("weapons"),	
     		textAlign: 	"Center",
     		width: 		"100%"
     	});
  
 	var olblIndArmed = new sap.ui.commons.Label({
     		id: 		"lblIndArmed",
-    		text: 		otextBundle.getText("armed"),
+    		text: 		myHplApp.controller.getTextFromBundle("armed"),
     		textAlign: 	"Center",
     		width: 		"100px"
     });
@@ -840,7 +840,7 @@ function buildPaneDummy(oController,oLayout){
 
 	var olblPaneDummy = new sap.ui.commons.Label({
 			id: 		"lblPaneDummy",
-			text: 		otextBundle.getText("dummy"),	
+			text: 		myHplApp.controller.getTextFromBundle("dummy"),	
 			textAlign: 	"Center",
 			width: 		"100%"
 	});
@@ -867,7 +867,7 @@ function buildPaneFooter(oController,oLayout){
 		
 	var olblPaneFooter = new sap.ui.commons.Label({
     	id: 		"lblPaneFooter",
-    	text: 		otextBundle.getText("hpl"),
+    	text: 		myHplApp.controller.getTextFromBundle("hpl"),
     	textAlign: 	"Center",
     	width: 		"100%"
     });

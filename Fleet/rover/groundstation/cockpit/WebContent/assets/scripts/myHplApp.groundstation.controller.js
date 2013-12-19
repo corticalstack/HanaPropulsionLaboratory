@@ -7,35 +7,44 @@
 	
 	myHplApp.groundstation.controller.init = function() {
 		console.log('Initialising groundstation controller');
-		groundstationModel.config.socket = io.connect('http://192.168.1.38:8090');
-		groundstationModel.state.connected = false;		
+		try {
+				groundstationModel.setConfigSocket();
+				groundstationModel.setStateConnected(true);
+				console.log('Groundstation connected');
+			}
+		catch(err) {
+				groundstationModel.setStateConnected(false);
+				console.log('Groundstation not connected');
+		}
+				
 	};
 	    
 	
 	myHplApp.groundstation.controller.init();
 	
-	
-	groundstationModel.config.socket.on('connect', function(data){
-    	try { 
-    			sap.ui.getCore().byId("viewCockpit").getController().connect(data);
-    	}
-    	catch(err){}
-    });
+	if (groundstationModel.getStateConnected()) {
+		groundstationModel.getConfigSocket().on('connect', function(data){
+			try { 
+					sap.ui.getCore().byId("viewCockpit").getController().connect(data);
+				}
+			catch(err){}
+		});
 
     
-	groundstationModel.config.socket.on('wildcard', function(){
-    	try {			
-    			sap.ui.getCore().byId("viewCockpit").getController().wildcard();
-    		}
-    	catch(err){}
-    });
+		groundstationModel.getConfigSocket().on('wildcard', function(){
+			try {			
+    				sap.ui.getCore().byId("viewCockpit").getController().wildcard();
+    			}
+			catch(err){}
+		});
     	
 	
-	groundstationModel.config.socket.on('feed', function(data){
+		groundstationModel.getConfigSocket().on('feed', function(data){
 			try {
-    			sap.ui.getCore().byId("viewCockpit").getController().feed(data);
-    		}
-    	catch(err){}
-    });
+    				sap.ui.getCore().byId("viewCockpit").getController().feed(data);
+    			}
+			catch(err){}
+		});
+	};
 	
 } (myHplApp = window.myHplApp || {}));

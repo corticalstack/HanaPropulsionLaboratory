@@ -61,7 +61,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkSoloCampaign",
 			text:  	myHplApp.controller.getTextFromBundle("solo"),	
 			width: 	"250px",
-			press:  setViewContent
+			press:  myHplApp.controller.setViewContent
 		});
 	
 	
@@ -69,7 +69,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkMultiplayer",
 			text: 	myHplApp.controller.getTextFromBundle("multiplayer"),
 			width: 	"250px",
-			press:  setViewContent
+			press:  myHplApp.controller.setViewContent
 	});
 
 	
@@ -77,7 +77,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkFreeride",
 			text: 	myHplApp.controller.getTextFromBundle("freeride"),
 			width: 	"250px",
-			press:  setViewContent
+			press:  myHplApp.controller.setViewContent
 	});   
 
 
@@ -85,7 +85,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkSettings",
 			text: 	myHplApp.controller.getTextFromBundle("settings"),
 			width: 	"250px",
-			press:  setViewContent
+			press:  myHplApp.controller.setViewContent
 	});
 
 	
@@ -93,7 +93,7 @@ function buildMainMenu(oController,oLayout){
 			id: 	"lnkQuit",
 			text: 	myHplApp.controller.getTextFromBundle("quit"), 	
 			width: 	"250px",
-			press:  setViewContent
+			press:  myHplApp.controller.setViewContent
 	});
 
 	

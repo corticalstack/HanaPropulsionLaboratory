@@ -17,6 +17,7 @@ sap.ui.jsview("pilot_ui_resources.pilot", {
 
 function buildPilotCarousel(oController,oLayout){
     var pilotCarouselContent = [];	
+    var roster = myHplApp.pilot.model.getRoster();
     pilotCard = new Object();
 
     
@@ -45,21 +46,21 @@ function buildPilotCarousel(oController,oLayout){
 
     
 	
-	for (var i=0; i < pilotList.length; i++) {
-        var imgAvatarId 			= 'imgAvatar' + pilotList[i].pilotId,
-         	lblPilotId 				= 'lblPilot' + pilotList[i].pilotId,
-         	lblPilotNameId 			= 'lblPilotName' + pilotList[i].pilotId,
-         	lblComplChallengesId 	= 'lblComplChallenges' + pilotList[i].pilotId,
-         	prgIndId 				= 'prgInd' + pilotList[i].pilotId,
-         	lblClanId 				= 'lblClan' + pilotList[i].pilotId,
-         	imgClanId 				= 'imgClan' + pilotList[i].pilotId,
-         	mlPilotId 				= 'mlPilot' + pilotList[i].pilotId,
-         	lnkLaunchId				= 'lnkLaunch' + pilotList[i].pilotId;
+	for (var i=0; i < roster.length; i++) {
+        var imgAvatarId 			= 'imgAvatar' + roster[i].pilotId,
+         	lblPilotId 				= 'lblPilot' + roster[i].pilotId,
+         	lblPilotNameId 			= 'lblPilotName' + roster[i].pilotId,
+         	lblComplChallengesId 	= 'lblComplChallenges' + roster[i].pilotId,
+         	prgIndId 				= 'prgInd' + roster[i].pilotId,
+         	lblClanId 				= 'lblClan' + roster[i].pilotId,
+         	imgClanId 				= 'imgClan' + roster[i].pilotId,
+         	mlPilotId 				= 'mlPilot' + roster[i].pilotId,
+         	lnkLaunchId				= 'lnkLaunch' + roster[i].pilotId;
         
         
         pilotCard.oimgAvatar = new sap.ui.commons.Image({
         	id: imgAvatarId,
-        	src: pilotList[i].avatarUri,
+        	src: roster[i].avatarUri,
             width: "135px",
             height: "320px"
         });
@@ -73,7 +74,7 @@ function buildPilotCarousel(oController,oLayout){
         
         pilotCard.olblPilotName = new sap.ui.commons.Label({
         	id: 	lblPilotNameId,
-        	text: 	pilotList[i].name
+        	text: 	roster[i].name
         });
         
 		
@@ -93,13 +94,13 @@ function buildPilotCarousel(oController,oLayout){
 		
         pilotCard.olblClan = new sap.ui.commons.Label({
         	id: lblClanId,
-        	text: pilotList[i].clanName
+        	text: roster[i].clanName
 	    });
         
         
         pilotCard.oimgClan = new sap.ui.commons.Image({
         	id: 	imgClanId,
-        	src: 	pilotList[i].clanUri,
+        	src: 	roster[i].clanUri,
         	width:	"200px",
         	height:	"200px"
 	    });        		

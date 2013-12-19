@@ -5,6 +5,8 @@
 
 	var roster = [];
 	
-
+	myHplApp.pilot.model.getRoster = function() {
+		return roster;
+	};
     
 } (myHplApp = window.myHplApp || {}));
