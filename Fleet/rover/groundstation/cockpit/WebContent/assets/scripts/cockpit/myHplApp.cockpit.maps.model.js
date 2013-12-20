@@ -134,6 +134,13 @@
 		state.googleMap.setCenter(state.googleMapMarker.getPosition());
 	};
 
+	myHplApp.cockpit.maps.model.setPosition = function() {
+		 state.googleMapMarker.setPosition(state.latlng);
+	};
 	
+	myHplApp.cockpit.maps.model.panTo = function() {
+		state.googleMap.panTo(state.googleMapMarker.getPosition());
+	};
+
 } (myHplApp = window.myHplApp || {}));	
 	

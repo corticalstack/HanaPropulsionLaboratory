@@ -49,14 +49,19 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 
 	feed: function(data) {
-		var missioncontrolController = myHplApp.missioncontrol.controller;
+		var missioncontrolController 	= myHplApp.missioncontrol.controller;
+		var cockpitModel 				= myHplApp.cockpit.model;
+		var cockpitMapsModel			= myHplApp.cockpit.maps.model;
 		var message;
-		
 	
 		if (data.substr(0,1) == 'C') {
 			var compass_msg_fields = data.split(',');
 			message = data.substr(1);
-			sap.ui.getCore().byId("lblCompassVal").setText(compass_msg_fields[0].substr(1));			
+			
+			var compassHeading = parseInt(compass_msg_fields[0].substr(1), 10);
+			sap.ui.getCore().byId("lblCompassVal").setText(compassHeading + '°');	
+			sap.ui.getCore().byId("lblValHeading").setText(compassHeading + '°');	
+			$('#imgCompassIndicator').css('-webkit-transform', 'rotate(' + compassHeading + 'deg)');
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdCompass(), message );
 		};
 
@@ -112,62 +117,50 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			message = data.substr(1);
 
 			var longitude = parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
-			longitude = longitude / 10000000;
-			googleMapLastLongitude = longitude;
 			var lattitude = parseFloat(gps_msg_nav_posllh_fields[1], 10);
-			lattitude = lattitude / 10000000; 
-			googleMapLastLattitude = lattitude;
-			sap.ui.getCore().byId("TvGpsNavPosllhLongitude").setText(longitude);
-			sap.ui.getCore().byId("TvGpsNavPosllhLattitude").setText(lattitude);
-			sap.ui.getCore().byId("TvGpsNavPosllhHeight").setText(gps_msg_nav_posllh_fields[2]);
-			googleMapUpdateCounter += 1;
-//			if (googleMapUpdateCounter > 5) {
-				latlng = new google.maps.LatLng(googleMapLastLattitude, googleMapLastLongitude);
-			    googleMapMarker.setPosition(latlng);
-				googleMap.panTo(googleMapMarker.getPosition());
-				googleMapUpdateCounter = 0;
-//			}
-			//	set_map(lattitude, longitude);
+			var altitude  = parseFloat(gps_msg_nav_posllh_fields[2], 10);
+			
+			longitude = longitude / 10000000;
+			lattitude = lattitude / 10000000;
+			altitude = altitude / 1000;
+			altitude = altitude.toFixed(2);
+			
+			cockpitMapsModel.setStateGoogleMapLastLattitude(longitude);
+			cockpitMapsModel.setStateGoogleMapLastLattitude(lattitude);
+			cockpitMapsModel.setStateLatLng();
+			cockpitMapsModel.setPosition();
+			cockpitMapsModel.panTo();
+			sap.ui.getCore().byId("lblValLongitude").setText(longitude);
+			sap.ui.getCore().byId("lblValLattitude").setText(lattitude);
+			sap.ui.getCore().byId("lblValAltitude").setText(altitude);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
 			//	sap.ui.getCore().byId("TvGpsNavPosllhHeightMsl").setText(gps_msg_nav_posllh_fields[4]);			
 			//	sap.ui.getCore().byId("TvGpsNavPosllhHoriAccEst").setText(gps_msg_nav_posllh_fields[5]);			
 			//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[6]);			
 			//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[7]);
-	//			var datenow = new Date;
-		//		var timenow = new Timestamp(System.currentTimeMillis());  
-			//	var msg = data.substr(0,1) + '  ' + '001' + timenow + gps_msg_nav_posllh_fields[0] + 
-		//		gps_msg_nav_posllh_fields[1] +
-		//		gps_msg_nav_posllh_fields[2];
-				
-				
-				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
-				
 		};
 
 
-		if (data.substr(0,2) == 'V') {
+		if (data.substr(0,1) == 'V') {
 			var gps_msg_nav_velned_fields = data.split(',');
 			message = data.substr(1);
-			//		sap.ui.getCore().byId("TvGpsNavVelnedGpsMs").setText(gps_msg_nav_velned_fields[0].substr(3));
-			sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText(gps_msg_nav_velned_fields[0]);
-			sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText(gps_msg_nav_velned_fields[1]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedDownVelCms").setText(gps_msg_nav_velned_fields[2]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedSpeed3dCms").setText(gps_msg_nav_velned_fields[3]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedGroundSpeed2dCms").setText(gps_msg_nav_velned_fields[4]);			
-			sap.ui.getCore().byId("TvGpsNavVelnedHeading").setText(gps_msg_nav_velned_fields[5]);			
-			//		sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText(gps_msg_nav_velned_fields[7]);			
-			//	sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);		
+			
+//			var heading = parseFloat(gps_msg_nav_velned_fields[5], 10);
+//			heading = heading / 1000;
+//			heading = parseInt(heading, 10);
+			
+			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[4]);			
+//			sap.ui.getCore().byId("lblValHeading").setText(heading);			
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
-
+			//sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText(gps_msg_nav_velned_fields[0]);
+			//sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText(gps_msg_nav_velned_fields[1]);			
+			//sap.ui.getCore().byId("TvGpsNavVelnedDownVelCms").setText(gps_msg_nav_velned_fields[2]);			
+			//sap.ui.getCore().byId("TvGpsNavVelnedSpeed3dCms").setText(gps_msg_nav_velned_fields[3]);			
+			//sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText(gps_msg_nav_velned_fields[7]);			
+			//sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);
+			//sap.ui.getCore().byId("TvGpsNavVelnedGpsMs").setText(gps_msg_nav_velned_fields[0].substr(3));
 		};
-
 				
-		//sap.ui.getCore().byId("tvSharpir1").setText(data.substr(3));
-		
-		//		var sharpir_value = parseInt(data.substr(3));
-		//		var percentval = (sharpir_value / 500) * 100; 
-		//		var barvalue = 100 - percentval; 
-		//		sap.ui.getCore().byId("ProgInd1").setPercentValue(barvalue);
-		//		sap.ui.getCore().byId("ProgInd1").setDisplayValue(percentval);
 	},
 	
 	

@@ -561,7 +561,7 @@ img.bg {
 	font-weight: 400;
 	font-style: normal;
 	font-size: 1.2em;
-	text-align: center; 
+	
 	padding-top: 2px;
 }
 
@@ -696,10 +696,96 @@ img.bg {
   	left:1550px;
 }
 
-#mlBearingIndicators {
+#mlPaneBearingIndicators {
 	position: fixed;
-	top: 175px;
-  	left:480px;
+	top: 160px;
+  	left:470px;
+}
+
+
+#lblCompass {
+	position: fixed;
+	top: 224px;
+  	left: 495px;	
+  	width: 100px;
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em; 
+	text-align: center; 
+
+}
+
+#lblCompassVal {
+	position: fixed;
+	top: 204px;
+  	left: 495px;	
+  	width: 100px;
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em; 
+	text-align: center; 
+
+}
+
+#lblCamPan {
+	position: fixed;
+	top: 224px;
+  	left: 645px;	
+  	width: 100px;
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em; 
+	text-align: center; 
+
+}
+
+#lblCamPanVal {
+	position: fixed;
+	top: 204px;
+  	left: 645px;	
+  	width: 100px;
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em; 
+	text-align: center; 
+
+}
+
+
+#lblWaypoint {
+	position: fixed;
+	top: 224px;
+  	left: 796px;	
+  	width: 100px;
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em; 
+	text-align: center; 
+
+}
+
+#lblWaypointVal {
+	position: fixed;
+	top: 204px;
+  	left: 796px;	
+  	width: 100px;
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2em; 
+	text-align: center; 
+
 }
 
 #compassBearing {

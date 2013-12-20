@@ -17,6 +17,12 @@
 	
 	
 	//Get methods
+	
+	myHplApp.cockpit.model.getConfigSocketEvent = function() {
+		return config.socketEvent;
+	};
+
+	
 	myHplApp.cockpit.model.getGaugeCurrent = function() {
 		return config.gaugeCurrent;
 	};

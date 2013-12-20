@@ -96,6 +96,12 @@
 	myHplApp.model.getConfigCurrentViewContent = function(view) {
 		return config.currentViewContent;
 	};
+	
+	
+	myHplApp.model.getConfigMsgTerminator = function(view) {
+		return config.msgTerminator;
+	};
+	
 
 } (myHplApp = window.myHplApp || {}));
 

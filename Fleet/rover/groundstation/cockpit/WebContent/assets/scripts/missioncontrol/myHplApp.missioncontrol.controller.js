@@ -15,7 +15,9 @@
     };
 
 	
-	myHplApp.missioncontrol.controller.messagePump = function(categoryId, messageId, feed) { 
+	myHplApp.missioncontrol.controller.messagePump = function(categoryId, messageId, feed) {
+		var missioncontrolModel = myHplApp.missioncontrol.model;
+		return;
 		if (!missioncontrolModel.state.missionControlOnline) {
 			return;
 		}

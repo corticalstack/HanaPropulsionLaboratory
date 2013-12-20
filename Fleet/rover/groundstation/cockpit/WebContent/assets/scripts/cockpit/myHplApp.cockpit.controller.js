@@ -2,17 +2,20 @@
  
 	myHplApp.cockpit.controller = myHplApp.cockpit.controller || {};
 	
-	var cockpitModel = myHplApp.cockpit.model;
+	var cockpitModel 	   		= myHplApp.cockpit.model;
+	var groundstationModel 		= myHplApp.groundstation.model;
+	var vehicleCmdModel         = myHplApp.vehicle.cmd.model; 
+	var cockpitHeartbeatTick 	= setInterval(function(){myHplApp.cockpit.controller.emitHeartbeat()},250);
 	
 	
-		
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
-		window.socket.emit(socketEventCockpit, cmdCockpitHeartbeat);
+		groundstationModel.getConfigSocket().emit(cockpitModel.getConfigSocketEvent(), vehicleCmdModel.getInstructionCockpitHeartbeat());
 	};
 	
 
 	myHplApp.cockpit.controller.emitControl = function(message) {
-		window.socket.emit(cockpitModel.config.socketEvent, message);
+		console.log(message);
+		groundstationModel.getConfigSocket().emit(cockpitModel.getConfigSocketEvent(), message);
 	};
 	
 	myHplApp.cockpit.controller.init = function() {
@@ -30,24 +33,24 @@
 			titleMinFontSize: 12,	
 			label: "CURRENT",
 			labelMinFontSize: 12,
-			value: 40,
+			value: 0,
 			valueMinFontSize: 12,
 			valueFontColor: "#ffffff",
 			min: 0,
-			max: 100,
+			max: 10,
 			gaugeWidthScale: 0.4,
 			customSectors: [{
 								color: "#00ff00",
 								lo: 0,
-								hi: 60
+								hi: 3
 							},{
 								color: "#ff8000",
-								lo: 60,
-								hi: 80
+								lo: 3,
+								hi: 6
 							}, {
 								color: "#ff0000",
-								lo: 80,
-								hi: 100
+								lo: 6,
+								hi: 10
 							}],
 			counter: true
 		});
@@ -63,7 +66,7 @@
 			titleMinFontSize: 12,	
 			label: "AMPS",
 			labelMinFontSize: 12,
-			value: 40,
+			value: 0,
 			valueMinFontSize: 12,
 			valueFontColor: "#ffffff",
 			min: 0,
@@ -72,10 +75,10 @@
 			customSectors: [{
 								color: "#00ff00",
 								lo: 0,
-								hi: 60
+								hi: 25
 							},{
 								color: "#ff8000",
-								lo: 60,
+								lo: 25,
 								hi: 80
 							}, {
 								color: "#ff0000",
@@ -97,7 +100,7 @@
 			titleMinFontSize: 14,	
 			label: "CONSUMED MAH",
 			labelMinFontSize: 16,
-			value: 5000,
+			value: 0,
 			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
 			min: 0,
@@ -105,17 +108,17 @@
 			showMinMax: false,
 			gaugeWidthScale: 0.5,
 			customSectors: [{
-								color: "#ff0000",
+								color: "#00ff00",
 								lo: 0,
-								hi: 20
+								hi: 5000
 							},{
 								color: "#ffff00",
-								lo: 20,
-								hi: 50
+								lo: 5000,
+								hi: 8000
 							}, {
-								color: "#00ff00",
-								lo: 50,
-								hi: 100
+								color: "#ff0000",
+								lo: 8000,
+								hi: 10000
 							}],
 			counter: true
 		});
@@ -131,25 +134,27 @@
 			titleMinFontSize: 14,	
 			label: "VOLTAGE",
 			labelMinFontSize: 16,
-			value: 8,
+			value: 0,
 			valueMinFontSize: 22,
 			valueFontColor: "#ffffff",
 			min: 7,
-			max: 9,
+			max: 8.20,
 			showMinMax: false,
+			humanFriendlyDecimal: 2,
+	        decimals: 2,
 			gaugeWidthScale: 0.5,
 			customSectors: [{
 								color: "#ff0000",
-								lo: 0,
-								hi: 20
+								lo: 7,
+								hi: 7.65
 							},{
 								color: "#ffff00",
-								lo: 20,
-								hi: 50
+								lo: 7.65,
+								hi: 7.90
 							}, {
 								color: "#00ff00",
-								lo: 50,
-								hi: 100
+								lo: 7.90,
+								hi: 8.20
 							}],
 			counter: true
 		});
@@ -166,7 +171,7 @@
 				titleMinFontSize: 14,	
 				label: "BATTERY %",
 				labelMinFontSize: 16,
-				value: 19,
+				value: 0,
 				valueMinFontSize: 14,
 				valueFontColor: "#ffffff",
 				min: 0,
@@ -200,7 +205,7 @@
 				titleMinFontSize: 14,	
 				label: "THRUST %",
 				labelMinFontSize: 16,
-				value: 40,
+				value: 0,
 				valueMinFontSize: 22,
 				valueFontColor: "#ffffff",
 				min: 0,
@@ -234,7 +239,7 @@
 			titleMinFontSize: 14,	
 			label: "AMMO %",
 			labelMinFontSize: 16,
-			value: 40,
+			value: 0,
 			valueMinFontSize: 22,
 			valueFontColor: "#ffffff",
 			min: 0,
@@ -304,7 +309,7 @@
 				titleMinFontSize: 14,	
 				label: "CORE TEMP",
 				labelMinFontSize: 16,
-				value: 20,
+				value: 0,
 				valueMinFontSize: 22,
 				valueFontColor: "#ffffff",
 				min: 10,

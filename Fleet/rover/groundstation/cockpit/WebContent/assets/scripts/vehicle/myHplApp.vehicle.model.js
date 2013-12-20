@@ -11,6 +11,7 @@
 			throttle:				false,
 			direction:				false,
 			rotate:					false,
+			heading:				false,			
 			throttleVal:			0,
 			directionVal:			'DF',
 			headingVal:				0,
@@ -57,6 +58,10 @@
         state.rotate = true;
     };
 
+    myHplApp.vehicle.model.setStateHeadingOn = function() { 
+        state.heading = true;
+    };
+
     myHplApp.vehicle.model.setStateStopOff = function() { 
         state.stop = false;
     };
@@ -73,6 +78,9 @@
         state.rotate = false;
     };
 
+    myHplApp.vehicle.model.setStateHeadingOff = function() { 
+        state.heading = false;
+    };
 
     myHplApp.vehicle.model.getStateThrottleVal = function() { 
         return state.throttleVal;

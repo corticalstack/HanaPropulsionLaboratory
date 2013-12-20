@@ -4,16 +4,12 @@
 	myHplApp.cockpit.controller 			= myHplApp.cockpit.controller || {};
 	
 	var model                   			= myHplApp.model;
-	
-	var vehicleModel 						= myHplApp.vehicle.model;	
-	
+	var vehicleModel 						= myHplApp.vehicle.model;		
 	var cockpitController 					= myHplApp.cockpit.controller;
 	var cockpitModel 						= myHplApp.cockpit.model;
 	var cockpitControlsModel 				= myHplApp.cockpit.controls.model;
 	var cockpitMapsModel 					= myHplApp.cockpit.maps.model;
-
-	var vehicleCmdModel 					= myHplApp.vehicle.cmd.model;
-	
+	var vehicleCmdModel 					= myHplApp.vehicle.cmd.model;	
 	var missioncontrolModel 				= myHplApp.missioncontrol.model;
 	var missioncontrolController 			= myHplApp.missioncontrol.controller;
 	
@@ -67,6 +63,14 @@
 
 	
 	myHplApp.cockpit.controls.controller.gamepad_button_down = function(gamepadEvent) {
+		var vehicleModel 						= myHplApp.vehicle.model;		
+		var cockpitController 					= myHplApp.cockpit.controller;
+		var cockpitModel 						= myHplApp.cockpit.model;
+		var cockpitControlsModel 				= myHplApp.cockpit.controls.model;
+		var cockpitMapsModel 					= myHplApp.cockpit.maps.model;
+		var vehicleCmdModel 					= myHplApp.vehicle.cmd.model;	
+		var missioncontrolModel 				= myHplApp.missioncontrol.model;
+		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		var message = '';
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigDirection() && 
 			vehicleModel.getStateThrottleVal() < vehicleModel.getConfigThrottleMaxDirChange() && 
@@ -81,7 +85,7 @@
 			}
 				  
 			
-			message = vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle + vehicleModel.getStateThrottleVal() + model.config.msgTerminator;
+			message = vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle + vehicleModel.getStateThrottleVal() + model.getConfigMsgTerminator();
 			cockpitController.emitControl(message);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), message );
 		}
@@ -150,6 +154,14 @@
 
 
 	myHplApp.cockpit.controls.controller.gamepad_button_up = function(gamepadEvent) {
+		var vehicleModel 						= myHplApp.vehicle.model;		
+		var cockpitController 					= myHplApp.cockpit.controller;
+		var cockpitModel 						= myHplApp.cockpit.model;
+		var cockpitControlsModel 				= myHplApp.cockpit.controls.model;
+		var cockpitMapsModel 					= myHplApp.cockpit.maps.model;
+		var vehicleCmdModel 					= myHplApp.vehicle.cmd.model;	
+		var missioncontrolModel 				= myHplApp.missioncontrol.model;
+		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft() || gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanStop());			
@@ -165,6 +177,14 @@
 
 
 	myHplApp.cockpit.controls.controller.gamepad_axis_changed = function(gamepadEvent) {
+		var vehicleModel 						= myHplApp.vehicle.model;		
+		var cockpitController 					= myHplApp.cockpit.controller;
+		var cockpitModel 						= myHplApp.cockpit.model;
+		var cockpitControlsModel 				= myHplApp.cockpit.controls.model;
+		var cockpitMapsModel 					= myHplApp.cockpit.maps.model;
+		var vehicleCmdModel 					= myHplApp.vehicle.cmd.model;	
+		var missioncontrolModel 				= myHplApp.missioncontrol.model;
+		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		var message = '';
 
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigThrottle()) {
@@ -192,11 +212,18 @@
 		    
 			
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigHeading()) {
+			console.log('Heading');
 			vehicleModel.setStateHeadingOn();
+			console.log('Heading1');
 			var heading = parseFloat(gamepadEvent.value);
+			console.log('Heading2');
 			heading = heading * 100;
-			var heading1 = heading.toFixed(0);	
+			console.log('Heading3');
+			var heading1 = heading.toFixed(0);
+			console.log('Heading4');
+			console.log(heading1);
 			message = message + vehicleCmdModel.getInstructionHeading()  + heading1 + ':';
+			console.log('Heading5');
 		}
 
 		    
@@ -210,7 +237,8 @@
 				message = message + vehicleCmdModel.getInstructionRotate()  + rotate1 + ':';
 			}
 		}
-
+		
+		console.log(message);
 		    
 		if (message != '') {
 			message = message + ']';    
