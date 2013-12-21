@@ -92,7 +92,8 @@
 
 
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigStop() ) {
-			vehicleModel.setStateStopOn();		 
+			vehicleModel.setStateStopOn();	
+			cockpitModel.refreshIndicator({id: 'lblIndStop', val: 1});
 			cockpitController.emitControl(vehicleCmdModel.getInstructionStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), vehicleCmdModel.getInstructionStop());
 		}
@@ -141,6 +142,8 @@
 		}
 
 		
+		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
+		
 //		if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
 //			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
 //		}
@@ -172,6 +175,9 @@
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamTiltStop());			
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamTiltStop());
 		}
+		
+		
+		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
 			
 	};
 
@@ -188,53 +194,52 @@
 		var message = '';
 
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigThrottle()) {
-			var speed = parseFloat(gamepadEvent.value);
-			speed = speed * 100;
-			var speed1 = speed.toFixed(0);	
-			if (speed1 < cockpitControlsModel.getDeviceConfigThrottleDeadzoneVal()) {
-				speed1 = 0;
+			var throttle = parseFloat(gamepadEvent.value);
+			throttle = throttle * 100;
+			throttle = throttle.toFixed(0);	
+			if (throttle < cockpitControlsModel.getDeviceConfigThrottleDeadzoneVal()) {
+				throttle = 0;
 			}
 				   
 
-			if (speed1 == 0) {
+			if (throttle == 0) {
 				vehicleModel.setStateStopOff();
+				cockpitModel.refreshIndicator({id: 'lblIndStop', val: 1});
 			}
-				  
-
-			if (vehicleModel.getStateStop() == false && speed1 != vehicleModel.getStateThrottleVal()) {
-				vehicleModel.setStateThrottleOn();
-				vehicleModel.setStateThrottleVal(speed1);
-				message = message + vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle() + speed1 + ':';
+			else {
+				cockpitModel.refreshIndicator({id: 'lblIndStop', val: 0});
 			}
 			
-			cockpitModel.refreshGauge({id: 'gaugeThrust', val: speed1});
+
+			if (vehicleModel.getStateStop() == false && throttle != vehicleModel.getStateThrottleVal()) {
+				vehicleModel.setStateThrottleOn();
+				vehicleModel.setStateThrottleVal(throttle);
+				message = message + vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle() + throttle + ':';
+			}
+			
+			cockpitModel.refreshGauge({id: 'gaugeThrust', val: throttle});
+			$('.cube')[0].style.webkitTransform = "rotateX("+throttle+"deg)";// rotateY("+throttle+"deg)";
 		}
 		    
 			
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigHeading()) {
-			console.log('Heading');
-			vehicleModel.setStateHeadingOn();
-			console.log('Heading1');
 			var heading = parseFloat(gamepadEvent.value);
-			console.log('Heading2');
+			vehicleModel.setStateHeadingOn();
 			heading = heading * 100;
-			console.log('Heading3');
-			var heading1 = heading.toFixed(0);
-			console.log('Heading4');
-			console.log(heading1);
-			message = message + vehicleCmdModel.getInstructionHeading()  + heading1 + ':';
-			console.log('Heading5');
+			heading = heading.toFixed(0);
+			message = message + vehicleCmdModel.getInstructionHeading()  + heading + ':';
+
 		}
 
 		    
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigRotate() && vehicleModel.getStateThrottleVal() == 0) {
+			var rotate = parseFloat(gamepadEvent.value);			
 			vehicleModel.setStateRotateOn();
-			var rotate = parseFloat(gamepadEvent.value);
 			rotate = rotate * 100;
-			var rotate1 = rotate.toFixed(0);	
-			if (rotate1 != vehicleModel.getStateRotateVal()) {
-				vehicleModel.setStateRotateVal(rotate1);
-				message = message + vehicleCmdModel.getInstructionRotate()  + rotate1 + ':';
+			rotate = rotate.toFixed(0);	
+			if (rotate != vehicleModel.getStateRotateVal()) {
+				vehicleModel.setStateRotateVal(rotate);
+				message = message + vehicleCmdModel.getInstructionRotate()  + rotate + ':';
 			}
 		}
 		
@@ -262,6 +267,9 @@
 			    cockpitMapsModel.setMapCenter();
 			}
 		}
+ 		
+		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
+		
 	};
 
 } (myHplApp = window.myHplApp || {}));	

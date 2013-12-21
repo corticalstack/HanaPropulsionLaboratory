@@ -52,6 +52,8 @@
 				$.fn.hideBackgroundImage();
 				myHplApp.cockpit.maps.controller.googleMapInitialise();
 				myHplApp.cockpit.controller.initGauges();			
+				myHplApp.cockpit.controller.initIndicators();
+				sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
 				//newFlot();
 				
 				break;

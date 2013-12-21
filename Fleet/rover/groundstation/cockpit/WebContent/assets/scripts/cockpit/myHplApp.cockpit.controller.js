@@ -9,13 +9,18 @@
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
-		groundstationModel.getConfigSocket().emit(cockpitModel.getConfigSocketEvent(), vehicleCmdModel.getInstructionCockpitHeartbeat());
+		var socket =  groundstationModel.getConfigSocket();
+		if (socket != '') {
+			socket.emit(cockpitModel.getConfigSocketEvent(), vehicleCmdModel.getInstructionCockpitHeartbeat());
+		}
 	};
 	
 
 	myHplApp.cockpit.controller.emitControl = function(message) {
-		console.log(message);
-		groundstationModel.getConfigSocket().emit(cockpitModel.getConfigSocketEvent(), message);
+		var socket =  groundstationModel.getConfigSocket();
+		if (socket != '') {
+			socket.emit(cockpitModel.getConfigSocketEvent(), message);
+		}
 	};
 	
 	myHplApp.cockpit.controller.init = function() {
@@ -335,6 +340,124 @@
 		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 
 	};
+	
+	
+	myHplApp.cockpit.controller.initIndicators = function() {
+		console.log('Initialising cockpit controller indicators');
+
+		//Stop
+		var indicator = {
+				id: 				'lblIndStop',
+				value: 				0,
+				refresh: 			true,
+				sector1Min: 		0,
+				sector1Max: 		0,
+				sector1CssClass:    'lblIndOff',
+				sector2Min: 		1,
+				sector2Max: 		1,
+				sector2CssClass:   	'lblIndOn',
+				sector3Min: 		'',
+				sector3Max: 		'',
+				sector3CssClass:    ''
+		};
+		
+		cockpitModel.setIndicator(indicator);
+
+		//Armed
+		var indicator = {
+				id: 				'lblIndArmed',
+				value: 				0,
+				refresh: 			true,
+				sector1Min: 		0,
+				sector1Max: 		0,
+				sector1CssClass:    'lblIndOff',
+				sector2Min: 		1,
+				sector2Max: 		1,
+				sector2CssClass:   	'lblIndOn',
+				sector3Min: 		'',
+				sector3Max: 		'',
+				sector3CssClass:    ''
+		};
+		
+		cockpitModel.setIndicator(indicator);
+
+		//Power Failsafe
+		var indicator = {
+				id: 				'lblIndPowerFailsafe',
+				value: 				0,
+				refresh: 			true,
+				sector1Min: 		0,
+				sector1Max: 		0,
+				sector1CssClass:    'lblIndOff',
+				sector2Min: 		1,
+				sector2Max: 		1,
+				sector2CssClass:   	'lblIndOn',
+				sector3Min: 		'',
+				sector3Max: 		'',
+				sector3CssClass:    ''
+		};
+		
+		cockpitModel.setIndicator(indicator);
+
+		
+		//Comms Failsafe
+		var indicator = {
+				id: 				'lblIndCommsFailsafe',
+				value: 				0,
+				refresh: 			true,
+				sector1Min: 		0,
+				sector1Max: 		0,
+				sector1CssClass:    'lblIndOff',
+				sector2Min: 		1,
+				sector2Max: 		1,
+				sector2CssClass:   	'lblIndOn',
+				sector3Min: 		'',
+				sector3Max: 		'',
+				sector3CssClass:    ''
+		};
+		
+		cockpitModel.setIndicator(indicator);
+
+		
+		//Thrust Failsafe
+		var indicator = {
+				id: 				'lblIndThrustFailsafe',
+				value: 				0,
+				refresh: 			true,
+				sector1Min: 		0,
+				sector1Max: 		0,
+				sector1CssClass:    'lblIndOff',
+				sector2Min: 		1,
+				sector2Max: 		1,
+				sector2CssClass:   	'lblIndOn',
+				sector3Min: 		'',
+				sector3Max: 		'',
+				sector3CssClass:    ''
+		};
+		
+		cockpitModel.setIndicator(indicator);
+		
+		//Satellites
+		var indicator = {
+				id: 				'lblStatusSatellites',
+				value: 				'0',
+				refresh: 			true,
+				sector1Min: 		'0',
+				sector1Max: 		'0',
+				sector1CssClass:    'lblStatusRed',
+				sector2Min: 		'1',
+				sector2Max: 		'3',
+				sector2CssClass:   	'lblStatusOrange',
+				sector3Min: 		'4',
+				sector3Max: 		'15',
+				sector3CssClass:    'lblStatusGreen'
+		};
+		
+		cockpitModel.setIndicator(indicator);
+
+	};
+	
+	
 	
 	
 	myHplApp.cockpit.controller.init();

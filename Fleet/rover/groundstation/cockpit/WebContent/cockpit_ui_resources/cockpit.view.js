@@ -23,6 +23,7 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPaneFooter(oController,oLayout);
     	 
     	 buildBearingIndicators(oController,oLayout);
+    	 buildPaneGyro(oController,oLayout);
 
   	     return oLayout;
       }
@@ -1018,3 +1019,22 @@ function buildBearingIndicators(oController,oLayout){
 
 }
 
+function buildPaneGyro(oController,oLayout){
+	
+	var omlPaneGyro = new sap.ui.commons.layout.MatrixLayout({
+			id: 			"mlPaneGyro",
+			layoutFixed: 	true,
+			width:			"500px"
+		});
+	 
+	
+	var ohtmlIframeGyro = new sap.ui.core.HTML({  
+	    	content: '<div class="cube"><div class="face one"></div><div class="face two"></div><div class="face three"></div><div class="face four"></div><div class="face five"></div><div class="face six"></div></div>',
+	    	preferDOM : false   
+	});
+
+	 
+	omlPaneGyro.createRow(ohtmlIframeGyro);
+	oLayout.createRow(omlPaneGyro);    
+	
+}

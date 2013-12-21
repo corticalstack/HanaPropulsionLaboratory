@@ -7,7 +7,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	 */
 	onInit: function() {
 	
-  
+
 	},
 
 	
@@ -196,6 +196,40 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	execute: function(oEvent,oController){
 	
+	},
+	
+	
+	refreshIndicators: function() {
+		var myIndicators = myHplApp.cockpit.model.getIndicators();
+		
+		for (var i = 0; i < myIndicators.length; i++) {
+			var applyClass	= '';
+		    if (myIndicators[i].refresh == true) {
+		    	if (myIndicators[i].value   >= myIndicators[i].sector1Min && myIndicators[i].value <= myIndicators[i].sector1Max) {
+		    		applyClass = myIndicators[i].sector1CssClass;
+		    	}
+		    	else if (myIndicators[i].value >= myIndicators[i].sector2Min && myIndicators[i].value <= myIndicators[i].sector2Max) {
+		    		applyClass = myIndicators[i].sector2CssClass;
+		    	}
+		    	else if (myIndicators[i].value >= myIndicators[i].sector3Min && myIndicators[i].value <= myIndicators[i].sector3Max) {
+		    		applyClass = myIndicators[i].sector3CssClass;
+		    	}
+		    }
+		    if (applyClass != '') {
+		    	if (myIndicators[i].sector1CssClass != '') {
+		    		$('#' + myIndicators[i].id).removeClass(myIndicators[i].sector1CssClass);	
+		    	}
+	    		if (myIndicators[i].sector2CssClass != '') {
+	    			$('#' + myIndicators[i].id).removeClass(myIndicators[i].sector2CssClass);	
+	    		}
+	    		if (myIndicators[i].sector3CssClass != '') {
+	    			$('#' + myIndicators[i].id).removeClass(myIndicators[i].sector3CssClass);	
+	    		}
+	    		$('#' + myIndicators[i].id).addClass(applyClass);
+	    		myHplApp.cockpit.model.setIndicatorClearRefresh(i);
+	    	}
+	    }
+		
 	},
 	
 

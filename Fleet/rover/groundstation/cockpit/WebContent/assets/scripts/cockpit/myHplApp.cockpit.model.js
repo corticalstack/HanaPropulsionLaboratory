@@ -4,6 +4,10 @@
 	
 	var config = {
 			socketEvent:		'cockpit',
+	};
+
+	
+	var gauge = {
 			gaugeCurrent:   	{},
 			gaugeAmps:			{},
 			gaugeConsumedMah: 	{},
@@ -16,6 +20,9 @@
 	};
 	
 	
+	var indicators = [];
+	
+	
 	//Get methods
 	
 	myHplApp.cockpit.model.getConfigSocketEvent = function() {
@@ -24,62 +31,87 @@
 
 	
 	myHplApp.cockpit.model.getGaugeCurrent = function() {
-		return config.gaugeCurrent;
+		return gauge.gaugeCurrent;
 	};
     
 
 	myHplApp.cockpit.model.getGaugeAmps = function() {
-		return config.gaugeAmps;
+		return gauge.gaugeAmps;
 	};
 
 	
 	myHplApp.cockpit.model.getGaugeConsumedMah = function() {
-		return config.gaugeConsumedMah;
+		return gauge.gaugeConsumedMah;
 	};
 
 	
 	myHplApp.cockpit.model.getGaugeVoltage = function() {
-		return config.gaugeVoltage;
+		return gauge.gaugeVoltage;
 	};
 
 
 	myHplApp.cockpit.model.getGaugeBattRemaining = function() {
-		return config.gaugeBattRemaining;
+		return gauge.gaugeBattRemaining;
 	};
 
 
 	myHplApp.cockpit.model.getGaugeThrust = function() {
-		return config.gaugeBattRemaining;
+		return gauge.gaugeBattRemaining;
 	};
 
 
 	myHplApp.cockpit.model.getGaugeAmmo = function() {
-		return config.gaugeAmmo;
+		return gauge.gaugeAmmo;
 	};
 
 	
 	myHplApp.cockpit.model.getGaugeShield = function() {
-		return config.gaugeShield;
+		return gauge.gaugeShield;
 	};
 
 
 	myHplApp.cockpit.model.getGaugeCoreTemp = function() {
-		return config.gaugeCoreTemp;
+		return gauge.gaugeCoreTemp;
 	};
-	
+
+
+	myHplApp.cockpit.model.getIndicators = function(myIndicator) {
+		return indicators;
+	};
+
 	
 	//Set methods
 	myHplApp.cockpit.model.setGauge = function(mygauge) {
-		var gaugeId 		= mygauge['id'];
-		config[gaugeId] 	= mygauge['gauge'];
+		var gaugeId 	= mygauge['id'];
+		gauge[gaugeId] 	= mygauge['gauge'];
 	};
 
 
-	myHplApp.cockpit.model.refreshGauge = function(mygauge) {
-		var gaugeId = mygauge['id'];
-		config[gaugeId].refresh(mygauge['val']);
+	myHplApp.cockpit.model.refreshGauge = function(myGauge) {
+		var gaugeId = myGauge['id'];
+		gauge[gaugeId].refresh(myGauge['val']);
 	};
 
+	
+	myHplApp.cockpit.model.setIndicator = function(myIndicator) {
+		indicators.push(myIndicator);
+	};
+
+	
+	myHplApp.cockpit.model.refreshIndicator = function(myIndicator) {
+		var indicatorId = myIndicator['id'];
+		for (var i = 0; i < indicators.length; i++) {
+		    if (indicators[i].id == indicatorId) {
+    			indicators[i].refresh = true;
+    			indicators[i].value = myIndicator['val'];
+		    }
+		}
+	};
+	
+	
+	myHplApp.cockpit.model.setIndicatorClearRefresh = function(i) {
+		indicators[i].refresh = false;
+	};
 	
 } (myHplApp = window.myHplApp || {}));	
 	

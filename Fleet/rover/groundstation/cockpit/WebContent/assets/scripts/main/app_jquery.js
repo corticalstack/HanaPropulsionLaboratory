@@ -9,6 +9,7 @@ $(document).bind("keydown", function(e) {
 	$("#lnkSettings").show();
 	$("#lnkQuit").show();
 	
+	
 });
 
 
