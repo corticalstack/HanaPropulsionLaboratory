@@ -123,7 +123,7 @@ img.bg {
 }
 
 #lnkSoloCampaign:hover {
-	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;  
     -webkit-animation-play-state:running;
 	color: rgb(255,255,255);	
 	border-left: 7px solid;
@@ -150,7 +150,7 @@ img.bg {
 }
 
 #lnkMultiplayer:hover {
-	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;
     -webkit-animation-play-state:running;
 	color: rgb(255,255,255);	
 	border-left: 7px solid;
@@ -176,7 +176,7 @@ img.bg {
 }
 
 #lnkFreeride:hover {
-	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;  
     -webkit-animation-play-state:running;
 	color: rgb(255,255,255);	
 	border-left: 7px solid;
@@ -203,7 +203,7 @@ img.bg {
 }
 
 #lnkSettings:hover {
-	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;  
     -webkit-animation-play-state:running;
 	color: rgb(255,255,255);	
 	border-left: 7px solid;
@@ -231,7 +231,7 @@ img.bg {
 
 
 #lnkQuit:hover {
-	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;;  
+	background: -webkit-linear-gradient(left,rgba(0,0,255,1),rgba(0,0,0,0)) no-repeat;  
     -webkit-animation-play-state:running;
 	color: rgb(255,255,255);	
 	border-left: 7px solid;
@@ -853,49 +853,186 @@ img.bg {
   background-color: rgb(50, 50, 50);
   -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
   height: 100px;
-  opacity: 0.7;
+  opacity: 1;
   position: absolute;
   width: 100px;
 }
 
 .cube .one  {
+		height: 100px;
+	width: 100px;
+	
   background-color: rgb(242, 24, 25);
   -webkit-transform: rotateX(90deg) translateZ(50px);
-  background-image: url('../images/hud/Dog Tags.png');
+  background-image: url('../images/hud/Rover_Top.png');
 }
 
 .cube .two {
+	height: 100px;
+	width: 100px;
   background-color: rgb(235, 41, 158);
   -webkit-transform: translateZ(50px);
-  background-image: url('../images/hud/Dominated.png');
+  background-image: url('../images/hud/Rover_Rear.png');
 }
 
 .cube .three {
+	height: 100px;
+	width: 100px;
   background-color: rgb(252, 209, 22);
   -webkit-transform: rotateY(90deg) translateZ(50px);
-	background-image: url('../images/hud/Drone.png');  
+	background-image: url('../images/hud/Rover_Left.png');  
 }
 
 .cube .four {
+	height: 100px;
+	width: 100px;
   background-color: rgb(44, 45, 213);
   -webkit-transform: rotateY(180deg) translateZ(50px);
-  background-image: url('../images/hud/Energy.png');
+  background-image: url('../images/hud/Rover_Front.png');
 }
 
 .cube .five {
+	height: 100px;
+	width: 100px;
+	
   background-color: rgb(125, 105, 181);
   -webkit-transform: rotateY(-90deg) translateZ(50px);
-  background-image: url('../images/hud/Engineer.png');
+  background-image: url('../images/hud/Rover_Right.png');
 }
 
 .cube .six {
+		height: 100px;
+	width: 100px;
+	
   background-color: rgb(22, 226, 38);
   -webkit-transform: rotateX(-90deg) translateZ(50px) rotate(180deg);
-  background-image: url('../images/hud/Evil Stare.png');
+  background-image: url('../images/hud/Rover_Bottom.png');
 }
 
 
-///
+
+
+.container {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      margin: 0 auto 40px;
+      overflow:visible;
+      -webkit-transform-origin: 50% 50%;
+      -webkit-perspective: 1200px;
+}
+
+#box {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      -webkit-transform-origin: 50% 50%;
+      overflow:visible;
+      -webkit-transform-style: preserve-3d;
+}
+
+#box p {
+      display: block;
+      position: absolute;
+    }
+
+    #box.panels-backface-invisible figure {
+      -webkit-backface-visibility: hidden;
+    }
+
+
+#box .front, #box .back {
+      width: 100px;
+      height: 100px;
+}
+
+
+#box .right, #box .left {
+      width: 200px;
+      height: 100px;
+      left: -50px;
+}
+
+#box .top, #box .bottom {
+      width: 100px;
+      height: 200px;
+      top: -50px;
+      line-height: 100px;
+    }
+
+
+#box .front  { background-image: url('../images/hud/Rover_Front.png'); }
+#box .back   { background-image: url('../images/hud/Rover_Back.png'); }
+#box .right  { background-image: url('../images/hud/Rover_Right.png'); }
+#box .left   { background-image: url('../images/hud/Rover_Left.png'); }
+#box .top    { background-image: url('../images/hud/Rover_Top.png'); }
+#box .bottom { background-image: url('../images/hud/Rover_Bottom.png'); }
+
+#box .front  {
+	-webkit-transform: translateZ( 100px );
+}
+
+#box .back   {
+	-webkit-transform: rotateX( -180deg ) translateZ(  100px );
+}
+
+#box .right {
+      -webkit-transform: rotateY(   90deg ) translateZ( 50px );
+}
+
+#box .left {
+      -webkit-transform: rotateY(  -90deg ) translateZ( 50px );
+}
+
+#box .top {
+      -webkit-transform: rotateX(   90deg ) translateZ( 50px );
+}
+
+#box .bottom {
+      -webkit-transform: rotateX(  -90deg ) translateZ( 50px );
+}
+
+
+#box.show-front {
+      -webkit-transform: translateZ(  -50px );
+    }
+
+
+#box.show-back {
+      -webkit-transform: translateZ( -50px ) rotateX( -180deg );
+         -moz-transform: translateZ( -50px ) rotateX( -180deg );
+           -o-transform: translateZ( -50px ) rotateX( -180deg );
+              transform: translateZ( -50px ) rotateX( -180deg );
+    }
+
+#box.show-right {
+      -webkit-transform: translateZ( -50px ) rotateY(  -90deg );
+         -moz-transform: translateZ( -50px ) rotateY(  -90deg );
+           -o-transform: translateZ( -50px ) rotateY(  -90deg );
+              transform: translateZ( -50px ) rotateY(  -90deg );
+    }
+
+#box.show-left {
+      -webkit-transform: translateZ( -50px ) rotateY(   90deg );
+         -moz-transform: translateZ( -50px ) rotateY(   90deg );
+           -o-transform: translateZ( -50px ) rotateY(   90deg );
+              transform: translateZ( -50px ) rotateY(   90deg );
+    }
+
+#box.show-top {
+      -webkit-transform: translateZ( -50px ) rotateX(  -90deg );
+         -moz-transform: translateZ( -50px ) rotateX(  -90deg );
+           -o-transform: translateZ( -50px ) rotateX(  -90deg );
+              transform: translateZ( -50px ) rotateX(  -90deg );
+    }
+
+#box.show-bottom {
+      -webkit-transform: translateZ( -50px ) rotateX(   90deg );
+         -moz-transform: translateZ( -50px ) rotateX(   90deg );
+           -o-transform: translateZ( -50px ) rotateX(   90deg );
+              transform: translateZ( -50px ) rotateX(   90deg );
+    }
+
 
 /* ---------------------------
 	   SAP Theme Overrides

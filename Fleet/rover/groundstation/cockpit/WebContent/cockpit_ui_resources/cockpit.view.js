@@ -1024,13 +1024,15 @@ function buildPaneGyro(oController,oLayout){
 	var omlPaneGyro = new sap.ui.commons.layout.MatrixLayout({
 			id: 			"mlPaneGyro",
 			layoutFixed: 	true,
-			width:			"500px"
+			width:			"100px"
 		});
 	 
 	
 	var ohtmlIframeGyro = new sap.ui.core.HTML({  
-	    	content: '<div class="cube"><div class="face one"></div><div class="face two"></div><div class="face three"></div><div class="face four"></div><div class="face five"></div><div class="face six"></div></div>',
-	    	preferDOM : false   
+	    	content: '<div class="container"><div id="box"><P class="front"></P><P class="back"></P><P class="right"></P><P class="left"></P><P class="top"></P><P class="bottom"></P></div></div>',
+	    	preferDOM : false
+		
+		
 	});
 
 	 
