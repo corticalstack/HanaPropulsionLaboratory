@@ -17,6 +17,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	 */
 	onBeforeRendering: function() {
 		//   alert('Controller before rendering');
+
 	},
 
 	
@@ -24,9 +25,10 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
 	 * This hook is the same one that SAPUI5 controls get after being rendered.
 	 */
-	//   onAfterRendering: function() {
+	   onAfterRendering: function() {
 	//
-	//   },
+			$("#gyroContainer").parent().css({"overflow":"visible"});
+	   },
 
 	
 	/**
@@ -99,6 +101,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 //			sap.ui.getCore().byId("TvInsGyroX").setText(inertialsensor_msg_fields[3]);
 //			sap.ui.getCore().byId("TvInsGyroY").setText(inertialsensor_msg_fields[4]);
 //			sap.ui.getCore().byId("TvInsGyroZ").setText(inertialsensor_msg_fields[5]);
+			var accelx = inertialsensor_msg_fields[0].substr(1);
+			var accely = inertialsensor_msg_fields[1];
+			var accelz = inertialsensor_msg_fields[2];
+			accelx = accelx * -10;
+			accely = accely * -10;
+			accelz = accelz * -10;
+			$('#gyroBox')[0].style.webkitTransform = "rotateX("+accelx+"deg) rotateZ("+accely+"deg) translateZ( 74px )";// rotateY("+throttle+"deg)";			Ok for X			
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdInertial(), message );
 		};
 

@@ -219,7 +219,7 @@
 			
 			cockpitModel.refreshGauge({id: 'gaugeThrust', val: throttle});
 //			$('#box')[0].style.webkitTransform = "rotateX("+throttle+"deg) rotateY("+throttle+"deg) translateZ( 100px )";// rotateY("+throttle+"deg)";
-			$('#box')[0].style.webkitTransform = "rotateX("+throttle+"deg) translateZ( 100px )";// rotateY("+throttle+"deg)";
+//			$('#box')[0].style.webkitTransform = "rotateX("+throttle+"deg) rotateY("+throttle+"deg) translateZ( 100px )";// rotateY("+throttle+"deg)";
 			
 //			$('#box').style.webkitTransform = "translateZ( -100px ) rotateX(   90deg )";
 		}

@@ -828,210 +828,91 @@ img.bg {
 }
 
 
-
-
-
-
 #mlPaneGyro {
 	position: fixed;
-	top: 660px;
-  	left:180px;
+	top: 510px;
+  	left: 155px;
   	height: 300px;
 }
 
 
-.cube {
-  height: 100px;
-  position: relative;
-  margin: 0 auto;
-  padding-top: 50px;
-  width: 100px;
-  -webkit-transform-style: preserve-3d;
-}
-
-.face {
-  background-color: rgb(50, 50, 50);
-  -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
-  height: 100px;
-  opacity: 1;
-  position: absolute;
-  width: 100px;
-}
-
-.cube .one  {
-		height: 100px;
-	width: 100px;
-	
-  background-color: rgb(242, 24, 25);
-  -webkit-transform: rotateX(90deg) translateZ(50px);
-  background-image: url('../images/hud/Rover_Top.png');
-}
-
-.cube .two {
-	height: 100px;
-	width: 100px;
-  background-color: rgb(235, 41, 158);
-  -webkit-transform: translateZ(50px);
-  background-image: url('../images/hud/Rover_Rear.png');
-}
-
-.cube .three {
-	height: 100px;
-	width: 100px;
-  background-color: rgb(252, 209, 22);
-  -webkit-transform: rotateY(90deg) translateZ(50px);
-	background-image: url('../images/hud/Rover_Left.png');  
-}
-
-.cube .four {
-	height: 100px;
-	width: 100px;
-  background-color: rgb(44, 45, 213);
-  -webkit-transform: rotateY(180deg) translateZ(50px);
-  background-image: url('../images/hud/Rover_Front.png');
-}
-
-.cube .five {
-	height: 100px;
-	width: 100px;
-	
-  background-color: rgb(125, 105, 181);
-  -webkit-transform: rotateY(-90deg) translateZ(50px);
-  background-image: url('../images/hud/Rover_Right.png');
-}
-
-.cube .six {
-		height: 100px;
-	width: 100px;
-	
-  background-color: rgb(22, 226, 38);
-  -webkit-transform: rotateX(-90deg) translateZ(50px) rotate(180deg);
-  background-image: url('../images/hud/Rover_Bottom.png');
+#gyroContainer {
+	width: 74px;
+	height: 74px;
+	position: relative;
+	-webkit-perspective: 1200px;
 }
 
 
-
-
-.container {
-      width: 100px;
-      height: 100px;
-      position: relative;
-      margin: 0 auto 40px;
-      overflow:visible;
-      -webkit-transform-origin: 50% 50%;
-      -webkit-perspective: 1200px;
+#gyroBox {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	-webkit-transform-origin: 37px 37px 37px;
+	-webkit-transform-style: preserve-3d;
 }
 
-#box {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      -webkit-transform-origin: 50% 50%;
-      overflow:visible;
-      -webkit-transform-style: preserve-3d;
+#gyroBox p {
+	display: block;
+    position: absolute;
 }
 
-#box p {
-      display: block;
-      position: absolute;
-    }
 
-    #box.panels-backface-invisible figure {
-      -webkit-backface-visibility: hidden;
+#gyroBox .front, #gyroBox .back {
+	width: 74px;
+    height: 74px;
+}
+
+
+#gyroBox .right, #gyroBox .left {
+	width: 150px;
+	height: 74px;
+	left: -37px;
+}
+
+
+#gyroBox .top, #gyroBox .bottom {
+	width: 74px;
+	height: 150px;
+	top: -37px;
+	line-height: 74px;
     }
 
 
-#box .front, #box .back {
-      width: 100px;
-      height: 100px;
+#gyroBox .front {
+	-webkit-transform: translateZ( 74px );
+	background-image: url('../images/hud/Rover_Front.png'); 
+}
+
+#gyroBox .back  {
+	-webkit-transform: rotateX( -180deg ) translateZ(  150px );
+	background-image: url('../images/hud/Rover_Back.png'); 
 }
 
 
-#box .right, #box .left {
-      width: 200px;
-      height: 100px;
-      left: -50px;
-}
-
-#box .top, #box .bottom {
-      width: 100px;
-      height: 200px;
-      top: -50px;
-      line-height: 100px;
-    }
-
-
-#box .front  { background-image: url('../images/hud/Rover_Front.png'); }
-#box .back   { background-image: url('../images/hud/Rover_Back.png'); }
-#box .right  { background-image: url('../images/hud/Rover_Right.png'); }
-#box .left   { background-image: url('../images/hud/Rover_Left.png'); }
-#box .top    { background-image: url('../images/hud/Rover_Top.png'); }
-#box .bottom { background-image: url('../images/hud/Rover_Bottom.png'); }
-
-#box .front  {
-	-webkit-transform: translateZ( 100px );
-}
-
-#box .back   {
-	-webkit-transform: rotateX( -180deg ) translateZ(  100px );
-}
-
-#box .right {
-      -webkit-transform: rotateY(   90deg ) translateZ( 50px );
-}
-
-#box .left {
-      -webkit-transform: rotateY(  -90deg ) translateZ( 50px );
-}
-
-#box .top {
-      -webkit-transform: rotateX(   90deg ) translateZ( 50px );
-}
-
-#box .bottom {
-      -webkit-transform: rotateX(  -90deg ) translateZ( 50px );
+#gyroBox .right {
+	-webkit-transform: rotateY(   90deg ) translateZ( 37px );
+	background-image: url('../images/hud/Rover_Right.png'); 
 }
 
 
-#box.show-front {
-      -webkit-transform: translateZ(  -50px );
-    }
+#gyroBox .left {
+    -webkit-transform: rotateY(  -90deg ) translateZ( 37px );	
+	background-image: url('../images/hud/Rover_Left.png'); 
+}
 
 
-#box.show-back {
-      -webkit-transform: translateZ( -50px ) rotateX( -180deg );
-         -moz-transform: translateZ( -50px ) rotateX( -180deg );
-           -o-transform: translateZ( -50px ) rotateX( -180deg );
-              transform: translateZ( -50px ) rotateX( -180deg );
-    }
+#gyroBox .top {
+    -webkit-transform: rotateX(   90deg ) translateZ( 37px );	
+	background-image: url('../images/hud/Rover_Top.png'); 
+}
 
-#box.show-right {
-      -webkit-transform: translateZ( -50px ) rotateY(  -90deg );
-         -moz-transform: translateZ( -50px ) rotateY(  -90deg );
-           -o-transform: translateZ( -50px ) rotateY(  -90deg );
-              transform: translateZ( -50px ) rotateY(  -90deg );
-    }
+#gyroBox .bottom {
+	-webkit-transform: rotateX(  -90deg ) translateZ( 37px );	
+	background-image: url('../images/hud/Rover_Bottom.png'); 
+}
 
-#box.show-left {
-      -webkit-transform: translateZ( -50px ) rotateY(   90deg );
-         -moz-transform: translateZ( -50px ) rotateY(   90deg );
-           -o-transform: translateZ( -50px ) rotateY(   90deg );
-              transform: translateZ( -50px ) rotateY(   90deg );
-    }
 
-#box.show-top {
-      -webkit-transform: translateZ( -50px ) rotateX(  -90deg );
-         -moz-transform: translateZ( -50px ) rotateX(  -90deg );
-           -o-transform: translateZ( -50px ) rotateX(  -90deg );
-              transform: translateZ( -50px ) rotateX(  -90deg );
-    }
-
-#box.show-bottom {
-      -webkit-transform: translateZ( -50px ) rotateX(   90deg );
-         -moz-transform: translateZ( -50px ) rotateX(   90deg );
-           -o-transform: translateZ( -50px ) rotateX(   90deg );
-              transform: translateZ( -50px ) rotateX(   90deg );
-    }
 
 
 /* ---------------------------
