@@ -12,6 +12,7 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 var oLayout = new sap.ui.commons.layout.MatrixLayout();
     	 
     	 buildPanePilotCam(oController,oLayout);
+    	 
     	 buildPaneDrive(oController,oLayout);
     	 buildPaneWeapons(oController,oLayout);
     	 buildPanePower(oController,oLayout);
@@ -19,13 +20,14 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPanePrimarySystems(oController,oLayout);    	 
     	 buildPaneNavigation(oController,oLayout);
     	 buildPaneMissionControl(oController,oLayout);
-       	 buildPaneDummy(oController,oLayout);
-    	 buildPaneFooter(oController,oLayout);
     	 
     	 buildBearingIndicators(oController,oLayout);
     	 buildPaneGyro(oController,oLayout);
+      	 buildPaneProximitySensors(oController,oLayout);
+    	 
+      	 buildPaneFooter(oController,oLayout);
 
-  	     return oLayout;
+    	 return oLayout;
       }
 
 });
@@ -826,22 +828,37 @@ function buildPaneWeapons(oController,oLayout){
 }
 
 
-function buildPaneDummy(oController,oLayout){
-	var omlPaneDummy = new sap.ui.commons.layout.MatrixLayout({
-			id:				"mlPaneDummy",
+function buildPaneProximitySensors(oController,oLayout){
+	var omlPaneProximitySensors = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneProximitySensors",
 			layoutFixed: 	true,
 			width:			"125px",
 	});	
 		
 
-
 	var omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 
 
-	var olblPaneDummy = new sap.ui.commons.Label({
-			id: 		"lblPaneDummy",
-			text: 		myHplApp.controller.getTextFromBundle("dummy"),	
+	var ohtmlGaugeFrontProximitySensor = new sap.ui.core.HTML({  
+      	content : "<div id='gaugeFrontProximitySensor'></div>"
+	});
+	
+	
+
+	var ohtmlGaugeRearProximitySensor = new sap.ui.core.HTML({  
+      	content : "<div id='gaugeRearProximitySensor'></div>"
+	});
+	
+	
+	var ohtmlGaugeCamProximitySensor = new sap.ui.core.HTML({  
+      	content : "<div id='gaugeCamProximitySensor'></div>"
+	});
+	
+	
+	var olblPaneProximitySensors = new sap.ui.commons.Label({
+			id: 		"lblPaneProximitySensors",
+			text: 		myHplApp.controller.getTextFromBundle("proximity"),	
 			textAlign: 	"Center",
 			width: 		"100%"
 	});
@@ -849,11 +866,16 @@ function buildPaneDummy(oController,oLayout){
 
 	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
 	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-	omlCell1.addContent(olblPaneDummy);
+	omlCell1.addContent(olblPaneProximitySensors);
 	omlRow1.addCell(omlCell1);	
-	omlPaneDummy.addRow(omlRow1);
+	omlPaneProximitySensors.addRow(omlRow1);
+	
+	omlPaneProximitySensors.createRow(ohtmlGaugeFrontProximitySensor);
+	omlPaneProximitySensors.createRow(ohtmlGaugeRearProximitySensor);
+	omlPaneProximitySensors.createRow(ohtmlGaugeCamProximitySensor);
+	
 			
-	oLayout.createRow(omlPaneDummy);   
+	oLayout.createRow(omlPaneProximitySensors);   
 }
 
 
@@ -1019,6 +1041,7 @@ function buildBearingIndicators(oController,oLayout){
 
 }
 
+
 function buildPaneGyro(oController,oLayout){
 	
 	var omlPaneGyro = new sap.ui.commons.layout.MatrixLayout({
@@ -1037,3 +1060,4 @@ function buildPaneGyro(oController,oLayout){
 	oLayout.createRow(omlPaneGyro);    
 	
 }
+

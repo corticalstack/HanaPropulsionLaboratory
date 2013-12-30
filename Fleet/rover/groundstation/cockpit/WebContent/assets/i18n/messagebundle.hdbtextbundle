@@ -51,5 +51,6 @@ bearingwp=BEARING WP
 armed=ARMED
 campan=CAM PAN
 waypoint=WAYPOINT
+proximity=PROXIMITY
 error=An error occurred, please contact System Administrator
 generatedPG={0} of {1} orders generated

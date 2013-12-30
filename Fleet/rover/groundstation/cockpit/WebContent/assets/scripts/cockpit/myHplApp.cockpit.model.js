@@ -8,15 +8,18 @@
 
 	
 	var gauge = {
-			gaugeCurrent:   	{},
-			gaugeAmps:			{},
-			gaugeConsumedMah: 	{},
-			gaugeVoltage:		{},
-			gaugeBattRemaining:	{},
-			gaugeThrust:		{},
-			gaugeAmmo:			{},
-			gaugeShield:		{},
-			gaugeCoreTemp:		{}
+			gaugeCurrent:   			{},
+			gaugeAmps:					{},
+			gaugeConsumedMah: 			{},
+			gaugeVoltage:				{},
+			gaugeBattRemaining:			{},
+			gaugeThrust:				{},
+			gaugeAmmo:					{},
+			gaugeShield:				{},
+			gaugeCoreTemp:				{},
+			gaugeFrontProximitySensor:	{},
+			gaugeRearProximitySensor:	{},
+			gaugeCamProximitySensor:	{}
 	};
 	
 	
@@ -74,9 +77,16 @@
 		return gauge.gaugeCoreTemp;
 	};
 
+	myHplApp.cockpit.model.getGaugeFrontProximitySensor = function() {
+		return gauge.gaugeFrontProximitySensor;
+	};
 
-	myHplApp.cockpit.model.getIndicators = function(myIndicator) {
-		return indicators;
+	myHplApp.cockpit.model.getGaugeRearProximitySensor = function() {
+		return gauge.gaugeRearProximitySensor;
+	};
+
+	myHplApp.cockpit.model.getGaugeCamProximitySensor = function() {
+		return gauge.gaugeCamProximitySensor;
 	};
 
 	

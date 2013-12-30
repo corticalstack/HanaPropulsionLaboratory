@@ -69,11 +69,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 
 		if (data.substr(0,1) == 'D') {
-			var inertialsensor_msg_fields = data.split(',');
+			var distance_msg_fields = data.split(',');
 			message = data.substr(1);
-//			sap.ui.getCore().byId("TvProximitySensorRear").setText(inertialsensor_msg_fields[0].substr(1));
-//			sap.ui.getCore().byId("TvProximitySensorFront").setText(inertialsensor_msg_fields[1]);
-//			sap.ui.getCore().byId("TvProximitySensorCam").setText(inertialsensor_msg_fields[2]);
+			cockpitModel.refreshGauge({id: 'gaugeRearProximitySensor', val: distance_msg_fields[0].substr(1)});
+			cockpitModel.refreshGauge({id: 'gaugeFrontProximitySensor', val: distance_msg_fields[1]});
+			cockpitModel.refreshGauge({id: 'gaugeCamProximitySensor', val: distance_msg_fields[2]});
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdDistance(), message );
 		};
 
@@ -243,3 +243,4 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 
 });
+

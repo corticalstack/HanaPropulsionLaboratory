@@ -445,7 +445,7 @@ img.bg {
 
 #mlPaneWeapons {
 	position: fixed;
-	top: 	417px;
+	top: 	764px;
   	left:	0px;
   	width:	125x;
   	height:	300px;
@@ -458,9 +458,9 @@ img.bg {
 }
 
 
-#mlPaneDummy {
+#mlPaneProximitySensors {
 	position: fixed;
-	top: 	722px;
+	top: 	417px;
   	left:	0px;
   	width:	125x;
   	height:	342px;
@@ -662,29 +662,28 @@ img.bg {
 }
 
 
-#gaugeProximityCam {	
-	width: 150px; 
-	height: 135px;
-	margin-top: -15px;
-	display: inline-block;
+#gaugeFrontProximitySensor {	
+  	width: 120px; 
+    height: 110px;
+    margin-top: -30px;
+    display: inline-block;
 }
 
 
-#gaugeProximityFront {	
-	width:150px; 
-	height:135px;
-	margin-top: -15px;
-	display: inline-block;
+#gaugeRearProximitySensor {	
+ 	width: 120px; 
+    height: 110px;
+    margin-top: -36px;
+    display: inline-block;
 }
 
 
-#gaugeProximityRear {	
-	width:150px; 
-	height:135px;
-	margin-top: -15px;
-	display: inline-block;
+#gaugeCamProximitySensor {	
+  	width: 120px; 
+    height: 110px;
+    margin-top: -36px;
+    display: inline-block;
 }
-
 
 #gaugeThrust {
 	width: 120px; 
@@ -852,6 +851,7 @@ img.bg {
 	-webkit-transform-style: preserve-3d;
 }
 
+
 #gyroBox p {
 	display: block;
     position: absolute;
@@ -861,6 +861,9 @@ img.bg {
 #gyroBox .front, #gyroBox .back {
 	width: 74px;
     height: 74px;
+    border-radius:5px; 
+	-webkit-box-shadow:0 0 2px 2px green;
+	box-shadow:0 0 2px 2px green; 
 }
 
 
@@ -868,6 +871,9 @@ img.bg {
 	width: 150px;
 	height: 74px;
 	left: -37px;
+    border-radius:5px; 
+	-webkit-box-shadow:0 0 2px 2px green;
+	box-shadow:0 0 2px 2px green; 
 }
 
 
@@ -876,7 +882,10 @@ img.bg {
 	height: 150px;
 	top: -37px;
 	line-height: 74px;
-    }
+    border-radius:5px; 
+	-webkit-box-shadow:0 0 2px 2px green;
+	box-shadow:0 0 2px 2px green; 
+}
 
 
 #gyroBox .front {
@@ -885,7 +894,7 @@ img.bg {
 }
 
 #gyroBox .back  {
-	-webkit-transform: rotateX( -180deg ) translateZ(  150px );
+	-webkit-transform: rotateX( -180deg ) translateZ(  74px );
 	background-image: url('../images/hud/Rover_Back.png'); 
 }
 
@@ -911,6 +920,8 @@ img.bg {
 	-webkit-transform: rotateX(  -90deg ) translateZ( 37px );	
 	background-image: url('../images/hud/Rover_Bottom.png'); 
 }
+
+
 
 
 

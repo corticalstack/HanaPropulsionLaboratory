@@ -339,6 +339,108 @@
 		
 		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 
+		
+		gaugeId = "gaugeFrontProximitySensor";
+		ogauge 	= new JustGage({
+				id: gaugeId,
+				title: "",	
+				titleFontColor: "#ffffff",
+				titleMinFontSize: 14,	
+				label: "FRONT CM",
+				labelMinFontSize: 16,
+				value: 0,
+				valueMinFontSize: 22,
+				valueFontColor: "#ffffff",
+				min: 4,
+				max: 30,
+				showMinMax: false,
+				gaugeWidthScale: 0.5,
+				customSectors: [{
+									color: "#ff0000",
+									lo: 4,
+									hi: 15
+								},{
+									color: "#ffff00",
+									lo: 15,
+									hi: 25
+								}, {
+									color: "#00ff00",
+									lo: 25,
+									hi: 30
+								}],
+				counter: true
+		});
+		
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+
+		
+		gaugeId = "gaugeRearProximitySensor";
+		ogauge 	= new JustGage({
+				id: gaugeId,
+				title: "",	
+				titleFontColor: "#ffffff",
+				titleMinFontSize: 14,	
+				label: "REAR CM",
+				labelMinFontSize: 16,
+				value: 0,
+				valueMinFontSize: 22,
+				valueFontColor: "#ffffff",
+				min: 4,
+				max: 30,
+				showMinMax: false,
+				gaugeWidthScale: 0.5,
+				customSectors: [{
+									color: "#ff0000",
+									lo: 4,
+									hi: 15
+								},{
+									color: "#ffff00",
+									lo: 15,
+									hi: 25
+								}, {
+									color: "#00ff00",
+									lo: 25,
+									hi: 30
+								}],
+				counter: true
+		});
+
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		
+		
+		gaugeId = "gaugeCamProximitySensor";
+		ogauge 	= new JustGage({
+				id: gaugeId,
+				title: "",	
+				titleFontColor: "#ffffff",
+				titleMinFontSize: 14,	
+				label: "CAM CM",
+				labelMinFontSize: 16,
+				value: 0,
+				valueMinFontSize: 22,
+				valueFontColor: "#ffffff",
+				min: 20,
+				max: 150,
+				showMinMax: false,
+				gaugeWidthScale: 0.5,
+				customSectors: [{
+									color: "#ff0000",
+									lo: 20,
+									hi: 60
+								},{
+									color: "#ffff00",
+									lo: 60,
+									hi: 120
+								}, {
+									color: "#00ff00",
+									lo: 120,
+									hi: 150
+								}],
+				counter: true
+		});
+
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+
 	};
 	
 	
