@@ -19,6 +19,11 @@
 	};
 	
 	
+	myHplApp.controller.toRad = function(val) {
+		return val * 180 / Math.PI;
+	};
+	
+	
 	myHplApp.controller.setViewContent = function(oControlEvent) {
 		model.removeCurrentHomeContent();
 		

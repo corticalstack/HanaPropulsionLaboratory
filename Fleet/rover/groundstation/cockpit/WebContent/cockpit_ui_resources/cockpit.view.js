@@ -793,13 +793,6 @@ function buildPaneWeapons(oController,oLayout){
     		width: 		"100%"
     	});
  
-	var olblIndArmed = new sap.ui.commons.Label({
-    		id: 		"lblIndArmed",
-    		text: 		myHplApp.controller.getTextFromBundle("armed"),
-    		textAlign: 	"Center",
-    		width: 		"100px"
-    });
-
  
 	var ohtmlGaugeAmmo = new sap.ui.core.HTML({  
      		content : "<div id='gaugeAmmo'></div>"
@@ -819,7 +812,6 @@ function buildPaneWeapons(oController,oLayout){
 	omlPaneWeapons.addRow(omlRow1);
  
  
-	omlPaneWeapons.createRow(olblIndArmed);
 	omlPaneWeapons.createRow(ohtmlGaugeAmmo);
 	omlPaneWeapons.createRow(oimgWeapon);
  
@@ -1044,24 +1036,23 @@ function buildPaneBearingIndicators(oController,oLayout){
 
 function buildPaneWaypoint(oController,oLayout){
 	var omlPaneWaypoint = new sap.ui.commons.layout.MatrixLayout({
-			id:			"mlPaneDistanceToWaypoint",
-			width:		"200px",
+			id:			"mlPaneWaypoint",
+			width:		"120px",
 	        columns: 	2,
-	        widths: 	["150px", "50px"]  
+	        widths: 	["90px", "30px"]  
 	});	
 	
 
-	var olblWaypoint = new sap.ui.commons.Label({
-    	id: 		"lblWaypoint",
+	var olblWaypointId = new sap.ui.commons.Label({
+    	id: 		"lblWaypointId",
     	text: 		myHplApp.controller.getTextFromBundle("waypoint")
     });
 
 
-	 var olblValWaypoint = new sap.ui.commons.Label({
-	    	id: 	"lblValWaypoint",
+	 var olblValWaypointId = new sap.ui.commons.Label({
+	    	id: 	"lblValWaypointId",
 	    	text: 	"",
-	    	textAlign: 	"Right",
-	    	width: 	"50px"	    		    	
+	    	textAlign: 	"Right"	    		    	
 	 });
 
 
@@ -1073,18 +1064,17 @@ function buildPaneWaypoint(oController,oLayout){
 
 
 	var olblValDistanceToWaypoint = new sap.ui.commons.Label({
-	    	id: 	"lblValRightEngineThrust",
+	    	id: 	"lblValDistanceToWaypoint",
 	    	text: 	"",
-	    	textAlign: 	"Right",
-	    	width: 	"50px"	    		    	
+	    	textAlign: 	"Right"	    		    	
 	});
 
     
 	 omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
 	 omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
 	 omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-	 omlCell1.addContent(olblWaypoint);
-	 omlCell2.addContent(olblValWaypoint);
+	 omlCell1.addContent(olblWaypointId);
+	 omlCell2.addContent(olblValWaypointId);
 	 omlRow1.addCell(omlCell1);
 	 omlRow1.addCell(omlCell2);
 	 omlPaneWaypoint.addRow(omlRow1);

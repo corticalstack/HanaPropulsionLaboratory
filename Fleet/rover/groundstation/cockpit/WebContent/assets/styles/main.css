@@ -744,7 +744,6 @@ img.bg {
 	font-style: normal;
 	font-size: 1.0em; 
 	text-align: center; 
-
 }
 
 #lblCompassVal {
@@ -758,7 +757,6 @@ img.bg {
 	font-style: normal;
 	font-size: 2em; 
 	text-align: center; 
-
 }
 
 #lblCamPan {
@@ -772,7 +770,6 @@ img.bg {
 	font-style: normal;
 	font-size: 1.0em; 
 	text-align: center; 
-
 }
 
 #lblCamPanVal {
@@ -786,7 +783,6 @@ img.bg {
 	font-style: normal;
 	font-size: 2em; 
 	text-align: center; 
-
 }
 
 
@@ -801,7 +797,6 @@ img.bg {
 	font-style: normal;
 	font-size: 1.0em; 
 	text-align: center; 
-
 }
 
 #lblWaypointVal {
@@ -815,8 +810,42 @@ img.bg {
 	font-style: normal;
 	font-size: 2em; 
 	text-align: center; 
-
 }
+
+#lblWaypointId {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em; 
+	text-align: center; 
+}
+
+#lblValWaypointId {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em;  
+}
+
+#lblDistanceToWaypoint {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em; 
+	text-align: center; 
+}
+
+#lblValDistanceToWaypoint {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em;  
+}
+
 
 #compassBearing {
 	-webkit-transform: rotate(90deg);

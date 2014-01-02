@@ -102,8 +102,16 @@
     	return messageCategoryId.navigation;
     };
     
+    myHplApp.missioncontrol.model.getMessageCategoryIdPower = function() {
+    	return messageCategoryId.power;
+    };
+    
     
 	//Get methods for messageId
+    myHplApp.missioncontrol.model.getMessageIdBattery = function() {
+    	return messageId.battery;
+    };
+
     myHplApp.missioncontrol.model.getMessageIdCamera = function() {
     	return messageId.camera;
     };
@@ -113,7 +121,10 @@
     	return messageId.distance;
     };
     
-    
+    myHplApp.missioncontrol.model.getMessageIdInertial = function() {
+    	return messageId.inertial;
+    };
+
     myHplApp.missioncontrol.model.getMessageIdMotor = function() {
     	return messageId.motor;
     };
@@ -159,6 +170,14 @@
 		return activeMission.pilotId;
 	};
     
+	myHplApp.missioncontrol.model.getHomeLongitude = function(val) { 
+		return activeMission.homeLongitude;
+	};
+	
+	myHplApp.missioncontrol.model.getHomeLattitude = function(val) { 
+		return activeMission.homeLattitude;
+	};
+	
 	myHplApp.missioncontrol.model.getCurrentLattitude = function(val) { 
 		return activeMission.currentLattitude;
 	};
@@ -167,13 +186,7 @@
 		return activeMission.currentLongitude;
 	};
 
-	myHplApp.missioncontrol.model.getHomeLongitude = function(val) { 
-		return activeMission.homeLongitude;
-	};
 	
-	myHplApp.missioncontrol.model.getHomeLattitude = function(val) { 
-		return activeMission.homeLattitude;
-	};
 	
 	
 	
@@ -208,7 +221,7 @@
 
 	
 	
-	myHplApp.missioncontrol.controller.addWaypoint = function(id, longitudeVal, lattitudeVal) {
+	myHplApp.missioncontrol.model.addWaypoint = function(id, longitudeVal, lattitudeVal) {
 		var waypoint = {
 				id: id,
 				longitude: longitudeVal,

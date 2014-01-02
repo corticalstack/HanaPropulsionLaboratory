@@ -22,8 +22,7 @@
 			return;
 		}
 			  
-		dateNow = new Date();
-				 
+		dateNow = new Date();			 
 		jQuery.ajax({
 			url:missioncontrolModel.serviceMessagePumpUri,
 			jsonpCallback: 'processJSON',
@@ -47,8 +46,9 @@
 	myHplApp.missioncontrol.controller.checkSetHomeLatLng = function() { 
 		missioncontrolModel.incrementGps3DFixCount();
 		if (missioncontrolModel.getGps3DFixCount() == 5) {
+			console.log('Mission control setting HOME waypoint');
 			missioncontrolModel.setActiveHomeLatLng();
-			myHplApp.missioncontrol.controller.addWaypoint('HOME', 	myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLattitude());
+			myHplApp.missioncontrol.model.addWaypoint('HOME', 	myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLattitude());
 		}
     };
 
