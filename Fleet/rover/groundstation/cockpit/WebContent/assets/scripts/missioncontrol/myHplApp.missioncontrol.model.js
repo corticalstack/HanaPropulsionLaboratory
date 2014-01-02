@@ -14,34 +14,44 @@
 	
 	
 	var messageCategoryId = {
-			drive:		'DRI',
-			sensor:		'SEN',
-			lights:		'LIT',
-			navigation: 'NAV',
-			power: 		'POW'
+			drive:					'DRI',
+			sensor:					'SEN',
+			lights:					'LIT',
+			navigation: 			'NAV',
+			power: 					'POW'
 	};
 
 	var messageId = {
-			battery:	'B',
-			camera:		'C',
-			distance:	'D',
-			inertial:	'I',
-			motor:		'M',				
-			headlights:	'H',
-			compass:    'C',
-			gpsSol:    	'S',
-			gpsPos:    	'P',
-			gpsVel:    	'V'
+			battery:				'B',
+			camera:					'C',
+			distance:				'D',
+			inertial:				'I',
+			motor:					'M',				
+			headlights:				'H',
+			compass:    			'C',
+			gpsSol:    				'S',
+			gpsPos:    				'P',
+			gpsVel:    				'V'
 	};
 
 	
 	
 	var activeMission = {
-			missionId: '000001',
-			vehicleId: '001',
-			pilotId:   '001'
+			missionId: 				'000001',
+			vehicleId: 				'001',
+			pilotId:   				'001',
+			homeLattitude: 			0,
+			homeLongitude:			0,
+			currentLattitude:		0,
+			currentLongitude:		0,
+			nextWaypointId:			'',
+			waypoints:				[]
 	};
 
+	
+ 
+	
+	var gps3DFixCount = 0;
 	
 	
 	//Get methods for config
@@ -141,29 +151,84 @@
 		return activeMission.missionId;
 	};
 	
-	myHplApp.missioncontrol.model.getActiveMissionVehicleId = function(val) { 
+	myHplApp.missioncontrol.model.getActiveVehicleId = function(val) { 
 		return activeMission.vehicleId;
 	};
 
-	myHplApp.missioncontrol.model.getActiveMissionPilotId = function(val) { 
+	myHplApp.missioncontrol.model.getActivePilotId = function(val) { 
 		return activeMission.pilotId;
 	};
     
+	myHplApp.missioncontrol.model.getCurrentLattitude = function(val) { 
+		return activeMission.currentLattitude;
+	};
+
+	myHplApp.missioncontrol.model.getCurrentLongitude = function(val) { 
+		return activeMission.currentLongitude;
+	};
+
+	myHplApp.missioncontrol.model.getHomeLongitude = function(val) { 
+		return activeMission.homeLongitude;
+	};
+	
+	myHplApp.missioncontrol.model.getHomeLattitude = function(val) { 
+		return activeMission.homeLattitude;
+	};
+	
+	
+	
+	//Set methods for activeMission    
+	myHplApp.missioncontrol.model.setActiveHomeLatLng = function() {
+		activeMission.homeLattitude = activeMission.currentLattitude; 
+		activeMission.homeLongitude = activeMission.currentLongitude;
+	};
+
+	
     
-    
-    //Set methods for activeMission
 	myHplApp.missioncontrol.model.setActiveMissionId = function(val) { 
 		activeMission.missionId = val;
 	};
 
 	
-	myHplApp.missioncontrol.model.setActiveMissionVehicleId = function(val) { 
+	myHplApp.missioncontrol.model.setActiveVehicleId = function(val) { 
 		activeMission.vehicleId = val;
 	};
 
-	myHplApp.missioncontrol.model.setActiveMissionPilotId = function(val) { 
+	myHplApp.missioncontrol.model.setActivePilotId = function(val) { 
 		activeMission.pilotId = val;
 	};
 
+	myHplApp.missioncontrol.model.setCurrentLattitude = function(val) { 
+		activeMission.currentLattitude = val;
+	};
+
+	myHplApp.missioncontrol.model.setCurrentLongitude = function(val) { 
+		activeMission.currentLongitude = val;
+	};
+
+	
+	
+	myHplApp.missioncontrol.controller.addWaypoint = function(id, longitudeVal, lattitudeVal) {
+		var waypoint = {
+				id: id,
+				longitude: longitudeVal,
+				lattitude: lattitudeVal 
+		};
+		activeMission.waypoints.push(waypoint); 
+	};
+	
+	
+	
+	
+//Misc Get
+	myHplApp.missioncontrol.model.getGps3DFixCount = function() {
+		return gps3DFixCount;
+	};
+	
+	
+	//Misc Set
+	myHplApp.missioncontrol.model.incrementGps3DFixCount = function() {
+		gps3DFixCount++;
+	};
 	
 } (myHplApp = window.myHplApp || {}));

@@ -9,8 +9,8 @@
 		console.log('Initialising missioncontrol controller');
 		missioncontrolModel.setStateMissioncontrolOnline(false);
 		missioncontrolModel.setActiveMissionId('000001');
-		missioncontrolModel.setActiveMissionVehicleId('001');
-		missioncontrolModel.setActiveMissionPilotId('001');
+		missioncontrolModel.setActiveVehicleId('001');
+		missioncontrolModel.setActivePilotId('001');
 
     };
 
@@ -28,9 +28,9 @@
 			url:missioncontrolModel.serviceMessagePumpUri,
 			jsonpCallback: 'processJSON',
 			dataType: 'jsonp',
-			data: {missionId:			missioncontrolModel.activeMission.missionId, 
-				   vehicleId: 			missioncontrolModel.activeMission.vehicleId, 
-				   pilotId: 			missioncontrolModel.activeMission.pilotId, 
+			data: {missionId:			missioncontrolModel.getActiveMissionId(), 
+				   vehicleId: 			missioncontrolModel.getActiveVehicleId(), 
+				   pilotId: 			missioncontrolModel.getActivePilotId, 
 				   messageCategoryId: 	categoryId, 
 				   messageId: 			messageId, 
 				   loggedAt:            dateNow, 
@@ -42,7 +42,16 @@
 			error: function() { console.log('Failed!'); }
 		});	
 	};
-	    
+
+
+	myHplApp.missioncontrol.controller.checkSetHomeLatLng = function() { 
+		missioncontrolModel.incrementGps3DFixCount();
+		if (missioncontrolModel.getGps3DFixCount() == 5) {
+			missioncontrolModel.setActiveHomeLatLng();
+			myHplApp.missioncontrol.controller.addWaypoint('HOME', 	myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLattitude());
+		}
+    };
+
 	
 	myHplApp.missioncontrol.controller.init();
 	

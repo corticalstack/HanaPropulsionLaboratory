@@ -21,7 +21,8 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPaneNavigation(oController,oLayout);
     	 buildPaneMissionControl(oController,oLayout);
     	 
-    	 buildBearingIndicators(oController,oLayout);
+    	 buildPaneBearingIndicators(oController,oLayout);
+    	 buildPaneWaypoint(oController,oLayout);
     	 buildPaneGyro(oController,oLayout);
       	 buildPaneProximitySensors(oController,oLayout);
     	 
@@ -914,7 +915,7 @@ function buildPaneFooter(oController,oLayout){
 
 
 
-function buildBearingIndicators(oController,oLayout){
+function buildPaneBearingIndicators(oController,oLayout){
 	var omlPaneBearingIndicators = new sap.ui.commons.layout.MatrixLayout({
 			id:		"mlPaneBearingIndicators",
 			width:	"600px"
@@ -1039,6 +1040,66 @@ function buildBearingIndicators(oController,oLayout){
     
 	oLayout.createRow(omlPaneBearingIndicators);   
 
+}
+
+function buildPaneWaypoint(oController,oLayout){
+	var omlPaneWaypoint = new sap.ui.commons.layout.MatrixLayout({
+			id:			"mlPaneDistanceToWaypoint",
+			width:		"200px",
+	        columns: 	2,
+	        widths: 	["150px", "50px"]  
+	});	
+	
+
+	var olblWaypoint = new sap.ui.commons.Label({
+    	id: 		"lblWaypoint",
+    	text: 		myHplApp.controller.getTextFromBundle("waypoint")
+    });
+
+
+	 var olblValWaypoint = new sap.ui.commons.Label({
+	    	id: 	"lblValWaypoint",
+	    	text: 	"",
+	    	textAlign: 	"Right",
+	    	width: 	"50px"	    		    	
+	 });
+
+
+	
+	 var olblDistanceToWaypoint = new sap.ui.commons.Label({
+	    	id: 		"lblDistanceToWaypoint",
+	    	text: 		myHplApp.controller.getTextFromBundle("distancewp")
+	});
+
+
+	var olblValDistanceToWaypoint = new sap.ui.commons.Label({
+	    	id: 	"lblValRightEngineThrust",
+	    	text: 	"",
+	    	textAlign: 	"Right",
+	    	width: 	"50px"	    		    	
+	});
+
+    
+	 omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
+	 omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
+	 omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
+	 omlCell1.addContent(olblWaypoint);
+	 omlCell2.addContent(olblValWaypoint);
+	 omlRow1.addCell(omlCell1);
+	 omlRow1.addCell(omlCell2);
+	 omlPaneWaypoint.addRow(omlRow1);
+
+	 omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
+	 omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
+	 omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
+	 omlCell1.addContent(olblDistanceToWaypoint);
+	 omlCell2.addContent(olblValDistanceToWaypoint);
+	 omlRow1.addCell(omlCell1);
+	 omlRow1.addCell(omlCell2);
+	 omlPaneWaypoint.addRow(omlRow1);
+  
+    
+	oLayout.createRow(omlPaneWaypoint);   
 }
 
 

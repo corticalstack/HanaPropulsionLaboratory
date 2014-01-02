@@ -78,10 +78,12 @@
 			vehicleModel.setStateDirectionOn();
 			if (vehicleModel.getStateDirectionVal() == vehicleCmdModel.getInstructionDirectionForward()) {
 				vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionReverse());
+				sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionReverse();
 			}
 			else
 			{
 				vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionForward());
+				sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionForward();
 			}
 				  
 			
@@ -93,9 +95,9 @@
 
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigStop() ) {
 			vehicleModel.setStateStopOn();	
-			cockpitModel.refreshIndicator({id: 'lblIndStop', val: 1});
 			cockpitController.emitControl(vehicleCmdModel.getInstructionStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), vehicleCmdModel.getInstructionStop());
+			cockpitModel.refreshIndicator({id: 'lblIndStop', val: 1});
 		}
 
 
@@ -206,10 +208,12 @@
 				vehicleModel.setStateStopOff();
 				cockpitModel.refreshIndicator({id: 'lblIndStop', val: 1});
 			}
-			else {
+
+			
+			if (throttle != 0 && vehicleModel.getStateStop() == false) {
 				cockpitModel.refreshIndicator({id: 'lblIndStop', val: 0});
 			}
-			
+						
 
 			if (vehicleModel.getStateStop() == false && throttle != vehicleModel.getStateThrottleVal()) {
 				vehicleModel.setStateThrottleOn();
@@ -218,10 +222,6 @@
 			}
 			
 			cockpitModel.refreshGauge({id: 'gaugeThrust', val: throttle});
-//			$('#box')[0].style.webkitTransform = "rotateX("+throttle+"deg) rotateY("+throttle+"deg) translateZ( 100px )";// rotateY("+throttle+"deg)";
-//			$('#box')[0].style.webkitTransform = "rotateX("+throttle+"deg) rotateY("+throttle+"deg) translateZ( 100px )";// rotateY("+throttle+"deg)";
-			
-//			$('#box').style.webkitTransform = "translateZ( -100px ) rotateX(   90deg )";
 		}
 		    
 			

@@ -46,13 +46,11 @@ function buildMainMenu(oController,oLayout){
 	
 	var omlRowSoloCampaign 	= new sap.ui.commons.layout.MatrixLayoutRow();
 	var omlRowMultiplayer 	= new sap.ui.commons.layout.MatrixLayoutRow();
-	var omlRowFreeride 		= new sap.ui.commons.layout.MatrixLayoutRow();
 	var omlRowSettings 		= new sap.ui.commons.layout.MatrixLayoutRow();
 	var omlRowQuit 			= new sap.ui.commons.layout.MatrixLayoutRow();
 	
 	var omlCellSoloCampaign = new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlCellMultiplayer 	= new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCellFreeride 	= new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlCellSettings 	= new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlCellQuit 		= new sap.ui.commons.layout.MatrixLayoutCell();
 
@@ -73,14 +71,6 @@ function buildMainMenu(oController,oLayout){
 	});
 
 	
-	var olnkFreeride = new sap.ui.commons.Link({
-			id: 	"lnkFreeride",
-			text: 	myHplApp.controller.getTextFromBundle("freeride"),
-			width: 	"250px",
-			press:  myHplApp.controller.setViewContent
-	});   
-
-
 	var olnkSettings = new sap.ui.commons.Link({
 			id: 	"lnkSettings",
 			text: 	myHplApp.controller.getTextFromBundle("settings"),
@@ -105,10 +95,6 @@ function buildMainMenu(oController,oLayout){
     omlRowMultiplayer.addCell(omlCellMultiplayer);    
     omlMainMenu.addRow(omlRowMultiplayer);
 
-    omlCellFreeride.addContent(olnkFreeride);
-    omlRowFreeride.addCell(omlCellFreeride);    
-    omlMainMenu.addRow(omlRowFreeride);
-    
     omlCellSettings.addContent(olnkSettings);
     omlRowSettings.addCell(omlCellSettings);    
     omlMainMenu.addRow(omlRowSettings);

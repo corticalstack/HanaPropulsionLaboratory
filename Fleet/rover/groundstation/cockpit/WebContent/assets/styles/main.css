@@ -727,6 +727,12 @@ img.bg {
 }
 
 
+#mlPaneWaypoint {
+	position: fixed;
+	top: 300px;
+  	left:796px;
+}
+
 #lblCompass {
 	position: fixed;
 	top: 224px;

@@ -28,16 +28,12 @@
 				model.setConfigCurrentViewContent(model.getConfigPilotView());
 				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
 				break;
+			
 			case "lnkMultiplayer":
 				model.setConfigCurrentViewContent(model.getConfigPilotView());
 				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
 				break;
-				
-			case "lnkFreeride":
-				model.setConfigCurrentViewContent(model.getConfigPilotView());
-				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
-				break;
-				
+								
 			case "lnkSettings":
 //				currentViewContent = settingsView;
 				break;

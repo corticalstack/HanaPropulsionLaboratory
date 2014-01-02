@@ -123,5 +123,12 @@
 		indicators[i].refresh = false;
 	};
 	
+	
+	//Get methods
+	myHplApp.cockpit.model.getIndicators = function() {
+		return indicators;
+	};
+	
+	
 } (myHplApp = window.myHplApp || {}));	
 	
