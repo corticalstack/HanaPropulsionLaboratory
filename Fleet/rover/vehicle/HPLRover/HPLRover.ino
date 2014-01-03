@@ -115,13 +115,17 @@ void ms100_loop(void* context) {
       scheduler_switch = 1;
       hplrover_inertialsensor.read(hplrover_inertialsensor, insmpu6000);
       hplrover_compass.read(hplrover_compass);
-      hplrover_inertialsensor.output(hplrover_inertialsensor);    
-      hplrover_compass.output(hplrover_compass);  
+      if (hplrover_notify.notify.cockpit_heartbeat == true) {
+        hplrover_inertialsensor.output(hplrover_inertialsensor);    
+        hplrover_compass.output(hplrover_compass);  
+      }
       break;
     case 1:
       scheduler_switch = 0;
-      hplrover_gps.output_posllh(hplrover_gps);
-      hplrover_gps.output_velned(hplrover_gps);      
+      if (hplrover_notify.notify.cockpit_heartbeat == true) {
+        hplrover_gps.output_posllh(hplrover_gps);
+        hplrover_gps.output_velned(hplrover_gps);      
+      }
       break;
   }  
   
@@ -132,7 +136,9 @@ void ms200_loop(void* context) {
   hplrover_sharpsensor.read_front_bumper(hplrover_sharpsensor);
   hplrover_sharpsensor.read_rear_bumper(hplrover_sharpsensor);
   hplrover_sharpsensor.read_cam_mounted(hplrover_sharpsensor);
-  hplrover_sharpsensor.output(hplrover_sharpsensor);
+  if (hplrover_notify.notify.cockpit_heartbeat == true) {
+    hplrover_sharpsensor.output(hplrover_sharpsensor);
+  }
 }
 
 
@@ -144,7 +150,9 @@ void ms500_loop(void* context) {
 
 void one_second_loop(void* context) {
   hplrover_power.read(hplrover_power, hplrover_common);
-  hplrover_power.output(hplrover_power);
+  if (hplrover_notify.notify.cockpit_heartbeat == true) {
+    hplrover_power.output(hplrover_power);
+  }
 
   hplrover_common.last_time_millis = millis();
   hplrover_common.last_time_micros = micros();
@@ -152,7 +160,10 @@ void one_second_loop(void* context) {
 
 
 void two_second_loop(void* context) {
-  hplrover_gps.output_sol(hplrover_gps); 
+  if (hplrover_notify.notify.cockpit_heartbeat == true) {
+    hplrover_gps.output_sol(hplrover_gps); 
+  }
+  
   hplrover_notify.notify.power_failsafe = hplrover_power.exhausted(hplrover_power, hplrover_common);
 }  
 
@@ -184,7 +195,7 @@ void rover_init(void) {
 
 
 void rover_arm(void) {  
-   hplrover_camera.centre(servo_pancam, servo_tiltcam);
+   hplrover_camera.sweep(servo_pancam, servo_tiltcam);
 }
 
 

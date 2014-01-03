@@ -5,7 +5,7 @@
 	var cockpitModel 	   		= myHplApp.cockpit.model;
 	var groundstationModel 		= myHplApp.groundstation.model;
 	var vehicleCmdModel         = myHplApp.vehicle.cmd.model; 
-	var cockpitHeartbeatTick 	= setInterval(function(){myHplApp.cockpit.controller.emitHeartbeat()},250);
+	var cockpitHeartbeatTick    = 0;
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
@@ -26,6 +26,19 @@
 	myHplApp.cockpit.controller.init = function() {
 		console.log('Initialising cockpit controller');		
 	};
+	
+	
+	myHplApp.cockpit.controller.setCockpitHeartbeatTick = function() {
+		console.log('Cockpit controller setting cockpit heartbeat tick.....');
+		cockpitHeartbeatTick = setInterval(function(){myHplApp.cockpit.controller.emitHeartbeat()},250);
+	};
+
+	
+	myHplApp.cockpit.controller.clearCockpitHeartbeatTick = function() {
+		console.log('Cockpit controller clearing cockpit heartbeat tick.....');
+		clearInterval(cockpitHeartbeatTick);
+	};
+
 	
 	myHplApp.cockpit.controller.initGauges = function() {
 		console.log('Initialising cockpit controller gauges');
@@ -341,8 +354,8 @@
 				value: 0,
 				valueMinFontSize: 22,
 				valueFontColor: "#ffffff",
-				min: 10,
-				max: 90,
+				min: 15,
+				max: 35,
 				showMinMax: false,
 				gaugeWidthScale: 0.5,
 				startAnimationTime: 1,
@@ -350,17 +363,17 @@
 				refreshAnimationTime: 1,
 				refreshAnimationType: "linear",									
 				customSectors: [{
-									color: "#ff0000",
-									lo: 0,
-									hi: 20
+									color: "#00ff00",
+									lo: 15,
+									hi: 25
 								},{
 									color: "#ffff00",
-									lo: 20,
-									hi: 50
+									lo: 25,
+									hi: 30
 								}, {
-									color: "#00ff00",
-									lo: 50,
-									hi: 100
+									color: "#ff0000",
+									lo: 30,
+									hi: 35
 								}],
 				counter: true
 		});

@@ -50,6 +50,7 @@
 				myHplApp.cockpit.controller.initGauges();			
 				myHplApp.cockpit.controller.initIndicators();
 				sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
+				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
 				//newFlot();
 				
 				break;
@@ -91,7 +92,6 @@
 		        Math.sin(fromLattitude)*Math.cos(toLattitude)*Math.cos(distanceLongitude);
 		var bearing = myHplApp.controller.toDeg(Math.atan2(y, x));
 		bearing = ((bearing + 360.0) % 360.0).toFixed(0);
-		console.log(bearing);
 		return bearing;
 	};
 

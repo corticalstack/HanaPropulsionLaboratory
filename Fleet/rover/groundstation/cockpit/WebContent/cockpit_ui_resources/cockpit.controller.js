@@ -34,9 +34,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	/**
 	 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 	 */
-	//   onExit: function() {
-	//
-	//   }
+	onExit: function() {
+		myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
+	},
 	
 	
 	
@@ -104,13 +104,16 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 //			sap.ui.getCore().byId("TvInsGyroY").setText(inertialsensor_msg_fields[4]);
 //			sap.ui.getCore().byId("TvInsGyroZ").setText(inertialsensor_msg_fields[5]);
 			
-			var accelx = inertialsensor_msg_fields[0].substr(1);
-			var accely = inertialsensor_msg_fields[1];
-			var accelz = inertialsensor_msg_fields[2];
+			var accelx 		= inertialsensor_msg_fields[0].substr(1);
+			var accely 		= inertialsensor_msg_fields[1];
+			var accelz 		= inertialsensor_msg_fields[2];
+			var coreTemp   	= inertialsensor_msg_fields[3];
+			
 			accelx = accelx * -10;
 			accely = accely * -10;
 			accelz = accelz * -10;
-			$('#gyroBox')[0].style.webkitTransform = "rotateX("+accelx+"deg) rotateZ("+accely+"deg) translateZ( 74px )";// rotateY("+throttle+"deg)";			Ok for X			
+			$('#gyroBox')[0].style.webkitTransform = "rotateX("+accelx+"deg) rotateZ("+accely+"deg) translateZ( 74px )";// 
+			cockpitModel.refreshGauge({id: 'gaugeCoreTemp', val: coreTemp});
 		};
 
 		
@@ -119,7 +122,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsSol(), message );
 			
-			switch(gps_msg_nav_sol_fields[1]) {
+			switch(gps_msg_nav_sol_fields[0].substr(1)) {
 				case '2':
 					sap.ui.getCore().byId("lblValFixType").setText('2D');
 					break;
@@ -128,8 +131,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 					break;
 			}
 			
-
-			sap.ui.getCore().byId("lblValSatellites").setText(gps_msg_nav_sol_fields[3]);
+			sap.ui.getCore().byId("lblValSatellites").setText(gps_msg_nav_sol_fields[1]);
 			missioncontrolController.checkSetHomeLatLng();
 		};
 		
@@ -139,15 +141,14 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
 			
-			var longitude = parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
-			var lattitude = parseFloat(gps_msg_nav_posllh_fields[1], 10);
-			var altitude  = parseFloat(gps_msg_nav_posllh_fields[2], 10);
+			var longitude 	= parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
+			var lattitude 	= parseFloat(gps_msg_nav_posllh_fields[1], 10);
+			var altitude  	= parseFloat(gps_msg_nav_posllh_fields[2], 10);
 			
-			longitude = longitude / 10000000;
-			lattitude = lattitude / 10000000;
-			altitude = altitude / 1000;
-			altitude = altitude.toFixed(2);
-
+			longitude 		= longitude / 10000000;
+			lattitude 		= lattitude / 10000000;
+			altitude 		= altitude / 1000;
+			altitude 		= altitude.toFixed(2);
 
 			cockpitMapsModel.setStateGoogleMapLastLongitude(longitude);
 			cockpitMapsModel.setStateGoogleMapLastLattitude(lattitude);
@@ -159,12 +160,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("lblValAltitude").setText(altitude);
 			missioncontrolModel.setCurrentLattitude(lattitude);
 			missioncontrolModel.setCurrentLongitude(longitude);
-			sap.ui.getCore().byId("viewCockpit").getController().refreshWaypoint();
-			
-			//	sap.ui.getCore().byId("TvGpsNavPosllhHeightMsl").setText(gps_msg_nav_posllh_fields[4]);			
-			//	sap.ui.getCore().byId("TvGpsNavPosllhHoriAccEst").setText(gps_msg_nav_posllh_fields[5]);			
-			//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[6]);			
-			//	sap.ui.getCore().byId("TvGpsNavPosllhVertAccEst").setText(gps_msg_nav_posllh_fields[7]);
+			sap.ui.getCore().byId("viewCockpit").getController().refreshWaypoint();			
 		};
 
 
@@ -173,21 +169,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
 			
-			
-//			var heading = parseFloat(gps_msg_nav_velned_fields[5], 10);
-//			heading = heading / 1000;
-//			heading = parseInt(heading, 10);
-			
-			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[4]);			
-//			sap.ui.getCore().byId("lblValHeading").setText(heading);			
-
-			//sap.ui.getCore().byId("TvGpsNavVelnedNorthVelCms").setText(gps_msg_nav_velned_fields[0]);
-			//sap.ui.getCore().byId("TvGpsNavVelnedEastVelCms").setText(gps_msg_nav_velned_fields[1]);			
-			//sap.ui.getCore().byId("TvGpsNavVelnedDownVelCms").setText(gps_msg_nav_velned_fields[2]);			
-			//sap.ui.getCore().byId("TvGpsNavVelnedSpeed3dCms").setText(gps_msg_nav_velned_fields[3]);			
-			//sap.ui.getCore().byId("TvGpsNavVelnedSpeedAccEst").setText(gps_msg_nav_velned_fields[7]);			
-			//sap.ui.getCore().byId("TvGpsNavVelnedCourseAccEst").setText(gps_msg_nav_velned_fields[8]);
-			//sap.ui.getCore().byId("TvGpsNavVelnedGpsMs").setText(gps_msg_nav_velned_fields[0].substr(3));
+			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[0].substr(1));			
 		};
 				
 	},
@@ -216,8 +198,6 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 			sap.ui.getCore().byId("TabStrip1").setSelectedIndex(infoPanelIndex);
 		}
-
-		
 	},
 	
 	
@@ -293,8 +273,20 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				  		myHplApp.missioncontrol.model.getHomeLongitude());
 		
 		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
-	}
+	},
 	
+	
+	setCamPan: function() {
+		var camPanVal = myHplApp.vehicle.model.getStateCamPanVal();
+		sap.ui.getCore().byId("lblCamPanVal").setText(camPanVal + '°');
+		if (camPanVal < 0) {
+			$('#imgCamPanindicator').css('-webkit-transform', 'rotate(' + (360 + camPanVal) + 'deg)');
+		}
+		else
+		{
+			$('#imgCamPanindicator').css('-webkit-transform', 'rotate(' + camPanVal + 'deg)');
+		}
+	}
 	
 });
 

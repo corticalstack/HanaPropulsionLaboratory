@@ -15,7 +15,8 @@
 			throttleVal:			0,
 			directionVal:			'DF',
 			headingVal:				0,
-			rotateVal:				0	
+			rotateVal:				0,
+			camPanVal:				0
 	};
 
 	
@@ -41,7 +42,27 @@
     myHplApp.vehicle.model.getStateRotate = function() { 
         return state.rotate;
     };
-    
+
+    myHplApp.vehicle.model.getStateThrottleVal = function() { 
+        return state.throttleVal;
+    };
+
+    myHplApp.vehicle.model.getStateDirectionVal = function() { 
+        return state.directionVal;
+    };
+
+    myHplApp.vehicle.model.getStateHeadingVal = function() { 
+        return state.headingVal;
+    };
+
+    myHplApp.vehicle.model.getStateRotateVal = function() { 
+        return state.rotateVal;
+    };
+
+    myHplApp.vehicle.model.getStateCamPanVal = function() { 
+        return state.camPanVal;
+    };
+
     myHplApp.vehicle.model.setStateStopOn = function() { 
         state.stop = true;
     };
@@ -82,21 +103,6 @@
         state.heading = false;
     };
 
-    myHplApp.vehicle.model.getStateThrottleVal = function() { 
-        return state.throttleVal;
-    };
-
-    myHplApp.vehicle.model.getStateDirectionVal = function() { 
-        return state.directionVal;
-    };
-
-    myHplApp.vehicle.model.getStateHeadingVal = function() { 
-        return state.headingVal;
-    };
-
-    myHplApp.vehicle.model.getStateRotateVal = function() { 
-        return state.rotateVal;
-    };
 
     myHplApp.vehicle.model.setStateThrottleVal = function(val) { 
         state.throttleVal = val;
@@ -113,6 +119,11 @@
     myHplApp.vehicle.model.setStateRotateVal = function(val) { 
         state.rotateVal = val;
     };
-    
+
+    myHplApp.vehicle.model.setStateCamPanVal = function(val) { 
+        state.camPanVal = state.camPanVal + val;       	
+        console.log(state.camPanVal);
+    };
+
     
 } (myHplApp = window.myHplApp || {}));

@@ -57,7 +57,12 @@ class HPLRover_InertialSensor
      void read(HPLRover_InertialSensor &ins, AP_InertialSensor_MPU6000 &insmpu6000);
 	 void output(HPLRover_InertialSensor &ins);
 	 void log(HPLRover_InertialSensor &ins);  
-	   
+
+  private:
+		float 	accel_x_offset;
+		float 	accel_y_offset;
+		float 	accel_z_offset;
+	
 };
 
 #endif

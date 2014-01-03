@@ -102,12 +102,18 @@
 
 
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft()) {
+			console.log('cam pan left');
+			vehicleModel.setStateCamPanVal(-5);
+			sap.ui.getCore().byId("viewCockpit").getController().setCamPan();
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanLeft());
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanLeft());			
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanLeft());	
 		}
 				
 			
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
+			console.log('cam pan right');
+			vehicleModel.setStateCamPanVal(5);
+			sap.ui.getCore().byId("viewCockpit").getController().setCamPan();
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanRight());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanRight());
 		}

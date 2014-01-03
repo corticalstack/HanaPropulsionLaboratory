@@ -23,8 +23,6 @@ HPLRover_InertialSensor::HPLRover_InertialSensor() {
 
 
 void HPLRover_InertialSensor::init(AP_InertialSensor_MPU6000 &insmpu6000, Arduino_Mega_ISR_Registry &isr_registry, AP_TimerProcess &scheduler) {
-	Serial.println("Doing INS startup...");
-
     SPI.begin();
     SPI.setClockDivider(SPI_CLOCK_DIV16); // 1MHZ SPI rate
 
@@ -39,7 +37,12 @@ void HPLRover_InertialSensor::init(AP_InertialSensor_MPU6000 &insmpu6000, Arduin
 					AP_InertialSensor::RATE_100HZ,
 					delay, 
 					NULL, 
-					&scheduler);			 
+					&scheduler);	
+
+	accel_x_offset = 999;
+	accel_y_offset = 999;
+	accel_z_offset = 999;
+	
 }
 
 
@@ -68,15 +71,24 @@ void HPLRover_InertialSensor::read(HPLRover_InertialSensor &ins, AP_InertialSens
     temperature 			= insmpu6000.temperature();
     length 					= sqrt(accel.x*accel.x + accel.y*accel.y + accel.z*accel.z);
 
-	ins.ins_msg.accel_x 	= accel.x;
-	ins.ins_msg.accel_y 	= accel.y;
-	ins.ins_msg.accel_z 	= accel.x;
+	if (accel_x_offset == 999) {
+		accel_x_offset = accel.x;
+		accel_y_offset = accel.y;
+		accel_z_offset = accel.z;
+	}
+	
+
+	ins.ins_msg.accel_x 	= accel.x - accel_x_offset;
+	ins.ins_msg.accel_y 	= accel.y - accel_y_offset;
+	ins.ins_msg.accel_z 	= accel.z - accel_z_offset;
+	
 	ins.ins_msg.length 		= length;
 	ins.ins_msg.gyro_x 		= gyro.x;
 	ins.ins_msg.gyro_y 		= gyro.y;
 	ins.ins_msg.gyro_z 		= gyro.z;
-	ins.ins_msg.temperature = temperature;		
 
+	ins.ins_msg.temperature = temperature;		
+	
 	#if defined debug_inertial
 		stop_ms = millis();
 		Serial.print("Inertial read - ");
@@ -103,13 +115,13 @@ void HPLRover_InertialSensor::output(HPLRover_InertialSensor &ins) {
 	ins_str += comma_separator;
 //	ins_str += ins.ins_msg.length;
 //	ins_str += comma_separator;
-    ins_str += ins.ins_msg.gyro_x;
-	ins_str += comma_separator;
-	ins_str += ins.ins_msg.gyro_y;
-	ins_str += comma_separator;
-	ins_str += ins.ins_msg.gyro_z;
+//  ins_str += ins.ins_msg.gyro_x;
 //	ins_str += comma_separator;
-//	ins_str += ins.ins_msg.temperature;
+//	ins_str += ins.ins_msg.gyro_y;
+//	ins_str += comma_separator;
+//	ins_str += ins.ins_msg.gyro_z;
+//	ins_str += comma_separator;
+	ins_str += ins.ins_msg.temperature;
 	ins_str += msg_terminator;  
 	Serial.println(ins_str);	
 	

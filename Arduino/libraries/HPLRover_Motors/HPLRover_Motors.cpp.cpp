@@ -22,11 +22,10 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
 	int internal_rotate_val 	= 0;	
 	bool rotate_anti_clockwise 	= false;
 
-		
+
 	if ((notify.notify.cockpit_heartbeat == false) ||
 		((millis() - notify.notify.cockpit_heartbeat_tick) > cockpit_heartbeat_threshold)) {
 		allstop(command, servo_leftmotors, servo_rightmotors);
-		Serial.println("No heartbeat");
 		reset_motors(command);
 		notify.notify.cockpit_heartbeat = false;
 		return;
@@ -110,7 +109,6 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
         
     if(command.cmd_in_motors.direction_rx) {
        if(command.cmd_in_motors.direction_val == cmd_val_forward) {
-	   		Serial.println("Forward");
            left_throttle_val = left_throttle_val + 90;
            right_throttle_val = right_throttle_val + 90;
            if (heading_anti_clockwise == false) {
@@ -123,7 +121,6 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
        }
        else
        {
-	   	   		Serial.println("reverse");
            left_throttle_val = 90 - left_throttle_val;
            right_throttle_val = 90 - right_throttle_val;         
            if (heading_anti_clockwise == false) {
