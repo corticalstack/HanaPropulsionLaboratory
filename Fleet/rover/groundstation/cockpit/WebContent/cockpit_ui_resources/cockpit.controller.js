@@ -274,40 +274,25 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	
 	refreshWaypoint: function() {
-//		var currentLocation = new google.maps.LatLng(myHplApp.missioncontrol.model.getCurrentLattitude(), myHplApp.missioncontrol.model.getCurrentLongitude());
-//		var nextWaypoint 	= new google.maps.LatLng(myHplApp.missioncontrol.model.getHomeLattitude(), myHplApp.missioncontrol.model.getHomeLongitude());
-//		console.log(nextWaypoint);
-//		var dist = 	google.maps.geometry.spherical.computeDistanceBetween(currentLocation, nextWaypoint) / 100000;
-//		console.log(dist);
-//		dist = dist.toFixed(2);
-
-//		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(dist);
-//		var heading = google.maps.geometry.spherical.computeHeading(currentLocation, nextWaypoint);
-//		heading = heading.toFixed(0);
-//		sap.ui.getCore().byId("lblWaypointVal").setText(heading + '°');
-//		$('#imgWaypointIndicator').css('-webkit-transform', 'rotate(' + heading + 'deg)');
-//		console.log('End of cockpit refresh waypoint');
 		
-		var R = 6371; // km
-		console.log('Get dlat');
-		var dLat = (myHplApp.missioncontrol.model.getCurrentLattitude() - myHplApp.missioncontrol.model.getHomeLattitude());
-		dLat = myHplApp.controller.toRad(dLat);
+		//Only update bearing if we know we now have a solid GPS 3D fix
+		if (myHplApp.missioncontrol.model.getGps3DFixCount() < 11) {
+			return;
+		}
 		
-		console.log('Get dlon');
-		var dLon = (myHplApp.missioncontrol.model.getCurrentLongitude() - myHplApp.missioncontrol.model.getHomeLongitude());
-		dLon = myHplApp.controller.toRad(dLon); 
-		var lat1x =  myHplApp.controller.toRad(myHplApp.missioncontrol.model.getHomeLongitude());
-		var lat2x = myHplApp.controller.toRad(myHplApp.missioncontrol.model.getCurrentLattitude());
-
-		console.log('Math a');
-		var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-		        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1x) * Math.cos(lat2x);
-		console.log('Math c');
-		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		console.log('Math d');
-		var d = R * c;
-		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(d);
-		console.log(d);
+		var bearing = 	myHplApp.controller.Bearing(myHplApp.missioncontrol.model.getCurrentLattitude(),
+						myHplApp.missioncontrol.model.getCurrentLongitude(),
+						myHplApp.missioncontrol.model.getHomeLattitude(),
+						myHplApp.missioncontrol.model.getHomeLongitude());
+		sap.ui.getCore().byId("lblWaypointVal").setText(bearing + '°');
+		$('#imgWaypointIndicator').css('-webkit-transform', 'rotate(' + bearing + 'deg)');
+		
+		var distance = 	myHplApp.controller.Distance(myHplApp.missioncontrol.model.getCurrentLattitude(), 
+				  		myHplApp.missioncontrol.model.getCurrentLongitude(),
+				  		myHplApp.missioncontrol.model.getHomeLattitude(),
+				  		myHplApp.missioncontrol.model.getHomeLongitude());
+		
+		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
 	}
 	
 	

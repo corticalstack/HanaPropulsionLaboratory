@@ -45,8 +45,7 @@
 
 	myHplApp.missioncontrol.controller.checkSetHomeLatLng = function() { 
 		missioncontrolModel.incrementGps3DFixCount();
-		if (missioncontrolModel.getGps3DFixCount() == 5) {
-			console.log('Mission control setting HOME waypoint');
+		if (missioncontrolModel.getGps3DFixCount() == 10) {
 			missioncontrolModel.setActiveHomeLatLng();
 			myHplApp.missioncontrol.model.addWaypoint('HOME', 	myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLattitude());
 		}

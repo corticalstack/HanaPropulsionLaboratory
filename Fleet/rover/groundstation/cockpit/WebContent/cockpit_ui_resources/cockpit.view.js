@@ -934,22 +934,22 @@ function buildPaneBearingIndicators(oController,oLayout){
     oimgCompassIndicator = new sap.ui.commons.Image({
     	id: 'imgCompassIndicator',
     	src: 'assets/images/hud/Compass.png',
-        width: "82px",
-        height: "120px"
+        width: "89px",
+        height: "130px"
     });
 
     oimgCamPanIndicator = new sap.ui.commons.Image({
     	id: 'imgCamPanindicator',
     	src: 'assets/images/hud/Compass.png',
-        width: "82px",
-        height: "120px"
+        width: "89px",
+        height: "130px"
     });
 
     oimgWaypointIndicator = new sap.ui.commons.Image({
     	id: 'imgWaypointIndicator',
     	src: 'assets/images/hud/Compass.png',
-        width: "82px",
-        height: "120px"
+        width: "89px",
+        height: "130px"
     });
 
 	var olblCompass = new sap.ui.commons.Label({
@@ -1007,7 +1007,7 @@ function buildPaneBearingIndicators(oController,oLayout){
 	omlCellWaypointIndicator.setHAlign(sap.ui.commons.layout.HAlign.Center);
 	omlCellCompassIndicator.addContent(olblCompass);
     omlCellCamPanIndicator.addContent(olblCamPan);
-    omlCellWaypointIndicator.addContent(olblWaypoint);    
+//  omlCellWaypointIndicator.addContent(olblWaypoint);    
     omlRowBearingIndicators.addCell(omlCellCompassIndicator);
     omlRowBearingIndicators.addCell(omlCellCamPanIndicator);
     omlRowBearingIndicators.addCell(omlCellWaypointIndicator);    
@@ -1037,57 +1037,36 @@ function buildPaneBearingIndicators(oController,oLayout){
 function buildPaneWaypoint(oController,oLayout){
 	var omlPaneWaypoint = new sap.ui.commons.layout.MatrixLayout({
 			id:			"mlPaneWaypoint",
-			width:		"120px",
-	        columns: 	2,
-	        widths: 	["90px", "30px"]  
+			width:		"60px"  
 	});	
 	
 
-	var olblWaypointId = new sap.ui.commons.Label({
-    	id: 		"lblWaypointId",
-    	text: 		myHplApp.controller.getTextFromBundle("waypoint")
-    });
-
-
-	 var olblValWaypointId = new sap.ui.commons.Label({
-	    	id: 	"lblValWaypointId",
-	    	text: 	"",
-	    	textAlign: 	"Right"	    		    	
-	 });
-
-
-	
-	 var olblDistanceToWaypoint = new sap.ui.commons.Label({
-	    	id: 		"lblDistanceToWaypoint",
-	    	text: 		myHplApp.controller.getTextFromBundle("distancewp")
+	var olblValWaypointId = new sap.ui.commons.Label({
+	    	id: 		"lblValWaypointId",
+	    	text: 		"HOME",
+	    	textAlign: 	"Center"
 	});
 
 
 	var olblValDistanceToWaypoint = new sap.ui.commons.Label({
-	    	id: 	"lblValDistanceToWaypoint",
-	    	text: 	"",
-	    	textAlign: 	"Right"	    		    	
+	    	id: 		"lblValDistanceToWaypoint",
+	    	text: 		"",
+	    	textAlign: 	"Center"
 	});
 
-    
-	 omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	 omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
-	 omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-	 omlCell1.addContent(olblWaypointId);
-	 omlCell2.addContent(olblValWaypointId);
-	 omlRow1.addCell(omlCell1);
-	 omlRow1.addCell(omlCell2);
-	 omlPaneWaypoint.addRow(omlRow1);
 
-	 omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	 omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
-	 omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-	 omlCell1.addContent(olblDistanceToWaypoint);
-	 omlCell2.addContent(olblValDistanceToWaypoint);
-	 omlRow1.addCell(omlCell1);
-	 omlRow1.addCell(omlCell2);
-	 omlPaneWaypoint.addRow(omlRow1);
-  
+	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell({width: "60px"});
+	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow();
+	omlCell1.addContent(olblValWaypointId);
+	omlRow1.addCell(omlCell1);
+	omlPaneWaypoint.addRow(omlRow1);
+
+	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell({width: "60px"});
+	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow();
+	omlCell1.addContent(olblValDistanceToWaypoint);
+	omlRow1.addCell(omlCell1);
+	omlPaneWaypoint.addRow(omlRow1);
+	
     
 	oLayout.createRow(omlPaneWaypoint);   
 }

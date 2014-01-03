@@ -729,13 +729,13 @@ img.bg {
 
 #mlPaneWaypoint {
 	position: fixed;
-	top: 300px;
-  	left:796px;
+	top: 215px;
+  	left:836px;
 }
 
 #lblCompass {
 	position: fixed;
-	top: 224px;
+	top: 200px;
   	left: 495px;	
   	width: 100px;
 	color: rgb(255,255,255);
@@ -748,20 +748,20 @@ img.bg {
 
 #lblCompassVal {
 	position: fixed;
-	top: 204px;
-  	left: 495px;	
+	top: 218px;
+  	left: 497px;	
   	width: 100px;
-	color: rgb(255,255,255);
+	color: rgb(0,255,0);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 2em; 
+	font-size: 1.6em; 
 	text-align: center; 
 }
 
 #lblCamPan {
 	position: fixed;
-	top: 224px;
+	top: 200px;
   	left: 645px;	
   	width: 100px;
 	color: rgb(255,255,255);
@@ -774,14 +774,14 @@ img.bg {
 
 #lblCamPanVal {
 	position: fixed;
-	top: 204px;
+	top: 218px;
   	left: 645px;	
   	width: 100px;
-	color: rgb(255,255,255);
+	color: rgb(0,255,0);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 2em; 
+	font-size: 1.6em; 
 	text-align: center; 
 }
 
@@ -801,27 +801,22 @@ img.bg {
 
 #lblWaypointVal {
 	position: fixed;
-	top: 204px;
-  	left: 796px;	
+	top: 216px;
+  	left: 797px;	
   	width: 100px;
-	color: rgb(255,255,255);
+	color: rgb(0,255,0);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 2em; 
+	font-size: 1.6em; 
 	text-align: center; 
 }
 
-#lblWaypointId {
-	color: rgb(255,255,255);
-	font-family:'BebasNeueRegular', serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.0em; 
-	text-align: center; 
-}
 
 #lblValWaypointId {
+	position: fixed;
+	top: 191px;
+  	left: 836px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
@@ -829,21 +824,17 @@ img.bg {
 	font-size: 1.0em;  
 }
 
-#lblDistanceToWaypoint {
-	color: rgb(255,255,255);
-	font-family:'BebasNeueRegular', serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.0em; 
-	text-align: center; 
-}
 
 #lblValDistanceToWaypoint {
+	position: fixed;
+	top: 224px;
+  	left: 815px;
+  	width: 60px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 1.0em;  
+	font-size: 1.1em;  
 }
 
 
