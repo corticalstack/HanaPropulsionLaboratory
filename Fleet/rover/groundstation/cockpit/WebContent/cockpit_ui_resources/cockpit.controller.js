@@ -51,34 +51,15 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 
 	feed: function(data) {
+		var vehicleModel 				= myHplApp.vehicle.model;
+		var vehicleCmdModel 			= myHplApp.vehicle.cmd.model;
 		var missioncontrolModel	 		= myHplApp.missioncontrol.model;
 		var missioncontrolController 	= myHplApp.missioncontrol.controller;
 		var cockpitModel 				= myHplApp.cockpit.model;
 		var cockpitMapsModel			= myHplApp.cockpit.maps.model;
 		var message;
-	
-		if (data.substr(0,1) == 'C') {
-			var compass_msg_fields = data.split(',');
-			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdCompass(), message );
-			
-			var compassHeading = parseInt(compass_msg_fields[0].substr(1), 10);
-			sap.ui.getCore().byId("lblCompassVal").setText(compassHeading + '°');		
-			$('#imgCompassIndicator').css('-webkit-transform', 'rotate(' + compassHeading + 'deg)');
-		};
 
-
-		if (data.substr(0,1) == 'D') {
-			var distance_msg_fields = data.split(',');
-			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdDistance(), message );
-			cockpitModel.refreshGauge({id: 'gaugeRearProximitySensor', val: distance_msg_fields[0].substr(1)});
-			cockpitModel.refreshGauge({id: 'gaugeFrontProximitySensor', val: distance_msg_fields[1]});
-			cockpitModel.refreshGauge({id: 'gaugeCamProximitySensor', val: distance_msg_fields[2]});
-		};
-
-
-		
+		//Power message
 		if (data.substr(0,1) == 'B') {
 			var inertialsensor_msg_fields = data.split(',');
 			message = data.substr(1);
@@ -92,7 +73,30 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 		
-		
+		//Compass message
+		if (data.substr(0,1) == 'C') {
+			var compass_msg_fields = data.split(',');
+			message = data.substr(1);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdCompass(), message );
+			
+			var compassHeading = parseInt(compass_msg_fields[0].substr(1), 10);
+			sap.ui.getCore().byId("lblCompassVal").setText(compassHeading + '°');		
+			$('#imgCompassIndicator').css('-webkit-transform', 'rotate(' + compassHeading + 'deg)');
+		};
+
+
+		//Distance sensors message
+		if (data.substr(0,1) == 'D') {
+			var distance_msg_fields = data.split(',');
+			message = data.substr(1);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdDistance(), message );
+			cockpitModel.refreshGauge({id: 'gaugeRearProximitySensor', val: distance_msg_fields[0].substr(1)});
+			cockpitModel.refreshGauge({id: 'gaugeFrontProximitySensor', val: distance_msg_fields[1]});
+			cockpitModel.refreshGauge({id: 'gaugeCamProximitySensor', val: distance_msg_fields[2]});
+		};
+
+
+		//Inertial sensor message
 		if (data.substr(0,1) == 'I') {
 			var inertialsensor_msg_fields = data.split(',');
 			message = data.substr(1);
@@ -117,6 +121,18 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 		
+		//Motors thrust message
+		if (data.substr(0,1) == 'M') {
+			var motors_thrust_msg_fields = data.split(',');
+			message = data.substr(1);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdThrust(), message );	
+			console.log(vehicleModel.getStateDirectionVal());
+			sap.ui.getCore().byId("lblValLeftEngineThrust").setText(motors_thrust_msg_fields[0].substr(1) - 90);
+			sap.ui.getCore().byId("lblValRightEngineThrust").setText(motors_thrust_msg_fields[1] - 90);
+		};
+		
+		
+		//GPS Sol message
 		if (data.substr(0,1) == 'S') {
 			var gps_msg_nav_sol_fields = data.split(',');
 			message = data.substr(1);
@@ -136,6 +152,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 		
 
+		//GPS posllh message
 		if (data.substr(0,1) == 'P') {
 			var gps_msg_nav_posllh_fields = data.split(',');
 			message = data.substr(1);
@@ -164,6 +181,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 
+		//GPS velned message
 		if (data.substr(0,1) == 'V') {
 			var gps_msg_nav_velned_fields = data.split(',');
 			message = data.substr(1);
@@ -265,6 +283,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 						myHplApp.missioncontrol.model.getHomeLattitude(),
 						myHplApp.missioncontrol.model.getHomeLongitude());
 		sap.ui.getCore().byId("lblWaypointVal").setText(bearing + '°');
+		sap.ui.getCore().byId("lblValBearingWp").setText(bearing + '°');
+		
 		$('#imgWaypointIndicator').css('-webkit-transform', 'rotate(' + bearing + 'deg)');
 		
 		var distance = 	myHplApp.controller.Distance(myHplApp.missioncontrol.model.getCurrentLattitude(), 
@@ -273,6 +293,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				  		myHplApp.missioncontrol.model.getHomeLongitude());
 		
 		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
+		sap.ui.getCore().byId("lblValDistanceWp").setText(distance + 'm');
+		
 	},
 	
 	

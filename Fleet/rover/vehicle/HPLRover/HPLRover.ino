@@ -82,13 +82,13 @@ void fast_loop(void) {
   #if defined DEBUG_MOTORS
     start_ms = millis();
   #endif
-  hplrover_motors.output(hplrover_command, hplrover_notify, hplrover_sharpsensor, servo_leftmotors, servo_rightmotors);  
+  hplrover_motors.output(hplrover_motors, hplrover_command, hplrover_notify, hplrover_sharpsensor, servo_leftmotors, servo_rightmotors);  
   #if defined DEBUG_MOTORS
     stop_ms = millis();
     Serial.print("Motors output - ");
     Serial.println(stop_ms - start_ms);
   #endif
-  
+    
   hplrover_gps.read(hplrover_gps);
 }  
   
@@ -124,7 +124,8 @@ void ms100_loop(void* context) {
       scheduler_switch = 0;
       if (hplrover_notify.notify.cockpit_heartbeat == true) {
         hplrover_gps.output_posllh(hplrover_gps);
-        hplrover_gps.output_velned(hplrover_gps);      
+        hplrover_gps.output_velned(hplrover_gps);   
+        hplrover_motors.output_thrust(hplrover_motors);
       }
       break;
   }  

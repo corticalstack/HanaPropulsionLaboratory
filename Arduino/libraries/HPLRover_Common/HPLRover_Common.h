@@ -96,6 +96,7 @@ const int 				max_left_throttle_forward_val       = 140;
 const int 				max_right_throttle_reverse_val      = 40;
 const int 				max_right_throttle_forward_val      = 140;
 
+const char 				msg_motors_thrust 					= 'M';
 
 // Camera Control
 static int 				cam_last_pan_pos 					= 0;

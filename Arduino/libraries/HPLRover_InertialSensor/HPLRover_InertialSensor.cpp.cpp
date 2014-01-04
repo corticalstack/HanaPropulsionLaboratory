@@ -39,9 +39,9 @@ void HPLRover_InertialSensor::init(AP_InertialSensor_MPU6000 &insmpu6000, Arduin
 					NULL, 
 					&scheduler);	
 
-	accel_x_offset = 999;
-	accel_y_offset = 999;
-	accel_z_offset = 999;
+	accel_x_offset = 0.32;
+	accel_y_offset = 0.40;
+	accel_z_offset = -9.92;
 	
 }
 
@@ -70,13 +70,6 @@ void HPLRover_InertialSensor::read(HPLRover_InertialSensor &ins, AP_InertialSens
     gyro 					= insmpu6000.get_gyro();
     temperature 			= insmpu6000.temperature();
     length 					= sqrt(accel.x*accel.x + accel.y*accel.y + accel.z*accel.z);
-
-	if (accel_x_offset == 999) {
-		accel_x_offset = accel.x;
-		accel_y_offset = accel.y;
-		accel_z_offset = accel.z;
-	}
-	
 
 	ins.ins_msg.accel_x 	= accel.x - accel_x_offset;
 	ins.ins_msg.accel_y 	= accel.y - accel_y_offset;

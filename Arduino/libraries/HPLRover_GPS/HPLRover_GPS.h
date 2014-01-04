@@ -7,41 +7,41 @@ class HPLRover_GPS
 {
   public:
 
-		struct gps_msg_nav_sol_type {					
-			long 	gps_ms;
-			int		fix_type;
-			int 	acc_est_3d;
-			int     number_sv;
-		};		
+	struct gps_msg_nav_sol_type {					
+		long 	gps_ms;
+		int		fix_type;
+		int 	acc_est_3d;
+		int     number_sv;
+	};		
 
 		
-		struct gps_msg_nav_posllh_type {
-			long 	gps_ms;
-			long 	longitude;
-			long 	lattitude;
-			long 	height;
-			long 	height_msl;
-			int 	hori_acc_est;
-			int 	vert_acc_est;		
-		};	
+	struct gps_msg_nav_posllh_type {
+		long 	gps_ms;
+		long 	longitude;
+		long 	lattitude;
+		long 	height;
+		long 	height_msl;
+		int 	hori_acc_est;
+		int 	vert_acc_est;		
+	};	
 	
 	
-		struct gps_msg_nav_velned_type {					
-			long 	gps_ms;
-			int 	north_velocity_cm_s;
-			int 	east_velocity_cm_s;
-			int 	down_velocity_cm_s;
-			int 	speed_3d_cm_s;
-			int 	ground_speed_2d_cm_s;
-			float 	heading;
-			int 	speed_acc_est;
-			int 	course_acc_est;
-		};		
+	struct gps_msg_nav_velned_type {					
+		long 	gps_ms;
+		int 	north_velocity_cm_s;
+		int 	east_velocity_cm_s;
+		int 	down_velocity_cm_s;
+		int 	speed_3d_cm_s;
+		int 	ground_speed_2d_cm_s;
+		float 	heading;
+		int 	speed_acc_est;
+		int 	course_acc_est;
+	};		
 
 		
-		static struct gps_msg_nav_sol_type 		gps_msg_nav_sol;
-		static struct gps_msg_nav_posllh_type 	gps_msg_nav_posllh;
-		static struct gps_msg_nav_velned_type 	gps_msg_nav_velned;
+	static struct gps_msg_nav_sol_type 		gps_msg_nav_sol;
+	static struct gps_msg_nav_posllh_type 	gps_msg_nav_posllh;
+	static struct gps_msg_nav_velned_type 	gps_msg_nav_velned;
 		
 		
      HPLRover_GPS();        //Constructor

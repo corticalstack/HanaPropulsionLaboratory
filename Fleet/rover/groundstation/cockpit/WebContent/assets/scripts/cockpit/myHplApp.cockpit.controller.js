@@ -363,7 +363,7 @@
 				refreshAnimationTime: 1,
 				refreshAnimationType: "linear",									
 				customSectors: [{
-									color: "#00ff00",
+									color: "#0864BF",
 									lo: 15,
 									hi: 25
 								},{

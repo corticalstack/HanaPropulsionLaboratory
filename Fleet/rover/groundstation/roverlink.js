@@ -7,14 +7,14 @@ stream 						= new BufferStream({encoding:'utf8', size:'flexible'})
 port 						= '/dev/ttyUSB0';
 stream.split(':', '\r', '\n', '[', ']');
 
-var msg_gps_nav_sol 		= 'S';
-var msg_gps_nav_posllh 		= 'P';
-var msg_gps_nav_velned 		= 'V';
-var msg_compass				= 'C';
-var msg_ins					= 'I';
 var msg_power		 		= 'B';
+var msg_compass				= 'C';
 var msg_sharpsensor	 		= 'D';
-
+var msg_ins					= 'I';
+var msg_motors_thrust 		= 'M';
+var msg_gps_nav_posllh 		= 'P';
+var msg_gps_nav_sol 		= 'S';
+var msg_gps_nav_velned 		= 'V';
 
 io 							= socketioWildcard( socketio ).listen( 8090 );
 
@@ -66,6 +66,11 @@ io.sockets.on('connection', function(socket) {
                 break;
 
 			case msg_sharpsensor:
+                socket.emit("feed", chunk.toString());
+				//console.log(chunk);
+                break;
+
+			case msg_motors_thrust:
                 socket.emit("feed", chunk.toString());
 				//console.log(chunk);
                 break;

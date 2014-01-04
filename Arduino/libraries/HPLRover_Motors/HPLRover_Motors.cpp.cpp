@@ -1,16 +1,18 @@
 #include "Arduino.h"
 #include "Servo.h"
-
+#include <PString.h>
 #include "HPLRover_Motors.h"
 #include "HPLRover_Common.h"
 #include <HPLRover_Command.h>
 #include <HPLRover_Notify.h>
 #include <HPLRover_SharpSensor.h>
 
+struct HPLRover_Motors::motors_msg_thrust_type 		HPLRover_Motors::motors_msg_thrust;
+
 HPLRover_Motors::HPLRover_Motors() {
 }
 
-void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify, HPLRover_SharpSensor &sharpsensor, Servo &servo_leftmotors, Servo &servo_rightmotors) {
+void HPLRover_Motors::output(HPLRover_Motors &motors, HPLRover_Command &command, HPLRover_Notify &notify, HPLRover_SharpSensor &sharpsensor, Servo &servo_leftmotors, Servo &servo_rightmotors) {
 	
 	int internal_throttle_val 	= 0;
 	int left_throttle_val 		= 0;
@@ -25,7 +27,7 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
 
 	if ((notify.notify.cockpit_heartbeat == false) ||
 		((millis() - notify.notify.cockpit_heartbeat_tick) > cockpit_heartbeat_threshold)) {
-		allstop(command, servo_leftmotors, servo_rightmotors);
+		allstop(motors, command, servo_leftmotors, servo_rightmotors);
 		reset_motors(command);
 		notify.notify.cockpit_heartbeat = false;
 		return;
@@ -33,7 +35,7 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
 
 	
 	if (command.cmd_in_motors.stop_rx) { 
-	  allstop(command, servo_leftmotors, servo_rightmotors);
+	  allstop(motors, command, servo_leftmotors, servo_rightmotors);
 	  reset_motors(command);
       return;
     }
@@ -65,7 +67,7 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
 	
 	if ((command.cmd_in_motors.direction_rx == true && internal_throttle_val <= throttle_deadzone_val) || 
 	    (command.cmd_in_motors.rotate_rx    == true && internal_rotate_val   <= rotate_deadzone_val)) {
-		allstop(command, servo_leftmotors, servo_rightmotors);
+		allstop(motors, command, servo_leftmotors, servo_rightmotors);
 		reset_motors(command);
 		return;
     }
@@ -83,21 +85,21 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
 	
 	
 	if (command.cmd_in_motors.direction_val == cmd_val_forward && (sharpsensor.sharpsensor_msg.sensor2_valuecm < (sensor_bumper_front_min_distcm + ((internal_throttle_val / 100) * 50)))) {
-		allstop(command, servo_leftmotors, servo_rightmotors);
+		allstop(motors, command, servo_leftmotors, servo_rightmotors);
 		reset_motors(command);
 		return;
 	}
 
 
 	if (command.cmd_in_motors.direction_val == cmd_val_reverse && (sharpsensor.sharpsensor_msg.sensor1_valuecm < (sensor_bumper_rear_min_distcm + ((internal_throttle_val / 100) * 50)))) {
-		allstop(command, servo_leftmotors, servo_rightmotors);
+		allstop(motors, command, servo_leftmotors, servo_rightmotors);
 		reset_motors(command);
 		return;
 	}
 	
 			
 	if (command.cmd_in_motors.rotate_rx && !command.cmd_in_motors.direction_rx) {
-	   rotate(command, internal_rotate_val, rotate_anti_clockwise, servo_leftmotors, servo_rightmotors);
+	   rotate(motors, command, internal_rotate_val, rotate_anti_clockwise, servo_leftmotors, servo_rightmotors);
 	   reset_motors(command);
 	   return;
 	}
@@ -134,12 +136,15 @@ void HPLRover_Motors::output(HPLRover_Command &command, HPLRover_Notify &notify,
     }
     
 	
-	left_throttle_val 	= adjust_left_throttle_for_limits(left_throttle_val);
-	right_throttle_val	= adjust_right_throttle_for_limits(right_throttle_val);
+	
+	left_throttle_val  = adjust_left_throttle_for_limits(left_throttle_val);
+	right_throttle_val = adjust_right_throttle_for_limits(right_throttle_val);
         
-    servo_leftmotors.write(left_throttle_val);
+	servo_leftmotors.write(left_throttle_val);
     servo_rightmotors.write(right_throttle_val);	
 	
+	motors.motors_msg_thrust.left_throttle_val 	= left_throttle_val;
+	motors.motors_msg_thrust.right_throttle_val = right_throttle_val;
 }
 
 void HPLRover_Motors::reset_motors(HPLRover_Command &command) {
@@ -156,13 +161,17 @@ void HPLRover_Motors::reset_motors(HPLRover_Command &command) {
 }
 
 
-void HPLRover_Motors::allstop(HPLRover_Command &command, Servo &servo_leftmotors, Servo &servo_rightmotors) {
+void HPLRover_Motors::allstop(HPLRover_Motors &motors, HPLRover_Command &command, Servo &servo_leftmotors, Servo &servo_rightmotors) {
   servo_leftmotors.write(cmd_velocity_val_allstop);
   servo_rightmotors.write(cmd_velocity_val_allstop);
+  
+  motors.motors_msg_thrust.left_throttle_val  = cmd_velocity_val_allstop;
+  motors.motors_msg_thrust.right_throttle_val = cmd_velocity_val_allstop;
+
 }
 
 
-void HPLRover_Motors::rotate(HPLRover_Command &command, int rotate_val, bool anti_clockwise, Servo &servo_leftmotors, Servo &servo_rightmotors) {
+void HPLRover_Motors::rotate(HPLRover_Motors &motors, HPLRover_Command &command, int rotate_val, bool anti_clockwise, Servo &servo_leftmotors, Servo &servo_rightmotors) {
 	int left_throttle_val;
 	int right_throttle_val;
 
@@ -179,11 +188,13 @@ void HPLRover_Motors::rotate(HPLRover_Command &command, int rotate_val, bool ant
 	
 	left_throttle_val 	= adjust_left_throttle_for_limits(left_throttle_val);
 	right_throttle_val	= adjust_right_throttle_for_limits(right_throttle_val);
-
 	    
 	servo_leftmotors.write(left_throttle_val);
     servo_rightmotors.write(right_throttle_val);	
 	
+    motors.motors_msg_thrust.left_throttle_val  = left_throttle_val;
+    motors.motors_msg_thrust.right_throttle_val = right_throttle_val;
+
 }
 
 
@@ -263,4 +274,17 @@ int HPLRover_Motors::adjust_right_throttle_for_limits(int throttle_val) {
     } 
 
 	return throttle_val;
+}
+
+void HPLRover_Motors::output_thrust(HPLRover_Motors &motors) {  
+	
+	char motors_buffer[20];
+	PString motors_str(motors_buffer, sizeof(motors_buffer));
+	motors_str += msg_motors_thrust;
+	motors_str += motors.motors_msg_thrust.left_throttle_val;
+	motors_str += comma_separator;
+	motors_str += motors.motors_msg_thrust.right_throttle_val;
+	motors_str += msg_terminator;  
+	Serial.println(motors_str);	
+	
 }

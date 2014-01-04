@@ -26,7 +26,8 @@
 			camera:					'C',
 			distance:				'D',
 			inertial:				'I',
-			motor:					'M',				
+			motor:					'M',
+			thrust:					'T',
 			headlights:				'H',
 			compass:    			'C',
 			gpsSol:    				'S',
@@ -129,6 +130,9 @@
     	return messageId.motor;
     };
 
+    myHplApp.missioncontrol.model.getMessageIdThrust = function() {
+    	return messageId.thrust;
+    };
     
     myHplApp.missioncontrol.model.getMessageIdHeadlights = function() {
     	return messageId.headlights;

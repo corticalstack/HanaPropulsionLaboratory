@@ -119,7 +119,7 @@ function buildPaneDrive(oController,oLayout){
 	 
 	 var olblValLeftEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblValLeftEngineThrust",
-	    	text: 	"99",
+	    	text: 	"",
 	    	textAlign: 	"Right",
 	    	width: 	"25px"	    	
 	 });
@@ -134,7 +134,7 @@ function buildPaneDrive(oController,oLayout){
 	 
 	 var olblValRightEngineThrust = new sap.ui.commons.Label({
 	    	id: 	"lblValRightEngineThrust",
-	    	text: 	"-20",
+	    	text: 	"",
 	    	textAlign: 	"Right",
 	    	width: 	"25px"	    		    	
 	 });
