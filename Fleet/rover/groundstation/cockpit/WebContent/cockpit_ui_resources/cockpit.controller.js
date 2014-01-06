@@ -35,7 +35,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 	 */
 	onExit: function() {
-		myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
+		myHplApp.cockpit.controller.setStateActive(false);
 	},
 	
 	
@@ -96,6 +96,17 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 
+		
+		//camera message
+		if (data.substr(0,1) == 'F') {
+			var camera_msg_fields = data.split(',');
+			message = data.substr(1);
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), message);
+			vehicleModel.setStateCamPanVal(camera_msg_fields[0].substr(1));
+			sap.ui.getCore().byId("viewCockpit").getController().setCamPan();
+		};
+
+		
 		//Inertial sensor message
 		if (data.substr(0,1) == 'I') {
 			var inertialsensor_msg_fields = data.split(',');
@@ -129,6 +140,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			console.log(vehicleModel.getStateDirectionVal());
 			sap.ui.getCore().byId("lblValLeftEngineThrust").setText(motors_thrust_msg_fields[0].substr(1) - 90);
 			sap.ui.getCore().byId("lblValRightEngineThrust").setText(motors_thrust_msg_fields[1] - 90);
+			cockpitModel.refreshIndicator({id: 'lblStatusLeftEngineThrust', val: motors_thrust_msg_fields[0].substr(1) - 90});
+			cockpitModel.refreshIndicator({id: 'lblStatusRightEngineThrust', val: motors_thrust_msg_fields[1] - 90});
 		};
 		
 		
@@ -148,6 +161,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			}
 			
 			sap.ui.getCore().byId("lblValSatellites").setText(gps_msg_nav_sol_fields[1]);
+			cockpitModel.refreshIndicator({id: 'lblStatusFixType', val: gps_msg_nav_sol_fields[0].substr(1)});
+			cockpitModel.refreshIndicator({id: 'lblStatusSatellites', val: gps_msg_nav_sol_fields[1]});
 			missioncontrolController.checkSetHomeLatLng();
 		};
 		
@@ -177,6 +192,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("lblValAltitude").setText(altitude);
 			missioncontrolModel.setCurrentLattitude(lattitude);
 			missioncontrolModel.setCurrentLongitude(longitude);
+			cockpitModel.refreshIndicator({id: 'lblStatusLattitude', val: lattitude});
+			cockpitModel.refreshIndicator({id: 'lblStatusLongitude', val: longitude});
+			cockpitModel.refreshIndicator({id: 'lblStatusAltitude', val: altitude});
 			sap.ui.getCore().byId("viewCockpit").getController().refreshWaypoint();			
 		};
 
@@ -187,7 +205,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
 			
-			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[0].substr(1));			
+			var heading = parseFloat(gps_msg_nav_velned_fields[1], 10);
+			heading 	= heading / 100000;
+			heading     = heading.toFixed(0);
+			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[0].substr(1));	
+			sap.ui.getCore().byId("lblValHeading").setText(heading + '°');
+			cockpitModel.refreshIndicator({id: 'lblStatusSpeedCms', val: gps_msg_nav_velned_fields[0].substr(1)});
+			cockpitModel.refreshIndicator({id: 'lblStatusHeading', val: heading});
 		};
 				
 	},
@@ -227,33 +251,31 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	
 	refreshIndicators: function() {
+		console.log('Cockpit controller - refreshing indicators....');
 		var myIndicators = myHplApp.cockpit.model.getIndicators();
+
+		//First pass to remove previously assigned classes
+		for (var i = 0; i < myIndicators.length; i++) {
+		    if (myIndicators[i].refresh == true) {
+	    		$('#' + myIndicators[i].id).removeClass(myIndicators[i].cssClass);
+		    }
+		}
 		
+		
+		//Second pass assigns class according to current value against defined range
 		for (var i = 0; i < myIndicators.length; i++) {
 			var applyClass	= '';
 		    if (myIndicators[i].refresh == true) {
-		    	if (myIndicators[i].value   >= myIndicators[i].sector1Min && myIndicators[i].value <= myIndicators[i].sector1Max) {
-		    		applyClass = myIndicators[i].sector1CssClass;
-		    	}
-		    	else if (myIndicators[i].value >= myIndicators[i].sector2Min && myIndicators[i].value <= myIndicators[i].sector2Max) {
-		    		applyClass = myIndicators[i].sector2CssClass;
-		    	}
-		    	else if (myIndicators[i].value >= myIndicators[i].sector3Min && myIndicators[i].value <= myIndicators[i].sector3Max) {
-		    		applyClass = myIndicators[i].sector3CssClass;
+	    		myHplApp.cockpit.model.setIndicatorClearRefresh(i);
+	    		console.log(myIndicators[i].value, myIndicators[i].min, myIndicators[i].max);
+		    	if (myIndicators[i].value >= myIndicators[i].min && myIndicators[i].value <= myIndicators[i].max) {
+		    		applyClass = myIndicators[i].cssClass;
+		    		console.log(applyClass);
+		    		console.log(myIndicators[i].id);
 		    	}
 		    }
 		    if (applyClass != '') {
-		    	if (myIndicators[i].sector1CssClass != '') {
-		    		$('#' + myIndicators[i].id).removeClass(myIndicators[i].sector1CssClass);	
-		    	}
-	    		if (myIndicators[i].sector2CssClass != '') {
-	    			$('#' + myIndicators[i].id).removeClass(myIndicators[i].sector2CssClass);	
-	    		}
-	    		if (myIndicators[i].sector3CssClass != '') {
-	    			$('#' + myIndicators[i].id).removeClass(myIndicators[i].sector3CssClass);	
-	    		}
 	    		$('#' + myIndicators[i].id).addClass(applyClass);
-	    		myHplApp.cockpit.model.setIndicatorClearRefresh(i);
 	    	}
 	    }
 		
@@ -282,6 +304,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 						myHplApp.missioncontrol.model.getCurrentLongitude(),
 						myHplApp.missioncontrol.model.getHomeLattitude(),
 						myHplApp.missioncontrol.model.getHomeLongitude());
+		cockpitModel.refreshIndicator({id: 'lblStatusBearingWp', val: bearing});
 		sap.ui.getCore().byId("lblWaypointVal").setText(bearing + '°');
 		sap.ui.getCore().byId("lblValBearingWp").setText(bearing + '°');
 		
@@ -291,6 +314,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				  		myHplApp.missioncontrol.model.getCurrentLongitude(),
 				  		myHplApp.missioncontrol.model.getHomeLattitude(),
 				  		myHplApp.missioncontrol.model.getHomeLongitude());
+		cockpitModel.refreshIndicator({id: 'lblStatusDistanceWp', val: distance});
 		
 		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
 		sap.ui.getCore().byId("lblValDistanceWp").setText(distance + 'm');
@@ -299,7 +323,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	
 	setCamPan: function() {
-		var camPanVal = myHplApp.vehicle.model.getStateCamPanVal();
+		var camPanVal = (myHplApp.vehicle.model.getStateCamPanVal() - 90);
 		sap.ui.getCore().byId("lblCamPanVal").setText(camPanVal + '°');
 		if (camPanVal < 0) {
 			$('#imgCamPanindicator').css('-webkit-transform', 'rotate(' + (360 + camPanVal) + 'deg)');

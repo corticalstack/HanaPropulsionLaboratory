@@ -463,7 +463,7 @@ function buildPaneNavigation(oController,oLayout){
  
 	var olblValSatellites = new sap.ui.commons.Label({
     		id: 		"lblValSatellites",
-    		text: 		"0",
+    		text: 		"",
     		textAlign: 	"Right",
     		width: 		"70px"	    	
 	});

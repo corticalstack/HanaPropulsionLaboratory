@@ -299,7 +299,7 @@ void HPLRover_GPS::output_sol(HPLRover_GPS &gps) {
 		start_ms = millis();
 	#endif
 
-	char nav_sol_buffer[25];
+	char nav_sol_buffer[10];
 	PString nav_sol_str(nav_sol_buffer, sizeof(nav_sol_buffer));
 	nav_sol_str += msg_gps_nav_sol;
 //	nav_sol_str += gps.gps_msg_nav_sol.gps_ms;
@@ -331,7 +331,7 @@ void HPLRover_GPS::output_posllh(HPLRover_GPS &gps) {
 		start_ms = millis();
 	#endif
 
-	char nav_posllh_buffer[35];
+	char nav_posllh_buffer[30];
 	PString nav_posllh_str(nav_posllh_buffer, sizeof(nav_posllh_buffer));
 	nav_posllh_str += msg_gps_nav_posllh;
 	nav_posllh_str += gps.gps_msg_nav_posllh.longitude;
@@ -367,7 +367,7 @@ void HPLRover_GPS::output_velned(HPLRover_GPS &gps) {
 		start_ms = millis();
 	#endif
 	
-	char nav_velned_buffer[35];
+	char nav_velned_buffer[25];
 	PString nav_velned_str(nav_velned_buffer, sizeof(nav_velned_buffer));
 	nav_velned_str += msg_gps_nav_velned;
 //	nav_velned_str += gps.gps_msg_nav_velned.north_velocity_cm_s;
@@ -379,8 +379,8 @@ void HPLRover_GPS::output_velned(HPLRover_GPS &gps) {
 //	nav_velned_str += gps.gps_msg_nav_velned.speed_3d_cm_s;
 //	nav_velned_str += comma_separator;
 	nav_velned_str += gps.gps_msg_nav_velned.ground_speed_2d_cm_s;
-//	nav_velned_str += comma_separator;
-//	nav_velned_str += gps.gps_msg_nav_velned.heading;
+	nav_velned_str += comma_separator;
+	nav_velned_str += gps.gps_msg_nav_velned.heading;
 //	nav_velned_str += comma_separator;
 //	nav_velned_str += gps.gps_msg_nav_velned.speed_acc_est;
 //	nav_velned_str += comma_separator;

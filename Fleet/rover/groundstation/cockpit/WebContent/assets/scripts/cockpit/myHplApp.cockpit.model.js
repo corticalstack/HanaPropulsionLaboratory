@@ -6,6 +6,10 @@
 			socketEvent:		'cockpit',
 	};
 
+
+	var state = {
+			active:				false
+	};
 	
 	var gauge = {
 			gaugeCurrent:   			{},
@@ -30,6 +34,11 @@
 	
 	myHplApp.cockpit.model.getConfigSocketEvent = function() {
 		return config.socketEvent;
+	};
+
+	
+	myHplApp.cockpit.model.getStateActive = function() {
+		return state.active;
 	};
 
 	
@@ -91,6 +100,11 @@
 
 	
 	//Set methods
+	myHplApp.cockpit.model.setStateActive = function(bool) {
+		state.active = bool;
+	};
+
+	
 	myHplApp.cockpit.model.setGauge = function(mygauge) {
 		var gaugeId 	= mygauge['id'];
 		gauge[gaugeId] 	= mygauge['gauge'];

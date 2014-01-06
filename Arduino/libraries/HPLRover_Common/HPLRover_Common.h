@@ -120,6 +120,7 @@ const int 				cam_tilt_val_centre   				= 145;
 
 const int 				cam_sweep_delay       				= 25;
 
+const char 				msg_camera		 					= 'F';
 
 // GPS
 #define 				MAX_LENGTH 							512

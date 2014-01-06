@@ -121,8 +121,7 @@
     };
 
     myHplApp.vehicle.model.setStateCamPanVal = function(val) { 
-        state.camPanVal = state.camPanVal + val;       	
-        console.log(state.camPanVal);
+        state.camPanVal = val;       	
     };
 
     

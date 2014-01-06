@@ -68,6 +68,8 @@
 
 	
 	myHplApp.cockpit.maps.model.getStateGoogleMapLastZoom = function() {
+		console.log('Google state last zoom');
+		console.log(state.googleMapLastZoom);
 		return state.googleMapLastZoom;
 	};
 

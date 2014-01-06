@@ -50,7 +50,7 @@
 				myHplApp.cockpit.controller.initGauges();			
 				myHplApp.cockpit.controller.initIndicators();
 				sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
-				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
+				myHplApp.cockpit.controller.setStateActive(true);
 				//newFlot();
 				
 				break;

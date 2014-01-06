@@ -62,7 +62,7 @@
 	});
 
 	
-	myHplApp.cockpit.controls.controller.gamepad_button_down = function(gamepadEvent) {
+	myHplApp.cockpit.controls.controller.gamepad_button_down = function(gamepadEvent) {		
 		var vehicleModel 						= myHplApp.vehicle.model;		
 		var cockpitController 					= myHplApp.cockpit.controller;
 		var cockpitModel 						= myHplApp.cockpit.model;
@@ -72,6 +72,11 @@
 		var missioncontrolModel 				= myHplApp.missioncontrol.model;
 		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		var message = '';
+		
+		if (!cockpitModel.getStateActive()) {
+			return;
+		}
+		
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigDirection() && 
 			vehicleModel.getStateThrottleVal() < vehicleModel.getConfigThrottleMaxDirChange() && 
 			vehicleModel.getStateStop() == false) { 
@@ -102,18 +107,12 @@
 
 
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft()) {
-			console.log('cam pan left');
-			vehicleModel.setStateCamPanVal(-5);
-			sap.ui.getCore().byId("viewCockpit").getController().setCamPan();
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanLeft());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanLeft());	
 		}
 				
 			
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
-			console.log('cam pan right');
-			vehicleModel.setStateCamPanVal(5);
-			sap.ui.getCore().byId("viewCockpit").getController().setCamPan();
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanRight());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanRight());
 		}
@@ -173,6 +172,12 @@
 		var vehicleCmdModel 					= myHplApp.vehicle.cmd.model;	
 		var missioncontrolModel 				= myHplApp.missioncontrol.model;
 		var missioncontrolController 			= myHplApp.missioncontrol.controller;
+		
+		if (!cockpitModel.getStateActive()) {
+			return;
+		}
+
+		
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft() || gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanStop());			
@@ -201,6 +206,12 @@
 		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		var message = '';
 
+		
+		if (!cockpitModel.getStateActive()) {
+			return;
+		}
+
+		
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigThrottle()) {
 			var throttle = parseFloat(gamepadEvent.value);
 			throttle = throttle * 100;
@@ -252,7 +263,6 @@
 			}
 		}
 		
-		console.log(message);
 		    
 		if (message != '') {
 			message = message + ']';    
@@ -265,14 +275,11 @@
 			var zoom = parseFloat(gamepadEvent.value);
 			zoom = zoom * 10;
 			zoom = zoom.toFixed(0);
-			if (zoom == 0) {
-				zoom = 11;
-			}
 				
 			if (zoom != cockpitMapsModel.getStateGoogleMapLastZoom()) {
 				cockpitMapsModel.setStateGoogleMapLastZoom(zoom);
-			    var tempzoom = parseInt(cockpitMapsModel.getStateGoogleMapLastZoom(), 10) + parseInt(cockpitMapsModel.getConfigGoogleMapZoomBase(), 10); 
-			    cockpitMapsModel.setMapZoom(tempzoom);
+			    zoom = parseInt(cockpitMapsModel.getStateGoogleMapLastZoom(), 10) + parseInt(cockpitMapsModel.getConfigGoogleMapZoomBase(), 10);
+			    cockpitMapsModel.setMapZoom(zoom);
 			    cockpitMapsModel.setMapCenter();
 			}
 		}

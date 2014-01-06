@@ -17,7 +17,7 @@
 		mapsModel.setStateLatLng();
 
 		var myOptions = {
-				zoom: 		mapsModel.getStateGoogleMapLastZoom(),
+				zoom: 		11,
 	            center: 	mapsModel.getStateLatLng(),
 	            tilt: 		0,
 	            mapTypeId : mapsModel.getStateGoogleMapLastMapType()

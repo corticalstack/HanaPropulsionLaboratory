@@ -1,9 +1,10 @@
 #include "Arduino.h"
 #include "Servo.h"
-
+#include <PString.h>
 #include "HPLRover_Camera.h"
 #include "HPLRover_Common.h"
 #include <HPLRover_Command.h>
+
 
 HPLRover_Camera::HPLRover_Camera() {
 }
@@ -152,6 +153,15 @@ void HPLRover_Camera::sweep(Servo &servo_pancam, Servo &servo_tiltcam) {
     delay(cam_sweep_delay);
   }
 
+}
+
+void HPLRover_Camera::output_msg(void) {  	
+	char camera_buffer[10];
+	PString camera_str(camera_buffer, sizeof(camera_buffer));
+	camera_str += msg_camera;
+	camera_str += cam_last_pan_pos;
+	camera_str += msg_terminator;  
+	Serial.println(camera_str);		
 }
 
 

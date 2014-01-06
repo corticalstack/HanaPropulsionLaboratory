@@ -27,6 +27,19 @@
 		console.log('Initialising cockpit controller');		
 	};
 	
+
+	myHplApp.cockpit.controller.setStateActive = function(bool) {
+		cockpitModel.setStateActive(bool);
+		switch(bool){
+			case false:
+				myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
+				break;
+			case true:
+				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
+				break;
+		} 
+	};
+
 	
 	myHplApp.cockpit.controller.setCockpitHeartbeatTick = function() {
 		console.log('Cockpit controller setting cockpit heartbeat tick.....');
@@ -66,7 +79,7 @@
 								lo: 0,
 								hi: 3
 							},{
-								color: "#ff8000",
+								color: "#ffff00",
 								lo: 3,
 								hi: 6
 							}, {
@@ -99,7 +112,7 @@
 								lo: 0,
 								hi: 25
 							},{
-								color: "#ff8000",
+								color: "#ffff00",
 								lo: 25,
 								hi: 80
 							}, {
@@ -250,7 +263,7 @@
 									lo: 0,
 									hi: 60
 								},{
-									color: "#ff8000",
+									color: "#ffff00",
 									lo: 60,
 									hi: 80
 								}, {
@@ -288,7 +301,7 @@
 								lo: 0,
 								hi: 60
 							},{
-								color: "#ff8000",
+								color: "#ffff00",
 								lo: 60,
 								hi: 80
 							}, {
@@ -493,53 +506,148 @@
 				id: 				'lblIndStop',
 				value: 				0,
 				refresh: 			true,
-				sector1Min: 		0,
-				sector1Max: 		0,
-				sector1CssClass:    'lblIndOff',
-				sector2Min: 		1,
-				sector2Max: 		1,
-				sector2CssClass:   	'lblIndOn',
-				sector3Min: 		'',
-				sector3Max: 		'',
-				sector3CssClass:    ''
+				min: 				0,
+				max: 				0,
+				cssClass:    		'lblIndOff'
 		};
-		
 		cockpitModel.setIndicator(indicator);
 
-		//Armed
+		
 		var indicator = {
-				id: 				'lblIndArmed',
+				id: 				'lblIndStop',
+				value: 				0,
+				refresh: 			false,
+				min: 				1,
+				max: 				1,
+				cssClass:   		'lblIndOn'
+		};
+		cockpitModel.setIndicator(indicator);
+
+
+		//Left Thrust
+		var indicator = {
+				id: 				'lblStatusLeftEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				-50,
+				max: 				-41,
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusLeftEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				-40,
+				max: 				-31,
+				cssClass:    		'lblStatusYellow'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusLeftEngineThrust',
 				value: 				0,
 				refresh: 			true,
-				sector1Min: 		0,
-				sector1Max: 		0,
-				sector1CssClass:    'lblIndOff',
-				sector2Min: 		1,
-				sector2Max: 		1,
-				sector2CssClass:   	'lblIndOn',
-				sector3Min: 		'',
-				sector3Max: 		'',
-				sector3CssClass:    ''
+				min: 				-30,
+				max: 				30,
+				cssClass:    		'lblStatusGreen'
 		};
-		
 		cockpitModel.setIndicator(indicator);
 
+		var indicator = {
+				id: 				'lblStatusLeftEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				31,
+				max: 				40,
+				cssClass:    		'lblStatusYellow'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusLeftEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				41,
+				max: 				50,
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+		
+		
+
+		//Right Thrust
+		var indicator = {
+				id: 				'lblStatusRightEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				-50,
+				max: 				-41,
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusRightEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				-40,
+				max: 				-31,
+				cssClass:    		'lblStatusYellow'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusRightEngineThrust',
+				value: 				0,
+				refresh: 			true,
+				min: 				-30,
+				max: 				30,
+				cssClass:    		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusRightEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				31,
+				max: 				40,
+				cssClass:    		'lblStatusYellow'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusRightEngineThrust',
+				value: 				0,
+				refresh: 			false,
+				min: 				41,
+				max: 				50,
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		
 		//Power Failsafe
 		var indicator = {
 				id: 				'lblIndPowerFailsafe',
 				value: 				0,
 				refresh: 			true,
-				sector1Min: 		0,
-				sector1Max: 		0,
-				sector1CssClass:    'lblIndOff',
-				sector2Min: 		1,
-				sector2Max: 		1,
-				sector2CssClass:   	'lblIndOn',
-				sector3Min: 		'',
-				sector3Max: 		'',
-				sector3CssClass:    ''
-		};
-		
+				min: 				0,
+				max: 				0,
+				cssClass:    		'lblIndOff'
+		};		
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblIndPowerFailsafe',
+				value: 				0,
+				refresh: 			true,
+				min: 				1,
+				max: 				1,
+				cssClass:   		'lblIndOn'
+		};		
 		cockpitModel.setIndicator(indicator);
 
 		
@@ -548,54 +656,250 @@
 				id: 				'lblIndCommsFailsafe',
 				value: 				0,
 				refresh: 			true,
-				sector1Min: 		0,
-				sector1Max: 		0,
-				sector1CssClass:    'lblIndOff',
-				sector2Min: 		1,
-				sector2Max: 		1,
-				sector2CssClass:   	'lblIndOn',
-				sector3Min: 		'',
-				sector3Max: 		'',
-				sector3CssClass:    ''
-		};
-		
+				min: 				0,
+				max: 				0,
+				cssClass:    		'lblIndOff'
+		};		
 		cockpitModel.setIndicator(indicator);
 
+		var indicator = {
+				id: 				'lblIndCommsFailsafe',
+				value: 				0,
+				refresh: 			true,
+				min: 				1,
+				max: 				1,
+				cssClass:   		'lblIndOn'
+		};		
+		cockpitModel.setIndicator(indicator);
+		
 		
 		//Thrust Failsafe
 		var indicator = {
 				id: 				'lblIndThrustFailsafe',
 				value: 				0,
 				refresh: 			true,
-				sector1Min: 		0,
-				sector1Max: 		0,
-				sector1CssClass:    'lblIndOff',
-				sector2Min: 		1,
-				sector2Max: 		1,
-				sector2CssClass:   	'lblIndOn',
-				sector3Min: 		'',
-				sector3Max: 		'',
-				sector3CssClass:    ''
+				min: 				0,
+				max: 				0,
+				cssClass:    		'lblIndOff'
+		};		
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblIndThrustFailsafe',
+				value: 				0,
+				refresh: 			true,
+				min: 				1,
+				max: 				1,
+				cssClass:   		'lblIndOn'
 		};
 		
 		cockpitModel.setIndicator(indicator);
+
 		
 		//Satellites
 		var indicator = {
 				id: 				'lblStatusSatellites',
-				value: 				'0',
+				value: 				0,
 				refresh: 			true,
-				sector1Min: 		'0',
-				sector1Max: 		'0',
-				sector1CssClass:    'lblStatusRed',
-				sector2Min: 		'1',
-				sector2Max: 		'3',
-				sector2CssClass:   	'lblStatusOrange',
-				sector3Min: 		'4',
-				sector3Max: 		'15',
-				sector3CssClass:    'lblStatusGreen'
-		};
+				min: 				0,
+				max: 				0,
+				cssClass:    		'lblStatusRed'
+		};		
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusSatellites',
+				value: 				0,
+				refresh: 			true,
+				min: 				1,
+				max: 				3,
+				cssClass:   		'lblStatusYellow',
+		};		
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusSatellites',
+				value: 				0,
+				refresh: 			true,			
+				min: 				4,
+				max: 				15,
+				cssClass:    		'lblStatusGreen'
+		};		
+		cockpitModel.setIndicator(indicator);
+
 		
+		//Lattitude
+		var indicator = {
+				id: 				'lblStatusLattitude',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+		
+		var indicator = {
+				id: 				'lblStatusLattitude',
+				value: 				'',
+				refresh: 			true,
+				min: 				0,
+				max: 				999,
+				cssClass:   		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		
+		//Longitude
+		var indicator = {
+				id: 				'lblStatusLongitude',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'			
+		};
+		cockpitModel.setIndicator(indicator);
+		
+		var indicator = {
+				id: 				'lblStatusLongitude',
+				value: 				'',
+				refresh: 			true,
+				min: 				0,
+				max: 				999,
+				cssClass:   		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		
+		//Altitude
+		var indicator = {
+				id: 				'lblStatusAltitude',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusAltitude',
+				value: 				'',
+				refresh: 			true,
+				min: 				0,
+				max: 				99999,
+				cssClass:   		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+		
+
+		//Heading
+		var indicator = {
+				id: 				'lblStatusHeading',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusHeading',
+				value: 				'',
+				refresh: 			true,
+				min: 				0,
+				max: 				99999,
+				cssClass:   		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+
+
+		//Speed cms
+		var indicator = {
+				id: 				'lblStatusSpeedCms',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusSpeedCms',
+				value: 				'',
+				refresh: 			true,
+				min: 				0,
+				max: 				99999,
+				cssClass:   		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+
+
+		//Distance WP
+		var indicator = {
+				id: 				'lblStatusDistanceWp',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusDistanceWp',
+				value: 				'',
+				refresh: 			true,
+				min: 				0,
+				max: 				99999,
+				cssClass:   		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		
+		//Bearing WP
+		var indicator = {
+				id: 				'lblStatusBearingWp',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusBearingWp',
+				value: 				'',
+				refresh: 			true,
+				min: 				0,
+				max: 				99999,
+				cssClass:   		'lblStatusGreen'
+		};
+		cockpitModel.setIndicator(indicator);
+
+		//Satellite Type
+		var indicator = {
+				id: 				'lblStatusFixType',
+				value: 				'',
+				refresh: 			true,
+				min: 				'',
+				max: 				'',
+				cssClass:    		'lblStatusRed'
+		};		
+		cockpitModel.setIndicator(indicator);
+
+		var indicator = {
+				id: 				'lblStatusFixType',
+				value: 				'',
+				refresh: 			true,
+				min: 				2,
+				max: 				3,
+				cssClass:   		'lblStatusGreen'
+		};		
 		cockpitModel.setIndicator(indicator);
 
 	};

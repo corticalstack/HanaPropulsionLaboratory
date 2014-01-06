@@ -4,7 +4,7 @@
 
 	var config = {
 			socket: 			'',
-			socketURL:			'http://192.168.1.62:8090',
+			socketURL:			'http://192.168.1.38:8090',
 	};
 	
 	
@@ -14,7 +14,7 @@
 		
 
     myHplApp.groundstation.model.setConfigSocket = function() { 
-    	config.socket = io.connect('http://192.168.1.62:8090'); 
+    	config.socket = io.connect('http://192.168.1.38:8090'); 
     };
 
 	myHplApp.groundstation.model.getConfigSocket = function() { 
