@@ -343,10 +343,10 @@ img.bg {
 
 #mlPanePower {
 	position: fixed;
-	top: 	0px;
+	top: 	578px;
   	left:	0px;
-  	width:	440px;
-  	height:	152px;
+  	width:	125px;
+  	height:	486px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -358,10 +358,10 @@ img.bg {
 
 #mlPaneDrive {
 	position: fixed;
-	top: 	157px;
+	top: 	237px;
   	left:	0px;
   	width:	125px;
-  	height:	255px;
+  	height:	337px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -373,9 +373,9 @@ img.bg {
 
 #mlPaneEarthTime {	
 	position: fixed;
-	top: 0px;
-  	left:	447px;
-  	width:	493px;
+	top: 	0px;
+  	left:	129px;
+  	width:	1207px;
   	height:	152px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -389,9 +389,9 @@ img.bg {
 #mlPanePrimarySystems {
 	position: fixed;
 	top: 	0px;
-  	left:	945px;
-  	width:	390px;
-  	height:	152px;
+  	left:	0px;
+  	width:	125px;
+  	height:	233px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -402,9 +402,9 @@ img.bg {
 
 #mlPaneNavigation {
 	position: fixed;
-	top: 0px;
-  	left: 1340px;
-  	width: 580px;
+	top: 	0px;
+  	left: 	1340px;
+  	width: 	580px;
   	height:	580px;
   	vertical-align: top;
 	background-color: transparent;	
@@ -443,33 +443,83 @@ img.bg {
 }
 
 
-#mlPaneWeapons {
+#mlPaneAmmo {
 	position: fixed;
-	top: 	764px;
-  	left:	0px;
-  	width:	125x;
-  	height:	300px;
+	top: 	489px;
+  	left:	846px;
+  	width:	85x;
+  	height:	85px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
-	border-top: 2px solid rgb(6, 15, 40);
-	border-left: 2px solid rgb(6, 15, 40);
-	border-right: 2px solid rgb(6, 15, 40);
-	border-bottom: 2px solid rgb(6, 15, 40);
 }
 
 
-#mlPaneProximitySensors {
+#mlPaneShield {
 	position: fixed;
-	top: 	417px;
-  	left:	0px;
-  	width:	125x;
-  	height:	342px;
+	top: 	544px;
+  	left:	846px;
+  	width:	85px;
+  	height:	85px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
-	border-top: 2px solid rgb(6, 15, 40);
-	border-left: 2px solid rgb(6, 15, 40);
-	border-right: 2px solid rgb(6, 15, 40);
-	border-bottom: 2px solid rgb(6, 15, 40);
+}
+
+
+#mlPaneThrust {
+	position: fixed;
+	top: 	489px;
+  	left:	540px;
+  	width:	85px;
+  	height:	85px;
+	background-color: transparent;	
+}
+
+
+#mlPaneSpeed {
+	position: fixed;
+	top: 	544px;
+  	left:	540px;
+  	width:	85px;
+  	height:	85px;
+	background-color: transparent;	
+}
+
+
+#mlPaneVoltage {
+	position: fixed;
+	top: 	544px;
+  	left:	951px;
+  	width:	85px;
+  	height:	85px;
+	background-color: transparent;	
+}
+
+
+#mlPaneProximitySensorFront {
+	position: fixed;
+	top: 	489px;
+  	left:	435px;
+  	width:	85px;
+  	height:	85px;
+	background-color: transparent;	
+}
+
+
+#mlPaneProximitySensorRear {
+	position: fixed;
+	top: 	544px;
+  	left:	435px;
+  	width:	85px;
+  	height:	85px;
+	background-color: transparent;	
+}
+
+
+#mlPaneProximitySensorCam {
+	position: fixed;
+	top: 	489px;
+  	left:	951px;
+  	width:	85px;
+  	height:	85px;
+	background-color: transparent;	
 }
 
 
@@ -477,7 +527,7 @@ img.bg {
 	position: fixed;
 	top: 	1069px;
   	left:	0px;
-  	width:	1920x;
+  	width:	1920px;
   	height:	68px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
@@ -485,6 +535,15 @@ img.bg {
 	border-left: 2px solid rgb(6, 15, 40);
 	border-right: 2px solid rgb(6, 15, 40);
 	border-bottom: 2px solid rgb(6, 15, 40);
+}
+
+
+#mlPaneCrosshair {
+	position: fixed;
+	top: 	453px;
+  	left:	139px;
+  	width:	1206px;
+  	height:	200px;
 }
 
 
@@ -613,16 +672,16 @@ img.bg {
 
 
 #gaugeCurrent {
-	width: 65px; 
-	height: 65px;
+	width: 125px; 
+	height: 125px;
     display: inline-block;
     margin-top: -15px;
 }
 
 
 #gaugeAmps  {
-	width: 65px; 
-	height: 65px;
+	width: 125px; 
+	height: 125px;
     display: inline-block;
     margin-top: -15px;
 }
@@ -637,10 +696,10 @@ img.bg {
 
 
 #gaugeVoltage {	
-	width: 125px; 
-	height: 125px;
+	width: 85px; 
+	height: 85px;
     display: inline-block;
-    margin-top: -10px;
+    margin-top: -15px;
 }
 
 
@@ -656,52 +715,61 @@ img.bg {
     width: 125px; 
     height: 125px;
     display: inline-block;
-    margin-top: -10px;
+    margin-top: -25px;
 }
 
 
 #gaugeShield {
-    width: 125px; 
-    height: 125px;
+    width: 85px; 
+    height: 85px;
     display: inline-block;
     margin-top: -15px;
 }
 
 
 #gaugeFrontProximitySensor {	
-  	width: 120px; 
-    height: 110px;
-    margin-top: -30px;
+  	width: 85px; 
+    height: 85px;
+    margin-top: -15px;
     display: inline-block;
 }
 
 
 #gaugeRearProximitySensor {	
- 	width: 120px; 
-    height: 110px;
-    margin-top: -36px;
+ 	width: 85px; 
+    height: 85px;
+    margin-top: -15px;
     display: inline-block;
 }
 
 
 #gaugeCamProximitySensor {	
-  	width: 120px; 
-    height: 110px;
-    margin-top: -36px;
+  	width: 85px; 
+    height: 85px;
+    margin-top: -15px;
     display: inline-block;
 }
 
 #gaugeThrust {
-	width: 120px; 
-    height: 120px;
-    margin-top: -30px;
+	width: 85px; 
+    height: 85px;
+    margin-top: -15px;
     display: inline-block;
 }
 
 
 #gaugeAmmo {
-	width: 120px; 
-    height: 120px;
+	width: 85px; 
+    height: 85px;
+    margin-top: -15px;
+    display: inline-block;
+}
+
+
+#gaugeSpeed {
+	width: 85px; 
+    height: 85px;
+    margin-top: -15px;
     display: inline-block;
 }
 
@@ -729,20 +797,20 @@ img.bg {
 #mlPaneBearingIndicators {
 	position: fixed;
 	top: 160px;
-  	left:470px;
+  	left:510px;
 }
 
 
 #mlPaneWaypoint {
 	position: fixed;
 	top: 215px;
-  	left:836px;
+  	left:876px;
 }
 
 #lblCompass {
 	position: fixed;
 	top: 200px;
-  	left: 495px;	
+  	left: 535px;	
   	width: 100px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
@@ -755,7 +823,7 @@ img.bg {
 #lblCompassVal {
 	position: fixed;
 	top: 218px;
-  	left: 497px;	
+  	left: 537px;	
   	width: 100px;
 	color: rgb(0,255,0);
 	font-family:'BebasNeueRegular', serif;
@@ -768,7 +836,7 @@ img.bg {
 #lblCamPan {
 	position: fixed;
 	top: 200px;
-  	left: 645px;	
+  	left: 685px;	
   	width: 100px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
@@ -781,7 +849,7 @@ img.bg {
 #lblCamPanVal {
 	position: fixed;
 	top: 218px;
-  	left: 645px;	
+  	left: 685px;	
   	width: 100px;
 	color: rgb(0,255,0);
 	font-family:'BebasNeueRegular', serif;
@@ -795,7 +863,7 @@ img.bg {
 #lblWaypoint {
 	position: fixed;
 	top: 224px;
-  	left: 796px;	
+  	left: 836px;	
   	width: 100px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
@@ -808,7 +876,7 @@ img.bg {
 #lblWaypointVal {
 	position: fixed;
 	top: 216px;
-  	left: 797px;	
+  	left: 837px;	
   	width: 100px;
 	color: rgb(0,255,0);
 	font-family:'BebasNeueRegular', serif;
@@ -822,7 +890,7 @@ img.bg {
 #lblValWaypointId {
 	position: fixed;
 	top: 191px;
-  	left: 836px;
+  	left: 877	px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
@@ -861,8 +929,8 @@ img.bg {
 
 #mlPaneGyro {
 	position: fixed;
-	top: 510px;
-  	left: 155px;
+	top: 446px;
+  	left: 25px;
   	height: 300px;
 }
 

@@ -14,7 +14,7 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPanePilotCam(oController,oLayout);
     	 
     	 buildPaneDrive(oController,oLayout);
-    	 buildPaneWeapons(oController,oLayout);
+//    	 buildPaneWeapons(oController,oLayout);
     	 buildPanePower(oController,oLayout);
     	 buildPaneEarthTime(oController,oLayout);
     	 buildPanePrimarySystems(oController,oLayout);    	 
@@ -24,8 +24,18 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPaneBearingIndicators(oController,oLayout);
     	 buildPaneWaypoint(oController,oLayout);
     	 buildPaneGyro(oController,oLayout);
-      	 buildPaneProximitySensors(oController,oLayout);
+      	 
+    	 buildPaneProximitySensorFront(oController,oLayout);
+      	 buildPaneProximitySensorRear(oController,oLayout);
+      	 buildPaneProximitySensorCam(oController,oLayout);
+      	 buildPaneAmmo(oController,oLayout);
+      	 buildPaneThrust(oController,oLayout);
+      	 buildPaneSpeed(oController,oLayout);      	 
+    	 buildPaneShield(oController,oLayout);      	 
+    	 buildPaneVoltage(oController,oLayout);
     	 
+    	 buildPaneCrosshair(oController,oLayout);
+      	 
       	 buildPaneFooter(oController,oLayout);
 
     	 return oLayout;
@@ -185,14 +195,7 @@ function buildPaneDrive(oController,oLayout){
 	 omlRow1.addCell(omlCell2);
 	 omlPaneDrive1.addRow(omlRow1);
 	 
-	 
-	 omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 2});
-	 omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "90px"});
-	 omlCell1.addContent(ohtmlGaugeThrust);
-	 omlRow1.addCell(omlCell1);
-	 omlPaneDrive1.addRow(omlRow1);
-	 
-	 
+	  
 	 omlPaneDrive.createRow(omlPaneDrive1);
 	 oLayout.createRow(omlPaneDrive);   
 
@@ -203,21 +206,14 @@ function buildPanePrimarySystems(oController,oLayout){
 
 	var omlPanePrimarySystems = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPanePrimarySystems",
-			width:			"390px",
-		    layoutFixed: 	true,
-	        columns: 		3,
-	        widths: 		["125px", "125px", "110px"]
+			width:			"125px",
+		    layoutFixed: 	true
 	});	
 	
-	
-	var omlPanePrimarySystems1 = new sap.ui.commons.layout.MatrixLayout({
-			id:		"mlPanePrimarySystems1",
-			width:	"150px"
-	});	
-	
+		
 	
 	var omlCell1 					= new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCellPanePrimaryTitle 	= new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 3});
+	var omlCellPanePrimaryTitle 	= new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlRowPanePrimarySystems	= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 	var omlRowPrimary1				= new sap.ui.commons.layout.MatrixLayoutRow({height: "32px"});
 
@@ -234,7 +230,7 @@ function buildPanePrimarySystems(oController,oLayout){
 	   		id: 		"lblIndPowerFailsafe",
 	    	text: 		myHplApp.controller.getTextFromBundle("powerfailsafe"),
 	    	textAlign: 	"Center",
-	    	width: 		"90px"
+	    	width: 		"100px"
 	});
 	
 	 
@@ -242,7 +238,7 @@ function buildPanePrimarySystems(oController,oLayout){
 	    	id: 		"lblIndCommsFailsafe",
 	    	text: 		myHplApp.controller.getTextFromBundle("commsfailsafe"),
 	    	textAlign: 	"Center",
-	    	width: 		"90px"
+	    	width: 		"100px"
 	});
 
 
@@ -250,15 +246,10 @@ function buildPanePrimarySystems(oController,oLayout){
 	    	id: 		"lblIndThrustFailsafe",
 	    	text: 		myHplApp.controller.getTextFromBundle("thrustfailsafe"),
 	    	textAlign: 	"Center",
-	    	width: 		"90px"
+	    	width: 		"100px"
 	});
 	 
-	 
-	var ohtmlGaugeShield = new sap.ui.core.HTML({  
-	    	content: "<div id='gaugeShield'></div>"
-	});
-
-	
+	 	
 	var ohtmlGaugeCoreTemp = new sap.ui.core.HTML({  
 	    	content: "<div id='gaugeCoreTemp'></div>"
 	});
@@ -274,24 +265,21 @@ function buildPanePrimarySystems(oController,oLayout){
 	omlRowPrimary1	= new sap.ui.commons.layout.MatrixLayoutRow({height: "32px"});
 	omlCell1.addContent(olblIndPowerFailsafe);
 	omlRowPrimary1.addCell(omlCell1);
-	omlPanePrimarySystems1.addRow(omlRowPrimary1);
+	omlPanePrimarySystems.addRow(omlRowPrimary1);
 
 	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
 	omlRowPrimary1	= new sap.ui.commons.layout.MatrixLayoutRow({height: "32px"});
 	omlCell1.addContent(olblIndThrustFailsafe);
 	omlRowPrimary1.addCell(omlCell1);
-	omlPanePrimarySystems1.addRow(omlRowPrimary1);
+	omlPanePrimarySystems.addRow(omlRowPrimary1);
 
 	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
 	omlRowPrimary1	= new sap.ui.commons.layout.MatrixLayoutRow({height: "32px"});
 	omlCell1.addContent(olblIndCommsFailsafe);
 	omlRowPrimary1.addCell(omlCell1);
-	omlPanePrimarySystems1.addRow(omlRowPrimary1);
+	omlPanePrimarySystems.addRow(omlRowPrimary1);
 
-
-	omlPanePrimarySystems.createRow(ohtmlGaugeCoreTemp, ohtmlGaugeShield, omlPanePrimarySystems1);
-
-	 
+	omlPanePrimarySystems.createRow(ohtmlGaugeCoreTemp);
 	oLayout.createRow(omlPanePrimarySystems);   	 
 }
 
@@ -300,7 +288,7 @@ function buildPaneEarthTime(oController,oLayout){
 	
 	var omlPaneEarthTime = new sap.ui.commons.layout.MatrixLayout({
 			id: 	"mlPaneEarthTime",
-			width: 	"493px"
+			width: 	"1207px"
 	});
 	 
 	
@@ -318,12 +306,12 @@ function buildPaneEarthTime(oController,oLayout){
 	
 	
 	var ohtmlIframeEarthTime = new sap.ui.core.HTML({  
-	    	content: '<iframe id="iframeEarthTime" width="493px" height="100px" frameBorder="0">Earth Time Offline!!!</iframe>',
+	    	content: '<iframe id="iframeEarthTime" width="1207px" height="100px" frameBorder="0">Earth Time Offline!!!</iframe>',
 	    	preferDOM : true,   
 	    	afterRendering: function() {  
 	    		newSrc = 'earthtime.html';
 	    		$("#iframeEarthTime").load(function() {  
-	    			$("#iframeEarthTime").attr("width","493px").attr("height","100px");  
+	    			$("#iframeEarthTime").attr("width","1207px").attr("height","100px");  
 	    		}).attr("src",newSrc);  
 	    	}
 	});
@@ -346,22 +334,11 @@ function buildPanePower(oController,oLayout){
 	var omlPanePower = new sap.ui.commons.layout.MatrixLayout({
 	        id: 			"mlPanePower",
 	        layoutFixed: 	true,
-	        width: 			"440px",
-	        columns: 		4,
-	        widths: 		["65px", "125px", "125px", "125px"]  
+	        width: 			"125px"
 	});
 		
 
-	var omlPanePower1 = new sap.ui.commons.layout.MatrixLayout({
-        id: 			"mlPanePower1",
-        layoutFixed: 	true,
-        width: 			"100px"
-	});
-
-
-	var omlCellPanePowerTitle 	= new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 4});
-	
-	
+	var omlCellPanePowerTitle 	= new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlRowPanePowerTitle 	= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 	
 	var olblPanePower = new sap.ui.commons.Label({
@@ -386,16 +363,10 @@ function buildPanePower(oController,oLayout){
 	    	content: "<div id='gaugeBattRemaining'></div>"
 	});
 
-	var ohtmlGaugeVoltage = new sap.ui.core.HTML({  
-    		content: "<div id='gaugeVoltage'></div>"
-	});
 
 	var ohtmlGaugeConsumedMah = new sap.ui.core.HTML({  
     		content: "<div id='gaugeConsumedMah'></div>"
 	});
-
-
-	
 
 	 
 	omlCellPanePowerTitle.addContent(olblPanePower);
@@ -403,11 +374,11 @@ function buildPanePower(oController,oLayout){
 	omlPanePower.addRow(omlRowPanePowerTitle);
 	 
 
-	omlPanePower1.createRow(ohtmlGaugeCurrent);
-	omlPanePower1.createRow(ohtmlGaugeAmps);	
+	omlPanePower.createRow(ohtmlGaugeBattRemaining);
+	omlPanePower.createRow(ohtmlGaugeConsumedMah);
+	omlPanePower.createRow(ohtmlGaugeAmps);
+	omlPanePower.createRow(ohtmlGaugeCurrent);
 
-		
-  	omlPanePower.createRow(omlPanePower1, ohtmlGaugeConsumedMah, ohtmlGaugeVoltage, ohtmlGaugeBattRemaining );
 	oLayout.createRow(omlPanePower);   
 
 }
@@ -773,102 +744,159 @@ function buildPaneMissionControl(oController,oLayout){
 }
 
 
-function buildPaneWeapons(oController,oLayout){
-	var omlPaneWeapons = new sap.ui.commons.layout.MatrixLayout({
-			id:				"mlPaneWeapons",
+function buildPaneAmmo(oController,oLayout){
+	var omlPaneAmmo = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneAmmo",
 			layoutFixed: 	true,
-			width: 			"125px",		
+			width: 			"85px",		
 		
 	});	
 
 
-	var omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
- 
-
-	var olblPaneWeapons = new sap.ui.commons.Label({
-    		id: 		"lblPaneWeapons",
-    		text: 		myHplApp.controller.getTextFromBundle("weapons"),	
-    		textAlign: 	"Center",
-    		width: 		"100%"
-    	});
- 
- 
 	var ohtmlGaugeAmmo = new sap.ui.core.HTML({  
      		content : "<div id='gaugeAmmo'></div>"
 	});
 
-	var oimgWeapon = new sap.ui.commons.Image({
-    		id: "imgWeapon",
-    		src: "assets/images/weapons/Missile.png",
-    		width: "100px",
-    		height: "100px"
-    });
- 
-	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-	omlCell1.addContent(olblPaneWeapons);
-	omlRow1.addCell(omlCell1);	
-	omlPaneWeapons.addRow(omlRow1);
- 
- 
-	omlPaneWeapons.createRow(ohtmlGaugeAmmo);
-	omlPaneWeapons.createRow(oimgWeapon);
- 
- 	oLayout.createRow(omlPaneWeapons);   
 
-	 
+	omlPaneAmmo.createRow(ohtmlGaugeAmmo);
+ 	oLayout.createRow(omlPaneAmmo);   
+
 }
 
 
-function buildPaneProximitySensors(oController,oLayout){
-	var omlPaneProximitySensors = new sap.ui.commons.layout.MatrixLayout({
-			id:				"mlPaneProximitySensors",
+function buildPaneSpeed(oController,oLayout){
+	var omlPaneSpeed = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneSpeed",
 			layoutFixed: 	true,
-			width:			"125px",
+			width: 			"85px",		
+		
+	});	
+
+
+	var ohtmlGaugeSpeed = new sap.ui.core.HTML({  
+     		content : "<div id='gaugeSpeed'></div>"
+	});
+
+
+	omlPaneSpeed.createRow(ohtmlGaugeSpeed);
+ 	oLayout.createRow(omlPaneSpeed);   
+
+}
+
+
+function buildPaneVoltage(oController,oLayout){
+	var omlPaneVoltage = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneVoltage",
+			layoutFixed: 	true,
+			width: 			"85px",		
+		
+	});	
+
+
+	var ohtmlGaugeVoltage = new sap.ui.core.HTML({  
+		content: "<div id='gaugeVoltage'></div>"
+	});
+
+
+	omlPaneVoltage.createRow(ohtmlGaugeVoltage);
+ 	oLayout.createRow(omlPaneVoltage);   
+
+}
+
+
+function buildPaneThrust(oController,oLayout){
+	
+	var omlPaneThrust = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneThrust",
+			layoutFixed: 	true,
+			width: 			"85px",		
+			
+	});	
+	
+	
+	var ohtmlGaugeThrust = new sap.ui.core.HTML({  
+         	content : "<div id='gaugeThrust'></div>"
+    });
+	
+	 
+	omlPaneThrust.createRow(ohtmlGaugeThrust);
+	oLayout.createRow(omlPaneThrust);   
+	
+}
+
+
+function buildPaneShield(oController,oLayout){
+
+	var omlPaneShield = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneShield",
+		    layoutFixed: 	true,
+			width:			"85px"
+	});	
+	
+	 
+	var ohtmlGaugeShield = new sap.ui.core.HTML({  
+	    	content: "<div id='gaugeShield'></div>"
+	});
+
+	
+	omlPaneShield.createRow(ohtmlGaugeShield);
+	oLayout.createRow(omlPaneShield);   	 
+}
+
+
+
+function buildPaneProximitySensorFront(oController,oLayout){
+	var omlPaneProximitySensorFront = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneProximitySensorFront",
+			layoutFixed: 	true,
+			width:			"85px",
 	});	
 		
-
-	var omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-
 
 	var ohtmlGaugeFrontProximitySensor = new sap.ui.core.HTML({  
       	content : "<div id='gaugeFrontProximitySensor'></div>"
 	});
 	
-	
+		
+	omlPaneProximitySensorFront.createRow(ohtmlGaugeFrontProximitySensor);
+	oLayout.createRow(omlPaneProximitySensorFront);   
+}
+
+
+function buildPaneProximitySensorRear(oController,oLayout){
+	var omlPaneProximitySensorRear = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneProximitySensorRear",
+			layoutFixed: 	true,
+			width:			"85px",
+	});	
+		
 
 	var ohtmlGaugeRearProximitySensor = new sap.ui.core.HTML({  
       	content : "<div id='gaugeRearProximitySensor'></div>"
 	});
 	
+		
 	
+	omlPaneProximitySensorRear.createRow(ohtmlGaugeRearProximitySensor);
+	oLayout.createRow(omlPaneProximitySensorRear);   
+}
+
+
+function buildPaneProximitySensorCam(oController,oLayout){
+	var omlPaneProximitySensorCam = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneProximitySensorCam",
+			layoutFixed: 	true,
+			width:			"85px",
+	});	
+		
+
 	var ohtmlGaugeCamProximitySensor = new sap.ui.core.HTML({  
       	content : "<div id='gaugeCamProximitySensor'></div>"
 	});
 	
 	
-	var olblPaneProximitySensors = new sap.ui.commons.Label({
-			id: 		"lblPaneProximitySensors",
-			text: 		myHplApp.controller.getTextFromBundle("proximity"),	
-			textAlign: 	"Center",
-			width: 		"100%"
-	});
-
-
-	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-	omlCell1.addContent(olblPaneProximitySensors);
-	omlRow1.addCell(omlCell1);	
-	omlPaneProximitySensors.addRow(omlRow1);
-	
-	omlPaneProximitySensors.createRow(ohtmlGaugeFrontProximitySensor);
-	omlPaneProximitySensors.createRow(ohtmlGaugeRearProximitySensor);
-	omlPaneProximitySensors.createRow(ohtmlGaugeCamProximitySensor);
-	
-			
-	oLayout.createRow(omlPaneProximitySensors);   
+	omlPaneProximitySensorCam.createRow(ohtmlGaugeCamProximitySensor);
+	oLayout.createRow(omlPaneProximitySensorCam);   
 }
 
 
@@ -910,7 +938,7 @@ function buildPaneFooter(oController,oLayout){
 function buildPaneBearingIndicators(oController,oLayout){
 	var omlPaneBearingIndicators = new sap.ui.commons.layout.MatrixLayout({
 			id:		"mlPaneBearingIndicators",
-			width:	"600px"
+			width:	"450px"
 	});	
 	
 	var omlPaneBearingIndicators1 = new sap.ui.commons.layout.MatrixLayout({
@@ -1091,3 +1119,23 @@ function buildPaneGyro(oController,oLayout){
 	
 }
 
+
+function buildPaneCrosshair(oController,oLayout){
+	
+	var omlPaneCrosshair = new sap.ui.commons.layout.MatrixLayout({
+			id: 			"mlPaneCrosshair",
+			layoutFixed: 	true,
+			width:			"1206px"
+		});
+	 
+	
+	var ohtmlCanvasCrosshair = new sap.ui.core.HTML({  
+	    	content: '<canvas width = "1206px" height = "200px" id = "testcanvas" style = "border:none;">Your browser does not support HTML5 Canvas. Please shift to another browser.</canvas>',
+	    	preferDOM : false   
+	});
+
+	 
+	omlPaneCrosshair.createRow(ohtmlCanvasCrosshair);
+	oLayout.createRow(omlPaneCrosshair);    
+	
+}

@@ -28,6 +28,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	   onAfterRendering: function() {
 	//
 			$("#gyroContainer").parent().css({"overflow":"visible"});
+			sap.ui.getCore().byId("viewCockpit").getController().drawCrosshair();
 	   },
 
 	
@@ -212,6 +213,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("lblValHeading").setText(heading + '°');
 			cockpitModel.refreshIndicator({id: 'lblStatusSpeedCms', val: gps_msg_nav_velned_fields[0].substr(1)});
 			cockpitModel.refreshIndicator({id: 'lblStatusHeading', val: heading});
+			cockpitModel.refreshGauge({id: 'gaugeSpeed', val: gps_msg_nav_velned_fields[0].substr(1)});
 		};
 				
 	},
@@ -332,7 +334,45 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		{
 			$('#imgCamPanindicator').css('-webkit-transform', 'rotate(' + camPanVal + 'deg)');
 		}
+	},
+
+	
+	drawCrosshair: function() {
+		var canvas 	= document.getElementById('testcanvas');
+		var context = canvas.getContext('2d');
+		
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 600, 100, 15, 0, 360, false, 2, 'red');
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 70, 225, 135, true, 2, 'red');
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 70, 315, 40, false, 2, 'red');
+		
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 240, 100, 510, 100, 2, 'red', 'square');
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 690, 100, 960, 100, 2, 'red', 'square');
+	},
+	
+	
+	drawArc: function(myCanvasContext, xPos, yPos, radius, startAngle, endAngle, anticlockwise, lineWidth, lineColour) {
+		startAngle 	= startAngle * (Math.PI/180);
+		endAngle 	= endAngle * (Math.PI/180);
+
+		myCanvasContext.strokeStyle = lineColour;
+		myCanvasContext.lineWidth 	= lineWidth;
+
+		myCanvasContext.beginPath();
+		myCanvasContext.arc(xPos, yPos, radius, startAngle, endAngle, anticlockwise);
+		myCanvasContext.stroke();
+	},
+	
+	
+	drawLine: function(myCanvasContext, xStartPos, yStartPos, xEndPos, yEndPos, lineWidth, lineColour, lineCap) {
+		myCanvasContext.lineWidth = lineWidth;
+		myCanvasContext.strokeStyle = lineColour;
+		myCanvasContext.lineCap = lineCap;
+		myCanvasContext.beginPath();
+		myCanvasContext.moveTo(xStartPos, yStartPos);
+		myCanvasContext.lineTo(xEndPos, yEndPos);
+		myCanvasContext.stroke();
 	}
+	
 	
 });
 

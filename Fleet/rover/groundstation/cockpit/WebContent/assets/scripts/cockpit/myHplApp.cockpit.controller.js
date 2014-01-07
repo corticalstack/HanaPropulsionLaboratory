@@ -59,17 +59,18 @@
 		var gaugeId = "gaugeCurrent";		 
 		var ogauge 	= new JustGage({
 			id: gaugeId,
+			donut: true,
 			title: "",
 			titleFontColor: "#ffffff",
-			titleMinFontSize: 12,	
+			titleMinFontSize: 14,	
 			label: "CURRENT",
-			labelMinFontSize: 12,
+			labelMinFontSize: 16,
 			value: 0,
-			valueMinFontSize: 12,
+			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
 			min: 0,
 			max: 10,
-			gaugeWidthScale: 0.4,
+			gaugeWidthScale: 0.5,
 			startAnimationTime: 1,
 			startAnimationType: "linear",
 			refreshAnimationTime: 1,
@@ -96,17 +97,18 @@
 		gaugeId = "gaugeAmps";
 		ogauge 	= new JustGage({
 			id: gaugeId,
+			donut: true,
 			title: "",
 			titleFontColor: "#ffffff",
-			titleMinFontSize: 12,	
+			titleMinFontSize: 14,	
 			label: "AMPS",
-			labelMinFontSize: 12,
+			labelMinFontSize: 16,
 			value: 0,
-			valueMinFontSize: 12,
+			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
 			min: 0,
 			max: 100,
-			gaugeWidthScale: 0.4,
+			gaugeWidthScale: 0.5,
 			customSectors: [{
 								color: "#00ff00",
 								lo: 0,
@@ -168,20 +170,24 @@
 		gaugeId = "gaugeVoltage";
 		ogauge 	= new JustGage({
 			id: gaugeId,
+			gaugeColor: '#003078',
 			title: "",
-			titleFontColor: "#ffffff",
+			titleFontColor: "#00ff00",
 			titleMinFontSize: 14,	
-			label: "VOLTAGE",
-			labelMinFontSize: 16,
+			label: "VOLTS",
+			labelMinFontSize: 14,
+			minLabelMinFontSize: 14,
+			maxLabelMinFontSize: 14,
+			labelFontColor: "#00ff00",
 			value: 0,
-			valueMinFontSize: 22,
-			valueFontColor: "#ffffff",
+			valueMinFontSize: 18,
+			valueFontColor: "#00ff00",
 			min: 7,
 			max: 8.20,
 			showMinMax: false,
 			humanFriendlyDecimal: 2,
 	        decimals: 2,
-			gaugeWidthScale: 0.5,
+			gaugeWidthScale: 0.4,
 			customSectors: [{
 								color: "#ff0000",
 								lo: 7,
@@ -244,16 +250,20 @@
 		ogauge 	= new JustGage({
 				id: gaugeId,
 				title: "",
-				titleFontColor: "#ffffff",
+				gaugeColor: '#003078',
+				titleFontColor: "#00ff00",
 				titleMinFontSize: 14,	
 				label: "THRUST %",
-				labelMinFontSize: 16,
+				labelMinFontSize: 14,
+				minLabelMinFontSize: 14,
+				maxLabelMinFontSize: 14,
+				labelFontColor: "#00ff00",
 				value: 0,
-				valueMinFontSize: 22,
-				valueFontColor: "#ffffff",
+				valueMinFontSize: 18,
+				valueFontColor: "#00ff00",
 				min: 0,
 				max: 100,
-				gaugeWidthScale: 0.5,
+				gaugeWidthScale: 0.4,
 				startAnimationTime: 1,
 				startAnimationType: "linear",
 				refreshAnimationTime: 1,
@@ -280,18 +290,21 @@
 		gaugeId = "gaugeAmmo";
 		ogauge 	= new JustGage({
 			id: gaugeId,
-			donut: true,
 			title: "",
-			titleFontColor: "#ffffff",
+			gaugeColor: '#003078',	
+			titleFontColor: "#00ff00",
 			titleMinFontSize: 14,	
-			label: "AMMO %",
-			labelMinFontSize: 16,
+			label: "AMMO",
+			labelMinFontSize: 14,
+			minLabelMinFontSize: 14,
+			maxLabelMinFontSize: 14,
+			labelFontColor: "#00ff00",
 			value: 0,
-			valueMinFontSize: 22,
-			valueFontColor: "#ffffff",
+			valueMinFontSize: 18,
+			valueFontColor: "#00ff00",
 			min: 0,
 			max: 100,
-			gaugeWidthScale: 0.5,
+			gaugeWidthScale: 0.4,
 			startAnimationTime: 1,
 			startAnimationType: "linear",
 			refreshAnimationTime: 1,
@@ -314,24 +327,67 @@
 
 		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
 		
-		
+
+		gaugeId = "gaugeSpeed";
+		ogauge 	= new JustGage({
+			id: gaugeId,
+			title: "",
+			gaugeColor: '#003078',	
+			titleFontColor: "#00ff00",
+			titleMinFontSize: 14,	
+			label: "SPD CMS",
+			labelMinFontSize: 14,
+			minLabelMinFontSize: 14,
+			maxLabelMinFontSize: 14,
+			labelFontColor: "#00ff00",
+			value: 0,
+			valueMinFontSize: 18,
+			valueFontColor: "#00ff00",
+			min: 0,
+			max: 100,
+			gaugeWidthScale: 0.4,
+			startAnimationTime: 1,
+			startAnimationType: "linear",
+			refreshAnimationTime: 1,
+			refreshAnimationType: "linear",								
+			customSectors: [{
+								color : "#00ff00",
+								lo: 0,
+								hi: 60
+							},{
+								color: "#ffff00",
+								lo: 60,
+								hi: 80
+							}, {
+								color: "#ff0000",
+								lo: 80,
+								hi: 100
+							}],
+			counter: true
+		});
+
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+
 		
 		gaugeId = "gaugeShield";
 		ogauge 	= new JustGage({
 				id: gaugeId,
-				donut: true,
 				title: "",	
-				titleFontColor: "#ffffff",
+				gaugeColor: '#003078',	
+				titleFontColor: "#00ff00",
 				titleMinFontSize: 14,	
 				label: "SHIELD %",
-				labelMinFontSize: 16,
-				value: 100,
-				valueMinFontSize: 14,
-				valueFontColor: "#ffffff",
+				labelMinFontSize: 14,
+				minLabelMinFontSize: 14,
+				maxLabelMinFontSize: 14,
+				labelFontColor: "#00ff00",
+				value: 0,
+				valueMinFontSize: 18,
+				valueFontColor: "#00ff00",
 				min: 0,
 				max: 100,
 				showMinMax: false,
-				gaugeWidthScale: 0.5,
+				gaugeWidthScale: 0.4,
 				startAnimationTime: 1,
 				startAnimationType: "linear",
 				refreshAnimationTime: 1,
@@ -398,17 +454,21 @@
 		ogauge 	= new JustGage({
 				id: gaugeId,
 				title: "",	
-				titleFontColor: "#ffffff",
+				gaugeColor: '#003078',				
+				titleFontColor: "#00ff00",
 				titleMinFontSize: 14,	
 				label: "FRONT CM",
-				labelMinFontSize: 16,
+				labelMinFontSize: 14,
+				minLabelMinFontSize: 14,
+				maxLabelMinFontSize: 14,
+				labelFontColor: "#00ff00",
 				value: 0,
-				valueMinFontSize: 22,
-				valueFontColor: "#ffffff",
+				valueMinFontSize: 18,
+				valueFontColor: "#00ff00",
 				min: 4,
 				max: 30,
 				showMinMax: false,
-				gaugeWidthScale: 0.5,
+				gaugeWidthScale: 0.4,				
 				customSectors: [{
 									color: "#ff0000",
 									lo: 4,
@@ -426,23 +486,27 @@
 		});
 		
 		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
-
+		
 		
 		gaugeId = "gaugeRearProximitySensor";
 		ogauge 	= new JustGage({
 				id: gaugeId,
 				title: "",	
-				titleFontColor: "#ffffff",
+				gaugeColor: '#003078',	
+				titleFontColor: "#00ff00",
 				titleMinFontSize: 14,	
 				label: "REAR CM",
-				labelMinFontSize: 16,
+				labelMinFontSize: 14,
+				minLabelMinFontSize: 14,
+				maxLabelMinFontSize: 14,
+				labelFontColor: "#00ff00",
 				value: 0,
-				valueMinFontSize: 22,
-				valueFontColor: "#ffffff",
+				valueMinFontSize: 18,
+				valueFontColor: "#00ff00",
 				min: 4,
 				max: 30,
 				showMinMax: false,
-				gaugeWidthScale: 0.5,
+				gaugeWidthScale: 0.4,
 				customSectors: [{
 									color: "#ff0000",
 									lo: 4,
@@ -466,17 +530,21 @@
 		ogauge 	= new JustGage({
 				id: gaugeId,
 				title: "",	
-				titleFontColor: "#ffffff",
+				gaugeColor: '#003078',	
+				titleFontColor: "#00ff00",
 				titleMinFontSize: 14,	
 				label: "CAM CM",
-				labelMinFontSize: 16,
+				labelMinFontSize: 14,
+				minLabelMinFontSize: 14,
+				maxLabelMinFontSize: 14,
+				labelFontColor: "#00ff00",
 				value: 0,
-				valueMinFontSize: 22,
-				valueFontColor: "#ffffff",
+				valueMinFontSize: 18,
+				valueFontColor: "#00ff00",
 				min: 20,
 				max: 150,
 				showMinMax: false,
-				gaugeWidthScale: 0.5,
+				gaugeWidthScale: 0.4,
 				customSectors: [{
 									color: "#ff0000",
 									lo: 20,
@@ -901,6 +969,7 @@
 				cssClass:   		'lblStatusGreen'
 		};		
 		cockpitModel.setIndicator(indicator);
+				
 
 	};
 	
