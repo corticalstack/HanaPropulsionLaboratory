@@ -14,9 +14,12 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPanePilotCam(oController,oLayout);
     	 
     	 buildPaneDrive(oController,oLayout);
-//    	 buildPaneWeapons(oController,oLayout);
-    	 buildPanePower(oController,oLayout);
+    	 
     	 buildPaneEarthTime(oController,oLayout);
+    	 buildPaneTotalNetworkTrafficIn(oController,oLayout);
+    	 buildPaneTotalNetworkTrafficOut(oController,oLayout);
+    	 
+    	 buildPanePower(oController,oLayout);
     	 buildPanePrimarySystems(oController,oLayout);    	 
     	 buildPaneNavigation(oController,oLayout);
     	 buildPaneMissionControl(oController,oLayout);
@@ -328,6 +331,85 @@ function buildPaneEarthTime(oController,oLayout){
 	
 }
 
+function buildPaneTotalNetworkTrafficIn(oController,oLayout){
+	var omlPaneTotalNetworkTrafficIn = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneTotalNetworkTrafficIn",
+			layoutFixed: 	true,
+			width:			"200px",
+			columns : 		2,
+    		widths: 		["125px", "75px"]  
+	});	
+	
+	
+	var olblTotalTrafficIn = new sap.ui.commons.Label({
+		id: 		"lblTotalTrafficIn",
+	    text: 		myHplApp.controller.getTextFromBundle("totaltrafficin"),	
+	    textAlign: 	"Left",
+	    width: 		"100%"
+	});
+
+	var olblValTotalTrafficIn = new sap.ui.commons.Label({
+		id: 		"lblValTotalTrafficIn",
+	    text: 		"",	
+	    textAlign: 	"Right",
+	    width: 		"100%"
+	});
+	
+	
+	var omlCell1 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell2 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlRow1 	= new sap.ui.commons.layout.MatrixLayoutRow();
+			
+	omlCell1.addContent(olblTotalTrafficIn);
+	omlCell2.addContent(olblValTotalTrafficIn);
+	
+	omlRow1.addCell(omlCell1);
+	omlRow1.addCell(omlCell2);
+	omlPaneTotalNetworkTrafficIn.addRow(omlRow1);
+		
+	oLayout.createRow(omlPaneTotalNetworkTrafficIn);   
+}
+
+
+function buildPaneTotalNetworkTrafficOut(oController,oLayout){
+	var omlPaneTotalNetworkTrafficOut = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneTotalNetworkTrafficOut",
+			layoutFixed: 	true,
+			width:			"200px",
+			columns : 		2,
+    		widths: 		["125px", "75px"]  
+	});	
+	
+	
+	var olblTotalTrafficOut = new sap.ui.commons.Label({
+		id: 		"lblTotalTrafficOut",
+	    text: 		myHplApp.controller.getTextFromBundle("totaltrafficout"),	
+	    textAlign: 	"Left",
+	    width: 		"100%"
+	});
+
+	var olblValTotalTrafficOut = new sap.ui.commons.Label({
+		id: 		"lblValTotalTrafficOut",
+	    text: 		"",	
+	    textAlign: 	"Right",
+	    width: 		"100%"
+	});
+	
+	
+	var omlCell1 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell2 	= new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlRow1 	= new sap.ui.commons.layout.MatrixLayoutRow();
+			
+	omlCell1.addContent(olblTotalTrafficOut);
+	omlCell2.addContent(olblValTotalTrafficOut);
+	
+	omlRow1.addCell(omlCell1);
+	omlRow1.addCell(omlCell2);
+	omlPaneTotalNetworkTrafficOut.addRow(omlRow1);
+		
+	oLayout.createRow(omlPaneTotalNetworkTrafficOut);   
+}
+
 
 function buildPanePower(oController,oLayout){
 
@@ -346,7 +428,7 @@ function buildPanePower(oController,oLayout){
 		    text: 		myHplApp.controller.getTextFromBundle("power"),	
 		    textAlign: 	"Center",
 		    width: 		"100%"
-		});
+	});
 	
 	 
 	var ohtmlGaugeCurrent = new sap.ui.core.HTML({  
@@ -748,7 +830,7 @@ function buildPaneAmmo(oController,oLayout){
 	var omlPaneAmmo = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneAmmo",
 			layoutFixed: 	true,
-			width: 			"85px",		
+			width: 			"65px",		
 		
 	});	
 
@@ -768,7 +850,7 @@ function buildPaneSpeed(oController,oLayout){
 	var omlPaneSpeed = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneSpeed",
 			layoutFixed: 	true,
-			width: 			"85px",		
+			width: 			"65px",		
 		
 	});	
 
@@ -788,7 +870,7 @@ function buildPaneVoltage(oController,oLayout){
 	var omlPaneVoltage = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneVoltage",
 			layoutFixed: 	true,
-			width: 			"85px",		
+			width: 			"65px",		
 		
 	});	
 
@@ -809,7 +891,7 @@ function buildPaneThrust(oController,oLayout){
 	var omlPaneThrust = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneThrust",
 			layoutFixed: 	true,
-			width: 			"85px",		
+			width: 			"65px",		
 			
 	});	
 	
@@ -830,7 +912,7 @@ function buildPaneShield(oController,oLayout){
 	var omlPaneShield = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneShield",
 		    layoutFixed: 	true,
-			width:			"85px"
+			width:			"65px"
 	});	
 	
 	 
@@ -849,7 +931,7 @@ function buildPaneProximitySensorFront(oController,oLayout){
 	var omlPaneProximitySensorFront = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneProximitySensorFront",
 			layoutFixed: 	true,
-			width:			"85px",
+			width:			"65px",
 	});	
 		
 
@@ -867,7 +949,7 @@ function buildPaneProximitySensorRear(oController,oLayout){
 	var omlPaneProximitySensorRear = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneProximitySensorRear",
 			layoutFixed: 	true,
-			width:			"85px",
+			width:			"65px",
 	});	
 		
 
@@ -886,7 +968,7 @@ function buildPaneProximitySensorCam(oController,oLayout){
 	var omlPaneProximitySensorCam = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneProximitySensorCam",
 			layoutFixed: 	true,
-			width:			"85px",
+			width:			"65px",
 	});	
 		
 

@@ -14,39 +14,41 @@
 	
 	
 	var messageCategoryId = {
-			drive:					'DRI',
-			sensor:					'SEN',
-			lights:					'LIT',
-			navigation: 			'NAV',
-			power: 					'POW'
+			drive:						'DRI',
+			sensor:						'SEN',
+			lights:						'LIT',
+			navigation: 				'NAV',
+			power: 						'POW'
 	};
 
 	var messageId = {
-			battery:				'B',
-			camera:					'C',
-			distance:				'D',
-			inertial:				'I',
-			motor:					'M',
-			thrust:					'T',
-			headlights:				'H',
-			compass:    			'C',
-			gpsSol:    				'S',
-			gpsPos:    				'P',
-			gpsVel:    				'V'
+			battery:					'B',
+			camera:						'C',
+			distance:					'D',
+			inertial:					'I',
+			motor:						'M',
+			thrust:						'T',
+			headlights:					'H',
+			compass:    				'C',
+			gpsSol:    					'S',
+			gpsPos:    					'P',
+			gpsVel:    					'V'
 	};
 
 	
 	
 	var activeMission = {
-			missionId: 				'000001',
-			vehicleId: 				'001',
-			pilotId:   				'001',
-			homeLattitude: 			0,
-			homeLongitude:			0,
-			currentLattitude:		0,
-			currentLongitude:		0,
-			nextWaypointId:			'',
-			waypoints:				[]
+			missionId: 					'000001',
+			vehicleId: 					'001',
+			pilotId:   					'001',
+			homeLattitude: 				0,
+			homeLongitude:				0,
+			currentLattitude:			0,
+			currentLongitude:			0,
+			nextWaypointId:				'',
+			waypoints:					[],
+			totalNetworkTrafficIn:		0,
+			totalNetworkTrafficOut:	0,
 	};
 
 	
@@ -162,36 +164,42 @@
     };
     
     //Get methods for activeMission
-	myHplApp.missioncontrol.model.getActiveMissionId = function(val) { 
+	myHplApp.missioncontrol.model.getActiveMissionId = function() { 
 		return activeMission.missionId;
 	};
 	
-	myHplApp.missioncontrol.model.getActiveVehicleId = function(val) { 
+	myHplApp.missioncontrol.model.getActiveVehicleId = function() { 
 		return activeMission.vehicleId;
 	};
 
-	myHplApp.missioncontrol.model.getActivePilotId = function(val) { 
+	myHplApp.missioncontrol.model.getActivePilotId = function() { 
 		return activeMission.pilotId;
 	};
     
-	myHplApp.missioncontrol.model.getHomeLongitude = function(val) { 
+	myHplApp.missioncontrol.model.getHomeLongitude = function() { 
 		return activeMission.homeLongitude;
 	};
 	
-	myHplApp.missioncontrol.model.getHomeLattitude = function(val) { 
+	myHplApp.missioncontrol.model.getHomeLattitude = function() { 
 		return activeMission.homeLattitude;
 	};
 	
-	myHplApp.missioncontrol.model.getCurrentLattitude = function(val) { 
+	myHplApp.missioncontrol.model.getCurrentLattitude = function() { 
 		return activeMission.currentLattitude;
 	};
 
-	myHplApp.missioncontrol.model.getCurrentLongitude = function(val) { 
+	myHplApp.missioncontrol.model.getCurrentLongitude = function() { 
 		return activeMission.currentLongitude;
 	};
 
-	
-	
+	myHplApp.missioncontrol.model.getTotalNetworkTrafficIn = function() { 
+		return activeMission.totalNetworkTrafficIn;
+	};
+
+	myHplApp.missioncontrol.model.getTotalNetworkTrafficOut = function() { 
+		return activeMission.totalNetworkTrafficOut;
+	};
+
 	
 	
 	//Set methods for activeMission    
@@ -223,7 +231,13 @@
 		activeMission.currentLongitude = val;
 	};
 
+	myHplApp.missioncontrol.model.addTotalNetworkTrafficIn = function(val) { 
+		activeMission.totalNetworkTrafficIn = activeMission.totalNetworkTrafficIn = val;
+	};
 	
+	myHplApp.missioncontrol.model.addTotalNetworkTrafficOut = function(val) { 
+		activeMission.totalNetworkTrafficOut = activeMission.totalNetworkTrafficOut = val;
+	};
 	
 	myHplApp.missioncontrol.model.addWaypoint = function(id, longitudeVal, lattitudeVal) {
 		var waypoint = {

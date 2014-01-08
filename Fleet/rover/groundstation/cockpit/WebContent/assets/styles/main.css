@@ -343,10 +343,10 @@ img.bg {
 
 #mlPanePower {
 	position: fixed;
-	top: 	578px;
+	top: 	609px;
   	left:	0px;
   	width:	125px;
-  	height:	486px;
+  	height:	456px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -361,7 +361,7 @@ img.bg {
 	top: 	237px;
   	left:	0px;
   	width:	125px;
-  	height:	337px;
+  	height:	368px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -383,6 +383,24 @@ img.bg {
 	border-left: 2px solid rgb(6, 15, 40);
 	border-bottom: 2px solid rgb(6, 15, 40);
 	border-right: 2px solid rgb(6, 15, 40);
+}
+
+#mlPaneTotalNetworkTrafficIn {	
+	position: fixed;
+	top: 	20px;
+  	left:	179px;
+  	width:	200px;
+  	background-color: transparent;
+  	border: none;
+}
+
+#mlPaneTotalNetworkTrafficOut {	
+	position: fixed;
+	top: 	20px;
+  	left:	400px;
+  	width:	200px;
+  	background-color: transparent;
+  	border: none;
 }
 
 
@@ -445,80 +463,80 @@ img.bg {
 
 #mlPaneAmmo {
 	position: fixed;
-	top: 	489px;
-  	left:	846px;
-  	width:	85x;
-  	height:	85px;
+	top: 	502px;
+  	left:	855px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
 
 #mlPaneShield {
 	position: fixed;
-	top: 	544px;
-  	left:	846px;
-  	width:	85px;
-  	height:	85px;
+	top: 	553px;
+  	left:	855px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
 
 #mlPaneThrust {
 	position: fixed;
-	top: 	489px;
-  	left:	540px;
-  	width:	85px;
-  	height:	85px;
+	top: 	502px;
+  	left:	555px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
 
 #mlPaneSpeed {
 	position: fixed;
-	top: 	544px;
-  	left:	540px;
-  	width:	85px;
-  	height:	85px;
+	top: 	553px;
+  	left:	555px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
 
 #mlPaneVoltage {
 	position: fixed;
-	top: 	544px;
-  	left:	951px;
-  	width:	85px;
-  	height:	85px;
+	top: 	553px;
+  	left:	955px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
 
 #mlPaneProximitySensorFront {
 	position: fixed;
-	top: 	489px;
-  	left:	435px;
-  	width:	85px;
-  	height:	85px;
+	top: 	502px;
+  	left:	455px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
 
 #mlPaneProximitySensorRear {
 	position: fixed;
-	top: 	544px;
-  	left:	435px;
-  	width:	85px;
-  	height:	85px;
+	top: 	553px;
+  	left:	455px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
 
 #mlPaneProximitySensorCam {
 	position: fixed;
-	top: 	489px;
-  	left:	951px;
-  	width:	85px;
-  	height:	85px;
+	top: 	502px;
+  	left:	955px;
+  	width:	65px;
+  	height:	65px;
 	background-color: transparent;	
 }
 
@@ -675,7 +693,7 @@ img.bg {
 	width: 125px; 
 	height: 125px;
     display: inline-block;
-    margin-top: -15px;
+    margin-top: -45px;
 }
 
 
@@ -683,7 +701,7 @@ img.bg {
 	width: 125px; 
 	height: 125px;
     display: inline-block;
-    margin-top: -15px;
+    margin-top: -45px;
 }
 
 
@@ -691,15 +709,28 @@ img.bg {
 	width: 125px; 
 	height: 125px;
     display: inline-block;
-    margin-top: -15px;
+    margin-top: -45px;
 }
 
 
 #gaugeVoltage {	
-	width: 85px; 
-	height: 85px;
+	width: 65px; 
+	height: 65px;
     display: inline-block;
     margin-top: -15px;
+}
+
+#gaugeVoltage text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
 }
 
 
@@ -720,59 +751,145 @@ img.bg {
 
 
 #gaugeShield {
-    width: 85px; 
-    height: 85px;
+    width: 65px; 
+    height: 65px;
     display: inline-block;
     margin-top: -15px;
 }
 
+#gaugeShield text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
 
 #gaugeFrontProximitySensor {	
-  	width: 85px; 
-    height: 85px;
+  	width: 65px; 
+    height: 65px;
     margin-top: -15px;
     display: inline-block;
 }
 
+#gaugeFrontProximitySensor text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
 
 #gaugeRearProximitySensor {	
- 	width: 85px; 
-    height: 85px;
+ 	width: 65px; 
+    height: 65px;
     margin-top: -15px;
     display: inline-block;
 }
 
+#gaugeRearProximitySensor text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
 
 #gaugeCamProximitySensor {	
-  	width: 85px; 
-    height: 85px;
+  	width: 65px; 
+    height: 65px;
     margin-top: -15px;
     display: inline-block;
+}
+
+#gaugeCamProximitySensor text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
 }
 
 #gaugeThrust {
-	width: 85px; 
-    height: 85px;
+	width: 65px; 
+    height: 65px;
     margin-top: -15px;
     display: inline-block;
 }
 
+#gaugeThrust text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
 
 #gaugeAmmo {
-	width: 85px; 
-    height: 85px;
+	width: 65px; 
+    height: 65px;
     margin-top: -15px;
     display: inline-block;
+}
+
+#gaugeAmmo text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
 }
 
 
 #gaugeSpeed {
-	width: 85px; 
-    height: 85px;
+	width: 65px; 
+    height: 65px;
     margin-top: -15px;
     display: inline-block;
 }
 
+#gaugeSpeed text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
 
 #mlPrimarySystemsStatusPanel {
 	position: fixed;
@@ -929,7 +1046,7 @@ img.bg {
 
 #mlPaneGyro {
 	position: fixed;
-	top: 446px;
+	top: 460px;
   	left: 25px;
   	height: 300px;
 }

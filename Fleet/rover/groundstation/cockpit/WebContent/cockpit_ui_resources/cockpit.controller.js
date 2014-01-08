@@ -28,6 +28,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	   onAfterRendering: function() {
 	//
 			$("#gyroContainer").parent().css({"overflow":"visible"});
+			$("#gaugeCurrent").parent().css({"overflow":"visible"});
+			$("#gaugeAmps").parent().css({"overflow":"visible"});
+			$("#gaugeConsumedMah").parent().css({"overflow":"visible"});
+			$("#gaugeBattRemaining").parent().css({"overflow":"visible"});
+			
 			sap.ui.getCore().byId("viewCockpit").getController().drawCrosshair();
 	   },
 
@@ -60,6 +65,12 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		var cockpitMapsModel			= myHplApp.cockpit.maps.model;
 		var message;
 
+		
+		//Add feed length to network traffic in count
+		missioncontrolModel.addTotalNetworkTrafficIn(data.length);
+		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTraffic();
+		
+		
 		//Power message
 		if (data.substr(0,1) == 'B') {
 			var inertialsensor_msg_fields = data.split(',');
@@ -337,36 +348,55 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 
 	
+	setNetworkTraffic: function() {
+		sap.ui.getCore().byId("lblValTotalTrafficIn").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficIn());
+		sap.ui.getCore().byId("lblValTotalTrafficOut").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficIn());
+	},
+	
+	
 	drawCrosshair: function() {
 		var canvas 	= document.getElementById('testcanvas');
 		var context = canvas.getContext('2d');
 		
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 600, 100, 15, 0, 360, false, 2, 'red');
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 70, 225, 135, true, 2, 'red');
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 70, 315, 40, false, 2, 'red');
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 600, 100, 15, 0, 360, false, 2, 'white', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 70, 225, 135, true, 2, 'white', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 70, 315, 40, false, 2, 'white', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 70, 225, 135, true, 2, 'white', 0, -1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 70, 315, 40, false, 2, 'white', 0, -1, 3, "black");
+
 		
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 240, 100, 510, 100, 2, 'red', 'square');
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 690, 100, 960, 100, 2, 'red', 'square');
-	},
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 290, 100, 510, 100, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 690, 100, 910, 100, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 290, 100, 510, 100, 2, 'white', 'round', 0, -1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 690, 100, 910, 100, 2, 'white', 'round', 0, -1, 3, "black");
+
+	},	
 	
 	
-	drawArc: function(myCanvasContext, xPos, yPos, radius, startAngle, endAngle, anticlockwise, lineWidth, lineColour) {
+	drawArc: function(myCanvasContext, xPos, yPos, radius, startAngle, endAngle, anticlockwise, lineWidth, lineColour, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor) {
 		startAngle 	= startAngle * (Math.PI/180);
 		endAngle 	= endAngle * (Math.PI/180);
 
 		myCanvasContext.strokeStyle = lineColour;
 		myCanvasContext.lineWidth 	= lineWidth;
-
+		myCanvasContext.shadowOffsetX = shadowOffsetX;
+		myCanvasContext.shadowOffsetY = shadowOffsetY;
+		myCanvasContext.shadowBlur = shadowBlur;
+		myCanvasContext.shadowColor = shadowColor;
 		myCanvasContext.beginPath();
 		myCanvasContext.arc(xPos, yPos, radius, startAngle, endAngle, anticlockwise);
 		myCanvasContext.stroke();
 	},
 	
 	
-	drawLine: function(myCanvasContext, xStartPos, yStartPos, xEndPos, yEndPos, lineWidth, lineColour, lineCap) {
+	drawLine: function(myCanvasContext, xStartPos, yStartPos, xEndPos, yEndPos, lineWidth, lineColor, lineCap, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor) {
 		myCanvasContext.lineWidth = lineWidth;
-		myCanvasContext.strokeStyle = lineColour;
+		myCanvasContext.strokeStyle = lineColor;
 		myCanvasContext.lineCap = lineCap;
+		myCanvasContext.shadowOffsetX = shadowOffsetX;
+		myCanvasContext.shadowOffsetY = shadowOffsetY;
+		myCanvasContext.shadowBlur = shadowBlur;
+		myCanvasContext.shadowColor = shadowColor;
 		myCanvasContext.beginPath();
 		myCanvasContext.moveTo(xStartPos, yStartPos);
 		myCanvasContext.lineTo(xEndPos, yEndPos);

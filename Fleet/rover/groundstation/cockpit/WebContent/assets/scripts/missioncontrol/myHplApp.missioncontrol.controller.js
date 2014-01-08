@@ -40,6 +40,9 @@
 			success: function(result) { console.log(result); },
 			error: function() { console.log('Failed!'); }
 		});	
+		
+		missioncontrolModel.addTotalNetworkTrafficOut(feed.length);
+		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTraffic();
 	};
 
 
