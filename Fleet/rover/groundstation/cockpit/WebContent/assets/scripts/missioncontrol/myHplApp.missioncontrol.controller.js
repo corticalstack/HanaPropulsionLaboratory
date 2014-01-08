@@ -11,7 +11,8 @@
 		missioncontrolModel.setActiveMissionId('000001');
 		missioncontrolModel.setActiveVehicleId('001');
 		missioncontrolModel.setActivePilotId('001');
-
+		missioncontrolModel.setDataNetworkTrafficIn(-1);
+		missioncontrolModel.setDataNetworkTrafficOut(-1);
     };
 
 	
@@ -41,8 +42,8 @@
 			error: function() { console.log('Failed!'); }
 		});	
 		
-		missioncontrolModel.addTotalNetworkTrafficOut(feed.length);
-		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTraffic();
+		missioncontrolModel.addNetworkPacketOut(feed.length);
+		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
 	};
 
 

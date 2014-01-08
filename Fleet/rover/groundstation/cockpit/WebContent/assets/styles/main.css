@@ -385,21 +385,35 @@ img.bg {
 	border-right: 2px solid rgb(6, 15, 40);
 }
 
-#mlPaneTotalNetworkTrafficIn {	
+#mlPaneChartNetworkTrafficIn {	
 	position: fixed;
-	top: 	20px;
-  	left:	179px;
-  	width:	200px;
+	top: 	31px;
+  	left:	127px;
+  	width:	400px;
   	background-color: transparent;
   	border: none;
 }
 
+
+#chartNetworkTrafficIn {
+	width:	400px;
+  	height:	103px;
+  	border: none;
+}
+
+
 #mlPaneTotalNetworkTrafficOut {	
 	position: fixed;
-	top: 	20px;
-  	left:	400px;
-  	width:	200px;
+	top: 	30px;
+  	left:	140px;
+  	width:	160px;
   	background-color: transparent;
+  	border: none;
+}
+
+#chartNetworkTrafficOut {
+	width:	400px;
+  	height:	103px;
   	border: none;
 }
 
@@ -654,6 +668,28 @@ img.bg {
 
 [id^="lblVal"] {
 	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em; 
+	margin: 6px 0px 6px 0px; 
+	padding: 2px 0px 2px 0px;
+}
+
+
+[id^="lblValTotalTraffic"] {
+	color: rgb(8,100,191);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em; 
+	margin: 6px 0px 6px 0px; 
+	padding: 2px 0px 2px 0px;
+}
+
+
+[id^="lblTotalTraffic"] {
+	color: rgb(8,100,191);
 	font-family:'BebasNeueRegular', serif;
 	font-weight: 400;
 	font-style: normal;
@@ -1137,7 +1173,6 @@ img.bg {
 	-webkit-transform: rotateX(  -90deg ) translateZ( 37px );	
 	background-image: url('../images/hud/Rover_Bottom.png'); 
 }
-
 
 
 

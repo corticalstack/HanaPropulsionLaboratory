@@ -4,7 +4,9 @@
 	
 	var config = {
 			servicePilotsUri: 			'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
-			serviceMessagePumpUri: 		'http://hanaserver:8000/hpl/missioncontrol/services/messageLogPump.xsjs'
+			serviceMessagePumpUri: 		'http://hanaserver:8000/hpl/missioncontrol/services/messageLogPump.xsjs',
+			chartNetworkTotalPoints: 	100,
+			chartNetworkUpdateInterval: 30
 	};
 
 	
@@ -47,8 +49,15 @@
 			currentLongitude:			0,
 			nextWaypointId:				'',
 			waypoints:					[],
+			prevNetworkPacketIn:		0,
+			prevNetworkPacketOut:		0,
+			networkPacketIn:			0,
+			networkPacketOut:			0,
 			totalNetworkTrafficIn:		0,
-			totalNetworkTrafficOut:	0,
+			totalNetworkTrafficOut:		0,
+			dataNetworkTrafficIn:		[],
+			dataNetworkTrafficOut:		[]
+			
 	};
 
 	
@@ -67,6 +76,15 @@
 		return config.serviceMessagePumpUri;
 	};
 
+	myHplApp.missioncontrol.model.getConfigChartNetworkTotalPoints = function() { 
+		return config.chartNetworkTotalPoints;
+	};
+
+	myHplApp.missioncontrol.model.getConfigChartNetworkUpdateInterval = function() { 
+		return config.chartNetworkUpdateInterval;
+	};
+
+	
 	//Set methods for config
 	
 	
@@ -192,6 +210,14 @@
 		return activeMission.currentLongitude;
 	};
 
+	myHplApp.missioncontrol.model.getNetworkPacketIn = function() { 
+		return activeMission.networkPacketIn;
+	};
+
+	myHplApp.missioncontrol.model.getNetworkPacketOut = function() { 
+		return activeMission.networkPacketOut;
+	};
+	
 	myHplApp.missioncontrol.model.getTotalNetworkTrafficIn = function() { 
 		return activeMission.totalNetworkTrafficIn;
 	};
@@ -200,7 +226,13 @@
 		return activeMission.totalNetworkTrafficOut;
 	};
 
+	myHplApp.missioncontrol.model.getDataNetworkTrafficIn = function() {
+		return activeMission.dataNetworkTrafficIn;
+	};
 	
+	myHplApp.missioncontrol.model.getDataNetworkTrafficOut = function() {
+		return activeMission.dataNetworkTrafficOut;
+	};
 	
 	//Set methods for activeMission    
 	myHplApp.missioncontrol.model.setActiveHomeLatLng = function() {
@@ -231,13 +263,57 @@
 		activeMission.currentLongitude = val;
 	};
 
-	myHplApp.missioncontrol.model.addTotalNetworkTrafficIn = function(val) { 
-		activeMission.totalNetworkTrafficIn = activeMission.totalNetworkTrafficIn = val;
+	myHplApp.missioncontrol.model.addNetworkPacketIn = function(val) { 
+		activeMission.networkPacketIn = activeMission.networkPacketIn + val;
+		activeMission.totalNetworkTrafficIn = activeMission.totalNetworkTrafficIn + val;
+	};
+
+	myHplApp.missioncontrol.model.addNetworkPacketOut = function(val) { 
+		activeMission.networkPacketOut = activeMission.networkPacketOut + val;
+		activeMission.totalNetworkTrafficOut = activeMission.totalNetworkTrafficOut + val;
+	};
+
+	
+	myHplApp.missioncontrol.model.resetNetworkPacketIn = function() {
+		activeMission.networkPacketIn = 0;
+	};
+
+	
+	myHplApp.missioncontrol.model.resetNetworkPacketOut = function() {
+		activeMission.networkPacketOut = 0;
+	};
+
+	
+	myHplApp.missioncontrol.model.setDataNetworkTrafficIn = function(val) {
+		console.log('Mission control - setting data network traffic in');
+		var now = new Date().getTime();
+		var temp;
+		activeMission.dataNetworkTrafficIn.shift();
+
+	    while (activeMission.dataNetworkTrafficIn.length < config.chartNetworkTotalPoints) {    
+	    	if (val > 0) {
+	    		temp = [now += config.chartNetworkUpdateInterval, val];
+	    	}
+	    	else {
+	    		temp = [(now - 20000) + (config.chartNetworkUpdateInterval * activeMission.dataNetworkTrafficIn.length), val];
+	    	}
+
+	        activeMission.dataNetworkTrafficIn.push(temp);
+	    }
 	};
 	
-	myHplApp.missioncontrol.model.addTotalNetworkTrafficOut = function(val) { 
-		activeMission.totalNetworkTrafficOut = activeMission.totalNetworkTrafficOut = val;
+	
+	myHplApp.missioncontrol.model.setDataNetworkTrafficOut = function(val) {
+		console.log('Mission control - setting data network traffic out');
+		var now = new Date().getTime();
+		activeMission.dataNetworkTrafficOut.shift();
+
+	    while (activeMission.dataNetworkTrafficOut.length < config.chartNetworkTotalPoints) {     
+	        var temp = [now += config.chartNetworkUpdateInterval, val];
+	        activeMission.dataNetworkTrafficOut.push(temp);
+	    }
 	};
+
 	
 	myHplApp.missioncontrol.model.addWaypoint = function(id, longitudeVal, lattitudeVal) {
 		var waypoint = {

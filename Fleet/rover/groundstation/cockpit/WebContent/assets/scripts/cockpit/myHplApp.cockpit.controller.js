@@ -7,10 +7,12 @@
 	var vehicleCmdModel         = myHplApp.vehicle.cmd.model; 
 	var missioncontrolModel	 	= myHplApp.missioncontrol.model;
 	var cockpitHeartbeatTick    = 0;
+	var networkTrafficChartsTick    = 0;
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
 		myHplApp.cockpit.controller.emitControl(vehicleCmdModel.getInstructionCockpitHeartbeat());
+
 	};
 	
 
@@ -18,8 +20,9 @@
 		var socket =  groundstationModel.getConfigSocket();
 		if (socket != '') {			
 			socket.emit(cockpitModel.getConfigSocketEvent(), message);
-			missioncontrolModel.addTotalNetworkTrafficOut(message.length);
-			sap.ui.getCore().byId("viewCockpit").getController().setNetworkTraffic();
+			console.log(message.length);
+			missioncontrolModel.addNetworkPacketOut(message.length);
+			sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
 		}		
 	};
 	
@@ -33,9 +36,11 @@
 		switch(bool){
 			case false:
 				myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
+				myHplApp.cockpit.controller.clearNetworkTrafficChartsTick();
 				break;
 			case true:
 				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
+				myHplApp.cockpit.controller.setNetworkTrafficChartsTick();
 				break;
 		} 
 	};
@@ -52,7 +57,16 @@
 		clearInterval(cockpitHeartbeatTick);
 	};
 
+
+	myHplApp.cockpit.controller.setNetworkTrafficChartsTick = function() {
+		networkTrafficChartsTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficCharts()},25);
+	};
+
 	
+	myHplApp.cockpit.controller.clearNetworkTrafficChartsTick  = function() {
+		clearInterval(networkTrafficChartsTick);
+	};
+
 	myHplApp.cockpit.controller.initGauges = function() {
 		console.log('Initialising cockpit controller gauges');
 		

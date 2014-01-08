@@ -53,5 +53,7 @@ campan=CAM PAN
 waypoint=WAYPOINT
 proximity=PROXIMITY
 home=HOME
+totaltrafficout=NETWORK TRAFFIC OUT
+totaltrafficin=NETWORK TRAFFIC IN
 error=An error occurred, please contact System Administrator
 generatedPG={0} of {1} orders generated

@@ -17,7 +17,10 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 
     	 buildPaneEarthTime(oController,oLayout);
     	 buildPaneTotalNetworkTrafficIn(oController,oLayout);
+    	 buildPaneChartNetworkTrafficIn(oController,oLayout);
+    	 
     	 buildPaneTotalNetworkTrafficOut(oController,oLayout);
+    	 buildPaneChartNetworkTrafficOut(oController,oLayout);
     	 
     	 buildPanePower(oController,oLayout);
     	 buildPanePrimarySystems(oController,oLayout);    	 
@@ -335,9 +338,9 @@ function buildPaneTotalNetworkTrafficIn(oController,oLayout){
 	var omlPaneTotalNetworkTrafficIn = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneTotalNetworkTrafficIn",
 			layoutFixed: 	true,
-			width:			"200px",
+			width:			"160px",
 			columns : 		2,
-    		widths: 		["125px", "75px"]  
+    		widths: 		["110px", "50px"]  
 	});	
 	
 	
@@ -371,13 +374,37 @@ function buildPaneTotalNetworkTrafficIn(oController,oLayout){
 }
 
 
+function buildPaneChartNetworkTrafficIn(oController,oLayout){
+	var omlPaneChartNetworkTrafficIn = new sap.ui.commons.layout.MatrixLayout({
+		id:				"mlPaneChartNetworkTrafficIn",
+	    layoutFixed: 	true,
+		width:			"400px"			
+	});	
+
+ 
+	var ohtmlChartNetworkTrafficIn = new sap.ui.core.HTML({  
+			content: "<div id='chartNetworkTrafficIn' width='400px' height='103px'></div>"
+	});
+
+
+	omlPaneChartNetworkTrafficIn.createRow(ohtmlChartNetworkTrafficIn);
+	oLayout.createRow(omlPaneChartNetworkTrafficIn);   	 
+}
+
+
+function buildPaneChartNetworkTrafficOut(oController,oLayout){
+	
+}
+
+
+
 function buildPaneTotalNetworkTrafficOut(oController,oLayout){
 	var omlPaneTotalNetworkTrafficOut = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneTotalNetworkTrafficOut",
 			layoutFixed: 	true,
-			width:			"200px",
+			width:			"160px",
 			columns : 		2,
-    		widths: 		["125px", "75px"]  
+    		widths: 		["110px", "50px"]  
 	});	
 	
 	

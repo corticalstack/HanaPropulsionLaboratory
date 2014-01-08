@@ -67,8 +67,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 		
 		//Add feed length to network traffic in count
-		missioncontrolModel.addTotalNetworkTrafficIn(data.length);
-		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTraffic();
+		missioncontrolModel.addNetworkPacketIn(data.length);
+		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
 		
 		
 		//Power message
@@ -347,13 +347,24 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		}
 	},
 
-	
-	setNetworkTraffic: function() {
+
+		
+	setNetworkTrafficTotals: function() {
 		sap.ui.getCore().byId("lblValTotalTrafficIn").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficIn());
-		sap.ui.getCore().byId("lblValTotalTrafficOut").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficIn());
+		sap.ui.getCore().byId("lblValTotalTrafficOut").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficOut());		
 	},
 	
 	
+	setNetworkTrafficCharts: function() {		
+		var dataset = [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficOut(), color: "#2565B0" }];
+		
+		myHplApp.missioncontrol.model.setDataNetworkTrafficIn(myHplApp.missioncontrol.model.getNetworkPacketIn());
+		myHplApp.missioncontrol.model.setDataNetworkTrafficOut(myHplApp.missioncontrol.model.getNetworkPacketOut());
+        $.plot($("#chartNetworkTrafficIn"), dataset, myHplApp.cockpit.model.getChartNetworkTrafficInOptions());
+		myHplApp.missioncontrol.model.resetNetworkPacketIn();
+		myHplApp.missioncontrol.model.resetNetworkPacketOut();
+	},
+
 	drawCrosshair: function() {
 		var canvas 	= document.getElementById('testcanvas');
 		var context = canvas.getContext('2d');

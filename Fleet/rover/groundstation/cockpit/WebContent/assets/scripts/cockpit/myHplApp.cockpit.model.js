@@ -29,6 +29,38 @@
 	
 	var indicators = [];
 	
+	var chartNetworkTrafficInOptions = {
+			series: {
+				shadowSize: 0,
+				lines: { 
+       		  		show: true,
+       		  		lineWidth: 1.2,
+       		  		fill: 0.7,
+				}
+			},
+			yaxis: {
+				min: 0,
+				max: 30,
+		        tickSize: 5,
+				tickFormatter: function () {
+					return "";
+				}
+			},
+			xaxis: {
+				mode: "time",
+				tickSize: [0.25, "second"],
+				tickFormatter: function () {
+					return "";
+				}
+			},
+		    grid: {
+		    	backgroundColor: "#030918",
+		        borderColor: "#2565B0",
+		        borderWidth: 1,
+		        tickColor: "#081C54"
+		    }
+	};
+	
 	
 	//Get methods
 	
@@ -96,6 +128,10 @@
 
 	myHplApp.cockpit.model.getGaugeCamProximitySensor = function() {
 		return gauge.gaugeCamProximitySensor;
+	};
+	
+	myHplApp.cockpit.model.getChartNetworkTrafficInOptions = function() {
+		return chartNetworkTrafficInOptions;
 	};
 
 	
