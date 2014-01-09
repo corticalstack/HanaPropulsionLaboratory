@@ -43,7 +43,6 @@
 		});	
 		
 		missioncontrolModel.addNetworkPacketOut(feed.length);
-		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
 	};
 
 

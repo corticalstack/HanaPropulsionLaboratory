@@ -2,12 +2,13 @@
  
 	myHplApp.cockpit.controller = myHplApp.cockpit.controller || {};
 	
-	var cockpitModel 	   		= myHplApp.cockpit.model;
-	var groundstationModel 		= myHplApp.groundstation.model;
-	var vehicleCmdModel         = myHplApp.vehicle.cmd.model; 
-	var missioncontrolModel	 	= myHplApp.missioncontrol.model;
-	var cockpitHeartbeatTick    = 0;
+	var cockpitModel 	   			= myHplApp.cockpit.model;
+	var groundstationModel 			= myHplApp.groundstation.model;
+	var vehicleCmdModel         	= myHplApp.vehicle.cmd.model; 
+	var missioncontrolModel	 		= myHplApp.missioncontrol.model;
+	var cockpitHeartbeatTick    	= 0;
 	var networkTrafficChartsTick    = 0;
+	var signalStrengthTick   		= 0;
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
@@ -20,9 +21,7 @@
 		var socket =  groundstationModel.getConfigSocket();
 		if (socket != '') {			
 			socket.emit(cockpitModel.getConfigSocketEvent(), message);
-			console.log(message.length);
 			missioncontrolModel.addNetworkPacketOut(message.length);
-			sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
 		}		
 	};
 	
@@ -37,10 +36,12 @@
 			case false:
 				myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
 				myHplApp.cockpit.controller.clearNetworkTrafficChartsTick();
+				myHplApp.cockpit.controller.clearSignalStrengthTick();
 				break;
 			case true:
 				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
 				myHplApp.cockpit.controller.setNetworkTrafficChartsTick();
+				myHplApp.cockpit.controller.setSignalStrengthTick();
 				break;
 		} 
 	};
@@ -67,6 +68,17 @@
 		clearInterval(networkTrafficChartsTick);
 	};
 
+	
+	myHplApp.cockpit.controller.setSignalStrengthTick = function() {
+		signalStrengthTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setSignalStrength()},300);
+	};
+
+	
+	myHplApp.cockpit.controller.clearSignalStrengthTick = function() {
+		clearInterval(signalStrengthTick);
+	};
+
+	
 	myHplApp.cockpit.controller.initGauges = function() {
 		console.log('Initialising cockpit controller gauges');
 		
@@ -208,10 +220,10 @@
 			customSectors: [{
 								color: "#ff0000",
 								lo: 7,
-								hi: 7.65
+								hi: 7.5
 							},{
 								color: "#ffff00",
-								lo: 7.65,
+								lo: 7.5,
 								hi: 7.90
 							}, {
 								color: "#00ff00",

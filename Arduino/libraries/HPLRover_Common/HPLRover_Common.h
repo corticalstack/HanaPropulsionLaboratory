@@ -73,6 +73,11 @@ const char   			cmd_val_forward          			= 'F';
 const char   			cmd_val_reverse          			= 'R';
 
 
+// Notify
+const char 				msg_notify		 					= 'N';
+const char 				msg_notify_thrust_failsafe			= 'T';
+const char 				msg_notify_power_failsafe			= 'P';
+const char 				msg_notify_comms_tick				= 'C';
 
 // Motor control
 const int 				internal_velocity_map_ratio 		= 60;

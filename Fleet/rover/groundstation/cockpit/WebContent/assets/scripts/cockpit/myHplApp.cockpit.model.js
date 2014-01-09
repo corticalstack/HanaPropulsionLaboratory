@@ -40,6 +40,39 @@
 			},
 			yaxis: {
 				min: 0,
+				max: 162,
+		        tickSize: 27,
+				tickFormatter: function () {
+					return "";
+				}
+			},
+			xaxis: {
+				mode: "time",
+				tickSize: [0.25, "second"],
+				tickFormatter: function () {
+					return "";
+				}
+			},
+		    grid: {
+		    	backgroundColor: "#030918",
+		        borderColor: "#2565B0",
+		        borderWidth: 1,
+		        tickColor: "#081C54"
+		    }
+	};
+	
+
+	var chartNetworkTrafficOutOptions = {
+			series: {
+				shadowSize: 0,
+				lines: { 
+       		  		show: true,
+       		  		lineWidth: 1.2,
+       		  		fill: 0.7,
+				}
+			},
+			yaxis: {
+				min: 0,
 				max: 30,
 		        tickSize: 5,
 				tickFormatter: function () {
@@ -60,8 +93,7 @@
 		        tickColor: "#081C54"
 		    }
 	};
-	
-	
+
 	//Get methods
 	
 	myHplApp.cockpit.model.getConfigSocketEvent = function() {
@@ -134,6 +166,9 @@
 		return chartNetworkTrafficInOptions;
 	};
 
+	myHplApp.cockpit.model.getChartNetworkTrafficOutOptions = function() {
+		return chartNetworkTrafficOutOptions;
+	};
 	
 	//Set methods
 	myHplApp.cockpit.model.setStateActive = function(bool) {

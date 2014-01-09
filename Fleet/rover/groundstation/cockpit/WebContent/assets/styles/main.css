@@ -376,7 +376,7 @@ img.bg {
 	top: 	0px;
   	left:	129px;
   	width:	1207px;
-  	height:	152px;
+  	height:	133px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -388,26 +388,25 @@ img.bg {
 #mlPaneChartNetworkTrafficIn {	
 	position: fixed;
 	top: 	31px;
-  	left:	127px;
-  	width:	400px;
+  	left:	937px;
+  	width:	155px;
   	background-color: transparent;
   	border: none;
 }
 
+
+#mlPaneChartNetworkTrafficOut {	
+	position: fixed;
+	top: 	31px;
+  	left:	127px;
+  	width:	155px;
+  	background-color: transparent;
+  	border: none;
+}
 
 #chartNetworkTrafficIn {
 	width:	400px;
   	height:	103px;
-  	border: none;
-}
-
-
-#mlPaneTotalNetworkTrafficOut {	
-	position: fixed;
-	top: 	30px;
-  	left:	140px;
-  	width:	160px;
-  	background-color: transparent;
   	border: none;
 }
 
@@ -417,6 +416,51 @@ img.bg {
   	border: none;
 }
 
+#mlPaneTotalNetworkTrafficIn {	
+	position: fixed;
+	top: 	31px;
+  	left:	947px;
+  	width:	155px;
+  	background-color: transparent;
+  	border: none;
+}
+
+#mlPaneTotalNetworkTrafficOut {	
+	position: fixed;
+	top: 	30px;
+  	left:	137px;
+  	width:	155px;
+  	background-color: transparent;
+  	border: none;
+}
+
+
+#mlPaneLowBattery {	
+	position: fixed;
+	top: 	560px;
+  	left:	1028px;
+  	width:	23px;
+	opacity: 0;
+  	background-color: transparent;
+  	border: none;
+}
+
+#imgLowBattery {
+  	-webkit-animation: pulse 1.5s;
+	-webkit-animation-delay: 0s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;	
+}
+
+#mlPaneSignalStrength {	
+	position: fixed;
+	top: 	88px;
+  	left:	899px;
+  	width:	40px;
+	opacity: 1;
+  	background-color: transparent;
+  	border: none;
+}
 
 #mlPanePrimarySystems {
 	position: fixed;

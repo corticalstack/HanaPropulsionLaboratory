@@ -11,8 +11,9 @@ class HPLRover_Notify {
 			bool armed;
 			bool radio_failsafe;
 			bool power_failsafe;
-			bool gps_failsafe;
-			bool cockpit_heartbeat;
+			bool gps_failsafe;			
+			bool thrust_failsafe;			
+			bool cockpit_heartbeat;						
 			bool headlamps_on;
 			unsigned long cockpit_heartbeat_tick;
 		};	
@@ -20,7 +21,8 @@ class HPLRover_Notify {
 		static struct notify_type 				notify;
 		
 		//Constructor
-		HPLRover_Notify();       
+		HPLRover_Notify();   
+		void output(HPLRover_Notify &notify);
 	
 	private:
 

@@ -92,8 +92,9 @@
 			}
 				  
 			
-			message = vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle + vehicleModel.getStateThrottleVal() + model.getConfigMsgTerminator();
+			message = vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle() + vehicleModel.getStateThrottleVal() + model.getConfigMsgTerminator();
 			cockpitController.emitControl(message);
+			console.log(message);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), message );
 		}
 

@@ -34,6 +34,12 @@ void HPLRover_Motors::output(HPLRover_Motors &motors, HPLRover_Command &command,
 	}
 
 	
+	if (notify.notify.power_failsafe == true) {
+		allstop(motors, command, servo_leftmotors, servo_rightmotors);
+		reset_motors(command);
+	}
+	
+	
 	if (command.cmd_in_motors.stop_rx) { 
 	  allstop(motors, command, servo_leftmotors, servo_rightmotors);
 	  reset_motors(command);
@@ -87,6 +93,7 @@ void HPLRover_Motors::output(HPLRover_Motors &motors, HPLRover_Command &command,
 	if (command.cmd_in_motors.direction_val == cmd_val_forward && (sharpsensor.sharpsensor_msg.sensor2_valuecm < (sensor_bumper_front_min_distcm + ((internal_throttle_val / 100) * 50)))) {
 		allstop(motors, command, servo_leftmotors, servo_rightmotors);
 		reset_motors(command);
+		notify.notify.thrust_failsafe = true;
 		return;
 	}
 
@@ -94,6 +101,7 @@ void HPLRover_Motors::output(HPLRover_Motors &motors, HPLRover_Command &command,
 	if (command.cmd_in_motors.direction_val == cmd_val_reverse && (sharpsensor.sharpsensor_msg.sensor1_valuecm < (sensor_bumper_rear_min_distcm + ((internal_throttle_val / 100) * 50)))) {
 		allstop(motors, command, servo_leftmotors, servo_rightmotors);
 		reset_motors(command);
+		notify.notify.thrust_failsafe = true;
 		return;
 	}
 	

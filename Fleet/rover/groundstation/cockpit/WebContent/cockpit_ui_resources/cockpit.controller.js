@@ -68,8 +68,31 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 		//Add feed length to network traffic in count
 		missioncontrolModel.addNetworkPacketIn(data.length);
-		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
 		
+		
+		//Notify message
+		if (data.substr(0,1) == 'N') {
+			var notify_msg_fields = data.split(',');
+			message = data.substr(1);
+			switch(notify_msg_fields[0].substr(1,1)) {
+				case 'T':
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdThrustFailsafe(), message);
+					cockpitModel.refreshIndicator({id: 'lblIndThrustFailsafe', val: 1});
+					break;
+				case 'P':
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdPowerFailsafe(), message);
+					cockpitModel.refreshIndicator({id: 'lblIndPowerFailsafe', val: 1});
+					break;
+				case 'C':
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCommsTick(), message);					
+					var inboundTickSpan = parseInt(notify_msg_fields[0].substr(2), 10);
+					var tickNow = new Date().getTime();
+					missioncontrolModel.setStateLastInboundCommsTick(tickNow);
+					missioncontrolModel.setStateLastInboundCommsTickSpan(inboundTickSpan);
+					break;					
+			}
+		}
+				
 		
 		//Power message
 		if (data.substr(0,1) == 'B') {
@@ -82,6 +105,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			cockpitModel.refreshGauge({id: 'gaugeAmps', val: inertialsensor_msg_fields[2]});
 			cockpitModel.refreshGauge({id: 'gaugeConsumedMah', val: inertialsensor_msg_fields[3]});
 			cockpitModel.refreshGauge({id: 'gaugeBattRemaining', val: inertialsensor_msg_fields[4]});
+			
+			if (inertialsensor_msg_fields[0].substr(1) > 7.5) {
+				$('#mlPaneLowBattery').css('opacity', '0');
+			}
+			else {
+				$('#mlPaneLowBattery').css('opacity', '1');
+			}
 		};
 
 		
@@ -149,11 +179,14 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			var motors_thrust_msg_fields = data.split(',');
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdThrust(), message );	
-			console.log(vehicleModel.getStateDirectionVal());
 			sap.ui.getCore().byId("lblValLeftEngineThrust").setText(motors_thrust_msg_fields[0].substr(1) - 90);
 			sap.ui.getCore().byId("lblValRightEngineThrust").setText(motors_thrust_msg_fields[1] - 90);
 			cockpitModel.refreshIndicator({id: 'lblStatusLeftEngineThrust', val: motors_thrust_msg_fields[0].substr(1) - 90});
 			cockpitModel.refreshIndicator({id: 'lblStatusRightEngineThrust', val: motors_thrust_msg_fields[1] - 90});
+			if (motors_thrust_msg_fields[0].substr(1) != 90 && motors_thrust_msg_fields[1] != 90) {
+				cockpitModel.refreshIndicator({id: 'lblIndThrustFailsafe', val: 0});
+				cockpitModel.refreshIndicator({id: 'lblIndPowerFailsafe', val: 0});
+			}
 		};
 		
 		
@@ -264,7 +297,6 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	
 	refreshIndicators: function() {
-		console.log('Cockpit controller - refreshing indicators....');
 		var myIndicators = myHplApp.cockpit.model.getIndicators();
 
 		//First pass to remove previously assigned classes
@@ -280,11 +312,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			var applyClass	= '';
 		    if (myIndicators[i].refresh == true) {
 	    		myHplApp.cockpit.model.setIndicatorClearRefresh(i);
-	    		console.log(myIndicators[i].value, myIndicators[i].min, myIndicators[i].max);
 		    	if (myIndicators[i].value >= myIndicators[i].min && myIndicators[i].value <= myIndicators[i].max) {
 		    		applyClass = myIndicators[i].cssClass;
-		    		console.log(applyClass);
-		    		console.log(myIndicators[i].id);
 		    	}
 		    }
 		    if (applyClass != '') {
@@ -351,20 +380,52 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 	setNetworkTrafficTotals: function() {
 		sap.ui.getCore().byId("lblValTotalTrafficIn").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficIn());
-		sap.ui.getCore().byId("lblValTotalTrafficOut").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficOut());		
+		sap.ui.getCore().byId("lblValTotalTrafficOut").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficOut());	
 	},
 	
 	
 	setNetworkTrafficCharts: function() {		
-		var dataset = [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficOut(), color: "#2565B0" }];
+		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
+		
+		var datasetIn = [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficIn(), color: "#2565B0" }];
+		var datasetOut = [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficOut(), color: "#2565B0" }];
 		
 		myHplApp.missioncontrol.model.setDataNetworkTrafficIn(myHplApp.missioncontrol.model.getNetworkPacketIn());
 		myHplApp.missioncontrol.model.setDataNetworkTrafficOut(myHplApp.missioncontrol.model.getNetworkPacketOut());
-        $.plot($("#chartNetworkTrafficIn"), dataset, myHplApp.cockpit.model.getChartNetworkTrafficInOptions());
+        $.plot($("#chartNetworkTrafficOut"), datasetOut, myHplApp.cockpit.model.getChartNetworkTrafficOutOptions());
+        $.plot($("#chartNetworkTrafficIn"), datasetIn, myHplApp.cockpit.model.getChartNetworkTrafficInOptions());
 		myHplApp.missioncontrol.model.resetNetworkPacketIn();
 		myHplApp.missioncontrol.model.resetNetworkPacketOut();
 	},
 
+	
+	setSignalStrength: function() {
+		var now 	 = new Date().getTime();
+		var tickSpan = myHplApp.missioncontrol.model.getStateLastInboundCommsTickSpan();
+		
+		if ((now - myHplApp.missioncontrol.model.getStateLastInboundCommsTick()) > 600 ) {
+			tickSpan = 999;
+		}
+		
+		if (tickSpan >= 0 && tickSpan <= 299) {
+			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength100.png');
+		}
+		else if (tickSpan >= 300 && tickSpan <= 399) {
+			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength75.png');
+		}
+		else if (tickSpan >= 400 && tickSpan <= 499) {
+			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength50.png');
+		}
+		else if (tickSpan >= 500 && tickSpan <= 599) {
+			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength25.png');
+		}
+		else {
+			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength0.png');
+		}
+	
+	},
+	
+	
 	drawCrosshair: function() {
 		var canvas 	= document.getElementById('testcanvas');
 		var context = canvas.getContext('2d');

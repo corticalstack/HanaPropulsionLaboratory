@@ -47,7 +47,7 @@ float HPLRover_Power::capacity_remaining_pct(HPLRover_Power &power) {
 
 
 boolean HPLRover_Power::exhausted(HPLRover_Power &power, HPLRover_Common &common) {
-
+		
 	if ((power.power_msg.voltage != 0) && (power_pack_volt_min > 0) && (power.power_msg.voltage < power_pack_volt_min)) {
         // this is the first time our voltage has dropped below minimum so start timer
 		if (_low_voltage_start_ms == 0) {

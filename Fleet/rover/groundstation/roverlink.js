@@ -13,6 +13,7 @@ var msg_sharpsensor	 		= 'D';
 var msg_camera		 		= 'F';
 var msg_ins					= 'I';
 var msg_motors_thrust 		= 'M';
+var msg_notify		 		= 'N';
 var msg_gps_nav_posllh 		= 'P';
 var msg_gps_nav_sol 		= 'S';
 var msg_gps_nav_velned 		= 'V';
@@ -72,6 +73,11 @@ io.sockets.on('connection', function(socket) {
                 break;
 
 			case msg_motors_thrust:
+                socket.emit("feed", chunk.toString());
+				//console.log(chunk);
+                break;
+
+			case msg_notify:
                 socket.emit("feed", chunk.toString());
 				//console.log(chunk);
                 break;

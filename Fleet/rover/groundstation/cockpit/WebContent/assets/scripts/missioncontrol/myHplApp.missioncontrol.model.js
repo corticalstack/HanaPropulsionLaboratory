@@ -11,11 +11,14 @@
 
 	
 	var state = {
-			missionControlOnline: false,
+			missionControlOnline: 		false,
+			lastInboundCommsTick:		0,
+			lastInboundCommsTickSpan:	0,
 	};
 	
 	
 	var messageCategoryId = {
+			notify:						'NOT',
 			drive:						'DRI',
 			sensor:						'SEN',
 			lights:						'LIT',
@@ -30,6 +33,9 @@
 			inertial:					'I',
 			motor:						'M',
 			thrust:						'T',
+			thrustFailsafe:				'T',
+			powerFailsafe:				'P',
+			commsTick:					'C',
 			headlights:					'H',
 			compass:    				'C',
 			gpsSol:    					'S',
@@ -95,16 +101,35 @@
     	return state.missionControlOnline;
     };
 
+    myHplApp.missioncontrol.model.getStateLastInboundCommsTick = function() {
+    	return state.lastInboundCommsTick;
+    };
     
-    
+    myHplApp.missioncontrol.model.getStateLastInboundCommsTickSpan = function() {
+    	return state.lastInboundCommsTickSpan;
+    };
+
 	//Set methods for state
     myHplApp.missioncontrol.model.setStateMissioncontrolOnline = function(val) {
     	state.missionControlOnline = val;
     };
     
+    myHplApp.missioncontrol.model.setStateLastInboundCommsTick = function(val) {
+    	state.lastInboundCommsTick = val;
+    };
+
+    myHplApp.missioncontrol.model.setStateLastInboundCommsTickSpan = function(val) {
+    	state.lastInboundCommsTickSpan = val;
+    };
+
     
     
 	//Get methods for messageCategoryId
+    myHplApp.missioncontrol.model.getMessageCategoryIdNotify = function() {
+    	return messageCategoryId.notify;
+    };
+    
+    
     myHplApp.missioncontrol.model.getMessageCategoryIdDrive = function() {
     	return messageCategoryId.drive;
     };
@@ -153,7 +178,19 @@
     myHplApp.missioncontrol.model.getMessageIdThrust = function() {
     	return messageId.thrust;
     };
-    
+
+    myHplApp.missioncontrol.model.getMessageIdThrustFailsafe = function() {
+    	return messageId.thrustFailsafe;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdPowerFailsafe = function() {
+    	return messageId.powerFailsafe;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdCommsTick = function() {
+    	return messageId.commsTick;
+    };
+
     myHplApp.missioncontrol.model.getMessageIdHeadlights = function() {
     	return messageId.headlights;
     };
@@ -285,17 +322,16 @@
 
 	
 	myHplApp.missioncontrol.model.setDataNetworkTrafficIn = function(val) {
-		console.log('Mission control - setting data network traffic in');
 		var now = new Date().getTime();
 		var temp;
 		activeMission.dataNetworkTrafficIn.shift();
 
 	    while (activeMission.dataNetworkTrafficIn.length < config.chartNetworkTotalPoints) {    
-	    	if (val > 0) {
+	    	if (val >= 0) {
 	    		temp = [now += config.chartNetworkUpdateInterval, val];
 	    	}
 	    	else {
-	    		temp = [(now - 20000) + (config.chartNetworkUpdateInterval * activeMission.dataNetworkTrafficIn.length), val];
+	    		temp = [(now - 20000) + (config.chartNetworkUpdateInterval * activeMission.dataNetworkTrafficIn.length * 10), 0];
 	    	}
 
 	        activeMission.dataNetworkTrafficIn.push(temp);
@@ -304,12 +340,18 @@
 	
 	
 	myHplApp.missioncontrol.model.setDataNetworkTrafficOut = function(val) {
-		console.log('Mission control - setting data network traffic out');
 		var now = new Date().getTime();
+		var temp;
 		activeMission.dataNetworkTrafficOut.shift();
 
 	    while (activeMission.dataNetworkTrafficOut.length < config.chartNetworkTotalPoints) {     
-	        var temp = [now += config.chartNetworkUpdateInterval, val];
+	    	if (val >= 0) {
+	    		temp = [now += config.chartNetworkUpdateInterval, val];
+	    	}
+	    	else {
+	    		temp = [(now - 20000) + (config.chartNetworkUpdateInterval * activeMission.dataNetworkTrafficOut.length * 10), 0];
+	    	}
+	    	
 	        activeMission.dataNetworkTrafficOut.push(temp);
 	    }
 	};
