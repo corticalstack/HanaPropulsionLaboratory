@@ -16,12 +16,7 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 buildPaneDrive(oController,oLayout);
     	 
     	 buildPaneEarthTime(oController,oLayout);    	 
-
-    	 buildPaneChartNetworkTrafficOut(oController,oLayout);
-    	 buildPaneTotalNetworkTrafficOut(oController,oLayout);
-    	 buildPaneChartNetworkTrafficIn(oController,oLayout);
-    	 buildPaneTotalNetworkTrafficIn(oController,oLayout);
-    	 
+        	 
     	 buildPanePower(oController,oLayout);
     	 buildPanePrimarySystems(oController,oLayout);    	 
     	 buildPaneNavigation(oController,oLayout);
@@ -42,9 +37,12 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 
     	 buildPaneCrosshair(oController,oLayout);
     	 buildPaneLowBattery(oController,oLayout);
-    	 buildPaneSignalStrength(oController,oLayout);
     	 
       	 buildPaneFooter(oController,oLayout);
+    	 buildPaneChartNetworkTrafficOut(oController,oLayout);
+    	 buildPaneTotalNetworkTrafficOut(oController,oLayout);
+    	 buildPaneChartNetworkTrafficIn(oController,oLayout);
+    	 buildPaneTotalNetworkTrafficIn(oController,oLayout);
 
     	 return oLayout;
       }
@@ -237,14 +235,6 @@ function buildPanePrimarySystems(oController,oLayout){
 	});
 	
 	 
-	var olblIndCommsFailsafe = new sap.ui.commons.Label({
-	    	id: 		"lblIndCommsFailsafe",
-	    	text: 		myHplApp.controller.getTextFromBundle("commsfailsafe"),
-	    	textAlign: 	"Center",
-	    	width: 		"100px"
-	});
-
-
 	var olblIndThrustFailsafe = new sap.ui.commons.Label({
 	    	id: 		"lblIndThrustFailsafe",
 	    	text: 		myHplApp.controller.getTextFromBundle("thrustfailsafe"),
@@ -258,6 +248,13 @@ function buildPanePrimarySystems(oController,oLayout){
 	});
 
 	
+	var oimgSignalStrength = new sap.ui.commons.Image({
+	    	id: 	'imgSignalStrength',
+	    	src: 	'assets/images/hud/signalStrength0.png',
+	        width: 	"40px",
+	        height: "39px"
+	    });
+
 
 	omlCellPanePrimaryTitle.addContent(olblPanePrimarySystems);
 	omlRowPanePrimarySystems.addCell(omlCellPanePrimaryTitle);
@@ -276,13 +273,15 @@ function buildPanePrimarySystems(oController,oLayout){
 	omlRowPrimary1.addCell(omlCell1);
 	omlPanePrimarySystems.addRow(omlRowPrimary1);
 
-	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlRowPrimary1	= new sap.ui.commons.layout.MatrixLayoutRow({height: "32px"});
-	omlCell1.addContent(olblIndCommsFailsafe);
-	omlRowPrimary1.addCell(omlCell1);
-	omlPanePrimarySystems.addRow(omlRowPrimary1);
-
 	omlPanePrimarySystems.createRow(ohtmlGaugeCoreTemp);
+	
+	omlCell1 		= new sap.ui.commons.layout.MatrixLayoutCell();
+	omlRowPrimary1	= new sap.ui.commons.layout.MatrixLayoutRow();
+	omlCell1.addContent(oimgSignalStrength);
+	omlCell1.setHAlign(sap.ui.commons.layout.HAlign.Center);
+	omlRowPrimary1.addCell(omlCell1);
+	omlPanePrimarySystems.addRow(omlRowPrimary1);	
+	
 	oLayout.createRow(omlPanePrimarySystems);   	 
 }
 
@@ -309,12 +308,12 @@ function buildPaneEarthTime(oController,oLayout){
 	
 	
 	var ohtmlIframeEarthTime = new sap.ui.core.HTML({  
-	    	content: '<iframe id="iframeEarthTime" width="1207px" height="96px" frameBorder="0">Earth Time Offline!!!</iframe>',
+	    	content: '<iframe id="iframeEarthTime" width="1207px" height="84px" frameBorder="0">Earth Time Offline!!!</iframe>',
 	    	preferDOM : true,   
 	    	afterRendering: function() {  
 	    		newSrc = 'earthtime.html';
 	    		$("#iframeEarthTime").load(function() {  
-	    			$("#iframeEarthTime").attr("width","1207px").attr("height","96px");  
+	    			$("#iframeEarthTime").attr("width","1207px").attr("height","84px");  
 	    		}).attr("src",newSrc);  
 	    	}
 	});
@@ -466,32 +465,34 @@ function buildPanePower(oController,oLayout){
 		    width: 		"100%"
 	});
 	
-	 
-	var ohtmlGaugeCurrent = new sap.ui.core.HTML({  
-        	content: "<div id='gaugeCurrent'></div>"
+	
+	var ohtmlGaugeVoltage = new sap.ui.core.HTML({  
+			content: "<div id='gaugeVoltage'></div>"
 	});
 
-	
+	var ohtmlGaugeBattRemaining = new sap.ui.core.HTML({  
+    		content: "<div id='gaugeBattRemaining'></div>"
+	});
+
+	var ohtmlGaugeConsumedMah = new sap.ui.core.HTML({  
+		content: "<div id='gaugeConsumedMah'></div>"
+	});
+
 	var ohtmlGaugeAmps = new sap.ui.core.HTML({  
     		content: "<div id='gaugeAmps'></div>"
 	});
 	
+	var ohtmlGaugeCurrent = new sap.ui.core.HTML({  
+    		content: "<div id='gaugeCurrent'></div>"
+	});
 	
-	var ohtmlGaugeBattRemaining = new sap.ui.core.HTML({  
-	    	content: "<div id='gaugeBattRemaining'></div>"
-	});
-
-
-	var ohtmlGaugeConsumedMah = new sap.ui.core.HTML({  
-    		content: "<div id='gaugeConsumedMah'></div>"
-	});
-
 	 
 	omlCellPanePowerTitle.addContent(olblPanePower);
 	omlRowPanePowerTitle.addCell(omlCellPanePowerTitle);
 	omlPanePower.addRow(omlRowPanePowerTitle);
 	 
 
+	omlPanePower.createRow(ohtmlGaugeVoltage);
 	omlPanePower.createRow(ohtmlGaugeBattRemaining);
 	omlPanePower.createRow(ohtmlGaugeConsumedMah);
 	omlPanePower.createRow(ohtmlGaugeAmps);
@@ -1013,9 +1014,9 @@ function buildPaneFooter(oController,oLayout){
 	var omlPaneFooter = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneFooter",
 			layoutFixed: 	true,
-			width:			"1920px",
+			width:			"1205px",
 			columns: 		3,
-    		widths: 		["125px", "1206px", "589px"]  
+    		widths: 		["100px", "1005px", "100px"]  
 	});	
 		
 	var olblPaneFooter = new sap.ui.commons.Label({
@@ -1269,22 +1270,3 @@ function buildPaneLowBattery(oController,oLayout){
 	oLayout.createRow(omlPaneLowBattery);
 }
 
-
-function buildPaneSignalStrength(oController,oLayout){
-	
-	var omlPaneSignalStrength = new sap.ui.commons.layout.MatrixLayout({
-			id: 			"mlPaneSignalStrength",
-			layoutFixed: 	true,
-			width:			"40px"
-	});
-	
-    oimgSignalStrength = new sap.ui.commons.Image({
-    	id: 	'imgSignalStrength',
-    	src: 	'assets/images/hud/signalStrength0.png',
-        width: 	"40px",
-        height: "39px"
-    });
-
-    omlPaneSignalStrength.createRow(oimgSignalStrength);
-	oLayout.createRow(omlPaneSignalStrength);
-}

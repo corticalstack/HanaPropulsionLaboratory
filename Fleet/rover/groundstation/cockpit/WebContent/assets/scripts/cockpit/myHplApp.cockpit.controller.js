@@ -199,24 +199,22 @@
 		gaugeId = "gaugeVoltage";
 		ogauge 	= new JustGage({
 			id: gaugeId,
+			donut: true,
 			gaugeColor: '#003078',
 			title: "",
 			titleFontColor: "#ffffff",
-			titleMinFontSize: 13,	
+			titleMinFontSize: 14,	
 			label: "VOLTS",
-			labelMinFontSize: 14,
-			minLabelMinFontSize: 11,
-			maxLabelMinFontSize: 11,
-			labelFontColor: "#000000",
+			labelMinFontSize: 16,			
 			value: 0,
-			valueMinFontSize: 16,
-			valueFontColor: "#000000",
+			valueMinFontSize: 14,
+			valueFontColor: "#ffffff",
 			min: 7,
 			max: 8.20,
 			showMinMax: false,
 			humanFriendlyDecimal: 2,
 	        decimals: 2,
-			gaugeWidthScale: 0.4,
+			gaugeWidthScale: 0.5,
 			customSectors: [{
 								color: "#ff0000",
 								lo: 7,
@@ -753,28 +751,6 @@
 		};		
 		cockpitModel.setIndicator(indicator);
 
-		
-		//Comms Failsafe
-		var indicator = {
-				id: 				'lblIndCommsFailsafe',
-				value: 				0,
-				refresh: 			true,
-				min: 				0,
-				max: 				0,
-				cssClass:    		'lblIndOff'
-		};		
-		cockpitModel.setIndicator(indicator);
-
-		var indicator = {
-				id: 				'lblIndCommsFailsafe',
-				value: 				0,
-				refresh: 			true,
-				min: 				1,
-				max: 				1,
-				cssClass:   		'lblIndOn'
-		};		
-		cockpitModel.setIndicator(indicator);
-		
 		
 		//Thrust Failsafe
 		var indicator = {

@@ -336,17 +336,17 @@ img.bg {
    --------------------------- */   
 #mlPanePilotCam {
 	position: fixed;
-	top: 157px;
+	top: 123px;
   	left: 129px;
 }
 
 
 #mlPanePower {
 	position: fixed;
-	top: 	609px;
+	top: 	620px;
   	left:	0px;
   	width:	125px;
-  	height:	456px;
+  	height:	531px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -358,7 +358,7 @@ img.bg {
 
 #mlPaneDrive {
 	position: fixed;
-	top: 	237px;
+	top: 	248px;
   	left:	0px;
   	width:	125px;
   	height:	368px;
@@ -376,7 +376,7 @@ img.bg {
 	top: 	0px;
   	left:	129px;
   	width:	1207px;
-  	height:	133px;
+  	height:	121px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -387,7 +387,7 @@ img.bg {
 
 #mlPaneChartNetworkTrafficIn {	
 	position: fixed;
-	top: 	31px;
+	top: 	1032px;
   	left:	937px;
   	width:	155px;
   	background-color: transparent;
@@ -397,7 +397,7 @@ img.bg {
 
 #mlPaneChartNetworkTrafficOut {	
 	position: fixed;
-	top: 	31px;
+	top: 	1032px;
   	left:	127px;
   	width:	155px;
   	background-color: transparent;
@@ -418,7 +418,7 @@ img.bg {
 
 #mlPaneTotalNetworkTrafficIn {	
 	position: fixed;
-	top: 	31px;
+	top: 	1032px;
   	left:	947px;
   	width:	155px;
   	background-color: transparent;
@@ -427,7 +427,7 @@ img.bg {
 
 #mlPaneTotalNetworkTrafficOut {	
 	position: fixed;
-	top: 	30px;
+	top: 	1032px;
   	left:	137px;
   	width:	155px;
   	background-color: transparent;
@@ -452,22 +452,13 @@ img.bg {
 	-webkit-animation-direction: alternate;	
 }
 
-#mlPaneSignalStrength {	
-	position: fixed;
-	top: 	88px;
-  	left:	899px;
-  	width:	40px;
-	opacity: 1;
-  	background-color: transparent;
-  	border: none;
-}
 
 #mlPanePrimarySystems {
 	position: fixed;
 	top: 	0px;
   	left:	0px;
   	width:	125px;
-  	height:	233px;
+  	height:	244px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -521,7 +512,7 @@ img.bg {
 
 #mlPaneAmmo {
 	position: fixed;
-	top: 	502px;
+	top: 	481px;
   	left:	855px;
   	width:	65px;
   	height:	65px;
@@ -531,7 +522,7 @@ img.bg {
 
 #mlPaneShield {
 	position: fixed;
-	top: 	553px;
+	top: 	532px;
   	left:	855px;
   	width:	65px;
   	height:	65px;
@@ -541,7 +532,7 @@ img.bg {
 
 #mlPaneThrust {
 	position: fixed;
-	top: 	502px;
+	top: 	481px;
   	left:	555px;
   	width:	65px;
   	height:	65px;
@@ -551,18 +542,8 @@ img.bg {
 
 #mlPaneSpeed {
 	position: fixed;
-	top: 	553px;
+	top: 	532px;
   	left:	555px;
-  	width:	65px;
-  	height:	65px;
-	background-color: transparent;	
-}
-
-
-#mlPaneVoltage {
-	position: fixed;
-	top: 	553px;
-  	left:	955px;
   	width:	65px;
   	height:	65px;
 	background-color: transparent;	
@@ -571,7 +552,7 @@ img.bg {
 
 #mlPaneProximitySensorFront {
 	position: fixed;
-	top: 	502px;
+	top: 	481px;
   	left:	455px;
   	width:	65px;
   	height:	65px;
@@ -581,7 +562,7 @@ img.bg {
 
 #mlPaneProximitySensorRear {
 	position: fixed;
-	top: 	553px;
+	top: 	532px;
   	left:	455px;
   	width:	65px;
   	height:	65px;
@@ -591,7 +572,7 @@ img.bg {
 
 #mlPaneProximitySensorCam {
 	position: fixed;
-	top: 	502px;
+	top: 	481px;
   	left:	955px;
   	width:	65px;
   	height:	65px;
@@ -601,10 +582,10 @@ img.bg {
 
 #mlPaneFooter {
 	position: fixed;
-	top: 	1069px;
-  	left:	0px;
-  	width:	1920px;
-  	height:	68px;
+	top: 	1033px;
+  	left:	129px;
+  	width:	1205px;
+  	height:	103px;
 	background-color: transparent;	
 	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
@@ -616,7 +597,7 @@ img.bg {
 
 #mlPaneCrosshair {
 	position: fixed;
-	top: 	453px;
+	top: 	432px;
   	left:	139px;
   	width:	1206px;
   	height:	200px;
@@ -743,26 +724,6 @@ img.bg {
 }
 
 
-[id^="lblVoltage"] {
-	color: rgb(255,255,255);
-	font-family:'BebasNeueRegular', serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.2em;
-	
-	padding-top: 2px;
-}
-
-[id^="lblConsumedMah"] {
-	color: rgb(255,255,255);
-	font-family:'BebasNeueRegular', serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.2em;
-	text-align: center; 
-	padding-top: 2px;
-}
-
 
 #imgWeapon {
 	margin-left: 10px;
@@ -773,7 +734,7 @@ img.bg {
 	width: 125px; 
 	height: 125px;
     display: inline-block;
-    margin-top: -45px;
+    margin-top: -32px;
 }
 
 
@@ -781,7 +742,7 @@ img.bg {
 	width: 125px; 
 	height: 125px;
     display: inline-block;
-    margin-top: -45px;
+    margin-top: -32px;
 }
 
 
@@ -789,28 +750,15 @@ img.bg {
 	width: 125px; 
 	height: 125px;
     display: inline-block;
-    margin-top: -45px;
+    margin-top: -32px;
 }
 
 
 #gaugeVoltage {	
-	width: 65px; 
-	height: 65px;
+	width: 125px; 
+	height: 125px;
     display: inline-block;
     margin-top: -15px;
-}
-
-#gaugeVoltage text {
-	color:#000;
-	text-shadow:1px 1px 0 #fff,
-	-1px -1px 0 #fff,
-	1px -1px 0 #fff,
-	-1px 1px 0 #fff,
-	0px 1px 0 #fff,
-	1px 0px 0 #fff,
-	0px -1px 0 #fff,
-	-1px 0px 0 #fff,
-	4px 4px 3px #000;
 }
 
 
@@ -818,7 +766,7 @@ img.bg {
 	width: 125px; 
     height: 125px;
     display: inline-block;
-    margin-top: -15px;
+    margin-top: -32px;
 }
 
 
@@ -993,7 +941,7 @@ img.bg {
 
 #mlPaneBearingIndicators {
 	position: fixed;
-	top: 160px;
+	top: 139px;
   	left:510px;
 }
 
@@ -1006,7 +954,7 @@ img.bg {
 
 #lblCompass {
 	position: fixed;
-	top: 200px;
+	top: 179px;
   	left: 535px;	
   	width: 100px;
 	color: rgb(255,255,255);
@@ -1019,7 +967,7 @@ img.bg {
 
 #lblCompassVal {
 	position: fixed;
-	top: 218px;
+	top: 197px;
   	left: 537px;	
   	width: 100px;
 	color: rgb(0,255,0);
@@ -1032,7 +980,7 @@ img.bg {
 
 #lblCamPan {
 	position: fixed;
-	top: 200px;
+	top: 179px;
   	left: 685px;	
   	width: 100px;
 	color: rgb(255,255,255);
@@ -1045,7 +993,7 @@ img.bg {
 
 #lblCamPanVal {
 	position: fixed;
-	top: 218px;
+	top: 197px;
   	left: 685px;	
   	width: 100px;
 	color: rgb(0,255,0);
@@ -1072,7 +1020,7 @@ img.bg {
 
 #lblWaypointVal {
 	position: fixed;
-	top: 216px;
+	top: 195px;
   	left: 837px;	
   	width: 100px;
 	color: rgb(0,255,0);
@@ -1086,7 +1034,7 @@ img.bg {
 
 #lblValWaypointId {
 	position: fixed;
-	top: 191px;
+	top: 170px;
   	left: 877	px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;
