@@ -37,11 +37,13 @@
 				myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
 				myHplApp.cockpit.controller.clearNetworkTrafficChartsTick();
 				myHplApp.cockpit.controller.clearSignalStrengthTick();
+				myHplApp.cockpit.controller.clearAmmoPctTick();
 				break;
 			case true:
 				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
 				myHplApp.cockpit.controller.setNetworkTrafficChartsTick();
 				myHplApp.cockpit.controller.setSignalStrengthTick();
+				myHplApp.cockpit.controller.setAmmoPctTick();
 				break;
 		} 
 	};
@@ -78,6 +80,15 @@
 		clearInterval(signalStrengthTick);
 	};
 
+
+	myHplApp.cockpit.controller.setAmmoPctTick = function() {
+		ammoPctTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setAmmoPct()},300);
+	};
+
+	
+	myHplApp.cockpit.controller.clearAmmoPctTick = function() {
+		clearInterval(ammoPctTick);
+	};
 	
 	myHplApp.cockpit.controller.initGauges = function() {
 		console.log('Initialising cockpit controller gauges');
@@ -98,6 +109,8 @@
 			min: 0,
 			max: 10,
 			gaugeWidthScale: 0.5,
+			humanFriendlyDecimal: 2,
+	        decimals: 2,
 			startAnimationTime: 1,
 			startAnimationType: "linear",
 			refreshAnimationTime: 1,
@@ -137,6 +150,8 @@
 			min: 0,
 			max: 100,
 			gaugeWidthScale: 0.5,
+			humanFriendlyDecimal: 2,
+	        decimals: 2,
 			customSectors: [{
 								color: "#00ff00",
 								lo: 0,
@@ -322,12 +337,12 @@
 			gaugeColor: '#003078',	
 			titleFontColor: "#ffffff",
 			titleMinFontSize: 13,	
-			label: "AMMO",
-			labelMinFontSize: 14,
+			label: myHplApp.controller.getTextFromBundle("ammopct"),
+			labelMinFontSize: 13,
 			minLabelMinFontSize: 11,
 			maxLabelMinFontSize: 11,
 			labelFontColor: "#000000",
-			value: 0,
+			value: 100,
 			valueMinFontSize: 16,
 			valueFontColor: "#000000",
 			min: 0,
@@ -338,16 +353,16 @@
 			refreshAnimationTime: 1,
 			refreshAnimationType: "linear",								
 			customSectors: [{
-								color : "#00ff00",
+								color : "#ff0000",
 								lo: 0,
-								hi: 60
+								hi: 20
 							},{
 								color: "#ffff00",
-								lo: 60,
-								hi: 80
+								lo: 20,
+								hi: 40
 							}, {
-								color: "#ff0000",
-								lo: 80,
+								color: "#00ff00",
+								lo: 40,
 								hi: 100
 							}],
 			counter: true

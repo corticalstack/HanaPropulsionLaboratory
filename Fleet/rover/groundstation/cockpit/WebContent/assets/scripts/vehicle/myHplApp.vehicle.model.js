@@ -7,21 +7,45 @@
 	};
 	
 	var state = {
-			stop:					false,
-			throttle:				false,
-			direction:				false,
-			rotate:					false,
-			heading:				false,			
-			throttleVal:			0,
-			directionVal:			'DF',
-			headingVal:				0,
-			rotateVal:				0,
-			camPanVal:				0
+			stop:						false,
+			throttle:					false,
+			direction:					false,
+			rotate:						false,
+			heading:					false,			
+			throttleVal:				0,
+			directionVal:				'DF',
+			headingVal:					0,
+			rotateVal:					0,
+			camPanVal:					0,
+			activeWeapon:				false,
+			activeWeaponSelected:		0,
+			weaponFiringPulseStart:		0,
+			weaponFiringPulseEnd:		0,
+			weaponRoundsFired:	 		0
 	};
 
 	
-	
+	var weapons = { 
+			loadout:[{
+				     	name: 			'Cannon',
+				        imgSrc: 		'assets/images/weapons/Bulletproof.png',
+				        rps:			3,
+				        maxAmmo:		300,
+				        remainingAmmo: 	300
+				     },
+					 {
+				    	name: 			'Missile',
+						imgSrc: 		'assets/images/weapons/Missile.png',
+						rps:			5,
+						maxAmmo:		20,
+						remainingAmmo: 	20
+					 }]
+	};
 
+
+	
+	
+	//Get functions
     myHplApp.vehicle.model.getConfigThrottleMaxDirChange = function() { 
         return config.throttleMaxDirChange;
     };
@@ -63,6 +87,37 @@
         return state.camPanVal;
     };
 
+    myHplApp.vehicle.model.getStateActiveWeapon = function() { 
+        return state.activeWeapon;
+    };
+    
+    myHplApp.vehicle.model.getStateWeaponFiringPulseStart = function() { 
+        return state.weaponFiringPulseStart;
+    };
+
+    myHplApp.vehicle.model.getStateWeaponFiringPulseEnd = function() { 
+        return state.weaponFiringPulseEnd;
+    };
+    
+    myHplApp.vehicle.model.getStateWeaponRoundsFired = function() { 
+        return state.weaponRoundsFired;
+    };
+    
+
+    myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmo = function() { 
+    	var activeWeapon = weapons.loadout[state.activeWeaponSelected];
+    	return activeWeapon.remainingAmmo;
+    };
+
+    myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmoPct = function() { 
+    	var activeWeapon 		= weapons.loadout[state.activeWeaponSelected];
+    	var remainingAmmoPct 	= (activeWeapon.remainingAmmo / activeWeapon.maxAmmo) * 100;
+    	remainingAmmoPct 		= remainingAmmoPct.toFixed(0);
+    	return parseInt(remainingAmmoPct, 10);
+    };
+    
+    
+    //Set functions
     myHplApp.vehicle.model.setStateStopOn = function() { 
         state.stop = true;
     };
@@ -123,6 +178,38 @@
     myHplApp.vehicle.model.setStateCamPanVal = function(val) { 
         state.camPanVal = val;       	
     };
-
     
+    myHplApp.vehicle.model.setStateActiveWeapon = function(val) { 
+        state.activeWeapon = val;
+    };
+
+    myHplApp.vehicle.model.setStateWeaponFiringPulseStart = function() { 
+        state.weaponFiringPulseStart = new Date().getTime();
+    };
+
+    myHplApp.vehicle.model.setStateWeaponFiringPulseEnd = function() { 
+        state.weaponFiringPulseEnd = new Date().getTime();
+    };
+
+    myHplApp.vehicle.model.setStateWeaponRoundsFired = function() { 
+    	var triggerTime 			= state.weaponFiringPulseEnd - state.weaponFiringPulseStart;
+    	triggerTime 				= triggerTime / 100;
+    	
+    	var activeWeapon 			= weapons.loadout[state.activeWeaponSelected];
+    	var roundsFired 			= triggerTime /  activeWeapon.rps;
+    	roundsFired = Math.ceil(roundsFired * 10) / 10;
+
+    	if (roundsFired == 0) {
+    		roundsFired = 1;
+    	}
+
+    	state.weaponRoundsFired = roundsFired.toFixed(0);
+
+    };
+
+    myHplApp.vehicle.model.setStateActiveWeaponRemainingAmmo = function() { 
+    	var activeWeapon 			= weapons.loadout[state.activeWeaponSelected];
+    	activeWeapon.remainingAmmo 	= activeWeapon.remainingAmmo - state.weaponRoundsFired;
+    };
+
 } (myHplApp = window.myHplApp || {}));

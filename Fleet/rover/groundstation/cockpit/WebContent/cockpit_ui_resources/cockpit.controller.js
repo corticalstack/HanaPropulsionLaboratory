@@ -425,31 +425,47 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	},
 	
+		
+	setAmmoPct: function() {
+		if (myHplApp.vehicle.model.getStateActiveWeapon() == true) {
+			myHplApp.vehicle.model.setStateWeaponFiringPulseEnd();
+			myHplApp.vehicle.model.setStateWeaponRoundsFired();
+			myHplApp.vehicle.model.setStateActiveWeaponRemainingAmmo();
+			myHplApp.cockpit.model.refreshGauge({id: 'gaugeAmmo', val: myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmoPct()});
+			myHplApp.vehicle.model.setStateWeaponFiringPulseStart();
+		}
+	},
 	
 	drawCrosshair: function() {
-		var canvas 	= document.getElementById('testcanvas');
+		var canvas 	= document.getElementById('canvasCrosshair');
 		var context = canvas.getContext('2d');
 
-
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 600, 100, 15, 0, 360, false, 2, 'white', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 90, 225, 135, true, 2, 'white', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 90, 315, 45, false, 2, 'white', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 90, 225, 135, true, 2, 'white', 0, -1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 90, 315, 45, false, 2, 'white', 0, -1, 3, "black");
-
-
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 340, 100, 405, 100, 2, 'white', 'round', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 340, 100, 405, 100, 2, 'white', 'round', 0, -1, 3, "black");
-
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 470, 100, 490, 100, 2, 'white', 'round', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 470, 100, 490, 100, 2, 'white', 'round', 0, -1, 3, "black");
-
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 710, 100, 730, 100, 2, 'white', 'round', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 710, 100, 730, 100, 2, 'white', 'round', 0, -1, 3, "black");
+		//Left horizontal 
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 343, 456, 408, 456, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 343, 456, 408, 456, 2, 'white', 'round', 0, -1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 473, 456, 493, 456, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 473, 456, 493, 456, 2, 'white', 'round', 0, -1, 3, "black");
 
 		
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 795, 100, 860, 100, 2, 'white', 'round', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 795, 100, 860, 100, 2, 'white', 'round', 0, -1, 3, "black");
+		//Right horizontal		
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 713, 456, 733, 456, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 713, 456, 733, 456, 2, 'white', 'round', 0, -1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 798, 456, 863, 456, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 798, 456, 863, 456, 2, 'white', 'round', 0, -1, 3, "black");
+
+		
+		//Left arc
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 583, 456, 90, 235, 125, true, 2, 'white', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 583, 456, 90, 235, 125, true, 2, 'white', 0, -1, 3, "black");
+		
+		
+		//Sight recepticle
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 603, 456, 15, 0, 360, false, 2, 'white', 0, 1, 3, "black");
+
+		
+		//Right arc
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 623, 456, 90, 305, 55, false, 2, 'white', 0, 1, 3, "black");		
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 623, 456, 90, 305, 55, false, 2, 'white', 0, -1, 3, "black");
 
 	},	
 	

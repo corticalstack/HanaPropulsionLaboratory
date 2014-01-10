@@ -8,6 +8,7 @@
 			direction: 				'FACE_4',
 			stop: 					'FACE_3',
 			throttle:  				'RIGHT_BOTTOM_SHOULDER',
+			fire:					'RIGHT_TOP_SHOULDER',
 			heading:  				'LEFT_STICK_X',
 			rotate: 				'RIGHT_STICK_X',
 			camPanLeft:  			'DPAD_LEFT',
@@ -39,6 +40,11 @@
     
 	myHplApp.cockpit.controls.model.getDeviceConfigThrottle = function() { 
         return deviceConfig.throttle;
+    };
+
+
+	myHplApp.cockpit.controls.model.getDeviceConfigFire = function() { 
+        return deviceConfig.fire;
     };
 
     

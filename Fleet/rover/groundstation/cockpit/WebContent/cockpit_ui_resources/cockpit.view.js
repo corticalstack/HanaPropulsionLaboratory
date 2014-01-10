@@ -665,7 +665,7 @@ function buildPaneNavigation(oController,oLayout){
 	});		 
 
 	var ohtmlMap = new sap.ui.core.HTML({  
-    		content: 	"<div id='cockpitMap' style='width: 563px; height: 432px;'></div>"  
+    		content: 	"<div id='cockpitMap' style='width: 564px; height: 432px;'></div>"  
 	});
 				 
 	
@@ -1233,7 +1233,7 @@ function buildPaneCrosshair(oController,oLayout){
 	 
 	
 	var ohtmlCanvasCrosshair = new sap.ui.core.HTML({  
-	    	content: 	'<canvas width = "1206px" height = "200px" id = "testcanvas" style = "border:none;">Your browser does not support HTML5 Canvas. Please shift to another browser.</canvas>',
+	    	content: 	'<canvas width = "1206px" height = "912px" id = "canvasCrosshair" style = "border:none;">Your browser does not support HTML5 Canvas. Please shift to another browser.</canvas>',
 	    	preferDOM: 	false   
 	});
 

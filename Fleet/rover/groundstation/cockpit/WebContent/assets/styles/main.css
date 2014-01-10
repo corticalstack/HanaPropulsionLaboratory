@@ -388,7 +388,7 @@ img.bg {
 #mlPaneChartNetworkTrafficIn {	
 	position: fixed;
 	top: 	1034px;
-  	left:	934px;
+  	left:	935px;
   	width:	155px;
   	background-color: transparent;
   	border: none;
@@ -419,7 +419,7 @@ img.bg {
 #mlPaneTotalNetworkTrafficIn {	
 	position: fixed;
 	top: 	1034px;
-  	left:	944px;
+  	left:	945px;
   	width:	155px;
   	background-color: transparent;
   	border: none;
@@ -437,8 +437,8 @@ img.bg {
 
 #mlPaneLowBattery {	
 	position: fixed;
-	top: 	560px;
-  	left:	1028px;
+	top: 	587px;
+  	left:	970px;
   	width:	23px;
 	opacity: 0;
   	background-color: transparent;
@@ -512,8 +512,8 @@ img.bg {
 
 #mlPaneAmmo {
 	position: fixed;
-  	top: 	582px;
-  	left:	706px;
+  	top: 	651px;
+  	left:	700px;
   	width:	65px;
   	height:	65px;
 	background-color: transparent;	
@@ -522,7 +522,7 @@ img.bg {
 
 #mlPaneShield {
 	position: fixed;
-	top: 	455px;
+	top: 	497px;
   	left:	560px;
   	width:	65px;
   	height:	65px;
@@ -532,8 +532,8 @@ img.bg {
 
 #mlPaneThrust {
 	position: fixed;
-	top: 	501px;
-  	left:	544px;
+	top: 	548px;
+  	left:	537px;
   	width:	65px;
   	height:	65px;
 	background-color: transparent;	
@@ -542,7 +542,7 @@ img.bg {
 
 #mlPaneSpeed {
 	position: fixed;
-	top: 	551px;
+	top: 	603px;
   	left:	560px;
   	width:	65px;
   	height:	65px;
@@ -552,8 +552,8 @@ img.bg {
 
 #mlPaneProximitySensorFront {
 	position: fixed;
-	top: 	455px;
-  	left:	855px;
+	top: 	497px;
+  	left:	839px;
   	width:	65px;
   	height:	65px;
 	background-color: transparent;	
@@ -562,8 +562,8 @@ img.bg {
 
 #mlPaneProximitySensorRear {
 	position: fixed;
-	top: 	551px;
-  	left:	855px;
+	top: 	603px;
+  	left:	839px;
   	width:	65px;
   	height:	65px;
 	background-color: transparent;	
@@ -572,8 +572,8 @@ img.bg {
 
 #mlPaneProximitySensorCam {
 	position: fixed;
-	top: 	501px;
-  	left:	869px;
+	top: 	548px;
+  	left:	862px;
   	width:	65px;
   	height:	65px;
 	background-color: transparent;	
@@ -597,10 +597,10 @@ img.bg {
 
 #mlPaneCrosshair {
 	position: fixed;
-	top: 	432px;
-  	left:	139px;
+	top: 123px;
+  	left: 129px;
   	width:	1206px;
-  	height:	200px;
+  	height:	912px;
 }
 
 

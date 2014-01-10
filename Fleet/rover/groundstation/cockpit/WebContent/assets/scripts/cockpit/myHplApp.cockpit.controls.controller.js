@@ -107,6 +107,14 @@
 		}
 
 
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigFire() ) {
+			if (vehicleModel.getStateActiveWeaponRemainingAmmo() > 0) {
+				vehicleModel.setStateActiveWeapon(true);
+				vehicleModel.setStateWeaponFiringPulseStart();
+			}
+		}
+	
+		
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanLeft());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanLeft());	
@@ -176,6 +184,17 @@
 		
 		if (!cockpitModel.getStateActive()) {
 			return;
+		}
+
+		
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigFire() ) {
+			if (vehicleModel.getStateActiveWeapon() == true) {
+				vehicleModel.setStateActiveWeapon(false);
+				vehicleModel.setStateWeaponFiringPulseEnd();
+				vehicleModel.setStateWeaponRoundsFired();
+				vehicleModel.setStateActiveWeaponRemainingAmmo();
+				cockpitModel.refreshGauge({id: 'gaugeAmmo', val: myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmoPct()});
+			}
 		}
 
 		

@@ -63,11 +63,11 @@
 			totalNetworkTrafficOut:		0,
 			dataNetworkTrafficIn:		[],
 			dataNetworkTrafficOut:		[]
+		
 			
 	};
 
 	
- 
 	
 	var gps3DFixCount = 0;
 	
