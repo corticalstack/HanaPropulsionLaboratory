@@ -429,18 +429,27 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	drawCrosshair: function() {
 		var canvas 	= document.getElementById('testcanvas');
 		var context = canvas.getContext('2d');
-		
+
+
 		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 600, 100, 15, 0, 360, false, 2, 'white', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 70, 225, 135, true, 2, 'white', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 70, 315, 40, false, 2, 'white', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 70, 225, 135, true, 2, 'white', 0, -1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 70, 315, 40, false, 2, 'white', 0, -1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 90, 225, 135, true, 2, 'white', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 90, 315, 45, false, 2, 'white', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 580, 100, 90, 225, 135, true, 2, 'white', 0, -1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawArc(context, 620, 100, 90, 315, 45, false, 2, 'white', 0, -1, 3, "black");
+
+
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 340, 100, 405, 100, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 340, 100, 405, 100, 2, 'white', 'round', 0, -1, 3, "black");
+
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 470, 100, 490, 100, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 470, 100, 490, 100, 2, 'white', 'round', 0, -1, 3, "black");
+
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 710, 100, 730, 100, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 710, 100, 730, 100, 2, 'white', 'round', 0, -1, 3, "black");
 
 		
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 290, 100, 510, 100, 2, 'white', 'round', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 690, 100, 910, 100, 2, 'white', 'round', 0, 1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 290, 100, 510, 100, 2, 'white', 'round', 0, -1, 3, "black");
-		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 690, 100, 910, 100, 2, 'white', 'round', 0, -1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 795, 100, 860, 100, 2, 'white', 'round', 0, 1, 3, "black");
+		sap.ui.getCore().byId("viewCockpit").getController().drawLine(context, 795, 100, 860, 100, 2, 'white', 'round', 0, -1, 3, "black");
 
 	},	
 	

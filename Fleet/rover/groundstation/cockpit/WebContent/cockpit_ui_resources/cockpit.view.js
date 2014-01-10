@@ -509,15 +509,15 @@ function buildPaneNavigation(oController,oLayout){
 	var omlPaneNavigation = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneNavigation",
 			layoutFixed: 	true,
-			width:			"580px"
+			width:			"582px"
 	});	
 
 	var omlPaneNavigation1 = new sap.ui.commons.layout.MatrixLayout({
     		id: 			"mlPaneNavigation1",
     		layoutFixed: 	true,
-    		width: 			"480px",
-    		columns : 		6,
-    		widths: 		["90px", "70px", "90px", "70px", "90px", "70px"]  
+    		width: 			"540px",
+    		columns : 		8,
+    		widths: 		["70px", "70px", "70px", "70px", "70px", "70px", "70px", "70px"]  
 	});
 	
 	
@@ -529,19 +529,11 @@ function buildPaneNavigation(oController,oLayout){
 	});
 
 	
-	
-	var omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCell3 = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCell4 = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCell5 = new sap.ui.commons.layout.MatrixLayoutCell();
-	var omlCell6 = new sap.ui.commons.layout.MatrixLayoutCell();	
-	
-	
+		
 	var olblStatusSatellites = new sap.ui.commons.Label({
     		id: 		"lblStatusSatellites",
     		text: 		myHplApp.controller.getTextFromBundle("satellites"),
-    		width: 		"90px"
+    		width: 		"75px"
 	});
 
  
@@ -556,7 +548,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusFixType = new sap.ui.commons.Label({
 	    	id: 		"lblStatusFixType",
 	    	text: 		myHplApp.controller.getTextFromBundle("fixtype"),
-	    	width: 		"90px"
+	    	width: 		"75px"
 	});
 	
 	 
@@ -571,7 +563,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusLattitude = new sap.ui.commons.Label({
 	    	id: 		"lblStatusLattitude",
 	    	text: 		myHplApp.controller.getTextFromBundle("lattitude"),
-	    	width: 		"90px"
+	    	width: 		"75px"
 	});
 	
 	 
@@ -586,7 +578,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusLongitude = new sap.ui.commons.Label({
 		    id: 		"lblStatusLongitude",
 		    text: 		myHplApp.controller.getTextFromBundle("longitude"),
-		    width: 		"90px"
+		    width: 		"75px"
 	});
 		
 		 
@@ -601,7 +593,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusAltitude = new sap.ui.commons.Label({
 		    id: 		"lblStatusAltitude",
 		    text: 		myHplApp.controller.getTextFromBundle("altitude"),
-		    width: 		"90px"
+		    width: 		"75px"
 	});
 		
 		 
@@ -616,7 +608,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusSpeedCms = new sap.ui.commons.Label({
 	   		id: 		"lblStatusSpeedCms",
 			text: 		myHplApp.controller.getTextFromBundle("speedcms"),
-			width: 		"90px"
+			width: 		"75px"
 	});
 			
 			 
@@ -631,7 +623,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusHeading = new sap.ui.commons.Label({
 			id: 		"lblStatusHeading",
 			text: 		myHplApp.controller.getTextFromBundle("heading"),
-			width: 		"90px"
+			width: 		"75px"
 	});
 			
 			 
@@ -646,7 +638,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusDistanceWp = new sap.ui.commons.Label({
 			id: 		"lblStatusDistanceWp",
 			text: 		myHplApp.controller.getTextFromBundle("distancewp"),
-			width: 		"90px"
+			width: 		"75px"
 	});
 		
 		 
@@ -661,7 +653,7 @@ function buildPaneNavigation(oController,oLayout){
 	var olblStatusBearingWp = new sap.ui.commons.Label({
 			id: 		"lblStatusBearingWp",
 			text: 		myHplApp.controller.getTextFromBundle("bearingwp"),
-			width: 		"90px"
+			width: 		"75px"
 	});
 	
 	 
@@ -673,10 +665,20 @@ function buildPaneNavigation(oController,oLayout){
 	});		 
 
 	var ohtmlMap = new sap.ui.core.HTML({  
-    		content: 	"<div id='cockpitMap' style='width: 563px; height: 422px;'></div>"  
+    		content: 	"<div id='cockpitMap' style='width: 563px; height: 432px;'></div>"  
 	});
 				 
 	
+	var omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell3 = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell4 = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell5 = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell6 = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell7 = new sap.ui.commons.layout.MatrixLayoutCell();
+	var omlCell8 = new sap.ui.commons.layout.MatrixLayoutCell();
+	
+
 	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 8});
 	omlCell1.addContent(olblPaneNavigation);
 	omlRow1 = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
@@ -690,14 +692,19 @@ function buildPaneNavigation(oController,oLayout){
 	omlCell4 = new sap.ui.commons.layout.MatrixLayoutCell();
 	omlCell5 = new sap.ui.commons.layout.MatrixLayoutCell();
 	omlCell6 = new sap.ui.commons.layout.MatrixLayoutCell();	
+	omlCell7 = new sap.ui.commons.layout.MatrixLayoutCell();
+	omlCell8 = new sap.ui.commons.layout.MatrixLayoutCell();	
+
 	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 	
 	omlCell1.addContent(olblStatusLattitude);
 	omlCell2.addContent(olblValLattitude);	
-	omlCell3.addContent(olblStatusHeading);
-	omlCell4.addContent(olblValHeading);
-	omlCell5.addContent(olblStatusSatellites);
-	omlCell6.addContent(olblValSatellites);
+	omlCell3.addContent(olblStatusAltitude);
+	omlCell4.addContent(olblValAltitude);
+	omlCell5.addContent(olblStatusHeading);
+	omlCell6.addContent(olblValHeading);
+	omlCell7.addContent(olblStatusSatellites);
+	omlCell8.addContent(olblValSatellites);
 	
 	omlRow1.addCell(omlCell1);
 	omlRow1.addCell(omlCell2);
@@ -705,6 +712,8 @@ function buildPaneNavigation(oController,oLayout){
 	omlRow1.addCell(omlCell4);
 	omlRow1.addCell(omlCell5);
 	omlRow1.addCell(omlCell6);	
+	omlRow1.addCell(omlCell7);
+	omlRow1.addCell(omlCell8);	
 	omlPaneNavigation1.addRow(omlRow1);	 
 
 				 
@@ -714,14 +723,20 @@ function buildPaneNavigation(oController,oLayout){
 	omlCell4 = new sap.ui.commons.layout.MatrixLayoutCell();
 	omlCell5 = new sap.ui.commons.layout.MatrixLayoutCell();
 	omlCell6 = new sap.ui.commons.layout.MatrixLayoutCell();	
+	omlCell7 = new sap.ui.commons.layout.MatrixLayoutCell();
+	omlCell8 = new sap.ui.commons.layout.MatrixLayoutCell();	
+
 	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 	
 	omlCell1.addContent(olblStatusLongitude);
 	omlCell2.addContent(olblValLongitude);	 
 	omlCell3.addContent(olblStatusSpeedCms);
 	omlCell4.addContent(olblValSpeedCms);
-	omlCell5.addContent(olblStatusFixType);
-	omlCell6.addContent(olblValFixType);	
+	omlCell5.addContent(olblStatusBearingWp);
+	omlCell6.addContent(olblValBearingWp);
+	omlCell7.addContent(olblStatusDistanceWp);
+	omlCell8.addContent(olblValDistanceWp);	 
+
 	
 	omlRow1.addCell(omlCell1);
 	omlRow1.addCell(omlCell2);
@@ -729,32 +744,10 @@ function buildPaneNavigation(oController,oLayout){
 	omlRow1.addCell(omlCell4);
 	omlRow1.addCell(omlCell5);
 	omlRow1.addCell(omlCell6);	
+	omlRow1.addCell(omlCell7);
+	omlRow1.addCell(omlCell8);	
 	omlPaneNavigation1.addRow(omlRow1);	 
 
-
-	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlCell2 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlCell3 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlCell4 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlCell5 = new sap.ui.commons.layout.MatrixLayoutCell();
-	omlCell6 = new sap.ui.commons.layout.MatrixLayoutCell();	
-	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});	
-
-	omlCell1.addContent(olblStatusAltitude);
-	omlCell2.addContent(olblValAltitude);
-	omlCell3.addContent(olblStatusDistanceWp);
-	omlCell4.addContent(olblValDistanceWp);	 
-	omlCell5.addContent(olblStatusBearingWp);
-	omlCell6.addContent(olblValBearingWp);	 
-	
-	omlRow1.addCell(omlCell1);
-	omlRow1.addCell(omlCell2);
-	omlRow1.addCell(omlCell3);
-	omlRow1.addCell(omlCell4);
-	omlRow1.addCell(omlCell5);
-	omlRow1.addCell(omlCell6);
-
-	omlPaneNavigation1.addRow(omlRow1);	 
 	omlPaneNavigation.createRow(omlPaneNavigation1);
 	
 	omlPaneNavigation.createRow(ohtmlMap);
@@ -767,13 +760,13 @@ function buildPaneMissionControl(oController,oLayout){
 	var omlPaneMissionControl = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneMissionControl",
 			layoutFixed: 	true,
-			width:			"580px"
+			width:			"582px"
 	});	
 	
 	var omlPaneMissionControl1 = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneMissionControl1",
 			layoutFixed: 	true,
-			width:			"565px"
+			width:			"582px"
 	});	
 	 
 	var olblPaneMissionControl = new sap.ui.commons.Label({
@@ -801,8 +794,8 @@ function buildPaneMissionControl(oController,oLayout){
 	  // Create a TabStrip instance
     var otstrMissionControl = new sap.ui.commons.TabStrip({
     		id: 	"tstrMissionControl",
-    		width: 	"565px",
-    		height: "435px"
+    		width: 	"582px",
+    		height: "528px"
     });
     
     
@@ -1014,9 +1007,9 @@ function buildPaneFooter(oController,oLayout){
 	var omlPaneFooter = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneFooter",
 			layoutFixed: 	true,
-			width:			"1205px",
+			width:			"1204px",
 			columns: 		3,
-    		widths: 		["100px", "1005px", "100px"]  
+    		widths: 		["100px", "1004px", "100px"]  
 	});	
 		
 	var olblPaneFooter = new sap.ui.commons.Label({

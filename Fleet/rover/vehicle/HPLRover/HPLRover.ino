@@ -88,11 +88,7 @@ void fast_loop(void) {
     Serial.print("Motors output - ");
     Serial.println(stop_ms - start_ms);
   #endif
-  
-  if (hplrover_notify.notify.cockpit_heartbeat == true) {
-    hplrover_notify.output(hplrover_notify);    
-  }  
-  
+    
   hplrover_gps.read(hplrover_gps);
 }  
   
@@ -111,6 +107,7 @@ void ms50_loop(void* context) {
   hplrover_camera.output(hplrover_command, servo_pancam, servo_tiltcam);
   if (hplrover_notify.notify.cockpit_heartbeat == true) {
     hplrover_camera.output_msg();
+    hplrover_notify.output(hplrover_notify);    
   }
 }
 
