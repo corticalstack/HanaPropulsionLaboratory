@@ -11,23 +11,10 @@
 			active:				false
 	};
 	
-	var gauge = {
-			gaugeCurrent:   			{},
-			gaugeAmps:					{},
-			gaugeConsumedMah: 			{},
-			gaugeVoltage:				{},
-			gaugeBattRemaining:			{},
-			gaugeThrust:				{},
-			gaugeAmmo:					{},
-			gaugeShield:				{},
-			gaugeCoreTemp:				{},
-			gaugeFrontProximitySensor:	{},
-			gaugeRearProximitySensor:	{},
-			gaugeCamProximitySensor:	{}
-	};
+		
+	var indicators 	= [];	
+	var gauges 		= [];
 	
-	
-	var indicators = [];
 	
 	var chartNetworkTrafficInOptions = {
 			series: {
@@ -105,62 +92,16 @@
 		return state.active;
 	};
 
-	
-	myHplApp.cockpit.model.getGaugeCurrent = function() {
-		return gauge.gaugeCurrent;
-	};
-    
 
-	myHplApp.cockpit.model.getGaugeAmps = function() {
-		return gauge.gaugeAmps;
-	};
-
-	
-	myHplApp.cockpit.model.getGaugeConsumedMah = function() {
-		return gauge.gaugeConsumedMah;
-	};
-
-	
-	myHplApp.cockpit.model.getGaugeVoltage = function() {
-		return gauge.gaugeVoltage;
+	myHplApp.cockpit.model.getIndicators = function() {
+		return indicators;
 	};
 
 
-	myHplApp.cockpit.model.getGaugeBattRemaining = function() {
-		return gauge.gaugeBattRemaining;
+	myHplApp.cockpit.model.getGauges = function() {
+		return gauges;
 	};
 
-
-	myHplApp.cockpit.model.getGaugeThrust = function() {
-		return gauge.gaugeBattRemaining;
-	};
-
-
-	myHplApp.cockpit.model.getGaugeAmmo = function() {
-		return gauge.gaugeAmmo;
-	};
-
-	
-	myHplApp.cockpit.model.getGaugeShield = function() {
-		return gauge.gaugeShield;
-	};
-
-
-	myHplApp.cockpit.model.getGaugeCoreTemp = function() {
-		return gauge.gaugeCoreTemp;
-	};
-
-	myHplApp.cockpit.model.getGaugeFrontProximitySensor = function() {
-		return gauge.gaugeFrontProximitySensor;
-	};
-
-	myHplApp.cockpit.model.getGaugeRearProximitySensor = function() {
-		return gauge.gaugeRearProximitySensor;
-	};
-
-	myHplApp.cockpit.model.getGaugeCamProximitySensor = function() {
-		return gauge.gaugeCamProximitySensor;
-	};
 	
 	myHplApp.cockpit.model.getChartNetworkTrafficInOptions = function() {
 		return chartNetworkTrafficInOptions;
@@ -170,6 +111,8 @@
 		return chartNetworkTrafficOutOptions;
 	};
 	
+	
+	
 	//Set methods
 	myHplApp.cockpit.model.setStateActive = function(bool) {
 		state.active = bool;
@@ -178,22 +121,34 @@
 	
 	myHplApp.cockpit.model.setGauge = function(mygauge) {
 		var gaugeId 	= mygauge['id'];
-		gauge[gaugeId] 	= mygauge['gauge'];
+		var gauge 		= {};
+		gauge.id 		= gaugeId;
+		gauge.gauge 	= mygauge['gauge'];
+		gauge.val 		= mygauge['val'];
+		gauge.refresh 	= false;
+		gauges.push(gauge);
 	};
 
 
-	myHplApp.cockpit.model.refreshGauge = function(myGauge) {
+	
+	myHplApp.cockpit.model.setGaugeVal = function(myGauge) {
 		var gaugeId = myGauge['id'];
-		gauge[gaugeId].refresh(myGauge['val']);
+		for (var i = 0; i < gauges.length; i++) {
+		    if (gauges[i].id == gaugeId) {
+		    	gauges[i].refresh 	= true;
+				gauges[i].val 		= myGauge['val'];
+		    }
+		}
 	};
 
+	
 	
 	myHplApp.cockpit.model.setIndicator = function(myIndicator) {
 		indicators.push(myIndicator);
 	};
 
 	
-	myHplApp.cockpit.model.refreshIndicator = function(myIndicator) {
+	myHplApp.cockpit.model.setIndicatorVal = function(myIndicator) {
 		var indicatorId = myIndicator['id'];
 		for (var i = 0; i < indicators.length; i++) {
 		    if (indicators[i].id == indicatorId) {
@@ -208,12 +163,13 @@
 		indicators[i].refresh = false;
 	};
 	
-	
-	//Get methods
-	myHplApp.cockpit.model.getIndicators = function() {
-		return indicators;
+
+	myHplApp.cockpit.model.setGaugeClearRefresh = function(i) {
+		gauges[i].refresh = false;
 	};
-	
+
+	//Get methods
+
 	
 } (myHplApp = window.myHplApp || {}));	
 	

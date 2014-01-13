@@ -608,15 +608,14 @@ img.bg {
 #threatOrientationTop {
 	position: fixed;
     width: 1206px;
-    height: 120px;
+    height: 200px;
     border: 0;
 	top: 123px;
   	left: 129px;
-  	margin-top: -120px;
+  	opacity: 0;
     overflow: hidden;
 	background: -webkit-radial-gradient(50% 0%, cover, rgba(255,0,0,0.9) 0%, rgba(255,0,0,0) 50%);
 	background-color: transparent;
-	transition: 0.5s ease-in-out;
 }
 
 
@@ -668,15 +667,15 @@ img.bg {
 #threatOrientationBottom {
 	position: fixed;
     width: 1206px;
-    height: 120px;
+    height: 200px;
     border: 0;
-	top: 915px;
+	top: 835px;
   	left: 129px;
-  	margin-top: 120px;
+  	opacity: 0;
+  	margin-top: 200px;
     overflow: hidden;
 	background: -webkit-radial-gradient(50% 100%, cover, rgba(255,0,0,0.9) 0%, rgba(255,0,0,0) 50%);
 	background-color: transparent;
-	transition: 0.5s ease-in-out;
 }
 
 #threatOrientationBottomLeft {

@@ -103,7 +103,7 @@
 			vehicleModel.setStateStopOn();	
 			cockpitController.emitControl(vehicleCmdModel.getInstructionStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), vehicleCmdModel.getInstructionStop());
-			cockpitModel.refreshIndicator({id: 'lblIndStop', val: 1});
+			cockpitModel.setIndicatorVal({id: 'lblIndStop', val: 1});
 		}
 
 
@@ -156,9 +156,7 @@
 			cockpitController.emitControl(vehicleCmdModel.getInstructionToggleHeadlights());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdLights(), missioncontrolModel.getMessageIdHeadlights(), vehicleCmdModel.getInstructionToggleHeadlights());
 		}
-
 		
-		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
 		
 //		if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
 //			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
@@ -193,7 +191,7 @@
 				vehicleModel.setStateWeaponFiringPulseEnd();
 				vehicleModel.setStateWeaponRoundsFired();
 				vehicleModel.setStateActiveWeaponRemainingAmmo();
-				cockpitModel.refreshGauge({id: 'gaugeAmmo', val: myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmoPct()});
+				cockpitModel.setGaugeVal({id: 'gaugeAmmo', val: myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmoPct()});
 			}
 		}
 
@@ -208,9 +206,7 @@
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamTiltStop());			
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamTiltStop());
 		}
-		
-		
-		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
+				
 			
 	};
 
@@ -243,12 +239,12 @@
 
 			if (throttle == 0) {
 				vehicleModel.setStateStopOff();
-				cockpitModel.refreshIndicator({id: 'lblIndStop', val: 1});
+				cockpitModel.setIndicatorVal({id: 'lblIndStop', val: 1});
 			}
 
 			
 			if (throttle != 0 && vehicleModel.getStateStop() == false) {
-				cockpitModel.refreshIndicator({id: 'lblIndStop', val: 0});
+				cockpitModel.setIndicatorVal({id: 'lblIndStop', val: 0});
 			}
 						
 
@@ -258,7 +254,7 @@
 				message = message + vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle() + throttle + ':';
 			}
 			
-			cockpitModel.refreshGauge({id: 'gaugeThrust', val: throttle});
+			cockpitModel.setGaugeVal({id: 'gaugeThrust', val: throttle});
 		}
 		    
 			
@@ -304,7 +300,6 @@
 			}
 		}
  		
-		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
 		
 	};
 

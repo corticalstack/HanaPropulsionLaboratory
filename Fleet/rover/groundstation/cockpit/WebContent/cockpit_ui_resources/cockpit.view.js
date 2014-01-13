@@ -1254,7 +1254,7 @@ function buildPaneThreatOrientation(oController,oLayout) {
 	});
 	
 	var ohtmlIframeThreatOrientationTop = new sap.ui.core.HTML({  
-    	content: 	'<div id="threatOrientationTop"></div>',
+    	content: 	'<div id="threatOrientationTop" opacity="0"></div>',
     	preferDOM: 	false
 	});
 

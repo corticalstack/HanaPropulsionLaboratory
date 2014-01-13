@@ -42,7 +42,6 @@
 		groundstationModel.getConfigSocket().on('feed', function(data){
 			try {
     				sap.ui.getCore().byId("viewCockpit").getController().feed(data);
-    				sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
     			}
 			catch(err){}
 		});

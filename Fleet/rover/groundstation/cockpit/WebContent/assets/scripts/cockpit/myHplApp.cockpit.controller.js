@@ -7,8 +7,7 @@
 	var vehicleCmdModel         	= myHplApp.vehicle.cmd.model; 
 	var missioncontrolModel	 		= myHplApp.missioncontrol.model;
 	var cockpitHeartbeatTick    	= 0;
-	var networkTrafficChartsTick    = 0;
-	var signalStrengthTick   		= 0;
+	var cockpitMainRefresh	    	= 0;	
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
@@ -35,14 +34,12 @@
 		switch(bool){
 			case false:
 				myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
-				myHplApp.cockpit.controller.clearNetworkTrafficChartsTick();
-				myHplApp.cockpit.controller.clearSignalStrengthTick();
+				myHplApp.cockpit.controller.clearCockpitMainRefreshTick();
 				myHplApp.cockpit.controller.clearAmmoPctTick();
 				break;
 			case true:
 				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
-				myHplApp.cockpit.controller.setNetworkTrafficChartsTick();
-				myHplApp.cockpit.controller.setSignalStrengthTick();
+				myHplApp.cockpit.controller.setCockpitMainRefreshTick();
 				myHplApp.cockpit.controller.setAmmoPctTick();
 				break;
 		} 
@@ -60,27 +57,18 @@
 		clearInterval(cockpitHeartbeatTick);
 	};
 
-
-	myHplApp.cockpit.controller.setNetworkTrafficChartsTick = function() {
-		networkTrafficChartsTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficCharts()},25);
-	};
-
 	
-	myHplApp.cockpit.controller.clearNetworkTrafficChartsTick  = function() {
-		clearInterval(networkTrafficChartsTick);
+	myHplApp.cockpit.controller.setCockpitMainRefreshTick = function() {
+		console.log('Cockpit controller setting cockpit main refresh.....');
+		cockpitMainRefresh = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().cockpitMainRefresh()},25);
 	};
 
+
+	myHplApp.cockpit.controller.clearCockpitMainRefreshTick  = function() {
+		clearInterval(cockpitMainRefreshTick);
+	};
 	
-	myHplApp.cockpit.controller.setSignalStrengthTick = function() {
-		signalStrengthTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setSignalStrength()},300);
-	};
-
 	
-	myHplApp.cockpit.controller.clearSignalStrengthTick = function() {
-		clearInterval(signalStrengthTick);
-	};
-
-
 	myHplApp.cockpit.controller.setAmmoPctTick = function() {
 		ammoPctTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setAmmoPct()},300);
 	};
@@ -93,8 +81,9 @@
 	myHplApp.cockpit.controller.initGauges = function() {
 		console.log('Initialising cockpit controller gauges');
 		
-		var gaugeId = "gaugeCurrent";		 
-		var ogauge 	= new JustGage({
+		var gaugeId 	= "gaugeCurrent";	
+		var gaugeVal 	= 0;
+		var ogauge 		= new JustGage({
 			id: gaugeId,
 			donut: true,
 			gaugeColor: '#003078',
@@ -103,7 +92,7 @@
 			titleMinFontSize: 14,	
 			label: "CURRENT",
 			labelMinFontSize: 16,
-			value: 0,
+			value: gaugeVal,
 			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
 			min: 0,
@@ -131,11 +120,12 @@
 			counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId = "gaugeAmps";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeAmps";
+		gaugeVal 	= 0;
+		ogauge 		= new JustGage({
 			id: gaugeId,
 			donut: true,
 			gaugeColor: '#003078',
@@ -144,7 +134,7 @@
 			titleMinFontSize: 14,	
 			label: "AMPS",
 			labelMinFontSize: 16,
-			value: 0,
+			value: gaugeVal,
 			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
 			min: 0,
@@ -168,11 +158,12 @@
 			counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId = "gaugeConsumedMah";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeConsumedMah";
+		gaugeVal 	= 0;
+		ogauge 		= new JustGage({
 			id: gaugeId,
 			donut: true,
 			gaugeColor: '#003078',
@@ -181,7 +172,7 @@
 			titleMinFontSize: 14,	
 			label: "CONSUMED MAH",
 			labelMinFontSize: 16,
-			value: 0,
+			value: gaugeVal,
 			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
 			min: 0,
@@ -208,11 +199,12 @@
 			counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId = "gaugeVoltage";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeVoltage";
+		gaugeVal 	= 0;
+		ogauge 		= new JustGage({
 			id: gaugeId,
 			donut: true,
 			gaugeColor: '#003078',
@@ -221,7 +213,7 @@
 			titleMinFontSize: 14,	
 			label: "VOLTS",
 			labelMinFontSize: 16,			
-			value: 0,
+			value: gaugeVal,
 			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
 			min: 7,
@@ -246,11 +238,12 @@
 			counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 
 		
-		gaugeId = "gaugeBattRemaining";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeBattRemaining";
+		gaugeVal 	= 0;
+		ogauge 		= new JustGage({
 				id: gaugeId,
 				donut: true,
 				title: "",
@@ -259,7 +252,7 @@
 				titleMinFontSize: 14,	
 				label: "BATTERY %",
 				labelMinFontSize: 16,
-				value: 0,
+				value: gaugeVal,
 				valueMinFontSize: 14,
 				valueFontColor: "#ffffff",
 				min: 0,
@@ -286,11 +279,12 @@
 				counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId = "gaugeThrust";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeThrust";
+		gaugeVal 	= 0;
+		ogauge 		= new JustGage({
 				id: gaugeId,
 				title: "",
 				gaugeColor: '#003078',
@@ -301,7 +295,7 @@
 				minLabelMinFontSize: 11,
 				maxLabelMinFontSize: 11,
 				labelFontColor: "#000000",
-				value: 0,
+				value: gaugeVal,
 				valueMinFontSize: 16,
 				valueFontColor: "#000000",
 				min: 0,
@@ -327,11 +321,12 @@
 				counter: true
 		});
 
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId = "gaugeAmmo";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeAmmo";
+		gaugeVal 	= 100;
+		ogauge 		= new JustGage({
 			id: gaugeId,
 			title: "",
 			gaugeColor: '#003078',	
@@ -342,7 +337,7 @@
 			minLabelMinFontSize: 11,
 			maxLabelMinFontSize: 11,
 			labelFontColor: "#000000",
-			value: 100,
+			value: gaugeVal,
 			valueMinFontSize: 16,
 			valueFontColor: "#000000",
 			min: 0,
@@ -368,11 +363,12 @@
 			counter: true
 		});
 
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 
-		gaugeId = "gaugeSpeed";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeSpeed";
+		gaugeVal 	= 100;
+		ogauge 		= new JustGage({
 			id: gaugeId,
 			title: "",
 			gaugeColor: '#003078',	
@@ -383,7 +379,7 @@
 			minLabelMinFontSize: 11,
 			maxLabelMinFontSize: 11,
 			labelFontColor: "#000000",
-			value: 0,
+			value: gaugeVal,
 			valueMinFontSize: 16,
 			valueFontColor: "#000000",
 			min: 0,
@@ -409,11 +405,12 @@
 			counter: true
 		});
 
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 
 		
-		gaugeId = "gaugeShield";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeShield";
+		gaugeVal 	= 0;
+		ogauge 		= new JustGage({
 				id: gaugeId,
 				title: "",	
 				gaugeColor: '#003078',	
@@ -424,7 +421,7 @@
 				minLabelMinFontSize: 11,
 				maxLabelMinFontSize: 11,
 				labelFontColor: "#000000",
-				value: 0,
+				value: gaugeVal,
 				valueMinFontSize: 16,
 				valueFontColor: "#000000",
 				min: 0,
@@ -451,12 +448,13 @@
 				counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
 		
-		gaugeId = "gaugeCoreTemp";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeCoreTemp";
+		gaugeVal 	= 0;
+		ogauge 		= new JustGage({
 				id: gaugeId,
 				gaugeColor: '#003078',
 				title: "",	
@@ -464,7 +462,7 @@
 				titleMinFontSize: 14,	
 				label: "CORE TEMP",
 				labelMinFontSize: 16,
-				value: 0,
+				value: gaugeVal,
 				valueMinFontSize: 22,
 				valueFontColor: "#ffffff",
 				min: 15,
@@ -491,11 +489,12 @@
 				counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 
 		
-		gaugeId = "gaugeFrontProximitySensor";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeFrontProximitySensor";
+		gaugeVal 	= 30;
+		ogauge 		= new JustGage({
 				id: gaugeId,
 				title: "",	
 				gaugeColor: '#003078',			
@@ -506,7 +505,7 @@
 				minLabelMinFontSize: 11,
 				maxLabelMinFontSize: 11,
 				labelFontColor: "#000000",
-				value: 0,
+				value: gaugeVal,
 				valueMinFontSize: 16,
 				valueFontColor: "#000000",
 				min: 4,
@@ -533,11 +532,12 @@
 				counter: true
 		});
 		
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId = "gaugeRearProximitySensor";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeRearProximitySensor";
+		gaugeVal 	= 30;
+		ogauge 		= new JustGage({
 				id: gaugeId,
 				title: "",	
 				gaugeColor: '#003078',	
@@ -548,7 +548,7 @@
 				minLabelMinFontSize: 11,
 				maxLabelMinFontSize: 11,
 				labelFontColor: "#000000",
-				value: 0,
+				value: gaugeVal,
 				valueMinFontSize: 16,
 				valueFontColor: "#000000",
 				min: 4,
@@ -571,11 +571,12 @@
 				counter: true
 		});
 
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId = "gaugeCamProximitySensor";
-		ogauge 	= new JustGage({
+		gaugeId 	= "gaugeCamProximitySensor";
+		gaugeVal 	= 150;
+		ogauge 		= new JustGage({
 				id: gaugeId,
 				title: "",	
 				gaugeColor: '#003078',	
@@ -586,7 +587,7 @@
 				minLabelMinFontSize: 11,
 				maxLabelMinFontSize: 11,
 				labelFontColor: "#000000",
-				value: 0,
+				value: gaugeVal,
 				valueMinFontSize: 16,
 				valueFontColor: "#000000",
 				min: 20,
@@ -609,7 +610,7 @@
 				counter: true
 		});
 
-		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 
 	};
 	

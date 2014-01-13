@@ -77,11 +77,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			switch(notify_msg_fields[0].substr(1,1)) {
 				case 'T':
 					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdThrustFailsafe(), message);
-					cockpitModel.refreshIndicator({id: 'lblIndThrustFailsafe', val: 1});
+					cockpitModel.setIndicatorVal({id: 'lblIndThrustFailsafe', val: 1});
 					break;
 				case 'P':
 					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdPowerFailsafe(), message);
-					cockpitModel.refreshIndicator({id: 'lblIndPowerFailsafe', val: 1});
+					cockpitModel.setIndicatorVal({id: 'lblIndPowerFailsafe', val: 1});
 					break;
 				case 'C':
 					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCommsTick(), message);					
@@ -100,11 +100,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdPower(), missioncontrolModel.getMessageIdBattery(), message );
 			
-			cockpitModel.refreshGauge({id: 'gaugeVoltage', val: inertialsensor_msg_fields[0].substr(1)});
-			cockpitModel.refreshGauge({id: 'gaugeCurrent', val: inertialsensor_msg_fields[1]});
-			cockpitModel.refreshGauge({id: 'gaugeAmps', val: inertialsensor_msg_fields[2]});
-			cockpitModel.refreshGauge({id: 'gaugeConsumedMah', val: inertialsensor_msg_fields[3]});
-			cockpitModel.refreshGauge({id: 'gaugeBattRemaining', val: inertialsensor_msg_fields[4]});
+			cockpitModel.setGaugeVal({id: 'gaugeVoltage', val: inertialsensor_msg_fields[0].substr(1)});
+			cockpitModel.setGaugeVal({id: 'gaugeCurrent', val: inertialsensor_msg_fields[1]});
+			cockpitModel.setGaugeVal({id: 'gaugeAmps', val: inertialsensor_msg_fields[2]});
+			cockpitModel.setGaugeVal({id: 'gaugeConsumedMah', val: inertialsensor_msg_fields[3]});
+			cockpitModel.setGaugeVal({id: 'gaugeBattRemaining', val: inertialsensor_msg_fields[4]});
 			
 			if (inertialsensor_msg_fields[0].substr(1) > 7.5) {
 				$('#mlPaneLowBattery').css('opacity', '0');
@@ -132,9 +132,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			var distance_msg_fields = data.split(',');
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdDistance(), message );
-			cockpitModel.refreshGauge({id: 'gaugeRearProximitySensor', val: distance_msg_fields[0].substr(1)});
-			cockpitModel.refreshGauge({id: 'gaugeFrontProximitySensor', val: distance_msg_fields[1]});
-			cockpitModel.refreshGauge({id: 'gaugeCamProximitySensor', val: distance_msg_fields[2]});
+			cockpitModel.setGaugeVal({id: 'gaugeRearProximitySensor', val: distance_msg_fields[0].substr(1)});
+			cockpitModel.setGaugeVal({id: 'gaugeFrontProximitySensor', val: distance_msg_fields[1]});
+			cockpitModel.setGaugeVal({id: 'gaugeCamProximitySensor', val: distance_msg_fields[2]});
 		};
 
 
@@ -170,7 +170,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			accely = accely * -10;
 			accelz = accelz * -10;
 			$('#gyroBox')[0].style.webkitTransform = "rotateX("+accelx+"deg) rotateZ("+accely+"deg) translateZ( 74px )";// 
-			cockpitModel.refreshGauge({id: 'gaugeCoreTemp', val: coreTemp});
+			cockpitModel.setGaugeVal({id: 'gaugeCoreTemp', val: coreTemp});
 		};
 
 		
@@ -181,11 +181,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdThrust(), message );	
 			sap.ui.getCore().byId("lblValLeftEngineThrust").setText(motors_thrust_msg_fields[0].substr(1) - 90);
 			sap.ui.getCore().byId("lblValRightEngineThrust").setText(motors_thrust_msg_fields[1] - 90);
-			cockpitModel.refreshIndicator({id: 'lblStatusLeftEngineThrust', val: motors_thrust_msg_fields[0].substr(1) - 90});
-			cockpitModel.refreshIndicator({id: 'lblStatusRightEngineThrust', val: motors_thrust_msg_fields[1] - 90});
+			cockpitModel.setIndicatorVal({id: 'lblStatusLeftEngineThrust', val: motors_thrust_msg_fields[0].substr(1) - 90});
+			cockpitModel.setIndicatorVal({id: 'lblStatusRightEngineThrust', val: motors_thrust_msg_fields[1] - 90});
 			if (motors_thrust_msg_fields[0].substr(1) != 90 && motors_thrust_msg_fields[1] != 90) {
-				cockpitModel.refreshIndicator({id: 'lblIndThrustFailsafe', val: 0});
-				cockpitModel.refreshIndicator({id: 'lblIndPowerFailsafe', val: 0});
+				cockpitModel.setIndicatorVal({id: 'lblIndThrustFailsafe', val: 0});
+				cockpitModel.setIndicatorVal({id: 'lblIndPowerFailsafe', val: 0});
 			}
 		};
 		
@@ -206,8 +206,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			}
 			
 			sap.ui.getCore().byId("lblValSatellites").setText(gps_msg_nav_sol_fields[1]);
-			cockpitModel.refreshIndicator({id: 'lblStatusFixType', val: gps_msg_nav_sol_fields[0].substr(1)});
-			cockpitModel.refreshIndicator({id: 'lblStatusSatellites', val: gps_msg_nav_sol_fields[1]});
+			cockpitModel.setIndicatorVal({id: 'lblStatusFixType', val: gps_msg_nav_sol_fields[0].substr(1)});
+			cockpitModel.setIndicatorVal({id: 'lblStatusSatellites', val: gps_msg_nav_sol_fields[1]});
 			missioncontrolController.checkSetHomeLatLng();
 		};
 		
@@ -237,9 +237,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("lblValAltitude").setText(altitude);
 			missioncontrolModel.setCurrentLattitude(lattitude);
 			missioncontrolModel.setCurrentLongitude(longitude);
-			cockpitModel.refreshIndicator({id: 'lblStatusLattitude', val: lattitude});
-			cockpitModel.refreshIndicator({id: 'lblStatusLongitude', val: longitude});
-			cockpitModel.refreshIndicator({id: 'lblStatusAltitude', val: altitude});
+			cockpitModel.setIndicatorVal({id: 'lblStatusLattitude', val: lattitude});
+			cockpitModel.setIndicatorVal({id: 'lblStatusLongitude', val: longitude});
+			cockpitModel.setIndicatorVal({id: 'lblStatusAltitude', val: altitude});
 			sap.ui.getCore().byId("viewCockpit").getController().refreshWaypoint();			
 		};
 
@@ -255,9 +255,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			heading     = heading.toFixed(0);
 			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[0].substr(1));	
 			sap.ui.getCore().byId("lblValHeading").setText(heading + '°');
-			cockpitModel.refreshIndicator({id: 'lblStatusSpeedCms', val: gps_msg_nav_velned_fields[0].substr(1)});
-			cockpitModel.refreshIndicator({id: 'lblStatusHeading', val: heading});
-			cockpitModel.refreshGauge({id: 'gaugeSpeed', val: gps_msg_nav_velned_fields[0].substr(1)});
+			cockpitModel.setIndicatorVal({id: 'lblStatusSpeedCms', val: gps_msg_nav_velned_fields[0].substr(1)});
+			cockpitModel.setIndicatorVal({id: 'lblStatusHeading', val: heading});
+			cockpitModel.setGaugeVal({id: 'gaugeSpeed', val: gps_msg_nav_velned_fields[0].substr(1)});
 		};
 				
 	},
@@ -295,7 +295,17 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	},
 	
-	
+
+	cockpitMainRefresh: function() {
+		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficCharts();
+		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators(); 
+		sap.ui.getCore().byId("viewCockpit").getController().refreshGauges();
+		sap.ui.getCore().byId("viewCockpit").getController().setSignalStrength();
+		sap.ui.getCore().byId("viewCockpit").getController().setThreatOrientation();
+		
+	},
+		
+
 	refreshIndicators: function() {
 		var myIndicators = myHplApp.cockpit.model.getIndicators();
 
@@ -324,6 +334,18 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 
+	
+	refreshGauges: function() {
+		var myGauges = myHplApp.cockpit.model.getGauges();
+		for (var i = 0; i < myGauges.length; i++) {
+		    if (myGauges[i].refresh == true) {
+	    		myHplApp.cockpit.model.setGaugeClearRefresh(i);
+	    		myGauges[i].gauge.refresh(myGauges[i].val);
+		    }
+	    }		
+	},
+
+	
 	setTextDirectionForward: function(){
 		sap.ui.getCore().byId("lblIndDriveDirection").setText(myHplApp.controller.getTextFromBundle("forward"));
 	},
@@ -346,7 +368,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 						myHplApp.missioncontrol.model.getCurrentLongitude(),
 						myHplApp.missioncontrol.model.getHomeLattitude(),
 						myHplApp.missioncontrol.model.getHomeLongitude());
-		cockpitModel.refreshIndicator({id: 'lblStatusBearingWp', val: bearing});
+		cockpitModel.setIndicatorVal({id: 'lblStatusBearingWp', val: bearing});
 		sap.ui.getCore().byId("lblWaypointVal").setText(bearing + '°');
 		sap.ui.getCore().byId("lblValBearingWp").setText(bearing + '°');
 		
@@ -356,7 +378,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				  		myHplApp.missioncontrol.model.getCurrentLongitude(),
 				  		myHplApp.missioncontrol.model.getHomeLattitude(),
 				  		myHplApp.missioncontrol.model.getHomeLongitude());
-		cockpitModel.refreshIndicator({id: 'lblStatusDistanceWp', val: distance});
+		cockpitModel.setIndicatorVal({id: 'lblStatusDistanceWp', val: distance});
 		
 		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
 		sap.ui.getCore().byId("lblValDistanceWp").setText(distance + 'm');
@@ -376,8 +398,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		}
 	},
 
-
-		
+	
 	setNetworkTrafficTotals: function() {
 		sap.ui.getCore().byId("lblValTotalTrafficIn").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficIn());
 		sap.ui.getCore().byId("lblValTotalTrafficOut").setText(myHplApp.missioncontrol.model.getTotalNetworkTrafficOut());	
@@ -387,8 +408,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	setNetworkTrafficCharts: function() {		
 		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficTotals();
 		
-		var datasetIn = [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficIn(), color: "#2565B0" }];
-		var datasetOut = [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficOut(), color: "#2565B0" }];
+		var datasetIn 	= [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficIn(), color: "#2565B0" }];
+		var datasetOut 	= [{ data: myHplApp.missioncontrol.model.getDataNetworkTrafficOut(), color: "#2565B0" }];
 		
 		myHplApp.missioncontrol.model.setDataNetworkTrafficIn(myHplApp.missioncontrol.model.getNetworkPacketIn());
 		myHplApp.missioncontrol.model.setDataNetworkTrafficOut(myHplApp.missioncontrol.model.getNetworkPacketOut());
@@ -435,6 +456,25 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			myHplApp.vehicle.model.setStateWeaponFiringPulseStart();
 		}
 	},
+	
+	
+	setThreatOrientation: function() {
+		var myGauges = myHplApp.cockpit.model.getGauges();
+		var margin;
+		for (var i = 0; i < myGauges.length; i++) {
+
+		    if (myGauges[i].id == 'gaugeFrontProximitySensor') {
+		    	margin = parseInt(myGauges[i].val * 4) + 15;
+		    	$('#threatOrientationTop').css({"margin-top":(margin * -1  ), "opacity": 1});  
+		    } 
+		    		
+		    if (myGauges[i].id == 'gaugeRearProximitySensor') {
+		    	margin = parseInt(myGauges[i].val * 4) + 15;
+		    	$('#threatOrientationBottom').css({"margin-top":margin, "opacity": 1});
+		    }
+	    }		
+	},
+	
 	
 	drawCrosshair: function() {
 		var canvas 	= document.getElementById('canvasCrosshair');
