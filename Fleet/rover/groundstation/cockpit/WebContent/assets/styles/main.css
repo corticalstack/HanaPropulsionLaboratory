@@ -348,7 +348,7 @@ img.bg {
   	width:	125px;
   	height:	531px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
 	border-left: 2px solid rgb(6, 15, 40);
 	border-bottom: 2px solid rgb(6, 15, 40);
@@ -363,7 +363,7 @@ img.bg {
   	width:	125px;
   	height:	368px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
 	border-left: 2px solid rgb(6, 15, 40);
 	border-right: 2px solid rgb(6, 15, 40);
@@ -375,10 +375,10 @@ img.bg {
 	position: fixed;
 	top: 	0px;
   	left:	129px;
-  	width:	1207px;
+  	width:	1206px;
   	height:	121px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
 	border-left: 2px solid rgb(6, 15, 40);
 	border-bottom: 2px solid rgb(6, 15, 40);
@@ -460,7 +460,7 @@ img.bg {
   	width:	125px;
   	height:	244px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
 	border-right: 2px solid rgb(6, 15, 40);
 	border-bottom: 2px solid rgb(6, 15, 40);
@@ -470,12 +470,12 @@ img.bg {
 #mlPaneNavigation {
 	position: fixed;
 	top: 	0px;
-  	left: 	1338px;
+  	left: 	1339px;
   	width: 	582px;
   	height:	568px;
   	vertical-align: top;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
 	border-style: solid;
 	border-color: rgb(6, 15, 40);
@@ -494,10 +494,11 @@ img.bg {
 #mlPaneMissionControl {
 	position: fixed;
 	top: 572px;
-  	left: 1338px;
+  	left: 1339px;
   	width: 582px;
   	height:	568px;
 	background-color: transparent;	
+	background-image:  -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(6, 15, 40, 1) 50%);
 	border-width: 2px;
 	border-style: solid;
 	border-color: rgb(6, 15, 40);
@@ -584,10 +585,10 @@ img.bg {
 	position: fixed;
 	top: 	1031px;
   	left:	129px;
-  	width:	1204px;
+  	width:	1205px;
   	height:	107px;
 	background-color: transparent;	
-	background-image:  -webkit-linear-gradient(top, rgba(6, 15, 40, 0) 0%, rgba(6, 15, 40, 1) 50%);
+	background-image:  -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(6, 15, 40, 1) 50%);
 	border-top: 2px solid rgb(6, 15, 40);
 	border-left: 2px solid rgb(6, 15, 40);
 	border-right: 2px solid rgb(6, 15, 40);
@@ -601,6 +602,125 @@ img.bg {
   	left: 129px;
   	width:	1206px;
   	height:	912px;
+}
+
+
+#threatOrientationTop {
+	position: fixed;
+    width: 1206px;
+    height: 120px;
+    border: 0;
+	top: 123px;
+  	left: 129px;
+  	margin-top: -120px;
+    overflow: hidden;
+	background: -webkit-radial-gradient(50% 0%, cover, rgba(255,0,0,0.9) 0%, rgba(255,0,0,0) 50%);
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
+}
+
+
+#threatOrientationTopRight {
+	position: fixed;
+    width: 120px;
+    height: 120px;
+    border: 0;
+	top: 123px;
+  	left: 1215px;
+  	margin-top: -120px;
+  	margin-left: 120px;
+    overflow: hidden;
+	background: -webkit-radial-gradient(100% 0%, farthest-side, rgba(255,0,0,0.9), rgba(255,0,0,0));
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
+}
+
+
+#threatOrientationRight {
+	position: fixed;
+    width: 120px;
+    height: 912px;
+    border: 0;
+	top: 123px;
+  	left: 1215px;
+  	margin-left: 120px;
+    overflow: hidden;
+	background: -webkit-radial-gradient(100% 50%, cover, rgba(255,0,0,0.9) 0%, rgba(255,0,0,0) 50%);
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
+}
+
+#threatOrientationBottomRight {
+	position: fixed;
+    width: 120px;
+    height: 120px;
+    border: 0;
+	top: 915px;
+  	left: 1215px;
+  	margin-top: 120px;
+  	margin-left: 120px;  	
+    overflow: hidden;
+	background: -webkit-radial-gradient(100% 100%, farthest-side, rgba(255,0,0,0.9), rgba(255,0,0,0));
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
+}
+
+#threatOrientationBottom {
+	position: fixed;
+    width: 1206px;
+    height: 120px;
+    border: 0;
+	top: 915px;
+  	left: 129px;
+  	margin-top: 120px;
+    overflow: hidden;
+	background: -webkit-radial-gradient(50% 100%, cover, rgba(255,0,0,0.9) 0%, rgba(255,0,0,0) 50%);
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
+}
+
+#threatOrientationBottomLeft {
+	position: fixed;
+    width: 120px;
+    height: 120px;
+    border: 0;
+	top: 915px;
+  	left: 129px;
+  	margin-top: 120px;
+  	margin-left: -120px;
+    overflow: hidden;
+	background: -webkit-radial-gradient(0% 100%, farthest-side, rgba(255,0,0,0.9), rgba(255,0,0,0));
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
+}
+
+#threatOrientationLeft {
+	position: fixed;
+    width: 120px;
+    height: 912px;
+    border: 0;
+	top: 123px;
+  	left: 129px;
+  	margin-left: -120px;
+	overflow: hidden;
+	background: -webkit-radial-gradient(0% 50%, cover, rgba(255,0,0,0.9) 0%, rgba(255,0,0,0) 50%);
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
+}
+
+#threatOrientationTopLeft {
+	position: fixed;
+    width: 120px;
+    height: 120px;
+    border: 0;
+	top: 121px;
+  	left: 125px;
+  	margin-top: -120px;
+  	margin-left: -120px; 	
+	overflow: hidden;
+	background: -webkit-radial-gradient(0% 0%, farthest-side, rgba(255,0,0,0.9), rgba(255,0,0,0));
+	background-color: transparent;
+	transition: 0.5s ease-in-out;
 }
 
 
@@ -951,6 +1071,80 @@ img.bg {
 	top: 215px;
   	left:876px;
 }
+
+
+#divider1 {
+	position: fixed;
+	top: 	244px;
+  	left:	0px;
+  	width:	125px;
+  	height: 4px;
+    overflow: hidden;
+	background-color: black;
+}
+
+
+#divider2 {
+	position: fixed;
+	top: 	616px;
+  	left:	0px;
+  	width:	125px;
+  	height: 4px;
+    overflow: hidden;
+	background-color: black;
+}
+
+#divider3 {
+	position: fixed;
+	top: 	0px;
+  	left:	125px;
+  	width:	4px;
+  	height: 121px;
+    overflow: hidden;
+	background-color: black;
+}
+
+#divider4 {
+	position: fixed;
+	top: 	1031px;
+  	left:	125px;
+  	width:	4px;
+  	height: 107px;
+    overflow: hidden;
+	background-color: black;
+}
+
+#divider5 {
+	position: fixed;
+	top: 	0px;
+  	left:	1335px;
+  	width:	4px;
+  	height: 121px;
+    overflow: hidden;
+	background-color: black;
+}
+
+#divider6 {
+	position: fixed;
+	top: 	1031px;
+  	left:	1335px;
+  	width:	4px;
+  	height: 107px;
+    overflow: hidden;
+	background-color: black;
+}
+
+#divider7 {
+	position: fixed;
+	top: 568px;
+  	left: 1339px;
+  	width: 582px;
+  	height: 4px;
+    overflow: hidden;
+	background-color: black;
+}
+
+
 
 #lblCompass {
 	position: fixed;

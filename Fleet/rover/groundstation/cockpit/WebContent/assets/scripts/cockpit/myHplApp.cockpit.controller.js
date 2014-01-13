@@ -247,7 +247,7 @@
 		});
 		
 		cockpitModel.setGauge({id: gaugeId, gauge: ogauge});
-		
+
 		
 		gaugeId = "gaugeBattRemaining";
 		ogauge 	= new JustGage({

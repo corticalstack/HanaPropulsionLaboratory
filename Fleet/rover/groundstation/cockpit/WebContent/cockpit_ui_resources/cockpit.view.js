@@ -13,19 +13,12 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 
     	 buildPanePilotCam(oController,oLayout);
     	 
-    	 buildPaneDrive(oController,oLayout);
-    	 
-    	 buildPaneEarthTime(oController,oLayout);    	 
-        	 
-    	 buildPanePower(oController,oLayout);
-    	 buildPanePrimarySystems(oController,oLayout);    	 
-    	 buildPaneNavigation(oController,oLayout);
-    	 buildPaneMissionControl(oController,oLayout);
-    	 
     	 buildPaneBearingIndicators(oController,oLayout);
     	 buildPaneWaypoint(oController,oLayout);
-    	 buildPaneGyro(oController,oLayout);
-      	 
+    	 
+    	 
+    	 buildPaneCrosshair(oController,oLayout);
+    	 buildPaneLowBattery(oController,oLayout);
     	 buildPaneProximitySensorFront(oController,oLayout);
       	 buildPaneProximitySensorRear(oController,oLayout);
       	 buildPaneProximitySensorCam(oController,oLayout);
@@ -33,17 +26,26 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
       	 buildPaneThrust(oController,oLayout);
       	 buildPaneSpeed(oController,oLayout);      	 
     	 buildPaneShield(oController,oLayout);      	 
-    	 buildPaneVoltage(oController,oLayout);
+    	 buildPaneThreatOrientation(oController,oLayout);
     	 
-    	 buildPaneCrosshair(oController,oLayout);
-    	 buildPaneLowBattery(oController,oLayout);
     	 
-      	 buildPaneFooter(oController,oLayout);
+    	 buildPaneDrive(oController,oLayout);
+    	 buildPaneGyro(oController,oLayout);
+    	 buildPaneEarthTime(oController,oLayout);    	         	
+    	 buildPanePower(oController,oLayout);
+    	 buildPanePrimarySystems(oController,oLayout);    	 
+    	 buildPaneNavigation(oController,oLayout);
+    	 buildPaneMissionControl(oController,oLayout);
+    	 
+
+    	 buildPaneFooter(oController,oLayout);
     	 buildPaneChartNetworkTrafficOut(oController,oLayout);
     	 buildPaneTotalNetworkTrafficOut(oController,oLayout);
     	 buildPaneChartNetworkTrafficIn(oController,oLayout);
     	 buildPaneTotalNetworkTrafficIn(oController,oLayout);
-
+    	 
+    	 buildPaneDividers(oController,oLayout);
+    	 
     	 return oLayout;
       }
 
@@ -290,7 +292,7 @@ function buildPaneEarthTime(oController,oLayout){
 	
 	var omlPaneEarthTime = new sap.ui.commons.layout.MatrixLayout({
 			id: 	"mlPaneEarthTime",
-			width: 	"1207px"
+			width: 	"1206px"
 	});
 	 
 	
@@ -308,12 +310,12 @@ function buildPaneEarthTime(oController,oLayout){
 	
 	
 	var ohtmlIframeEarthTime = new sap.ui.core.HTML({  
-	    	content: '<iframe id="iframeEarthTime" width="1207px" height="84px" frameBorder="0">Earth Time Offline!!!</iframe>',
+	    	content: '<iframe id="iframeEarthTime" width="1206px" height="84px" frameBorder="0">Earth Time Offline!!!</iframe>',
 	    	preferDOM : true,   
 	    	afterRendering: function() {  
 	    		newSrc = 'earthtime.html';
 	    		$("#iframeEarthTime").load(function() {  
-	    			$("#iframeEarthTime").attr("width","1207px").attr("height","84px");  
+	    			$("#iframeEarthTime").attr("width","1206px").attr("height","84px");  
 	    		}).attr("src",newSrc);  
 	    	}
 	});
@@ -497,7 +499,7 @@ function buildPanePower(oController,oLayout){
 	omlPanePower.createRow(ohtmlGaugeConsumedMah);
 	omlPanePower.createRow(ohtmlGaugeAmps);
 	omlPanePower.createRow(ohtmlGaugeCurrent);
-
+	
 	oLayout.createRow(omlPanePower);   
 
 }
@@ -795,7 +797,7 @@ function buildPaneMissionControl(oController,oLayout){
     var otstrMissionControl = new sap.ui.commons.TabStrip({
     		id: 	"tstrMissionControl",
     		width: 	"582px",
-    		height: "528px"
+    		height: "530px"
     });
     
     
@@ -883,26 +885,6 @@ function buildPaneSpeed(oController,oLayout){
 
 	omlPaneSpeed.createRow(ohtmlGaugeSpeed);
  	oLayout.createRow(omlPaneSpeed);   
-
-}
-
-
-function buildPaneVoltage(oController,oLayout){
-	var omlPaneVoltage = new sap.ui.commons.layout.MatrixLayout({
-			id:				"mlPaneVoltage",
-			layoutFixed: 	true,
-			width: 			"65px",		
-		
-	});	
-
-
-	var ohtmlGaugeVoltage = new sap.ui.core.HTML({  
-			content: "<div id='gaugeVoltage'></div>"
-	});
-
-
-	omlPaneVoltage.createRow(ohtmlGaugeVoltage);
- 	oLayout.createRow(omlPaneVoltage);   
 
 }
 
@@ -1007,9 +989,9 @@ function buildPaneFooter(oController,oLayout){
 	var omlPaneFooter = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneFooter",
 			layoutFixed: 	true,
-			width:			"1204px",
+			width:			"1205px",
 			columns: 		3,
-    		widths: 		["100px", "1004px", "100px"]  
+    		widths: 		["100px", "1005px", "100px"]  
 	});	
 		
 	var olblPaneFooter = new sap.ui.commons.Label({
@@ -1263,3 +1245,113 @@ function buildPaneLowBattery(oController,oLayout){
 	oLayout.createRow(omlPaneLowBattery);
 }
 
+
+function buildPaneThreatOrientation(oController,oLayout) {
+	var omlPaneThreatOrientation = new sap.ui.commons.layout.MatrixLayout({
+		id: 			"mlPaneThreatOrientation",
+		layoutFixed: 	true,
+		width:			"1260px"
+	});
+	
+	var ohtmlIframeThreatOrientationTop = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationTop"></div>',
+    	preferDOM: 	false
+	});
+
+	var ohtmlIframeThreatOrientationTopRight = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationTopRight"></div>',
+    	preferDOM: 	false
+	});
+
+	var ohtmlIframeThreatOrientationRight = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationRight"></div>',
+    	preferDOM: 	false
+	});
+
+	var ohtmlIframeThreatOrientationBottomRight = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationBottomRight"></div>',
+    	preferDOM: 	false
+	});
+
+	var ohtmlIframeThreatOrientationBottom = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationBottom"></div>',
+    	preferDOM: 	false
+	});
+
+	var ohtmlIframeThreatOrientationBottomLeft = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationBottomLeft"></div>',
+    	preferDOM: 	false
+	});
+
+	var ohtmlIframeThreatOrientationLeft = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationLeft"></div>',
+    	preferDOM: 	false
+	});
+
+	var ohtmlIframeThreatOrientationTopLeft = new sap.ui.core.HTML({  
+    	content: 	'<div id="threatOrientationTopLeft"></div>',
+    	preferDOM: 	false
+	});
+	
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationTop);
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationTopRight);
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationRight);
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationBottomRight);
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationBottom);
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationBottomLeft);
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationLeft);
+	omlPaneThreatOrientation.createRow(ohtmlIframeThreatOrientationTopLeft);
+	
+	oLayout.createRow(omlPaneThreatOrientation);
+	
+}
+	
+
+function buildPaneDividers(oController,oLayout){
+	var omlPaneDividers = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneDividers",
+			layoutFixed: 	true,
+			width:			"1px",
+	});	
+		
+
+	var ohtmlDivider1 = new sap.ui.core.HTML({  
+      	content: "<div id='divider1'></div>"
+	});
+	
+
+	var ohtmlDivider2 = new sap.ui.core.HTML({  
+      	content: "<div id='divider2'></div>"
+	});
+		
+	var ohtmlDivider3 = new sap.ui.core.HTML({  
+      	content: "<div id='divider3'></div>"
+	});
+
+	var ohtmlDivider4 = new sap.ui.core.HTML({  
+      	content: "<div id='divider4'></div>"
+	});
+
+	var ohtmlDivider5 = new sap.ui.core.HTML({  
+      	content: "<div id='divider5'></div>"
+	});
+
+	var ohtmlDivider6 = new sap.ui.core.HTML({  
+      	content: "<div id='divider6'></div>"
+	});
+
+	var ohtmlDivider7 = new sap.ui.core.HTML({  
+      	content: "<div id='divider7'></div>"
+	});
+
+	omlPaneDividers.createRow(ohtmlDivider1);
+	omlPaneDividers.createRow(ohtmlDivider2);
+	omlPaneDividers.createRow(ohtmlDivider3);
+	omlPaneDividers.createRow(ohtmlDivider4);
+	omlPaneDividers.createRow(ohtmlDivider5);
+	omlPaneDividers.createRow(ohtmlDivider6);
+	omlPaneDividers.createRow(ohtmlDivider7);
+	
+	oLayout.createRow(omlPaneDividers);
+	
+}
