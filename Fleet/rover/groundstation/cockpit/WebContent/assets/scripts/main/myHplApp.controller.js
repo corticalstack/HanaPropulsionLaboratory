@@ -10,6 +10,11 @@
 		console.log('Initialising app controller');	
 		model.setConfigSlocale();		
 		model.setConfigOtextBundle();
+		model.setAssetLoaderInit();
+		
+		//Load all sound effects and music
+		model.setLoadMusic();
+		model.setLoadSoundEffects();
 
 	};
 	
@@ -56,7 +61,7 @@
 				break;
 		}
 	};	
-
+	
 	
 	myHplApp.controller.toRad = function(val) {
 		return val * 0.0174532925199433;  // (PI / 180)

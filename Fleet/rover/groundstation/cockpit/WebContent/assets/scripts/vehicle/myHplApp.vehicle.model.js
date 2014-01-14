@@ -29,6 +29,7 @@
 			loadout:[{
 				     	name: 			'Cannon',
 				        imgSrc: 		'assets/images/weapons/Bulletproof.png',
+				        soundEffect:    'mp40',
 				        rps:			3,
 				        maxAmmo:		300,
 				        remainingAmmo: 	300
@@ -36,6 +37,7 @@
 					 {
 				    	name: 			'Missile',
 						imgSrc: 		'assets/images/weapons/Missile.png',
+				        soundEffect:    'missile',
 						rps:			5,
 						maxAmmo:		20,
 						remainingAmmo: 	20
@@ -116,7 +118,13 @@
     	return parseInt(remainingAmmoPct, 10);
     };
     
+
+    myHplApp.vehicle.model.getStateActiveWeaponSoundEffect = function() { 
+    	var activeWeapon = weapons.loadout[state.activeWeaponSelected];
+    	return activeWeapon.soundEffect;
+    };
     
+
     //Set functions
     myHplApp.vehicle.model.setStateStopOn = function() { 
         state.stop = true;

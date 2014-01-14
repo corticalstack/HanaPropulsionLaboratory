@@ -449,6 +449,12 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 	setAmmoPct: function() {
 		if (myHplApp.vehicle.model.getStateActiveWeapon() == true) {
+			console.log('Cockpit controller....setAmmotPct');
+			console.log(myHplApp.vehicle.model.getStateActiveWeaponSoundEffect());
+			var sound = myHplApp.model.getSoundEffectByName(myHplApp.vehicle.model.getStateActiveWeaponSoundEffect());
+			console.log(sound);
+			sound.play();
+
 			myHplApp.vehicle.model.setStateWeaponFiringPulseEnd();
 			myHplApp.vehicle.model.setStateWeaponRoundsFired();
 			myHplApp.vehicle.model.setStateActiveWeaponRemainingAmmo();
