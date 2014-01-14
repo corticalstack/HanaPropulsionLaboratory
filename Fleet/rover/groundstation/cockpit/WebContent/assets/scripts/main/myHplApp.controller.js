@@ -63,6 +63,21 @@
 	};	
 	
 	
+	myHplApp.controller.playSoundEffect = function(effect) {
+		var sound = myHplApp.model.getSoundEffectByName(effect);
+		sound.currentTime = 0;
+		sound.play();
+	};
+	
+
+	
+	myHplApp.controller.stopSoundEffect = function(effect) {
+		var sound = myHplApp.model.getSoundEffectByName(effect);
+		sound.pause();
+		sound.currentTime = 0;
+	};
+
+	
 	myHplApp.controller.toRad = function(val) {
 		return val * 0.0174532925199433;  // (PI / 180)
 	};

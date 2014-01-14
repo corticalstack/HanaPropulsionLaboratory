@@ -23,24 +23,10 @@
 		    loaded:				true,
 		    loadedCount:		0, // Assets that have been loaded so far
 		    totalCount:			0, // Total number of assets that need to be loaded
+		    soundFileExtn:		".mp3",
 		    
 		    init:function(){
 		    	console.log('App model....Initialising asset loader');
-		        // check for sound support
-		        var mp3Support,oggSupport;
-		        var audio = document.createElement('audio');
-		    	if (audio.canPlayType) {
-		       		// Currently canPlayType() returns: "", "maybe" or "probably" 
-		      		mp3Support = "" != audio.canPlayType('audio/mpeg');
-		      		oggSupport = "" != audio.canPlayType('audio/ogg; codecs="vorbis"');
-		    	} else {
-		    		//The audio tag is not supported
-		    		mp3Support = false;
-		    		oggSupport = false;	
-		    	}
-
-		        // Check for mp3, then ogg, and finally set soundFileExtn to undefined
-		        loader.soundFileExtn = mp3Support?".mp3":oggSupport?".ogg":undefined;        
 		    },
 		    
 		    loadImage:	function(url) {
@@ -52,26 +38,25 @@
 		        return image;
 		    },
 		    
-		    soundFileExtn:		".mp3",
-		    
 		    loadSound:function(url) {
+		    	console.log('Asset loading sound');
 		        this.totalCount++;
 		        this.loaded = false;
 		        var audio 	= new Audio();
-		        audio.src 	= url+loader.soundFileExtn;
-				audio.addEventListener("canplaythrough", loader.itemLoaded, false);
+		        audio.src 	= url;
+				audio.addEventListener("canplaythrough", assetLoader.itemLoaded, false);
 		        return audio;   
 		    },
 		    
 		    itemLoaded:function(){
-		        loader.loadedCount++;
-		        if (loader.loadedCount === loader.totalCount){
+		        assetLoader.loadedCount++;
+		        if (assetLoader.loadedCount === assetLoader.totalCount){
 		            // Loader has loaded completely..
-		            loader.loaded = true;
+		            assetLoader.loaded = true;
 		            //and call the loader.onload method if it exists
-		            if(loader.onload){
-		                loader.onload();
-		                loader.onload = undefined;
+		            if(assetLoader.onload){
+		                assetLoader.onload();
+		                assetLoader.onload = undefined;
 		            }
 		        }
 		    }
@@ -145,20 +130,133 @@
 	
 
 	myHplApp.model.setLoadMusic = function() {
-		var myMusic = {};
-		myMusic.name = "Time";
-		myMusic.url = "./assets/audio/music/Time.mp3";
-		myMusic.music = assetLoader.loadSound(myMusic.url);
+		console.log('Application model.....Loading music');
+		var myMusic 	= {};
+		myMusic.name 	= "Time";
+		myMusic.url 	= "./assets/audio/music/Time.mp3";
+		myMusic.music 	= assetLoader.loadSound(myMusic.url);
 		music.push(myMusic);
 	};
 	
 
 	myHplApp.model.setLoadSoundEffects = function() {
-		var mySoundEffect = {};
-		mySoundEffect.name = "mp40";
-		mySoundEffect.url = "./assets/audio/effects/mp40";
-		mySoundEffect.sound = assetLoader.loadSound(mySoundEffect.url);
+		console.log('Application model.....Loading sound effects');
+		
+		var myUrl = "./assets/audio/effects/cannonFire.mp3";
+		var mySoundEffect = {name: 		"cannonFire",
+				 url: 		myUrl,
+				 sound: 	assetLoader.loadSound(myUrl)
+		};
 		soundEffects.push(mySoundEffect);
+		
+		
+		var myUrl = "./assets/audio/effects/cannonSpindown.mp3";
+		var mySoundEffect = {name: 		"cannonSpindown",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/powerUp.mp3";
+		var mySoundEffect = {name: 		"powerUp",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/powerDown.mp3";
+		var mySoundEffect = {name: 		"powerDown",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click1.mp3";
+		var mySoundEffect = {name: 		"click1",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click2.mp3";
+		var mySoundEffect = {name: 		"click2",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click3.mp3";
+		var mySoundEffect = {name: 		"click3",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click4.mp3";
+		var mySoundEffect = {name: 		"click4",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click5.mp3";
+		var mySoundEffect = {name: 		"click5",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click6.mp3";
+		var mySoundEffect = {name: 		"click6",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click7.mp3";
+		var mySoundEffect = {name: 		"click7",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click8.mp3";
+		var mySoundEffect = {name: 		"click8",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/click9.mp3";
+		var mySoundEffect = {name: 		"click9",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+
+		var myUrl = "./assets/audio/effects/pulse1.mp3";
+		var mySoundEffect = {name: 		"pulse1",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		
+		var myUrl = "./assets/audio/effects/skid1.mp3";
+		var mySoundEffect = {name: 		"skid1",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/switch1.mp3";
+		var mySoundEffect = {name: 		"switch1",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
 	};
 
 	

@@ -7,40 +7,43 @@
 	};
 	
 	var state = {
-			stop:						false,
-			throttle:					false,
-			direction:					false,
-			rotate:						false,
-			heading:					false,			
-			throttleVal:				0,
-			directionVal:				'DF',
-			headingVal:					0,
-			rotateVal:					0,
-			camPanVal:					0,
-			activeWeapon:				false,
-			activeWeaponSelected:		0,
-			weaponFiringPulseStart:		0,
-			weaponFiringPulseEnd:		0,
-			weaponRoundsFired:	 		0
+			stop:							false,
+			throttle:							false,
+			direction:							false,
+			rotate:								false,
+			heading:							false,			
+			throttleVal:						0,
+			directionVal:						'DF',
+			headingVal:							0,
+			rotateVal:							0,
+			camPanVal:							0,
+			headlightVal:						false,
+			activeWeapon:						false,
+			activeWeaponSelected:				0,
+			weaponFiringPulseStart:				0,
+			weaponFiringPulseEnd:				0,
+			weaponRoundsFired:	 				0
 	};
 
 	
 	var weapons = { 
 			loadout:[{
-				     	name: 			'Cannon',
-				        imgSrc: 		'assets/images/weapons/Bulletproof.png',
-				        soundEffect:    'mp40',
-				        rps:			3,
-				        maxAmmo:		300,
-				        remainingAmmo: 	300
+				     	name: 					'Cannon',
+				        imgSrc: 				'assets/images/weapons/Bulletproof.png',
+				        soundEffectFire:    	'cannonFire',
+				        soundEffectSpindown: 	'cannonSpindown',
+				        rps:					3,
+				        maxAmmo:				300,
+				        remainingAmmo: 			300
 				     },
 					 {
-				    	name: 			'Missile',
-						imgSrc: 		'assets/images/weapons/Missile.png',
-				        soundEffect:    'missile',
-						rps:			5,
-						maxAmmo:		20,
-						remainingAmmo: 	20
+				    	name: 					'Missile',
+						imgSrc: 				'assets/images/weapons/Missile.png',
+				        soundEffectFire:    	'missileFire',
+				        soundEffectSpindown: 	'missileSpindown',
+						rps:					5,
+						maxAmmo:				20,
+						remainingAmmo: 			20
 					 }]
 	};
 
@@ -89,6 +92,10 @@
         return state.camPanVal;
     };
 
+    myHplApp.vehicle.model.getStateHeadlightVal = function() { 
+        return state.headlightVal;
+    };
+
     myHplApp.vehicle.model.getStateActiveWeapon = function() { 
         return state.activeWeapon;
     };
@@ -119,11 +126,17 @@
     };
     
 
-    myHplApp.vehicle.model.getStateActiveWeaponSoundEffect = function() { 
+    myHplApp.vehicle.model.getStateActiveWeaponSoundEffectFire = function() { 
     	var activeWeapon = weapons.loadout[state.activeWeaponSelected];
-    	return activeWeapon.soundEffect;
+    	return activeWeapon.soundEffectFire;
     };
+
     
+    myHplApp.vehicle.model.getStateActiveWeaponSoundEffectSpindown = function() { 
+    	var activeWeapon = weapons.loadout[state.activeWeaponSelected];
+    	return activeWeapon.soundEffectSpindown;
+    };
+
 
     //Set functions
     myHplApp.vehicle.model.setStateStopOn = function() { 
@@ -186,6 +199,12 @@
     myHplApp.vehicle.model.setStateCamPanVal = function(val) { 
         state.camPanVal = val;       	
     };
+
+    
+    myHplApp.vehicle.model.setStateHeadlightVal = function(val) {
+        state.headlightVal = !state.headlightVal;       	
+    };
+
     
     myHplApp.vehicle.model.setStateActiveWeapon = function(val) { 
         state.activeWeapon = val;
@@ -202,11 +221,9 @@
     myHplApp.vehicle.model.setStateWeaponRoundsFired = function() { 
     	var triggerTime 			= state.weaponFiringPulseEnd - state.weaponFiringPulseStart;
     	triggerTime 				= triggerTime / 100;
-    	
     	var activeWeapon 			= weapons.loadout[state.activeWeaponSelected];
     	var roundsFired 			= triggerTime /  activeWeapon.rps;
     	roundsFired = Math.ceil(roundsFired * 10) / 10;
-
     	if (roundsFired == 0) {
     		roundsFired = 1;
     	}

@@ -81,6 +81,7 @@
 			vehicleModel.getStateThrottleVal() < vehicleModel.getConfigThrottleMaxDirChange() && 
 			vehicleModel.getStateStop() == false) { 
 			vehicleModel.setStateDirectionOn();
+			myHplApp.controller.playSoundEffect('pulse1');
 			if (vehicleModel.getStateDirectionVal() == vehicleCmdModel.getInstructionDirectionForward()) {
 				vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionReverse());
 				sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionReverse();
@@ -104,6 +105,7 @@
 			cockpitController.emitControl(vehicleCmdModel.getInstructionStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), vehicleCmdModel.getInstructionStop());
 			cockpitModel.setIndicatorVal({id: 'lblIndStop', val: 1});
+			myHplApp.controller.playSoundEffect('powerDown');
 		}
 
 
@@ -111,6 +113,11 @@
 			if (vehicleModel.getStateActiveWeaponRemainingAmmo() > 0) {
 				vehicleModel.setStateActiveWeapon(true);
 				vehicleModel.setStateWeaponFiringPulseStart();
+				var soundEffectFire = myHplApp.model.getSoundEffectByName(myHplApp.vehicle.model.getStateActiveWeaponSoundEffectFire());
+				soundEffectFire.addEventListener('ended', function(){	this.currentTime = 0;
+																		this.play();
+															  		}, false);
+				soundEffectFire.play();
 			}
 		}
 	
@@ -139,13 +146,15 @@
 		}
 				
 
-		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigGoogleMapTypeChange()) {
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigGoogleMapTypeChange()) {			
 			switch (cockpitMapsModel.getStateGoogleMapLastMapType()) {
 				case cockpitMapsModel.getConfigGoogleMapRoad():
 					cockpitMapsModel.setMapTypeIdSatellite();
+					myHplApp.controller.playSoundEffect('click9');
 					break;
 				case cockpitMapsModel.getConfigGoogleMapSatellite():
 					cockpitMapsModel.setMapTypeIdRoad();
+					myHplApp.controller.playSoundEffect('click8');
 					break;
 			}
 		}
@@ -155,6 +164,15 @@
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigToggleHeadlights()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionToggleHeadlights());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdLights(), missioncontrolModel.getMessageIdHeadlights(), vehicleCmdModel.getInstructionToggleHeadlights());
+			vehicleModel.setStateHeadlightVal();
+
+			if (vehicleModel.getStateHeadlightVal()) {	
+				myHplApp.controller.playSoundEffect('powerUp');				
+			}
+			else {
+				myHplApp.controller.playSoundEffect('powerDown');
+				
+			}				
 		}
 		
 		
@@ -190,6 +208,13 @@
 				vehicleModel.setStateActiveWeapon(false);
 				vehicleModel.setStateWeaponFiringPulseEnd();
 				vehicleModel.setStateWeaponRoundsFired();
+
+				setTimeout(function(){ myHplApp.controller.playSoundEffect(vehicleModel.getStateActiveWeaponSoundEffectSpindown());
+									   myHplApp.controller.stopSoundEffect(vehicleModel.getStateActiveWeaponSoundEffectFire());
+									 },300);
+
+
+
 				vehicleModel.setStateActiveWeaponRemainingAmmo();
 				cockpitModel.setGaugeVal({id: 'gaugeAmmo', val: myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmoPct()});
 			}
@@ -221,6 +246,7 @@
 		var missioncontrolModel 				= myHplApp.missioncontrol.model;
 		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		var message = '';
+		var soundEffect;
 
 		
 		if (!cockpitModel.getStateActive()) {
@@ -288,11 +314,19 @@
 
 				
  		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigGoogleMapZoom()){
+ 			var lastZoom = cockpitMapsModel.getStateGoogleMapLastZoom();
 			var zoom = parseFloat(gamepadEvent.value);
 			zoom = zoom * 10;
 			zoom = zoom.toFixed(0);
 				
-			if (zoom != cockpitMapsModel.getStateGoogleMapLastZoom()) {
+			if (zoom != lastZoom) {
+				if (zoom > lastZoom) {
+					myHplApp.controller.playSoundEffect('click6');
+				}
+				else {
+					myHplApp.controller.playSoundEffect('click5');
+				}				
+				
 				cockpitMapsModel.setStateGoogleMapLastZoom(zoom);
 			    zoom = parseInt(cockpitMapsModel.getStateGoogleMapLastZoom(), 10) + parseInt(cockpitMapsModel.getConfigGoogleMapZoomBase(), 10);
 			    cockpitMapsModel.setMapZoom(zoom);
