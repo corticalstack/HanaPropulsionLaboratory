@@ -63,6 +63,14 @@
 	};
 	
 	
+	options = {
+	        outputElementId: "messageOutput",
+	        delay: 0,
+	        emptyDisplayString: ""
+	    };
+	
+	var messageQueue;
+	
 	myHplApp.model.setConfigSlocale = function() {
 		config.sLocale = sap.ui.getCore().getConfiguration().getLanguage();
 	};
@@ -257,8 +265,60 @@
 		};		
 		soundEffects.push(mySoundEffect);
 
+		var myUrl = "./assets/audio/effects/voiceAllSystemsActive.mp3";
+		var mySoundEffect = {name: 		"voiceallsystemsactive",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/voiceLaunchSequenceActivated.mp3";
+		var mySoundEffect = {name: 		"voicelaunchsequenceactivated",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+		
+		var myUrl = "./assets/audio/effects/voiceWarning.mp3";
+		var mySoundEffect = {name: 		"voicewarning",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/voiceDanger.mp3";
+		var mySoundEffect = {name: 		"voicedanger",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+
+		var myUrl = "./assets/audio/effects/sonarBeep1.mp3";
+		var mySoundEffect = {name: 		"sonarbeep1",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/voiceHolographicsImagingActivated.mp3";
+		var mySoundEffect = {name: 		"voiceholographicimagingactivated",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
 	};
 
+	
+
+	myHplApp.model.setMessage = function(message) {
+		 messageQueue.push(message);
+	};
+	
+	myHplApp.model.setMessageQueue = function() {
+		messageQueue = new UiMessageQueue(options);
+	};
 	
 	myHplApp.model.removeCurrentHomeContent = function(view) {
 		config.oAbsoluteLayoutHome.removeContent(config.currentViewContent);

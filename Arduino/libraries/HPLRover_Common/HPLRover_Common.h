@@ -78,6 +78,13 @@ const char 				msg_notify		 					= 'N';
 const char 				msg_notify_thrust_failsafe			= 'T';
 const char 				msg_notify_power_failsafe			= 'P';
 const char 				msg_notify_comms_tick				= 'C';
+const char 				msg_notify_systems_power_up			= 'S';
+const char 				msg_notify_gps_init					= 'G';
+const char 				msg_notify_inertial_init			= 'I';
+const char 				msg_notify_compass_init				= 'M';
+const char 				msg_notify_arming					= 'A';
+const char 				msg_notify_armed					= 'B';
+
 
 // Motor control
 const int 				internal_velocity_map_ratio 		= 60;

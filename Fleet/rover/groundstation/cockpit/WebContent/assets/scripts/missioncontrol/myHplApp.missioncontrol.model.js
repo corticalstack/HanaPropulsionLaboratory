@@ -32,7 +32,13 @@
 			distance:					'D',
 			inertial:					'I',
 			motor:						'M',
-			thrust:						'T',
+			thrust:						'T',			
+			systemsPowerUp:    			'S',
+			gpsInit:	    			'G',
+			inertialInit:	    		'I',
+			compassInit:	    		'C',
+			arming:	    				'A',
+			armed:	    				'B',
 			thrustFailsafe:				'T',
 			powerFailsafe:				'P',
 			commsTick:					'C',
@@ -177,6 +183,30 @@
 
     myHplApp.missioncontrol.model.getMessageIdThrust = function() {
     	return messageId.thrust;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdSystemsPowerUp = function() {
+    	return messageId.systemsPowerUp;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdGpsInit = function() {
+    	return messageId.gpsInit;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdInertialInit = function() {
+    	return messageId.inertialInit;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdCompassInit = function() {
+    	return messageId.compassInit;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdArming = function() {
+    	return messageId.arming;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdArmed = function() {
+    	return messageId.armed;
     };
 
     myHplApp.missioncontrol.model.getMessageIdThrustFailsafe = function() {

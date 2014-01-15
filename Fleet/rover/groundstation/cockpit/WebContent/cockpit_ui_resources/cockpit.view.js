@@ -46,6 +46,8 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 
     	 buildPaneDividers(oController,oLayout);
     	 
+    	 buildPaneMessage(oController,oLayout);
+    	 
     	 return oLayout;
       }
 
@@ -1354,4 +1356,21 @@ function buildPaneDividers(oController,oLayout){
 	
 	oLayout.createRow(omlPaneDividers);
 	
+}
+
+
+function buildPaneMessage(oController,oLayout){
+	var omlPaneMessage = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneMessage",
+			layoutFixed: 	true,
+			width:			"1206px",
+	});	
+	
+	var ohtmlMessageOutput = new sap.ui.core.HTML({  
+      	content: "<div id='messageOutput'></div>"
+	});
+	
+	
+	omlPaneMessage.createRow(ohtmlMessageOutput);
+	oLayout.createRow(omlPaneMessage);
 }

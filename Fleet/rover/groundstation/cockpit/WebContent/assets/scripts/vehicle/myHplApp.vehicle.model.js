@@ -7,7 +7,7 @@
 	};
 	
 	var state = {
-			stop:							false,
+			stop:								false,
 			throttle:							false,
 			direction:							false,
 			rotate:								false,

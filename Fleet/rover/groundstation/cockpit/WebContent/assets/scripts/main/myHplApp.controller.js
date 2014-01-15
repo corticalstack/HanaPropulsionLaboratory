@@ -51,6 +51,7 @@
 				model.setConfigCurrentViewContent(model.getConfigCockpitView());
 				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
 				$.fn.hideBackgroundImage();
+				myHplApp.model.setMessageQueue();
 				myHplApp.cockpit.maps.controller.googleMapInitialise();
 				myHplApp.cockpit.controller.initGauges();			
 				myHplApp.cockpit.controller.initIndicators();
@@ -77,7 +78,12 @@
 		sound.currentTime = 0;
 	};
 
-	
+
+	myHplApp.controller.soundEffectIsPlaying = function(effect) {
+		var sound = myHplApp.model.getSoundEffectByName(effect);
+		return !sound.paused && !sound.ended && 0 < sound.currentTime;
+	};
+
 	myHplApp.controller.toRad = function(val) {
 		return val * 0.0174532925199433;  // (PI / 180)
 	};

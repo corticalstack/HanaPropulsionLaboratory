@@ -38,7 +38,7 @@
 				myHplApp.cockpit.controller.clearAmmoPctTick();
 				break;
 			case true:
-				myHplApp.cockpit.controller.setCockpitHeartbeatTick();
+				setTimeout(myHplApp.cockpit.controller.setCockpitHeartbeatTick,3000);
 				myHplApp.cockpit.controller.setCockpitMainRefreshTick();
 				myHplApp.cockpit.controller.setAmmoPctTick();
 				break;

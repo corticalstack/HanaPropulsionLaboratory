@@ -77,26 +77,26 @@
 			return;
 		}
 		
-		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigDirection() && 
-			vehicleModel.getStateThrottleVal() < vehicleModel.getConfigThrottleMaxDirChange() && 
-			vehicleModel.getStateStop() == false) { 
-			vehicleModel.setStateDirectionOn();
-			myHplApp.controller.playSoundEffect('pulse1');
-			if (vehicleModel.getStateDirectionVal() == vehicleCmdModel.getInstructionDirectionForward()) {
-				vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionReverse());
-				sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionReverse();
+
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigDirection()) {
+			if (vehicleModel.getStateThrottleVal() < vehicleModel.getConfigThrottleMaxDirChange()) { 
+				vehicleModel.setStateDirectionOn();
+				myHplApp.controller.playSoundEffect('pulse1');
+				if (vehicleModel.getStateDirectionVal() == vehicleCmdModel.getInstructionDirectionForward()) {
+					vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionReverse());
+					sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionReverse();
+				}
+				else
+				{
+					vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionForward());
+					sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionForward();
+				}
+				  			
+				message = vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle() + vehicleModel.getStateThrottleVal() + model.getConfigMsgTerminator();
+				cockpitController.emitControl(message);
+				console.log(message);
+				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), message );
 			}
-			else
-			{
-				vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionForward());
-				sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionForward();
-			}
-				  
-			
-			message = vehicleModel.getStateDirectionVal() + ':'  + vehicleCmdModel.getInstructionThrottle() + vehicleModel.getStateThrottleVal() + model.getConfigMsgTerminator();
-			cockpitController.emitControl(message);
-			console.log(message);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), message );
 		}
 
 
@@ -146,7 +146,8 @@
 		}
 				
 
-		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigGoogleMapTypeChange()) {			
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigGoogleMapTypeChange()) {	
+			
 			switch (cockpitMapsModel.getStateGoogleMapLastMapType()) {
 				case cockpitMapsModel.getConfigGoogleMapRoad():
 					cockpitMapsModel.setMapTypeIdSatellite();
@@ -211,7 +212,7 @@
 
 				setTimeout(function(){ myHplApp.controller.playSoundEffect(vehicleModel.getStateActiveWeaponSoundEffectSpindown());
 									   myHplApp.controller.stopSoundEffect(vehicleModel.getStateActiveWeaponSoundEffectFire());
-									 },300);
+									 },400);
 
 
 

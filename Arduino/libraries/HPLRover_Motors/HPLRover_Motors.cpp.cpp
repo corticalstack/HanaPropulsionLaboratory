@@ -25,11 +25,9 @@ void HPLRover_Motors::output(HPLRover_Motors &motors, HPLRover_Command &command,
 	bool rotate_anti_clockwise 	= false;
 
 
-	if ((notify.notify.cockpit_heartbeat == false) ||
-		((millis() - notify.notify.cockpit_heartbeat_tick) > cockpit_heartbeat_threshold)) {
+	if (notify.notify.cockpit_heartbeat == false) {
 		allstop(motors, command, servo_leftmotors, servo_rightmotors);
 		reset_motors(command);
-		notify.notify.cockpit_heartbeat = false;
 		return;
 	}
 

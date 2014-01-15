@@ -75,21 +75,56 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			var notify_msg_fields = data.split(',');
 			message = data.substr(1);
 			switch(notify_msg_fields[0].substr(1,1)) {
-				case 'T':
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdThrustFailsafe(), message);
-					cockpitModel.setIndicatorVal({id: 'lblIndThrustFailsafe', val: 1});
+				case 'A':	//Arming
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdArming(), message);
+					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("arming"));
 					break;
-				case 'P':
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdPowerFailsafe(), message);
-					cockpitModel.setIndicatorVal({id: 'lblIndPowerFailsafe', val: 1});
+					
+				case 'B':	//Armed
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdArmed(), message);
+					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("armed"));
+					myHplApp.controller.playSoundEffect('voiceallsystemsactive');
 					break;
-				case 'C':
+					
+				case 'C':  	//Comms
 					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCommsTick(), message);					
 					var inboundTickSpan = parseInt(notify_msg_fields[0].substr(2), 10);
 					var tickNow = new Date().getTime();
 					missioncontrolModel.setStateLastInboundCommsTick(tickNow);
 					missioncontrolModel.setStateLastInboundCommsTickSpan(inboundTickSpan);
-					break;					
+					break;
+					
+				case 'I':	//Inertial Initialised
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdInertialInit(), message);
+					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("inertialinit"));
+					myHplApp.controller.playSoundEffect('voiceholographicimagingactivated');
+					break;
+
+				case 'G':	//GPS Initialised
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdGpsInit(), message);
+					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("gpsinit"));
+					break;
+					
+				case 'M':	//Compass Initialised
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCompassInit(), message);
+					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("compassinit"));
+					break;
+					
+				case 'P':	//Power Failsafe
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdPowerFailsafe(), message);
+					cockpitModel.setIndicatorVal({id: 'lblIndPowerFailsafe', val: 1});
+					break;
+					
+				case 'S':	//Systems Power Up
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdSystemsPowerUp(), message);
+					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("systemspowerup"));
+					myHplApp.controller.playSoundEffect('voicelaunchsequenceactivated');
+					break;
+					
+				case 'T':	//Thrust Failsafe
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdThrustFailsafe(), message);
+					cockpitModel.setIndicatorVal({id: 'lblIndThrustFailsafe', val: 1});					
+					break;
 			}
 		}
 				
@@ -198,17 +233,15 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			
 			switch(gps_msg_nav_sol_fields[0].substr(1)) {
 				case '2':
-					sap.ui.getCore().byId("lblValFixType").setText('2D');
 					break;
 				case '3':
-					sap.ui.getCore().byId("lblValFixType").setText('3D');
+					missioncontrolController.checkSetHomeLatLng();
 					break;
 			}
 			
 			sap.ui.getCore().byId("lblValSatellites").setText(gps_msg_nav_sol_fields[1]);
-			cockpitModel.setIndicatorVal({id: 'lblStatusFixType', val: gps_msg_nav_sol_fields[0].substr(1)});
 			cockpitModel.setIndicatorVal({id: 'lblStatusSatellites', val: gps_msg_nav_sol_fields[1]});
-			missioncontrolController.checkSetHomeLatLng();
+
 		};
 		
 
@@ -357,26 +390,28 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	
 	refreshWaypoint: function() {
-		
+		var cockpitModel = myHplApp.cockpit.model;
+
 		//Only update bearing if we know we now have a solid GPS 3D fix
 		if (myHplApp.missioncontrol.model.getGps3DFixCount() < 11) {
 			return;
 		}
 		
 		var bearing = 	myHplApp.controller.Bearing(myHplApp.missioncontrol.model.getCurrentLattitude(),
-						myHplApp.missioncontrol.model.getCurrentLongitude(),
-						myHplApp.missioncontrol.model.getHomeLattitude(),
-						myHplApp.missioncontrol.model.getHomeLongitude());
+													myHplApp.missioncontrol.model.getCurrentLongitude(),
+													myHplApp.missioncontrol.model.getHomeLattitude(),
+													myHplApp.missioncontrol.model.getHomeLongitude());
+
 		cockpitModel.setIndicatorVal({id: 'lblStatusBearingWp', val: bearing});
 		sap.ui.getCore().byId("lblWaypointVal").setText(bearing + '°');
-		sap.ui.getCore().byId("lblValBearingWp").setText(bearing + '°');
-		
-		$('#imgWaypointIndicator').css('-webkit-transform', 'rotate(' + bearing + 'deg)');
-		
+		sap.ui.getCore().byId("lblValBearingWp").setText(bearing + '°');		
+		$('#imgWaypointIndicator').css('-webkit-transform', 'rotate(' + bearing + 'deg)');		
+
 		var distance = 	myHplApp.controller.Distance(myHplApp.missioncontrol.model.getCurrentLattitude(), 
-				  		myHplApp.missioncontrol.model.getCurrentLongitude(),
-				  		myHplApp.missioncontrol.model.getHomeLattitude(),
-				  		myHplApp.missioncontrol.model.getHomeLongitude());
+				  									 myHplApp.missioncontrol.model.getCurrentLongitude(),
+				  									 myHplApp.missioncontrol.model.getHomeLattitude(),
+				  									 myHplApp.missioncontrol.model.getHomeLongitude());
+
 		cockpitModel.setIndicatorVal({id: 'lblStatusDistanceWp', val: distance});
 		
 		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
@@ -459,19 +494,35 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	setThreatOrientation: function() {
 		var myGauges = myHplApp.cockpit.model.getGauges();
-		var margin;
+		var margin  		= 0;
+		var frontProximity 	= 0;
+		var rearProximity 	= 0;
 		for (var i = 0; i < myGauges.length; i++) {
 
 		    if (myGauges[i].id == 'gaugeFrontProximitySensor') {
-		    	margin = parseInt(myGauges[i].val * 4) + 15;
+		    	frontProximity 	= parseInt(myGauges[i].val);
+		    	margin 			= (frontProximity * 4) + 15;
 		    	$('#threatOrientationTop').css({"margin-top":(margin * -1  ), "opacity": 1});  
 		    } 
 		    		
 		    if (myGauges[i].id == 'gaugeRearProximitySensor') {
-		    	margin = parseInt(myGauges[i].val * 4) + 15;
+		    	rearProximity 	= parseInt(myGauges[i].val);
+		    	margin 			= (rearProximity * 4) + 15;
 		    	$('#threatOrientationBottom').css({"margin-top":margin, "opacity": 1});
 		    }
-	    }		
+	    }
+		
+		if ((frontProximity > 0 && frontProximity < 30) || (rearProximity > 0 && rearProximity < 30)) {
+			if (!myHplApp.controller.soundEffectIsPlaying('sonarbeep1')) {
+				myHplApp.controller.playSoundEffect('sonarbeep1');
+			}
+		}
+		
+		if ((frontProximity > 0 && frontProximity < 13) || (rearProximity > 0 && rearProximity < 13)) {
+			if (!myHplApp.controller.soundEffectIsPlaying('voicewarning')) {
+				myHplApp.controller.playSoundEffect('voicewarning');
+			}				
+		}
 	},
 	
 	

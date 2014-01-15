@@ -7,11 +7,13 @@ class HPLRover_Notify {
 	public:
   
 		struct notify_type {
-			bool initialising;
+			bool systems_power_up;
 			bool armed;
 			bool radio_failsafe;
 			bool power_failsafe;
-			bool gps_failsafe;			
+			bool gps_init;			
+			bool inertial_init;			
+			bool compass_init;			
 			bool thrust_failsafe;			
 			bool cockpit_heartbeat;						
 			bool headlamps_on;
@@ -23,7 +25,13 @@ class HPLRover_Notify {
 		//Constructor
 		HPLRover_Notify();   
 		void output(HPLRover_Notify &notify);
-	
+		void output_systems_power_up(HPLRover_Notify &notify);
+		void output_gps_init(HPLRover_Notify &notify);
+		void output_inertial_init(HPLRover_Notify &notify);
+		void output_compass_init(HPLRover_Notify &notify);
+		void output_arming(HPLRover_Notify &notify);
+		void output_armed(HPLRover_Notify &notify);
+		
 	private:
 
 		//Initialise notify
