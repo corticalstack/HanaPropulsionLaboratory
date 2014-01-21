@@ -17,6 +17,7 @@
 #include <HPLRover_SharpSensor.h>
 #include <HPLRover_Camera.h>
 #include <HPLRover_Lights.h>
+#include <HPLRover_Weapons.h>
 #include <stdlib.h>
 #include <SPI.h>
 #include <Arduino_Mega_ISR_Registry.h>
@@ -168,7 +169,7 @@ void ms500_loop(void* context) {
     return;    
   }
 
-  hplrover_lights.toggle_headlights(hplrover_command, hplrover_notify);
+  hplrover_lights.toggle_laser(hplrover_command, hplrover_notify);
 }
 
 
@@ -205,8 +206,8 @@ void rover_init(void) {
   servo_leftmotors.attach(pin_leftmotor);            
   servo_rightmotors.attach(pin_rightmotor);  
  
-  pinMode(pin_light_mainbeam_left, OUTPUT);     
-  pinMode(pin_light_mainbeam_right, OUTPUT);    
+  pinMode(pin_light_laser, OUTPUT);     
+//  pinMode(pin_light_mainbeam_right, OUTPUT);    
 
   scheduler_switch = 0;
    

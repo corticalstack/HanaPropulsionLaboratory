@@ -11,6 +11,7 @@ class HPLRover_Lights {
 		HPLRover_Lights();        //Constructor
 		void init(void);
 		void toggle_headlights(HPLRover_Command &command, HPLRover_Notify &notify);		
+		void toggle_laser(HPLRover_Command &command, HPLRover_Notify &notify);		
 
 	private:
 

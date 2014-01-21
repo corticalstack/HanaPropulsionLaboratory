@@ -34,14 +34,22 @@ class HPLRover_Command {
 			bool sweep_rx;		
 		};		
 
+
+		struct command_in_weapons_type {	
+			bool toggle_gun_left_rx;
+			bool toggle_gun_right_rx;
+		};
+
 		
 		struct command_in_lights_type {	
 			bool toggle_headlights_rx;
+			bool toggle_laser_rx;
 		};
 		
 		
 		static struct command_in_motors_type 	cmd_in_motors;
 		static struct command_in_cam_type 		cmd_in_cam;		
+		static struct command_in_weapons_type 	cmd_in_weapons;		
 		static struct command_in_lights_type 	cmd_in_lights;		
 		
 		

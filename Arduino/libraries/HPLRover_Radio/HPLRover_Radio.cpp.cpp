@@ -120,6 +120,21 @@ void HPLRover_Radio::command_register(HPLRover_Command &command, HPLRover_Notify
 		command.cmd_in_lights.toggle_headlights_rx = true;
 	}
 
+	
+	if (buffer[0] == cmd_lights_toggle_laser) {
+		command.cmd_in_lights.toggle_laser_rx = true;
+	}
+
+
+	if (buffer[0] == cmd_weapons_toggle_gun_left) {
+		command.cmd_in_weapons.toggle_gun_left_rx = true;
+	}
+
+	
+	if (buffer[0] == cmd_weapons_toggle_gun_right) {
+		command.cmd_in_weapons.toggle_gun_right_rx = true;
+	}
+
 }
 
 

@@ -3,9 +3,10 @@
 #include "HPLRover_Common.h"
 
 
-struct HPLRover_Command::command_in_motors_type HPLRover_Command::cmd_in_motors;
-struct HPLRover_Command::command_in_cam_type    HPLRover_Command::cmd_in_cam;
-struct HPLRover_Command::command_in_lights_type HPLRover_Command::cmd_in_lights;
+struct HPLRover_Command::command_in_motors_type 	HPLRover_Command::cmd_in_motors;
+struct HPLRover_Command::command_in_cam_type    	HPLRover_Command::cmd_in_cam;
+struct HPLRover_Command::command_in_weapons_type 	HPLRover_Command::cmd_in_weapons;
+struct HPLRover_Command::command_in_lights_type 	HPLRover_Command::cmd_in_lights;
 
 
 HPLRover_Command::HPLRover_Command() {
@@ -31,6 +32,10 @@ void HPLRover_Command::init(void) {
 	HPLRover_Command::cmd_in_cam.tilt_val 					= 0;  
 	HPLRover_Command::cmd_in_cam.sweep_rx 					= false;
 
+	HPLRover_Command::cmd_in_weapons.toggle_gun_left_rx 	= false;
+	HPLRover_Command::cmd_in_weapons.toggle_gun_right_rx 	= false;
+
 	HPLRover_Command::cmd_in_lights.toggle_headlights_rx 	= false;
+	HPLRover_Command::cmd_in_lights.toggle_laser_rx 		= false;
 }
 

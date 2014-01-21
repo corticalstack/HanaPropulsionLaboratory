@@ -25,8 +25,9 @@ static int  			scheduler_switch                    = 0;
 // Ardupilot digital output pin assignments
 const int 				pin_leftmotor 						= 12;
 const int 				pin_rightmotor 						= 11;
-const int 				pin_light_mainbeam_left 			= 2;
-const int 				pin_light_mainbeam_right 			= 3;
+const int 				pin_light_laser 					= 2;
+const int 				pin_gun_left 						= 3;
+const int 				pin_gun_right 						= 4;  //??
 const int 				pin_pancam 							= 7;
 const int 				pin_tiltcam 						= 8;
 const int               pin_sharp2d120x_1_rear              = 6;
@@ -62,7 +63,11 @@ const char   			cmd_cam_pan              			= 'P';
 const char   			cmd_cam_tilt             			= 'T';
 const char   			cmd_cam_sweep            			= 'W';
 
-const char   			cmd_lights_toggle_headlights		= 'L';
+const char   			cmd_weapons_toggle_gun_left			= 'F';
+const char   			cmd_weapons_toggle_gun_right		= 'G';
+
+const char   			cmd_lights_toggle_headlights		= 'M';
+const char   			cmd_lights_toggle_laser				= 'L';
 
 
 // Command values
@@ -124,11 +129,11 @@ const int 				cam_tilt_deadzone_val       		= 1;
 
 const int 				cam_pan_val_min       				= 0;
 const int 				cam_pan_val_max       				= 180;
-const int 				cam_pan_val_centre    				= 78;
+const int 				cam_pan_val_centre    				= 90;
 
-const int 				cam_tilt_val_min      				= 80;
+const int 				cam_tilt_val_min      				= 90;
 const int 				cam_tilt_val_max      				= 180;
-const int 				cam_tilt_val_centre   				= 145;
+const int 				cam_tilt_val_centre   				= 122;
 
 const int 				cam_sweep_delay       				= 25;
 

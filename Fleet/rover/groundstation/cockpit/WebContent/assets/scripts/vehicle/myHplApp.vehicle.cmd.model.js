@@ -14,8 +14,8 @@
 			camPanLeft:			'P-5:]',
 			camPanRight:		'P5:]',
 			camPanStop:			'P0:]',
-			camTiltUp:			'T5:]',
-			camTiltDown:		'T-5:]',
+			camTiltUp:			'T-5:]',
+			camTiltDown:		'T5:]',
 			camTiltStop:		'T0:]',
 			toggleHeadlights:	'L:]',
 			cockpitHeartbeat:	'B:]'	
