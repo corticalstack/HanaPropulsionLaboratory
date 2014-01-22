@@ -24,6 +24,8 @@ void HPLRover_Notify::init(void) {
 	HPLRover_Notify::notify.cockpit_heartbeat			= false;
 	HPLRover_Notify::notify.cockpit_heartbeat_tick		= 0;
 	HPLRover_Notify::notify.headlamps_on				= false;
+	HPLRover_Notify::notify.weapons_gun1_on             = false;
+	HPLRover_Notify::notify.weapons_gun2_on             = false;
 
 }
 

@@ -23,7 +23,8 @@
 			sensor:						'SEN',
 			lights:						'LIT',
 			navigation: 				'NAV',
-			power: 						'POW'
+			power: 						'POW',
+			weapon: 					'WEA'
 	};
 
 	var messageId = {
@@ -42,11 +43,13 @@
 			thrustFailsafe:				'T',
 			powerFailsafe:				'P',
 			commsTick:					'C',
-			headlights:					'H',
+			laser:						'L',
 			compass:    				'C',
 			gpsSol:    					'S',
 			gpsPos:    					'P',
-			gpsVel:    					'V'
+			gpsVel:    					'V',
+			gun1:						'F',
+			gun2:						'G'
 	};
 
 	
@@ -157,7 +160,11 @@
     myHplApp.missioncontrol.model.getMessageCategoryIdPower = function() {
     	return messageCategoryId.power;
     };
-    
+
+    myHplApp.missioncontrol.model.getMessageCategoryIdWeapon = function() {
+    	return messageCategoryId.weapon;
+    };
+
     
 	//Get methods for messageId
     myHplApp.missioncontrol.model.getMessageIdBattery = function() {
@@ -221,8 +228,8 @@
     	return messageId.commsTick;
     };
 
-    myHplApp.missioncontrol.model.getMessageIdHeadlights = function() {
-    	return messageId.headlights;
+    myHplApp.missioncontrol.model.getMessageIdLaser = function() {
+    	return messageId.laser;
     };
 
     myHplApp.missioncontrol.model.getMessageIdCompass = function() {
@@ -247,7 +254,15 @@
     myHplApp.missioncontrol.model.getMessageIdGpsVel = function() {
     	return messageId.gpsVel;
     };
-    
+
+    myHplApp.missioncontrol.model.getMessageIdGun1 = function() {
+    	return messageId.gun1;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdGun2 = function() {
+    	return messageId.gun2;
+    };
+
     //Get methods for activeMission
 	myHplApp.missioncontrol.model.getActiveMissionId = function() { 
 		return activeMission.missionId;

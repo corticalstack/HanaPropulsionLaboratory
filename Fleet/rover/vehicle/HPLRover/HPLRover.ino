@@ -40,6 +40,7 @@ HPLRover_InertialSensor        hplrover_inertialsensor;
 HPLRover_SharpSensor           hplrover_sharpsensor;
 HPLRover_Camera                hplrover_camera;
 HPLRover_Lights                hplrover_lights;
+HPLRover_Weapons               hplrover_weapons;
 
 
 Arduino_Mega_ISR_Registry      isr_registry;
@@ -161,6 +162,8 @@ void ms200_loop(void* context) {
   hplrover_sharpsensor.read_rear_bumper(hplrover_sharpsensor);
   hplrover_sharpsensor.read_cam_mounted(hplrover_sharpsensor);
   hplrover_sharpsensor.output(hplrover_sharpsensor);
+  hplrover_weapons.gun1(hplrover_command, hplrover_notify);
+  hplrover_weapons.gun2(hplrover_command, hplrover_notify);
 }
 
 
@@ -207,7 +210,8 @@ void rover_init(void) {
   servo_rightmotors.attach(pin_rightmotor);  
  
   pinMode(pin_light_laser, OUTPUT);     
-//  pinMode(pin_light_mainbeam_right, OUTPUT);    
+  pinMode(pin_gun1, OUTPUT);     
+  pinMode(pin_gun2, OUTPUT);     
 
   scheduler_switch = 0;
    

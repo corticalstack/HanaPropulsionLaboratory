@@ -77,7 +77,8 @@
 			return;
 		}
 		
-
+		
+		//Direction
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigDirection()) {
 			if (vehicleModel.getStateThrottleVal() < vehicleModel.getConfigThrottleMaxDirChange()) { 
 				vehicleModel.setStateDirectionOn();
@@ -100,6 +101,7 @@
 		}
 
 
+		//Stop
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigStop() ) {
 			vehicleModel.setStateStopOn();	
 			cockpitController.emitControl(vehicleCmdModel.getInstructionStop());
@@ -109,10 +111,15 @@
 		}
 
 
+		//Fire
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigFire() ) {
 			if (vehicleModel.getStateActiveWeaponRemainingAmmo() > 0) {
 				vehicleModel.setStateActiveWeapon(true);
 				vehicleModel.setStateWeaponFiringPulseStart();
+				cockpitController.emitControl(vehicleCmdModel.getInstructionFireGun1());
+				cockpitController.emitControl(vehicleCmdModel.getInstructionFireGun2());
+				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdWeapon(), missioncontrolModel.getMessageIdGun1(), vehicleCmdModel.getInstructionFireGun1());
+				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdWeapon(), missioncontrolModel.getMessageIdGun1(), vehicleCmdModel.getInstructionFireGun2());
 				var soundEffectFire = myHplApp.model.getSoundEffectByName(myHplApp.vehicle.model.getStateActiveWeaponSoundEffectFire());
 				soundEffectFire.addEventListener('ended', function(){	this.currentTime = 0;
 																		this.play();
@@ -122,30 +129,35 @@
 		}
 	
 		
+		//Cam Pan Left
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanLeft());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanLeft());	
 		}
 				
-			
+
+		//Cam Pan Right
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanRight());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanRight());
 		}
 
-			
+		
+		//Cam Tilt Up
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltUp()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamTiltUp());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamTiltUp());
 		}
 
-			
+		
+		//Cam Tilt Down			
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltDown()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamTiltDown());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamTiltDown());
 		}
 				
 
+		//Map Change Type
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigGoogleMapTypeChange()) {	
 			
 			switch (cockpitMapsModel.getStateGoogleMapLastMapType()) {
@@ -160,22 +172,22 @@
 			}
 		}
 				
-				
-				
-		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigToggleHeadlights()) {
-			cockpitController.emitControl(vehicleCmdModel.getInstructionToggleHeadlights());
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdLights(), missioncontrolModel.getMessageIdHeadlights(), vehicleCmdModel.getInstructionToggleHeadlights());
-			vehicleModel.setStateHeadlightVal();
 
-			if (vehicleModel.getStateHeadlightVal()) {	
-				myHplApp.controller.playSoundEffect('powerUp');				
+		//Laser toggle				
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigToggleLaser()) {
+			cockpitController.emitControl(vehicleCmdModel.getInstructionToggleLaser());
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdLights(), missioncontrolModel.getMessageIdLaser(), vehicleCmdModel.getInstructionToggleLaser());
+			vehicleModel.setStateLaserVal();
+
+			if (vehicleModel.getStateLaserVal()) {	
+				myHplApp.controller.playSoundEffect('laserPowerOn');				
 			}
 			else {
-				myHplApp.controller.playSoundEffect('powerDown');
+				myHplApp.controller.playSoundEffect('laserPowerOff');
 				
 			}				
 		}
-		
+
 		
 //		if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
 //			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
@@ -204,9 +216,14 @@
 		}
 
 		
+		//Fire
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigFire() ) {
 			if (vehicleModel.getStateActiveWeapon() == true) {
 				vehicleModel.setStateActiveWeapon(false);
+				cockpitController.emitControl(vehicleCmdModel.getInstructionStopGun1());
+				cockpitController.emitControl(vehicleCmdModel.getInstructionStopGun2());
+				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdWeapon(), missioncontrolModel.getMessageIdGun1(), vehicleCmdModel.getInstructionStopGun1());
+				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdWeapon(), missioncontrolModel.getMessageIdGun1(), vehicleCmdModel.getInstructionStopGun2());
 				vehicleModel.setStateWeaponFiringPulseEnd();
 				vehicleModel.setStateWeaponRoundsFired();
 
@@ -222,12 +239,14 @@
 		}
 
 		
+		//Cam Pan
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft() || gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamPanStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamPanStop());			
 		}
 				
-				
+		
+		//Cam Tilt
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltUp() || gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltDown()) {
 			cockpitController.emitControl(vehicleCmdModel.getInstructionCamTiltStop());			
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), vehicleCmdModel.getInstructionCamTiltStop());
@@ -255,6 +274,7 @@
 		}
 
 		
+		//Throttle
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigThrottle()) {
 			var throttle = parseFloat(gamepadEvent.value);
 			throttle = throttle * 100;
@@ -284,7 +304,8 @@
 			cockpitModel.setGaugeVal({id: 'gaugeThrust', val: throttle});
 		}
 		    
-			
+		
+		//Heading
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigHeading()) {
 			var heading = parseFloat(gamepadEvent.value);
 			vehicleModel.setStateHeadingOn();
@@ -294,7 +315,8 @@
 
 		}
 
-		    
+		
+		//Rotate
 		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigRotate() && vehicleModel.getStateThrottleVal() == 0) {
 			var rotate = parseFloat(gamepadEvent.value);			
 			vehicleModel.setStateRotateOn();
@@ -313,7 +335,8 @@
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), message);
 		}
 
-				
+
+		//Map Zoom
  		if (gamepadEvent.axis == cockpitControlsModel.getDeviceConfigGoogleMapZoom()){
  			var lastZoom = cockpitMapsModel.getStateGoogleMapLastZoom();
 			var zoom = parseFloat(gamepadEvent.value);

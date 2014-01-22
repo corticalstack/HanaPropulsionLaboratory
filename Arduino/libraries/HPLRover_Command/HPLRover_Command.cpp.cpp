@@ -32,8 +32,10 @@ void HPLRover_Command::init(void) {
 	HPLRover_Command::cmd_in_cam.tilt_val 					= 0;  
 	HPLRover_Command::cmd_in_cam.sweep_rx 					= false;
 
-	HPLRover_Command::cmd_in_weapons.toggle_gun_left_rx 	= false;
-	HPLRover_Command::cmd_in_weapons.toggle_gun_right_rx 	= false;
+	HPLRover_Command::cmd_in_weapons.gun1_rx 				= false;
+	HPLRover_Command::cmd_in_weapons.gun1_val 				= 0;
+	HPLRover_Command::cmd_in_weapons.gun2_rx 				= false;
+	HPLRover_Command::cmd_in_weapons.gun2_val 				= 0;
 
 	HPLRover_Command::cmd_in_lights.toggle_headlights_rx 	= false;
 	HPLRover_Command::cmd_in_lights.toggle_laser_rx 		= false;

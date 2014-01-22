@@ -4,7 +4,7 @@
 	
 
 	var deviceConfig = {
-			toggleHeadlights:  		'FACE_2',
+			toggleLaser:  			'FACE_2',
 			direction: 				'FACE_4',
 			stop: 					'FACE_3',
 			throttle:  				'RIGHT_BOTTOM_SHOULDER',
@@ -23,8 +23,8 @@
 	};
 	
 
-	myHplApp.cockpit.controls.model.getDeviceConfigToggleHeadlights = function() { 
-        return deviceConfig.toggleHeadlights;
+	myHplApp.cockpit.controls.model.getDeviceConfigToggleLaser = function() { 
+        return deviceConfig.toggleLaser;
     };
 
     

@@ -126,14 +126,17 @@ void HPLRover_Radio::command_register(HPLRover_Command &command, HPLRover_Notify
 	}
 
 
-	if (buffer[0] == cmd_weapons_toggle_gun_left) {
-		command.cmd_in_weapons.toggle_gun_left_rx = true;
+	if (buffer[0] == cmd_weapons_gun1) {
+		command.cmd_in_weapons.gun1_rx 	= true;
+		command.cmd_in_weapons.gun1_val =  (int)strtod(&buffer[1], NULL);
 	}
 
 	
-	if (buffer[0] == cmd_weapons_toggle_gun_right) {
-		command.cmd_in_weapons.toggle_gun_right_rx = true;
+	if (buffer[0] == cmd_weapons_gun2) {
+		command.cmd_in_weapons.gun2_rx 	= true;
+		command.cmd_in_weapons.gun2_val =  (int)strtod(&buffer[1], NULL);
 	}
+	
 
 }
 

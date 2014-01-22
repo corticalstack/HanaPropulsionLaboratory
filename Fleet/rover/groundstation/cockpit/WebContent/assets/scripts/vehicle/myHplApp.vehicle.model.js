@@ -17,7 +17,7 @@
 			headingVal:							0,
 			rotateVal:							0,
 			camPanVal:							0,
-			headlightVal:						false,
+			laserVal:							false,
 			activeWeapon:						false,
 			activeWeaponSelected:				0,
 			weaponFiringPulseStart:				0,
@@ -92,7 +92,7 @@
         return state.camPanVal;
     };
 
-    myHplApp.vehicle.model.getStateHeadlightVal = function() { 
+    myHplApp.vehicle.model.getStateLaserVal = function() { 
         return state.headlightVal;
     };
 
@@ -201,8 +201,8 @@
     };
 
     
-    myHplApp.vehicle.model.setStateHeadlightVal = function(val) {
-        state.headlightVal = !state.headlightVal;       	
+    myHplApp.vehicle.model.setStateLaserVal = function(val) {
+        state.laserVal = !state.laserVal;       	
     };
 
     

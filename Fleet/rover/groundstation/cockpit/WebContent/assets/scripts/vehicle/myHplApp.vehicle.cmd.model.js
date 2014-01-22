@@ -11,13 +11,17 @@
 			heading:			'H',
 			rotate:				'R',
 			stop:				'X:]',
-			camPanLeft:			'P-5:]',
-			camPanRight:		'P5:]',
+			camPanLeft:			'P-2:]',
+			camPanRight:		'P2:]',
 			camPanStop:			'P0:]',
-			camTiltUp:			'T-5:]',
-			camTiltDown:		'T5:]',
+			camTiltUp:			'T-2:]',
+			camTiltDown:		'T2:]',
 			camTiltStop:		'T0:]',
-			toggleHeadlights:	'L:]',
+			toggleLaser:		'L:]',
+			fireGun1:			'F1:]',
+			fireGun2:			'G1:]',
+			stopGun1:			'F0:]',
+			stopGun2:			'G0:]',
 			cockpitHeartbeat:	'B:]'	
 	};
  
@@ -75,8 +79,24 @@
         return instruction.camTiltStop;
     };
 
-    myHplApp.vehicle.cmd.model.getInstructionToggleHeadlights = function() { 
-        return instruction.toggleHeadlights;
+    myHplApp.vehicle.cmd.model.getInstructionToggleLaser = function() { 
+        return instruction.toggleLaser;
+    };
+
+    myHplApp.vehicle.cmd.model.getInstructionFireGun1 = function() { 
+        return instruction.fireGun1;
+    };
+
+    myHplApp.vehicle.cmd.model.getInstructionFireGun2 = function() { 
+        return instruction.fireGun2;
+    };
+
+    myHplApp.vehicle.cmd.model.getInstructionStopGun1 = function() { 
+        return instruction.stopGun1;
+    };
+
+    myHplApp.vehicle.cmd.model.getInstructionStopGun2 = function() { 
+        return instruction.stopGun2;
     };
 
     myHplApp.vehicle.cmd.model.getInstructionCockpitHeartbeat = function() { 

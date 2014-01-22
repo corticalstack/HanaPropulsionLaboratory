@@ -16,8 +16,8 @@ class HPLRover_Notify {
 			bool compass_init;			
 			bool thrust_failsafe;			
 			bool cockpit_heartbeat;						
-			bool weapons_gun_left_on;
-			bool weapons_gun_right_on;
+			bool weapons_gun1_on;
+			bool weapons_gun2_on;
 			bool headlamps_on;
 			bool laser_on;
 			unsigned long cockpit_heartbeat_tick;

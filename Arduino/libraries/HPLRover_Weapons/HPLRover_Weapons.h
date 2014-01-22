@@ -10,8 +10,8 @@ class HPLRover_Weapons {
 	public:
 		HPLRover_Weapons();        //Constructor
 		void init(void);
-		void toggle_gun_left(HPLRover_Command &command, HPLRover_Notify &notify);		
-		void toggle_gun_right(HPLRover_Command &command, HPLRover_Notify &notify);		
+		void gun1(HPLRover_Command &command, HPLRover_Notify &notify);		
+		void gun2(HPLRover_Command &command, HPLRover_Notify &notify);		
 
 	private:
 

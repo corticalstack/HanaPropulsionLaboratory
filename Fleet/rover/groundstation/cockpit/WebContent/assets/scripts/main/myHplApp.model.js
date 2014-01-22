@@ -308,6 +308,20 @@
 		};		
 		soundEffects.push(mySoundEffect);
 
+		var myUrl = "./assets/audio/effects/laserPowerOn.mp3";
+		var mySoundEffect = {name: 		"laserPowerOn",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
+		var myUrl = "./assets/audio/effects/laserPowerOff.mp3";
+		var mySoundEffect = {name: 		"laserPowerOff",
+							 url: 		myUrl,
+							 sound: 	assetLoader.loadSound(myUrl)
+		};		
+		soundEffects.push(mySoundEffect);
+
 	};
 
 	

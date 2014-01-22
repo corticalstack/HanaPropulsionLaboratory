@@ -26,8 +26,8 @@ static int  			scheduler_switch                    = 0;
 const int 				pin_leftmotor 						= 12;
 const int 				pin_rightmotor 						= 11;
 const int 				pin_light_laser 					= 2;
-const int 				pin_gun_left 						= 3;
-const int 				pin_gun_right 						= 4;  //??
+const int 				pin_gun1 							= 3;  
+const int 				pin_gun2 							= 6;  
 const int 				pin_pancam 							= 7;
 const int 				pin_tiltcam 						= 8;
 const int               pin_sharp2d120x_1_rear              = 6;
@@ -63,8 +63,8 @@ const char   			cmd_cam_pan              			= 'P';
 const char   			cmd_cam_tilt             			= 'T';
 const char   			cmd_cam_sweep            			= 'W';
 
-const char   			cmd_weapons_toggle_gun_left			= 'F';
-const char   			cmd_weapons_toggle_gun_right		= 'G';
+const char   			cmd_weapons_gun1					= 'F';
+const char   			cmd_weapons_gun2					= 'G';
 
 const char   			cmd_lights_toggle_headlights		= 'M';
 const char   			cmd_lights_toggle_laser				= 'L';

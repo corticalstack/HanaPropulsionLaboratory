@@ -36,8 +36,10 @@ class HPLRover_Command {
 
 
 		struct command_in_weapons_type {	
-			bool toggle_gun_left_rx;
-			bool toggle_gun_right_rx;
+			bool gun1_rx;
+			int  gun1_val;
+			bool gun2_rx;
+			int  gun2_val;			
 		};
 
 		
