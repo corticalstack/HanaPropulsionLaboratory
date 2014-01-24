@@ -20,6 +20,7 @@
 			laserVal:							false,
 			activeWeapon:						false,
 			activeWeaponSelected:				0,
+			activeWeaponsSelected:				0,
 			weaponFiringPulseStart:				0,
 			weaponFiringPulseEnd:				0,
 			weaponRoundsFired:	 				0
@@ -28,10 +29,21 @@
 	
 	var weapons = { 
 			loadout:[{
-				     	name: 					'Cannon',
+				     	name: 					'Cannon1',
 				        imgSrc: 				'assets/images/weapons/Bulletproof.png',
 				        soundEffectFire:    	'cannonFire',
 				        soundEffectSpindown: 	'cannonSpindown',
+				        active:					false,
+				        rps:					3,
+				        maxAmmo:				300,
+				        remainingAmmo: 			300
+				     },
+					 {				     
+				     	name: 					'Cannon2',
+				        imgSrc: 				'assets/images/weapons/Bulletproof.png',
+				        soundEffectFire:    	'cannonFire',
+				        soundEffectSpindown: 	'cannonSpindown',
+				        active:					false,
 				        rps:					3,
 				        maxAmmo:				300,
 				        remainingAmmo: 			300
@@ -41,6 +53,7 @@
 						imgSrc: 				'assets/images/weapons/Missile.png',
 				        soundEffectFire:    	'missileFire',
 				        soundEffectSpindown: 	'missileSpindown',
+				        active:					false,
 						rps:					5,
 						maxAmmo:				20,
 						remainingAmmo: 			20
@@ -93,13 +106,18 @@
     };
 
     myHplApp.vehicle.model.getStateLaserVal = function() { 
-        return state.headlightVal;
+        return state.laserVal;
     };
 
     myHplApp.vehicle.model.getStateActiveWeapon = function() { 
         return state.activeWeapon;
     };
-    
+
+    myHplApp.vehicle.model.getStateActiveWeapons = function(weapon) { 
+    	var activeWeapon 		= weapons.loadout[weapon];
+    	return activeWeapon.active;
+    };
+
     myHplApp.vehicle.model.getStateWeaponFiringPulseStart = function() { 
         return state.weaponFiringPulseStart;
     };
@@ -210,6 +228,37 @@
         state.activeWeapon = val;
     };
 
+    
+    myHplApp.vehicle.model.setStateActiveWeaponsSelected = function(val) { 
+    	var activeWeapon1 = weapons.loadout[0];
+    	var activeWeapon2 = weapons.loadout[1];
+    	
+        state.activeWeaponsSelected++;
+        if (state.activeWeaponsSelected > 3) {
+        	state.activeWeaponsSelected = 0;
+        }        
+        
+        switch (state.activeWeaponsSelected) {
+			case 0:
+				activeWeapon1.active = false;
+				activeWeapon2.active = false;
+				break;
+			case 1:
+				activeWeapon1.active = true;
+				activeWeapon2.active = false;
+				break;
+			case 2:
+				activeWeapon1.active = false;
+				activeWeapon2.active = true;
+				break;
+			case 3:
+				activeWeapon1.active = true;
+				activeWeapon2.active = true;
+				break;				
+        }
+    };
+
+    
     myHplApp.vehicle.model.setStateWeaponFiringPulseStart = function() { 
         state.weaponFiringPulseStart = new Date().getTime();
     };

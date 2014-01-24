@@ -82,7 +82,7 @@
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigDirection()) {
 			if (vehicleModel.getStateThrottleVal() < vehicleModel.getConfigThrottleMaxDirChange()) { 
 				vehicleModel.setStateDirectionOn();
-				myHplApp.controller.playSoundEffect('pulse1');
+				myHplApp.controller.playSoundEffect({'effect': 'pulse1', 'volume': 0.5});
 				if (vehicleModel.getStateDirectionVal() == vehicleCmdModel.getInstructionDirectionForward()) {
 					vehicleModel.setStateDirectionVal(vehicleCmdModel.getInstructionDirectionReverse());
 					sap.ui.getCore().byId("viewCockpit").getController().setTextDirectionReverse();
@@ -107,7 +107,7 @@
 			cockpitController.emitControl(vehicleCmdModel.getInstructionStop());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdMotor(), vehicleCmdModel.getInstructionStop());
 			cockpitModel.setIndicatorVal({id: 'lblIndStop', val: 1});
-			myHplApp.controller.playSoundEffect('powerDown');
+			myHplApp.controller.playSoundEffect({'effect': 'powerDown', 'volume': 0.5});
 		}
 
 
@@ -162,12 +162,12 @@
 			
 			switch (cockpitMapsModel.getStateGoogleMapLastMapType()) {
 				case cockpitMapsModel.getConfigGoogleMapRoad():
-					cockpitMapsModel.setMapTypeIdSatellite();
-					myHplApp.controller.playSoundEffect('click9');
+					cockpitMapsModel.setMapTypeIdSatellite();				
+					myHplApp.controller.playSoundEffect({'effect': 'click9', 'volume': 0.5});
 					break;
 				case cockpitMapsModel.getConfigGoogleMapSatellite():
 					cockpitMapsModel.setMapTypeIdRoad();
-					myHplApp.controller.playSoundEffect('click8');
+					myHplApp.controller.playSoundEffect({'effect': 'click8', 'volume': 0.5});
 					break;
 			}
 		}
@@ -179,15 +179,38 @@
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdLights(), missioncontrolModel.getMessageIdLaser(), vehicleCmdModel.getInstructionToggleLaser());
 			vehicleModel.setStateLaserVal();
 
-			if (vehicleModel.getStateLaserVal()) {	
-				myHplApp.controller.playSoundEffect('laserPowerOn');				
+			if (vehicleModel.getStateLaserVal()) {
+				$('#mlPaneLaserIndicator').css('opacity', '1');
+				myHplApp.controller.playSoundEffect({'effect': 'laserPowerOn', 'volume': 0.5});		
 			}
 			else {
-				myHplApp.controller.playSoundEffect('laserPowerOff');
+				$('#mlPaneLaserIndicator').css('opacity', '0');
+				myHplApp.controller.playSoundEffect({'effect': 'laserPowerOff', 'volume': 0.5});
 				
-			}				
+			}		
 		}
 
+
+		//Weapon toggle				
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigToggleWeapon()) {
+//			cockpitController.emitControl(vehicleCmdModel.getInstructionToggleLaser());
+//			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdLights(), missioncontrolModel.getMessageIdLaser(), vehicleCmdModel.getInstructionToggleLaser());
+			vehicleModel.setStateActiveWeaponsSelected();
+			if (vehicleModel.getStateActiveWeapons(0)) {
+				$('#imgWeapon1State').attr('src', 'assets/images/hud/greenDot.png');				
+			}
+			else {
+				$('#imgWeapon1State').attr('src', 'assets/images/hud/redDot.png');
+			}
+			
+			if (vehicleModel.getStateActiveWeapons(1)) {
+				$('#imgWeapon2State').attr('src', 'assets/images/hud/greenDot.png');				
+			}
+			else {
+				$('#imgWeapon2State').attr('src', 'assets/images/hud/redDot.png');
+			}
+			
+		}
 		
 //		if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
 //			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
@@ -227,7 +250,7 @@
 				vehicleModel.setStateWeaponFiringPulseEnd();
 				vehicleModel.setStateWeaponRoundsFired();
 
-				setTimeout(function(){ myHplApp.controller.playSoundEffect(vehicleModel.getStateActiveWeaponSoundEffectSpindown());
+				setTimeout(function(){ myHplApp.controller.playSoundEffect({'effect': vehicleModel.getStateActiveWeaponSoundEffectSpindown(), 'volume': 0.5});
 									   myHplApp.controller.stopSoundEffect(vehicleModel.getStateActiveWeaponSoundEffectFire());
 									 },400);
 
@@ -345,10 +368,10 @@
 				
 			if (zoom != lastZoom) {
 				if (zoom > lastZoom) {
-					myHplApp.controller.playSoundEffect('click6');
+					myHplApp.controller.playSoundEffect({'effect': 'click6', 'volume': 0.5});
 				}
 				else {
-					myHplApp.controller.playSoundEffect('click5');
+					myHplApp.controller.playSoundEffect({'effect': 'click5', 'volume': 0.5});
 				}				
 				
 				cockpitMapsModel.setStateGoogleMapLastZoom(zoom);

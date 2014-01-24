@@ -324,7 +324,7 @@
 		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
 		
 		
-		gaugeId 	= "gaugeAmmo";
+		gaugeId 	= "gaugeAmmo1";
 		gaugeVal 	= 100;
 		ogauge 		= new JustGage({
 			id: gaugeId,
@@ -332,7 +332,49 @@
 			gaugeColor: '#003078',	
 			titleFontColor: "#ffffff",
 			titleMinFontSize: 13,	
-			label: myHplApp.controller.getTextFromBundle("ammopct"),
+			label: myHplApp.controller.getTextFromBundle("ammo1pct"),
+			labelMinFontSize: 13,
+			minLabelMinFontSize: 11,
+			maxLabelMinFontSize: 11,
+			labelFontColor: "#000000",
+			value: gaugeVal,
+			valueMinFontSize: 16,
+			valueFontColor: "#000000",
+			min: 0,
+			max: 100,
+			gaugeWidthScale: 0.4,
+			startAnimationTime: 1,
+			startAnimationType: "linear",
+			refreshAnimationTime: 1,
+			refreshAnimationType: "linear",								
+			customSectors: [{
+								color : "#ff0000",
+								lo: 0,
+								hi: 20
+							},{
+								color: "#ffff00",
+								lo: 20,
+								hi: 40
+							}, {
+								color: "#00ff00",
+								lo: 40,
+								hi: 100
+							}],
+			counter: true
+		});
+
+		cockpitModel.setGauge({id: gaugeId, gauge: ogauge, val: gaugeVal});
+		
+
+		gaugeId 	= "gaugeAmmo2";
+		gaugeVal 	= 100;
+		ogauge 		= new JustGage({
+			id: gaugeId,
+			title: "",
+			gaugeColor: '#003078',	
+			titleFontColor: "#ffffff",
+			titleMinFontSize: 13,	
+			label: myHplApp.controller.getTextFromBundle("ammo2pct"),
 			labelMinFontSize: 13,
 			minLabelMinFontSize: 11,
 			maxLabelMinFontSize: 11,

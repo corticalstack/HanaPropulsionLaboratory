@@ -83,7 +83,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				case 'B':	//Armed
 					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdArmed(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("armed"));
-					myHplApp.controller.playSoundEffect('voiceallsystemsactive');
+					myHplApp.controller.playSoundEffect({'effect': 'voiceallsystemsactive', 'volume': 0.5});
 					break;
 					
 				case 'C':  	//Comms
@@ -97,7 +97,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				case 'I':	//Inertial Initialised
 					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdInertialInit(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("inertialinit"));
-					myHplApp.controller.playSoundEffect('voiceholographicimagingactivated');
+					myHplApp.controller.playSoundEffect({'effect': 'voiceholographicimagingactivated', 'volume': 0.5});
 					break;
 
 				case 'G':	//GPS Initialised
@@ -118,7 +118,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				case 'S':	//Systems Power Up
 					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdSystemsPowerUp(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("systemspowerup"));
-					myHplApp.controller.playSoundEffect('voicelaunchsequenceactivated');
+					myHplApp.controller.playSoundEffect({'effect': 'voicelaunchsequenceactivated', 'volume': 0.5});
 					break;
 					
 				case 'T':	//Thrust Failsafe
@@ -514,13 +514,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 		if ((frontProximity > 0 && frontProximity < 30) || (rearProximity > 0 && rearProximity < 30)) {
 			if (!myHplApp.controller.soundEffectIsPlaying('sonarbeep1')) {
-				myHplApp.controller.playSoundEffect('sonarbeep1');
+				myHplApp.controller.playSoundEffect({'effect': 'sonarbeep1', 'volume': 0.5});
 			}
 		}
 		
 		if ((frontProximity > 0 && frontProximity < 13) || (rearProximity > 0 && rearProximity < 13)) {
 			if (!myHplApp.controller.soundEffectIsPlaying('voicewarning')) {
-				myHplApp.controller.playSoundEffect('voicewarning');
+				myHplApp.controller.playSoundEffect({'effect': 'voicewarning', 'volume': 0.5});
 			}				
 		}
 	},

@@ -5,6 +5,7 @@
 
 	var deviceConfig = {
 			toggleLaser:  			'FACE_2',
+			toggleWeapon:  			'FACE_1',
 			direction: 				'FACE_4',
 			stop: 					'FACE_3',
 			throttle:  				'RIGHT_BOTTOM_SHOULDER',
@@ -27,6 +28,11 @@
         return deviceConfig.toggleLaser;
     };
 
+    
+	myHplApp.cockpit.controls.model.getDeviceConfigToggleWeapon = function() { 
+        return deviceConfig.toggleWeapon;
+    };
+    
     
 	myHplApp.cockpit.controls.model.getDeviceConfigDirection = function() { 
         return deviceConfig.direction;

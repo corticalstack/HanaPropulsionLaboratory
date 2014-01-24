@@ -64,8 +64,15 @@
 	};	
 	
 	
-	myHplApp.controller.playSoundEffect = function(effect) {
-		var sound = myHplApp.model.getSoundEffectByName(effect);
+	myHplApp.controller.playSoundEffect = function(effectOptions) {		
+		var defaults = { 
+				effect:      'bleep', 
+			    volume:      0.5
+		};
+		
+		var options 	  = $.extend({}, defaults, effectOptions);		
+		var sound 	 	  = myHplApp.model.getSoundEffectByName(options.effect);
+		sound.volume 	  = options.volume;
 		sound.currentTime = 0;
 		sound.play();
 	};

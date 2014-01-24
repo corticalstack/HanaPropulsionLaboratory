@@ -445,12 +445,43 @@ img.bg {
   	border: none;
 }
 
+#mlPaneWeapon1State {	
+	position: fixed;
+	top: 	602px;
+  	left:	410px;
+  	width:	10px;
+	opacity: 1;
+  	background-color: transparent;
+  	border: none;
+}
+
+#mlPaneWeapon2State {	
+	position: fixed;
+	top: 	602px;
+  	left:	995px;
+  	width:	10px;
+	opacity: 1;
+  	background-color: transparent;
+  	border: none;
+}
+
+#mlPaneLaserIndicator {	
+	position: fixed;
+	top: 	572px;
+  	left:	725px;
+  	width:	15px;
+	opacity: 0;
+  	background-color: transparent;
+  	border: none;
+}
+
 #imgLowBattery {
   	-webkit-animation: pulse 1.5s;
 	-webkit-animation-delay: 0s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: alternate;	
 }
+
 
 
 #mlPanePrimarySystems {
@@ -511,15 +542,23 @@ img.bg {
 }
 
 
-#mlPaneAmmo {
+#mlPaneWeapon1 {
 	position: fixed;
-  	top: 	651px;
-  	left:	700px;
+  	top: 	548px;
+  	left:	407px;
   	width:	65px;
   	height:	65px;
 	background-color: transparent;	
 }
 
+#mlPaneWeapon2 {
+	position: fixed;
+  	top: 	548px;
+  	left:	992px;
+  	width:	65px;
+  	height:	65px;
+	background-color: transparent;	
+}
 
 #mlPaneShield {
 	position: fixed;
@@ -997,14 +1036,21 @@ img.bg {
 	4px 4px 3px #000;
 }
 
-#gaugeAmmo {
+#gaugeAmmo1 {
 	width: 65px; 
     height: 65px;
     margin-top: -15px;
     display: inline-block;
 }
 
-#gaugeAmmo text {
+#gaugeAmmo2 {
+	width: 65px; 
+    height: 65px;
+    margin-top: -15px;
+    display: inline-block;
+}
+
+#gaugeAmmo1 text {
 	color:#000;
 	text-shadow:1px 1px 0 #fff,
 	-1px -1px 0 #fff,
@@ -1017,6 +1063,57 @@ img.bg {
 	4px 4px 3px #000;
 }
 
+#gaugeAmmo2 text {
+	color:#000;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
+
+
+#lblWeapon1 {
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em; 
+	color:#000;
+	margin-top: -3px;
+	margin-left: 5px;	
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
+
+#lblWeapon2 {
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.0em; 	
+	color: #000;
+	margin-top: -3px;
+	margin-left: 5px;
+	text-shadow:1px 1px 0 #fff,
+	-1px -1px 0 #fff,
+	1px -1px 0 #fff,
+	-1px 1px 0 #fff,
+	0px 1px 0 #fff,
+	1px 0px 0 #fff,
+	0px -1px 0 #fff,
+	-1px 0px 0 #fff,
+	4px 4px 3px #000;
+}
 
 #gaugeSpeed {
 	width: 65px; 

@@ -19,10 +19,14 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 
     	 buildPaneCrosshair(oController,oLayout);
     	 buildPaneLowBattery(oController,oLayout);
+    	 buildPaneLaserIndicator(oController,oLayout);
     	 buildPaneProximitySensorFront(oController,oLayout);
       	 buildPaneProximitySensorRear(oController,oLayout);
       	 buildPaneProximitySensorCam(oController,oLayout);
-      	 buildPaneAmmo(oController,oLayout);
+      	 buildPaneWeapon1(oController,oLayout);
+    	 buildPaneWeapon1State(oController,oLayout);
+      	 buildPaneWeapon2(oController,oLayout);
+    	 buildPaneWeapon2State(oController,oLayout);
       	 buildPaneThrust(oController,oLayout);
       	 buildPaneSpeed(oController,oLayout);      	 
     	 buildPaneShield(oController,oLayout);      	 
@@ -851,25 +855,58 @@ function buildPaneMissionControl(oController,oLayout){
 }
 
 
-function buildPaneAmmo(oController,oLayout){
-	var omlPaneAmmo = new sap.ui.commons.layout.MatrixLayout({
-			id:				"mlPaneAmmo",
+function buildPaneWeapon1(oController,oLayout){
+	var omlPaneWeapon1 = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneWeapon1",
 			layoutFixed: 	true,
 			width: 			"65px",		
 		
 	});	
 
-
-	var ohtmlGaugeAmmo = new sap.ui.core.HTML({  
-     		content: "<div id='gaugeAmmo'></div>"
+	var ohtmlGaugeAmmo1 = new sap.ui.core.HTML({  
+     		content: "<div id='gaugeAmmo1'></div>"
 	});
 
+	var olblWeapon1 = new sap.ui.commons.Label({
+    		id: 		"lblWeapon1",
+    		text: 		myHplApp.controller.getTextFromBundle("weapon1"),
+    		width: 		"65px",
+	    	textAlign: 	"Center"
+	});
 
-	omlPaneAmmo.createRow(ohtmlGaugeAmmo);
- 	oLayout.createRow(omlPaneAmmo);   
-
+	
+	omlPaneWeapon1.createRow(ohtmlGaugeAmmo1);
+	omlPaneWeapon1.createRow(olblWeapon1);
+ 	oLayout.createRow(omlPaneWeapon1);
+ 	
 }
 
+
+function buildPaneWeapon2(oController,oLayout){
+	var omlPaneWeapon2 = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPaneWeapon2",
+			layoutFixed: 	true,
+			width: 			"65px",		
+		
+	});	
+
+	var ohtmlGaugeAmmo2 = new sap.ui.core.HTML({  
+     		content: "<div id='gaugeAmmo2'></div>"
+	});
+
+	var olblWeapon2 = new sap.ui.commons.Label({
+			id: 		"lblWeapon2",
+			text: 		myHplApp.controller.getTextFromBundle("weapon2"),
+			width: 		"65px",
+	    	textAlign: 	"Center"
+	});
+	
+	
+	omlPaneWeapon2.createRow(ohtmlGaugeAmmo2);
+	omlPaneWeapon2.createRow(olblWeapon2);
+ 	oLayout.createRow(omlPaneWeapon2);   
+
+}
 
 function buildPaneSpeed(oController,oLayout){
 	var omlPaneSpeed = new sap.ui.commons.layout.MatrixLayout({
@@ -1245,6 +1282,64 @@ function buildPaneLowBattery(oController,oLayout){
 
     omlPaneLowBattery.createRow(oimgLowBattery);
 	oLayout.createRow(omlPaneLowBattery);
+}
+
+function buildPaneLaserIndicator(oController,oLayout){
+	
+	var omlPaneLaserIndicator = new sap.ui.commons.layout.MatrixLayout({
+			id: 			"mlPaneLaserIndicator",
+			layoutFixed: 	true,
+			width:			"15px"
+	});
+	
+    oimgLaserIndicator = new sap.ui.commons.Image({
+    	id: 	'imgLaserIndicator',
+    	src: 	'assets/images/hud/redDot.png',
+        width: 	"15px",
+        height: "15px"
+    });
+
+    omlPaneLaserIndicator.createRow(oimgLaserIndicator);
+	oLayout.createRow(omlPaneLaserIndicator);
+}
+
+function buildPaneWeapon1State(oController,oLayout){
+	
+	var omlPaneWeapon1State = new sap.ui.commons.layout.MatrixLayout({
+			id: 			"mlPaneWeapon1State",
+			layoutFixed: 	true,
+			width:			"10px"
+	});
+	
+    oimgWeapon1State = new sap.ui.commons.Image({
+    	id: 	'imgWeapon1State',
+    	src: 	'assets/images/hud/redDot.png',
+        width: 	"10px",
+        height: "10px"
+    });
+
+    omlPaneWeapon1State.createRow(oimgWeapon1State);
+	oLayout.createRow(omlPaneWeapon1State);
+}
+
+
+function buildPaneWeapon2State(oController,oLayout){
+	
+	var omlPaneWeapon2State = new sap.ui.commons.layout.MatrixLayout({
+			id: 			"mlPaneWeapon2State",
+			layoutFixed: 	true,
+			width:			"10px"
+	});
+	
+    oimgWeapon2State = new sap.ui.commons.Image({
+    	id: 	'imgWeapon2State',
+    	src: 	'assets/images/hud/redDot.png',
+        width: 	"10px",
+        height: "10px"
+    });
+
+    omlPaneWeapon2State.createRow(oimgWeapon2State);
+	oLayout.createRow(omlPaneWeapon2State);
 }
 
 

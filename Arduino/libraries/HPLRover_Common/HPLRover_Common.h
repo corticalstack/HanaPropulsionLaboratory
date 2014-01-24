@@ -31,8 +31,8 @@ const int 				pin_gun2 							= 6;
 const int 				pin_pancam 							= 7;
 const int 				pin_tiltcam 						= 8;
 const int               pin_sharp2d120x_1_rear              = 6;
-const int               pin_sharp2d120x_2_front             = 8;
-const int               pin_sharp2y0a02_cam_mounted         = 7;
+const int               pin_sharp2d120x_2_front             = 7;
+const int               pin_sharp2y0a02_cam_mounted         = 8;
 const int               pin_current					        = 12;
 const int               pin_voltage					        = 13;
 
