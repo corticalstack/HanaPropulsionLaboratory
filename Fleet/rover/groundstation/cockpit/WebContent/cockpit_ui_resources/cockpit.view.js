@@ -867,16 +867,7 @@ function buildPaneWeapon1(oController,oLayout){
      		content: "<div id='gaugeAmmo1'></div>"
 	});
 
-	var olblWeapon1 = new sap.ui.commons.Label({
-    		id: 		"lblWeapon1",
-    		text: 		myHplApp.controller.getTextFromBundle("weapon1"),
-    		width: 		"65px",
-	    	textAlign: 	"Center"
-	});
-
-	
 	omlPaneWeapon1.createRow(ohtmlGaugeAmmo1);
-	omlPaneWeapon1.createRow(olblWeapon1);
  	oLayout.createRow(omlPaneWeapon1);
  	
 }
@@ -894,16 +885,7 @@ function buildPaneWeapon2(oController,oLayout){
      		content: "<div id='gaugeAmmo2'></div>"
 	});
 
-	var olblWeapon2 = new sap.ui.commons.Label({
-			id: 		"lblWeapon2",
-			text: 		myHplApp.controller.getTextFromBundle("weapon2"),
-			width: 		"65px",
-	    	textAlign: 	"Center"
-	});
-	
-	
 	omlPaneWeapon2.createRow(ohtmlGaugeAmmo2);
-	omlPaneWeapon2.createRow(olblWeapon2);
  	oLayout.createRow(omlPaneWeapon2);   
 
 }

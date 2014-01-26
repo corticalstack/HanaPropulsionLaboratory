@@ -72,6 +72,7 @@
 		var missioncontrolModel 				= myHplApp.missioncontrol.model;
 		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		var message = '';
+		var weapons;
 		
 		if (!cockpitModel.getStateActive()) {
 			return;
@@ -113,19 +114,20 @@
 
 		//Fire
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigFire() ) {
-			if (vehicleModel.getStateActiveWeaponRemainingAmmo() > 0) {
-				vehicleModel.setStateActiveWeapon(true);
-				vehicleModel.setStateWeaponFiringPulseStart();
-				cockpitController.emitControl(vehicleCmdModel.getInstructionFireGun1());
-				cockpitController.emitControl(vehicleCmdModel.getInstructionFireGun2());
-				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdWeapon(), missioncontrolModel.getMessageIdGun1(), vehicleCmdModel.getInstructionFireGun1());
-				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdWeapon(), missioncontrolModel.getMessageIdGun1(), vehicleCmdModel.getInstructionFireGun2());
-				var soundEffectFire = myHplApp.model.getSoundEffectByName(myHplApp.vehicle.model.getStateActiveWeaponSoundEffectFire());
-				soundEffectFire.addEventListener('ended', function(){	this.currentTime = 0;
-																		this.play();
-															  		}, false);
-				soundEffectFire.play();
-			}
+			weapons = vehicleModel.getWeapons();
+			for (var i = 0; i < weapons.loadout.length; i++) {
+			    if (weapons.loadout[i].active) {
+			    	if (vehicleModel.getWeaponRemainingAmmo(i) > 0)
+						vehicleModel.setWeaponFiringPulseStart(i);
+			    		cockpitController.emitControl(vehicleCmdModel.getInstructionFireGun1());
+						missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdWeapon(), missioncontrolModel.getMessageIdGun1(), vehicleCmdModel.getInstructionFireGun1());
+						var soundEffectFire = myHplApp.model.getSoundEffectByName(myHplApp.vehicle.model.getStateActiveWeaponSoundEffectFire());
+						soundEffectFire.addEventListener('ended', function(){	this.currentTime = 0;
+																				this.play();
+																	  		}, false);
+						soundEffectFire.play();
+			    }
+			}		
 		}
 	
 		
@@ -193,22 +195,20 @@
 
 		//Weapon toggle				
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigToggleWeapon()) {
-//			cockpitController.emitControl(vehicleCmdModel.getInstructionToggleLaser());
-//			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdLights(), missioncontrolModel.getMessageIdLaser(), vehicleCmdModel.getInstructionToggleLaser());
-			vehicleModel.setStateActiveWeaponsSelected();
-			if (vehicleModel.getStateActiveWeapons(0)) {
-				$('#imgWeapon1State').attr('src', 'assets/images/hud/greenDot.png');				
-			}
-			else {
-				$('#imgWeapon1State').attr('src', 'assets/images/hud/redDot.png');
-			}
+			vehicleModel.setWeaponActiveSelected();
+			weapons = vehicleModel.getWeapons();
+			for (var i = 0; i < weapons.loadout.length; i++) {
+			    if (weapons.loadout[i].active) {
+					$('#' + weapons.loadout[i].stateId).attr('src', weapons.loadout[i].imgActive);
+			    }
+			    else
+			    {
+					$('#' + weapons.loadout[i].stateId).attr('src', weapons.loadout[i].imgInactive);
+			    }			    
+		    }
 			
-			if (vehicleModel.getStateActiveWeapons(1)) {
-				$('#imgWeapon2State').attr('src', 'assets/images/hud/greenDot.png');				
-			}
-			else {
-				$('#imgWeapon2State').attr('src', 'assets/images/hud/redDot.png');
-			}
+
+			
 			
 		}
 		

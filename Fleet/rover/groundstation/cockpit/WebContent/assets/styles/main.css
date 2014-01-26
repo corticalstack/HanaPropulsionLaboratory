@@ -448,7 +448,7 @@ img.bg {
 #mlPaneWeapon1State {	
 	position: fixed;
 	top: 	602px;
-  	left:	410px;
+  	left:	436px;
   	width:	10px;
 	opacity: 1;
   	background-color: transparent;
@@ -458,7 +458,7 @@ img.bg {
 #mlPaneWeapon2State {	
 	position: fixed;
 	top: 	602px;
-  	left:	995px;
+  	left:	1021px;
   	width:	10px;
 	opacity: 1;
   	background-color: transparent;
@@ -1076,44 +1076,6 @@ img.bg {
 	4px 4px 3px #000;
 }
 
-
-#lblWeapon1 {
-	font-family:'BebasNeueRegular', serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.0em; 
-	color:#000;
-	margin-top: -3px;
-	margin-left: 5px;	
-	text-shadow:1px 1px 0 #fff,
-	-1px -1px 0 #fff,
-	1px -1px 0 #fff,
-	-1px 1px 0 #fff,
-	0px 1px 0 #fff,
-	1px 0px 0 #fff,
-	0px -1px 0 #fff,
-	-1px 0px 0 #fff,
-	4px 4px 3px #000;
-}
-
-#lblWeapon2 {
-	font-family:'BebasNeueRegular', serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.0em; 	
-	color: #000;
-	margin-top: -3px;
-	margin-left: 5px;
-	text-shadow:1px 1px 0 #fff,
-	-1px -1px 0 #fff,
-	1px -1px 0 #fff,
-	-1px 1px 0 #fff,
-	0px 1px 0 #fff,
-	1px 0px 0 #fff,
-	0px -1px 0 #fff,
-	-1px 0px 0 #fff,
-	4px 4px 3px #000;
-}
 
 #gaugeSpeed {
 	width: 65px; 
