@@ -3,15 +3,15 @@
 	myHplApp.cockpit.controller = myHplApp.cockpit.controller || {};
 	
 	var cockpitModel 	   			= myHplApp.cockpit.model;
-	var groundstationModel 			= myHplApp.groundstation.model;
-	var vehicleCmdModel         	= myHplApp.vehicle.cmd.model; 
+	var vehicleModel 	   			= myHplApp.vehicle.model;
+	var groundstationModel 			= myHplApp.groundstation.model; 
 	var missioncontrolModel	 		= myHplApp.missioncontrol.model;
 	var cockpitHeartbeatTick    	= 0;
 	var cockpitMainRefresh	    	= 0;	
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
-		myHplApp.cockpit.controller.emitControl(vehicleCmdModel.getInstructionCockpitHeartbeat());
+		myHplApp.cockpit.controller.emitControl(vehicleModel.getInstructionCockpitHeartbeat());
 
 	};
 	

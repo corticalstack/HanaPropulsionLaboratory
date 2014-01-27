@@ -58,7 +58,6 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 	feed: function(data) {
 		var vehicleModel 				= myHplApp.vehicle.model;
-		var vehicleCmdModel 			= myHplApp.vehicle.cmd.model;
 		var missioncontrolModel	 		= myHplApp.missioncontrol.model;
 		var missioncontrolController 	= myHplApp.missioncontrol.controller;
 		var cockpitModel 				= myHplApp.cockpit.model;
@@ -482,12 +481,20 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 		
 	setAmmoPct: function() {
-		if (myHplApp.vehicle.model.getStateActiveWeapon() == true) {
-			myHplApp.vehicle.model.setStateWeaponFiringPulseEnd();
-			myHplApp.vehicle.model.setStateWeaponRoundsFired();
-			myHplApp.vehicle.model.setStateActiveWeaponRemainingAmmo();
-			myHplApp.cockpit.model.setGaugeVal({id: 'gaugeAmmo', val: myHplApp.vehicle.model.getStateActiveWeaponRemainingAmmoPct()});
-			myHplApp.vehicle.model.setStateWeaponFiringPulseStart();
+		var vehicleModel 	= myHplApp.vehicle.model;
+		var cockpitModel 	= myHplApp.cockpit.model;
+		var weapons 		= vehicleModel.getWeapons();
+		for (var i = 0; i < weapons.loadout.length; i++) {
+		    if (weapons.loadout[i].active && vehicleModel.getWeaponFiringPulseStart(i) > 0) {
+		    	console.log('Ammo pct setting pulse end');
+		    	vehicleModel.setWeaponFiringPulseEnd(i);
+		    	console.log('Ammo pct cal remaining ammo');
+		    	vehicleModel.setWeaponRemainingAmmo(i);
+		    	console.log('Ammo pct set gaugae val');
+		    	cockpitModel.setGaugeVal({id: weapons.loadout[i].ammoGauge, val: vehicleModel.getWeaponRemainingAmmoPct(i)});
+		    	console.log('Ammo pct set pulse start');
+		    	vehicleModel.setWeaponFiringPulseStart(i);
+		    }	
 		}
 	},
 	

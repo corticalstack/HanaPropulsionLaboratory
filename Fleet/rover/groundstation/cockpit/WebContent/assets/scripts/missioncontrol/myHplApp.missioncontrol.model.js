@@ -48,8 +48,6 @@
 			gpsSol:    					'S',
 			gpsPos:    					'P',
 			gpsVel:    					'V',
-			gun1:						'F',
-			gun2:						'G'
 	};
 
 	
@@ -255,14 +253,8 @@
     	return messageId.gpsVel;
     };
 
-    myHplApp.missioncontrol.model.getMessageIdGun1 = function() {
-    	return messageId.gun1;
-    };
 
-    myHplApp.missioncontrol.model.getMessageIdGun2 = function() {
-    	return messageId.gun2;
-    };
-
+    
     //Get methods for activeMission
 	myHplApp.missioncontrol.model.getActiveMissionId = function() { 
 		return activeMission.missionId;
