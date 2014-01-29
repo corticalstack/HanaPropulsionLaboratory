@@ -1,0 +1,13 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;
+table.description = "Message Notify Log";
+table.columns = [
+	{name = "missionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
+	{name = "vehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Vehicle ID"; },
+	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },
+	{name = "keyFrame";      			sqlType = INTEGER;  nullable = false; 				            comment = "Key Frame"; },	
+	{name = "messageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },	
+	{name = "loggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; },	
+	{name = "commsTick";		      	sqlType = NVARCHAR; nullable = true;  length = 6;        		comment = "Comms Tick"; }
+];
+table.primaryKey.pkcolumns = ["missionId","vehicleId","pilotId","keyFrame","messageId","loggedAt"];

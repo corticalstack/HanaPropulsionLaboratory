@@ -28,6 +28,7 @@
 		
 	myHplApp.pilot.controller.onLoadPilots = function(myJSON) {
 		console.log('Pilot roster uploaded from mission control');
+		missioncontrolModel.setStateMissioncontrolOnline(true);
 		for (var i = 0; i<myJSON.d.results.length; i++) {
 			var pilot = {
 					pilotId: 	myJSON.d.results[i].pilotId,

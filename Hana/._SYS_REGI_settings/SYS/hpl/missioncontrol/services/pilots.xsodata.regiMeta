@@ -1,11 +1,5 @@
 {
-  "caption": {
-    "content": "",
-    "lang": "",
-    "max_length": "16",
-    "text_id": "caption",
-    "text_type": "caption"
-  },
+  "content_texts": [],
   "metadata": {
     "activated_at": "2013-12-09 16:35:45.6980000",
     "activated_by": "SYSTEM",
@@ -20,6 +14,7 @@
     "type": "1",
     "version_id": "2"
   },
+  "texts": [],
   "version": {
     "versionType": "1"
   }

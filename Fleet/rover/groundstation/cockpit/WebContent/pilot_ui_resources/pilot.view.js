@@ -18,7 +18,6 @@ sap.ui.jsview("pilot_ui_resources.pilot", {
 function buildPilotCarousel(oController,oLayout){
     var pilotCarouselContent = [];	
     var roster = myHplApp.pilot.model.getRoster();
-    console.log(roster);
     pilotCard = new Object();
 
     

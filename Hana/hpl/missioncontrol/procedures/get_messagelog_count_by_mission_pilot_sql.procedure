@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UDE:Procedure xmlns:UDE="http://www.sap.com/ndb/SQLCoreModelUDE.ecore" xmlns:DataTypes="http://www.sap.com/ndb/SQLCoreModelDataTypes.ecore" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="get_messagelog_count_by_mission_pilot_sql" schemaVersion="2" procedureType="procedure" runWithInvokerPrivileges="true" language="SQLSCRIPT" accessMode="ReadOnly">
+<descriptions defaultDescription="get_messagelog_count_by_mission_pilot_sql"/>
+<metadata changedAt ="2014-01-28 18:51:22.335" createdAt="2014-01-28 18:51:22.335"/>
+<origin/>
+<schema id="_SYS_BIC"/>
+<definition> 
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+	messageLogCount = select count(*) from &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::messageLog&quot; 
+		where missionId = missionId and pilotId = pilotId; 
+END;</definition>
+<defaultSchema schemaName="SYSTEM"/>
+<parameters id="missionId" paramType="IN">
+  <type xsi:type="DataTypes:CharacterStringSQLDataType" id="NVARCHAR" length="6"/>
+</parameters>
+<parameters id="pilotId" paramType="IN">
+  <type xsi:type="DataTypes:CharacterStringSQLDataType" id="NVARCHAR" length="3"/>
+</parameters>
+<parameters id="messageLogCount" paramType="OUT">
+  <typeReference schema="SYSTEM" name="INT"/>
+</parameters>
+<localTableType>/*
+You can create new table types and use them as input and output parameters in a procedure.
+The table types must be defined using SQL syntax, for example:
+CREATE TYPE &lt;Type Name&gt; AS TABLE (&lt;Field Name1&gt; &lt;Field Type1&gt;, &lt;Field Name2&gt; &lt;Field Type2&gt;,...);
+*/
+</localTableType>
+<header>CREATE PROCEDURE get_messagelog_count_by_mission_pilot_sql (
+	in  missionId nvarchar(6),
+	in  pilotId   nvarchar(3),
+	out messageLogCount INT
+) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	--DEFAULT SCHEMA &lt;schema&gt;
+	READS SQL DATA AS</header>
+</UDE:Procedure>

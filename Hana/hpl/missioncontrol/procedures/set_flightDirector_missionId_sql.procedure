@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UDE:Procedure xmlns:UDE="http://www.sap.com/ndb/SQLCoreModelUDE.ecore" xmlns:DataTypes="http://www.sap.com/ndb/SQLCoreModelDataTypes.ecore" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="set_flightDirector_missionId_sql" schemaVersion="2" procedureType="procedure" runWithInvokerPrivileges="true" language="SQLSCRIPT" accessMode="ReadWrite">
+<descriptions defaultDescription="set_flightDirector_missionId_sql"/>
+<metadata changedAt ="2014-01-29 13:52:52.083" createdAt="2014-01-29 13:50:11.758"/>
+<origin/>
+<schema id="_SYS_BIC"/>
+<definition> 
+	--DEFAULT SCHEMA &lt;schema&gt;
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+ 
+UPDATE &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::flightDirector&quot; SET &quot;missionId&quot; = &quot;missionId&quot; + 1;
+
+END;</definition>
+<defaultSchema schemaName="SYSTEM"/>
+<localTableType>/*
+You can create new table types and use them as input and output parameters in a procedure.
+The table types must be defined using SQL syntax, for example:
+CREATE TYPE &lt;Type Name&gt; AS TABLE (&lt;Field Name1&gt; &lt;Field Type1&gt;, &lt;Field Name2&gt; &lt;Field Type2&gt;,...);
+*/
+</localTableType>
+<header>CREATE PROCEDURE set_flightDirector_missionId_sql ( ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER AS</header>
+</UDE:Procedure>

@@ -6,6 +6,7 @@ table.columns = [
 	{name = "name";    					sqlType = NVARCHAR; nullable = false; length = 30;              comment = "Name"; },	
 	{name = "avatarUri";      			sqlType = NVARCHAR; nullable = false; length = 128;             comment = "Avatar URI"; },
 	{name = "clanName";      			sqlType = NVARCHAR; nullable = false; length = 30;             	comment = "Clan Name"; },
-	{name = "clanUri";      			sqlType = NVARCHAR; nullable = false; length = 128;             comment = "Clan URI"; }	
+	{name = "clanUri";      			sqlType = NVARCHAR; nullable = false; length = 128;             comment = "Clan URI"; },
+	{name = "activeMissionId";    		sqlType = NVARCHAR; nullable = true;  length = 6;				comment = "Active Mission ID"; }	
 ];
 table.primaryKey.pkcolumns = ["pilotId"];

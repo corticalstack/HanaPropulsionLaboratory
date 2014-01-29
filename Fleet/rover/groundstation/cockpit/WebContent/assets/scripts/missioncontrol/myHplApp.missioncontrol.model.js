@@ -56,6 +56,7 @@
 			missionId: 					'000001',
 			vehicleId: 					'001',
 			pilotId:   					'001',
+			keyFrame:					0,
 			homeLattitude: 				0,
 			homeLongitude:				0,
 			currentLattitude:			0,
@@ -267,7 +268,11 @@
 	myHplApp.missioncontrol.model.getActivePilotId = function() { 
 		return activeMission.pilotId;
 	};
-    
+
+	myHplApp.missioncontrol.model.getActiveKeyFrame = function() { 
+		return activeMission.keyFrame;
+	};
+
 	myHplApp.missioncontrol.model.getHomeLongitude = function() { 
 		return activeMission.homeLongitude;
 	};
@@ -308,6 +313,7 @@
 		return activeMission.dataNetworkTrafficOut;
 	};
 	
+	
 	//Set methods for activeMission    
 	myHplApp.missioncontrol.model.setActiveHomeLatLng = function() {
 		activeMission.homeLattitude = activeMission.currentLattitude; 
@@ -327,6 +333,10 @@
 
 	myHplApp.missioncontrol.model.setActivePilotId = function(val) { 
 		activeMission.pilotId = val;
+	};
+
+	myHplApp.missioncontrol.model.setActiveKeyFrame = function() { 
+		activeMission.keyFrame++;
 	};
 
 	myHplApp.missioncontrol.model.setCurrentLattitude = function(val) { 

@@ -4,10 +4,11 @@ table.description = "Message Log";
 table.columns = [
 	{name = "missionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
 	{name = "vehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Vehicle ID"; },
-	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },	
+	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },
+	{name = "keyFrame";      			sqlType = INTEGER;  nullable = false; 				            comment = "Key Frame"; },	
 	{name = "messageCategoryId";      	sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message Category ID"; },
 	{name = "messageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },	
 	{name = "loggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; },	
 	{name = "feed";		      			sqlType = NVARCHAR; nullable = false; length = 256;             comment = "Feed"; }
 ];
-table.primaryKey.pkcolumns = ["missionId","vehicleId","pilotId","messageCategoryId","messageId","loggedAt"];
+table.primaryKey.pkcolumns = ["missionId","vehicleId","pilotId","keyFrame","messageCategoryId","messageId","loggedAt"];

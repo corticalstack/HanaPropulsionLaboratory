@@ -812,42 +812,21 @@ function buildPaneMissionControl(oController,oLayout){
     });
 
     
-    olbl1 = new sap.ui.commons.Label("lbl1", {text: 'Offline 1'});
-    olbl1.setDesign(sap.ui.commons.LabelDesign.Bold);
-    omlLayoutTab.createRow(olbl1);
-    
-    olbl2 = new sap.ui.commons.Label("lbl2", {text: 'ETA'});
-    olbl2.setDesign(sap.ui.commons.LabelDesign.Bold);
-    omlLayoutTab.createRow(olbl2);
+	var ohtmlIframeMcTelemetryStats = new sap.ui.core.HTML({  
+    	content: '<iframe id="iframeMcTelemetryStats" width="582px" height="530px" frameBorder="0">Mission Control Offline!!!</iframe>',
+    	preferDOM : true,   
+    	afterRendering: function() {  
+    		newSrc = 'http://hanaserver:8000/hpl/missioncontrol/ui/WebContent/telemetryStats.html';
+    		$("#iframeMcTelemetryStats").load(function() {  
+    			$("#iframeMcTelemetryStats").attr("width","582px").attr("height","530px");  
+    		}).attr("src",newSrc);  
+    	}
+	});
 
-    
-    otstrMissionControl.createTab("Mission",omlLayoutTab);
-
+    omlLayoutTab.createRow(ohtmlIframeMcTelemetryStats);
     
     
-    // 2. tab: Telemetry
-    otab2 = new sap.ui.commons.Tab({
-    		id: "tab2"
-    });
-    
-    
-    otab2.setTooltip("Waypoints");
-    otab2.setTitle(new sap.ui.commons.Title("TitleWaypoints",{text:"Waypoints"}));
-
-    var omlLayoutTabWaypoints = new sap.ui.commons.layout.MatrixLayout({
-		id: 		"mlLayoutWaypoints", 
-		width: 		"100%"
-    });
-    
-
-    olblWaypoint1 = new sap.ui.commons.Label("lblWaypoint1", {text: 'Waypoint 1'});
-    olblWaypoint1.setDesign(sap.ui.commons.LabelDesign.Bold);
-    omlLayoutTabWaypoints.createRow(olblWaypoint1);
-	
-	otab2.addContent(omlLayoutTabWaypoints);
-	otstrMissionControl.addTab(otab2);
-    
-
+    otstrMissionControl.createTab("Telemetry",omlLayoutTab);
 	omlPaneMissionControl1.createRow(otstrMissionControl);
     omlPaneMissionControl.createRow(omlPaneMissionControl1);   
     oLayout.createRow(omlPaneMissionControl);   

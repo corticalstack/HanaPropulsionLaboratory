@@ -7,6 +7,7 @@
 	var groundstationModel 			= myHplApp.groundstation.model; 
 	var missioncontrolModel	 		= myHplApp.missioncontrol.model;
 	var cockpitHeartbeatTick    	= 0;
+	var keyFrameTick		    	= 0;
 	var cockpitMainRefresh	    	= 0;	
 	
 	
@@ -34,11 +35,13 @@
 		switch(bool){
 			case false:
 				myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
+				myHplApp.cockpit.controller.clearKeyFrameTick();
 				myHplApp.cockpit.controller.clearCockpitMainRefreshTick();
-				myHplApp.cockpit.controller.clearAmmoPctTick();
+				myHplApp.cockpit.controller.clearAmmoPctTick();				
 				break;
 			case true:
 				setTimeout(myHplApp.cockpit.controller.setCockpitHeartbeatTick,3000);
+				myHplApp.cockpit.controller.setKeyFrameTick();
 				myHplApp.cockpit.controller.setCockpitMainRefreshTick();
 				myHplApp.cockpit.controller.setAmmoPctTick();
 				break;
@@ -55,6 +58,17 @@
 	myHplApp.cockpit.controller.clearCockpitHeartbeatTick = function() {
 		console.log('Cockpit controller clearing cockpit heartbeat tick.....');
 		clearInterval(cockpitHeartbeatTick);
+	};
+
+
+	myHplApp.cockpit.controller.setKeyFrameTick = function() {
+		console.log('Cockpit controller setting keyframe tick.....');
+		keyFrameTick = setInterval(function(){myHplApp.missioncontrol.model.setActiveKeyFrame()},100);
+	};
+
+	
+	myHplApp.cockpit.controller.clearKeyFrameTick = function() {
+		clearInterval(keyFrameTick);
 	};
 
 	
