@@ -2,13 +2,14 @@ table.schemaName = "MISSIONCONTROL";
 table.tableType = COLUMNSTORE;
 table.description = "Message Sensor Log";
 table.columns = [
+	{name = "messageSensorLogId";    	sqlType = NVARCHAR; nullable = false; length = 10;				comment = "Message Sensor Log ID"; },
 	{name = "missionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
 	{name = "vehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Vehicle ID"; },
 	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },
 	{name = "keyFrame";      			sqlType = INTEGER;  nullable = false; 				            comment = "Key Frame"; },	
 	{name = "messageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },	
 	{name = "loggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; },
-	{name = "compass";      			sqlType = NVARCHAR; nullable = true;  length = 3;               comment = "Compass"; },		
+	{name = "camera";      				sqlType = NVARCHAR; nullable = true;  length = 3;               comment = "Camera"; },		
 	{name = "inertialAccelX";  			sqlType = NVARCHAR; nullable = true;  length = 6;               comment = "Inertial Accel X"; },
 	{name = "inertialAccelY";  			sqlType = NVARCHAR; nullable = true;  length = 6;               comment = "Inertial Accel Y"; },
 	{name = "inertialAccelZ";  			sqlType = NVARCHAR; nullable = true;  length = 6;               comment = "Inertial Accel Z"; },
@@ -16,4 +17,4 @@ table.columns = [
 	{name = "proximityFront";	   		sqlType = NVARCHAR; nullable = true;  length = 6; 				comment = "Proximity Rear"; },
 	{name = "proximityCam";	   			sqlType = NVARCHAR; nullable = true;  length = 6; 				comment = "Proximity Cam"; }
 ];
-table.primaryKey.pkcolumns = ["missionId","vehicleId","pilotId","keyFrame","messageId","loggedAt"];
+table.primaryKey.pkcolumns = ["messageSensorLogId"];

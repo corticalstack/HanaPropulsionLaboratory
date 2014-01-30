@@ -45,7 +45,8 @@
 	var weapons = {
 			activeSelected:						0,
 			loadout:[{
-				     	name: 					'Cannon1',
+				     	id:						'CAN1',
+						name: 					'Cannon 1',
 				     	fireInstruction:		'F1:]',
 				     	stopInstruction:		'F0:]',
 				        imgSrc: 				'assets/images/weapons/Bulletproof.png',
@@ -63,7 +64,8 @@
 						firingPulseEnd:			0
 				     },
 					 {				     
-				     	name: 					'Cannon2',
+				    	id:						'CAN2',
+				    	name: 					'Cannon 2',
 				     	fireInstruction:		'G1:]',
 				     	stopInstruction:		'G0:]',				     	
 				        imgSrc: 				'assets/images/weapons/Bulletproof.png',

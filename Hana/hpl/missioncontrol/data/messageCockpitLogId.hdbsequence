@@ -1,0 +1,4 @@
+schema= "MISSIONCONTROL";
+start_with=0000000001;
+cycles= false;
+depends_on_table= "hpl.missioncontrol.data::messageCockpitLog";

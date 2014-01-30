@@ -21,33 +21,41 @@
 			notify:						'NOT',
 			drive:						'DRI',
 			sensor:						'SEN',
-			lights:						'LIT',
 			navigation: 				'NAV',
 			power: 						'POW',
-			weapon: 					'WEA'
+			cockpit:					'COC',
 	};
 
 	var messageId = {
-			battery:					'B',
-			camera:						'C',
-			distance:					'D',
-			inertial:					'I',
-			motor:						'M',
-			thrust:						'T',			
-			systemsPowerUp:    			'S',
-			gpsInit:	    			'G',
-			inertialInit:	    		'I',
-			compassInit:	    		'C',
-			arming:	    				'A',
-			armed:	    				'B',
-			thrustFailsafe:				'T',
-			powerFailsafe:				'P',
-			commsTick:					'C',
-			laser:						'L',
-			compass:    				'C',
-			gpsSol:    					'S',
-			gpsPos:    					'P',
-			gpsVel:    					'V',
+			arming:	    				'ARM',
+			armed:	    				'ARD',			
+			battery:					'BAT',
+			camera:						'CAM',
+			compass:    				'CPS',			
+			compassInit:	    		'CPI',
+			commsTick:					'COM',			
+			distance:					'DST',
+			direction:					'DIR',
+			inertial:					'INE',
+			inertialInit:	    		'INI',
+			gpsInit:	    			'GPI',
+			gpsPos:    					'GPP',			
+			gpsSol:    					'GPS',
+			gpsVel:    					'GPV',
+			heading:					'HDG',
+			laser:						'LAS',
+			mapType:					'MPT',
+			mapZoom:					'MPZ',
+			motor:						'MTR',
+			powerFailsafe:				'PFS',			
+			rotate:						'ROT',			
+			stop:    					'STP',
+			systemsPowerUp:    			'SPU',
+			thrust:						'THR',
+			thrustFailsafe:				'TFS',
+			weaponActive:				'WEA',			
+			weaponFire:					'WEF',
+			weaponStop:					'WES',			
 	};
 
 	
@@ -71,8 +79,6 @@
 			totalNetworkTrafficOut:		0,
 			dataNetworkTrafficIn:		[],
 			dataNetworkTrafficOut:		[]
-		
-			
 	};
 
 	
@@ -136,22 +142,15 @@
     myHplApp.missioncontrol.model.getMessageCategoryIdNotify = function() {
     	return messageCategoryId.notify;
     };
-    
-    
+        
     myHplApp.missioncontrol.model.getMessageCategoryIdDrive = function() {
     	return messageCategoryId.drive;
     };
-
     
     myHplApp.missioncontrol.model.getMessageCategoryIdSensor = function() {
     	return messageCategoryId.sensor;
     };
     
-
-    myHplApp.missioncontrol.model.getMessageCategoryIdLights = function() {
-    	return messageCategoryId.lights;
-    };
-
     myHplApp.missioncontrol.model.getMessageCategoryIdNavigation = function() {
     	return messageCategoryId.navigation;
     };
@@ -160,53 +159,13 @@
     	return messageCategoryId.power;
     };
 
-    myHplApp.missioncontrol.model.getMessageCategoryIdWeapon = function() {
-    	return messageCategoryId.weapon;
+    myHplApp.missioncontrol.model.getMessageCategoryIdCockpit = function() {
+    	return messageCategoryId.cockpit;
     };
 
+    
     
 	//Get methods for messageId
-    myHplApp.missioncontrol.model.getMessageIdBattery = function() {
-    	return messageId.battery;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdCamera = function() {
-    	return messageId.camera;
-    };
-
-    
-    myHplApp.missioncontrol.model.getMessageIdDistance = function() {
-    	return messageId.distance;
-    };
-    
-    myHplApp.missioncontrol.model.getMessageIdInertial = function() {
-    	return messageId.inertial;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdMotor = function() {
-    	return messageId.motor;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdThrust = function() {
-    	return messageId.thrust;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdSystemsPowerUp = function() {
-    	return messageId.systemsPowerUp;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdGpsInit = function() {
-    	return messageId.gpsInit;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdInertialInit = function() {
-    	return messageId.inertialInit;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdCompassInit = function() {
-    	return messageId.compassInit;
-    };
-
     myHplApp.missioncontrol.model.getMessageIdArming = function() {
     	return messageId.arming;
     };
@@ -215,43 +174,112 @@
     	return messageId.armed;
     };
 
-    myHplApp.missioncontrol.model.getMessageIdThrustFailsafe = function() {
-    	return messageId.thrustFailsafe;
+    myHplApp.missioncontrol.model.getMessageIdBattery = function() {
+    	return messageId.battery;
     };
 
-    myHplApp.missioncontrol.model.getMessageIdPowerFailsafe = function() {
-    	return messageId.powerFailsafe;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdCommsTick = function() {
-    	return messageId.commsTick;
-    };
-
-    myHplApp.missioncontrol.model.getMessageIdLaser = function() {
-    	return messageId.laser;
+    myHplApp.missioncontrol.model.getMessageIdCamera = function() {
+    	return messageId.camera;
     };
 
     myHplApp.missioncontrol.model.getMessageIdCompass = function() {
     	return messageId.compass;
     };
     
-
-    myHplApp.missioncontrol.model.getMessageIdGpsSol = function() {
-    	return messageId.gpsSol;
+    myHplApp.missioncontrol.model.getMessageIdCompassInit = function() {
+    	return messageId.compassInit;
     };
 
-
-    myHplApp.missioncontrol.model.getMessageIdGpsSol = function() {
-    	return messageId.gpsSol;
+    myHplApp.missioncontrol.model.getMessageIdCommsTick = function() {
+    	return messageId.commsTick;
     };
 
+    myHplApp.missioncontrol.model.getMessageIdDistance = function() {
+    	return messageId.distance;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdDirection = function() {
+    	return messageId.direction;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdInertial = function() {
+    	return messageId.inertial;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdInertialInit = function() {
+    	return messageId.inertialInit;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdGpsInit = function() {
+    	return messageId.gpsInit;
+    };
     
     myHplApp.missioncontrol.model.getMessageIdGpsPos = function() {
     	return messageId.gpsPos;
     };
-    
+
+    myHplApp.missioncontrol.model.getMessageIdGpsSol = function() {
+    	return messageId.gpsSol;
+    };
+       
     myHplApp.missioncontrol.model.getMessageIdGpsVel = function() {
     	return messageId.gpsVel;
+    };
+    
+    myHplApp.missioncontrol.model.getMessageIdHeading = function() {
+    	return messageId.heading;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdLaser = function() {
+    	return messageId.laser;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdMapType = function() {
+    	return messageId.mapType;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdMapZoom = function() {
+    	return messageId.mapZoom;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdMotor = function() {
+    	return messageId.motor;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdPowerFailsafe = function() {
+    	return messageId.powerFailsafe;
+    };
+    
+    myHplApp.missioncontrol.model.getMessageIdRotate = function() {
+    	return messageId.rotate;
+    };
+    
+    myHplApp.missioncontrol.model.getMessageIdStop = function() {
+    	return messageId.stop;
+    };
+    
+    myHplApp.missioncontrol.model.getMessageIdSystemsPowerUp = function() {
+    	return messageId.systemsPowerUp;
+    };
+    
+    myHplApp.missioncontrol.model.getMessageIdThrust = function() {
+    	return messageId.thrust;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdThrustFailsafe = function() {
+    	return messageId.thrustFailsafe;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdWeaponActive = function() {
+    	return messageId.weaponActive;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdWeaponFire = function() {
+    	return messageId.weaponFire;
+    };
+
+    myHplApp.missioncontrol.model.getMessageIdWeaponStop = function() {
+    	return messageId.weaponStop;
     };
 
 

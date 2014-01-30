@@ -1,0 +1,25 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;
+table.description = "Message Cockpit Log";
+table.columns = [
+	{name = "messageCockpitLogId";   	sqlType = NVARCHAR; nullable = false; length = 10;				comment = "Message Cockpit Log ID"; },
+	{name = "missionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
+	{name = "vehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Vehicle ID"; },
+	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },
+	{name = "keyFrame";      			sqlType = INTEGER;  nullable = false; 				            comment = "Key Frame"; },	
+	{name = "messageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },	
+	{name = "loggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; },
+	{name = "direction";      			sqlType = NVARCHAR; nullable = true;  length = 2;               comment = "Direction"; },		
+	{name = "heading";      			sqlType = NVARCHAR; nullable = true;  length = 4;               comment = "Heading"; },
+	{name = "throttle";      			sqlType = NVARCHAR; nullable = true;  length = 4;               comment = "Throttle"; },
+	{name = "rotate";      				sqlType = NVARCHAR; nullable = true;  length = 4;               comment = "Rotate"; },	
+	{name = "stop";  					sqlType = NVARCHAR; nullable = true;  length = 1;               comment = "Stop"; },
+	{name = "camera";  					sqlType = NVARCHAR; nullable = true;  length = 4;               comment = "Camera"; },
+	{name = "weaponActive";  			sqlType = NVARCHAR; nullable = true;  length = 20;              comment = "Weapon Active"; },	
+	{name = "weaponFire";  				sqlType = NVARCHAR; nullable = true;  length = 20;              comment = "Weapon Fire"; },
+	{name = "weaponStop";  				sqlType = NVARCHAR; nullable = true;  length = 20;              comment = "Weapon Stop"; },	
+	{name = "mapType";  				sqlType = NVARCHAR; nullable = true;  length = 1;               comment = "Map Type"; },
+	{name = "mapZoom";  				sqlType = NVARCHAR; nullable = true;  length = 1;               comment = "Map Zoom"; },
+	{name = "laser";  					sqlType = NVARCHAR; nullable = true;  length = 1;               comment = "Laser"; }
+];
+table.primaryKey.pkcolumns = ["messageCockpitLogId"];
