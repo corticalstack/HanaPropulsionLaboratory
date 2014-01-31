@@ -9,15 +9,15 @@
 			directionReverse:   				'DR',
 			heading:							'H',
 			rotate:								'R',
-			stop:								'X:]',
-			camPanLeft:							'P-2:]',
-			camPanRight:						'P2:]',
-			camPanStop:							'P0:]',
-			camTiltUp:							'T-2:]',
-			camTiltDown:						'T2:]',
-			camTiltStop:						'T0:]',
-			toggleLaser:						'L:]',
-			cockpitHeartbeat:					'B:]'	
+			stop:								'X',
+			camPanLeft:							'P-2',
+			camPanRight:						'P2',
+			camPanStop:							'P0',
+			camTiltUp:							'T-2',
+			camTiltDown:						'T2',
+			camTiltStop:						'T0',
+			toggleLaser:						'L',
+			cockpitHeartbeat:					'B'	
 	};
  
 
@@ -47,8 +47,8 @@
 			loadout:[{
 				     	id:						'CAN1',
 						name: 					'Cannon 1',
-				     	fireInstruction:		'F1:]',
-				     	stopInstruction:		'F0:]',
+				     	fireInstruction:		'F1',
+				     	stopInstruction:		'F0',
 				        imgSrc: 				'assets/images/weapons/Bulletproof.png',
 				        stateId:				'imgWeapon1State',
 				        soundEffectFire:    	'cannonFire',
@@ -66,8 +66,8 @@
 					 {				     
 				    	id:						'CAN2',
 				    	name: 					'Cannon 2',
-				     	fireInstruction:		'G1:]',
-				     	stopInstruction:		'G0:]',				     	
+				     	fireInstruction:		'G1',
+				     	stopInstruction:		'G0',				     	
 				        imgSrc: 				'assets/images/weapons/Bulletproof.png',
 				        stateId:				'imgWeapon2State',
 				        soundEffectFire:    	'cannonFire',

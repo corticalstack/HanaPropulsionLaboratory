@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UDE:Procedure xmlns:UDE="http://www.sap.com/ndb/SQLCoreModelUDE.ecore" xmlns:DataTypes="http://www.sap.com/ndb/SQLCoreModelDataTypes.ecore" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="get_flightDirector_sql" schemaVersion="2" procedureType="procedure" runWithInvokerPrivileges="true" language="SQLSCRIPT" accessMode="ReadOnly">
+<descriptions defaultDescription="get_flightDirector_missionId_sql"/>
+<metadata changedAt ="2014-01-31 13:00:20.814" createdAt="2014-01-31 12:30:39.699"/>
+<origin/>
+<schema id="_SYS_BIC"/>
+<definition> 
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+ 	
+ 	flightDirector = 
+ 		select &quot;missionId&quot; from &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::flightDirector&quot;;
+ 	
+END;</definition>
+<defaultSchema schemaName="SYSTEM"/>
+<parameters id="flightDirector" paramType="OUT">
+	<type xsi:type="DataTypes:TableDataType" id="tt_flightDirector">
+	  <columns id="missionId">
+		  <datatypeSQL xsi:type="DataTypes:CharacterStringSQLDataType" id="NVARCHAR" length="6"/>
+	  </columns>
+		<schema id="_SYS_BIC"/>
+	</type>
+</parameters>
+<localTableType>/*
+You can create new table types and use them as input and output parameters in a procedure.
+The table types must be defined using SQL syntax, for example:
+CREATE TYPE &lt;Type Name&gt; AS TABLE (&lt;Field Name1&gt; &lt;Field Type1&gt;, &lt;Field Name2&gt; &lt;Field Type2&gt;,...);
+*/
+
+create type tt_flightDirector as table (
+	missionId nvarchar(6)
+)</localTableType>
+<header> CREATE PROCEDURE get_flightDirector_sql (
+	out flightDirector tt_flightDirector 
+) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	--DEFAULT SCHEMA &lt;schema&gt;
+	READS SQL DATA AS</header>
+</UDE:Procedure>

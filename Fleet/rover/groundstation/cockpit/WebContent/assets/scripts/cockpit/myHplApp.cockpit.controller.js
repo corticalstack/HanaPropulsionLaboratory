@@ -2,6 +2,7 @@
  
 	myHplApp.cockpit.controller = myHplApp.cockpit.controller || {};
 	
+	var model                   	= myHplApp.model;
 	var cockpitModel 	   			= myHplApp.cockpit.model;
 	var vehicleModel 	   			= myHplApp.vehicle.model;
 	var groundstationModel 			= myHplApp.groundstation.model; 
@@ -12,7 +13,7 @@
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
-		myHplApp.cockpit.controller.emitControl(vehicleModel.getInstructionCockpitHeartbeat());
+		myHplApp.cockpit.controller.emitControl(vehicleModel.getInstructionCockpitHeartbeat() + model.getConfigMsgTerminator());
 
 	};
 	
@@ -40,6 +41,7 @@
 				myHplApp.cockpit.controller.clearAmmoPctTick();				
 				break;
 			case true:
+				myHplApp.missioncontrol.controller.getFlightDirectorNextMissionId();
 				setTimeout(myHplApp.cockpit.controller.setCockpitHeartbeatTick,3000);
 				myHplApp.cockpit.controller.setKeyFrameTick();
 				myHplApp.cockpit.controller.setCockpitMainRefreshTick();

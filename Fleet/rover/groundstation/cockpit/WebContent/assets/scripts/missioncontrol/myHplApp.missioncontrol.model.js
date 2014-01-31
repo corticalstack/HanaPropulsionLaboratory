@@ -3,82 +3,83 @@
 	myHplApp.missioncontrol.model = myHplApp.missioncontrol.model || {};
 	
 	var config = {
-			servicePilotsUri: 			'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
-			serviceMessagePumpUri: 		'http://hanaserver:8000/hpl/missioncontrol/services/messageLogPump.xsjs',
-			chartNetworkTotalPoints: 	100,
-			chartNetworkUpdateInterval: 30
+			servicePilotsUri: 								'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
+			serviceMessagePumpUri: 							'http://hanaserver:8000/hpl/missioncontrol/services/messageLogPump.xsjs',
+			serviceFlightDirectorNextMissionIdUri: 			'http://hanaserver:8000/hpl/missioncontrol/services/flightDirectorNextMissionId.xsjs',
+			chartNetworkTotalPoints: 						100,
+			chartNetworkUpdateInterval: 					30
 	};
 
 	
 	var state = {
-			missionControlOnline: 		false,
-			lastInboundCommsTick:		0,
-			lastInboundCommsTickSpan:	0,
+			missionControlOnline: 							false,
+			lastInboundCommsTick:							0,
+			lastInboundCommsTickSpan:						0,
 	};
 	
 	
 	var messageCategoryId = {
-			notify:						'NOT',
-			drive:						'DRI',
-			sensor:						'SEN',
-			navigation: 				'NAV',
-			power: 						'POW',
-			cockpit:					'COC',
+			notify:											'NOT',
+			drive:											'DRI',
+			sensor:											'SEN',
+			navigation: 									'NAV',
+			power: 											'POW',
+			cockpit:										'COC',
 	};
 
 	var messageId = {
-			arming:	    				'ARM',
-			armed:	    				'ARD',			
-			battery:					'BAT',
-			camera:						'CAM',
-			compass:    				'CPS',			
-			compassInit:	    		'CPI',
-			commsTick:					'COM',			
-			distance:					'DST',
-			direction:					'DIR',
-			inertial:					'INE',
-			inertialInit:	    		'INI',
-			gpsInit:	    			'GPI',
-			gpsPos:    					'GPP',			
-			gpsSol:    					'GPS',
-			gpsVel:    					'GPV',
-			heading:					'HDG',
-			laser:						'LAS',
-			mapType:					'MPT',
-			mapZoom:					'MPZ',
-			motor:						'MTR',
-			powerFailsafe:				'PFS',			
-			rotate:						'ROT',			
-			stop:    					'STP',
-			systemsPowerUp:    			'SPU',
-			thrust:						'THR',
-			thrustFailsafe:				'TFS',
-			weaponActive:				'WEA',			
-			weaponFire:					'WEF',
-			weaponStop:					'WES',			
+			arming:	    									'ARM',
+			armed:	    									'ARD',			
+			battery:										'BAT',
+			camera:											'CAM',
+			compass:    									'CPS',			
+			compassInit:	    							'CPI',
+			commsTick:										'COM',			
+			distance:										'DST',
+			direction:										'DIR',
+			inertial:										'INE',
+			inertialInit:	    							'INI',
+			gpsInit:	    								'GPI',
+			gpsPos:    										'GPP',			
+			gpsSol:    										'GPS',
+			gpsVel:    										'GPV',
+			heading:										'HDG',
+			laser:											'LAS',
+			mapType:										'MPT',
+			mapZoom:										'MPZ',
+			motor:											'MTR',
+			powerFailsafe:									'PFS',			
+			rotate:											'ROT',			
+			stop:    										'STP',
+			systemsPowerUp:    								'SPU',
+			thrust:											'THR',
+			thrustFailsafe:									'TFS',
+			weaponActive:									'WEA',			
+			weaponFire:										'WEF',
+			weaponStop:										'WES',			
 	};
 
 	
 	
 	var activeMission = {
-			missionId: 					'000001',
-			vehicleId: 					'001',
-			pilotId:   					'001',
-			keyFrame:					0,
-			homeLattitude: 				0,
-			homeLongitude:				0,
-			currentLattitude:			0,
-			currentLongitude:			0,
-			nextWaypointId:				'',
-			waypoints:					[],
-			prevNetworkPacketIn:		0,
-			prevNetworkPacketOut:		0,
-			networkPacketIn:			0,
-			networkPacketOut:			0,
-			totalNetworkTrafficIn:		0,
-			totalNetworkTrafficOut:		0,
-			dataNetworkTrafficIn:		[],
-			dataNetworkTrafficOut:		[]
+			missionId: 										'0',
+			vehicleId: 										'001',
+			pilotId:   										'001',
+			keyFrame:										0,
+			homeLattitude: 									0,
+			homeLongitude:									0,
+			currentLattitude:								0,
+			currentLongitude:								0,
+			nextWaypointId:									'',
+			waypoints:										[],
+			prevNetworkPacketIn:							0,
+			prevNetworkPacketOut:							0,
+			networkPacketIn:								0,
+			networkPacketOut:								0,
+			totalNetworkTrafficIn:							0,
+			totalNetworkTrafficOut:							0,
+			dataNetworkTrafficIn:							[],
+			dataNetworkTrafficOut:							[]
 	};
 
 	
@@ -94,6 +95,10 @@
 	
 	myHplApp.missioncontrol.model.getConfigServiceMessagePumpUri = function() { 
 		return config.serviceMessagePumpUri;
+	};
+
+	myHplApp.missioncontrol.model.getConfigServiceFlightDirectorNextMissionIdUri = function() { 
+		return config.serviceFlightDirectorNextMissionIdUri;
 	};
 
 	myHplApp.missioncontrol.model.getConfigChartNetworkTotalPoints = function() { 

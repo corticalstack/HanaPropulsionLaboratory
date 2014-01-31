@@ -244,8 +244,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 		
 
-		//GPS posllh message
-		if (data.substr(0,1) == 'P') {
+		//GPS posllh message - Only interested if we have a solid GPS 3D fix
+		if (data.substr(0,1) == 'P' && missioncontrolModel.getGps3DFixCount() > 10) {
 			var gps_msg_nav_posllh_fields = data.split(',');
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
@@ -276,8 +276,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 
 
-		//GPS velned message
-		if (data.substr(0,1) == 'V') {
+		//GPS velned message - Only interested if we have a solid GPS 3D fix
+		if (data.substr(0,1) == 'V' && missioncontrolModel.getGps3DFixCount() > 10) {
 			var gps_msg_nav_velned_fields = data.split(',');
 			message = data.substr(1);
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
@@ -288,6 +288,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[0].substr(1));	
 			sap.ui.getCore().byId("lblValHeading").setText(heading + '°');
 			cockpitModel.setIndicatorVal({id: 'lblStatusSpeedCms', val: gps_msg_nav_velned_fields[0].substr(1)});
+			console.log('Speed cms', gps_msg_nav_velned_fields[0].substr(1));
 			cockpitModel.setIndicatorVal({id: 'lblStatusHeading', val: heading});
 			cockpitModel.setGaugeVal({id: 'gaugeSpeed', val: gps_msg_nav_velned_fields[0].substr(1)});
 		};
@@ -457,20 +458,20 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		var now 	 = new Date().getTime();
 		var tickSpan = myHplApp.missioncontrol.model.getStateLastInboundCommsTickSpan();
 		
-		if ((now - myHplApp.missioncontrol.model.getStateLastInboundCommsTick()) > 600 ) {
+		if ((now - myHplApp.missioncontrol.model.getStateLastInboundCommsTick()) > 700 ) {
 			tickSpan = 999;
 		}
 		
-		if (tickSpan >= 0 && tickSpan <= 299) {
+		if (tickSpan >= 0 && tickSpan <= 399) {
 			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength100.png');
 		}
-		else if (tickSpan >= 300 && tickSpan <= 399) {
+		else if (tickSpan >= 400 && tickSpan <= 499) {
 			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength75.png');
 		}
-		else if (tickSpan >= 400 && tickSpan <= 499) {
+		else if (tickSpan >= 500 && tickSpan <= 599) {
 			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength50.png');
 		}
-		else if (tickSpan >= 500 && tickSpan <= 599) {
+		else if (tickSpan >= 600 && tickSpan <= 699) {
 			$('#imgSignalStrength').attr('src', 'assets/images/hud/signalStrength25.png');
 		}
 		else {

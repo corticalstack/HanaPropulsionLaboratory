@@ -49,11 +49,13 @@
 	});
 
 	
-	myHplApp.cockpit.controls.controller.gamepad_button_down = function(gamepadEvent) {		
+	myHplApp.cockpit.controls.controller.gamepad_button_down = function(gamepadEvent) {
+		var model                   			= myHplApp.model;
 		var vehicleModel 						= myHplApp.vehicle.model;		
 		var cockpitController 					= myHplApp.cockpit.controller;
 		var cockpitModel 						= myHplApp.cockpit.model;
 		var cockpitControlsModel 				= myHplApp.cockpit.controls.model;	
+		var cockpitMapsModel 					= myHplApp.cockpit.maps.model;
 		var missioncontrolModel 				= myHplApp.missioncontrol.model;
 		var missioncontrolController 			= myHplApp.missioncontrol.controller;
 		var message = '';
@@ -90,8 +92,8 @@
 		//Stop
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigStop() ) {
 			vehicleModel.setStateStopOn();	
-			cockpitController.emitControl(vehicleModel.getInstructionStop());
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdStop(), missioncontrolModel.getMessageIdStop());
+			cockpitController.emitControl(vehicleModel.getInstructionStop() + model.getConfigMsgTerminator());
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdStop(), vehicleModel.getInstructionStop());
 			cockpitModel.setIndicatorVal({id: 'lblIndStop', val: 1});
 			myHplApp.controller.playSoundEffect({'effect': 'powerDown', 'volume': 0.5});
 		}
@@ -104,8 +106,8 @@
 			    if (weapons.loadout[i].active) {
 			    	if (vehicleModel.getWeaponRemainingAmmo(i) > 0)
 						vehicleModel.setWeaponFiringPulseStart(i);
-			    		cockpitController.emitControl(weapons.loadout[i].fireInstruction);
-						missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdWeaponFire(), weapons.loadout[i].fireInstruction + weapons.loadout[i].id);
+			    		cockpitController.emitControl(weapons.loadout[i].fireInstruction + model.getConfigMsgTerminator());
+						missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdWeaponFire(), weapons.loadout[i].id);
 						console.log(weapons.loadout[i].fireInstruction);
 						var soundEffectFire = myHplApp.model.getSoundEffectByName(weapons.loadout[i].soundEffectFire);
 						soundEffectFire.addEventListener('ended', function(){	this.currentTime = 0;
@@ -119,28 +121,28 @@
 		
 		//Cam Pan Left
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft()) {
-			cockpitController.emitControl(vehicleModel.getInstructionCamPanLeft());
+			cockpitController.emitControl(vehicleModel.getInstructionCamPanLeft() + model.getConfigMsgTerminator());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdCamera(), vehicleModel.getInstructionCamPanLeft());	
 		}
 				
 
 		//Cam Pan Right
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
-			cockpitController.emitControl(vehicleModel.getInstructionCamPanRight());
+			cockpitController.emitControl(vehicleModel.getInstructionCamPanRight() + model.getConfigMsgTerminator());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdCamera(), vehicleModel.getInstructionCamPanRight());
 		}
 
 		
 		//Cam Tilt Up
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltUp()) {
-			cockpitController.emitControl(vehicleModel.getInstructionCamTiltUp());
+			cockpitController.emitControl(vehicleModel.getInstructionCamTiltUp() + model.getConfigMsgTerminator());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdCamera(), vehicleModel.getInstructionCamTiltUp());
 		}
 
 		
 		//Cam Tilt Down			
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltDown()) {
-			cockpitController.emitControl(vehicleModel.getInstructionCamTiltDown());
+			cockpitController.emitControl(vehicleModel.getInstructionCamTiltDown() + model.getConfigMsgTerminator());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdCamera(), vehicleModel.getInstructionCamTiltDown());
 		}
 				
@@ -150,33 +152,38 @@
 			
 			switch (cockpitMapsModel.getStateGoogleMapLastMapType()) {
 				case cockpitMapsModel.getConfigGoogleMapRoad():
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdMapType(), 'S');
 					cockpitMapsModel.setMapTypeIdSatellite();				
 					myHplApp.controller.playSoundEffect({'effect': 'click9', 'volume': 0.5});
 					break;
 				case cockpitMapsModel.getConfigGoogleMapSatellite():
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdMapType(), 'R');
 					cockpitMapsModel.setMapTypeIdRoad();
 					myHplApp.controller.playSoundEffect({'effect': 'click8', 'volume': 0.5});
 					break;
 			}
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdMapType(), cockpitMapsModel.getStateGoogleMapLastMapType());
 		}
 				
 
 		//Laser toggle				
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigToggleLaser()) {
-			cockpitController.emitControl(vehicleModel.getInstructionToggleLaser());
+			cockpitController.emitControl(vehicleModel.getInstructionToggleLaser() + model.getConfigMsgTerminator());
 			vehicleModel.setStateLaserVal();
 
 			if (vehicleModel.getStateLaserVal()) {
+			
 				$('#mlPaneLaserIndicator').css('opacity', '1');
 				myHplApp.controller.playSoundEffect({'effect': 'laserPowerOn', 'volume': 0.5});		
+				
 			}
 			else {
 				$('#mlPaneLaserIndicator').css('opacity', '0');
 				myHplApp.controller.playSoundEffect({'effect': 'laserPowerOff', 'volume': 0.5});
 				
 			}		
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdLaser(), vehicleModel.getStateLaserVal());
+			
+			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdLaser(), vehicleModel.getStateLaserVal() + 0);
+			
 		}
 
 
@@ -185,7 +192,7 @@
 			vehicleModel.setWeaponActiveSelected();
 			weapons = vehicleModel.getWeapons();
 			for (var i = 0; i < weapons.loadout.length; i++) {
-				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdWeaponActive(), weapons.loadout[i].active + weapons.loadout[i].id);
+				missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdWeaponActive(), (weapons.loadout[i].active + 0) + weapons.loadout[i].id);
 			    if (weapons.loadout[i].active) {
 					$('#' + weapons.loadout[i].stateId).attr('src', weapons.loadout[i].imgActive);
 			    }
@@ -213,6 +220,7 @@
 
 
 	myHplApp.cockpit.controls.controller.gamepad_button_up = function(gamepadEvent) {
+		var model                   			= myHplApp.model;
 		var vehicleModel 						= myHplApp.vehicle.model;		
 		var cockpitController 					= myHplApp.cockpit.controller;
 		var cockpitModel 						= myHplApp.cockpit.model;
@@ -231,9 +239,9 @@
 			weapons = vehicleModel.getWeapons();
 			for (var i = 0; i < weapons.loadout.length; i++) {
 			    if (weapons.loadout[i].active) {
-			    	cockpitController.emitControl(weapons.loadout[i].stopInstruction);
+			    	cockpitController.emitControl(weapons.loadout[i].stopInstruction + model.getConfigMsgTerminator());
 			    	vehicleModel.setWeaponFiringPulseEnd(i);
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdWeaponStop(), weapons.loadout[i].stopInstruction + weapons.loadout[i].id);
+					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdWeaponStop(), weapons.loadout[i].id);
 					console.log(weapons.loadout[i].stopInstruction);
 					vehicleModel.setWeaponRemainingAmmo(i);
 					setTimeout(function(myWeapons, myWeaponsIndex){ myHplApp.controller.playSoundEffect({'effect': myWeapons.loadout[myWeaponsIndex].soundEffectSpindown, 'volume': 0.5});
@@ -249,14 +257,14 @@
 		
 		//Cam Pan
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanLeft() || gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamPanRight()) {
-			cockpitController.emitControl(vehicleModel.getInstructionCamPanStop());
+			cockpitController.emitControl(vehicleModel.getInstructionCamPanStop() + model.getConfigMsgTerminator());
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdCamera(), vehicleModel.getInstructionCamPanStop());			
 		}
 				
 		
 		//Cam Tilt
 		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltUp() || gamepadEvent.control == cockpitControlsModel.getDeviceConfigCamTiltDown()) {
-			cockpitController.emitControl(vehicleModel.getInstructionCamTiltStop());			
+			cockpitController.emitControl(vehicleModel.getInstructionCamTiltStop() + model.getConfigMsgTerminator());			
 			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdCamera(), vehicleModel.getInstructionCamTiltStop());
 		}
 				
@@ -268,6 +276,7 @@
 		var vehicleModel 						= myHplApp.vehicle.model;		
 		var cockpitController 					= myHplApp.cockpit.controller;
 		var cockpitModel 						= myHplApp.cockpit.model;
+		var cockpitMapsModel 					= myHplApp.cockpit.maps.model;
 		var cockpitControlsModel 				= myHplApp.cockpit.controls.model;	
 		var missioncontrolModel 				= myHplApp.missioncontrol.model;
 		var missioncontrolController 			= myHplApp.missioncontrol.controller;

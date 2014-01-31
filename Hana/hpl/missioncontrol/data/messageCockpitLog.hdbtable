@@ -19,7 +19,7 @@ table.columns = [
 	{name = "weaponFire";  				sqlType = NVARCHAR; nullable = true;  length = 20;              comment = "Weapon Fire"; },
 	{name = "weaponStop";  				sqlType = NVARCHAR; nullable = true;  length = 20;              comment = "Weapon Stop"; },	
 	{name = "mapType";  				sqlType = NVARCHAR; nullable = true;  length = 1;               comment = "Map Type"; },
-	{name = "mapZoom";  				sqlType = NVARCHAR; nullable = true;  length = 1;               comment = "Map Zoom"; },
+	{name = "mapZoom";  				sqlType = NVARCHAR; nullable = true;  length = 2;               comment = "Map Zoom"; },
 	{name = "laser";  					sqlType = NVARCHAR; nullable = true;  length = 1;               comment = "Laser"; }
 ];
 table.primaryKey.pkcolumns = ["messageCockpitLogId"];

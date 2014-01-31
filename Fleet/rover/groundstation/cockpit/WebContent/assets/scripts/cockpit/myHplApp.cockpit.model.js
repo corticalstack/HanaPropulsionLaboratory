@@ -60,8 +60,8 @@
 			},
 			yaxis: {
 				min: 0,
-				max: 30,
-		        tickSize: 5,
+				max: 252,
+		        tickSize: 42,
 				tickFormatter: function () {
 					return "";
 				}
