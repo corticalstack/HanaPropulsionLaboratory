@@ -75,18 +75,18 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			message = data.substr(1);
 			switch(notify_msg_fields[0].substr(1,1)) {
 				case 'A':	//Arming
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdArming(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdArming(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("arming"));
 					break;
 					
 				case 'B':	//Armed
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdArmed(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdArmed(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("armed"));
 					myHplApp.controller.playSoundEffect({'effect': 'voiceallsystemsactive', 'volume': 0.5});
 					break;
 					
 				case 'C':  	//Comms
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCommsTick(), message);					
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCommsTick(), message);					
 					var inboundTickSpan = parseInt(notify_msg_fields[0].substr(2), 10);
 					var tickNow = new Date().getTime();
 					missioncontrolModel.setStateLastInboundCommsTick(tickNow);
@@ -94,34 +94,34 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 					break;
 					
 				case 'I':	//Inertial Initialised
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdInertialInit(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdInertialInit(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("inertialinit"));
 					myHplApp.controller.playSoundEffect({'effect': 'voiceholographicimagingactivated', 'volume': 0.5});
 					break;
 
 				case 'G':	//GPS Initialised
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdGpsInit(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdGpsInit(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("gpsinit"));
 					break;
 					
 				case 'M':	//Compass Initialised
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCompassInit(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdCompassInit(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("compassinit"));
 					break;
 					
 				case 'P':	//Power Failsafe
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdPowerFailsafe(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdPowerFailsafe(), message);
 					cockpitModel.setIndicatorVal({id: 'lblIndPowerFailsafe', val: 1});
 					break;
 					
 				case 'S':	//Systems Power Up
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdSystemsPowerUp(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdSystemsPowerUp(), message);
 					myHplApp.model.setMessage(myHplApp.controller.getTextFromBundle("systemspowerup"));
 					myHplApp.controller.playSoundEffect({'effect': 'voicelaunchsequenceactivated', 'volume': 0.5});
 					break;
 					
 				case 'T':	//Thrust Failsafe
-					missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdThrustFailsafe(), message);
+					missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNotify(), missioncontrolModel.getMessageIdThrustFailsafe(), message);
 					cockpitModel.setIndicatorVal({id: 'lblIndThrustFailsafe', val: 1});					
 					break;
 			}
@@ -132,7 +132,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'B') {
 			var inertialsensor_msg_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdPower(), missioncontrolModel.getMessageIdBattery(), message );
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdPower(), missioncontrolModel.getMessageIdBattery(), message );
 			
 			cockpitModel.setGaugeVal({id: 'gaugeVoltage', val: inertialsensor_msg_fields[0].substr(1)});
 			cockpitModel.setGaugeVal({id: 'gaugeCurrent', val: inertialsensor_msg_fields[1]});
@@ -153,7 +153,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'C') {
 			var compass_msg_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdCompass(), message );
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdCompass(), message );
 			
 			var compassHeading = parseInt(compass_msg_fields[0].substr(1), 10);
 			sap.ui.getCore().byId("lblCompassVal").setText(compassHeading + '°');		
@@ -165,7 +165,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'D') {
 			var distance_msg_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdDistance(), message );
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdDistance(), message );
 			cockpitModel.setGaugeVal({id: 'gaugeRearProximitySensor', val: distance_msg_fields[0].substr(1)});
 			cockpitModel.setGaugeVal({id: 'gaugeFrontProximitySensor', val: distance_msg_fields[1]});
 			cockpitModel.setGaugeVal({id: 'gaugeCamProximitySensor', val: distance_msg_fields[2]});
@@ -177,7 +177,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'F') {
 			var camera_msg_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), message);
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdCamera(), message);
 			vehicleModel.setStateCamPanVal(camera_msg_fields[0].substr(1));
 			sap.ui.getCore().byId("viewCockpit").getController().setCamPan();
 		};
@@ -187,7 +187,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'I') {
 			var inertialsensor_msg_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdInertial(), message );			
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdInertial(), message );			
 //			sap.ui.getCore().byId("TvInsAccelX").setText(inertialsensor_msg_fields[0].substr(1));
 //			sap.ui.getCore().byId("TvInsAccelY").setText(inertialsensor_msg_fields[1]);
 //			sap.ui.getCore().byId("TvInsAccelZ").setText(inertialsensor_msg_fields[2]);
@@ -212,7 +212,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'M') {
 			var motors_thrust_msg_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdThrust(), message );	
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdDrive(), missioncontrolModel.getMessageIdThrust(), message );	
 			sap.ui.getCore().byId("lblValLeftEngineThrust").setText(motors_thrust_msg_fields[0].substr(1) - 90);
 			sap.ui.getCore().byId("lblValRightEngineThrust").setText(motors_thrust_msg_fields[1] - 90);
 			cockpitModel.setIndicatorVal({id: 'lblStatusLeftEngineThrust', val: motors_thrust_msg_fields[0].substr(1) - 90});
@@ -228,7 +228,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'S') {
 			var gps_msg_nav_sol_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsSol(), message );
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsSol(), message );
 			
 			switch(gps_msg_nav_sol_fields[0].substr(1)) {
 				case '2':
@@ -248,7 +248,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'P' && missioncontrolModel.getGps3DFixCount() > 10) {
 			var gps_msg_nav_posllh_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
 			
 			var longitude 	= parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
 			var lattitude 	= parseFloat(gps_msg_nav_posllh_fields[1], 10);
@@ -280,7 +280,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'V' && missioncontrolModel.getGps3DFixCount() > 10) {
 			var gps_msg_nav_velned_fields = data.split(',');
 			message = data.substr(1);
-			missioncontrolController.messagePump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
 			
 			var heading = parseFloat(gps_msg_nav_velned_fields[1], 10);
 			heading 	= heading / 100000;

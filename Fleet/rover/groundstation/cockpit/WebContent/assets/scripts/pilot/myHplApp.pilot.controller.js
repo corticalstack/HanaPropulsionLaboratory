@@ -51,7 +51,7 @@
 //		return;
 		console.log('Pilot roster default set');
 		var pilot = {
-				pilotId: 	'001',
+				pilotId: 	'1',
 				name: 		'JP',
 				avatarUri: 	'assets/images/pilots/avatarJP.png',
 				clanName: 	'Wolf',
@@ -60,7 +60,7 @@
 		pilotModel.pushRoster(pilot);
 		
 		var pilot = {
-				pilotId: 	'002',
+				pilotId: 	'2',
 				name: 		'Nadia',
 				avatarUri: 	'assets/images/pilots/avatarNadia.png',
 				clanName: 	'Black Widow',
@@ -69,7 +69,7 @@
 		pilotModel.pushRoster(pilot);
 		
 		var pilot = {
-				pilotId: 	'006',
+				pilotId: 	'6',
 				name: 		'Jane',
 				avatarUri: 	'assets/images/pilots/avatarJane.png',
 				clanName: 	'Snake',
@@ -78,7 +78,7 @@
 		pilotModel.pushRoster(pilot);
 
 		var pilot = {
-				pilotId: 	'007',
+				pilotId: 	'7',
 				name: 		'Joe',
 				avatarUri: 	'assets/images/pilots/avatarJoe.png',
 				clanName: 	'Wasp',

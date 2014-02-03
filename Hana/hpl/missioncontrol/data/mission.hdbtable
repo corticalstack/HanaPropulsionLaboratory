@@ -1,0 +1,12 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;
+table.description = "Mission";
+table.columns = [
+	{name = "missionId";    			sqlType = NVARCHAR; nullable = true;  length = 6;				comment = "Mission ID"; },
+	{name = "vehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;				comment = "Vehicle ID"; },	
+	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;				comment = "Pilot ID"; },
+	{name = "startedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Started At"; },
+	{name = "endedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Ended At"; }
+	
+];
+table.primaryKey.pkcolumns = ["missionId","vehicleId","pilotId"];

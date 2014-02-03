@@ -4,7 +4,8 @@
 	
 	var config = {
 			servicePilotsUri: 								'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
-			serviceMessagePumpUri: 							'http://hanaserver:8000/hpl/missioncontrol/services/messageLogPump.xsjs',
+			serviceMissionCreateUri: 						'http://hanaserver:8000/hpl/missioncontrol/services/missionCreate.xsjs',
+			serviceMissionLogPumpUri: 						'http://hanaserver:8000/hpl/missioncontrol/services/missionLogPump.xsjs',			
 			serviceFlightDirectorNextMissionIdUri: 			'http://hanaserver:8000/hpl/missioncontrol/services/flightDirectorNextMissionId.xsjs',
 			chartNetworkTotalPoints: 						100,
 			chartNetworkUpdateInterval: 					30
@@ -63,8 +64,8 @@
 	
 	var activeMission = {
 			missionId: 										'0',
-			vehicleId: 										'001',
-			pilotId:   										'001',
+			vehicleId: 										'1',
+			pilotId:   										'1',
 			keyFrame:										0,
 			homeLattitude: 									0,
 			homeLongitude:									0,
@@ -92,9 +93,12 @@
 		return config.servicePilotsUri;
 	};
 
+	myHplApp.missioncontrol.model.getConfigServiceMissionCreateUri = function() { 
+		return config.serviceMissionCreateUri;
+	};
 	
-	myHplApp.missioncontrol.model.getConfigServiceMessagePumpUri = function() { 
-		return config.serviceMessagePumpUri;
+	myHplApp.missioncontrol.model.getConfigServiceMissionLogPumpUri = function() { 
+		return config.serviceMissionLogPumpUri;
 	};
 
 	myHplApp.missioncontrol.model.getConfigServiceFlightDirectorNextMissionIdUri = function() { 
@@ -386,6 +390,7 @@
 	};
 
 	myHplApp.missioncontrol.model.addNetworkPacketOut = function(val) { 
+		console.log(val);
 		activeMission.networkPacketOut = activeMission.networkPacketOut + val;
 		activeMission.totalNetworkTrafficOut = activeMission.totalNetworkTrafficOut + val;
 	};

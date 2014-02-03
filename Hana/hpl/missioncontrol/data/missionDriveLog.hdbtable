@@ -1,0 +1,15 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;
+table.description = "Mission Drive Log";
+table.columns = [
+	{name = "missionDriveLogId";    	sqlType = NVARCHAR; nullable = false; length = 10;				comment = "Mission Drive Log ID"; },
+	{name = "missionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
+	{name = "vehicleId";    			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Vehicle ID"; },
+	{name = "pilotId";    				sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Pilot ID"; },
+	{name = "keyFrame";      			sqlType = INTEGER;  nullable = false; 				            comment = "Key Frame"; },	
+	{name = "messageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },	
+	{name = "loggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; },
+	{name = "leftEngineThrust";		    sqlType = NVARCHAR; nullable = true;  length = 3; 				comment = "Left Engine Thrust"; },
+	{name = "rightEngineThrust";		sqlType = NVARCHAR; nullable = true;  length = 3; 				comment = "Right Engine Thrust"; }
+];
+table.primaryKey.pkcolumns = ["missionDriveLogId"];

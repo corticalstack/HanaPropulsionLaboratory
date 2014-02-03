@@ -7,15 +7,15 @@
 
 	myHplApp.missioncontrol.controller.init = function() { 
 		console.log('Initialising missioncontrol controller');
-		missioncontrolModel.setActiveMissionId('000001');
-		missioncontrolModel.setActiveVehicleId('001');
-		missioncontrolModel.setActivePilotId('001');
+		missioncontrolModel.setActiveMissionId('1');
+		missioncontrolModel.setActiveVehicleId('1');
+		missioncontrolModel.setActivePilotId('1');
 		missioncontrolModel.setDataNetworkTrafficIn(-1);
 		missioncontrolModel.setDataNetworkTrafficOut(-1);
     };
 
 	
-	myHplApp.missioncontrol.controller.messagePump = function(categoryId, messageId, feed) {
+	myHplApp.missioncontrol.controller.missionLogPump = function(categoryId, messageId, feed) {
 		var missioncontrolModel = myHplApp.missioncontrol.model;
 		if (!missioncontrolModel.getStateMissioncontrolOnline()) {
 			return;
@@ -23,7 +23,7 @@
 	
 		dateNow = new Date();			 
 		jQuery.ajax({
-			url:missioncontrolModel.getConfigServiceMessagePumpUri(),
+			url:missioncontrolModel.getConfigServiceMissionLogPumpUri(),
 			dataType: 'jsonp',
 			data: {missionId:			missioncontrolModel.getActiveMissionId(), 
 				   vehicleId: 			missioncontrolModel.getActiveVehicleId(), 
@@ -35,7 +35,7 @@
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
-			success: myHplApp.missioncontrol.controller.processMessagePumpResponse,
+			success: myHplApp.missioncontrol.controller.processMissionLogPumpResponse,
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
 		
@@ -43,10 +43,39 @@
 	};
 
 
-	myHplApp.missioncontrol.controller.processMessagePumpResponse = function(data) {
+	myHplApp.missioncontrol.controller.processMissionLogPumpResponse = function(data) {
 	};
+
+	myHplApp.missioncontrol.controller.missionCreate = function() {
+		console.log('Mission control controller.....Create Mission');
+		var missioncontrolModel = myHplApp.missioncontrol.model;
+		if (!missioncontrolModel.getStateMissioncontrolOnline()) {
+			return;
+		}
+				 
+		jQuery.ajax({
+			url:missioncontrolModel.getConfigServiceMissionCreateUri(),
+			dataType: 'jsonp',
+			data: {missionId:			missioncontrolModel.getActiveMissionId(), 
+				   vehicleId: 			missioncontrolModel.getActiveVehicleId(), 
+				   pilotId: 			missioncontrolModel.getActivePilotId }, 
+			type: 'GET',
+			headers : {"Access-Control-Allow-Origin" : "*"},
+			crossDomain: true,
+			success: myHplApp.missioncontrol.controller.processMissionCreateResponse,
+			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
+		});	
+		
+	};
+
+
+	myHplApp.missioncontrol.controller.processMissionCreateResponse = function(data) {
+		missioncontrolModel.addNetworkPacketOut(Object.keys(data).length);
+	};
+
 	
 	myHplApp.missioncontrol.controller.getFlightDirectorNextMissionId = function() {
+		console.log('Mission control controller....getting flight director next mission id');
 		var missioncontrolModel = myHplApp.missioncontrol.model;
 		if (!missioncontrolModel.getStateMissioncontrolOnline()) {
 			return;
@@ -67,8 +96,9 @@
 	};
 
 	myHplApp.missioncontrol.controller.processFlightDirectorNextMissionIdResponse = function(data) {
-		myHplApp.missioncontrol.model.setActiveMissionId(data.nextMissionId);
-		missioncontrolModel.addNetworkPacketOut(data.length);		
+		myHplApp.missioncontrol.model.setActiveMissionId(data.nextMissionId);		
+		missioncontrolModel.addNetworkPacketOut(Object.keys(data).length);	
+		myHplApp.missioncontrol.controller.missionCreate();
 	};
 	
 	myHplApp.missioncontrol.controller.checkSetHomeLatLng = function() { 
