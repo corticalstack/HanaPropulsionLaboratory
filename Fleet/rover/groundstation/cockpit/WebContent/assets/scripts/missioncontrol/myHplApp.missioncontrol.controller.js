@@ -52,7 +52,8 @@
 		if (!missioncontrolModel.getStateMissioncontrolOnline()) {
 			return;
 		}
-				 
+		
+		console.log('Next active mission id ', missioncontrolModel.getActiveMissionId());
 		jQuery.ajax({
 			url:missioncontrolModel.getConfigServiceMissionCreateUri(),
 			dataType: 'jsonp',
@@ -96,7 +97,8 @@
 	};
 
 	myHplApp.missioncontrol.controller.processFlightDirectorNextMissionIdResponse = function(data) {
-		myHplApp.missioncontrol.model.setActiveMissionId(data.nextMissionId);		
+		myHplApp.missioncontrol.model.setActiveMissionId(data.nextMissionId);	
+		console.log('Next mission id ', data.nextMissionId);
 		missioncontrolModel.addNetworkPacketOut(Object.keys(data).length);	
 		myHplApp.missioncontrol.controller.missionCreate();
 	};

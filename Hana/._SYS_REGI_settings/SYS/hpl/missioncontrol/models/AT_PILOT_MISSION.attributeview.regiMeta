@@ -1,0 +1,31 @@
+{
+ "caption": {
+  "content": "AT_PILOT_MISSION",
+  "lang": "",
+  "max_length": "255",
+  "text_id": "caption",
+  "text_type": "XTIT"
+ },
+ "metadata": {
+  "activated_at": "2014-02-04 10:53:45.1600000",
+  "activated_by": "SYSTEM",
+  "change_number": "0",
+  "delivery_unit": "",
+  "du_vendor": "",
+  "du_version": "",
+  "du_version_patch": "",
+  "du_version_sp": "",
+  "edit": "true",
+  "format_version": "",
+  "object_status": "0",
+  "released_at": "null",
+  "type": "1",
+  "version_id": "1"
+ },
+ "version": {
+  "versionType": "1"
+ },
+ "package": "hpl.missioncontrol.models",
+ "name": "AT_PILOT_MISSION",
+ "suffix": "attributeview"
+}

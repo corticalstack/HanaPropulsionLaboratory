@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_PILOT_MISSION" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="AT_PILOT_MISSION"/>
+  <attributes>
+    <attribute id="pilotId_1" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="Pilot ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission" columnName="pilotId"/>
+    </attribute>
+    <attribute id="missionId" order="2" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission" columnName="missionId"/>
+    </attribute>
+    <attribute id="name" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Name"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::pilot" columnName="name"/>
+    </attribute>
+    <attribute id="vehicleId" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission" columnName="vehicleId"/>
+    </attribute>
+    <attribute id="startedAt" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Started At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission" columnName="startedAt"/>
+    </attribute>
+    <attribute id="endedAt" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Ended At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission" columnName="endedAt"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::pilot"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::pilot"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission"/>
+        <leftColumns>
+          <columnName>pilotId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>pilotId</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::pilot" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="0" y="9"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::mission" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="330" y="9"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

@@ -3,10 +3,10 @@
 	myHplApp.missioncontrol.model = myHplApp.missioncontrol.model || {};
 	
 	var config = {
-			servicePilotsUri: 								'http://hanaserver:8000/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
-			serviceMissionCreateUri: 						'http://hanaserver:8000/hpl/missioncontrol/services/missionCreate.xsjs',
-			serviceMissionLogPumpUri: 						'http://hanaserver:8000/hpl/missioncontrol/services/missionLogPump.xsjs',			
-			serviceFlightDirectorNextMissionIdUri: 			'http://hanaserver:8000/hpl/missioncontrol/services/flightDirectorNextMissionId.xsjs',
+			servicePilotsUri: 								'http://hanaserver:80/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
+			serviceMissionCreateUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionCreate.xsjs',
+			serviceMissionLogPumpUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionLogPump.xsjs',			
+			serviceFlightDirectorNextMissionIdUri: 			'http://hanaserver:80/hpl/missioncontrol/services/flightDirectorNextMissionId.xsjs',
 			chartNetworkTotalPoints: 						100,
 			chartNetworkUpdateInterval: 					30
 	};
@@ -390,7 +390,6 @@
 	};
 
 	myHplApp.missioncontrol.model.addNetworkPacketOut = function(val) { 
-		console.log(val);
 		activeMission.networkPacketOut = activeMission.networkPacketOut + val;
 		activeMission.totalNetworkTrafficOut = activeMission.totalNetworkTrafficOut + val;
 	};

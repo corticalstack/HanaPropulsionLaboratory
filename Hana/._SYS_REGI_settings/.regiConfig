@@ -1,9 +1,9 @@
 {
-"name":"Hana",
-"hostname":"hanaserver:30015",
-"user":"SYSTEM",
-"key":"",
-"regi_version":"0000.0013.0003",
-"client_format_version":"0001.0000.0000",
-"trackedPackages":["hpl"]
+ "name": "Hana",
+ "hostname": "hanaserver:30015",
+ "systemid": "HDB",
+ "user": "SYSTEM",
+ "key": "",
+ "client_format_version": "1.0.0",
+ "trackedPackages": []
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MISSION_NOTIFY_LOG_COM" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="AT_MISSION_NOTIFY_LOG_COM"/>
+  <attributes>
+    <attribute id="missionId" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="missionId"/>
+    </attribute>
+    <attribute id="startedAt" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Started At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission" columnName="startedAt"/>
+    </attribute>
+    <attribute id="endedAt" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Ended At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission" columnName="endedAt"/>
+    </attribute>
+    <attribute id="keyFrame" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Key Frame"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="keyFrame"/>
+    </attribute>
+    <attribute id="messageId" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Message ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="messageId"/>
+    </attribute>
+    <attribute id="commsTick" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Comms Tick"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="commsTick"/>
+    </attribute>
+    <attribute id="loggedAt" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Logged At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="loggedAt"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog"/>
+        <columnFilter columnName="messageId">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="COM"/>
+        </columnFilter>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::mission"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog"/>
+        <leftColumns>
+          <columnName>missionId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>missionId</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::mission" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::missionNotifyLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="449" y="30"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

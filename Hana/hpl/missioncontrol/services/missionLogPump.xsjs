@@ -1,60 +1,60 @@
 function missionLogPump(){
-	try {
-		
-		var messageCategoryId = {
-				notify:						'NOT',
-				drive:						'DRI',
-				sensor:						'SEN',
-				navigation:					'NAV',
-				power:						'POW',
-				cockpit:					'COC',
-		};
-		
-		var messageId = {
-				arming:						'ARM',
-				armed:						'ARD',			
-				battery:					'BAT',
-				camera:						'CAM',
-				compass:					'CPS',			
-				compassInit:				'CPI',
-				commsTick:					'COM',			
-				distance:					'DST',
-				direction:					'DIR',
-				inertial:					'INE',
-				inertialInit:				'INI',
-				gpsInit:					'GPI',
-				gpsPos:						'GPP',			
-				gpsSol:						'GPS',
-				gpsVel:						'GPV',
-				heading:					'HDG',
-				laser:						'LAS',
-				mapType:					'MPT',
-				mapZoom:					'MPZ',
-				motor:						'MTR',
-				powerFailsafe:				'PFS',			
-				rotate:						'ROT',			
-				stop:						'STP',
-				systemsPowerUp:				'SPU',
-				thrust:						'THR',
-				thrustFailsafe:				'TFS',
-				weaponActive:				'WEA',			
-				weaponFire:					'WEF',
-				weaponStop:					'WES',			
-		};
-		
-		var query,
-			pstmt,
-			conn				= $.db.getConnection("hpl.missioncontrol.services::anonConn"),
-			p_missionId			= $.request.parameters.get('missionId'),
-			p_vehicleId			= $.request.parameters.get('vehicleId'),
-			p_pilotId			= $.request.parameters.get('pilotId'),
-			p_keyFrame			= $.request.parameters.get('keyFrame'),
-			p_messageCategoryId	= $.request.parameters.get('messageCategoryId'),
-			p_messageId			= $.request.parameters.get('messageId'),
-			p_feed				= $.request.parameters.get('feed'),	
-			p_timeStamp			= $.request.parameters.get('_'),		
-			p_callback			= $.request.parameters.get('callback');
+	var messageCategoryId = {
+			notify:						'NOT',
+			drive:						'DRI',
+			sensor:						'SEN',
+			navigation:					'NAV',
+			power:						'POW',
+			cockpit:					'COC',
+	};
 	
+	var messageId = {
+			arming:						'ARM',
+			armed:						'ARD',			
+			battery:					'BAT',
+			camera:						'CAM',
+			compass:					'CPS',			
+			compassInit:				'CPI',
+			commsTick:					'COM',			
+			distance:					'DST',
+			direction:					'DIR',
+			inertial:					'INE',
+			inertialInit:				'INI',
+			gpsInit:					'GPI',
+			gpsPos:						'GPP',			
+			gpsSol:						'GPS',
+			gpsVel:						'GPV',
+			heading:					'HDG',
+			laser:						'LAS',
+			mapType:					'MPT',
+			mapZoom:					'MPZ',
+			motor:						'MTR',
+			powerFailsafe:				'PFS',			
+			rotate:						'ROT',			
+			stop:						'STP',
+			systemsPowerUp:				'SPU',
+			thrust:						'THR',
+			thrustFailsafe:				'TFS',
+			weaponActive:				'WEA',			
+			weaponFire:					'WEF',
+			weaponStop:					'WES',			
+	};
+	
+	var query,
+		pstmt				= null,
+		conn				= $.db.getConnection("hpl.missioncontrol.services::anonConn"),
+		p_missionId			= $.request.parameters.get('missionId'),
+		p_vehicleId			= $.request.parameters.get('vehicleId'),
+		p_pilotId			= $.request.parameters.get('pilotId'),
+		p_keyFrame			= $.request.parameters.get('keyFrame'),
+		p_messageCategoryId	= $.request.parameters.get('messageCategoryId'),
+		p_messageId			= $.request.parameters.get('messageId'),
+		p_feed				= $.request.parameters.get('feed'),	
+		p_timeStamp			= $.request.parameters.get('_'),		
+		p_callback			= $.request.parameters.get('callback');
+	
+	
+	try {
 		p_timeStamp = parseInt(p_timeStamp, 10);
 		var messageFeedFields = p_feed.split(',');
 		
@@ -81,8 +81,6 @@ function missionLogPump(){
 				pstmt.setBigInt(6,p_timeStamp);
 				pstmt.setString(7,commsTick);
 				pstmt.execute();  
-				conn.commit();  
-				conn.close();
 				break;
 			
 				
@@ -109,8 +107,6 @@ function missionLogPump(){
 				pstmt.setString(7,leftEngineThrust);
 				pstmt.setString(8,rightEngineThrust);
 				pstmt.execute();  
-				conn.commit();  
-				conn.close();
 				break;
 			
 				
@@ -157,8 +153,6 @@ function missionLogPump(){
 				pstmt.setString(12,proximityFront);
 				pstmt.setString(13,proximityCam);
 				pstmt.execute();  
-				conn.commit();  
-				conn.close();
 				break;
 				
 				
@@ -212,8 +206,6 @@ function missionLogPump(){
 				pstmt.setString(13,gpsVelSpeedCms);
 				pstmt.setString(14,compassBearing);
 				pstmt.execute();  
-				conn.commit();  
-				conn.close();
 				break;
 				
 				
@@ -239,8 +231,6 @@ function missionLogPump(){
 				pstmt.setString(10,consumedMah);
 				pstmt.setString(11,batteryRemaining);
 				pstmt.execute();  
-				conn.commit();  
-				conn.close();
 				break;
 			
 			case messageCategoryId.cockpit: 
@@ -318,12 +308,18 @@ function missionLogPump(){
 				pstmt.setString(17,mapZoom);
 				pstmt.setString(18,laser);
 				pstmt.execute();  
-				conn.commit();  
-				conn.close();
 				break;
 		}
+				
 		
-
+		query = 'UPSERT "hpl.missioncontrol.data::missionKeyFrame" values(?,?,?) WITH PRIMARY KEY';
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1,p_missionId);  
+		pstmt.setString(2,p_keyFrame);
+		pstmt.setBigInt(3,p_timeStamp);
+		pstmt.execute();  
+		
+		
 	    var bodyContent = JSON.stringify({
               "data": p_missionId
         });
@@ -335,6 +331,9 @@ function missionLogPump(){
 	} catch(e) {
 		$.response.status = $.net.http.INTERNAL_SERVER_ERROR;
 		$.response.setBody(e.message);
+	} finally {
+		conn.commit();  
+		conn.close();
 	}
 }
 

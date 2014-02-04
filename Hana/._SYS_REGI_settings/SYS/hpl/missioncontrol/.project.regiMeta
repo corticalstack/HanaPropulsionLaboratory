@@ -1,21 +1,27 @@
 {
-  "content_texts": [],
-  "metadata": {
-    "activated_at": "2013-12-03 17:26:50.9250000",
-    "activated_by": "SYSTEM",
-    "delivery_unit": "",
-    "du_vendor": "",
-    "du_version": "",
-    "du_version_patch": "",
-    "du_version_sp": "",
-    "edit": "true",
-    "format_version": "",
-    "object_status": "0",
-    "type": "1",
-    "version_id": "1"
-  },
-  "texts": [],
-  "version": {
-    "versionType": "1"
-  }
+ "caption": {
+  "content": "",
+  "lang": "",
+  "max_length": "16",
+  "text_id": "caption",
+  "text_type": "caption"
+ },
+ "metadata": {
+  "delivery_unit": "",
+  "du_vendor": "",
+  "du_version": "",
+  "du_version_patch": "",
+  "du_version_sp": "",
+  "edit": "true",
+  "format_version": "",
+  "is_deletion": "false",
+  "last_changed_at": "2014-02-04 08:47:18.0420000",
+  "type": "2",
+  "version_id": "1"
+ },
+ "version": {
+  "owner": "SYSTEM",
+  "versionType": "2",
+  "workspace": "Hana"
+ }
 }
