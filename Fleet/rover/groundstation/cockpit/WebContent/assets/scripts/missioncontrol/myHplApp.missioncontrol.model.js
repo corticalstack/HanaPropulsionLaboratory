@@ -5,6 +5,7 @@
 	var config = {
 			servicePilotsUri: 								'http://hanaserver:80/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
 			serviceMissionCreateUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionCreate.xsjs',
+			serviceMissionSetHomeLatLngAltUri: 				'http://hanaserver:80/hpl/missioncontrol/services/missionSetHomeLatLngAlt.xsjs',			
 			serviceMissionLogPumpUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionLogPump.xsjs',			
 			serviceFlightDirectorNextMissionIdUri: 			'http://hanaserver:80/hpl/missioncontrol/services/flightDirectorNextMissionId.xsjs',
 			chartNetworkTotalPoints: 						100,
@@ -69,8 +70,10 @@
 			keyFrame:										0,
 			homeLattitude: 									0,
 			homeLongitude:									0,
+			homeAltitude:									0,
 			currentLattitude:								0,
 			currentLongitude:								0,
+			currentAltitude:								0,
 			nextWaypointId:									'',
 			waypoints:										[],
 			prevNetworkPacketIn:							0,
@@ -95,6 +98,10 @@
 
 	myHplApp.missioncontrol.model.getConfigServiceMissionCreateUri = function() { 
 		return config.serviceMissionCreateUri;
+	};
+	
+	myHplApp.missioncontrol.model.getConfigServiceMissionSetHomeLatLngAltUri = function() { 
+		return config.serviceMissionSetHomeLatLngAltUri;
 	};
 	
 	myHplApp.missioncontrol.model.getConfigServiceMissionLogPumpUri = function() { 
@@ -317,13 +324,21 @@
 	myHplApp.missioncontrol.model.getHomeLattitude = function() { 
 		return activeMission.homeLattitude;
 	};
-	
+
+	myHplApp.missioncontrol.model.getHomeAltitude = function() { 
+		return activeMission.homeAltitude;
+	};
+
 	myHplApp.missioncontrol.model.getCurrentLattitude = function() { 
 		return activeMission.currentLattitude;
 	};
 
 	myHplApp.missioncontrol.model.getCurrentLongitude = function() { 
 		return activeMission.currentLongitude;
+	};
+
+	myHplApp.missioncontrol.model.getCurrentAltitude = function() { 
+		return activeMission.currentAltitude;
 	};
 
 	myHplApp.missioncontrol.model.getNetworkPacketIn = function() { 
@@ -352,9 +367,11 @@
 	
 	
 	//Set methods for activeMission    
-	myHplApp.missioncontrol.model.setActiveHomeLatLng = function() {
+	myHplApp.missioncontrol.model.setActiveHomeLatLngAlt = function() {
+		console.log('Mission control model.....Setting active home lat lng alt');
 		activeMission.homeLattitude = activeMission.currentLattitude; 
 		activeMission.homeLongitude = activeMission.currentLongitude;
+		activeMission.homeAltitude  = activeMission.currentAltitude;
 	};
 
 	
@@ -382,6 +399,10 @@
 
 	myHplApp.missioncontrol.model.setCurrentLongitude = function(val) { 
 		activeMission.currentLongitude = val;
+	};
+
+	myHplApp.missioncontrol.model.setCurrentAltitude = function(val) { 
+		activeMission.currentAltitude = val;
 	};
 
 	myHplApp.missioncontrol.model.addNetworkPacketIn = function(val) { 
@@ -441,11 +462,13 @@
 	};
 
 	
-	myHplApp.missioncontrol.model.addWaypoint = function(id, longitudeVal, lattitudeVal) {
+	myHplApp.missioncontrol.model.addWaypoint = function(id, longitudeVal, lattitudeVal, altitudeVal) {
+		console.log('Mission control model.....Adding waypoint', id);
 		var waypoint = {
 				id: id,
 				longitude: longitudeVal,
-				lattitude: lattitudeVal 
+				lattitude: lattitudeVal,
+				altitude:  altitudeVal
 		};
 		activeMission.waypoints.push(waypoint); 
 	};

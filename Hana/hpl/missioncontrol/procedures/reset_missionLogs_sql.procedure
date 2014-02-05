@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <UDE:Procedure xmlns:UDE="http://www.sap.com/ndb/SQLCoreModelUDE.ecore" xmlns:DataTypes="http://www.sap.com/ndb/SQLCoreModelDataTypes.ecore" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="reset_missionLogs_sql" schemaVersion="2" procedureType="procedure" runWithInvokerPrivileges="true" language="SQLSCRIPT" accessMode="ReadWrite">
 <descriptions defaultDescription=""/>
-<metadata changedAt ="2014-02-04 18:16:33.413" createdAt="2014-01-30 10:16:56.009"/>
+<metadata changedAt ="2014-02-05 18:56:40.955" createdAt="2014-01-30 10:16:56.009"/>
 <origin/>
 <schema id="_SYS_BIC"/>
-<definition>        
+<definition>         
 	--DEFAULT SCHEMA &lt;schema&gt;
 
 BEGIN
@@ -13,6 +13,7 @@ BEGIN
  *****************************/
 
  	delete from &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::missionKeyFrame&quot;; 
+ 	delete from &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::missionLog&quot;;
  	delete from &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::mission&quot;;
  	delete from &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::missionCockpitLog&quot;;
 	delete from &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.data::missionDriveLog&quot;;	

@@ -1,0 +1,24 @@
+SPU,E,en,System power up
+GPI,E,en,GPS initialised
+INE,E,en,Inertial
+INI,E,en,Inertial initialised
+CPI,E,en,Compass initialised
+ARM,E,en,Arming
+ARD,E,en,Armed
+CAM,E,en,Camera
+COM,E,en,Communication tick
+CPS,E,en,Compass
+DST,E,en,Distance
+THR,E,en,Thrust
+BAT,E,en,Battery
+GPP,E,en,GPS position
+GPS,E,en,GPS satellites
+GPV,E,en,GPS velocity
+HDG,E,en,Heading
+MPT,E,en,Map toggle
+MPZ,E,en,Map zoom
+ROT,E,en,Rotate
+STP,E,en,Stop
+TFS,E,en,Thrust failsafe
+PFS,E,en,Power failsafe
+

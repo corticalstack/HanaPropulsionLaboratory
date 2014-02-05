@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MISSION_LOG_BY_KEYFRAME" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Mission log by key frame"/>
+  <descriptions defaultDescription="Mission log complete by key frame"/>
   <attributes>
     <attribute id="missionId" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="Mission ID"/>
@@ -14,183 +14,198 @@
       <descriptions defaultDescription="Logged At"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame" columnName="loggedAt"/>
     </attribute>
-    <attribute id="navigationMessageId" order="4" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Message ID"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="messageId"/>
-    </attribute>
-    <attribute id="sensorMessageId" order="5" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Message ID"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="messageId"/>
-    </attribute>
-    <attribute id="cockpitMessageId" order="6" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitMessageId" order="4" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Message ID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="messageId"/>
     </attribute>
-    <attribute id="driveMessageId" order="7" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitMessageIdDescription" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_6" columnName="text"/>
+    </attribute>
+    <attribute id="driveMessageId" order="6" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Message ID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionDriveLog" columnName="messageId"/>
     </attribute>
-    <attribute id="notifyMessageId" order="8" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="driveMessageIdDescription" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_5" columnName="text"/>
+    </attribute>
+    <attribute id="navigationMessageId" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Message ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="messageId"/>
+    </attribute>
+    <attribute id="navigationMessageIdDescription" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_4" columnName="text"/>
+    </attribute>
+    <attribute id="notifyMessageId" order="10" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Message ID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="messageId"/>
     </attribute>
-    <attribute id="powerMessageId" order="9" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="notifyMessageIdDescription" order="11" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_2" columnName="text"/>
+    </attribute>
+    <attribute id="powerMessageId" order="12" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Message ID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="messageId"/>
     </attribute>
-    <attribute id="sensorCamera" order="10" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Camera"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="camera"/>
+    <attribute id="powerMessageIdDescription" order="13" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_3" columnName="text"/>
     </attribute>
-    <attribute id="sensorInertialAccelX" order="11" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Inertial Accel X"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelX"/>
+    <attribute id="sensorMessageId" order="14" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Message ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="messageId"/>
     </attribute>
-    <attribute id="sensorInertialAccelY" order="12" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Inertial Accel Y"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelY"/>
+    <attribute id="sensorMessageIdDescription" order="15" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_1" columnName="text"/>
     </attribute>
-    <attribute id="sensorInertialAccelZ" order="13" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Inertial Accel Z"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelZ"/>
-    </attribute>
-    <attribute id="sensorProximityRear" order="14" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Proximity Front"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityRear"/>
-    </attribute>
-    <attribute id="sensorProximityFront" order="15" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Proximity Rear"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityFront"/>
-    </attribute>
-    <attribute id="sensorProximityCam" order="16" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Proximity Cam"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityCam"/>
-    </attribute>
-    <attribute id="navigationGpsSolFixType" order="17" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPS Sol Msg Fix Type"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsSolFixType"/>
-    </attribute>
-    <attribute id="navigationGpsSolNumSats" order="18" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPS Sol Msg Number Satellites"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsSolNumSats"/>
-    </attribute>
-    <attribute id="navigationGpsPosLongitude" order="19" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPS Pos Msg Longitude"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsPosLongitude"/>
-    </attribute>
-    <attribute id="navigationGpsPosLattitude" order="20" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPS Pos Msg Lattitude"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsPosLattitude"/>
-    </attribute>
-    <attribute id="navigationGpsPosAltitude" order="21" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPS Pos Msg Altitude"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsPosAltitude"/>
-    </attribute>
-    <attribute id="navigationGpsVelHeading" order="22" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPS Vel Msg Heading"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsVelHeading"/>
-    </attribute>
-    <attribute id="navigationGpsVelSpeedCms" order="23" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPS Vel Msg Speed CMS"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsVelSpeedCms"/>
-    </attribute>
-    <attribute id="navigationCompassBearing" order="24" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="Compass Bearing"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="compassBearing"/>
-    </attribute>
-    <attribute id="cockpitDirection" order="25" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitDirection" order="16" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Direction"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="direction"/>
     </attribute>
-    <attribute id="cockpitHeading" order="26" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitHeading" order="17" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Heading"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="heading"/>
     </attribute>
-    <attribute id="cockpitThrottle" order="27" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitThrottle" order="18" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Throttle"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="throttle"/>
     </attribute>
-    <attribute id="cockpitRotate" order="28" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitRotate" order="19" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Rotate"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="rotate"/>
     </attribute>
-    <attribute id="cockpitStop" order="29" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitStop" order="20" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Stop"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="stop"/>
     </attribute>
-    <attribute id="cockpitCamera" order="30" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitCamera" order="21" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Camera"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="camera"/>
     </attribute>
-    <attribute id="cockpitWeaponActive" order="31" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitWeaponActive" order="22" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Weapon Active"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="weaponActive"/>
     </attribute>
-    <attribute id="cockpitWeaponFire" order="32" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitWeaponFire" order="23" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Weapon Fire"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="weaponFire"/>
     </attribute>
-    <attribute id="cockpitWeaponStop" order="33" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitWeaponStop" order="24" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Weapon Stop"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="weaponStop"/>
     </attribute>
-    <attribute id="cockpitMapType" order="34" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitMapType" order="25" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Map Type"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="mapType"/>
     </attribute>
-    <attribute id="cockpitMapZoom" order="35" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitMapZoom" order="26" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Map Zoom"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="mapZoom"/>
     </attribute>
-    <attribute id="cockpitLaser" order="36" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="cockpitLaser" order="27" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Laser"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog" columnName="laser"/>
     </attribute>
-    <attribute id="driveLeftEngineThrust" order="37" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="driveLeftEngineThrust" order="28" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Left Engine Thrust"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionDriveLog" columnName="leftEngineThrust"/>
     </attribute>
-    <attribute id="driveRightEngineThrust" order="38" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="driveRightEngineThrust" order="29" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Right Engine Thrust"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionDriveLog" columnName="rightEngineThrust"/>
     </attribute>
-    <attribute id="notifyCommsTick" order="39" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="navigationGpsSolFixType" order="30" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPS Sol Msg Fix Type"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsSolFixType"/>
+    </attribute>
+    <attribute id="navigationGpsSolNumSats" order="31" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPS Sol Msg Number Satellites"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsSolNumSats"/>
+    </attribute>
+    <attribute id="navigationGpsPosLongitude" order="32" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPS Pos Msg Longitude"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsPosLongitude"/>
+    </attribute>
+    <attribute id="navigationGpsPosLattitude" order="33" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPS Pos Msg Lattitude"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsPosLattitude"/>
+    </attribute>
+    <attribute id="navigationGpsPosAltitude" order="34" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPS Pos Msg Altitude"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsPosAltitude"/>
+    </attribute>
+    <attribute id="navigationGpsVelHeading" order="35" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPS Vel Msg Heading"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsVelHeading"/>
+    </attribute>
+    <attribute id="navigationGpsVelSpeedCms" order="36" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPS Vel Msg Speed CMS"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="gpsVelSpeedCms"/>
+    </attribute>
+    <attribute id="navigationCompassBearing" order="37" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Compass Bearing"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog" columnName="compassBearing"/>
+    </attribute>
+    <attribute id="notifyCommsTick" order="38" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Comms Tick"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="commsTick"/>
     </attribute>
-    <attribute id="powerVoltage" order="40" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="powerVoltage" order="39" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Voltage"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="voltage"/>
     </attribute>
-    <attribute id="powerCurrent" order="41" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="powerCurrent" order="40" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Current"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="current"/>
     </attribute>
-    <attribute id="powerAmps" order="42" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="powerAmps" order="41" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Amps"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="amps"/>
     </attribute>
-    <attribute id="powerConsumedMah" order="43" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="powerConsumedMah" order="42" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Consumed Mah"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="consumedMah"/>
     </attribute>
-    <attribute id="powerBatteryRemaining" order="44" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="powerBatteryRemaining" order="43" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Battery Remaining"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="batteryRemaining"/>
+    </attribute>
+    <attribute id="sensorCamera" order="44" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Camera"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="camera"/>
+    </attribute>
+    <attribute id="sensorInertialAccelX" order="45" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Inertial Accel X"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelX"/>
+    </attribute>
+    <attribute id="sensorInertialAccelY" order="46" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Inertial Accel Y"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelY"/>
+    </attribute>
+    <attribute id="sensorInertialAccelZ" order="47" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Inertial Accel Z"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelZ"/>
+    </attribute>
+    <attribute id="sensorProximityRear" order="48" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Proximity Front"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityRear"/>
+    </attribute>
+    <attribute id="sensorProximityFront" order="49" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Proximity Rear"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityFront"/>
+    </attribute>
+    <attribute id="sensorProximityCam" order="50" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Proximity Cam"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityCam"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
   <privateDataFoundation>
     <tableProxies>
-      <tableProxy>
-        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
-      </tableProxy>
-      <tableProxy>
-        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog"/>
-      </tableProxy>
-      <tableProxy>
-        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog"/>
-      </tableProxy>
       <tableProxy>
         <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog"/>
       </tableProxy>
@@ -198,43 +213,40 @@
         <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionDriveLog"/>
       </tableProxy>
       <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog"/>
+      </tableProxy>
+      <tableProxy>
         <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog"/>
       </tableProxy>
       <tableProxy>
         <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog"/>
       </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_1"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_2"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_3"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_4"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_5"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_6"/>
+      </tableProxy>
     </tableProxies>
     <joins>
-      <join>
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
-        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog"/>
-        <leftColumns>
-          <columnName>missionId</columnName>
-          <columnName>keyFrame</columnName>
-          <columnName>loggedAt</columnName>
-        </leftColumns>
-        <rightColumns>
-          <columnName>missionId</columnName>
-          <columnName>keyFrame</columnName>
-          <columnName>loggedAt</columnName>
-        </rightColumns>
-        <properties cardinality="C1_N" joinOperator="Equal" joinType="leftOuter"/>
-      </join>
-      <join>
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
-        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog"/>
-        <leftColumns>
-          <columnName>missionId</columnName>
-          <columnName>keyFrame</columnName>
-          <columnName>loggedAt</columnName>
-        </leftColumns>
-        <rightColumns>
-          <columnName>missionId</columnName>
-          <columnName>keyFrame</columnName>
-          <columnName>loggedAt</columnName>
-        </rightColumns>
-        <properties cardinality="C1_N" joinOperator="Equal" joinType="leftOuter"/>
-      </join>
       <join>
         <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
         <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog"/>
@@ -253,6 +265,21 @@
       <join>
         <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
         <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionDriveLog"/>
+        <leftColumns>
+          <columnName>missionId</columnName>
+          <columnName>keyFrame</columnName>
+          <columnName>loggedAt</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>missionId</columnName>
+          <columnName>keyFrame</columnName>
+          <columnName>loggedAt</columnName>
+        </rightColumns>
+        <properties cardinality="C1_N" joinOperator="Equal" joinType="leftOuter"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog"/>
         <leftColumns>
           <columnName>missionId</columnName>
           <columnName>keyFrame</columnName>
@@ -295,29 +322,128 @@
         </rightColumns>
         <properties cardinality="C1_N" joinOperator="Equal" joinType="leftOuter"/>
       </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionKeyFrame"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog"/>
+        <leftColumns>
+          <columnName>missionId</columnName>
+          <columnName>keyFrame</columnName>
+          <columnName>loggedAt</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>missionId</columnName>
+          <columnName>keyFrame</columnName>
+          <columnName>loggedAt</columnName>
+        </rightColumns>
+        <properties cardinality="C1_N" joinOperator="Equal" joinType="leftOuter"/>
+      </join>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionCockpitLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_6"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_2"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionDriveLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_5"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNavigationLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_4"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_3"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" alias="hpl_1"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog"/>
+        <leftColumns>
+          <columnName>textId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>messageId</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
     </joins>
     <layout>
       <shapes>
-        <shape modelObjectName="hpl.missioncontrol.data::missionKeyFrame" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="584" y="429"/>
-        </shape>
-        <shape modelObjectName="hpl.missioncontrol.data::missionNavigationLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="1037" y="14"/>
-        </shape>
-        <shape modelObjectName="hpl.missioncontrol.data::missionSensorLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="5" y="6"/>
-        </shape>
         <shape modelObjectName="hpl.missioncontrol.data::missionCockpitLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="12" y="332"/>
+          <upperLeftCorner x="1356" y="16"/>
         </shape>
         <shape modelObjectName="hpl.missioncontrol.data::missionDriveLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="1074" y="386"/>
+          <upperLeftCorner x="434" y="48"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::missionKeyFrame" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="907" y="384"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::missionNavigationLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="434" y="257"/>
         </shape>
         <shape modelObjectName="hpl.missioncontrol.data::missionNotifyLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="12" y="743"/>
+          <upperLeftCorner x="1356" y="385"/>
         </shape>
         <shape modelObjectName="hpl.missioncontrol.data::missionPowerLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="1055" y="700"/>
+          <upperLeftCorner x="434" y="562"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::missionSensorLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1356" y="578"/>
+        </shape>
+        <shape modelObjectName="hpl_1" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1811" y="498"/>
+        </shape>
+        <shape modelObjectName="hpl_2" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1811" y="369"/>
+        </shape>
+        <shape modelObjectName="hpl_3" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="16" y="498"/>
+        </shape>
+        <shape modelObjectName="hpl_4" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="16" y="369"/>
+        </shape>
+        <shape modelObjectName="hpl_5" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="16" y="240"/>
+        </shape>
+        <shape modelObjectName="hpl_6" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1811" y="240"/>
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>

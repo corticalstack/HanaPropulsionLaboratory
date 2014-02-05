@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MISSION_POWER_LOG" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="Mission power log"/>
+  <attributes>
+    <attribute id="missionPowerLogId" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="Mission Power Log ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="missionPowerLogId"/>
+    </attribute>
+    <attribute id="missionId" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Mission ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="missionId"/>
+    </attribute>
+    <attribute id="vehicleId" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="vehicleId"/>
+    </attribute>
+    <attribute id="pilotId" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Pilot ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="pilotId"/>
+    </attribute>
+    <attribute id="keyFrame" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Key Frame"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="keyFrame"/>
+    </attribute>
+    <attribute id="messageId" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Message ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="messageId"/>
+    </attribute>
+    <attribute id="messageIdDescription" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" columnName="text"/>
+    </attribute>
+    <attribute id="loggedAt" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Logged At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="loggedAt"/>
+    </attribute>
+    <attribute id="voltage" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Voltage"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="voltage"/>
+    </attribute>
+    <attribute id="current" order="10" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Current"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="current"/>
+    </attribute>
+    <attribute id="amps" order="11" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Amps"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="amps"/>
+    </attribute>
+    <attribute id="consumedMah" order="12" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Consumed Mah"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="consumedMah"/>
+    </attribute>
+    <attribute id="batteryRemaining" order="13" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Battery Remaining"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog" columnName="batteryRemaining"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionPowerLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::missionPowerLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="505" y="30"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

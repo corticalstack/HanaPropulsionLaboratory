@@ -47,7 +47,7 @@
         <rightColumns>
           <columnName>pilotId</columnName>
         </rightColumns>
-        <properties joinOperator="Equal" joinType="referential"/>
+        <properties cardinality="C1_N" joinOperator="Equal" joinType="referential"/>
       </join>
     </joins>
     <layout>
@@ -60,7 +60,7 @@
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>
-          <rectangleSize/>
+          <rectangleSize height="0" width="0"/>
         </shape>
       </shapes>
     </layout>

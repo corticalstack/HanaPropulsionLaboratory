@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MISSION_NOTIFY_LOG" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="Mission notify log"/>
+  <attributes>
+    <attribute id="missionNotifyLogId" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="Mission Notify Log ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="missionNotifyLogId"/>
+    </attribute>
+    <attribute id="missionId" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Mission ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="missionId"/>
+    </attribute>
+    <attribute id="vehicleId" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="vehicleId"/>
+    </attribute>
+    <attribute id="pilotId" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Pilot ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="pilotId"/>
+    </attribute>
+    <attribute id="keyFrame" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Key Frame"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="keyFrame"/>
+    </attribute>
+    <attribute id="messageId" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Message ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="messageId"/>
+    </attribute>
+    <attribute id="messageIdDescription" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" columnName="text"/>
+    </attribute>
+    <attribute id="loggedAt" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Logged At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="loggedAt"/>
+    </attribute>
+    <attribute id="commsTick" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Comms Tick"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog" columnName="commsTick"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionNotifyLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::missionNotifyLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="504" y="30"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

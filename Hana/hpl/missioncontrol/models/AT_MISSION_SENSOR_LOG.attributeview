@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MISSION_SENSOR_LOG" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="Mission sensor log"/>
+  <attributes>
+    <attribute id="missionSensorLogId" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="Mission Sensor Log ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="missionSensorLogId"/>
+    </attribute>
+    <attribute id="missionId" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Mission ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="missionId"/>
+    </attribute>
+    <attribute id="vehicleId" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="vehicleId"/>
+    </attribute>
+    <attribute id="pilotId" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Pilot ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="pilotId"/>
+    </attribute>
+    <attribute id="keyFrame" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Key Frame"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="keyFrame"/>
+    </attribute>
+    <attribute id="messageId" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Message ID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="messageId"/>
+    </attribute>
+    <attribute id="messageIdDescription" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="text"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" columnName="text"/>
+    </attribute>
+    <attribute id="loggedAt" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Logged At"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="loggedAt"/>
+    </attribute>
+    <attribute id="camera" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Camera"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="camera"/>
+    </attribute>
+    <attribute id="inertialAccelX" order="10" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Inertial Accel X"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelX"/>
+    </attribute>
+    <attribute id="inertialAccelY" order="11" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Inertial Accel Y"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelY"/>
+    </attribute>
+    <attribute id="inertialAccelZ" order="12" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Inertial Accel Z"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="inertialAccelZ"/>
+    </attribute>
+    <attribute id="proximityRear" order="13" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Proximity Front"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityRear"/>
+    </attribute>
+    <attribute id="proximityFront" order="14" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Proximity Rear"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityFront"/>
+    </attribute>
+    <attribute id="proximityCam" order="15" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Proximity Cam"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog" columnName="proximityCam"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join languageColumn="language">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionSensorLog"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+        <leftColumns>
+          <columnName>messageId</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>textId</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::missionSensorLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="507" y="30"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

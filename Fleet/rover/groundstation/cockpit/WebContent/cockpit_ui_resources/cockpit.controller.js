@@ -234,7 +234,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				case '2':
 					break;
 				case '3':
-					missioncontrolController.checkSetHomeLatLng();
+					missioncontrolController.checkSetHomeLatLngAlt();
 					break;
 			}
 			
@@ -244,12 +244,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		};
 		
 
-		//GPS posllh message - Only interested if we have a solid GPS 3D fix
-		if (data.substr(0,1) == 'P' && missioncontrolModel.getGps3DFixCount() > 10) {
+		//GPS posllh message 
+		if (data.substr(0,1) == 'P') {
 			var gps_msg_nav_posllh_fields = data.split(',');
-			message = data.substr(1);
-			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
-			
 			var longitude 	= parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
 			var lattitude 	= parseFloat(gps_msg_nav_posllh_fields[1], 10);
 			var altitude  	= parseFloat(gps_msg_nav_posllh_fields[2], 10);
@@ -258,21 +255,30 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			lattitude 		= lattitude / 10000000;
 			altitude 		= altitude / 1000;
 			altitude 		= altitude.toFixed(2);
-
-			cockpitMapsModel.setStateGoogleMapLastLongitude(longitude);
-			cockpitMapsModel.setStateGoogleMapLastLattitude(lattitude);
-			cockpitMapsModel.setStateLatLng();
-			cockpitMapsModel.setPosition();
-			cockpitMapsModel.panTo();
-			sap.ui.getCore().byId("lblValLongitude").setText(longitude);
-			sap.ui.getCore().byId("lblValLattitude").setText(lattitude);
-			sap.ui.getCore().byId("lblValAltitude").setText(altitude);
+			
 			missioncontrolModel.setCurrentLattitude(lattitude);
 			missioncontrolModel.setCurrentLongitude(longitude);
-			cockpitModel.setIndicatorVal({id: 'lblStatusLattitude', val: lattitude});
-			cockpitModel.setIndicatorVal({id: 'lblStatusLongitude', val: longitude});
-			cockpitModel.setIndicatorVal({id: 'lblStatusAltitude', val: altitude});
-			sap.ui.getCore().byId("viewCockpit").getController().refreshWaypoint();			
+			missioncontrolModel.setCurrentAltitude(altitude);
+			
+			//Have a solid GPS 3D fix
+			if (missioncontrolModel.getGps3DFixCount() > 10) {
+				message = longitude + ',' + lattitude + ',' + altitude; 
+				missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
+
+				cockpitMapsModel.setStateGoogleMapLastLongitude(longitude);
+				cockpitMapsModel.setStateGoogleMapLastLattitude(lattitude);
+				cockpitMapsModel.setStateLatLng();
+				cockpitMapsModel.setPosition();
+				cockpitMapsModel.panTo();
+				sap.ui.getCore().byId("lblValLongitude").setText(longitude);
+				sap.ui.getCore().byId("lblValLattitude").setText(lattitude);
+				sap.ui.getCore().byId("lblValAltitude").setText(altitude);
+		
+				cockpitModel.setIndicatorVal({id: 'lblStatusLattitude', val: lattitude});
+				cockpitModel.setIndicatorVal({id: 'lblStatusLongitude', val: longitude});
+				cockpitModel.setIndicatorVal({id: 'lblStatusAltitude', val: altitude});
+				sap.ui.getCore().byId("viewCockpit").getController().refreshWaypoint();
+			}
 		};
 
 

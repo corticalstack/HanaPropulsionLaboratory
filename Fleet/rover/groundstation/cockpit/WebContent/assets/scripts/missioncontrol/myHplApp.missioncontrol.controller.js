@@ -27,7 +27,7 @@
 			dataType: 'jsonp',
 			data: {missionId:			missioncontrolModel.getActiveMissionId(), 
 				   vehicleId: 			missioncontrolModel.getActiveVehicleId(), 
-				   pilotId: 			missioncontrolModel.getActivePilotId, 
+				   pilotId: 			missioncontrolModel.getActivePilotId(), 
 				   keyFrame:			missioncontrolModel.getActiveKeyFrame(),
 				   messageCategoryId: 	categoryId, 
 				   messageId: 			messageId,  
@@ -53,13 +53,12 @@
 			return;
 		}
 		
-		console.log('Next active mission id ', missioncontrolModel.getActiveMissionId());
 		jQuery.ajax({
 			url:missioncontrolModel.getConfigServiceMissionCreateUri(),
 			dataType: 'jsonp',
 			data: {missionId:			missioncontrolModel.getActiveMissionId(), 
 				   vehicleId: 			missioncontrolModel.getActiveVehicleId(), 
-				   pilotId: 			missioncontrolModel.getActivePilotId }, 
+				   pilotId: 			missioncontrolModel.getActivePilotId()}, 
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
@@ -74,6 +73,36 @@
 		missioncontrolModel.addNetworkPacketOut(Object.keys(data).length);
 	};
 
+	
+	myHplApp.missioncontrol.controller.missionSetHomeLatLngAlt = function() {
+		console.log('Mission control controller.....mission set home lat lng alt');
+		var missioncontrolModel = myHplApp.missioncontrol.model;
+		if (!missioncontrolModel.getStateMissioncontrolOnline()) {
+			return;
+		}
+		
+		jQuery.ajax({
+			url:missioncontrolModel.getConfigServiceMissionSetHomeLatLngAltUri(),
+			dataType: 'jsonp',
+			data: {missionId:			missioncontrolModel.getActiveMissionId(), 
+				   vehicleId: 			missioncontrolModel.getActiveVehicleId(), 
+				   pilotId: 			missioncontrolModel.getActivePilotId(),
+				   longitude: 			missioncontrolModel.getHomeLongitude(),
+				   lattitude: 			missioncontrolModel.getHomeLattitude(),
+				   altitude: 			missioncontrolModel.getHomeAltitude()}, 
+			type: 'GET',
+			headers : {"Access-Control-Allow-Origin" : "*"},
+			crossDomain: true,
+			success: myHplApp.missioncontrol.controller.processSetHomeLatLngAltResponse,
+			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
+		});	
+		
+	};
+
+
+	myHplApp.missioncontrol.controller.processSetHomeLatLngAltResponse = function(data) {
+		missioncontrolModel.addNetworkPacketOut(Object.keys(data).length);
+	};
 	
 	myHplApp.missioncontrol.controller.getFlightDirectorNextMissionId = function() {
 		console.log('Mission control controller....getting flight director next mission id');
@@ -103,11 +132,15 @@
 		myHplApp.missioncontrol.controller.missionCreate();
 	};
 	
-	myHplApp.missioncontrol.controller.checkSetHomeLatLng = function() { 
-		missioncontrolModel.incrementGps3DFixCount();
+	myHplApp.missioncontrol.controller.checkSetHomeLatLngAlt = function() { 
+		if (myHplApp.missioncontrol.model.getCurrentLongitude() != 0) {
+			missioncontrolModel.incrementGps3DFixCount();
+		}
+		
 		if (missioncontrolModel.getGps3DFixCount() == 10) {
-			missioncontrolModel.setActiveHomeLatLng();
-			myHplApp.missioncontrol.model.addWaypoint('HOME', 	myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLattitude());
+			missioncontrolModel.setActiveHomeLatLngAlt();
+			myHplApp.missioncontrol.controller.missionSetHomeLatLngAlt();
+			myHplApp.missioncontrol.model.addWaypoint('HOME', myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLattitude(),  myHplApp.missioncontrol.model.getHomeAltitude());
 		}
     };
 
