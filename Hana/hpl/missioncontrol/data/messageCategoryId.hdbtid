@@ -1,0 +1,2 @@
+implements hpl.missioncontrol.data:messageCategoryId.hdbtim;
+csvFiles = ["hpl.missioncontrol.data:messageCategoryId.csv"];

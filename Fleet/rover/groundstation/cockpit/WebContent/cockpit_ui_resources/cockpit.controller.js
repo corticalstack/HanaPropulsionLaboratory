@@ -285,12 +285,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		//GPS velned message - Only interested if we have a solid GPS 3D fix
 		if (data.substr(0,1) == 'V' && missioncontrolModel.getGps3DFixCount() > 10) {
 			var gps_msg_nav_velned_fields = data.split(',');
-			message = data.substr(1);
-			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
-			
 			var heading = parseFloat(gps_msg_nav_velned_fields[1], 10);
 			heading 	= heading / 100000;
 			heading     = heading.toFixed(0);
+			message     = gps_msg_nav_velned_fields[0].substr(1) + ',' + heading;
+			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsVel(), message );
 			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[0].substr(1));	
 			sap.ui.getCore().byId("lblValHeading").setText(heading + '°');
 			cockpitModel.setIndicatorVal({id: 'lblStatusSpeedCms', val: gps_msg_nav_velned_fields[0].substr(1)});

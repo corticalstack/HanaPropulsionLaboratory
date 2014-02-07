@@ -1,9 +1,0 @@
-table.schemaName = "MISSIONCONTROL";
-table.tableType = COLUMNSTORE;
-table.description = "Mission Key Frame";
-table.columns = [
-	{name = "missionId";    			sqlType = NVARCHAR; nullable = false; length = 6;				comment = "Mission ID"; },
-	{name = "keyFrame";      			sqlType = INTEGER;  nullable = false; 				            comment = "Key Frame"; },		
-	{name = "loggedAt";      			sqlType = BIGINT;   nullable = false; 				            comment = "Logged At"; }
-];
-table.primaryKey.pkcolumns = ["missionId","keyFrame","loggedAt"];

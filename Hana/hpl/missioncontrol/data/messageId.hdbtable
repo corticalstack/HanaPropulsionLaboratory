@@ -1,0 +1,8 @@
+table.schemaName = "MISSIONCONTROL";
+table.tableType = COLUMNSTORE;
+table.description = "Message Id";
+table.columns = [
+	{name = "messageId";      			sqlType = NVARCHAR; nullable = false; length = 3;               comment = "Message ID"; },
+	{name = "textId";    				sqlType = NVARCHAR; nullable = false; length = 10;				comment = "Text ID"; }	
+];
+table.primaryKey.pkcolumns = ["messageId"];

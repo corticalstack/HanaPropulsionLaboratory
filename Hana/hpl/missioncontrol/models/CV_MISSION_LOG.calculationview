@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_MISSION_LOG" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="Mission log"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="hpl.missioncontrol.data::missionLog" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionLog"/>
+    </DataSource>
+    <DataSource id="Projection_2$$$$hpl.missioncontrol.data::missionLog$$" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::missionLog"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <viewAttributes>
+        <viewAttribute id="gpsVelSpeedCms"/>
+        <viewAttribute id="keyFrame"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#hpl.missioncontrol.data::missionLog">
+        <mapping xsi:type="Calculation:AttributeMapping" target="gpsVelSpeedCms" source="gpsVelSpeedCms"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="keyFrame" source="keyFrame"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <viewAttributes>
+        <viewAttribute id="gpsVelSpeedCms"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_2$$$$hpl.missioncontrol.data::missionLog$$">
+        <mapping xsi:type="Calculation:AttributeMapping" target="gpsVelSpeedCms" source="gpsVelSpeedCms"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <viewAttributes>
+        <viewAttribute id="gpsVelSpeedCms"/>
+        <viewAttribute id="gpsVelSpeedCms_1"/>
+        <viewAttribute id="keyFrame"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="gpsVelSpeedCms" source="gpsVelSpeedCms"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="gpsVelSpeedCms_1" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="keyFrame" source="keyFrame"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="gpsVelSpeedCms" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="gpsVelSpeedCms_1" source="gpsVelSpeedCms"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="keyFrame" null="true" value=""/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <attributes/>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="keyFrame" order="1" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="keyFrame"/>
+        <measureMapping columnObjectName="Union_1" columnName="keyFrame"/>
+      </measure>
+      <measure id="gpsVelSpeedCms" order="2" aggregationType="max" measureType="simple">
+        <descriptions defaultDescription="gpsVelSpeedCms"/>
+        <measureMapping columnObjectName="Union_1" columnName="gpsVelSpeedCms"/>
+      </measure>
+      <measure id="gpsVelSpeedCms_1" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="gpsVelSpeedCms_1"/>
+        <measureMapping columnObjectName="Union_1" columnName="gpsVelSpeedCms_1"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="50" y="160"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="-10" y="440"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="249" y="410"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="110" y="240"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -44,7 +44,7 @@ function missionLogPump(){
 		pstmt				= null,
 		conn				= $.db.getConnection("hpl.missioncontrol.services::anonConn"),
 		p_missionId			= $.request.parameters.get('missionId'),
-		p_vehicleId			= $.request.parameters.get('vehicleId'),
+        p_vehicleId			= $.request.parameters.get('vehicleId'),
 		p_pilotId			= $.request.parameters.get('pilotId'),
 		p_keyFrame			= $.request.parameters.get('keyFrame'),
 		p_messageCategoryId	= $.request.parameters.get('messageCategoryId'),
@@ -52,34 +52,36 @@ function missionLogPump(){
 		p_feed				= $.request.parameters.get('feed'),	
 		p_timeStamp			= $.request.parameters.get('_'),		
 		p_callback			= $.request.parameters.get('callback');
+
 	
-	var commsTick           = '',
-		voltage             = '',		
-		current             = '',
-		amps                = '',
-		consumedMah         = '',
-        batteryRemaining    = '',
-        cameraPanPos        = '',
-        inertialAccelX      = '',
-        inertialAccelY      = '',
-        inertialAccelZ      = '',
-        proximityRear       = '',
-        proximityFront      = '',
-        proximityCam        = '',	
-        leftEngineThrust    = '',
-        rightEngineThrust   = '',
-        gpsSolFixType       = '',		
-        gpsSolNumSats       = '',
-        gpsPosLongitude     = '',
-        gpsPosLattitude     = '',
-        gpsPosAltitude      = '',
-        gpsVelHeading       = '',
-        gpsVelSpeedCms      = '',
-        compassBearing      = '',    
+	
+	var commsTick           = 0,
+		voltage             = 0,		
+		current             = 0,
+		amps                = 0,
+		consumedMah         = 0,
+        batteryRemaining    = 0,
+        cameraPanPos        = 0,
+        inertialAccelX      = 0,
+        inertialAccelY      = 0,
+        inertialAccelZ      = 0,
+        proximityRear       = 0,
+        proximityFront      = 0,
+        proximityCam        = 0,	
+        leftEngineThrust    = 0,
+        rightEngineThrust   = 0,
+        gpsSolFixType       = 0,		
+        gpsSolNumSats       = 0,
+        gpsPosLongitude     = 0,
+        gpsPosLattitude     = 0,
+        gpsPosAltitude      = 0,
+        gpsVelHeading       = 0,
+        gpsVelSpeedCms      = 0,
+        compassBearing      = 0,    
         direction           = '',	
-        heading             = '',
-        throttle            = '',
-        rotate              = '',
+        heading             = 0,
+        throttle            = 0,
+        rotate              = 0,
         stop                = '',
         cameraPanTilt       = '',
         weaponActive        = '',	
@@ -87,7 +89,7 @@ function missionLogPump(){
         weaponStop			= '',
         mapType             = '',
         mapZoom             = '',
-        laser               = '';
+        laser               = 0;
 		
 		
 			
@@ -103,7 +105,7 @@ function missionLogPump(){
             case messageCategoryId.notify:
 				switch(p_messageId) {
 					case messageId.commsTick:  
-						commsTick = messageFeedFields[0].substr(1); 
+						commsTick = parseInt(messageFeedFields[0].substr(1),10); 
 					break;
 				}
 				break;
@@ -112,8 +114,8 @@ function missionLogPump(){
             case messageCategoryId.drive:		
 				switch(p_messageId) {
 					case messageId.thrust: 
-						leftEngineThrust  = messageFeedFields[0];
-						rightEngineThrust = messageFeedFields[1];
+						leftEngineThrust  =  parseInt(messageFeedFields[0],10);
+						rightEngineThrust =  parseInt(messageFeedFields[1],10);
 						break;
 				}
 				break;
@@ -123,17 +125,17 @@ function missionLogPump(){
             case messageCategoryId.sensor:
 				switch(p_messageId) {
 					case messageId.camera: 
-						cameraPanPos = messageFeedFields[0];
+						cameraPanPos = parseInt(messageFeedFields[0],10);
 						break;
 					case messageId.inertial: 
-						inertialAccelX = messageFeedFields[0];
-						inertialAccelY = messageFeedFields[1];
-						inertialAccelZ = messageFeedFields[2];
+						inertialAccelX = parseFloat(messageFeedFields[0]);
+						inertialAccelY = parseFloat(messageFeedFields[1]);
+						inertialAccelZ = parseFloat(messageFeedFields[2]);
 						break;
 					case messageId.distance: 
-						proximityRear  = messageFeedFields[0];
-						proximityFront = messageFeedFields[1];
-						proximityCam   = messageFeedFields[2];
+						proximityRear  = parseFloat(messageFeedFields[0]);
+						proximityFront = parseFloat(messageFeedFields[1]);
+						proximityCam   = parseFloat(messageFeedFields[2]);
 						break;
 				}
 				break;
@@ -143,22 +145,20 @@ function missionLogPump(){
             case messageCategoryId.navigation:
 				switch(p_messageId) {
 					case messageId.gpsSol:
-						gpsSolFixType = messageFeedFields[0];		
-						gpsSolNumSats = messageFeedFields[1];
+						gpsSolFixType = parseInt(messageFeedFields[0],10);		
+						gpsSolNumSats = parseInt(messageFeedFields[1],10);
 						break;
 					case messageId.gpsPos:
-						gpsPosLongitude = messageFeedFields[0];
-						gpsPosLattitude = messageFeedFields[1];
-						gpsPosAltitude  = messageFeedFields[2];
+						gpsPosLongitude = parseFloat(messageFeedFields[0]);
+						gpsPosLattitude = parseFloat(messageFeedFields[1]);
+						gpsPosAltitude  = parseFloat(messageFeedFields[2]);
 						break;
 					case messageId.gpsVel:
-						gpsVelHeading = messageFeedFields[0];
-						if (messageFeedFields[1] < 500) {
-							gpsVelSpeedCms = messageFeedFields[1];							
-						}
+						gpsVelHeading  = parseInt(messageFeedFields[0],10);
+						gpsVelSpeedCms = parseFloat(messageFeedFields[1]);							
 						break;
 					case messageId.compass:
-						compassBearing = messageFeedFields[0];
+						compassBearing = parseFloat(messageFeedFields[0]);
 						break;						
 				}
 				break;
@@ -166,11 +166,11 @@ function missionLogPump(){
 				
 			// Power	
 			case messageCategoryId.power: 
-                voltage          = messageFeedFields[0];		
-                current          = messageFeedFields[1];
-                amps             = messageFeedFields[2];
-                consumedMah      = messageFeedFields[3];
-                batteryRemaining = messageFeedFields[4];
+                voltage          = parseFloat(messageFeedFields[0]);		
+                current          = parseFloat(messageFeedFields[1]);
+                amps             = parseFloat(messageFeedFields[2]);
+                consumedMah      = parseInt(messageFeedFields[3],10);
+                batteryRemaining = parseFloat(messageFeedFields[4]);
 				break;
 
 				
@@ -181,13 +181,13 @@ function missionLogPump(){
 						direction = messageFeedFields[0];
 						break;
 					case messageId.heading:
-						heading = messageFeedFields[0];
+						heading = parseInt(messageFeedFields[0],10);
 						break;
 					case messageId.thrust:
-						throttle = messageFeedFields[0];
+						throttle = parseInt(messageFeedFields[0],10);
 						break;						
 					case messageId.rotate:
-						rotate = messageFeedFields[0];
+						rotate = parseInt(messageFeedFields[0],10);
 						break;						
 					case messageId.stop:
 						stop = messageFeedFields[0];
@@ -211,7 +211,7 @@ function missionLogPump(){
 						mapZoom = messageFeedFields[0];
 						break;						
 					case messageId.laser:
-						laser = messageFeedFields[0];
+						laser = parseInt(messageFeedFields[0],10);
 						break;						
 				}
 				break;
@@ -224,33 +224,33 @@ function missionLogPump(){
 		pstmt.setBigInt(5,p_timeStamp);		
 		pstmt.setString(6,p_messageCategoryId);		
 		pstmt.setString(7,p_messageId);
-		pstmt.setString(8,commsTick);
-		pstmt.setString(9,voltage);
-		pstmt.setString(10,current);
-		pstmt.setString(11,amps);
-		pstmt.setString(12,consumedMah);
-		pstmt.setString(13,batteryRemaining);
-		pstmt.setString(14,cameraPanPos);
-		pstmt.setString(15,inertialAccelX);
-		pstmt.setString(16,inertialAccelY);
-		pstmt.setString(17,inertialAccelZ);
-		pstmt.setString(18,proximityRear);
-		pstmt.setString(19,proximityFront);
-		pstmt.setString(20,proximityCam);
-		pstmt.setString(21,leftEngineThrust);
-		pstmt.setString(22,rightEngineThrust);
-		pstmt.setString(23,gpsSolFixType);
-		pstmt.setString(24,gpsSolNumSats);
-		pstmt.setString(25,gpsPosLongitude);
-		pstmt.setString(26,gpsPosLattitude);
-		pstmt.setString(27,gpsPosAltitude);
-		pstmt.setString(28,gpsVelHeading);
-		pstmt.setString(29,gpsVelSpeedCms);
-		pstmt.setString(30,compassBearing);
+		pstmt.setInt(8,commsTick);
+		pstmt.setDecimal(9,voltage);
+		pstmt.setDecimal(10,current);
+		pstmt.setDecimal(11,amps);
+		pstmt.setInt(12,consumedMah);
+		pstmt.setDecimal(13,batteryRemaining);
+		pstmt.setInt(14,cameraPanPos);
+		pstmt.setDecimal(15,inertialAccelX);
+		pstmt.setDecimal(16,inertialAccelY);
+		pstmt.setDecimal(17,inertialAccelZ);
+		pstmt.setDecimal(18,proximityRear);
+		pstmt.setDecimal(19,proximityFront);
+		pstmt.setDecimal(20,proximityCam);
+		pstmt.setInt(21,leftEngineThrust);
+		pstmt.setInt(22,rightEngineThrust);
+		pstmt.setInt(23,gpsSolFixType);
+		pstmt.setInt(24,gpsSolNumSats);
+		pstmt.setDecimal(25,gpsPosLongitude);
+		pstmt.setDecimal(26,gpsPosLattitude);
+		pstmt.setDecimal(27,gpsPosAltitude);
+		pstmt.setInt(28,gpsVelHeading);
+		pstmt.setDecimal(29,gpsVelSpeedCms);
+		pstmt.setDecimal(30,compassBearing);
 		pstmt.setString(31,direction);
-		pstmt.setString(32,heading);
-		pstmt.setString(33,throttle);
-		pstmt.setString(34,rotate);
+		pstmt.setInt(32,heading);
+		pstmt.setInt(33,throttle);
+		pstmt.setInt(34,rotate);
 		pstmt.setString(35,stop);
 		pstmt.setString(36,cameraPanTilt);
 		pstmt.setString(37,weaponActive);
@@ -258,7 +258,7 @@ function missionLogPump(){
 		pstmt.setString(39,weaponStop);
 		pstmt.setString(40,mapType);
 		pstmt.setString(41,mapZoom);
-		pstmt.setString(42,laser);
+		pstmt.setInt(42,laser);
 
 		pstmt.execute();  
 
