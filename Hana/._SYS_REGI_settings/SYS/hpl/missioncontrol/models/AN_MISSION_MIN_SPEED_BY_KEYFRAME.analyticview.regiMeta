@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "",
+  "content": "Mission minimum speed by keyframe",
   "lang": "",
-  "max_length": "16",
+  "max_length": "255",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-11 17:16:32.1390000",
+  "activated_at": "2014-02-07 15:23:51.8520000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,12 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "3"
+  "version_id": "1"
  },
  "version": {
   "versionType": "1"
  },
- "package": "hpl.missioncontrol.services",
- "name": "missionSetHomeLatLngAlt",
- "suffix": "xsjs"
+ "package": "hpl.missioncontrol.models",
+ "name": "AN_MISSION_MIN_SPEED_BY_KEYFRAME",
+ "suffix": "analyticview"
 }

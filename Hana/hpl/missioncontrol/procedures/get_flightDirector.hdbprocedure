@@ -1,0 +1,14 @@
+PROCEDURE "SYSTEM"."hpl.missioncontrol.procedures::get_flightDirector" ( out ex_flightDirector nvarchar(6)
+) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	--DEFAULT SCHEMA <default_schema_name>
+	READS SQL DATA AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+ 
+	ex_flightDirector = select single "missionId" from "MISSIONCONTROL"."hpl.missioncontrol.data::flightDirector";
+	
+END;

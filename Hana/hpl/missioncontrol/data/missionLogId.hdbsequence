@@ -1,4 +1,4 @@
 schema= "MISSIONCONTROL";
-start_with=0000000001;
+start_with=000000000000001;
 cycles= false;
-depends_on_table= "hpl.missioncontrol.data::missionLog";
+depends_on_table= "hpl.missioncontrol.data::MC.Mission.MissionLog";

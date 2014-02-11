@@ -13,7 +13,7 @@ function missionCreate(){
 		p_callback			= $.request.parameters.get('callback');
 
 	try {
-		query = 'INSERT INTO "hpl.missioncontrol.data::mission" values(?,?,?,?,?,?,?,?)';
+		query = 'INSERT INTO "hpl.missioncontrol.data::MC.Mission.Mission" values(?,?,?,?,?,?,?,?)';
 		pstmt = conn.prepareStatement(query);
 
 		p_timeStamp = parseInt(p_timeStamp, 10);

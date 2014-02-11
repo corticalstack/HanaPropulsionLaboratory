@@ -9,9 +9,8 @@ function getMessage(messageClass, messageNumber, p1, p2, p3, p4) {
 
 	var conn = $.db.getConnection("hpl.missioncontrol.services::anonConn");
 
-	var query = "SELECT \"Description\" "
-			+ "    FROM \"MISSIONCONTROL\".\"hpl.missioncontrol.data::messages\" "
-			+ "	   WHERE \"MessageClass\" = ? AND \"MessageNumber\" = ? AND \"Language\" = ? ";
+	var query = 'SELECT "DESCRIPTION" FROM "hpl.missioncontrol.data::MC.Util.Messages" ' +
+			    'WHERE "MESSAGECLASS" = ? AND "MESSAGENUMBER" = ? AND "LANGUAGE" = ? ';
 	
 	var pstmt = conn.prepareStatement(query);
 	pstmt.setString(1, messageClass);

@@ -1,0 +1,14 @@
+import = [ 
+            { 
+                table = "hpl.missioncontrol.data::MC.Util.Texts";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:texts.csv";
+                header = false;
+            },
+            { 
+                table = "hpl.missioncontrol.data::MC.Util.Messages";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:messages.csv";
+                header = false;
+            }            
+         ]; 

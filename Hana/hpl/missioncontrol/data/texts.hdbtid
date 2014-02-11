@@ -1,2 +1,0 @@
-implements hpl.missioncontrol.data:texts.hdbtim;
-csvFiles = ["hpl.missioncontrol.data:texts.csv"];

@@ -1,0 +1,20 @@
+import = [ 
+            { 
+                table = "hpl.missioncontrol.data::MC.MasterData.MessageCategoryId";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:messageCategoryId.csv";
+                header = false;
+            },
+            { 
+                table = "hpl.missioncontrol.data::MC.MasterData.MessageId";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:messageId.csv";
+                header = false;
+            },
+            { 
+                table = "hpl.missioncontrol.data::MC.MasterData.Pilot";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:pilot.csv";
+                header = false;
+            }                                    
+         ]; 

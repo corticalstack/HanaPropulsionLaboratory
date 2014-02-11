@@ -1,0 +1,163 @@
+namespace hpl.missioncontrol.data;
+
+@Schema: 'MISSIONCONTROL'
+
+context MC {
+
+	type SStringT  							: String(40);
+	type MStringT  							: String(60);
+	type LStringT  							: String(255);
+	type VLStringT 							: String(1024);
+	type SDateT								: LocalDate;
+	type ABAPLanguageT 						: String(1);
+	type ISOLanguageT 						: String(2);
+	type messageClassT                      : String(20);
+	type messageNumberT                     : String(3);
+	
+	type logIdT								: String(15);
+	type missionIdT							: String(6);
+	type vehicleIdT							: String(3);
+	type pilotIdT							: String(3);
+	type loggedAtT							: Integer;
+	type messageCategoryIdT					: String(3);
+	type messageIdT							: String(3);
+	type textIdT							: String(10);
+	type gpsPosT							: String(10);
+	type keyFrameT                  		: Integer;
+	type commsTickT                 		: Integer;
+	type voltageT							: Decimal(5,2);
+	type currentT							: Decimal(5,2);
+	type ampsT								: Decimal(5,2);
+	type consumedMahT  			    		: Integer;
+	type batteryRemainingT   				: Decimal(5,2);
+	type cameraPanPosT			    		: Integer;		
+	type inertialAccelT  					: Decimal(5,2);
+	type proximityT  			    		: Decimal(6,2);
+	type thrustT	                		: Integer;
+	type gpsSolFixTypeT     				: Integer;		
+	type gpsSolNumSatsT  					: Integer;
+	type gpsHeadingT 						: Integer;
+	type speedCmsT  			 			: Decimal(6,2);
+	type compassBearingT	   				: Decimal(5,2);				
+	type directionT      					: String(2);	
+	type headingT      						: Integer;
+	type throttleT      					: Integer;
+	type rotateT      						: Integer;	
+	type stopT  							: String(1);
+	type cameraPanTiltT  					: String(4);
+	type weaponActivityT  					: String(20);	
+	type mapTypeT  							: String(1);
+	type mapZoomT  							: String(2);
+	type laserT  							: Integer;
+	
+	context MasterData {
+		@Catalog.tableType : #COLUMN 
+		Entity MessageCategoryId {
+    		key MESSAGECATEGORYID			: messageCategoryIdT;
+    		TEXTID							: textIdT;
+		};
+		
+		@Catalog.tableType : #COLUMN 
+		Entity MessageId {
+    		key MESSAGEID					: messageIdT;
+    		TEXTID							: textIdT;
+		};
+		
+		
+		@Catalog.tableType : #COLUMN 
+		Entity Pilot {
+    		key PILOTID						: pilotIdT;
+			NAME							: SStringT;	
+			AVATARURI						: LStringT;
+	 		CLANNAME 						: SStringT;
+	 		CLANURI 						: LStringT;
+	 		ACTIVEMISSIONID					: missionIdT;	
+		};
+		
+	};
+	
+	context Mission {
+		@Catalog.tableType : #COLUMN 
+    	Entity Mission {
+    		key MISSIONID					: missionIdT; 
+			key VEHICLEID					: vehicleIdT;	
+	    	key PILOTID						: pilotIdT;
+			STARTEDAT						: loggedAtT null;
+			ENDEDAT							: loggedAtT null;
+			HOMEGPSPOSLONGITUDE				: gpsPosT null;
+			HOMEGPSPOSLATTITUDE				: gpsPosT null;
+	    	HOMEGPSPOSALTITUDE				: gpsPosT null;
+		};
+
+		@Catalog.tableType : #COLUMN 
+    	Entity MissionLog {
+    		key MISSIONLOGID				: logIdT; 
+    		MISSIONID						: missionIdT; 
+			VEHICLEID						: vehicleIdT;	
+	    	PILOTID							: pilotIdT;
+		    KEYFRAME						: keyFrameT;
+			LOGGEDAT                        : loggedAtT;
+			MESSAGECATEGORYID				: messageCategoryIdT;			
+			MESSAGEID  						: messageIdT;
+			COMMSTICK      					: commsTickT null;
+			VOLTAGE		                    : voltageT null;
+			CURRENT       					: currentT null;
+			AMPS 							: ampsT null;
+			CONSUMEDMAH 					: consumedMahT null;
+			BATTERYREMAINING 				: batteryRemainingT null;
+			CAMERAPANPOS					: cameraPanPosT null;
+			INERTIALACCELX 					: inertialAccelT null;
+			INERTIALACCELY 					: inertialAccelT null;
+			INERTIALACCELZ 					: inertialAccelT null;
+			PROXIMITYREAR 					: proximityT null;
+			PROXIMITYFRONT 					: proximityT null;
+			PROXIMITYCAM 					: proximityT null;
+			LEFTENGINETHRUST 				: thrustT null;
+			RIGHTENGINETHRUST	  			: thrustT null;
+			GPSSOLFIXTYPE					: gpsSolFixTypeT null;
+			GPSSOLNUMSATS  					: gpsSolNumSatsT null;
+			GPSPOSLONGITUDE 				: gpsPosT null;
+			GPSPOSLATTITUDE 				: gpsPosT null;
+			GPSPOSALTITUDE 					: gpsPosT null;
+			GPSVELHEADING					: headingT null;
+			GPSVELSPEEDCMS 					: speedCmsT null;
+			COMPASSBEARING				   	: compassBearingT null;
+			DIRECTION						: directionT null;
+			HEADING 						: headingT null;
+			THROTTLE   						: throttleT null;
+			ROTATE	 						: rotateT null;
+			STOP 							: stopT null;
+			CAMERAPANTILT 					: cameraPanTiltT null;
+			WEAPONACTIVE					: weaponActivityT null;
+			WEAPONFIRE 						: weaponActivityT null;
+			WEAPONSTOP	 					: weaponActivityT null;
+			MAPTYPE 						: mapTypeT null;
+			MAPZOOM 						: mapZoomT null;
+			LASER 							: laserT null;
+		};
+	
+	};
+	
+	
+	context Util {
+		@Catalog.tableType : #COLUMN 
+		Entity Texts {
+    		KEY TEXTID						: textIdT;
+			LANGUAGE						: ABAPLanguageT;	
+			ISOLANGUAGE						: ISOLanguageT;
+			TEXT							: VLStringT;    
+		};
+		
+		@Catalog.tableType : #COLUMN 
+		Entity Messages {
+    		KEY MESSAGECLASS				: messageClassT;
+    		KEY MESSAGENUMBER               : messageNumberT;	
+			KEY LANGUAGE					: ISOLanguageT;
+			DESCRIPTION						: LStringT;
+			TEXT							: LargeString;    
+		};
+	
+	};
+		
+		
+};
