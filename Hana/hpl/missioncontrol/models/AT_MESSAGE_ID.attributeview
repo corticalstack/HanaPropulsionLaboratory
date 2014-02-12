@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MESSAGEID" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Message Id"/>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MESSAGE_ID" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="Message ID "/>
   <attributes>
-    <attribute id="messageId" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
-      <descriptions defaultDescription="Message ID"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::messageId" columnName="messageId"/>
+    <attribute id="MESSAGEID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="MESSAGEID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId" columnName="MESSAGEID"/>
     </attribute>
-    <attribute id="text" order="2" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="text"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts" columnName="text"/>
+    <attribute id="TEXT" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TEXT"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" columnName="TEXT"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
   <privateDataFoundation>
     <tableProxies>
       <tableProxy>
-        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::messageId"/>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId"/>
       </tableProxy>
       <tableProxy>
-        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
       </tableProxy>
     </tableProxies>
     <joins>
-      <join languageColumn="language">
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::messageId"/>
-        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::texts"/>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
         <leftColumns>
-          <columnName>textId</columnName>
+          <columnName>TEXTID</columnName>
         </leftColumns>
         <rightColumns>
-          <columnName>textId</columnName>
+          <columnName>TEXTID</columnName>
         </rightColumns>
-        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+        <properties joinOperator="Equal" joinType="referential"/>
       </join>
     </joins>
     <layout>
       <shapes>
-        <shape modelObjectName="hpl.missioncontrol.data::messageId" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
           <upperLeftCorner x="70" y="30"/>
         </shape>
-        <shape modelObjectName="hpl.missioncontrol.data::texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="467" y="30"/>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.Util.Texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="556" y="30"/>
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>
-          <rectangleSize/>
+          <rectangleSize height="0" width="0"/>
         </shape>
       </shapes>
     </layout>

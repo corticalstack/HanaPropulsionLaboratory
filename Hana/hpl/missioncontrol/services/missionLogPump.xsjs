@@ -55,48 +55,48 @@ function missionLogPump(){
 
 	
 	
-	var commsTick           = 0,
-		voltage             = 0,		
-		current             = 0,
-		amps                = 0,
-		consumedMah         = 0,
-        batteryRemaining    = 0,
-        cameraPanPos        = 0,
-        inertialAccelX      = 0,
-        inertialAccelY      = 0,
-        inertialAccelZ      = 0,
-        proximityRear       = 0,
-        proximityFront      = 0,
-        proximityCam        = 0,	
-        leftEngineThrust    = 0,
-        rightEngineThrust   = 0,
-        gpsSolFixType       = 0,		
-        gpsSolNumSats       = 0,
-        gpsPosLongitude     = 0,
-        gpsPosLattitude     = 0,
-        gpsPosAltitude      = 0,
-        gpsVelHeading       = 0,
-        gpsVelSpeedCms      = 0,
-        compassBearing      = 0,    
-        direction           = '',	
-        heading             = 0,
-        throttle            = 0,
-        rotate              = 0,
-        stop                = '',
-        cameraPanTilt       = '',
-        weaponActive        = '',	
-        weaponFire          = '',
-        weaponStop			= '',
-        mapType             = '',
-        mapZoom             = '',
-        laser               = 0;
+	var commsTick           = null,
+		voltage             = null,		
+		current             = null,
+		amps                = null,
+		consumedMah         = null,
+        batteryRemaining    = null,
+        cameraPanPos        = null,
+        inertialAccelX      = null,
+        inertialAccelY      = null,
+        inertialAccelZ      = null,
+        proximityRear       = null,
+        proximityFront      = null,
+        proximityCam        = null,	
+        leftEngineThrust    = null,
+        rightEngineThrust   = null,
+        gpsSolFixType       = null,		
+        gpsSolNumSats       = null,
+        gpsPosLongitude     = null,
+        gpsPosLattitude     = null,
+        gpsPosAltitude      = null,
+        gpsVelHeading       = null,
+        gpsVelSpeedCms      = null,
+        compassBearing      = null,    
+        direction           = null,	
+        heading             = null,
+        throttle            = null,
+        rotate              = null,
+        stop                = null,
+        cameraPanTilt       = null,
+        weaponActive        = null,	
+        weaponFire          = null,
+        weaponStop			= null,
+        mapType             = null,
+        mapZoom             = null,
+        laser               = null;
 		
 		
 			
 	try {
         p_timeStamp           = parseInt(p_timeStamp, 10);
         var messageFeedFields = p_feed.split(',');
-		query = 'INSERT INTO "hpl.missioncontrol.data::missionLog" values("MISSIONCONTROL"."hpl.missioncontrol.data::missionLogId".nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';		
+		query = 'INSERT INTO "hpl.missioncontrol.data::MC.Mission.MissionLog" values("MISSIONCONTROL"."hpl.missioncontrol.data::missionLogId".nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';		
 		pstmt = conn.prepareStatement(query);
 		
 		switch(p_messageCategoryId) {
@@ -224,41 +224,286 @@ function missionLogPump(){
 		pstmt.setBigInt(5,p_timeStamp);		
 		pstmt.setString(6,p_messageCategoryId);		
 		pstmt.setString(7,p_messageId);
-		pstmt.setInt(8,commsTick);
-		pstmt.setDecimal(9,voltage);
-		pstmt.setDecimal(10,current);
-		pstmt.setDecimal(11,amps);
-		pstmt.setInt(12,consumedMah);
-		pstmt.setDecimal(13,batteryRemaining);
-		pstmt.setInt(14,cameraPanPos);
-		pstmt.setDecimal(15,inertialAccelX);
-		pstmt.setDecimal(16,inertialAccelY);
-		pstmt.setDecimal(17,inertialAccelZ);
-		pstmt.setDecimal(18,proximityRear);
-		pstmt.setDecimal(19,proximityFront);
-		pstmt.setDecimal(20,proximityCam);
-		pstmt.setInt(21,leftEngineThrust);
-		pstmt.setInt(22,rightEngineThrust);
-		pstmt.setInt(23,gpsSolFixType);
-		pstmt.setInt(24,gpsSolNumSats);
-		pstmt.setDecimal(25,gpsPosLongitude);
-		pstmt.setDecimal(26,gpsPosLattitude);
-		pstmt.setDecimal(27,gpsPosAltitude);
-		pstmt.setInt(28,gpsVelHeading);
-		pstmt.setDecimal(29,gpsVelSpeedCms);
-		pstmt.setDecimal(30,compassBearing);
-		pstmt.setString(31,direction);
-		pstmt.setInt(32,heading);
-		pstmt.setInt(33,throttle);
-		pstmt.setInt(34,rotate);
-		pstmt.setString(35,stop);
-		pstmt.setString(36,cameraPanTilt);
-		pstmt.setString(37,weaponActive);
-		pstmt.setString(38,weaponFire);
-		pstmt.setString(39,weaponStop);
-		pstmt.setString(40,mapType);
-		pstmt.setString(41,mapZoom);
-		pstmt.setInt(42,laser);
+		
+		if (commsTick == null) {
+			pstmt.setNull(8);
+		}
+		else {
+			pstmt.setInt(8,commsTick);
+		}
+		
+		
+		if (voltage == null) {
+			pstmt.setNull(9);
+		}
+		else {
+			pstmt.setDecimal(9,voltage);			
+		} 
+		
+
+		if (current == null) {
+			pstmt.setNull(10);
+		}
+		else {
+			pstmt.setDecimal(10,current);	
+		}
+		
+		
+		if (amps == null) {
+			pstmt.setNull(11);
+		}
+		else {
+			pstmt.setDecimal(11,amps);			
+		}
+
+		
+		if (consumedMah == null) {
+			pstmt.setNull(12);
+		}
+		else {
+			pstmt.setInt(12,consumedMah);	
+		}
+		
+		
+		if (batteryRemaining == null) {
+			pstmt.setNull(13);
+		}
+		else {
+			pstmt.setDecimal(13,batteryRemaining);	
+		}
+		
+		
+		if (cameraPanPos == null) {
+			pstmt.setNull(14);
+		}
+		else {
+			pstmt.setInt(14,cameraPanPos);	
+		}
+		
+		
+		if (inertialAccelX == null) {
+			pstmt.setNull(15);
+		}
+		else {
+			pstmt.setDecimal(15,inertialAccelX);	
+		}
+		
+		
+		if (inertialAccelY == null) {
+			pstmt.setNull(16);
+		}
+		else {
+			pstmt.setDecimal(16,inertialAccelY);
+		}
+		
+		
+		if (inertialAccelY== null) {
+			pstmt.setNull(17);
+		}
+		else {
+			pstmt.setDecimal(17,inertialAccelZ);	
+		}
+		
+		
+		if (proximityRear == null) {
+			pstmt.setNull(18);
+		}
+		else {
+			pstmt.setDecimal(18,proximityRear);			
+		}
+
+
+		if (proximityFront == null) {
+			pstmt.setNull(19);
+		}
+		else {
+			pstmt.setDecimal(19,proximityFront);			
+		}
+
+		
+		if (proximityCam == null) {
+			pstmt.setNull(20);
+		}
+		else {
+			pstmt.setDecimal(20,proximityCam);			
+		}
+
+		
+		if (leftEngineThrust == null) {
+			pstmt.setNull(21);
+		}
+		else {
+			pstmt.setInt(21,leftEngineThrust);	
+		}
+		
+		
+		if (rightEngineThrust == null) {
+			pstmt.setNull(22);
+		}
+		else {
+			pstmt.setInt(22,rightEngineThrust);			
+		}
+
+		
+		if (gpsSolFixType == null) {
+			pstmt.setNull(23);
+		}
+		else {
+			pstmt.setInt(23,gpsSolFixType);			
+		}
+
+		
+		if (gpsSolNumSats == null) {
+			pstmt.setNull(24);
+		}
+		else {
+			pstmt.setInt(24,gpsSolNumSats);			
+		}
+
+		
+		if (gpsPosLongitude == null) {
+			pstmt.setNull(25);
+		}
+		else {
+			pstmt.setDecimal(25,gpsPosLongitude);
+		}
+		
+		
+		if (gpsPosLattitude == null) {
+			pstmt.setNull(26);
+		}
+		else {
+			pstmt.setDecimal(26,gpsPosLattitude);	
+		}
+		
+		
+		if (gpsPosAltitude == null) {
+			pstmt.setNull(27);
+		}
+		else {
+			pstmt.setDecimal(27,gpsPosAltitude);	
+		}
+		
+		
+		if (gpsVelHeading == null) {
+			pstmt.setNull(28);
+		}
+		else {
+			pstmt.setInt(28,gpsVelHeading);			
+		}
+		
+		
+
+		if (gpsVelSpeedCms == null) {
+			pstmt.setNull(29);
+		}
+		else {
+			pstmt.setDecimal(29,gpsVelSpeedCms);	
+		}
+		
+		
+		if (compassBearing == null) {
+			pstmt.setNull(30);
+		}
+		else {
+			pstmt.setDecimal(30,compassBearing);	
+		}
+		
+		
+		if (direction == null) {
+			pstmt.setNull(31);
+		}
+		else {
+			pstmt.setString(31,direction);	
+		}
+		
+		
+		if (heading == null) {
+			pstmt.setNull(32);
+		}
+		else {
+			pstmt.setInt(32,heading);	
+		}
+		
+		
+		if (throttle == null) {
+			pstmt.setNull(33);
+		}
+		else {
+			pstmt.setInt(33,throttle);	
+		}
+		
+		
+		if (rotate == null) {
+			pstmt.setNull(34);
+		}
+		else {
+			pstmt.setInt(34,rotate);			
+		}
+		
+
+		if (stop == null) {
+			pstmt.setNull(35);
+		}
+		else {
+			pstmt.setString(35,stop);	
+		}
+		
+		
+		if (cameraPanTilt == null) {
+			pstmt.setNull(36);
+		}
+		else {
+			pstmt.setString(36,cameraPanTilt);			
+		}
+
+		
+		if (weaponActive == null) {
+			pstmt.setNull(37);
+		}
+		else {
+			pstmt.setString(37,weaponActive);	
+		}
+		
+		
+		if (weaponFire == null) {
+			pstmt.setNull(38);
+		}
+		else {
+			pstmt.setString(38,weaponFire);	
+		}
+		
+		
+		if (weaponStop == null) {
+			pstmt.setNull(39);
+		}
+		else {
+			pstmt.setString(39,weaponStop);			
+		}
+
+		
+		if (mapType == null) {
+			pstmt.setNull(40);
+		}
+		else {
+			pstmt.setString(40,mapType);	
+		}
+		
+		
+		if (mapZoom == null) {
+			pstmt.setNull(41);
+		}
+		else {
+			pstmt.setString(41,mapZoom);			
+		}
+
+		if (laser == null) {
+			pstmt.setNull(42);
+		}
+		else {
+			pstmt.setInt(42,laser);			
+		}
+
 
 		pstmt.execute();  
 

@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Mission log",
+  "content": "Mission average speed by keyframe  ",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-07 13:46:37.3490000",
+  "activated_at": "2014-02-12 11:22:42.3740000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,7 +20,7 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "6"
+  "version_id": "19"
  },
  "version": {
   "versionType": "1"

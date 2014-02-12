@@ -31,11 +31,11 @@
 		missioncontrolModel.setStateMissioncontrolOnline(true);
 		for (var i = 0; i<myJSON.d.results.length; i++) {
 			var pilot = {
-					pilotId: 	myJSON.d.results[i].pilotId,
-					name: 		myJSON.d.results[i].name,
-					avatarUri: 	myJSON.d.results[i].avatarUri,
-					clanName: 	myJSON.d.results[i].clanName,
-					clanUri: 	myJSON.d.results[i].clanUri
+					pilotId: 	myJSON.d.results[i].PILOTID,
+					name: 		myJSON.d.results[i].NAME,
+					avatarUri: 	myJSON.d.results[i].AVATARURI,
+					clanName: 	myJSON.d.results[i].CLANNAME,
+					clanUri: 	myJSON.d.results[i].CLANURI
 			};
 			pilotModel.pushRoster(pilot);
 		};		

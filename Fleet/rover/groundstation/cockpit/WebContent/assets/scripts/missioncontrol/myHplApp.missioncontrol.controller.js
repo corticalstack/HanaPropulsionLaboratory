@@ -104,8 +104,8 @@
 		missioncontrolModel.addNetworkPacketOut(Object.keys(data).length);
 	};
 	
-	myHplApp.missioncontrol.controller.getFlightDirectorNextMissionId = function() {
-		console.log('Mission control controller....getting flight director next mission id');
+	myHplApp.missioncontrol.controller.getMissionNextId = function() {
+		console.log('Mission control controller....getting next mission id');
 		var missioncontrolModel = myHplApp.missioncontrol.model;
 		if (!missioncontrolModel.getStateMissioncontrolOnline()) {
 			return;
@@ -113,19 +113,19 @@
 	
 			 
 		jQuery.ajax({
-			url:missioncontrolModel.getConfigServiceFlightDirectorNextMissionIdUri(),
+			url:missioncontrolModel.getConfigServiceMissionNextIdUri(),
 			dataType: 'jsonp',
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
-			success: myHplApp.missioncontrol.controller.processFlightDirectorNextMissionIdResponse,
+			success: myHplApp.missioncontrol.controller.processMissionNextIdResponse,
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
 		
 		
 	};
 
-	myHplApp.missioncontrol.controller.processFlightDirectorNextMissionIdResponse = function(data) {
+	myHplApp.missioncontrol.controller.processMissionNextIdResponse = function(data) {
 		myHplApp.missioncontrol.model.setActiveMissionId(data.nextMissionId);	
 		console.log('Next mission id ', data.nextMissionId);
 		missioncontrolModel.addNetworkPacketOut(Object.keys(data).length);	

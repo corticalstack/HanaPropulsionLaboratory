@@ -41,7 +41,7 @@
 				myHplApp.cockpit.controller.clearAmmoPctTick();				
 				break;
 			case true:
-				myHplApp.missioncontrol.controller.getFlightDirectorNextMissionId();
+				myHplApp.missioncontrol.controller.getMissionNextId();
 				setTimeout(myHplApp.cockpit.controller.setCockpitHeartbeatTick,3000);
 				myHplApp.cockpit.controller.setKeyFrameTick();
 				myHplApp.cockpit.controller.setCockpitMainRefreshTick();

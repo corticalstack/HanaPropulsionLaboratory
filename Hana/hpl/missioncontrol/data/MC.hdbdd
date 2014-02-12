@@ -12,17 +12,17 @@ context MC {
 	type ABAPLanguageT 						: String(1);
 	type ISOLanguageT 						: String(2);
 	type messageClassT                      : String(20);
-	type messageNumberT                     : String(3);
-	
+	type messageNumberT                     : String(3);	
 	type logIdT								: String(15);
 	type missionIdT							: String(6);
 	type vehicleIdT							: String(3);
 	type pilotIdT							: String(3);
-	type loggedAtT							: Integer;
+	type loggedAtT							: Integer64;
 	type messageCategoryIdT					: String(3);
 	type messageIdT							: String(3);
 	type textIdT							: String(10);
-	type gpsPosT							: String(10);
+	type gpsPosT							: Decimal(9,6);
+	type gpsAltT							: Decimal(7,2);
 	type keyFrameT                  		: Integer;
 	type commsTickT                 		: Integer;
 	type voltageT							: Decimal(5,2);
@@ -49,6 +49,7 @@ context MC {
 	type mapTypeT  							: String(1);
 	type mapZoomT  							: String(2);
 	type laserT  							: Integer;
+	type distanceTravelledT					: Decimal(7,2);
 	
 	context MasterData {
 		@Catalog.tableType : #COLUMN 
@@ -75,6 +76,9 @@ context MC {
 		};
 		
 	};
+
+
+
 	
 	context Mission {
 		@Catalog.tableType : #COLUMN 
@@ -86,8 +90,9 @@ context MC {
 			ENDEDAT							: loggedAtT null;
 			HOMEGPSPOSLONGITUDE				: gpsPosT null;
 			HOMEGPSPOSLATTITUDE				: gpsPosT null;
-	    	HOMEGPSPOSALTITUDE				: gpsPosT null;
+	    	HOMEGPSPOSALTITUDE				: gpsAltT null;
 		};
+
 
 		@Catalog.tableType : #COLUMN 
     	Entity MissionLog {
@@ -118,7 +123,7 @@ context MC {
 			GPSSOLNUMSATS  					: gpsSolNumSatsT null;
 			GPSPOSLONGITUDE 				: gpsPosT null;
 			GPSPOSLATTITUDE 				: gpsPosT null;
-			GPSPOSALTITUDE 					: gpsPosT null;
+			GPSPOSALTITUDE 					: gpsAltT null;
 			GPSVELHEADING					: headingT null;
 			GPSVELSPEEDCMS 					: speedCmsT null;
 			COMPASSBEARING				   	: compassBearingT null;
@@ -134,7 +139,7 @@ context MC {
 			MAPTYPE 						: mapTypeT null;
 			MAPZOOM 						: mapZoomT null;
 			LASER 							: laserT null;
-		};
+		};		
 	
 	};
 	
@@ -158,6 +163,18 @@ context MC {
 		};
 	
 	};
+	
+	Context Procedures{
+		type tt_missionId {
+      		MISSIONID						: missionIdT;
+		};
+		
+		type tt_distance_travelled {
+      		DISTANCETRAVELLED				: distanceTravelledT;
+		};
+		
+	};
+	  
 		
 		
 };

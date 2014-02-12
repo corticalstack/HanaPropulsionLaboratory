@@ -1,0 +1,22 @@
+PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_nextId" ( 
+	OUT ex_missionId_tt MISSIONCONTROL."hpl.missioncontrol.data::MC.Procedures.tt_missionId" 
+	) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	DEFAULT SCHEMA MISSIONCONTROL
+	READS SQL DATA AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+  declare lvMissionId nvarchar(6) default 0;
+  select max(missionId) into lvMissionId from "hpl.missioncontrol.data::MC.Mission.Mission";
+  if :lvMissionId is null then
+     lvMissionId := 1;
+  else
+     lvMissionId := lvMissionId + 1;
+  end if;
+  
+  ex_missionId_tt = select lvMissionId as missionId from dummy;
+  
+END;

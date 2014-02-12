@@ -1,4 +1,4 @@
-function flightDirectorNextMissionId(){
+function missionNextId(){
     var callStmt            = null,
 		resultSet,
 		nextMissionId       = 0,
@@ -6,13 +6,9 @@ function flightDirectorNextMissionId(){
 		p_callback			= $.request.parameters.get('callback');
 	
 	try {
-		callStmt = conn.prepareCall('call "_SYS_BIC"."hpl.missioncontrol.procedures/set_flightDirector_missionId_sql"( )');
-		callStmt.execute();
-		conn.commit();
-		callStmt.close();
-
-		callStmt = conn.prepareCall('call "_SYS_BIC"."hpl.missioncontrol.procedures/get_flightDirector_sql"( flightDirector => ? )');
+		callStmt = conn.prepareCall('call "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_nextId"( ex_missionId_tt => ? )');
 		if (callStmt.execute()) {
+			conn.commit();
 			resultSet = callStmt.getResultSet();
 			while (resultSet.next()) {
 				nextMissionId = resultSet.getString(1);	
@@ -36,4 +32,4 @@ function flightDirectorNextMissionId(){
 	}
 }
 
-flightDirectorNextMissionId();
+missionNextId();

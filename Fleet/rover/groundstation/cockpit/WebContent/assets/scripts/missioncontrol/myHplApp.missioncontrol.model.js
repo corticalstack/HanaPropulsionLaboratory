@@ -7,7 +7,7 @@
 			serviceMissionCreateUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionCreate.xsjs',
 			serviceMissionSetHomeLatLngAltUri: 				'http://hanaserver:80/hpl/missioncontrol/services/missionSetHomeLatLngAlt.xsjs',			
 			serviceMissionLogPumpUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionLogPump.xsjs',			
-			serviceFlightDirectorNextMissionIdUri: 			'http://hanaserver:80/hpl/missioncontrol/services/flightDirectorNextMissionId.xsjs',
+			serviceMissionNextIdUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionNextId.xsjs',
 			chartNetworkTotalPoints: 						100,
 			chartNetworkUpdateInterval: 					30
 	};
@@ -108,8 +108,8 @@
 		return config.serviceMissionLogPumpUri;
 	};
 
-	myHplApp.missioncontrol.model.getConfigServiceFlightDirectorNextMissionIdUri = function() { 
-		return config.serviceFlightDirectorNextMissionIdUri;
+	myHplApp.missioncontrol.model.getConfigServiceMissionNextIdUri = function() { 
+		return config.serviceMissionNextIdUri;
 	};
 
 	myHplApp.missioncontrol.model.getConfigChartNetworkTotalPoints = function() { 

@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "AT_PILOT_MISSION",
+  "content": "Pilot mission",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-05 10:15:11.9310000",
+  "activated_at": "2014-02-12 09:15:34.0340000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,7 +20,7 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "2"
+  "version_id": "4"
  },
  "version": {
   "versionType": "1"
