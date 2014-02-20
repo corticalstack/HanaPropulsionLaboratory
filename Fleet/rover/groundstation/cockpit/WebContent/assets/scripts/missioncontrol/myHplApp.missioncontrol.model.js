@@ -8,6 +8,7 @@
 			serviceMissionSetHomeLatLngAltUri: 				'http://hanaserver:80/hpl/missioncontrol/services/missionSetHomeLatLngAlt.xsjs',			
 			serviceMissionLogPumpUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionLogPump.xsjs',			
 			serviceMissionNextIdUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionNextId.xsjs',
+			serviceScenarioTerrainUri: 						'http://hanaserver:80/hpl/missioncontrol/services/scenarioTerrain.xsjs',
 			chartNetworkTotalPoints: 						100,
 			chartNetworkUpdateInterval: 					30
 	};
@@ -68,14 +69,15 @@
 			vehicleId: 										'1',
 			pilotId:   										'1',
 			keyFrame:										0,
-			homeLattitude: 									0,
+			homeLatitude: 									0,
 			homeLongitude:									0,
 			homeAltitude:									0,
-			currentLattitude:								0,
+			currentLatitude:								0,
 			currentLongitude:								0,
 			currentAltitude:								0,
 			nextWaypointId:									'',
 			waypoints:										[],
+			scenarioTerrain:								null,
 			prevNetworkPacketIn:							0,
 			prevNetworkPacketOut:							0,
 			networkPacketIn:								0,
@@ -110,6 +112,10 @@
 
 	myHplApp.missioncontrol.model.getConfigServiceMissionNextIdUri = function() { 
 		return config.serviceMissionNextIdUri;
+	};
+
+	myHplApp.missioncontrol.model.getConfigServiceScenarioTerrainUri = function() { 
+		return config.serviceScenarioTerrainUri;
 	};
 
 	myHplApp.missioncontrol.model.getConfigChartNetworkTotalPoints = function() { 
@@ -321,16 +327,16 @@
 		return activeMission.homeLongitude;
 	};
 	
-	myHplApp.missioncontrol.model.getHomeLattitude = function() { 
-		return activeMission.homeLattitude;
+	myHplApp.missioncontrol.model.getHomeLatitude = function() { 
+		return activeMission.homeLatitude;
 	};
 
 	myHplApp.missioncontrol.model.getHomeAltitude = function() { 
 		return activeMission.homeAltitude;
 	};
 
-	myHplApp.missioncontrol.model.getCurrentLattitude = function() { 
-		return activeMission.currentLattitude;
+	myHplApp.missioncontrol.model.getCurrentLatitude = function() { 
+		return activeMission.currentLatitude;
 	};
 
 	myHplApp.missioncontrol.model.getCurrentLongitude = function() { 
@@ -339,6 +345,10 @@
 
 	myHplApp.missioncontrol.model.getCurrentAltitude = function() { 
 		return activeMission.currentAltitude;
+	};
+
+	myHplApp.missioncontrol.model.getScenarioTerrain = function() { 
+		return activeMission.scenarioTerrain;
 	};
 
 	myHplApp.missioncontrol.model.getNetworkPacketIn = function() { 
@@ -369,7 +379,7 @@
 	//Set methods for activeMission    
 	myHplApp.missioncontrol.model.setActiveHomeLatLngAlt = function() {
 		console.log('Mission control model.....Setting active home lat lng alt');
-		activeMission.homeLattitude = activeMission.currentLattitude; 
+		activeMission.homeLatitude = activeMission.currentLatitude; 
 		activeMission.homeLongitude = activeMission.currentLongitude;
 		activeMission.homeAltitude  = activeMission.currentAltitude;
 	};
@@ -393,8 +403,8 @@
 		activeMission.keyFrame++;
 	};
 
-	myHplApp.missioncontrol.model.setCurrentLattitude = function(val) { 
-		activeMission.currentLattitude = val;
+	myHplApp.missioncontrol.model.setCurrentLatitude = function(val) { 
+		activeMission.currentLatitude = val;
 	};
 
 	myHplApp.missioncontrol.model.setCurrentLongitude = function(val) { 
@@ -405,6 +415,11 @@
 		activeMission.currentAltitude = val;
 	};
 
+	myHplApp.missioncontrol.model.setScenarioTerrain = function(val) { 
+		activeMission.scenarioTerrain = val;
+	};
+
+	
 	myHplApp.missioncontrol.model.addNetworkPacketIn = function(val) { 
 		activeMission.networkPacketIn = activeMission.networkPacketIn + val;
 		activeMission.totalNetworkTrafficIn = activeMission.totalNetworkTrafficIn + val;
@@ -462,12 +477,12 @@
 	};
 
 	
-	myHplApp.missioncontrol.model.addWaypoint = function(id, longitudeVal, lattitudeVal, altitudeVal) {
+	myHplApp.missioncontrol.model.addWaypoint = function(id, longitudeVal, LatitudeVal, altitudeVal) {
 		console.log('Mission control model.....Adding waypoint', id);
 		var waypoint = {
 				id: id,
 				longitude: longitudeVal,
-				lattitude: lattitudeVal,
+				Latitude:  LatitudeVal,
 				altitude:  altitudeVal
 		};
 		activeMission.waypoints.push(waypoint); 

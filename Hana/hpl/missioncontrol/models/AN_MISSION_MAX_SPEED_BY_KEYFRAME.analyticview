@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Cube:cube xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_MISSION_MAX_SPEED_BY_KEYFRAME" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
-  <descriptions defaultDescription="Mission max speed by keyframe"/>
-  <localVariables/>
+  <descriptions defaultDescription="Mission max speed by keyframe "/>
+  <localVariables>
+    <variable id="IP_MISSIONID_FROM" parameter="true">
+      <descriptions defaultDescription="Mission ID from"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="0" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_MISSIONID_TO" parameter="true">
+      <descriptions defaultDescription="Mission ID to"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="999999" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_KEYFRAME_FROM" parameter="true">
+      <descriptions defaultDescription="Keyframe from"/>
+      <variableProperties datatype="INTEGER" defaultValue="0" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_KEYFRAME_TO" parameter="true">
+      <descriptions defaultDescription="Keyframe to"/>
+      <variableProperties datatype="INTEGER" defaultValue="999999999" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
   <privateMeasureGroup id="MeasureGroup">
     <attributes>
       <attribute id="MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
@@ -45,6 +74,12 @@
           <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog"/>
           <columnFilter columnName="MESSAGEID">
             <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="GPV"/>
+          </columnFilter>
+          <columnFilter columnName="MISSIONID">
+            <valueFilter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$IP_MISSIONID_FROM$$" highValue="$$IP_MISSIONID_TO$$"/>
+          </columnFilter>
+          <columnFilter columnName="KEYFRAME">
+            <valueFilter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$IP_KEYFRAME_FROM$$" highValue="$$IP_KEYFRAME_TO$$"/>
           </columnFilter>
         </tableProxy>
       </tableProxies>

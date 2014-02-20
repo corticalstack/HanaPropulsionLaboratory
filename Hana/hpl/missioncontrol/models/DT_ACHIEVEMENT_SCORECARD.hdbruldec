@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dtmodel:decisionTableModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:alias="http://www.sap.com/ndb/Rules/Alias" xmlns:core="http://www.sap.com/ndb/Rules/Core" xmlns:dtmodel="http://www.sap.com/ndb/DecisionTableModel1.ecore" xmlns:table="http://www.sap.com/ndb/Rules/DecisionTable" schemaVersion="1.0" id="DT_ACHIEVEMENT_SCORECARD" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal">
+  <descriptions defaultDescription="Achievement scorecard"/>
+  <defaultSchema/>
+  <dataSources>
+    <DataSource id="AN_ACHIEVEMENT_BY_PILOT_MISSION" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.missioncontrol.models/analyticviews/AN_ACHIEVEMENT_BY_PILOT_MISSION</resourceUri>
+    </DataSource>
+  </dataSources>
+  <privateDataFoundation>
+    <tableProxies/>
+    <joins/>
+    <layout>
+      <shapes>
+        <shape modelObjectName="/hpl.missioncontrol.models/analyticviews/AN_ACHIEVEMENT_BY_PILOT_MISSION.analyticview" modelObjectType="repository">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <dtmodel:variables>
+    <core:variable id="VAR1444444b808xc25ad" core:assignable="true" core:length="0" core:name="PA_SCORECARD" core:scale="0" core:type="INTEGER">
+      <descriptions defaultDescription="Scorecard"/>
+      <core:simpleexp core:operator="" core:type="INTEGER">
+        <core:primitive core:value="0"/>
+      </core:simpleexp>
+      <core:valueDomain core:type="empty"/>
+      <core:selection core:isMultiLine="false" core:type=""/>
+    </core:variable>
+  </dtmodel:variables>
+  <alias:aliasset alias:guid="AS14444439177x52f71y1">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444442836xf1f13" alias:visible="true" alias:columnName="MISSIONID" alias:columnObjectName="hpl.missioncontrol.models/AN_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="analytic" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="MISSIONID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444442a80x2867e" alias:visible="true" alias:columnName="VEHICLEID" alias:columnObjectName="hpl.missioncontrol.models/AN_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="analytic" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="VEHICLEID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444442dd6x354d9" alias:visible="true" alias:columnName="PILOTID" alias:columnObjectName="hpl.missioncontrol.models/AN_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="analytic" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="PILOTID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444444154xe8467" alias:visible="true" alias:columnName="CA_RESULT" alias:columnObjectName="hpl.missioncontrol.models/AN_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="DECIMAL" alias:modelType="analytic" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="CA_RESULT"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1444444460cx83ceb" alias:visible="true" alias:columnName="CONDITIONID" alias:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" alias:columntype="NVARCHAR" alias:modelType="analytic" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="CONDITIONID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:Alias" id="VARAL1444444b809xade22" alias:visible="true">
+      <descriptions defaultDescription="PA_SCORECARD"/>
+      <alias:member alias:returntype="INTEGER" alias:varname="PA_SCORECARD"/>
+    </alias:basealias>
+  </alias:aliasset>
+  <table:decisiontable table:guid="DT14444439177x89c3a" table:name="DT_ACHIEVEMENT_SCORECARD">
+    <table:conditionstub table:id="CS14444446a7bx1b90c" table:conditionstubtype="regular" table:type="NVARCHAR">
+      <core:lvalue>
+        <core:simpleexp core:type="NVARCHAR">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="CONDITIONID" core:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" core:columnType="NVARCHAR" core:modelType="analytic" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </core:lvalue>
+      <table:cv table:id="CV1444445d465xa1040y6">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="GEN"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+    </table:conditionstub>
+    <table:actionstub table:id="AS14444452464x32857" table:actionstubtype="regular">
+      <core:abstractaction xsi:type="core:Action" core:type="assign" core:varname="PA_SCORECARD">
+        <core:assignmentvalue>
+          <core:simpleexp core:type="INTEGER">
+            <core:abstractreference xsi:type="core:VariableReference" core:varname="PA_SCORECARD"/>
+          </core:simpleexp>
+        </core:assignmentvalue>
+      </core:abstractaction>
+      <table:av table:ce-id-refs="CV1444445d465xa1040y6" table:id="AV144444574e7xc7a65">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="INTEGER">
+          <core:primitive core:value="0"/>
+        </core:simpleexp>
+      </table:av>
+    </table:actionstub>
+    <table:tablelayout>
+      <table:conditionstub-layout table:stub-id="CS14444446a7bx1b90c" table:type="vertical">
+        <table:cell table:ref-id="CV1444445d465xa1040y6" table:span="1"/>
+      </table:conditionstub-layout>
+      <table:actionstub-layout table:width="100" table:stub-id="AS14444452464x32857"/>
+    </table:tablelayout>
+  </table:decisiontable>
+</dtmodel:decisionTableModel>

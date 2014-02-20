@@ -73,7 +73,7 @@ function missionLogPump(){
         gpsSolFixType       = null,		
         gpsSolNumSats       = null,
         gpsPosLongitude     = null,
-        gpsPosLattitude     = null,
+        gpsPosLatitude      = null,
         gpsPosAltitude      = null,
         gpsVelHeading       = null,
         gpsVelSpeedCms      = null,
@@ -150,7 +150,7 @@ function missionLogPump(){
 						break;
 					case messageId.gpsPos:
 						gpsPosLongitude = parseFloat(messageFeedFields[0]);
-						gpsPosLattitude = parseFloat(messageFeedFields[1]);
+						gpsPosLatitude  = parseFloat(messageFeedFields[1]);
 						gpsPosAltitude  = parseFloat(messageFeedFields[2]);
 						break;
 					case messageId.gpsVel:
@@ -369,11 +369,11 @@ function missionLogPump(){
 		}
 		
 		
-		if (gpsPosLattitude == null) {
+		if (gpsPosLatitude == null) {
 			pstmt.setNull(26);
 		}
 		else {
-			pstmt.setDecimal(26,gpsPosLattitude);	
+			pstmt.setDecimal(26,gpsPosLatitude);	
 		}
 		
 		

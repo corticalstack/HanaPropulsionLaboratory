@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cube:cube xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_ACHIEVEMENT_BY_PILOT_MISSION" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
+  <descriptions defaultDescription="Achievement by pilot mission "/>
+  <localVariables>
+    <variable id="IP_MISSION_ID_FROM" parameter="true">
+      <descriptions defaultDescription="Mission ID from"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="0" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_MISSION_ID_TO" parameter="true">
+      <descriptions defaultDescription="Mission ID to"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="999999" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <privateMeasureGroup id="MeasureGroup">
+    <attributes>
+      <attribute id="MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MISSIONID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONID"/>
+      </attribute>
+      <attribute id="VEHICLEID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VEHICLEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VEHICLEID"/>
+      </attribute>
+      <attribute id="PILOTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PILOTID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID"/>
+      </attribute>
+      <attribute id="MESSAGECATEGORYID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGECATEGORYID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID"/>
+      </attribute>
+      <attribute id="MESSAGEID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGEID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="CA_RESULT" hidden="false" order="13" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CA_RESULT"/>
+        <keyCalculation datatype="DECIMAL" length="10" scale="4">
+          <formula>if(&quot;CONDITIONID&quot;='HIL' AND &quot;MESSAGECATEGORYID&quot;='NAV' AND &quot;MESSAGEID&quot;='GPP', &quot;CA_GPSPOSALTITUDE_MIN&quot;, if(&quot;CONDITIONID&quot;='GEN' AND &quot;MESSAGECATEGORYID&quot;='POW' AND &quot;MESSAGEID&quot;='BAT', &quot;CA_VOLTAGE_MIN&quot;, if(&quot;CONDITIONID&quot;='KOB' AND &quot;MESSAGECATEGORYID&quot;='COC' AND &quot;MESSAGEID&quot;='CAM', &quot;CAMERAPANTILT&quot;,0 )))</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies>
+        <tableProxy centralTable="true">
+          <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog"/>
+          <columnFilter columnName="MISSIONID">
+            <valueFilter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$IP_MISSION_ID_FROM$$" highValue="$$IP_MISSION_ID_TO$$"/>
+          </columnFilter>
+        </tableProxy>
+      </tableProxies>
+      <joins/>
+      <layout>
+        <shapes>
+          <shape modelObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+            <upperLeftCorner x="70" y="30"/>
+          </shape>
+        </shapes>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="VOLTAGE" hidden="true" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="VOLTAGE"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VOLTAGE"/>
+      </measure>
+      <measure id="CAMERAPANTILT" order="5" aggregationType="count" measureType="simple">
+        <descriptions defaultDescription="CAMERAPANTILT"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="CAMERAPANTILT"/>
+      </measure>
+      <measure id="GPSPOSALTITUDE" hidden="true" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GPSPOSALTITUDE"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSPOSALTITUDE"/>
+      </measure>
+      <measure id="GPSVELSPEEDCMS" hidden="true" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GPSVELSPEEDCMS"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSVELSPEEDCMS"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="CA_GPSPOSALTITUDE_MIN" hidden="false" order="8" aggregationType="min" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="7" scale="2">
+        <descriptions defaultDescription="GPS position altitude minimum"/>
+        <formula>&quot;GPSPOSALTITUDE&quot;</formula>
+      </measure>
+      <measure id="CA_GPSPOSALTITUDE_MAX" hidden="false" order="9" aggregationType="max" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="7" scale="2">
+        <descriptions defaultDescription="Gps position altitude max"/>
+        <formula>&quot;GPSPOSALTITUDE&quot;</formula>
+      </measure>
+      <measure id="CA_VOLTAGE_MIN" hidden="false" order="10" aggregationType="min" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="5" scale="2">
+        <descriptions defaultDescription="Voltage minimum"/>
+        <formula>&quot;VOLTAGE&quot;</formula>
+      </measure>
+      <measure id="CA_GPSVELSPEEDCMS_MIN" hidden="false" order="11" aggregationType="min" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="6" scale="2">
+        <descriptions defaultDescription="GPS velocity speed cms min"/>
+        <formula>&quot;GPSVELSPEEDCMS&quot;</formula>
+      </measure>
+      <measure id="CA_GPSVELSPEEDCMS_MAX" hidden="false" order="12" aggregationType="max" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="6" scale="2">
+        <descriptions defaultDescription="GPS velocity speed cms max"/>
+        <formula>&quot;GPSVELSPEEDCMS&quot;</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="/hpl.missioncontrol.models/attributeviews/AT_ACHIEVEMENT_CONDITION_MESSAGE">
+        <attributes>
+          <attributeRef>#MESSAGECATEGORYID</attributeRef>
+          <attributeRef>#MESSAGEID</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MESSAGECATEGORYID</attributeName>
+          <attributeName>MESSAGEID</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+    <layout>
+      <shapes>
+        <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
+          <upperLeftCorner x="300" y="200"/>
+        </shape>
+        <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_ACHIEVEMENT_CONDITION_MESSAGE.attributeview" modelObjectType="repository">
+          <upperLeftCorner x="785" y="280"/>
+        </shape>
+        <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize height="0" width="0"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateMeasureGroup>
+</Cube:cube>

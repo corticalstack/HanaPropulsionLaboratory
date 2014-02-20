@@ -6,16 +6,16 @@ function missionSetHomeLatLngAlt(){
 		p_vehicleId			= $.request.parameters.get('vehicleId'),
 		p_pilotId			= $.request.parameters.get('pilotId'),
 		p_longitude			= $.request.parameters.get('longitude'),
-		p_lattitude			= $.request.parameters.get('lattitude'),
+		p_latitude			= $.request.parameters.get('latitude'),
 		p_altitude			= $.request.parameters.get('altitude'),
 		p_callback			= $.request.parameters.get('callback');
 
 	try {
-		query = 'UPDATE "hpl.missioncontrol.data::MC.Mission.Mission" SET HOMEGPSPOSLONGITUDE=?, HOMEGPSPOSLATTITUDE=?, HOMEGPSPOSALTITUDE=? where MISSIONID=? and VEHICLEID=? and PILOTID=?';
+		query = 'UPDATE "hpl.missioncontrol.data::MC.Mission.Mission" SET HOMEGPSPOSLONGITUDE=?, HOMEGPSPOSLATITUDE=?, HOMEGPSPOSALTITUDE=? where MISSIONID=? and VEHICLEID=? and PILOTID=?';
 		pstmt = conn.prepareStatement(query);
 		
 		pstmt.setString(1,p_longitude);
-		pstmt.setString(2,p_lattitude);
+		pstmt.setString(2,p_latitude);
 		pstmt.setString(3,p_altitude);
 		pstmt.setString(4,p_missionId);  
 		pstmt.setString(5,p_vehicleId);  

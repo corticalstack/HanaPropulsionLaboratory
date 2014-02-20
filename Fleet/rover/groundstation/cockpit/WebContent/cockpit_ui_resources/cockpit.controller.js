@@ -225,15 +225,17 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 		
 		//GPS Sol message
-		if (data.substr(0,1) == 'S') {
+		if (data.substr(0,1) == 'S') {			
 			var gps_msg_nav_sol_fields = data.split(',');
 			message = data.substr(1);
 			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsSol(), message );
 			
 			switch(gps_msg_nav_sol_fields[0].substr(1)) {
 				case '2':
+					console.log('GPS Sol message.....type 2');
 					break;
 				case '3':
+					console.log('GPS Sol message.....type 3');
 					missioncontrolController.checkSetHomeLatLngAlt();
 					break;
 			}
@@ -248,33 +250,33 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		if (data.substr(0,1) == 'P') {
 			var gps_msg_nav_posllh_fields = data.split(',');
 			var longitude 	= parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
-			var lattitude 	= parseFloat(gps_msg_nav_posllh_fields[1], 10);
+			var latitude 	= parseFloat(gps_msg_nav_posllh_fields[1], 10);
 			var altitude  	= parseFloat(gps_msg_nav_posllh_fields[2], 10);
 			
 			longitude 		= longitude / 10000000;
-			lattitude 		= lattitude / 10000000;
+			latitude 		= latitude / 10000000;
 			altitude 		= altitude / 1000;
 			altitude 		= altitude.toFixed(2);
 			
-			missioncontrolModel.setCurrentLattitude(lattitude);
+			missioncontrolModel.setCurrentLatitude(latitude);
 			missioncontrolModel.setCurrentLongitude(longitude);
 			missioncontrolModel.setCurrentAltitude(altitude);
 			
 			//Have a solid GPS 3D fix
 			if (missioncontrolModel.getGps3DFixCount() > 10) {
-				message = longitude + ',' + lattitude + ',' + altitude; 
+				message = longitude + ',' + latitude + ',' + altitude; 
 				missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
 
 				cockpitMapsModel.setStateGoogleMapLastLongitude(longitude);
-				cockpitMapsModel.setStateGoogleMapLastLattitude(lattitude);
+				cockpitMapsModel.setStateGoogleMapLastLatitude(latitude);
 				cockpitMapsModel.setStateLatLng();
 				cockpitMapsModel.setPosition();
 				cockpitMapsModel.panTo();
 				sap.ui.getCore().byId("lblValLongitude").setText(longitude);
-				sap.ui.getCore().byId("lblValLattitude").setText(lattitude);
+				sap.ui.getCore().byId("lblValLatitude").setText(latitude);
 				sap.ui.getCore().byId("lblValAltitude").setText(altitude);
 		
-				cockpitModel.setIndicatorVal({id: 'lblStatusLattitude', val: lattitude});
+				cockpitModel.setIndicatorVal({id: 'lblStatusLatitude', val: latitude});
 				cockpitModel.setIndicatorVal({id: 'lblStatusLongitude', val: longitude});
 				cockpitModel.setIndicatorVal({id: 'lblStatusAltitude', val: altitude});
 				sap.ui.getCore().byId("viewCockpit").getController().refreshWaypoint();
@@ -402,9 +404,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			return;
 		}
 		
-		var bearing = 	myHplApp.controller.Bearing(myHplApp.missioncontrol.model.getCurrentLattitude(),
+		var bearing = 	myHplApp.controller.Bearing(myHplApp.missioncontrol.model.getCurrentLatitude(),
 													myHplApp.missioncontrol.model.getCurrentLongitude(),
-													myHplApp.missioncontrol.model.getHomeLattitude(),
+													myHplApp.missioncontrol.model.getHomeLatitude(),
 													myHplApp.missioncontrol.model.getHomeLongitude());
 
 		cockpitModel.setIndicatorVal({id: 'lblStatusBearingWp', val: bearing});
@@ -412,9 +414,9 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		sap.ui.getCore().byId("lblValBearingWp").setText(bearing + '°');		
 		$('#imgWaypointIndicator').css('-webkit-transform', 'rotate(' + bearing + 'deg)');		
 
-		var distance = 	myHplApp.controller.Distance(myHplApp.missioncontrol.model.getCurrentLattitude(), 
+		var distance = 	myHplApp.controller.Distance(myHplApp.missioncontrol.model.getCurrentLatitude(), 
 				  									 myHplApp.missioncontrol.model.getCurrentLongitude(),
-				  									 myHplApp.missioncontrol.model.getHomeLattitude(),
+				  									 myHplApp.missioncontrol.model.getHomeLatitude(),
 				  									 myHplApp.missioncontrol.model.getHomeLongitude());
 
 		cockpitModel.setIndicatorVal({id: 'lblStatusDistanceWp', val: distance});

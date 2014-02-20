@@ -42,6 +42,7 @@
 				break;
 			case true:
 				myHplApp.missioncontrol.controller.getMissionNextId();
+				myHplApp.missioncontrol.controller.getScenarioTerrain();				
 				setTimeout(myHplApp.cockpit.controller.setCockpitHeartbeatTick,3000);
 				myHplApp.cockpit.controller.setKeyFrameTick();
 				myHplApp.cockpit.controller.setCockpitMainRefreshTick();
@@ -883,7 +884,7 @@
 		
 		//Lattitude
 		var indicator = {
-				id: 				'lblStatusLattitude',
+				id: 				'lblStatusLatitude',
 				value: 				'',
 				refresh: 			true,
 				min: 				'',
@@ -893,7 +894,7 @@
 		cockpitModel.setIndicator(indicator);
 		
 		var indicator = {
-				id: 				'lblStatusLattitude',
+				id: 				'lblStatusLatitude',
 				value: 				'',
 				refresh: 			true,
 				min: 				0,

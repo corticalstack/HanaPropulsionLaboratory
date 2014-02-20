@@ -3,7 +3,6 @@ namespace hpl.missioncontrol.data;
 @Schema: 'MISSIONCONTROL'
 
 context MC {
-
 	type SStringT  							: String(40);
 	type MStringT  							: String(60);
 	type LStringT  							: String(255);
@@ -20,6 +19,11 @@ context MC {
 	type loggedAtT							: Integer64;
 	type messageCategoryIdT					: String(3);
 	type messageIdT							: String(3);
+	type shapeIdT							: String(6);	
+	type shapeCategoryIdT					: String(3);
+	type terrainIdT							: String(6);
+	type scenarioIdT						: String(6);
+	type colourIdT							: String(6);
 	type textIdT							: String(10);
 	type gpsPosT							: Decimal(9,6);
 	type gpsAltT							: Decimal(7,2);
@@ -50,6 +54,12 @@ context MC {
 	type mapZoomT  							: String(2);
 	type laserT  							: Integer;
 	type distanceTravelledT					: Decimal(7,2);
+	type achievementIdT						: String(6);
+	type conditionIdT						: String(6);
+	type inMissionT							: Integer;
+	type endMissionT						: Integer;
+	type multiplierT						: Integer;
+	type pointsT							: Integer;
 	
 	context MasterData {
 		@Catalog.tableType : #COLUMN 
@@ -58,11 +68,19 @@ context MC {
     		TEXTID							: textIdT;
 		};
 		
+		
 		@Catalog.tableType : #COLUMN 
 		Entity MessageId {
     		key MESSAGEID					: messageIdT;
     		TEXTID							: textIdT;
 		};
+		
+		
+		@Catalog.tableType : #COLUMN 
+		Entity ShapeCategoryId {
+    		key SHAPECATEGORYID				: shapeCategoryIdT;
+    		TEXTID							: textIdT;
+		};	
 		
 		
 		@Catalog.tableType : #COLUMN 
@@ -74,7 +92,51 @@ context MC {
 	 		CLANURI 						: LStringT;
 	 		ACTIVEMISSIONID					: missionIdT;	
 		};
+				
+	
+		@Catalog.tableType : #COLUMN 
+		Entity Achievement {
+    		key ACHIEVEMENTID				: achievementIdT;
+			NAME							: textIdT;	
+			VISUALURI						: LStringT;
+	 		DESCRIPTION						: textIdT;
+	 		CONDITIONID 					: conditionIdT;
+	 		INMISSION						: inMissionT;	
+	 		ENDMISSION						: endMissionT;
+	 		MULTIPLIER						: multiplierT;
+	 		POINTS							: pointsT;
+		};
 		
+		
+		@Catalog.tableType : #COLUMN 
+		Entity AchievementConditionMessage {
+    		key CONDITIONID 				: conditionIdT;
+			key MESSAGECATEGORYID			: messageCategoryIdT;			
+			key MESSAGEID  					: messageIdT;	 	
+		};		
+
+
+		@Catalog.tableType : #COLUMN 
+		Entity Terrain {
+    		key TERRAINID 					: terrainIdT;
+			key SHAPEID						: shapeIdT;			
+			NAME  							: textIdT;	 	
+			HITPOINTS						: pointsT;
+			HEALTHPOINTS					: pointsT;
+			MULTIPLIER						: multiplierT;
+			INFILLCOLOURID					: colourIdT;
+		};		
+
+
+		@Catalog.tableType : #COLUMN 
+		Entity Scenario {
+    		key SCENARIOID 					: scenarioIdT;
+    		NAME  							: textIdT;
+    		VISUALURI						: LStringT;
+    		DESCRIPTION						: textIdT;
+			TERRAINID						: terrainIdT;			
+		};		
+			
 	};
 
 
@@ -89,9 +151,10 @@ context MC {
 			STARTEDAT						: loggedAtT null;
 			ENDEDAT							: loggedAtT null;
 			HOMEGPSPOSLONGITUDE				: gpsPosT null;
-			HOMEGPSPOSLATTITUDE				: gpsPosT null;
+			HOMEGPSPOSLATITUDE				: gpsPosT null;
 	    	HOMEGPSPOSALTITUDE				: gpsAltT null;
 		};
+
 
 
 		@Catalog.tableType : #COLUMN 
@@ -122,7 +185,7 @@ context MC {
 			GPSSOLFIXTYPE					: gpsSolFixTypeT null;
 			GPSSOLNUMSATS  					: gpsSolNumSatsT null;
 			GPSPOSLONGITUDE 				: gpsPosT null;
-			GPSPOSLATTITUDE 				: gpsPosT null;
+			GPSPOSLATITUDE 					: gpsPosT null;
 			GPSPOSALTITUDE 					: gpsAltT null;
 			GPSVELHEADING					: headingT null;
 			GPSVELSPEEDCMS 					: speedCmsT null;
@@ -142,6 +205,7 @@ context MC {
 		};		
 	
 	};
+		
 	
 	
 	context Util {

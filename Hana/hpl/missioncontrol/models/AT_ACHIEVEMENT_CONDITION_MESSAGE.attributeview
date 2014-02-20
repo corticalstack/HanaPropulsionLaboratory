@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_ACHIEVEMENT_CONDITION_MESSAGE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="Achievement condition message"/>
+  <attributes>
+    <attribute id="ACHIEVEMENTID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="ACHIEVEMENTID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="ACHIEVEMENTID"/>
+    </attribute>
+    <attribute id="ACHIEVEMENTNAME" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="ACHIEVEMENTNAME"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1" columnName="TEXT"/>
+    </attribute>
+    <attribute id="CONDITIONID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="CONDITIONID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="CONDITIONID"/>
+    </attribute>
+    <attribute id="MESSAGECATEGORYID" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MESSAGECATEGORYID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.AchievementConditionMessage" columnName="MESSAGECATEGORYID"/>
+    </attribute>
+    <attribute id="MESSAGECATEGORYIDTEXT" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MESSAGECATEGORYIDTEXT"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" columnName="TEXT"/>
+    </attribute>
+    <attribute id="MESSAGEID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MESSAGEID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.AchievementConditionMessage" columnName="MESSAGEID"/>
+    </attribute>
+    <attribute id="MESSAGEIDTEXT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MESSAGEIDTEXT"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2" columnName="TEXT"/>
+    </attribute>
+    <attribute id="MULTIPLIER" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MULTIPLIER"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="MULTIPLIER"/>
+    </attribute>
+    <attribute id="POINTS" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="POINTS"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="POINTS"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.AchievementConditionMessage"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageCategoryId"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.AchievementConditionMessage"/>
+        <leftColumns>
+          <columnName>CONDITIONID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>CONDITIONID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1"/>
+        <leftColumns>
+          <columnName>NAME</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.AchievementConditionMessage"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageCategoryId"/>
+        <leftColumns>
+          <columnName>MESSAGECATEGORYID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>MESSAGECATEGORYID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageCategoryId"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+        <leftColumns>
+          <columnName>TEXTID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.AchievementConditionMessage"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId"/>
+        <leftColumns>
+          <columnName>MESSAGEID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>MESSAGEID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2"/>
+        <leftColumns>
+          <columnName>TEXTID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.AchievementConditionMessage" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="692" y="38"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.Util.Texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="234" y="218"/>
+        </shape>
+        <shape modelObjectName="hpl_1" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1977" y="21"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1336" y="41"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.MessageCategoryId" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="107" y="27"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="719" y="242"/>
+        </shape>
+        <shape modelObjectName="hpl_2" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="696" y="414"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize height="0" width="0"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

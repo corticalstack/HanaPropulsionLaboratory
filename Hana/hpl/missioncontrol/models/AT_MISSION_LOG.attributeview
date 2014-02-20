@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MISSION_LOG" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Mission log"/>
+  <descriptions defaultDescription="Mission log "/>
   <attributes>
     <attribute id="MISSIONLOGID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="MISSIONLOGID"/>
@@ -30,9 +30,9 @@
       <descriptions defaultDescription="HOMEGPSPOSLONGITUDE"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.Mission" columnName="HOMEGPSPOSLONGITUDE"/>
     </attribute>
-    <attribute id="HOMEGPSPOSLATTITUDE" order="8" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="HOMEGPSPOSLATTITUDE"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.Mission" columnName="HOMEGPSPOSLATTITUDE"/>
+    <attribute id="HOMEGPSPOSLATITUDE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="HOMEGPSPOSLATITUDE"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.Mission" columnName="HOMEGPSPOSLATITUDE"/>
     </attribute>
     <attribute id="HOMEGPSPOSALTITUDE" order="9" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="HOMEGPSPOSALTITUDE"/>
@@ -134,9 +134,9 @@
       <descriptions defaultDescription="GPSPOSLONGITUDE"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSPOSLONGITUDE"/>
     </attribute>
-    <attribute id="GPSPOSLATTITUDE" order="34" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="GPSPOSLATTITUDE"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSPOSLATTITUDE"/>
+    <attribute id="GPSPOSLATITUDE" order="34" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GPSPOSLATITUDE"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSPOSLATITUDE"/>
     </attribute>
     <attribute id="GPSPOSALTITUDE" order="35" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="GPSPOSALTITUDE"/>
@@ -308,7 +308,7 @@
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>
-          <rectangleSize/>
+          <rectangleSize height="0" width="0"/>
         </shape>
       </shapes>
     </layout>

@@ -30,9 +30,9 @@
       <descriptions defaultDescription="HOMEGPSPOSLONGITUDE"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.Mission" columnName="HOMEGPSPOSLONGITUDE"/>
     </attribute>
-    <attribute id="HOMEGPSPOSLATTITUDE" order="8" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="HOMEGPSPOSLATTITUDE"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.Mission" columnName="HOMEGPSPOSLATTITUDE"/>
+    <attribute id="HOMEGPSPOSLATITUDE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="HOMEGPSPOSLATITUDE"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.Mission" columnName="HOMEGPSPOSLATITUDE"/>
     </attribute>
     <attribute id="HOMEGPSPOSALTITUDE" order="9" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="HOMEGPSPOSALTITUDE"/>
@@ -72,7 +72,7 @@
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>
-          <rectangleSize/>
+          <rectangleSize height="0" width="0"/>
         </shape>
       </shapes>
     </layout>

@@ -15,7 +15,7 @@
 			googleMapMarker:			{},
 			latlng: 					{},			
 			googleMapInitialised:  		false,
-			googleMapLastLattitude:     '46.475241',
+			googleMapLastLatitude:     '46.475241',
 			googleMapLastLongitude:     '6.892743',
 			googleMapLastMapType: 		google.maps.MapTypeId.ROADMAP,
 			googleMapLastZoom:          11,
@@ -52,8 +52,8 @@
 	};
 
 	
-	myHplApp.cockpit.maps.model.getStateGoogleMapLastLattitude = function(val) {
-		return state.googleMapLastLattitude;
+	myHplApp.cockpit.maps.model.getStateGoogleMapLastLatitude = function(val) {
+		return state.googleMapLastLatitude;
 	};
 
 	
@@ -97,12 +97,12 @@
 
 	
 	myHplApp.cockpit.maps.model.setStateLatLng = function() {
-		state.latlng = new google.maps.LatLng(state.googleMapLastLattitude, state.googleMapLastLongitude);
+		state.latlng = new google.maps.LatLng(state.googleMapLastLatitude, state.googleMapLastLongitude);
 	};
 	
 
-	myHplApp.cockpit.maps.model.setStateGoogleMapLastLattitude = function(val) {
-		state.googleMapLastLattitude = val;
+	myHplApp.cockpit.maps.model.setStateGoogleMapLastLatitude = function(val) {
+		state.googleMapLastLatitude = val;
 	};
 
 	

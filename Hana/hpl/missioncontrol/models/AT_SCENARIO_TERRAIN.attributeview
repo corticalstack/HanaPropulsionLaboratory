@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_SCENARIO_TERRAIN" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="Scenario terrain"/>
+  <attributes>
+    <attribute id="SCENARIOID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="SCENARIOID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" columnName="SCENARIOID"/>
+    </attribute>
+    <attribute id="TERRAINID" order="2" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="TERRAINID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" columnName="TERRAINID"/>
+    </attribute>
+    <attribute id="SHAPEID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SHAPEID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="SHAPEID"/>
+    </attribute>
+    <attribute id="TEXT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TEXT"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" columnName="TEXT"/>
+    </attribute>
+    <attribute id="SHAPE" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SHAPE"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes" columnName="SHAPE"/>
+    </attribute>
+    <attribute id="HITPOINTS" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="HITPOINTS"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="HITPOINTS"/>
+    </attribute>
+    <attribute id="HEALTHPOINTS" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="HEALTHPOINTS"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="HEALTHPOINTS"/>
+    </attribute>
+    <attribute id="MULTIPLIER" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MULTIPLIER"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="MULTIPLIER"/>
+    </attribute>
+    <attribute id="INFILLCOLOURID" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="INFILLCOLOURID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="INFILLCOLOURID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <leftColumns>
+          <columnName>TERRAINID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TERRAINID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
+        <leftColumns>
+          <columnName>SHAPEID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>SHAPEID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+        <leftColumns>
+          <columnName>NAME</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="545" y="30"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1012" y="30"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.Util.Texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1076" y="229"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

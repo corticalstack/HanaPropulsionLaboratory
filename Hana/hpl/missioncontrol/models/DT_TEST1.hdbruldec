@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dtmodel:decisionTableModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:alias="http://www.sap.com/ndb/Rules/Alias" xmlns:core="http://www.sap.com/ndb/Rules/Core" xmlns:dtmodel="http://www.sap.com/ndb/DecisionTableModel1.ecore" xmlns:table="http://www.sap.com/ndb/Rules/DecisionTable" schemaVersion="1.0" id="DT_TEST1" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal">
+  <descriptions defaultDescription="DT_TEST1"/>
+  <defaultSchema/>
+  <dataSources>
+    <DataSource id="AT_ACHIEVEMENT_CONDITION_MESSAGE" type="ATTRIBUTE_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.missioncontrol.models/attributeviews/AT_ACHIEVEMENT_CONDITION_MESSAGE</resourceUri>
+    </DataSource>
+  </dataSources>
+  <privateDataFoundation>
+    <tableProxies/>
+    <joins/>
+    <layout>
+      <shapes>
+        <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_ACHIEVEMENT_CONDITION_MESSAGE.attributeview" modelObjectType="repository">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <dtmodel:variables>
+    <core:variable id="VAR1444452ef32x68607" core:assignable="true" core:length="0" core:name="PA_SCORE" core:scale="0" core:type="INTEGER">
+      <descriptions defaultDescription="PA_SCORE"/>
+      <core:simpleexp core:operator="" core:type="INTEGER">
+        <core:primitive core:value="0"/>
+      </core:simpleexp>
+      <core:valueDomain core:type="empty"/>
+      <core:selection core:isMultiLine="false" core:type=""/>
+    </core:variable>
+  </dtmodel:variables>
+  <alias:aliasset alias:guid="AS14444525268x3341cy7">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444529041x6eb3a" alias:visible="true" alias:columnName="ACHIEVEMENTID" alias:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" alias:columntype="NVARCHAR" alias:modelType="attribute" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="ACHIEVEMENTID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444529361x5d41" alias:visible="true" alias:columnName="ACHIEVEMENTNAME" alias:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" alias:columntype="NVARCHAR" alias:modelType="attribute" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="ACHIEVEMENTNAME"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444529678x734d6" alias:visible="true" alias:columnName="CONDITIONID" alias:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" alias:columntype="NVARCHAR" alias:modelType="attribute" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="CONDITIONID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444529951xa977a" alias:visible="true" alias:columnName="MESSAGECATEGORYID" alias:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" alias:columntype="NVARCHAR" alias:modelType="attribute" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="MESSAGECATEGORYID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14444529f23x52ceb" alias:visible="true" alias:columnName="MESSAGECATEGORYIDTEXT" alias:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" alias:columntype="NVARCHAR" alias:modelType="attribute" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="MESSAGECATEGORYIDTEXT"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1444452a291xc9352" alias:visible="true" alias:columnName="MESSAGEID" alias:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" alias:columntype="NVARCHAR" alias:modelType="attribute" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="MESSAGEID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:Alias" id="VARAL1444452ef32xa769ya" alias:visible="true">
+      <descriptions defaultDescription="PA_SCORE"/>
+      <alias:member alias:returntype="INTEGER" alias:varname="PA_SCORE"/>
+    </alias:basealias>
+  </alias:aliasset>
+  <table:decisiontable table:guid="DT14444525268x266c2" table:name="DT_TEST1">
+    <table:conditionstub table:id="CS1444452b684x4623b" table:conditionstubtype="regular" table:type="NVARCHAR">
+      <core:lvalue>
+        <core:simpleexp core:type="NVARCHAR">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="CONDITIONID" core:columnObjectName="hpl.missioncontrol.models/AT_ACHIEVEMENT_CONDITION_MESSAGE" core:columnType="NVARCHAR" core:modelType="attribute" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </core:lvalue>
+      <table:cv table:id="CV144445312a7x6ecf9ye">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="GEN"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+    </table:conditionstub>
+    <table:actionstub table:id="AS1444452fa35x985e" table:actionstubtype="regular">
+      <core:abstractaction xsi:type="core:Action" core:type="assign" core:varname="PA_SCORE">
+        <core:assignmentvalue>
+          <core:simpleexp core:type="INTEGER">
+            <core:abstractreference xsi:type="core:VariableReference" core:varname="PA_SCORE"/>
+          </core:simpleexp>
+        </core:assignmentvalue>
+      </core:abstractaction>
+      <table:av table:ce-id-refs="CV144445312a7x6ecf9ye" table:id="AV14444532266x524f0">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="INTEGER">
+          <core:primitive core:value="0"/>
+        </core:simpleexp>
+      </table:av>
+    </table:actionstub>
+    <table:tablelayout>
+      <table:conditionstub-layout table:stub-id="CS1444452b684x4623b" table:type="vertical">
+        <table:cell table:ref-id="CV144445312a7x6ecf9ye" table:span="1"/>
+      </table:conditionstub-layout>
+      <table:actionstub-layout table:width="100" table:stub-id="AS1444452fa35x985e"/>
+    </table:tablelayout>
+  </table:decisiontable>
+</dtmodel:decisionTableModel>

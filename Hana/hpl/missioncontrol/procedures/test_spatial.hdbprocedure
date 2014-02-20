@@ -1,0 +1,20 @@
+PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::test_spatial" ( 
+in in_geo ST_Polygon,
+	out ex_geo MISSIONCONTROL."hpl.missioncontrol.data::MC.GeoFromToT") 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	DEFAULT SCHEMA MISSIONCONTROL AS
+
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+ create global temporary table test_table1(pointFrom ST_GEOMETRY, pointTo ST_GEOMETRY );
+ 
+ 
+
+ ex_geo = SELECT NEW ST_POLYGON() as GEOFROM, NEW ST_POLYGON(3,4) as GEOTO FROM dummy;
+ 
+ 
+ 
+END;

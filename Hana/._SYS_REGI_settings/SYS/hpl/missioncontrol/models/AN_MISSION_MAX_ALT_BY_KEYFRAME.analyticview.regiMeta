@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Mission maximum altitude by keyframe",
+  "content": "Mission maximum altitude by keyframe ",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-12 11:35:32.2010000",
+  "activated_at": "2014-02-17 12:21:32.1780000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,7 +20,7 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "12"
+  "version_id": "17"
  },
  "version": {
   "versionType": "1"

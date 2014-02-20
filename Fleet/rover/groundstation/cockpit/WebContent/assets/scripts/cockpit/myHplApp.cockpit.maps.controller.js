@@ -12,7 +12,7 @@
 	
 	myHplApp.cockpit.maps.controller.googleMapInitialise = function() {
 
-		mapsModel.setStateGoogleMapLastLattitude('46.475241');
+		mapsModel.setStateGoogleMapLastLatitude('46.475241');
 		mapsModel.setStateGoogleMapLastLongitude('6.892743');
 		mapsModel.setStateLatLng();
 
@@ -28,6 +28,22 @@
 		mapsModel.setMapTypeIdRoad();
 	   
 	};    
+	
+	myHplApp.cockpit.maps.controller.googleMapSetScenarioTerrain = function(scenarioTerrain) {
+		var coordinates;
+		console.log('Setting map scenario terrain');
+		for (var i = 0; i < scenarioTerrain.geoCollection.length; i++) {
+			for (var j = 0; j < scenarioTerrain.geoCollection[i].geometry.coordinates.length; j++) {
+				coordinates = scenarioTerrain.geoCollection[i].geometry.coordinates[j];			
+				for (var k = 0; k < coordinates.length; k++) {
+					console.log('Longitude', coordinates[k][0]);
+					console.log('Latitude', coordinates[k][1]);
+				}
+			}
+			
+		}
+
+	};
 	
 	
 	myHplApp.cockpit.maps.controller.init();

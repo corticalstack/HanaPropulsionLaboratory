@@ -568,15 +568,15 @@ function buildPaneNavigation(oController,oLayout){
 	});
 
 
-	var olblStatusLattitude = new sap.ui.commons.Label({
-	    	id: 		"lblStatusLattitude",
-	    	text: 		myHplApp.controller.getTextFromBundle("lattitude"),
+	var olblStatusLatitude = new sap.ui.commons.Label({
+	    	id: 		"lblStatusLatitude",
+	    	text: 		myHplApp.controller.getTextFromBundle("latitude"),
 	    	width: 		"75px"
 	});
 	
 	 
-	var olblValLattitude = new sap.ui.commons.Label({
-	    	id: 		"lblValLattitude",
+	var olblValLatitude = new sap.ui.commons.Label({
+	    	id: 		"lblValLatitude",
 	    	text: 		"",
 	    	textAlign: 	"Right",
 	    	width: 		"70px"	    	
@@ -705,8 +705,8 @@ function buildPaneNavigation(oController,oLayout){
 
 	omlRow1  = new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 	
-	omlCell1.addContent(olblStatusLattitude);
-	omlCell2.addContent(olblValLattitude);	
+	omlCell1.addContent(olblStatusLatitude);
+	omlCell2.addContent(olblValLatitude);	
 	omlCell3.addContent(olblStatusAltitude);
 	omlCell4.addContent(olblValAltitude);
 	omlCell5.addContent(olblStatusHeading);
@@ -816,7 +816,7 @@ function buildPaneMissionControl(oController,oLayout){
     	content: '<iframe id="iframeMcTelemetryStats" width="582px" height="530px" frameBorder="0">Mission Control Offline!!!</iframe>',
     	preferDOM : true,   
     	afterRendering: function() {  
-    		newSrc = 'http://hanaserver:8000/hpl/missioncontrol/ui/WebContent/telemetryStats.html';
+    		newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/telemetryStats.html';
     		$("#iframeMcTelemetryStats").load(function() {  
     			$("#iframeMcTelemetryStats").attr("width","582px").attr("height","530px");  
     		}).attr("src",newSrc);  

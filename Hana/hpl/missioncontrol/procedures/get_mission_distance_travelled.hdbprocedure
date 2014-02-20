@@ -1,4 +1,4 @@
-PROCEDURE "SYSTEM"."hpl.missioncontrol.procedures::get_mission_distance_travelled" (
+PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_distance_travelled" (
 	OUT ex_distance_travelled_tt MISSIONCONTROL."hpl.missioncontrol.data::MC.Procedures.tt_distance_travelled" 
 	)   
 	LANGUAGE SQLSCRIPT
@@ -13,19 +13,20 @@ BEGIN
  declare lvEarthRadius double default 6371000;
  declare lvToRad double default 0.01745329225199433;
  
- declare lvDistanceLattitude double default 0;
+ declare lvDistanceLatitude double default 0;
  declare lvDistanceLongitude double default 0;
  
  declare lvDistance double default 0;
  declare lvDistanceTotal double default 0;
  declare lvGpsLongitude decimal(9,6) default 0;
- declare lvGpsLattitude decimal(9,6) default 0;
- declare lvLattitude1 double default 0;
- declare lvLattitude2 double default 0;
+ declare lvGpsLatitude decimal(9,6) default 0;
+ declare lvLatitude1 double default 0;
+ declare lvLatitude2 double default 0;
  declare lva double default 0;
  declare lvc double default 0;
- declare CURSOR c_mission FOR
-    	SELECT MISSIONLOGID, GPSPOSLONGITUDE, GPSPOSLATTITUDE 
+
+declare CURSOR c_mission FOR
+    	SELECT MISSIONLOGID, GPSPOSLONGITUDE, GPSPOSLATITUDE 
     			from "hpl.missioncontrol.data::MC.Mission.MissionLog" 
     			where MESSAGEID = 'GPP' 
     			order by MISSIONLOGID;
@@ -33,15 +34,15 @@ BEGIN
  FOR cur_row as c_mission DO
   
   if lvGpsLongitude != 0 then
-  	lvDistanceLattitude := ((lvGpsLattitude - cur_row.GPSPOSLATTITUDE) * lvToRad) ;
+  	lvDistanceLatitude := ((lvGpsLatitude - cur_row.GPSPOSLATITUDE) * lvToRad) ;
   	lvDistanceLongitude := ((lvGpsLongitude - cur_row.GPSPOSLONGITUDE) * lvToRad) ;
   	
-  	lvLattitude1 := lvGpsLattitude * lvToRad;
-  	lvLattitude2 := cur_row.GPSPOSLATTITUDE * lvToRad;
+  	lvLatitude1 := lvGpsLatitude * lvToRad;
+  	lvLatitude2 := cur_row.GPSPOSLATITUDE * lvToRad;
   	
-  	lva := (sin(lvDistanceLattitude / 2) * (sin(lvDistanceLattitude / 2))) +
+  	lva := (sin(lvDistanceLatitude / 2) * (sin(lvDistanceLatitude / 2))) +
   		   (sin(lvDistanceLongitude / 2) * (sin(lvDistanceLongitude / 2))) *
-  		   (cos(lvLattitude1) * cos(lvLattitude2));
+  		   (cos(lvLatitude1) * cos(lvLatitude2));
   	
   	lvc := 2 * atan2(sqrt(lva), sqrt(1 - lva));
   	lvDistance := lvEarthRadius * lvc;
@@ -50,10 +51,10 @@ BEGIN
   	end if;
   end if;
   lvGpsLongitude := cur_row.GPSPOSLONGITUDE;
-  lvGpsLattitude := cur_row.GPSPOSLATTITUDE;
+  lvGpsLatitude := cur_row.GPSPOSLATITUDE;
     
  END FOR;
-  
+   
  ex_distance_travelled_tt = select lvDistanceTotal as DISTANCETRAVELLED from dummy;
  
 END;

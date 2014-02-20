@@ -3,6 +3,8 @@
 0000000003,E,en,Sensor
 0000000004,E,en,Navigation
 0000000005,E,en,Power
+0000000006,E,en,Cockpit
+0000000007,E,en,Mission Control
 0000000101,E,en,System power up
 0000000102,E,en,GPS initialised
 0000000103,E,en,Inertial
@@ -26,3 +28,54 @@
 0000000121,E,en,Stop
 0000000122,E,en,Thrust failsafe
 0000000123,E,en,Power failsafe
+0000000124,E,en,Laser toggle
+0000000125,E,en,Weapon active
+0000000126,E,en,Weapon fire
+0000000127,E,en,Weapon stop
+0000000500,E,en,Polygon
+0000001000,E,en,50M Club
+0000001001,E,en,50 metres journeyman!
+0000001002,E,en,100M Club
+0000001003,E,en,100 metres journeyman!
+0000001004,E,en,500M Club
+0000001005,E,en,500 metres journeyman!
+0000001006,E,en,1K Club
+0000001007,E,en,1000 metres master!
+0000001008,E,en,On Target
+0000001009,E,en,Down your enemy!
+0000001010,E,en,No Camping
+0000001011,E,en,Scared of leaving home?
+0000001012,E,en,Crosshairs
+0000001013,E,en,Light those enemies with lasers!
+0000001014,E,en,Gone Environmental
+0000001015,E,en,Complete the mission with half a tank of juice
+0000001016,E,en,Keen Observer
+0000001017,E,en,Check the world with your pan cam
+0000001018,E,en,Radioactive
+0000001019,E,en,Glowing in the dark!
+0000001020,E,en,Rogue
+0000001021,E,en,Disobedient disregard for missions!
+0000001022,E,en,The Hill
+0000001023,E,en,On top of the world!
+0000001024,E,en,Thundertruck
+0000001025,E,en,Peddle to the metal baby!
+0000002000,E,en,Polygon 1
+0000002001,E,en,Polygon 2
+0000002002,E,en,Polygon 3
+0000002003,E,en,Polygon 4
+0000002004,E,en,Polygon 5
+0000002005,E,en,Polygon 6
+0000002006,E,en,Polygon 7
+0000002007,E,en,Polygon 8
+0000002008,E,en,Polygon 9
+0000003000,E,en,Radiation zone 1
+0000003001,E,en,Radiation zone 2
+0000003002,E,en,Radiation zone 3
+0000003003,E,en,Radiation zone 4
+0000003004,E,en,Radiation zone 5
+0000003005,E,en,Radiation zone 6
+0000003006,E,en,Radiation zone 7
+0000003007,E,en,Radiation zone 8
+0000003008,E,en,Target zone 1
+0000004000,E,en,Navigate radiation alley and destroy the enemy base
+0000004001,E,en,Get through radiation alley avoiding critical damage then destroy the enemy base and return home

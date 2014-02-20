@@ -12,6 +12,7 @@
 		missioncontrolModel.setActivePilotId('1');
 		missioncontrolModel.setDataNetworkTrafficIn(-1);
 		missioncontrolModel.setDataNetworkTrafficOut(-1);
+		
     };
 
 	
@@ -88,7 +89,7 @@
 				   vehicleId: 			missioncontrolModel.getActiveVehicleId(), 
 				   pilotId: 			missioncontrolModel.getActivePilotId(),
 				   longitude: 			missioncontrolModel.getHomeLongitude(),
-				   lattitude: 			missioncontrolModel.getHomeLattitude(),
+				   Latitude: 			missioncontrolModel.getHomeLatitude(),
 				   altitude: 			missioncontrolModel.getHomeAltitude()}, 
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
@@ -132,6 +133,35 @@
 		myHplApp.missioncontrol.controller.missionCreate();
 	};
 	
+	
+	myHplApp.missioncontrol.controller.getScenarioTerrain = function() {
+		console.log('Mission control controller....getting scenario terrain');
+		var missioncontrolModel = myHplApp.missioncontrol.model;
+		if (!missioncontrolModel.getStateMissioncontrolOnline()) {
+			return;
+		}
+	
+			 
+		jQuery.ajax({
+			url:missioncontrolModel.getConfigServiceScenarioTerrainUri(),
+			dataType: 'jsonp',
+			type: 'GET',
+			headers : {"Access-Control-Allow-Origin" : "*"},
+			crossDomain: true,
+			success: myHplApp.missioncontrol.controller.processGetScenarioTerrainResponse,
+			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
+		});	
+		
+		
+	};
+
+	
+	myHplApp.missioncontrol.controller.processGetScenarioTerrainResponse = function(data) {
+		myHplApp.missioncontrol.model.setScenarioTerrain(data);
+		myHplApp.cockpit.maps.controller.googleMapSetScenarioTerrain(data);
+	};
+	
+	
 	myHplApp.missioncontrol.controller.checkSetHomeLatLngAlt = function() { 
 		if (myHplApp.missioncontrol.model.getCurrentLongitude() != 0) {
 			missioncontrolModel.incrementGps3DFixCount();
@@ -140,7 +170,7 @@
 		if (missioncontrolModel.getGps3DFixCount() == 10) {
 			missioncontrolModel.setActiveHomeLatLngAlt();
 			myHplApp.missioncontrol.controller.missionSetHomeLatLngAlt();
-			myHplApp.missioncontrol.model.addWaypoint('HOME', myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLattitude(),  myHplApp.missioncontrol.model.getHomeAltitude());
+			myHplApp.missioncontrol.model.addWaypoint('HOME', myHplApp.missioncontrol.model.getHomeLongitude(), myHplApp.missioncontrol.model.getHomeLatitude(),  myHplApp.missioncontrol.model.getHomeAltitude());
 		}
     };
 
