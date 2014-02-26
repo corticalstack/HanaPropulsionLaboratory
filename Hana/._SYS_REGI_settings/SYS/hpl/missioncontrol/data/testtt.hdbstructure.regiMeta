@@ -7,7 +7,7 @@
   "text_type": "caption"
  },
  "metadata": {
-  "activated_at": "2014-02-17 16:12:35.7170000",
+  "activated_at": "2014-02-25 09:01:27.3020000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -25,7 +25,7 @@
  "version": {
   "versionType": "1"
  },
- "package": "hpl.missioncontrol.models",
- "name": "CA_ACHIEVEMENT_BY_PILOT_MISSION",
- "suffix": "calculationview"
+ "package": "hpl.missioncontrol.data",
+ "name": "testtt",
+ "suffix": "hdbstructure"
 }

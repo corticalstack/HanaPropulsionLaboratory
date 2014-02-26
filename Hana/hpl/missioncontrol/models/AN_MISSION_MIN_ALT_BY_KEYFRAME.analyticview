@@ -33,25 +33,25 @@
   </localVariables>
   <privateMeasureGroup id="MeasureGroup">
     <attributes>
-      <attribute id="MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="MISSIONID"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONID"/>
+      <attribute id="MISSIONID_MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MISSIONID_MISSIONID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONID.MISSIONID"/>
       </attribute>
-      <attribute id="VEHICLEID" order="2" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="VEHICLEID"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VEHICLEID"/>
+      <attribute id="VEHICLEID_VEHICLEID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VEHICLEID.VEHICLEID"/>
       </attribute>
-      <attribute id="PILOTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="PILOTID"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID"/>
+      <attribute id="PILOTID_PILOTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PILOTID_PILOTID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID.PILOTID"/>
       </attribute>
-      <attribute id="MESSAGECATEGORYID_1" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="MESSAGECATEGORYID_1"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID"/>
+      <attribute id="MESSAGECATEGORYID_MESSAGECATEGORYID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID.MESSAGECATEGORYID"/>
       </attribute>
-      <attribute id="MESSAGEID_1" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="MESSAGEID_1"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGEID"/>
+      <attribute id="MESSAGEID_MESSAGEID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGEID.MESSAGEID"/>
       </attribute>
     </attributes>
     <calculatedAttributes>
@@ -66,14 +66,14 @@
       <tableProxies>
         <tableProxy centralTable="true">
           <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog"/>
-          <columnFilter columnName="MESSAGEID">
-            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="GPP"/>
-          </columnFilter>
-          <columnFilter columnName="MISSIONID">
+          <columnFilter columnName="MISSIONID.MISSIONID">
             <valueFilter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$IP_MISSIONID_FROM$$" highValue="$$IP_MISSIONID_TO$$"/>
           </columnFilter>
           <columnFilter columnName="KEYFRAME">
             <valueFilter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$IP_KEYFRAME_FROM$$" highValue="$$IP_KEYFRAME_TO$$"/>
+          </columnFilter>
+          <columnFilter columnName="MESSAGEID.MESSAGEID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="GPP"/>
           </columnFilter>
         </tableProxy>
       </tableProxies>
@@ -101,7 +101,7 @@
     <sharedDimensions>
       <logicalJoin associatedObjectUri="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_CATEGORY_ID">
         <attributes>
-          <attributeRef>#MESSAGECATEGORYID_1</attributeRef>
+          <attributeRef>#MESSAGECATEGORYID_MESSAGECATEGORYID</attributeRef>
         </attributes>
         <associatedAttributeNames>
           <attributeName>MESSAGECATEGORYID</attributeName>
@@ -111,7 +111,7 @@
       </logicalJoin>
       <logicalJoin associatedObjectUri="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_ID">
         <attributes>
-          <attributeRef>#MESSAGEID_1</attributeRef>
+          <attributeRef>#MESSAGEID_MESSAGEID</attributeRef>
         </attributes>
         <associatedAttributeNames>
           <attributeName>MESSAGEID</attributeName>
@@ -128,10 +128,10 @@
           <upperLeftCorner x="75" y="11"/>
         </shape>
         <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_CATEGORY_ID.attributeview" modelObjectType="repository">
-          <upperLeftCorner x="449" y="30"/>
+          <upperLeftCorner x="574" y="201"/>
         </shape>
         <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_ID.attributeview" modelObjectType="repository">
-          <upperLeftCorner x="455" y="126"/>
+          <upperLeftCorner x="601" y="318"/>
         </shape>
         <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>

@@ -6,9 +6,9 @@
       <descriptions defaultDescription="SCENARIOID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" columnName="SCENARIOID"/>
     </attribute>
-    <attribute id="TERRAINID" order="2" attributeHierarchyActive="false" displayAttribute="false" key="true">
+    <attribute id="TERRAINID" order="2" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="TERRAINID"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" columnName="TERRAINID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="TERRAINID"/>
     </attribute>
     <attribute id="SHAPEID" order="3" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="SHAPEID"/>
@@ -57,17 +57,6 @@
     </tableProxies>
     <joins>
       <join>
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
-        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
-        <leftColumns>
-          <columnName>TERRAINID</columnName>
-        </leftColumns>
-        <rightColumns>
-          <columnName>TERRAINID</columnName>
-        </rightColumns>
-        <properties joinOperator="Equal" joinType="referential"/>
-      </join>
-      <join>
         <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
         <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
         <leftColumns>
@@ -82,12 +71,23 @@
         <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
         <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
         <leftColumns>
-          <columnName>NAME</columnName>
+          <columnName>NAME.TEXTID</columnName>
         </leftColumns>
         <rightColumns>
           <columnName>TEXTID</columnName>
         </rightColumns>
         <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
+        <leftColumns>
+          <columnName>TERRAINID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TERRAINID.TERRAINID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
       </join>
     </joins>
     <layout>
@@ -106,7 +106,7 @@
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>
-          <rectangleSize/>
+          <rectangleSize height="0" width="0"/>
         </shape>
       </shapes>
     </layout>

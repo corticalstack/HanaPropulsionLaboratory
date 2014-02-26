@@ -7,7 +7,7 @@
   "text_type": "caption"
  },
  "metadata": {
-  "activated_at": "2014-02-18 09:31:48.3390000",
+  "activated_at": "2014-02-21 15:40:51.1110000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,12 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "1"
+  "version_id": "31"
  },
  "version": {
   "versionType": "1"
  },
- "package": "hpl.missioncontrol.models",
- "name": "DT_TEST3",
- "suffix": "hdbruldec"
+ "package": "hpl.missioncontrol.services",
+ "name": "bigApple",
+ "suffix": "xsjs"
 }

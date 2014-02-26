@@ -7,7 +7,7 @@
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-18 14:47:12.5900000",
+  "activated_at": "2014-02-25 13:31:46.7220000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,7 +20,7 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "1"
+  "version_id": "2"
  },
  "version": {
   "versionType": "1"

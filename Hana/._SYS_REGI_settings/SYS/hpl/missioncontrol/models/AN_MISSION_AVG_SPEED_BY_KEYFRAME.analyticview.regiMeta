@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Mission average speed by keyframe",
+  "content": "Mission average speed by keyframe ",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-17 12:31:07.6900000",
+  "activated_at": "2014-02-26 11:34:23.2420000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,7 +20,7 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "22"
+  "version_id": "28"
  },
  "version": {
   "versionType": "1"

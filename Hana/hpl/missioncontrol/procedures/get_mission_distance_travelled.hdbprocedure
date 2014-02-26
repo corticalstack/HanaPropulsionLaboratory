@@ -28,7 +28,7 @@ BEGIN
 declare CURSOR c_mission FOR
     	SELECT MISSIONLOGID, GPSPOSLONGITUDE, GPSPOSLATITUDE 
     			from "hpl.missioncontrol.data::MC.Mission.MissionLog" 
-    			where MESSAGEID = 'GPP' 
+    			where "MESSAGEID.MESSAGEID" = 'GPP' 
     			order by MISSIONLOGID;
 
  FOR cur_row as c_mission DO

@@ -1,9 +1,0 @@
-table.schemaName = "MISSIONCONTROL";
-table.tableType = COLUMNSTORE;
-table.description = "testspatial";
-table.columns = [
-	{name = "spatialId";    			sqlType = NVARCHAR; nullable = true;  length = 6;				comment = "spatial ID"; },
-	{name = "geometry";    	 			sqlType = ST_GEOMETRY; comment = "Geometry"; }	
-
-];
-table.primaryKey.pkcolumns = ["spatialId"];

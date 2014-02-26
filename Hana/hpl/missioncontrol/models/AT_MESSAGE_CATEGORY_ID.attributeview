@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MESSAGE_CATEGORY_ID" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Message category ID "/>
+  <descriptions defaultDescription="Message category ID"/>
   <attributes>
     <attribute id="MESSAGECATEGORYID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="MESSAGECATEGORYID"/>
@@ -22,16 +22,16 @@
       </tableProxy>
     </tableProxies>
     <joins>
-      <join>
+      <join languageColumn="LANGUAGE">
         <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageCategoryId"/>
         <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
         <leftColumns>
-          <columnName>TEXTID</columnName>
+          <columnName>TEXTID.TEXTID</columnName>
         </leftColumns>
         <rightColumns>
           <columnName>TEXTID</columnName>
         </rightColumns>
-        <properties joinOperator="Equal" joinType="referential"/>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
       </join>
     </joins>
     <layout>

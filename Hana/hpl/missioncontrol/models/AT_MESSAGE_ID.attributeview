@@ -22,16 +22,16 @@
       </tableProxy>
     </tableProxies>
     <joins>
-      <join>
+      <join languageColumn="LANGUAGE">
         <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.MessageId"/>
         <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
         <leftColumns>
-          <columnName>TEXTID</columnName>
+          <columnName>TEXTID.TEXTID</columnName>
         </leftColumns>
         <rightColumns>
           <columnName>TEXTID</columnName>
         </rightColumns>
-        <properties joinOperator="Equal" joinType="referential"/>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
       </join>
     </joins>
     <layout>

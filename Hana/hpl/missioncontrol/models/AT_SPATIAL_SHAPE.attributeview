@@ -52,8 +52,8 @@
         <properties joinOperator="Equal" joinType="referential"/>
       </join>
       <join languageColumn="LANGUAGE">
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.ShapeCategoryId"/>
-        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1"/>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
         <leftColumns>
           <columnName>TEXTID</columnName>
         </leftColumns>
@@ -63,10 +63,10 @@
         <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
       </join>
       <join languageColumn="LANGUAGE">
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
-        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.ShapeCategoryId"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1"/>
         <leftColumns>
-          <columnName>TEXTID</columnName>
+          <columnName>TEXTID.TEXTID</columnName>
         </leftColumns>
         <rightColumns>
           <columnName>TEXTID</columnName>
@@ -90,7 +90,7 @@
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>
-          <rectangleSize/>
+          <rectangleSize height="0" width="0"/>
         </shape>
       </shapes>
     </layout>

@@ -62,25 +62,34 @@ context MC {
 	type pointsT							: Integer;
 	
 	context MasterData {
+		
 		@Catalog.tableType : #COLUMN 
 		Entity MessageCategoryId {
     		key MESSAGECATEGORYID			: messageCategoryIdT;
-    		TEXTID							: textIdT;
+    		TEXTID							: Association [*] to Util.Texts {TEXTID};
 		};
 		
 		
 		@Catalog.tableType : #COLUMN 
 		Entity MessageId {
     		key MESSAGEID					: messageIdT;
-    		TEXTID							: textIdT;
+    		TEXTID							: Association [*] to Util.Texts {TEXTID};
 		};
-		
-		
+
+				
 		@Catalog.tableType : #COLUMN 
 		Entity ShapeCategoryId {
     		key SHAPECATEGORYID				: shapeCategoryIdT;
-    		TEXTID							: textIdT;
+    		TEXTID							: Association [*] to Util.Texts {TEXTID};
 		};	
+
+
+		@Catalog.tableType : #COLUMN 
+		Entity Vehicle {
+    		key VEHICLEID					: vehicleIdT;
+			NAME							: SStringT;	
+			AVATARURI						: LStringT;
+		};
 		
 		
 		@Catalog.tableType : #COLUMN 
@@ -90,55 +99,54 @@ context MC {
 			AVATARURI						: LStringT;
 	 		CLANNAME 						: SStringT;
 	 		CLANURI 						: LStringT;
-	 		ACTIVEMISSIONID					: missionIdT;	
+	 		ACTIVEMISSIONID					: Association [0..*] to Mission.Mission {MISSIONID}; 
 		};
+			
 				
-	
 		@Catalog.tableType : #COLUMN 
 		Entity Achievement {
     		key ACHIEVEMENTID				: achievementIdT;
-			NAME							: textIdT;	
+			NAME							: Association [*] to Util.Texts {TEXTID};
 			VISUALURI						: LStringT;
-	 		DESCRIPTION						: textIdT;
+	 		DESCRIPTION						: Association [*] to Util.Texts {TEXTID};
 	 		CONDITIONID 					: conditionIdT;
 	 		INMISSION						: inMissionT;	
 	 		ENDMISSION						: endMissionT;
 	 		MULTIPLIER						: multiplierT;
 	 		POINTS							: pointsT;
 		};
-		
-		
+
+
 		@Catalog.tableType : #COLUMN 
 		Entity AchievementConditionMessage {
-    		key CONDITIONID 				: conditionIdT;
-			key MESSAGECATEGORYID			: messageCategoryIdT;			
-			key MESSAGEID  					: messageIdT;	 	
+    		key CONDITIONID 				: Association [*] to MasterData.Achievement {CONDITIONID};	
+			key MESSAGECATEGORYID			: Association [1] to MasterData.MessageCategoryId;			
+			key MESSAGEID  					: Association [1] to MasterData.MessageId;		 	
 		};		
-
-
+		
+		
 		@Catalog.tableType : #COLUMN 
 		Entity Terrain {
     		key TERRAINID 					: terrainIdT;
 			key SHAPEID						: shapeIdT;			
-			NAME  							: textIdT;	 	
+			NAME  							: Association [*] to Util.Texts {TEXTID};
 			HITPOINTS						: pointsT;
 			HEALTHPOINTS					: pointsT;
 			MULTIPLIER						: multiplierT;
 			INFILLCOLOURID					: colourIdT;
-		};		
-
-
+		};
+		
+		
 		@Catalog.tableType : #COLUMN 
 		Entity Scenario {
     		key SCENARIOID 					: scenarioIdT;
-    		NAME  							: textIdT;
+    		NAME  							: Association [*] to Util.Texts {TEXTID};
     		VISUALURI						: LStringT;
-    		DESCRIPTION						: textIdT;
-			TERRAINID						: terrainIdT;			
+    		DESCRIPTION						: Association [*] to Util.Texts {TEXTID};
+			TERRAINID						: Association [*] to MasterData.Terrain {TERRAINID};			
 		};		
-			
+					
 	};
-
 
 
 	
@@ -146,8 +154,8 @@ context MC {
 		@Catalog.tableType : #COLUMN 
     	Entity Mission {
     		key MISSIONID					: missionIdT; 
-			key VEHICLEID					: vehicleIdT;	
-	    	key PILOTID						: pilotIdT;
+			key VEHICLEID					: Association [1] to MasterData.Vehicle;	
+	    	key PILOTID						: Association [1] to MasterData.Pilot;
 			STARTEDAT						: loggedAtT null;
 			ENDEDAT							: loggedAtT null;
 			HOMEGPSPOSLONGITUDE				: gpsPosT null;
@@ -160,13 +168,13 @@ context MC {
 		@Catalog.tableType : #COLUMN 
     	Entity MissionLog {
     		key MISSIONLOGID				: logIdT; 
-    		MISSIONID						: missionIdT; 
-			VEHICLEID						: vehicleIdT;	
-	    	PILOTID							: pilotIdT;
+    		MISSIONID						: Association [0..*] to Mission {MISSIONID}; 
+			VEHICLEID						: Association [1] to MasterData.Vehicle;	
+	    	PILOTID							: Association [1] to MasterData.Pilot;
 		    KEYFRAME						: keyFrameT;
 			LOGGEDAT                        : loggedAtT;
-			MESSAGECATEGORYID				: messageCategoryIdT;			
-			MESSAGEID  						: messageIdT;
+			MESSAGECATEGORYID				: Association [1] to MasterData.MessageCategoryId;					
+			MESSAGEID  						: Association [1] to MasterData.MessageId;			
 			COMMSTICK      					: commsTickT null;
 			VOLTAGE		                    : voltageT null;
 			CURRENT       					: currentT null;

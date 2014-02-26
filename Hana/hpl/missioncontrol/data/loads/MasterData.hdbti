@@ -10,19 +10,19 @@ import = [
                 schema = "MISSIONCONTROL"; 
                 file = "hpl.missioncontrol.data.loads:messageId.csv";
                 header = false;
-            },
-            { 
-                table = "hpl.missioncontrol.data::MC.MasterData.ShapeCategoryId";
-                schema = "MISSIONCONTROL"; 
-                file = "hpl.missioncontrol.data.loads:shapeCategoryId.csv";
-                header = false;
-            },
+            },           
             { 
                 table = "hpl.missioncontrol.data::MC.MasterData.Pilot";
                 schema = "MISSIONCONTROL"; 
                 file = "hpl.missioncontrol.data.loads:pilot.csv";
                 header = false;
-            },        
+            },
+            {                     
+                table = "hpl.missioncontrol.data::MC.MasterData.Vehicle";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:vehicle.csv";
+                header = false;
+            },                            
             { 
                 table = "hpl.missioncontrol.data::MC.MasterData.Achievement";
                 schema = "MISSIONCONTROL"; 
@@ -46,6 +46,6 @@ import = [
                 schema = "MISSIONCONTROL"; 
                 file = "hpl.missioncontrol.data.loads:scenario.csv";
                 header = false;
-            }                                                
-                                                                                                                        
-         ]; 
+            }                
+                                                                                                    
+         ];          

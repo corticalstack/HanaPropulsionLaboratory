@@ -33,35 +33,35 @@
   </localVariables>
   <privateMeasureGroup id="MeasureGroup">
     <attributes>
-      <attribute id="MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="MISSIONID"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONID"/>
+      <attribute id="MISSIONID_MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MISSIONID_MISSIONID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONID.MISSIONID"/>
       </attribute>
-      <attribute id="VEHICLEID" order="2" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="VEHICLEID"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VEHICLEID"/>
+      <attribute id="VEHICLEID_VEHICLEID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VEHICLEID.VEHICLEID"/>
       </attribute>
-      <attribute id="PILOTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="PILOTID"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID"/>
+      <attribute id="PILOTID_PILOTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PILOTID_PILOTID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID.PILOTID"/>
       </attribute>
-      <attribute id="MESSAGECATEGORYID_1" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="MESSAGECATEGORYID_1"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID"/>
+      <attribute id="MESSAGECATEGORYID_MESSAGECATEGORYID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID.MESSAGECATEGORYID"/>
       </attribute>
-      <attribute id="MESSAGEID_1" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="MESSAGEID_1"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGEID"/>
+      <attribute id="MESSAGEID_MESSAGEID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGEID.MESSAGEID"/>
       </attribute>
     </attributes>
     <calculatedAttributes>
-      <calculatedAttribute id="CA_SPEED_KPH" hidden="false" order="7" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <calculatedAttribute id="CA_SPEED_KPH" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="Speed kph"/>
         <keyCalculation datatype="DECIMAL" length="6" scale="2">
           <formula>&quot;GPSVELSPEEDCMS&quot; * 0.036</formula>
         </keyCalculation>
       </calculatedAttribute>
-      <calculatedAttribute id="CA_SPEED_MPH" hidden="false" order="8" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <calculatedAttribute id="CA_SPEED_MPH" hidden="false" order="7" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="Speed MPH"/>
         <keyCalculation datatype="DECIMAL" length="6" scale="2">
           <formula>&quot;GPSVELSPEEDCMS&quot; * 0.02236936292054</formula>
@@ -72,14 +72,14 @@
       <tableProxies>
         <tableProxy centralTable="true">
           <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog"/>
-          <columnFilter columnName="MESSAGEID">
-            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="GPV"/>
-          </columnFilter>
-          <columnFilter columnName="MISSIONID">
+          <columnFilter columnName="MISSIONID.MISSIONID">
             <valueFilter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$IP_MISSIONID_FROM$$" highValue="$$IP_MISSIONID_TO$$"/>
           </columnFilter>
           <columnFilter columnName="KEYFRAME">
             <valueFilter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$IP_KEYFRAME_FROM$$" highValue="$$IP_KEYFRAME_TO$$"/>
+          </columnFilter>
+          <columnFilter columnName="MESSAGEID.MESSAGEID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="GPV"/>
           </columnFilter>
         </tableProxy>
       </tableProxies>
@@ -87,7 +87,7 @@
       <layout>
         <shapes>
           <shape modelObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-            <upperLeftCorner x="70" y="30"/>
+            <upperLeftCorner x="50" y="25"/>
           </shape>
         </shapes>
       </layout>
@@ -101,17 +101,13 @@
         <descriptions defaultDescription="GPSVELSPEEDCMS"/>
         <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSVELSPEEDCMS"/>
       </measure>
-      <measure id="GPSPOSALTITUDE" order="6" aggregationType="sum" measureType="simple">
-        <descriptions defaultDescription="GPSPOSALTITUDE"/>
-        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSPOSALTITUDE"/>
-      </measure>
     </baseMeasures>
     <calculatedMeasures/>
     <restrictedMeasures/>
     <sharedDimensions>
       <logicalJoin associatedObjectUri="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_CATEGORY_ID">
         <attributes>
-          <attributeRef>#MESSAGECATEGORYID_1</attributeRef>
+          <attributeRef>#MESSAGECATEGORYID_MESSAGECATEGORYID</attributeRef>
         </attributes>
         <associatedAttributeNames>
           <attributeName>MESSAGECATEGORYID</attributeName>
@@ -121,7 +117,7 @@
       </logicalJoin>
       <logicalJoin associatedObjectUri="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_ID">
         <attributes>
-          <attributeRef>#MESSAGEID_1</attributeRef>
+          <attributeRef>#MESSAGEID_MESSAGEID</attributeRef>
         </attributes>
         <associatedAttributeNames>
           <attributeName>MESSAGEID</attributeName>
@@ -135,13 +131,13 @@
     <layout>
       <shapes>
         <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
-          <upperLeftCorner x="75" y="11"/>
+          <upperLeftCorner x="364" y="16"/>
         </shape>
         <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_CATEGORY_ID.attributeview" modelObjectType="repository">
-          <upperLeftCorner x="449" y="30"/>
+          <upperLeftCorner x="867" y="48"/>
         </shape>
         <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_ID.attributeview" modelObjectType="repository">
-          <upperLeftCorner x="455" y="126"/>
+          <upperLeftCorner x="16" y="48"/>
         </shape>
         <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>

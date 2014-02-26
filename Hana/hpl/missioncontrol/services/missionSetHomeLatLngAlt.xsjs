@@ -11,7 +11,7 @@ function missionSetHomeLatLngAlt(){
 		p_callback			= $.request.parameters.get('callback');
 
 	try {
-		query = 'UPDATE "hpl.missioncontrol.data::MC.Mission.Mission" SET HOMEGPSPOSLONGITUDE=?, HOMEGPSPOSLATITUDE=?, HOMEGPSPOSALTITUDE=? where MISSIONID=? and VEHICLEID=? and PILOTID=?';
+		query = 'UPDATE "hpl.missioncontrol.data::MC.Mission.Mission" SET HOMEGPSPOSLONGITUDE=?, HOMEGPSPOSLATITUDE=?, HOMEGPSPOSALTITUDE=? where MISSIONID=? and "VEHICLEID.VEHICLEID"=? and "PILOTID.PILOTID"=?';
 		pstmt = conn.prepareStatement(query);
 		
 		pstmt.setString(1,p_longitude);
