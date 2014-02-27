@@ -101,6 +101,14 @@ context MC {
 	 		CLANURI 						: LStringT;
 	 		ACTIVEMISSIONID					: Association [0..*] to Mission.Mission {MISSIONID}; 
 		};
+
+
+		@Catalog.tableType : #COLUMN
+		@nokey 
+		Entity FlightDirector {
+    		MINKEYFRAME						: keyFrameT;
+    		MAXKEYFRAME						: keyFrameT;
+		};
 			
 				
 		@Catalog.tableType : #COLUMN 
@@ -110,10 +118,10 @@ context MC {
 			VISUALURI						: LStringT;
 	 		DESCRIPTION						: Association [*] to Util.Texts {TEXTID};
 	 		CONDITIONID 					: conditionIdT;
-	 		INMISSION						: inMissionT;	
-	 		ENDMISSION						: endMissionT;
 	 		MULTIPLIER						: multiplierT;
 	 		POINTS							: pointsT;
+	 		MINKEYFRAME						: keyFrameT;
+    		MAXKEYFRAME						: keyFrameT;
 		};
 
 
@@ -147,7 +155,6 @@ context MC {
 		};		
 					
 	};
-
 
 	
 	context Mission {

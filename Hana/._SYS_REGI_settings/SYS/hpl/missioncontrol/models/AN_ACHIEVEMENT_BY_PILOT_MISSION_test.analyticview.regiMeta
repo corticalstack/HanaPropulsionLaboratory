@@ -7,9 +7,6 @@
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-27 09:40:00.2150000",
-  "activated_by": "SYSTEM",
-  "change_number": "0",
   "delivery_unit": "",
   "du_vendor": "",
   "du_version": "",
@@ -17,15 +14,14 @@
   "du_version_sp": "",
   "edit": "true",
   "format_version": "",
-  "object_status": "0",
-  "released_at": "null",
-  "type": "1",
-  "version_id": "50"
+  "is_deletion": "false",
+  "last_changed_at": "2014-02-27 11:26:28.9620000",
+  "type": "2",
+  "version_id": "6"
  },
  "version": {
-  "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AN_ACHIEVEMENT_BY_PILOT_MISSION",
- "suffix": "analyticview"
+  "owner": "SYSTEM",
+  "versionType": "2",
+  "workspace": "Hana"
+ }
 }

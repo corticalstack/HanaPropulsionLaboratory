@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Cube:cube xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_ACHIEVEMENT_BY_PILOT_MISSION" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
-  <descriptions defaultDescription="Achievement by pilot mission"/>
+  <descriptions defaultDescription="Achievement by pilot mission "/>
   <localVariables/>
   <privateMeasureGroup id="MeasureGroup">
     <attributes>
@@ -16,10 +16,6 @@
         <descriptions defaultDescription="PILOTID_PILOTID"/>
         <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID.PILOTID"/>
       </attribute>
-      <attribute id="CAMERAPANTILT" order="8" attributeHierarchyActive="false" displayAttribute="false">
-        <descriptions defaultDescription="CAMERAPANTILT"/>
-        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="CAMERAPANTILT"/>
-      </attribute>
       <attribute id="MESSAGECATEGORYID_MESSAGECATEGORYID" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
         <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID.MESSAGECATEGORYID"/>
@@ -30,10 +26,16 @@
       </attribute>
     </attributes>
     <calculatedAttributes>
-      <calculatedAttribute id="CA_RESULT" hidden="false" order="9" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <calculatedAttribute id="CA_KEYFRAME_PARENT" hidden="false" order="4" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Keyframe parent"/>
+        <keyCalculation datatype="INTEGER" length="0" scale="0">
+          <formula>int((double(&quot;KEYFRAME&quot; - 1) / (3000 -1)) * (10 - 1) + 1)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="CA_RESULT" hidden="true" order="11" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="Calculated result"/>
         <keyCalculation datatype="DECIMAL" length="7" scale="2">
-          <formula>if(&quot;CONDITIONID_CONDITIONID&quot;='HIL' AND &quot;MESSAGECATEGORYID_MESSAGECATEGORYID&quot;='NAV' AND &quot;MESSAGEID_MESSAGEID&quot;='GPP', &quot;CA_GPSPOSALTITUDE_MIN&quot;,if(&quot;CONDITIONID_CONDITIONID&quot;='GEN' AND &quot;MESSAGECATEGORYID_MESSAGECATEGORYID&quot;='POW' AND &quot;MESSAGEID_MESSAGEID&quot;='BAT', &quot;CA_VOLTAGE_MIN&quot;,0))</formula>
+          <formula>if(&quot;CONDITIONID_CONDITIONID&quot;='HIL' AND &quot;MESSAGECATEGORYID_MESSAGECATEGORYID&quot;='NAV' AND &quot;MESSAGEID_MESSAGEID&quot;='GPP', &quot;CM_GPSPOSALTITUDE_MIN&quot;,if(&quot;CONDITIONID_CONDITIONID&quot;='GEN' AND &quot;MESSAGECATEGORYID_MESSAGECATEGORYID&quot;='POW' AND &quot;MESSAGEID_MESSAGEID&quot;='BAT', &quot;CM_VOLTAGE_MIN&quot;,0))</formula>
         </keyCalculation>
       </calculatedAttribute>
     </calculatedAttributes>
@@ -53,31 +55,51 @@
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="KEYFRAME" order="4" aggregationType="sum" measureType="simple">
+      <measure id="KEYFRAME" hidden="true" order="5" aggregationType="count" measureType="simple">
         <descriptions defaultDescription="KEYFRAME"/>
         <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="KEYFRAME"/>
       </measure>
-      <measure id="VOLTAGE" order="5" aggregationType="sum" measureType="simple">
+      <measure id="VOLTAGE" hidden="true" order="6" aggregationType="sum" measureType="simple">
         <descriptions defaultDescription="VOLTAGE"/>
         <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VOLTAGE"/>
       </measure>
-      <measure id="GPSPOSALTITUDE" order="6" aggregationType="sum" measureType="simple">
+      <measure id="GPSPOSALTITUDE" hidden="true" order="7" aggregationType="sum" measureType="simple">
         <descriptions defaultDescription="GPSPOSALTITUDE"/>
         <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSPOSALTITUDE"/>
       </measure>
-      <measure id="GPSVELSPEEDCMS" order="7" aggregationType="sum" measureType="simple">
+      <measure id="GPSVELSPEEDCMS" order="8" aggregationType="sum" measureType="simple">
         <descriptions defaultDescription="GPSVELSPEEDCMS"/>
         <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSVELSPEEDCMS"/>
       </measure>
+      <measure id="THROTTLE" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="THROTTLE"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="THROTTLE"/>
+      </measure>
+      <measure id="CONSUMEDMAH" order="10" aggregationType="max" measureType="simple">
+        <descriptions defaultDescription="CONSUMEDMAH"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="CONSUMEDMAH"/>
+      </measure>
     </baseMeasures>
     <calculatedMeasures>
-      <measure id="CA_VOLTAGE_MIN" hidden="false" order="10" aggregationType="min" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="6" scale="2">
+      <measure id="CM_VOLTAGE_MIN" hidden="true" order="12" aggregationType="min" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="6" scale="2">
         <descriptions defaultDescription="Voltage min"/>
         <formula>&quot;VOLTAGE&quot;</formula>
       </measure>
-      <measure id="CA_GPSPOSALTITUDE_MIN" hidden="false" order="11" aggregationType="min" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="7" scale="2">
+      <measure id="CM_VOLTAGE_MAX" hidden="true" order="13" aggregationType="max" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="6" scale="2">
+        <descriptions defaultDescription="Voltage max"/>
+        <formula>&quot;VOLTAGE&quot;</formula>
+      </measure>
+      <measure id="CM_GPSPOSALTITUDE_MIN" hidden="true" order="14" aggregationType="min" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="7" scale="2">
         <descriptions defaultDescription="GPS altitude min"/>
         <formula>&quot;GPSPOSALTITUDE&quot;</formula>
+      </measure>
+      <measure id="CM_GPSPOSALTITUDE_MAX" hidden="true" order="15" aggregationType="max" measureType="simple" calculateBeforeAggregation="true" datatype="DECIMAL" length="7" scale="2">
+        <descriptions defaultDescription="GPS altitude max"/>
+        <formula>&quot;GPSPOSALTITUDE&quot;</formula>
+      </measure>
+      <measure id="CM_THROTTLE_MAX" hidden="true" order="16" aggregationType="max" measureType="simple" calculateBeforeAggregation="true" datatype="INTEGER" length="6" scale="2">
+        <descriptions defaultDescription="Throttle min"/>
+        <formula>&quot;THROTTLE&quot;</formula>
       </measure>
     </calculatedMeasures>
     <restrictedMeasures/>

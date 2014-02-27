@@ -18,23 +18,15 @@
       <descriptions defaultDescription="CONDITIONID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="CONDITIONID"/>
     </attribute>
-    <attribute id="INMISSION" order="5" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="INMISSION"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="INMISSION"/>
-    </attribute>
-    <attribute id="ENDMISSION" order="6" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="ENDMISSION"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="ENDMISSION"/>
-    </attribute>
-    <attribute id="MULTIPLIER" order="7" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="MULTIPLIER" order="5" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="MULTIPLIER"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="MULTIPLIER"/>
     </attribute>
-    <attribute id="POINTS" order="8" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="POINTS" order="6" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="POINTS"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="POINTS"/>
     </attribute>
-    <attribute id="DESCRIPTION" order="9" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="DESCRIPTION" order="7" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="TEXT"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1" columnName="TEXT"/>
     </attribute>

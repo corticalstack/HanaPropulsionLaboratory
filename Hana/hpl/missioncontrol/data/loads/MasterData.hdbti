@@ -10,7 +10,13 @@ import = [
                 schema = "MISSIONCONTROL"; 
                 file = "hpl.missioncontrol.data.loads:messageId.csv";
                 header = false;
-            },           
+            },
+            {                       
+                table = "hpl.missioncontrol.data::MC.MasterData.FlightDirector";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:flightDirector.csv";
+                header = false;
+            },                       
             { 
                 table = "hpl.missioncontrol.data::MC.MasterData.Pilot";
                 schema = "MISSIONCONTROL"; 
@@ -46,6 +52,5 @@ import = [
                 schema = "MISSIONCONTROL"; 
                 file = "hpl.missioncontrol.data.loads:scenario.csv";
                 header = false;
-            }                
-                                                                                                    
-         ];          
+            }                                                                                                                               
+         ];               

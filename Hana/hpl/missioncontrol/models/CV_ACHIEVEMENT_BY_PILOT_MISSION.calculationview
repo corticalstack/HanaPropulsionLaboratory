@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_ACHIEVEMENT_BY_PILOT_MISSION" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="Achievement by pilot mission"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="AT_MISSION_LOG_ACHIEVEMENT_GROUP" type="ATTRIBUTE_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.missioncontrol.models/attributeviews/AT_MISSION_LOG_ACHIEVEMENT_GROUP</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <viewAttributes>
+        <viewAttribute id="MISSIONID_MISSIONID"/>
+        <viewAttribute id="VEHICLEID_VEHICLEID"/>
+        <viewAttribute id="PILOTID_PILOTID"/>
+        <viewAttribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <viewAttribute id="CONDITIONID"/>
+        <viewAttribute id="MESSAGECATEGORYID"/>
+        <viewAttribute id="MESSAGEID_MESSAGEID"/>
+        <viewAttribute aggregationType="min" id="INERTIALACCELX_MIN"/>
+        <viewAttribute aggregationType="max" id="INERTIALACCELX_MAX"/>
+        <viewAttribute aggregationType="min" id="INERTIALACCELY_MIN"/>
+        <viewAttribute aggregationType="max" id="INERTIALACCELY_MAX"/>
+        <viewAttribute aggregationType="min" id="PROXIMITYREAR_MIN"/>
+        <viewAttribute aggregationType="min" id="PROXIMITYFRONT_MIN"/>
+        <viewAttribute aggregationType="min" id="PROXIMITYCAM_MIN"/>
+        <viewAttribute aggregationType="min" id="LEFTENGINETHRUST_MIN"/>
+        <viewAttribute aggregationType="max" id="LEFTENGINETHRUST_MAX"/>
+        <viewAttribute aggregationType="min" id="RIGHTENGINETHRUST_MIN"/>
+        <viewAttribute aggregationType="max" id="RIGHTENGINETHRUST_MAX"/>
+        <viewAttribute aggregationType="min" id="GPSPOSALTITUDE_MIN"/>
+        <viewAttribute aggregationType="max" id="GPSPOSALTITUDE_MAX"/>
+        <viewAttribute aggregationType="min" id="GPSVELSPEEDCMS_MIN"/>
+        <viewAttribute aggregationType="max" id="GPSVELSPEEDCMS_MAX"/>
+        <viewAttribute aggregationType="max" id="THROTTLE_MAX"/>
+        <viewAttribute aggregationType="max" id="ROTATE_MAX"/>
+        <viewAttribute id="WEAPONFIRE"/>
+        <viewAttribute id="STOP"/>
+        <viewAttribute id="MAPZOOM"/>
+        <viewAttribute id="HEADING"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="CA_WEAPONFIRE">
+          <formula>if(&quot;WEAPONFIRE&quot;  != ' ',1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="CA_STOP">
+          <formula>if(&quot;STOP&quot;  != ' ',1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="CA_MAPZOOM">
+          <formula>if(&quot;MAPZOOM&quot;   != ' ',1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="CA_HEADING">
+          <formula>if(&quot;HEADING&quot;  != 0,1,0)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#AT_MISSION_LOG_ACHIEVEMENT_GROUP">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MISSIONID_MISSIONID" source="MISSIONID_MISSIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VEHICLEID_VEHICLEID" source="VEHICLEID_VEHICLEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PILOTID_PILOTID" source="PILOTID_PILOTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CA_ACHIEVEMENT_KEYFRAME_GROUP" source="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CONDITIONID" source="CONDITIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MESSAGECATEGORYID" source="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MESSAGEID_MESSAGEID" source="MESSAGEID_MESSAGEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INERTIALACCELX_MIN" source="INERTIALACCELX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INERTIALACCELX_MAX" source="INERTIALACCELX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEAPONFIRE" source="WEAPONFIRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INERTIALACCELY_MIN" source="INERTIALACCELY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INERTIALACCELY_MAX" source="INERTIALACCELY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PROXIMITYREAR_MIN" source="PROXIMITYREAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PROXIMITYFRONT_MIN" source="PROXIMITYFRONT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PROXIMITYCAM_MIN" source="PROXIMITYCAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEFTENGINETHRUST_MIN" source="LEFTENGINETHRUST"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LEFTENGINETHRUST_MAX" source="LEFTENGINETHRUST"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RIGHTENGINETHRUST_MIN" source="RIGHTENGINETHRUST"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RIGHTENGINETHRUST_MAX" source="RIGHTENGINETHRUST"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GPSPOSALTITUDE_MIN" source="GPSPOSALTITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GPSPOSALTITUDE_MAX" source="GPSPOSALTITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GPSVELSPEEDCMS_MIN" source="GPSVELSPEEDCMS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GPSVELSPEEDCMS_MAX" source="GPSVELSPEEDCMS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="THROTTLE_MAX" source="THROTTLE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ROTATE_MAX" source="ROTATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STOP" source="STOP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAPZOOM" source="MAPZOOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HEADING" source="HEADING"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Aggregation_1">
+    <attributes>
+      <attribute id="MISSIONID_MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MISSIONID_MISSIONID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="MISSIONID_MISSIONID"/>
+      </attribute>
+      <attribute id="VEHICLEID_VEHICLEID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="VEHICLEID_VEHICLEID"/>
+      </attribute>
+      <attribute id="PILOTID_PILOTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PILOTID_PILOTID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="PILOTID_PILOTID"/>
+      </attribute>
+      <attribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Achievement keyframe group"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+      </attribute>
+      <attribute id="CONDITIONID" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CONDITIONID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="CONDITIONID"/>
+      </attribute>
+      <attribute id="MESSAGECATEGORYID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="MESSAGECATEGORYID"/>
+      </attribute>
+      <attribute id="MESSAGEID_MESSAGEID" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="MESSAGEID_MESSAGEID"/>
+      </attribute>
+      <attribute id="INERTIALACCELX_MIN" hidden="true" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INERTIALACCELX"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="INERTIALACCELX_MIN"/>
+      </attribute>
+      <attribute id="INERTIALACCELX_MAX" hidden="true" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INERTIALACCELX"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="INERTIALACCELX_MAX"/>
+      </attribute>
+      <attribute id="WEAPONFIRE" hidden="true" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEAPONFIRE"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="WEAPONFIRE"/>
+      </attribute>
+      <attribute id="INERTIALACCELY_MIN" hidden="true" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INERTIALACCELY"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="INERTIALACCELY_MIN"/>
+      </attribute>
+      <attribute id="INERTIALACCELY_MAX" hidden="true" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INERTIALACCELY"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="INERTIALACCELY_MAX"/>
+      </attribute>
+      <attribute id="PROXIMITYREAR_MIN" hidden="true" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PROXIMITYREAR"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="PROXIMITYREAR_MIN"/>
+      </attribute>
+      <attribute id="PROXIMITYFRONT_MIN" hidden="true" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PROXIMITYFRONT"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="PROXIMITYFRONT_MIN"/>
+      </attribute>
+      <attribute id="PROXIMITYCAM_MIN" hidden="true" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PROXIMITYCAM"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="PROXIMITYCAM_MIN"/>
+      </attribute>
+      <attribute id="LEFTENGINETHRUST_MIN" hidden="true" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEFTENGINETHRUST"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="LEFTENGINETHRUST_MIN"/>
+      </attribute>
+      <attribute id="LEFTENGINETHRUST_MAX" hidden="true" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEFTENGINETHRUST"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="LEFTENGINETHRUST_MAX"/>
+      </attribute>
+      <attribute id="RIGHTENGINETHRUST_MIN" hidden="true" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RIGHTENGINETHRUST"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="RIGHTENGINETHRUST_MIN"/>
+      </attribute>
+      <attribute id="RIGHTENGINETHRUST_MAX" hidden="true" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RIGHTENGINETHRUST"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="RIGHTENGINETHRUST_MAX"/>
+      </attribute>
+      <attribute id="GPSPOSALTITUDE_MIN" hidden="true" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GPSPOSALTITUDE"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="GPSPOSALTITUDE_MIN"/>
+      </attribute>
+      <attribute id="GPSPOSALTITUDE_MAX" hidden="true" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GPSPOSALTITUDE"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="GPSPOSALTITUDE_MAX"/>
+      </attribute>
+      <attribute id="GPSVELSPEEDCMS_MIN" hidden="true" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GPSVELSPEEDCMS"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="GPSVELSPEEDCMS_MIN"/>
+      </attribute>
+      <attribute id="GPSVELSPEEDCMS_MAX" hidden="true" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GPSVELSPEEDCMS"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="GPSVELSPEEDCMS_MAX"/>
+      </attribute>
+      <attribute id="THROTTLE_MAX" hidden="true" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="THROTTLE"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="THROTTLE_MAX"/>
+      </attribute>
+      <attribute id="ROTATE_MAX" hidden="true" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ROTATE"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="ROTATE_MAX"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="CA_ACHIEVEMENT_VALUE" hidden="false" order="8" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CA_ACHIEVEMENT_VALUE"/>
+        <keyCalculation datatype="DECIMAL" length="10" scale="2">
+          <formula>if(&quot;CONDITIONID&quot;='HIL' AND &quot;MESSAGECATEGORYID&quot;='NAV' AND &quot;MESSAGEID_MESSAGEID&quot;='GPP', &quot;GPSPOSALTITUDE_MAX&quot;,&#xD;
+if(&quot;CONDITIONID&quot;='GEN' AND &quot;MESSAGECATEGORYID&quot;='POW' AND &quot;MESSAGEID_MESSAGEID&quot;='BAT', &quot;PROXIMITYREAR_MIN&quot;,&#xD;
+if(&quot;CONDITIONID&quot;='THU' AND &quot;MESSAGECATEGORYID&quot;='NAV' AND &quot;MESSAGEID_MESSAGEID&quot;='GPV', &quot;GPSVELSPEEDCMS_MAX&quot;,&#xD;
+if(&quot;CONDITIONID&quot;='PED' AND &quot;MESSAGECATEGORYID&quot;='COC' AND &quot;MESSAGEID_MESSAGEID&quot;='THR', &quot;THROTTLE_MAX&quot;,&#xD;
+if(&quot;CONDITIONID&quot;='SPY' AND &quot;MESSAGECATEGORYID&quot;='COC' AND &quot;MESSAGEID_MESSAGEID&quot;='MPZ', &quot;CA_MAPZOOM&quot;, &#xD;
+if(&quot;CONDITIONID&quot;='ROT' AND &quot;MESSAGECATEGORYID&quot;='COC' AND &quot;MESSAGEID_MESSAGEID&quot;='ROT', &quot;ROTATE_MAX&quot;, &#xD;
+if(&quot;CONDITIONID&quot;='SNK' AND &quot;MESSAGECATEGORYID&quot;='COC' AND &quot;MESSAGEID_MESSAGEID&quot;='HDG', &quot;CA_HEADING&quot;, &#xD;
+if(&quot;CONDITIONID&quot;='CON' AND &quot;MESSAGECATEGORYID&quot;='NOT' AND &quot;MESSAGEID_MESSAGEID&quot;='TFS', 1, &#xD;
+if(&quot;CONDITIONID&quot;='STP' AND &quot;MESSAGECATEGORYID&quot;='COC' AND &quot;MESSAGEID_MESSAGEID&quot;='STP', &quot;CA_STOP&quot;, &#xD;
+if(&quot;CONDITIONID&quot;='BON' AND &quot;MESSAGECATEGORYID&quot;='COC' AND &quot;MESSAGEID_MESSAGEID&quot;='WEF', &quot;CA_WEAPONFIRE&quot;, &#xD;
+&#xD;
+0))))))))))</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="CA_WEAPONFIRE" hidden="true" order="27" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CA_WEAPONFIRE"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="CA_WEAPONFIRE"/>
+      </measure>
+      <measure id="CA_STOP" hidden="true" order="28" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CA_STOP"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="CA_STOP"/>
+      </measure>
+      <measure id="CA_MAPZOOM" hidden="true" order="29" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CA_MAPZOOM"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="CA_MAPZOOM"/>
+      </measure>
+      <measure id="CA_HEADING" hidden="true" order="30" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CA_HEADING"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="CA_HEADING"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="CC_COUNT" hidden="false" order="31" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="INTEGER">
+        <descriptions defaultDescription="CC_COUNT"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="CONDITIONID"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="166"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

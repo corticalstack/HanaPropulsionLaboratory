@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Mission log ",
+  "content": "Mission log by achievement group",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-27 10:55:12.8840000",
+  "activated_at": "2014-02-27 15:57:22.1600000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,12 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "55"
+  "version_id": "1"
  },
  "version": {
   "versionType": "1"
  },
  "package": "hpl.missioncontrol.models",
- "name": "AT_MISSION_LOG",
+ "name": "AT_MISSION_LOG_ACHIEVEMENT_GROUP",
  "suffix": "attributeview"
 }
