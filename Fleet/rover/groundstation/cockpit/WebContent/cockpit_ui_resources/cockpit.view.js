@@ -812,21 +812,21 @@ function buildPaneMissionControl(oController,oLayout){
     });
 
     
-	var ohtmlIframeMcTelemetryStats = new sap.ui.core.HTML({  
-    	content: '<iframe id="iframeMcTelemetryStats" width="582px" height="530px" frameBorder="0">Mission Control Offline!!!</iframe>',
+	var ohtmlIframeMcDatalink = new sap.ui.core.HTML({  
+    	content: '<iframe id="iframeMcDatalink" width="582px" height="530px" frameBorder="0">Mission Control Offline!!!</iframe>',
     	preferDOM : true,   
     	afterRendering: function() {  
-    		newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/telemetryStats.html';
-    		$("#iframeMcTelemetryStats").load(function() {  
-    			$("#iframeMcTelemetryStats").attr("width","582px").attr("height","530px");  
+    		newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/datalink.html';
+    		$("#iframeMcDatalink").load(function() {  
+    			$("#iframeMcDatalink").attr("width","582px").attr("height","530px");  
     		}).attr("src",newSrc);  
     	}
 	});
 
-    omlLayoutTab.createRow(ohtmlIframeMcTelemetryStats);
+    omlLayoutTab.createRow(ohtmlIframeMcDatalink);
     
     
-    otstrMissionControl.createTab("Telemetry",omlLayoutTab);
+    otstrMissionControl.createTab("DATALINK",omlLayoutTab);
 	omlPaneMissionControl1.createRow(otstrMissionControl);
     omlPaneMissionControl.createRow(omlPaneMissionControl1);   
     oLayout.createRow(omlPaneMissionControl);   

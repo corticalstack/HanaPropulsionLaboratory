@@ -9,7 +9,7 @@
 	var missioncontrolModel	 		= myHplApp.missioncontrol.model;
 	var cockpitHeartbeatTick    	= 0;
 	var keyFrameTick		    	= 0;
-	var cockpitMainRefresh	    	= 0;	
+	var cockpitMainRefreshTick    	= 0;	
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
@@ -77,7 +77,7 @@
 	
 	myHplApp.cockpit.controller.setCockpitMainRefreshTick = function() {
 		console.log('Cockpit controller setting cockpit main refresh.....');
-		cockpitMainRefresh = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().cockpitMainRefresh()},25);
+		cockpitMainRefreshTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().cockpitMainRefresh()},25);
 	};
 
 
