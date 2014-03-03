@@ -1,4 +1,7 @@
 PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_distance_travelled" (
+	IN  im_missionid NVARCHAR(6),
+	IN  im_vehicleid NVARCHAR(3),
+	IN  im_pilotid NVARCHAR(3),
 	OUT ex_distance_travelled_tt MISSIONCONTROL."hpl.missioncontrol.data::MC.Procedures.tt_distance_travelled" 
 	)   
 	LANGUAGE SQLSCRIPT
@@ -28,7 +31,10 @@ BEGIN
 declare CURSOR c_mission FOR
     	SELECT MISSIONLOGID, GPSPOSLONGITUDE, GPSPOSLATITUDE 
     			from "hpl.missioncontrol.data::MC.Mission.MissionLog" 
-    			where "MESSAGEID.MESSAGEID" = 'GPP' 
+    			where "MISSIONID.MISSIONID" = :im_missionid and
+    			 	  "VEHICLEID.VEHICLEID" = :im_missionid and
+    			      "PILOTID.PILOTID" = :im_missionid and
+    			      "MESSAGEID.MESSAGEID" = 'GPP' 
     			order by MISSIONLOGID;
 
  FOR cur_row as c_mission DO

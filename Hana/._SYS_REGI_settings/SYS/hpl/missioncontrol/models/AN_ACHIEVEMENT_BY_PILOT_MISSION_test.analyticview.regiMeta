@@ -19,6 +19,11 @@
   "type": "2",
   "version_id": "6"
  },
+ "name": "AN_ACHIEVEMENT_BY_PILOT_MISSION_test",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "analyticview",
+ "tenant": "",
+ "type": "101",
  "version": {
   "owner": "SYSTEM",
   "versionType": "2",

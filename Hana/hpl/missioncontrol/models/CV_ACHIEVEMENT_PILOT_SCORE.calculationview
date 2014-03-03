@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_ACHIEVEMENT_PILOT_SCORE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="internal" calculationScenarioType="SCRIPT_BASED" dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true">
+  <descriptions defaultDescription="Achievement pilot score"/>
+  <localVariables>
+    <variable id="IP_MISSION_FROM" parameter="true">
+      <descriptions defaultDescription="Mission from"/>
+      <variableProperties datatype="NVARCHAR" length="6" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_MISSION_TO" parameter="true">
+      <descriptions defaultDescription="Mission to"/>
+      <variableProperties datatype="NVARCHAR" length="6" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_PILOT_FROM" parameter="true">
+      <descriptions defaultDescription="Pilot from"/>
+      <variableProperties datatype="NVARCHAR" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_PILOT_TO" parameter="true">
+      <descriptions defaultDescription="Pilot to"/>
+      <variableProperties datatype="NVARCHAR" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute datatype="NVARCHAR" id="MISSIONID" length="6"/>
+        <viewAttribute datatype="NVARCHAR" id="VEHICLEID" length="3"/>
+        <viewAttribute datatype="NVARCHAR" id="PILOTID" length="3"/>
+        <viewAttribute datatype="INTEGER" id="ACHIEVEMENTKEYFRAMEGROUP"/>
+        <viewAttribute datatype="NVARCHAR" id="CONDITIONID" length="6"/>
+        <viewAttribute datatype="NVARCHAR" id="MESSAGECATEGORYID" length="3"/>
+        <viewAttribute datatype="NVARCHAR" id="MESSAGEID" length="3"/>
+        <viewAttribute datatype="DECIMAL" id="GPSPOSLONGITUDE" length="9" scale="6"/>
+        <viewAttribute datatype="DECIMAL" id="GPSPOSLATITUDE" length="9" scale="6"/>
+        <viewAttribute datatype="DECIMAL" id="ACHIEVEMENTVALUE" length="10" scale="2"/>
+        <viewAttribute datatype="INTEGER" id="COUNT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <localVariable>#IP_MISSION_FROM</localVariable>
+      <localVariable>#IP_MISSION_TO</localVariable>
+      <localVariable>#IP_PILOT_FROM</localVariable>
+      <localVariable>#IP_PILOT_TO</localVariable>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+
+	CALL &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.procedures::get_mission_pilot_achievement&quot;(:IP_MISSION_FROM, :IP_MISSION_TO, :IP_PILOT_FROM, IP_PILOT_TO, :var_out);
+
+
+END /********* End Procedure Script ***********/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="MISSIONID" order="1">
+        <descriptions defaultDescription="MISSIONID"/>
+        <keyMapping columnObjectName="Script_View" columnName="MISSIONID"/>
+      </attribute>
+      <attribute id="VEHICLEID" order="2">
+        <descriptions defaultDescription="VEHICLEID"/>
+        <keyMapping columnObjectName="Script_View" columnName="VEHICLEID"/>
+      </attribute>
+      <attribute id="PILOTID" order="3">
+        <descriptions defaultDescription="PILOTID"/>
+        <keyMapping columnObjectName="Script_View" columnName="PILOTID"/>
+      </attribute>
+      <attribute id="ACHIEVEMENTKEYFRAMEGROUP" order="4">
+        <descriptions defaultDescription="ACHIEVEMENTKEYFRAMEGROUP"/>
+        <keyMapping columnObjectName="Script_View" columnName="ACHIEVEMENTKEYFRAMEGROUP"/>
+      </attribute>
+      <attribute id="CONDITIONID" order="5">
+        <descriptions defaultDescription="CONDITIONID"/>
+        <keyMapping columnObjectName="Script_View" columnName="CONDITIONID"/>
+      </attribute>
+      <attribute id="MESSAGECATEGORYID" order="6">
+        <descriptions defaultDescription="MESSAGECATEGORYID"/>
+        <keyMapping columnObjectName="Script_View" columnName="MESSAGECATEGORYID"/>
+      </attribute>
+      <attribute id="MESSAGEID" order="7">
+        <descriptions defaultDescription="MESSAGEID"/>
+        <keyMapping columnObjectName="Script_View" columnName="MESSAGEID"/>
+      </attribute>
+      <attribute id="GPSPOSLONGITUDE" order="8">
+        <descriptions defaultDescription="GPSPOSLONGITUDE"/>
+        <keyMapping columnObjectName="Script_View" columnName="GPSPOSLONGITUDE"/>
+      </attribute>
+      <attribute id="GPSPOSLATITUDE" order="9">
+        <descriptions defaultDescription="GPSPOSLATITUDE"/>
+        <keyMapping columnObjectName="Script_View" columnName="GPSPOSLATITUDE"/>
+      </attribute>
+      <attribute id="ACHIEVEMENTVALUE" order="10">
+        <descriptions defaultDescription="ACHIEVEMENTVALUE"/>
+        <keyMapping columnObjectName="Script_View" columnName="ACHIEVEMENTVALUE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="COUNT" order="11" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COUNT"/>
+        <measureMapping columnObjectName="Script_View" columnName="COUNT"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

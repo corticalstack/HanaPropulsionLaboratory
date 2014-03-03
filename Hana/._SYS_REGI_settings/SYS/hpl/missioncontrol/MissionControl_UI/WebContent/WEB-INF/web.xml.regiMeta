@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-04 09:35:29.1450000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "1"
  },
+ "name": "web",
+ "package": "hpl.missioncontrol.MissionControl_UI.WebContent.WEB-INF",
+ "suffix": "xml",
+ "tenant": "",
+ "type": "360",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.MissionControl_UI.WebContent.WEB-INF",
- "name": "web",
- "suffix": "xml"
+ }
 }

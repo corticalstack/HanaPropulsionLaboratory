@@ -19,6 +19,11 @@
   "type": "2",
   "version_id": "1"
  },
+ "name": "cv_test",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "calculationview",
+ "tenant": "",
+ "type": "102",
  "version": {
   "owner": "SYSTEM",
   "versionType": "2",

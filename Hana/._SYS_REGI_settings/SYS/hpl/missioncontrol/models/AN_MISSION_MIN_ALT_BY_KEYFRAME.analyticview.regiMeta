@@ -1,15 +1,12 @@
 {
  "caption": {
-  "content": "Mission minimum altitude by keyframe ",
+  "content": "",
   "lang": "",
-  "max_length": "255",
+  "max_length": "16",
   "text_id": "caption",
-  "text_type": "XTIT"
+  "text_type": "caption"
  },
  "metadata": {
-  "activated_at": "2014-02-26 11:31:35.3330000",
-  "activated_by": "SYSTEM",
-  "change_number": "0",
   "delivery_unit": "",
   "du_vendor": "",
   "du_version": "",
@@ -17,15 +14,14 @@
   "du_version_sp": "",
   "edit": "true",
   "format_version": "",
-  "object_status": "0",
-  "released_at": "null",
-  "type": "1",
-  "version_id": "10"
+  "is_deletion": "true",
+  "last_changed_at": "2014-03-03 13:08:29.4530000",
+  "type": "2",
+  "version_id": "11"
  },
  "version": {
-  "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AN_MISSION_MIN_ALT_BY_KEYFRAME",
- "suffix": "analyticview"
+  "owner": "SYSTEM",
+  "versionType": "2",
+  "workspace": "Hana"
+ }
 }

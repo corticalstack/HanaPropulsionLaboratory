@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "4"
  },
+ "name": "AT_MESSAGE_ID",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "attributeview",
+ "tenant": "",
+ "type": "100",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AT_MESSAGE_ID",
- "suffix": "attributeview"
+ }
 }

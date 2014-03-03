@@ -816,7 +816,12 @@ function buildPaneMissionControl(oController,oLayout){
     	content: '<iframe id="iframeMcDatalink" width="582px" height="530px" frameBorder="0">Mission Control Offline!!!</iframe>',
     	preferDOM : true,   
     	afterRendering: function() {  
-    		newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/datalink.html';
+    		newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/datalink.html?missionId=' + 
+    		myHplApp.missioncontrol.model.getActiveMissionId() +
+    		'&vehicleId=' +
+    		myHplApp.missioncontrol.model.getActiveVehicleId() +
+    		'&pilotId=' +
+    		myHplApp.missioncontrol.model.getActivePilotId();
     		$("#iframeMcDatalink").load(function() {  
     			$("#iframeMcDatalink").attr("width","582px").attr("height","530px");  
     		}).attr("src",newSrc);  

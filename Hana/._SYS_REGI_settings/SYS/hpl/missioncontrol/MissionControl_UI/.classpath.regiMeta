@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "delivery_unit": "",
@@ -19,6 +19,11 @@
   "type": "2",
   "version_id": "1"
  },
+ "name": "",
+ "package": "hpl.missioncontrol.MissionControl_UI",
+ "suffix": "classpath",
+ "tenant": "",
+ "type": "0",
  "version": {
   "owner": "SYSTEM",
   "versionType": "2",

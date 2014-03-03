@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-25 09:01:27.3020000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "1"
  },
+ "name": "testtt",
+ "package": "hpl.missioncontrol.data",
+ "suffix": "hdbstructure",
+ "tenant": "",
+ "type": "47",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.data",
- "name": "testtt",
- "suffix": "hdbstructure"
+ }
 }

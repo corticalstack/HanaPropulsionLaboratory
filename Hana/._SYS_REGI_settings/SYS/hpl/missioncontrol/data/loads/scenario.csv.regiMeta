@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-18 15:35:11.1840000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "1"
  },
+ "name": "scenario",
+ "package": "hpl.missioncontrol.data.loads",
+ "suffix": "csv",
+ "tenant": "",
+ "type": "37",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.data.loads",
- "name": "scenario",
- "suffix": "csv"
+ }
 }

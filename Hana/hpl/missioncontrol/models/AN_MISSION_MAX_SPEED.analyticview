@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cube:cube xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_MISSION_MAX_SPEED" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
+  <descriptions defaultDescription="Mission max speed by keyframe "/>
+  <localVariables>
+    <variable id="IP_MISSIONID" parameter="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_VEHICLEID" parameter="true">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_PILOTID" parameter="true">
+      <descriptions defaultDescription="Pilot ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <privateMeasureGroup id="MeasureGroup">
+    <attributes>
+      <attribute id="MISSIONID_MISSIONID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MISSIONID_MISSIONID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONID.MISSIONID"/>
+      </attribute>
+      <attribute id="VEHICLEID_VEHICLEID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VEHICLEID.VEHICLEID"/>
+      </attribute>
+      <attribute id="PILOTID_PILOTID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PILOTID_PILOTID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID.PILOTID"/>
+      </attribute>
+      <attribute id="MESSAGECATEGORYID_MESSAGECATEGORYID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID.MESSAGECATEGORYID"/>
+      </attribute>
+      <attribute id="MESSAGEID_MESSAGEID" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGEID.MESSAGEID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="CA_SPEED_KPH" hidden="false" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Maximum speed kph"/>
+        <keyCalculation datatype="DECIMAL" length="6" scale="2">
+          <formula>&quot;GPSVELSPEEDCMS&quot; * 0.036</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="CA_SPEED_MPH" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Maximum speed mph"/>
+        <keyCalculation datatype="DECIMAL" length="6" scale="2">
+          <formula>&quot;GPSVELSPEEDCMS&quot; * 0.02236936292054</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies>
+        <tableProxy centralTable="true">
+          <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog"/>
+          <columnFilter columnName="MESSAGEID.MESSAGEID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="GPV"/>
+          </columnFilter>
+          <columnFilter columnName="MISSIONID.MISSIONID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_MISSIONID$$"/>
+          </columnFilter>
+          <columnFilter columnName="VEHICLEID.VEHICLEID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_VEHICLEID$$"/>
+          </columnFilter>
+          <columnFilter columnName="PILOTID.PILOTID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_PILOTID$$"/>
+          </columnFilter>
+        </tableProxy>
+      </tableProxies>
+      <joins/>
+      <layout>
+        <shapes>
+          <shape modelObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+            <upperLeftCorner x="70" y="30"/>
+          </shape>
+        </shapes>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="GPSVELSPEEDCMS" order="4" aggregationType="max" measureType="simple">
+        <descriptions defaultDescription="GPSVELSPEEDCMS"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="GPSVELSPEEDCMS"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_CATEGORY_ID">
+        <attributes>
+          <attributeRef>#MESSAGECATEGORYID_MESSAGECATEGORYID</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MESSAGECATEGORYID</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_ID">
+        <attributes>
+          <attributeRef>#MESSAGEID_MESSAGEID</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MESSAGEID</attributeName>
+        </associatedAttributeNames>
+        <properties joinOperator="Equal" joinType="referential"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MESSAGE_ID_TEXT" attributeName="TEXT"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+    </sharedDimensions>
+    <layout>
+      <shapes>
+        <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
+          <upperLeftCorner x="75" y="11"/>
+        </shape>
+        <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_CATEGORY_ID.attributeview" modelObjectType="repository">
+          <upperLeftCorner x="597" y="145"/>
+        </shape>
+        <shape modelObjectName="/hpl.missioncontrol.models/attributeviews/AT_MESSAGE_ID.attributeview" modelObjectType="repository">
+          <upperLeftCorner x="542" y="261"/>
+        </shape>
+        <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize height="0" width="0"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateMeasureGroup>
+</Cube:cube>

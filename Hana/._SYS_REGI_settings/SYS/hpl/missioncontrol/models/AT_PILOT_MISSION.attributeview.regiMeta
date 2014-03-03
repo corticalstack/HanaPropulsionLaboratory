@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "6"
  },
+ "name": "AT_PILOT_MISSION",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "attributeview",
+ "tenant": "",
+ "type": "100",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AT_PILOT_MISSION",
- "suffix": "attributeview"
+ }
 }

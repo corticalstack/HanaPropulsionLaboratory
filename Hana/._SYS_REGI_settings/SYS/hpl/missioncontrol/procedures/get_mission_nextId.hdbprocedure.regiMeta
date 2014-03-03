@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-12 11:01:27.5740000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "12"
  },
+ "name": "get_mission_nextId",
+ "package": "hpl.missioncontrol.procedures",
+ "suffix": "hdbprocedure",
+ "tenant": "",
+ "type": "3",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.procedures",
- "name": "get_mission_nextId",
- "suffix": "hdbprocedure"
+ }
 }

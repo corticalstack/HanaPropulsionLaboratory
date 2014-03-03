@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "12"
  },
+ "name": "AT_ACHIEVEMENT_CONDITION_MESSAGE",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "attributeview",
+ "tenant": "",
+ "type": "100",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AT_ACHIEVEMENT_CONDITION_MESSAGE",
- "suffix": "attributeview"
+ }
 }

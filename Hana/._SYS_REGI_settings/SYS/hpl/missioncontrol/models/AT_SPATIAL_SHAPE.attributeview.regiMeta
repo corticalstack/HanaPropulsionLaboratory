@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "2"
  },
+ "name": "AT_SPATIAL_SHAPE",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "attributeview",
+ "tenant": "",
+ "type": "100",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AT_SPATIAL_SHAPE",
- "suffix": "attributeview"
+ }
 }

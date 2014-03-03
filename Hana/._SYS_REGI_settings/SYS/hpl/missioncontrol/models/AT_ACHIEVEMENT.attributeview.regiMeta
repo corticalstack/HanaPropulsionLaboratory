@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "7"
  },
+ "name": "AT_ACHIEVEMENT",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "attributeview",
+ "tenant": "",
+ "type": "100",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AT_ACHIEVEMENT",
- "suffix": "attributeview"
+ }
 }

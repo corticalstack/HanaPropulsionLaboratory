@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-04 08:49:51.2250000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "1"
  },
+ "name": "missioncontrolUser",
+ "package": "hpl.missioncontrol.data",
+ "suffix": "hdbrole",
+ "tenant": "",
+ "type": "50",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.data",
- "name": "missioncontrolUser",
- "suffix": "hdbrole"
+ }
 }

@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-18 17:30:01.9770000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "9"
  },
+ "name": "scenarioTerrain",
+ "package": "hpl.missioncontrol.services",
+ "suffix": "xsjs",
+ "tenant": "",
+ "type": "318",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.services",
- "name": "scenarioTerrain",
- "suffix": "xsjs"
+ }
 }

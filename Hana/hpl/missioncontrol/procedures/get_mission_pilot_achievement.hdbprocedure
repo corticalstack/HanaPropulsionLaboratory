@@ -1,0 +1,134 @@
+PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_pilot_achievement" (	
+	IN  im_mission_from NVARCHAR(6),
+	IN  im_mission_to NVARCHAR(6),
+	IN  im_pilot_from NVARCHAR(3),
+	IN  im_pilot_to NVARCHAR(3),
+	OUT ex_pilot_achievement_tt MISSIONCONTROL."hpl.missioncontrol.data::MC.Procedures.tt_pilot_achievement" 
+	)   
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	DEFAULT SCHEMA MISSIONCONTROL
+	READS SQL DATA AS
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+  
+ 	declare lvEarthRadius double default 6371000;
+ 	declare lvToRad double default 0.01745329225199433;
+ 
+ 	declare lvDistanceLatitude double default 0;
+ 	declare lvDistanceLongitude double default 0;
+ 
+ 	declare lvDistance double default 0;
+ 	declare lvDistanceTotal double default 0;
+ 	declare lvGpsLongitude decimal(9,6) default 0;
+ 	declare lvGpsLatitude decimal(9,6) default 0;
+ 	declare lvLatitude1 double default 0;
+ 	declare lvLatitude2 double default 0;
+ 	declare lva double default 0;
+ 	declare lvc double default 0;
+ 
+ 	declare lvGpsLongitudeHome decimal(9,6) default 6.892743;
+ 	declare lvGpsLatitudeHome decimal(9,6) default 46.475241;
+ 	
+ 	declare lvGetDistance varchar(1) := '';
+ 
+	declare missionid varchar(6) ARRAY;
+	declare vehicleid varchar(3) ARRAY;  
+	declare pilotid varchar(3) ARRAY;
+	declare achievementkeyframegroup integer ARRAY;
+	declare conditionid varchar(6) ARRAY;
+	declare messagecategoryid varchar(3) ARRAY;
+	declare messageid varchar(3) ARRAY;
+	declare gpsposlongitude decimal(9,6) ARRAY;
+	declare gpsposlattitude decimal(9,6) ARRAY;
+	declare achievementvalue decimal(10,2) ARRAY;
+	declare lvLastConditionHilAltitude decimal(10,2) default 0; 
+	declare lvAddEntry varchar(1) default 'X';
+	declare count integer ARRAY;  
+  
+  	declare i int := 0;
+  	
+	declare CURSOR c_achievement FOR
+		SELECT "MISSIONID_MISSIONID", "VEHICLEID_VEHICLEID", "PILOTID_PILOTID", "CA_ACHIEVEMENT_KEYFRAME_GROUP", 
+		   	   "CONDITIONID", "MESSAGECATEGORYID", "MESSAGEID_MESSAGEID", "GPSPOSLONGITUDE", "GPSPOSLATITUDE", 
+		   	   "CA_ACHIEVEMENT_VALUE", sum("CC_COUNT") AS "CC_COUNT" 
+		   	   FROM "_SYS_BIC"."hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" 
+		   	   WHERE "MISSIONID_MISSIONID" BETWEEN :IM_MISSION_FROM AND :IM_MISSION_TO AND
+		   	   		 "PILOTID_PILOTID" BETWEEN :IM_PILOT_FROM AND :IM_PILOT_TO
+		   	   GROUP BY "MISSIONID_MISSIONID", "VEHICLEID_VEHICLEID", "PILOTID_PILOTID", "CA_ACHIEVEMENT_KEYFRAME_GROUP", "CONDITIONID", "MESSAGECATEGORYID", 
+		   				"MESSAGEID_MESSAGEID", "GPSPOSLONGITUDE", "GPSPOSLATITUDE", "CA_ACHIEVEMENT_VALUE"
+		   	   ORDER BY "MISSIONID_MISSIONID", "VEHICLEID_VEHICLEID", "PILOTID_PILOTID", "CA_ACHIEVEMENT_KEYFRAME_GROUP", "CONDITIONID", "MESSAGECATEGORYID", 
+		   				"MESSAGEID_MESSAGEID";
+		   	   
+ 	
+ 	FOR cur_row as c_achievement DO
+ 		lvAddEntry := 'X';
+ 		lvGetDistance := '';		
+		
+		if cur_row.CONDITIONID = '50MC' and cur_row.MESSAGECATEGORYID = 'NAV' and cur_row.MESSAGEID_MESSAGEID = 'GPP' then
+			lvGetDistance := 'X';
+		elseif cur_row.CONDITIONID = '100MC' and cur_row.MESSAGECATEGORYID = 'NAV' and cur_row.MESSAGEID_MESSAGEID = 'GPP' then
+			lvGetDistance := 'X';
+		elseif cur_row.CONDITIONID = '500MC' and cur_row.MESSAGECATEGORYID = 'NAV' and cur_row.MESSAGEID_MESSAGEID = 'GPP' then
+			lvGetDistance := 'X';
+		elseif cur_row.CONDITIONID = '1KC' and cur_row.MESSAGECATEGORYID = 'NAV' and cur_row.MESSAGEID_MESSAGEID = 'GPP' then
+			lvGetDistance := 'X';
+		elseif cur_row.CONDITIONID = 'NCA' and cur_row.MESSAGECATEGORYID = 'NAV' and cur_row.MESSAGEID_MESSAGEID = 'GPP' then
+			lvGetDistance := 'X';
+		end if;
+		
+		if cur_row.CONDITIONID = 'HIL' and cur_row.MESSAGECATEGORYID = 'NAV' and cur_row.MESSAGEID_MESSAGEID = 'GPP' then
+		   if lvLastConditionHilAltitude > cur_row.CA_ACHIEVEMENT_VALUE then
+		   		lvAddEntry := '';
+		   else
+				lvLastConditionHilAltitude := cur_row.CA_ACHIEVEMENT_VALUE;   
+		   end if;						
+		end if;
+		
+		if :lvAddEntry = '' then
+		   continue;
+		end if;
+		
+		i := i + 1;		  			
+		missionid[i] := cur_row.MISSIONID_MISSIONID;
+		vehicleid[i] := cur_row.VEHICLEID_VEHICLEID;
+		pilotid[i] := cur_row.PILOTID_PILOTID;
+		achievementkeyframegroup[i] := cur_row.CA_ACHIEVEMENT_KEYFRAME_GROUP;
+		conditionid[i] := cur_row.CONDITIONID;
+		messagecategoryid[i] := cur_row.MESSAGECATEGORYID;
+		messageid[i] := cur_row.MESSAGEID_MESSAGEID;
+		gpsposlongitude[i] := cur_row.GPSPOSLONGITUDE;
+		gpsposlattitude[i] := cur_row.GPSPOSLATITUDE;
+		achievementvalue[i] := cur_row.CA_ACHIEVEMENT_VALUE;
+		count[i] := cur_row.CC_COUNT;  
+		
+		  
+		if  lvGetDistance = 'X' then
+  			lvDistanceLatitude := ((lvGpsLatitudeHome - cur_row.GPSPOSLATITUDE) * lvToRad) ;
+  			lvDistanceLongitude := ((lvGpsLongitudeHome - cur_row.GPSPOSLONGITUDE) * lvToRad) ;
+  	
+  			lvLatitude1 := lvGpsLatitudeHome * lvToRad;
+  			lvLatitude2 := cur_row.GPSPOSLATITUDE * lvToRad;
+  	
+  			lva := (sin(lvDistanceLatitude / 2) * (sin(lvDistanceLatitude / 2))) +
+  		   		(sin(lvDistanceLongitude / 2) * (sin(lvDistanceLongitude / 2))) *
+  		   		(cos(lvLatitude1) * cos(lvLatitude2));
+  	
+  				lvc := 2 * atan2(sqrt(lva), sqrt(1 - lva));
+  				lvDistance := lvEarthRadius * lvc;
+  				if lvDistance is not null then
+  					achievementvalue[i] := lvDistance;  
+  				end if;
+  		end if;  		
+  		
+ 	END FOR;
+   
+ 	ex_pilot_achievement_tt = unnest(:missionid, :vehicleid, :pilotid, :achievementkeyframegroup, :conditionid, :messagecategoryid, :messageid, :gpsposlongitude, 
+ 									 :gpsposlattitude, :achievementvalue, :count ) 
+                    		  as ("MISSIONID",  "VEHICLEID", "PILOTID", "ACHIEVEMENTKEYFRAMEGROUP", "CONDITIONID", "MESSAGECATEGORYID", "MESSAGEID", 
+                    		  	  "GPSPOSLONGITUDE", "GPSPOSLATITUDE", "ACHIEVEMENTVALUE", "COUNT");
+
+			
+END;

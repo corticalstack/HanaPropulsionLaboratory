@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-26 11:08:03.7520000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "3"
  },
+ "name": "pilots",
+ "package": "hpl.missioncontrol.services",
+ "suffix": "xsodata",
+ "tenant": "",
+ "type": "323",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.services",
- "name": "pilots",
- "suffix": "xsodata"
+ }
 }

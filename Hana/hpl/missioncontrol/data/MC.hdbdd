@@ -55,11 +55,14 @@ context MC {
 	type laserT  							: Integer;
 	type distanceTravelledT					: Decimal(7,2);
 	type achievementIdT						: String(6);
+	type achievementValueT					: Decimal(10,2);
 	type conditionIdT						: String(6);
 	type inMissionT							: Integer;
 	type endMissionT						: Integer;
 	type multiplierT						: Integer;
 	type pointsT							: Integer;
+	type countT								: Integer;
+	type scoreT								: Integer;
 	
 	context MasterData {
 		
@@ -251,9 +254,22 @@ context MC {
 		type tt_distance_travelled {
       		DISTANCETRAVELLED				: distanceTravelledT;
 		};
+
+		type tt_pilot_achievement {
+			MISSIONID						: missionIdT;
+	 		VEHICLEID						: vehicleIdT;
+	 		PILOTID							: pilotIdT;
+	 		ACHIEVEMENTKEYFRAMEGROUP		: keyFrameT;		
+	 		CONDITIONID						: conditionIdT;
+	 		MESSAGECATEGORYID				: messageCategoryIdT;
+	 		MESSAGEID						: messageIdT;
+	 		GPSPOSLONGITUDE 				: gpsPosT;
+			GPSPOSLATITUDE 					: gpsPosT;
+			ACHIEVEMENTVALUE				: achievementValueT;
+			COUNT							: countT;
+			SCORE							: scoreT;
+		};
 		
 	};
-	  
-		
-		
+	  			
 };

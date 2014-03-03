@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "16",
+  "max_length": "0",
   "text_id": "caption",
-  "text_type": "caption"
+  "text_type": ""
  },
  "metadata": {
   "activated_at": "2014-02-27 10:19:35.5530000",
@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "2"
  },
+ "name": "flightDirector",
+ "package": "hpl.missioncontrol.data.loads",
+ "suffix": "csv",
+ "tenant": "",
+ "type": "37",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.data.loads",
- "name": "flightDirector",
- "suffix": "csv"
+ }
 }

@@ -22,10 +22,12 @@
   "type": "1",
   "version_id": "1"
  },
+ "name": "AT_MISSION_LOG_ACHIEVEMENT_GROUP",
+ "package": "hpl.missioncontrol.models",
+ "suffix": "attributeview",
+ "tenant": "",
+ "type": "100",
  "version": {
   "versionType": "1"
- },
- "package": "hpl.missioncontrol.models",
- "name": "AT_MISSION_LOG_ACHIEVEMENT_GROUP",
- "suffix": "attributeview"
+ }
 }

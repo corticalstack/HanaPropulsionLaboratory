@@ -6,15 +6,15 @@
       <descriptions defaultDescription="MISSIONLOGID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONLOGID"/>
     </attribute>
-    <attribute id="MISSIONID_MISSIONID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="MISSIONID_MISSIONID" order="2" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="MISSIONID_MISSIONID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MISSIONID.MISSIONID"/>
     </attribute>
-    <attribute id="VEHICLEID_VEHICLEID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="VEHICLEID_VEHICLEID" order="3" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="VEHICLEID.VEHICLEID"/>
     </attribute>
-    <attribute id="PILOTID_PILOTID" order="4" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="PILOTID_PILOTID" order="4" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="PILOTID_PILOTID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="PILOTID.PILOTID"/>
     </attribute>
