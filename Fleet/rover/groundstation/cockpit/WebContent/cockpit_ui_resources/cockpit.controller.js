@@ -541,6 +541,11 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 	
+	setMissionControlPanelIndex: function() {
+		sap.ui.getCore().byId("tstrMissionControl").setSelectedIndex(myHplApp.missioncontrol.model.getPanelIndex());
+	},
+	
+	
 	drawCrosshair: function() {
 		var canvas 	= document.getElementById('canvasCrosshair');
 		var context = canvas.getContext('2d');

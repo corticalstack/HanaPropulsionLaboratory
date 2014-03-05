@@ -12,9 +12,10 @@
 		model.setConfigOtextBundle();
 		model.setAssetLoaderInit();
 		
-		//Load all sound effects and music
-		model.setLoadMusic();
+		//Load all sound effects
 		model.setLoadSoundEffects();
+		setTimeout(function(){myHplApp.controller.playSoundEffect({'effect': 'time', 'volume': 0.8})},3000);
+		
 
 	};
 	
@@ -48,17 +49,17 @@
 				break;
 			
 			case "lnkLaunch" + oControlEvent.getSource().getId().slice("lnkLaunch".length):
+				model.setConfigCockpitView();
 				model.setConfigCurrentViewContent(model.getConfigCockpitView());
-				model.setLayoutHomeContent(model.getConfigCurrentViewContent());
+				model.setLayoutHomeContent(model.getConfigCurrentViewContent());				
 				$.fn.hideBackgroundImage();
+				myHplApp.controller.stopSoundEffect('time');
 				myHplApp.model.setMessageQueue();
 				myHplApp.cockpit.maps.controller.googleMapInitialise();
 				myHplApp.cockpit.controller.initGauges();			
 				myHplApp.cockpit.controller.initIndicators();
 				sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators();
-				myHplApp.cockpit.controller.setStateActive(true);
-				//newFlot();
-				
+				myHplApp.cockpit.controller.setStateActive(true);				
 				break;
 		}
 	};	

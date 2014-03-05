@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CA_SMALL_FACT_TRANSPOSE_EX" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="Transpose of small fact"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="MONTH_IDENT_MTRX" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SANDBOX" columnObjectName="MONTH_IDENT_MTRX"/>
+    </DataSource>
+    <DataSource id="AN_FACT" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.sandbox.models/analyticviews/AN_FACT</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="IDENT_MATRIX">
+      <viewAttributes>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="SORT"/>
+        <viewAttribute id="COL1"/>
+        <viewAttribute id="COL2"/>
+        <viewAttribute id="COL3"/>
+        <viewAttribute id="COL4"/>
+        <viewAttribute id="COL5"/>
+        <viewAttribute id="COL6"/>
+        <viewAttribute id="COL7"/>
+        <viewAttribute id="COL8"/>
+        <viewAttribute id="COL9"/>
+        <viewAttribute id="COL10"/>
+        <viewAttribute id="COL11"/>
+        <viewAttribute id="COL12"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="SMALLINT" id="ONE">
+          <formula>1</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#MONTH_IDENT_MTRX">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SORT" source="SORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL1" source="COL1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL2" source="COL2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL3" source="COL3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL4" source="COL4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL5" source="COL5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL6" source="COL6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL7" source="COL7"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL8" source="COL8"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL9" source="COL9"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL10" source="COL10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL11" source="COL11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL12" source="COL12"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="FACT">
+      <viewAttributes>
+        <viewAttribute id="K"/>
+        <viewAttribute id="M1"/>
+        <viewAttribute id="M2"/>
+        <viewAttribute id="M3"/>
+        <viewAttribute id="M4"/>
+        <viewAttribute id="M5"/>
+        <viewAttribute id="M6"/>
+        <viewAttribute id="M7"/>
+        <viewAttribute id="M8"/>
+        <viewAttribute id="M9"/>
+        <viewAttribute id="M10"/>
+        <viewAttribute id="M11"/>
+        <viewAttribute id="M12"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="SMALLINT" id="ONE">
+          <formula>1</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#AN_FACT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="K" source="K"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M1" source="M1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M2" source="M2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M3" source="M3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M4" source="M4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M5" source="M5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M6" source="M6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M7" source="M7"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M8" source="M8"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M9" source="M9"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M10" source="M10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M11" source="M11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M12" source="M12"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="ONE"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="SORT"/>
+        <viewAttribute id="COL1"/>
+        <viewAttribute id="COL2"/>
+        <viewAttribute id="COL3"/>
+        <viewAttribute id="COL4"/>
+        <viewAttribute id="COL5"/>
+        <viewAttribute id="COL6"/>
+        <viewAttribute id="COL7"/>
+        <viewAttribute id="COL8"/>
+        <viewAttribute id="COL9"/>
+        <viewAttribute id="COL10"/>
+        <viewAttribute id="COL11"/>
+        <viewAttribute id="COL12"/>
+        <viewAttribute id="ONE_1"/>
+        <viewAttribute id="M1"/>
+        <viewAttribute id="M2"/>
+        <viewAttribute id="M3"/>
+        <viewAttribute id="M4"/>
+        <viewAttribute id="M5"/>
+        <viewAttribute id="M6"/>
+        <viewAttribute id="M7"/>
+        <viewAttribute id="M8"/>
+        <viewAttribute id="M9"/>
+        <viewAttribute id="M10"/>
+        <viewAttribute id="M11"/>
+        <viewAttribute id="M12"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="AMOUNT" length="12" scale="2">
+          <formula>(&quot;COL1&quot; *&quot;M1&quot;) + (&quot;COL2&quot; *&quot;M2&quot;) + (&quot;COL3&quot; *&quot;M3&quot;) + (&quot;COL4&quot; *&quot;M4&quot;) + (&quot;COL5&quot; *&quot;M5&quot;) + (&quot;COL6&quot; *&quot;M6&quot;) + (&quot;COL7&quot; *&quot;M7&quot;) + (&quot;COL8&quot; *&quot;M8&quot;) + (&quot;COL9&quot; *&quot;M9&quot;) + (&quot;COL10&quot; *&quot;M10&quot;) + (&quot;COL11&quot; *&quot;M11&quot;) + (&quot;COL12&quot; *&quot;M12&quot;) </formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#IDENT_MATRIX">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ONE" source="ONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SORT" source="SORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL1" source="COL1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL2" source="COL2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL3" source="COL3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL4" source="COL4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL5" source="COL5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL6" source="COL6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL7" source="COL7"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL8" source="COL8"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL9" source="COL9"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL10" source="COL10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL11" source="COL11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COL12" source="COL12"/>
+      </input>
+      <input node="#FACT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ONE_1" source="ONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M1" source="M1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M2" source="M2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M3" source="M3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M4" source="M4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M5" source="M5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M6" source="M6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M7" source="M7"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M8" source="M8"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M9" source="M9"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M10" source="M10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M11" source="M11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="M12" source="M12"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ONE" source="ONE"/>
+      </input>
+      <joinAttribute name="ONE"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <attributes>
+      <attribute id="MONTH" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="Join_1" columnName="MONTH"/>
+      </attribute>
+      <attribute id="SORT" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SORT"/>
+        <keyMapping columnObjectName="Join_1" columnName="SORT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="ONE" order="1" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ONE"/>
+        <measureMapping columnObjectName="Join_1" columnName="ONE"/>
+      </measure>
+      <measure id="M1" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M1"/>
+        <measureMapping columnObjectName="Join_1" columnName="M1"/>
+      </measure>
+      <measure id="M2" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M2"/>
+        <measureMapping columnObjectName="Join_1" columnName="M2"/>
+      </measure>
+      <measure id="M3" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M3"/>
+        <measureMapping columnObjectName="Join_1" columnName="M3"/>
+      </measure>
+      <measure id="M4" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M4"/>
+        <measureMapping columnObjectName="Join_1" columnName="M4"/>
+      </measure>
+      <measure id="M5" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M5"/>
+        <measureMapping columnObjectName="Join_1" columnName="M5"/>
+      </measure>
+      <measure id="M6" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M6"/>
+        <measureMapping columnObjectName="Join_1" columnName="M6"/>
+      </measure>
+      <measure id="M7" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M7"/>
+        <measureMapping columnObjectName="Join_1" columnName="M7"/>
+      </measure>
+      <measure id="M8" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M8"/>
+        <measureMapping columnObjectName="Join_1" columnName="M8"/>
+      </measure>
+      <measure id="M9" order="11" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M9"/>
+        <measureMapping columnObjectName="Join_1" columnName="M9"/>
+      </measure>
+      <measure id="M10" order="12" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M10"/>
+        <measureMapping columnObjectName="Join_1" columnName="M10"/>
+      </measure>
+      <measure id="M11" order="13" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M11"/>
+        <measureMapping columnObjectName="Join_1" columnName="M11"/>
+      </measure>
+      <measure id="M12" order="14" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M12"/>
+        <measureMapping columnObjectName="Join_1" columnName="M12"/>
+      </measure>
+      <measure id="AMOUNT" order="15" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="AMOUNT"/>
+        <measureMapping columnObjectName="Join_1" columnName="AMOUNT"/>
+      </measure>
+      <measure id="COL1" order="16" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL1"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL1"/>
+      </measure>
+      <measure id="COL2" order="17" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL2"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL2"/>
+      </measure>
+      <measure id="COL3" order="18" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL3"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL3"/>
+      </measure>
+      <measure id="COL4" order="19" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL4"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL4"/>
+      </measure>
+      <measure id="COL5" order="20" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL5"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL5"/>
+      </measure>
+      <measure id="COL6" order="21" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL6"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL6"/>
+      </measure>
+      <measure id="COL7" order="22" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL7"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL7"/>
+      </measure>
+      <measure id="COL8" order="23" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL8"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL8"/>
+      </measure>
+      <measure id="COL9" order="24" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL9"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL9"/>
+      </measure>
+      <measure id="COL10" order="25" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL10"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL10"/>
+      </measure>
+      <measure id="COL11" order="26" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL11"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL11"/>
+      </measure>
+      <measure id="COL12" order="27" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="COL12"/>
+        <measureMapping columnObjectName="Join_1" columnName="COL12"/>
+      </measure>
+      <measure id="ONE_1" order="28" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ONE_1"/>
+        <measureMapping columnObjectName="Join_1" columnName="ONE_1"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="IDENT_MATRIX" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="264"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="FACT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="264"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="166"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

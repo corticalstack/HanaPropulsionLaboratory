@@ -16,7 +16,7 @@ sap.ui.controller("pilot_ui_resources.pilot", {
 	 */
 	onBeforeRendering: function() {
 		//   alert('Controller before rendering');
-	},
+	}
 
 	
 	/**
@@ -36,66 +36,6 @@ sap.ui.controller("pilot_ui_resources.pilot", {
 	//   }
 	
 	
-	getTableSizes: function(oController){
-		
-	},
 	
-	
-
-	
-	execute: function(oEvent,oController){
-	
-	},
-	
-	
-	
-
-	
-	executeConfirm: function(bResult,oController){
-	},
-	
-	
-	updateReplicateProgress: function(){
-	},
-	
-	
-	triggerReplicatePO: function(oController){
-	}, 
-
-	
-	triggerReplicateSO: function(oController){
-	},	
-	
-	
-	toggleGenerate: function(oEvent,oController){
-	},
-
-	
-	onReseedComplete: function(myTxt,oController,oObject){
-	},
-
-	
-	onReseedComplete2: function(myTxt,oController,oObject){
-	},
-
-	
-	onSynonymComplete: function(myTxt,oController){	
-	},
-	
-	
-	onResequenceComplete: function(myTxt,oController,oObject){
-	},
-
-	
-	onPOComplete: function(myTxt,oController,i){
-	},	
-
-	
-	onSOComplete: function(myTxt,oController,i){
-	},	
-
-	
-	getUniqueTime: function(){
-	}	
 
 });

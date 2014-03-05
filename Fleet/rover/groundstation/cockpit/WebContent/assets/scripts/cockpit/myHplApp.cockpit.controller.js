@@ -233,15 +233,15 @@
 			value: gaugeVal,
 			valueMinFontSize: 14,
 			valueFontColor: "#ffffff",
-			min: 7,
-			max: 8.20,
+			min: 0,
+			max: 9,
 			showMinMax: false,
 			humanFriendlyDecimal: 2,
 	        decimals: 2,
 			gaugeWidthScale: 0.5,
 			customSectors: [{
 								color: "#ff0000",
-								lo: 7,
+								lo: 0,
 								hi: 7.5
 							},{
 								color: "#ffff00",
@@ -250,7 +250,7 @@
 							}, {
 								color: "#00ff00",
 								lo: 7.90,
-								hi: 8.20
+								hi: 9
 							}],
 			counter: true
 		});

@@ -10,7 +10,7 @@ BEGIN
 	Write your procedure logic 
  *****************************/
   declare lvMissionId nvarchar(6) default 0;
-  select max(missionId) into lvMissionId from "hpl.missioncontrol.data::MC.Mission.Mission";
+  select max(cast(missionId as int)) into lvMissionId from "hpl.missioncontrol.data::MC.Mission.Mission";
   if :lvMissionId is null then
      lvMissionId := 1;
   else

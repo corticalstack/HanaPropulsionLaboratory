@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_ACTUALS_MONTH" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="Actuals Month"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="AN_ACTUALS_M_JAN" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.sandbox.models/analyticviews/AN_ACTUALS_M_JAN</resourceUri>
+    </DataSource>
+    <DataSource id="AN_ACTUALS_M_FEB" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.sandbox.models/analyticviews/AN_ACTUALS_M_FEB</resourceUri>
+    </DataSource>
+    <DataSource id="AN_ACTUALS_M_MAR" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.sandbox.models/analyticviews/AN_ACTUALS_M_MAR</resourceUri>
+    </DataSource>
+    <DataSource id="AN_ACTUALS_M_APR" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.sandbox.models/analyticviews/AN_ACTUALS_M_APR</resourceUri>
+    </DataSource>
+    <DataSource id="AN_ACTUALS_M_MAY" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.sandbox.models/analyticviews/AN_ACTUALS_M_MAY</resourceUri>
+    </DataSource>
+    <DataSource id="AN_ACTUALS_M_JUN" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.sandbox.models/analyticviews/AN_ACTUALS_M_JUN</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_M_JAN">
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="VALUE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_ACTUALS_M_JAN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_M_FEB">
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="VALUE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_ACTUALS_M_FEB">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_M_MAR">
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="VALUE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_ACTUALS_M_MAR">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_M_APR">
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="VALUE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_ACTUALS_M_APR">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_M_MAY">
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="VALUE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_ACTUALS_M_MAY">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_M_JUN">
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="VALUE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_ACTUALS_M_JUN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="VALUE"/>
+        <viewAttribute datatype="VARCHAR" id="MONTH" length="3"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#P_M_JAN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MONTH" null="false" value="JAN"/>
+      </input>
+      <input node="#P_M_FEB">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MONTH" null="false" value="FEB"/>
+      </input>
+      <input node="#P_M_MAR">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MONTH" null="false" value="MAR"/>
+      </input>
+      <input node="#P_M_APR">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MONTH" null="false" value="APR"/>
+      </input>
+      <input node="#P_M_JUN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MONTH" null="false" value="JUN"/>
+      </input>
+      <input node="#P_M_MAY">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MONTH" null="false" value="MAY"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <attributes>
+      <attribute id="ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="ID"/>
+      </attribute>
+      <attribute id="NAME" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NAME"/>
+        <keyMapping columnObjectName="Union_1" columnName="NAME"/>
+      </attribute>
+      <attribute id="YEAR" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping columnObjectName="Union_1" columnName="YEAR"/>
+      </attribute>
+      <attribute id="MONTH" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="Union_1" columnName="MONTH"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="VALUE" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="VALUE"/>
+        <measureMapping columnObjectName="Union_1" columnName="VALUE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="407" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_M_JAN" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_M_FEB" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_M_MAR" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_M_APR" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="484" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_M_MAY" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="638" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_M_JUN" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="792" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="407" y="166"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -40,7 +40,10 @@
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
 		
-		missioncontrolModel.addNetworkPacketOut(feed.length);
+		if (typeof feed.length != 'undefined') {
+			console.log('Feed length ',feed.length);
+			missioncontrolModel.addNetworkPacketOut(feed.length);
+		}
 	};
 
 

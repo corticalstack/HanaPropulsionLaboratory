@@ -39,23 +39,11 @@ sap.ui.controller("datalink_ui_resources.datalink", {
 	datalinkRefresh: function() {
 		console.log('Datalink refresh');
 		myHplMcApp.datalink.controller.getMissionMessageCategoryIdRanking();
-		myHplMcApp.datalink.controller.getMissionMaxSpeed();
-		myHplMcApp.datalink.controller.getMissionAvgSpeed();
-		myHplMcApp.datalink.controller.getMissionMinAlt();
-		myHplMcApp.datalink.controller.getMissionMaxAlt();
-		myHplMcApp.datalink.controller.getMissionAvgAlt();
-		myHplMcApp.datalink.controller.getMissionDistanceTravelled();
-		sap.ui.getCore().byId("tvStatTotalNavigation").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().nav);
-		sap.ui.getCore().byId("tvStatTotalCockpit").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().coc);
-		sap.ui.getCore().byId("tvStatTotalNotification").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().not);
-		sap.ui.getCore().byId("tvStatTotalSensor").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().sen);
-		sap.ui.getCore().byId("tvStatTotalPower").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().pow);
-		sap.ui.getCore().byId("tvStatTotalDrive").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().dri);
-		sap.ui.getCore().byId("tvStatMaxSpeed").setText(myHplMcApp.datalink.model.getSpeedStatsMaxKph());
-		sap.ui.getCore().byId("tvStatAvgSpeed").setText(myHplMcApp.datalink.model.getSpeedStatsAvgKph());
-		sap.ui.getCore().byId("tvStatMinAlt").setText(myHplMcApp.datalink.model.getAltStatsMinM());
-		sap.ui.getCore().byId("tvStatMaxAlt").setText(myHplMcApp.datalink.model.getAltStatsMaxM());
-		sap.ui.getCore().byId("tvStatAvgAlt").setText(myHplMcApp.datalink.model.getAltStatsAvgM());
-		sap.ui.getCore().byId("tvStatTravelledM").setText(myHplMcApp.datalink.model.getDistanceStatsTravelledM());
+		sap.ui.getCore().byId("tvStatCountNavigation").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().nav);
+		sap.ui.getCore().byId("tvStatCountCockpit").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().coc);
+		sap.ui.getCore().byId("tvStatCountNotification").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().not);
+		sap.ui.getCore().byId("tvStatCountSensor").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().sen);
+		sap.ui.getCore().byId("tvStatCountPower").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().pow);
+		sap.ui.getCore().byId("tvStatCountDrive").setText(myHplMcApp.datalink.model.getMessageCategoryIdStats().dri);
 	},
 });

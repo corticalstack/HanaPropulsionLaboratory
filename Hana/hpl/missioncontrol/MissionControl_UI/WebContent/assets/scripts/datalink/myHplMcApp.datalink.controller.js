@@ -8,7 +8,10 @@
 	
 
 	myHplMcApp.datalink.controller.init = function() { 
-		console.log('Initialising Hana Datalink Controller');		
+		console.log('Initialising Hana Datalink Controller');	
+		console.log('Datalink mission ',jQuery.sap.getUriParameters().get("missionId"));
+		console.log('Datalink vehicle ',jQuery.sap.getUriParameters().get("vehicleId"));
+		console.log('Datalink pilot ',jQuery.sap.getUriParameters().get("pilotId"));
 		myHplMcApp.missioncontrol.model.setActiveMissionId(jQuery.sap.getUriParameters().get("missionId"));
 		myHplMcApp.missioncontrol.model.setActiveVehicleId(jQuery.sap.getUriParameters().get("vehicleId"));
 		myHplMcApp.missioncontrol.model.setActivePilotId(jQuery.sap.getUriParameters().get("pilotId"));
@@ -70,168 +73,79 @@
 	};
 
 
-	myHplMcApp.datalink.controller.getMissionMaxSpeed = function() {
-		var myUrl = datalinkModel.getConfigServiceMissionMaxSpeedUri() +
+	myHplMcApp.datalink.controller.getMissionStatsSpeed = function() {
+		var myUrl = datalinkModel.getConfigServiceMissionStatsSpeedUri() +
 		'/InputParams(IP_MISSIONID=\'' +
 		myHplMcApp.missioncontrol.model.getActiveMissionId() +
 		'\',IP_VEHICLEID=\'' +
 		myHplMcApp.missioncontrol.model.getActiveVehicleId() +
 		'\',IP_PILOTID=\'' +
 		myHplMcApp.missioncontrol.model.getActivePilotId() + 
-			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,CA_SPEED_KPH,CA_SPEED_MPH&$format=json';
+			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,AVG_SPEED_CMS,AVG_SPEED_KPH,AVG_SPEED_MPH,MAX_SPEED_CMS,MAX_SPEED_KPH,MAX_SPEED_MPH&$format=json';
 		$.ajax({ type: 'GET',
 	         url: myUrl,
 	         dataType: 'json',
 	         crossDomain: true,
 	         async: true,
-	         success: myHplMcApp.datalink.controller.onLoadMaxSpeed,
-	         error: myHplMcApp.datalink.controller.onErrorMaxSpeed 
+	         success: myHplMcApp.datalink.controller.onLoadStatsSpeed,
+	         error: myHplMcApp.datalink.controller.onErrorStatsSpeed 
 		});
 	};
 	
 		
-	myHplMcApp.datalink.controller.onLoadMaxSpeed = function(myJSON) {
+	myHplMcApp.datalink.controller.onLoadStatsSpeed = function(myJSON) {
 		for (var i = 0; i<myJSON.d.results.length; i++) {
-			datalinkModel.setSpeedStatsMaxCms(myJSON.d.results[i].GPSVELSPEEDCMS);
-			datalinkModel.setSpeedStatsMaxKph(myJSON.d.results[i].CA_SPEED_KPH);
+			datalinkModel.setSpeedStatsMaxCms(myJSON.d.results[i].MAX_SPEED_CMS);
+			datalinkModel.setSpeedStatsMaxKph(myJSON.d.results[i].MAX_SPEED_KPH);
+			datalinkModel.setSpeedStatsMaxMph(myJSON.d.results[i].MAX_SPEED_MPH);
+			datalinkModel.setSpeedStatsAvgCms(myJSON.d.results[i].AVG_SPEED_CMS);
+			datalinkModel.setSpeedStatsAvgKph(myJSON.d.results[i].AVG_SPEED_KPH);
+			datalinkModel.setSpeedStatsAvgMph(myJSON.d.results[i].AVG_SPEED_MPH);
+
 		};		
 	};
 	
 
-	myHplMcApp.datalink.controller.onErrorMaxSpeed = function(jqXHR, textStatus, errorThrown){
+	myHplMcApp.datalink.controller.onErrorStatsSpeed = function(jqXHR, textStatus, errorThrown){
 
 	};
 
 	
 
-	myHplMcApp.datalink.controller.getMissionAvgSpeed = function() {
-		var myUrl = datalinkModel.getConfigServiceMissionAvgSpeedUri() +
+	myHplMcApp.datalink.controller.getMissionStatsAlt = function() {
+		var myUrl = datalinkModel.getConfigServiceMissionStatsAltUri() +
 		'/InputParams(IP_MISSIONID=\'' +
 		myHplMcApp.missioncontrol.model.getActiveMissionId() +
 		'\',IP_VEHICLEID=\'' +
 		myHplMcApp.missioncontrol.model.getActiveVehicleId() +
 		'\',IP_PILOTID=\'' +
 		myHplMcApp.missioncontrol.model.getActivePilotId() + 
-			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,CA_SPEED_CMS,CA_SPEED_KPH,CA_SPEED_MPH&$format=json';
+			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,MIN_ALT_M,MIN_ALT_FT,MAX_ALT_M,MAX_ALT_FT,AVG_ALT_M,AVG_ALT_FT&$format=json';
 		$.ajax({ type: 'GET',
 	         url: myUrl,
 	         dataType: 'json',
 	         crossDomain: true,
 	         async: true,
-	         success: myHplMcApp.datalink.controller.onLoadAvgSpeed,
-	         error: myHplMcApp.datalink.controller.onErrorAvgSpeed 
+	         success: myHplMcApp.datalink.controller.onLoadStatsAlt,
+	         error: myHplMcApp.datalink.controller.onErrorStatsAlt 
 		});
 	};
 	
 		
-	myHplMcApp.datalink.controller.onLoadAvgSpeed = function(myJSON) {
+	myHplMcApp.datalink.controller.onLoadStatsAlt = function(myJSON) {
 		for (var i = 0; i<myJSON.d.results.length; i++) {
-			datalinkModel.setSpeedStatsAvgCms(myJSON.d.results[i].CA_SPEED_CMS);
-			datalinkModel.setSpeedStatsAvgKph(myJSON.d.results[i].CA_SPEED_KPH);
+			datalinkModel.setAltStatsMinM(myJSON.d.results[i].MIN_ALT_M);
+			datalinkModel.setAltStatsMinFt(myJSON.d.results[i].MIN_ALT_FT);
+			datalinkModel.setAltStatsMaxM(myJSON.d.results[i].MAX_ALT_M);
+			datalinkModel.setAltStatsMaxFt(myJSON.d.results[i].MAX_ALT_FT);
+			datalinkModel.setAltStatsAvgM(myJSON.d.results[i].AVG_ALT_M);
+			datalinkModel.setAltStatsAvgFt(myJSON.d.results[i].AVG_ALT_FT);
+
 		};		
 	};
 	
 
-	myHplMcApp.datalink.controller.onErrorAvgSpeed = function(jqXHR, textStatus, errorThrown){
-
-	};
-	
-
-	myHplMcApp.datalink.controller.getMissionMinAlt = function() {
-		var myUrl = datalinkModel.getConfigServiceMissionMinAltUri() +
-		'/InputParams(IP_MISSIONID=\'' +
-		myHplMcApp.missioncontrol.model.getActiveMissionId() +
-		'\',IP_VEHICLEID=\'' +
-		myHplMcApp.missioncontrol.model.getActiveVehicleId() +
-		'\',IP_PILOTID=\'' +
-		myHplMcApp.missioncontrol.model.getActivePilotId() + 
-			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,CA_ALT_FT,GPSPOSALTITUDE&$format=json';
-		$.ajax({ type: 'GET',
-	         url: myUrl,
-	         dataType: 'json',
-	         crossDomain: true,
-	         async: true,
-	         success: myHplMcApp.datalink.controller.onLoadMinAlt,
-	         error: myHplMcApp.datalink.controller.onErrorMinAlt 
-		});
-	};
-	
-		
-	myHplMcApp.datalink.controller.onLoadMinAlt = function(myJSON) {
-		for (var i = 0; i<myJSON.d.results.length; i++) {
-			datalinkModel.setAltStatsMinM(myJSON.d.results[i].GPSPOSALTITUDE);
-			datalinkModel.setAltStatsMinFt(myJSON.d.results[i].CA_ALT_FT);
-		};		
-	};
-	
-
-	myHplMcApp.datalink.controller.onErrorMinAlt = function(jqXHR, textStatus, errorThrown){
-
-	};
-
-
-	myHplMcApp.datalink.controller.getMissionMaxAlt = function() {
-		var myUrl = datalinkModel.getConfigServiceMissionMaxAltUri() +
-		'/InputParams(IP_MISSIONID=\'' +
-		myHplMcApp.missioncontrol.model.getActiveMissionId() +
-		'\',IP_VEHICLEID=\'' +
-		myHplMcApp.missioncontrol.model.getActiveVehicleId() +
-		'\',IP_PILOTID=\'' +
-		myHplMcApp.missioncontrol.model.getActivePilotId() + 
-			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,CA_ALT_FT,GPSPOSALTITUDE&$format=json';
-		$.ajax({ type: 'GET',
-	         url: myUrl,
-	         dataType: 'json',
-	         crossDomain: true,
-	         async: true,
-	         success: myHplMcApp.datalink.controller.onLoadMaxAlt,
-	         error: myHplMcApp.datalink.controller.onErrorMaxAlt 
-		});
-	};
-	
-		
-	myHplMcApp.datalink.controller.onLoadMaxAlt = function(myJSON) {
-		for (var i = 0; i<myJSON.d.results.length; i++) {
-			datalinkModel.setAltStatsMaxM(myJSON.d.results[i].GPSPOSALTITUDE);
-			datalinkModel.setAltStatsMaxFt(myJSON.d.results[i].CA_ALT_FT);
-		};		
-	};
-	
-
-	myHplMcApp.datalink.controller.onErrorMaxAlt = function(jqXHR, textStatus, errorThrown){
-
-	};
-
-
-	myHplMcApp.datalink.controller.getMissionAvgAlt = function() {
-		var myUrl = datalinkModel.getConfigServiceMissionAvgAltUri() +
-		'/InputParams(IP_MISSIONID=\'' +
-		myHplMcApp.missioncontrol.model.getActiveMissionId() +
-		'\',IP_VEHICLEID=\'' +
-		myHplMcApp.missioncontrol.model.getActiveVehicleId() +
-		'\',IP_PILOTID=\'' +
-		myHplMcApp.missioncontrol.model.getActivePilotId() + 
-			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,CA_ALT_M,CA_ALT_FT&$format=json';
-		$.ajax({ type: 'GET',
-	         url: myUrl,
-	         dataType: 'json',
-	         crossDomain: true,
-	         async: true,
-	         success: myHplMcApp.datalink.controller.onLoadAvgAlt,
-	         error: myHplMcApp.datalink.controller.onErrorAvgAlt 
-		});
-	};
-	
-		
-	myHplMcApp.datalink.controller.onLoadAvgAlt = function(myJSON) {
-		for (var i = 0; i<myJSON.d.results.length; i++) {
-			datalinkModel.setAltStatsAvgM(myJSON.d.results[i].CA_ALT_M);
-			datalinkModel.setAltStatsAvgFt(myJSON.d.results[i].CA_ALT_FT);
-		};		
-	};
-	
-
-	myHplMcApp.datalink.controller.onErrorAvgAlt = function(jqXHR, textStatus, errorThrown){
+	myHplMcApp.datalink.controller.onErrorStatsAlt = function(jqXHR, textStatus, errorThrown){
 
 	};
 

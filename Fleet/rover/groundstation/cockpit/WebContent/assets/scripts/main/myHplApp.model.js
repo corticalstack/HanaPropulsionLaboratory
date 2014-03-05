@@ -16,7 +16,6 @@
 	};
 	
 	
-	var music 			= [];
 	var soundEffects 	= [];
 	
 	var assetLoader = {
@@ -115,12 +114,12 @@
 		});  
 
 
-		sap.ui.localResources("cockpit_ui_resources");
-		config.cockpitView = sap.ui.view({  
-		    	id: 		"viewCockpit",  
-		    	viewName: 	"cockpit_ui_resources.cockpit",  
-		    	type: 		sap.ui.core.mvc.ViewType.JS  
-		});  
+//		sap.ui.localResources("cockpit_ui_resources");
+//		config.cockpitView = sap.ui.view({  
+//		    	id: 		"viewCockpit",  
+//		    	viewName: 	"cockpit_ui_resources.cockpit",  
+//		    	type: 		sap.ui.core.mvc.ViewType.JS  
+//		});  
 
 
 		sap.ui.localResources("pilot_ui_resources");
@@ -131,24 +130,33 @@
 		});
 	};
 
+	myHplApp.model.setConfigCockpitView = function() {
+
+
+		sap.ui.localResources("cockpit_ui_resources");
+		config.cockpitView = sap.ui.view({  
+		    	id: 		"viewCockpit",  
+		    	viewName: 	"cockpit_ui_resources.cockpit",  
+		    	type: 		sap.ui.core.mvc.ViewType.JS  
+		});  
+
+
+	};
+	
 	
 	myHplApp.model.setAssetLoaderInit = function() {
 		assetLoader.init();
 	};
 	
 
-	myHplApp.model.setLoadMusic = function() {
-		console.log('Application model.....Loading music');
-		var myMusic 	= {};
-		myMusic.name 	= "Time";
-		myMusic.url 	= "./assets/audio/music/Time.mp3";
-		myMusic.music 	= assetLoader.loadSound(myMusic.url);
-		music.push(myMusic);
-	};
-	
-
 	myHplApp.model.setLoadSoundEffects = function() {
 		console.log('Application model.....Loading sound effects');
+		var myUrl = "./assets/audio/music/Time.mp3";
+		var mySoundEffect = {name: 		"time",
+				 url: 		myUrl,
+				 sound: 	assetLoader.loadSound(myUrl)
+		};
+		soundEffects.push(mySoundEffect);
 		
 		var myUrl = "./assets/audio/effects/cannonFire.mp3";
 		var mySoundEffect = {name: 		"cannonFire",

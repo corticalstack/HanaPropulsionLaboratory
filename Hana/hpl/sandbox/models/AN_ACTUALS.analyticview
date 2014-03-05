@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cube:cube xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_ACTUALS" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
+  <descriptions defaultDescription="Actuals"/>
+  <localVariables/>
+  <privateMeasureGroup id="MeasureGroup">
+    <attributes>
+      <attribute id="ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID"/>
+        <keyMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="ID"/>
+      </attribute>
+      <attribute id="NAME" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NAME"/>
+        <keyMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="NAME"/>
+      </attribute>
+      <attribute id="YEAR" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="YEAR"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies>
+        <tableProxy centralTable="true">
+          <table schemaName="SANDBOX" columnObjectName="ACTUALS"/>
+        </tableProxy>
+      </tableProxies>
+      <joins/>
+      <layout>
+        <shapes>
+          <shape modelObjectName="ACTUALS" modelObjectNameSpace="SANDBOX" modelObjectType="catalog">
+            <upperLeftCorner x="70" y="30"/>
+          </shape>
+        </shapes>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="M_JAN" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M_JAN"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="M_JAN"/>
+      </measure>
+      <measure id="M_FEB" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M_FEB"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="M_FEB"/>
+      </measure>
+      <measure id="M_MAR" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M_MAR"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="M_MAR"/>
+      </measure>
+      <measure id="M_APR" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M_APR"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="M_APR"/>
+      </measure>
+      <measure id="M_MAY" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M_MAY"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="M_MAY"/>
+      </measure>
+      <measure id="M_JUN" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M_JUN"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="ACTUALS" columnName="M_JUN"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <sharedDimensions/>
+    <layout>
+      <shapes>
+        <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
+          <upperLeftCorner x="300" y="200"/>
+        </shape>
+        <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateMeasureGroup>
+</Cube:cube>

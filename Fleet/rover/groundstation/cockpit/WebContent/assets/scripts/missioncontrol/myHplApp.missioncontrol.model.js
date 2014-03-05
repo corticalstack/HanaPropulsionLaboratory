@@ -21,6 +21,13 @@
 	};
 	
 	
+	var panel = {
+			index:                      					0,
+			min:                   							0,
+			max:                   							1	
+	};
+	
+	
 	var messageCategoryId = {
 			notify:											'NOT',
 			drive:											'DRI',
@@ -90,6 +97,7 @@
 
 	
 	
+	
 	var gps3DFixCount = 0;
 	
 	
@@ -130,7 +138,35 @@
 	//Set methods for config
 	
 	
+	//Get methods for Panel
+	myHplApp.missioncontrol.model.getPanelIndex = function() { 
+		console.log('Panel index', panel.index);
+		return panel.index;
+	};
+
+	myHplApp.missioncontrol.model.getPanelMin = function() { 
+		return panel.min;
+	};
 	
+	myHplApp.missioncontrol.model.getPanelMax = function() { 
+		return panel.max;
+	};
+
+
+	//Set methods for Panel
+	myHplApp.missioncontrol.model.setPanelIndex = function(val) { 
+		panel.index = val;
+	};
+
+	myHplApp.missioncontrol.model.setPanelIndexInc = function() { 
+		panel.index++;
+	};
+
+	myHplApp.missioncontrol.model.setPanelIndexDec = function() { 
+		panel.index--;
+	};
+	
+
 	
 	//Get methods for state
     myHplApp.missioncontrol.model.getStateMissioncontrolOnline = function() {

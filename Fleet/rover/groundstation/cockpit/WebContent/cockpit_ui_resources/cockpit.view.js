@@ -784,36 +784,32 @@ function buildPaneMissionControl(oController,oLayout){
     		width: 		"100%"
     });
 
-	var omlLayoutTab = new sap.ui.commons.layout.MatrixLayout({
-			id: 		"mlLayoutTab", 
-			width: 		"100%"
-	});
-	
-	
 	var omlCellPaneMissionControlTitle 	= new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlRowPaneMissionControlTitle 	= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
-		
-	
+
 	omlCellPaneMissionControlTitle.addContent(olblPaneMissionControl);
 	omlRowPaneMissionControlTitle.addCell(omlCellPaneMissionControlTitle);
 	omlPaneMissionControl.addRow(omlRowPaneMissionControlTitle);
-//////
-	 
-	  // Create a TabStrip instance
+	
+	
+	// Create a TabStrip instance
     var otstrMissionControl = new sap.ui.commons.TabStrip({
     		id: 	"tstrMissionControl",
     		width: 	"582px",
     		height: "530px"
     });
-    
-    
-    otstrMissionControl.attachClose( function (oEvent) { var otstrSource = oEvent.oSource;
-    													 otstrSource.closeTab(oEvent.getParameter("index"));
-    });
+	
 
     
+    //Tab 1 - Commlink Status
+	var omlCommlink = new sap.ui.commons.layout.MatrixLayout({
+			id: 		"mlCommlink", 
+			width: 		"100%"
+	});
+	
+
 	var ohtmlIframeMcDatalink = new sap.ui.core.HTML({  
-    	content: '<iframe id="iframeMcDatalink" width="582px" height="530px" frameBorder="0">Mission Control Offline!!!</iframe>',
+    	content: '<iframe id="iframeMcDatalink" width="582px" height="482px" frameBorder="0">Mission Control Offline!!!</iframe>',
     	preferDOM : true,   
     	afterRendering: function() {  
     		newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/datalink.html?missionId=' + 
@@ -823,15 +819,45 @@ function buildPaneMissionControl(oController,oLayout){
     		'&pilotId=' +
     		myHplApp.missioncontrol.model.getActivePilotId();
     		$("#iframeMcDatalink").load(function() {  
-    			$("#iframeMcDatalink").attr("width","582px").attr("height","530px");  
+    			$("#iframeMcDatalink").attr("width","582px").attr("height","482px");  
     		}).attr("src",newSrc);  
     	}
 	});
 
-    omlLayoutTab.createRow(ohtmlIframeMcDatalink);
+    omlCommlink.createRow(ohtmlIframeMcDatalink);
+    otstrMissionControl.createTab("COMMLINK STATUS",omlCommlink);
     
     
-    otstrMissionControl.createTab("DATALINK",omlLayoutTab);
+    
+    //Tab 2 - Orbital
+	var omlOrbital = new sap.ui.commons.layout.MatrixLayout({
+		id: 		"mlOrbital", 
+		width: 		"100%"
+	});
+
+
+	var ohtmlIframeMcOrbital = new sap.ui.core.HTML({  
+		content: '<iframe id="iframeMcOrbital" width="582px" height="482px" frameBorder="0">Mission Control Offline!!!</iframe>',
+		preferDOM : true,   
+		afterRendering: function() {  
+			newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/orbital.html?missionId=' + 
+			myHplApp.missioncontrol.model.getActiveMissionId() +
+			'&vehicleId=' +
+			myHplApp.missioncontrol.model.getActiveVehicleId() +
+			'&pilotId=' +
+			myHplApp.missioncontrol.model.getActivePilotId();
+			$("#iframeMcOrbital").load(function() {  
+				$("#iframeMcOrbital").attr("width","582px").attr("height","482px");  
+			}).attr("src",newSrc);  
+		}
+	});
+
+	omlOrbital.createRow(ohtmlIframeMcOrbital);
+	otstrMissionControl.createTab("ORBITAL STATUS",omlOrbital);
+    
+    
+	
+	//Add tabstrip to mission control
 	omlPaneMissionControl1.createRow(otstrMissionControl);
     omlPaneMissionControl.createRow(omlPaneMissionControl1);   
     oLayout.createRow(omlPaneMissionControl);   

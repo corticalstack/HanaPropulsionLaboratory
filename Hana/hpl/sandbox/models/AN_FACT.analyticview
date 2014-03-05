@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cube:cube xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_FACT" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
+  <descriptions defaultDescription="Analytic wrapper for small fact table"/>
+  <localVariables/>
+  <privateMeasureGroup id="MeasureGroup">
+    <attributes>
+      <attribute id="K" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="K"/>
+        <keyMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="K"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies>
+        <tableProxy centralTable="true">
+          <table schemaName="SANDBOX" columnObjectName="SMALL_FACT"/>
+        </tableProxy>
+      </tableProxies>
+      <joins/>
+      <layout>
+        <shapes>
+          <shape modelObjectName="SMALL_FACT" modelObjectNameSpace="SANDBOX" modelObjectType="catalog">
+            <upperLeftCorner x="70" y="30"/>
+          </shape>
+        </shapes>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="M1" order="2" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M1"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M1"/>
+      </measure>
+      <measure id="M2" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M2"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M2"/>
+      </measure>
+      <measure id="M3" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M3"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M3"/>
+      </measure>
+      <measure id="M4" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M4"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M4"/>
+      </measure>
+      <measure id="M5" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M5"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M5"/>
+      </measure>
+      <measure id="M6" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M6"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M6"/>
+      </measure>
+      <measure id="M7" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M7"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M7"/>
+      </measure>
+      <measure id="M8" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M8"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M8"/>
+      </measure>
+      <measure id="M9" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M9"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M9"/>
+      </measure>
+      <measure id="M10" order="11" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M10"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M10"/>
+      </measure>
+      <measure id="M11" order="12" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M11"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M11"/>
+      </measure>
+      <measure id="M12" order="13" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="M12"/>
+        <measureMapping schemaName="SANDBOX" columnObjectName="SMALL_FACT" columnName="M12"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <sharedDimensions/>
+    <layout>
+      <shapes>
+        <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
+          <upperLeftCorner x="300" y="200"/>
+        </shape>
+        <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateMeasureGroup>
+</Cube:cube>

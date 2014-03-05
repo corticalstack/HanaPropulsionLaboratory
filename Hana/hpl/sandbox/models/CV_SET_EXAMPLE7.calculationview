@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_SET_EXAMPLE7" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="Example from Jody Hesch blog"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="SET_1" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SANDBOX" columnObjectName="SET_1"/>
+    </DataSource>
+    <DataSource id="SET_2" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SANDBOX" columnObjectName="SET_2"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <viewAttributes>
+        <viewAttribute id="ELEMENT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#SET_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELEMENT" source="ELEMENT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <viewAttributes>
+        <viewAttribute id="ELEMENT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#SET_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELEMENT" source="ELEMENT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <viewAttributes>
+        <viewAttribute id="ELEMENT"/>
+        <viewAttribute datatype="INTEGER" id="FLAG"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELEMENT" source="ELEMENT"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLAG" null="false" value="2"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELEMENT" source="ELEMENT"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLAG" null="false" value="3"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <viewAttributes>
+        <viewAttribute id="ELEMENT"/>
+        <viewAttribute aggregationType="sum" id="FLAG"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELEMENT" source="ELEMENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG" source="FLAG"/>
+      </input>
+      <filter>&quot;FLAG&quot; !=5</filter>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Aggregation_1">
+    <attributes>
+      <attribute id="ELEMENT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ELEMENT"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="ELEMENT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="FLAG" order="2" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="FLAG"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="FLAG"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="363"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="363"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="245"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="166"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

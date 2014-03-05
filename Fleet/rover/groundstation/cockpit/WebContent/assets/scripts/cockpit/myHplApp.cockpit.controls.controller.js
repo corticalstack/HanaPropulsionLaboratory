@@ -207,14 +207,31 @@
 			
 		}
 		
-//		if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
-//			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
-//		}
-
 		
-//		if (gamepadEvent.control == gamepadCmdThrottlePadRight) {
-//			sap.ui.getCore().byId("viewCockpit").getController().gamepad_button_down(gamepadEvent);
-//		}
+		//Mission control panel left
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigThrottlePadLeft()) {
+			console.log('Panel Left');
+			missioncontrolModel.setPanelIndexDec();
+			
+			if (missioncontrolModel.getPanelIndex() < missioncontrolModel.getPanelMin()) {
+				missioncontrolModel.setPanelIndex(missioncontrolModel.getPanelMax());
+			}
+			
+			sap.ui.getCore().byId("viewCockpit").getController().setMissionControlPanelIndex();
+		}
+		
+
+		//Mission control panel right		
+		if (gamepadEvent.control == cockpitControlsModel.getDeviceConfigThrottlePadRight()) {
+			console.log('Panel right');
+			missioncontrolModel.setPanelIndexInc();
+			
+			if (missioncontrolModel.getPanelIndex() > missioncontrolModel.getPanelMax()) {
+				missioncontrolModel.setPanelIndex(missioncontrolModel.getPanelMin());
+			}
+			
+			sap.ui.getCore().byId("viewCockpit").getController().setMissionControlPanelIndex();
+		}
 
 	};
 

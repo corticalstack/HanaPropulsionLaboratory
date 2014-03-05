@@ -1,0 +1,7 @@
+service namespace "hpl.missioncontrol.services" {
+   "hpl.missioncontrol.models::CV_MISSION_STATS_ALT" 
+    as "missionStatsAlt" with ("MISSIONID_MISSIONID","VEHICLEID_VEHICLEID","PILOTID_PILOTID","MIN_ALT_M","MIN_ALT_FT","MAX_ALT_M","MAX_ALT_FT","AVG_ALT_M","AVG_ALT_FT")
+    keys generate local "ID"
+  	aggregates always
+  	parameters via entity "InputParams";   	   	 
+}

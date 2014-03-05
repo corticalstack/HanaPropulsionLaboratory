@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.2" id="CV_MISSION_STATS_SPEED" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="Mission stats - speed"/>
+  <localVariables>
+    <variable id="IP_MISSIONID" parameter="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_VEHICLEID" parameter="true">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_PILOTID" parameter="true">
+      <descriptions defaultDescription="Pilot ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#AN_MISSION_AVG_SPEED">
+      <targetVariable name="IP_PILOTID" resourceUri="/hpl.missioncontrol.models/analyticviews/AN_MISSION_AVG_SPEED"/>
+      <localVariable>#IP_PILOTID</localVariable>
+    </mapping>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#AN_MISSION_AVG_SPEED">
+      <targetVariable name="IP_VEHICLEID" resourceUri="/hpl.missioncontrol.models/analyticviews/AN_MISSION_AVG_SPEED"/>
+      <localVariable>#IP_VEHICLEID</localVariable>
+    </mapping>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#AN_MISSION_AVG_SPEED">
+      <targetVariable name="IP_MISSIONID" resourceUri="/hpl.missioncontrol.models/analyticviews/AN_MISSION_AVG_SPEED"/>
+      <localVariable>#IP_MISSIONID</localVariable>
+    </mapping>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#AN_MISSION_MAX_SPEED">
+      <targetVariable name="IP_PILOTID" resourceUri="/hpl.missioncontrol.models/analyticviews/AN_MISSION_MAX_SPEED"/>
+      <localVariable>#IP_PILOTID</localVariable>
+    </mapping>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#AN_MISSION_MAX_SPEED">
+      <targetVariable name="IP_VEHICLEID" resourceUri="/hpl.missioncontrol.models/analyticviews/AN_MISSION_MAX_SPEED"/>
+      <localVariable>#IP_VEHICLEID</localVariable>
+    </mapping>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#AN_MISSION_MAX_SPEED">
+      <targetVariable name="IP_MISSIONID" resourceUri="/hpl.missioncontrol.models/analyticviews/AN_MISSION_MAX_SPEED"/>
+      <localVariable>#IP_MISSIONID</localVariable>
+    </mapping>
+  </variableMappings>
+  <dataSources>
+    <DataSource id="AN_MISSION_AVG_SPEED" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.missioncontrol.models/analyticviews/AN_MISSION_AVG_SPEED</resourceUri>
+    </DataSource>
+    <DataSource id="AN_MISSION_MAX_SPEED" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.missioncontrol.models/analyticviews/AN_MISSION_MAX_SPEED</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <viewAttributes>
+        <viewAttribute id="MISSIONID_MISSIONID"/>
+        <viewAttribute id="VEHICLEID_VEHICLEID"/>
+        <viewAttribute id="PILOTID_PILOTID"/>
+        <viewAttribute id="AVG_SPEED_CMS"/>
+        <viewAttribute id="AVG_SPEED_KPH"/>
+        <viewAttribute id="AVG_SPEED_MPH"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_MISSION_AVG_SPEED">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MISSIONID_MISSIONID" source="MISSIONID_MISSIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VEHICLEID_VEHICLEID" source="VEHICLEID_VEHICLEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PILOTID_PILOTID" source="PILOTID_PILOTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AVG_SPEED_CMS" source="CA_SPEED_CMS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AVG_SPEED_KPH" source="CA_SPEED_KPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AVG_SPEED_MPH" source="CA_SPEED_MPH"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <viewAttributes>
+        <viewAttribute id="MAX_SPEED_CMS"/>
+        <viewAttribute id="MAX_SPEED_KPH"/>
+        <viewAttribute id="MAX_SPEED_MPH"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AN_MISSION_MAX_SPEED">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_SPEED_CMS" source="GPSVELSPEEDCMS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_SPEED_KPH" source="CA_SPEED_KPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_SPEED_MPH" source="CA_SPEED_MPH"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <viewAttributes>
+        <viewAttribute id="MISSIONID_MISSIONID"/>
+        <viewAttribute id="VEHICLEID_VEHICLEID"/>
+        <viewAttribute id="PILOTID_PILOTID"/>
+        <viewAttribute id="AVG_SPEED_CMS"/>
+        <viewAttribute id="AVG_SPEED_KPH"/>
+        <viewAttribute id="AVG_SPEED_MPH"/>
+        <viewAttribute id="MAX_SPEED_CMS"/>
+        <viewAttribute id="MAX_SPEED_KPH"/>
+        <viewAttribute id="MAX_SPEED_MPH"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MISSIONID_MISSIONID" source="MISSIONID_MISSIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VEHICLEID_VEHICLEID" source="VEHICLEID_VEHICLEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PILOTID_PILOTID" source="PILOTID_PILOTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AVG_SPEED_CMS" source="AVG_SPEED_CMS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AVG_SPEED_KPH" source="AVG_SPEED_KPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AVG_SPEED_MPH" source="AVG_SPEED_MPH"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MAX_SPEED_CMS" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MAX_SPEED_KPH" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MAX_SPEED_MPH" null="true" value=""/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MISSIONID_MISSIONID" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="VEHICLEID_VEHICLEID" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PILOTID_PILOTID" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AVG_SPEED_CMS" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AVG_SPEED_KPH" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AVG_SPEED_MPH" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_SPEED_CMS" source="MAX_SPEED_CMS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_SPEED_KPH" source="MAX_SPEED_KPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_SPEED_MPH" source="MAX_SPEED_MPH"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <attributes/>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="MISSIONID_MISSIONID" order="1" aggregationType="count" measureType="simple">
+        <descriptions defaultDescription="MISSIONID_MISSIONID"/>
+        <measureMapping columnObjectName="Union_1" columnName="MISSIONID_MISSIONID"/>
+      </measure>
+      <measure id="VEHICLEID_VEHICLEID" order="2" aggregationType="count" measureType="simple">
+        <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
+        <measureMapping columnObjectName="Union_1" columnName="VEHICLEID_VEHICLEID"/>
+      </measure>
+      <measure id="PILOTID_PILOTID" order="3" aggregationType="count" measureType="simple">
+        <descriptions defaultDescription="PILOTID_PILOTID"/>
+        <measureMapping columnObjectName="Union_1" columnName="PILOTID_PILOTID"/>
+      </measure>
+      <measure id="AVG_SPEED_CMS" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="AVG_SPEED_CMS"/>
+        <measureMapping columnObjectName="Union_1" columnName="AVG_SPEED_CMS"/>
+      </measure>
+      <measure id="AVG_SPEED_KPH" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="AVG_SPEED_KPH"/>
+        <measureMapping columnObjectName="Union_1" columnName="AVG_SPEED_KPH"/>
+      </measure>
+      <measure id="AVG_SPEED_MPH" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="AVG_SPEED_MPH"/>
+        <measureMapping columnObjectName="Union_1" columnName="AVG_SPEED_MPH"/>
+      </measure>
+      <measure id="MAX_SPEED_CMS" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="MAX_SPEED_CMS"/>
+        <measureMapping columnObjectName="Union_1" columnName="MAX_SPEED_CMS"/>
+      </measure>
+      <measure id="MAX_SPEED_KPH" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="MAX_SPEED_KPH"/>
+        <measureMapping columnObjectName="Union_1" columnName="MAX_SPEED_KPH"/>
+      </measure>
+      <measure id="MAX_SPEED_MPH" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="MAX_SPEED_MPH"/>
+        <measureMapping columnObjectName="Union_1" columnName="MAX_SPEED_MPH"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="284"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="284"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="166"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
