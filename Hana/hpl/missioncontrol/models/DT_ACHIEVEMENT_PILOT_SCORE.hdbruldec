@@ -46,6 +46,18 @@
       <descriptions defaultDescription="PA_SCORE"/>
       <alias:member alias:returntype="INTEGER" alias:varname="PA_SCORE"/>
     </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1451e6e9668x7550e" alias:visible="true" alias:columnName="MISSIONID_MISSIONID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="MISSIONID_MISSIONID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1451e6e98c6x93784" alias:visible="true" alias:columnName="VEHICLEID_VEHICLEID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1451e6e9aeaxee085" alias:visible="true" alias:columnName="PILOTID_PILOTID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="PILOTID_PILOTID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14528e19890xde6c6" alias:visible="true" alias:columnName="CA_ACHIEVEMENT_KEYFRAME_GROUP" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="INTEGER" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+    </alias:basealias>
   </alias:aliasset>
   <table:decisiontable table:guid="DT14479015d58x23a27" table:name="DT_ACHIEVEMENT_PILOT_SCORE">
     <table:conditionstub table:id="CS14479021eacxd647d" table:conditionstubtype="regular" table:type="NVARCHAR">
@@ -472,7 +484,7 @@
         <table:cell table:ref-id="CV144790ed7fexe889byc0" table:span="1"/>
         <table:cell table:ref-id="CV144790f8d66x4591ycc" table:span="1"/>
       </table:conditionstub-layout>
-      <table:conditionstub-layout table:stub-id="CS14479026778x8874a" table:type="vertical">
+      <table:conditionstub-layout table:width="172" table:stub-id="CS14479026778x8874a" table:type="vertical">
         <table:cell table:ref-id="CV1447905c14cx92efay1c" table:span="1"/>
         <table:cell table:ref-id="CV1447906c5efx3e66ey24" table:span="1"/>
         <table:cell table:ref-id="CV14479071cdaxf32ffy2d" table:span="1"/>

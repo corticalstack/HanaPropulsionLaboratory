@@ -31,11 +31,12 @@
 		missioncontrolModel.setStateMissioncontrolOnline(true);
 		for (var i = 0; i<myJSON.d.results.length; i++) {
 			var pilot = {
-					pilotId: 	myJSON.d.results[i].PILOTID,
-					name: 		myJSON.d.results[i].NAME,
-					avatarUri: 	myJSON.d.results[i].AVATARURI,
-					clanName: 	myJSON.d.results[i].CLANNAME,
-					clanUri: 	myJSON.d.results[i].CLANURI
+					pilotId: 	 myJSON.d.results[i].PILOTID,
+					name: 		 myJSON.d.results[i].NAME,
+					avatarUri: 	 myJSON.d.results[i].AVATARURI,
+					portraitUri: myJSON.d.results[i].PORTRAITURI,
+					clanName: 	 myJSON.d.results[i].CLANNAME,
+					clanUri: 	 myJSON.d.results[i].CLANURI
 			};
 			pilotModel.pushRoster(pilot);
 		};		
@@ -51,38 +52,42 @@
 //		return;
 		console.log('Pilot roster default set');
 		var pilot = {
-				pilotId: 	'1',
-				name: 		'JP',
-				avatarUri: 	'assets/images/pilots/avatarJP.png',
-				clanName: 	'Wolf',
-				clanUri: 	'assets/images/emblems/Wolf.jpg'
+				pilotId: 	 '1',
+				name: 		 'JP',
+				avatarUri: 	 'assets/images/pilots/avatarJP.png',
+				portraitUri: 'assets/images/pilots/portraitJP.png',
+				clanName: 	 'Wolf',
+				clanUri: 	 'assets/images/emblems/Wolf.jpg'
 		};
 		pilotModel.pushRoster(pilot);
 		
 		var pilot = {
-				pilotId: 	'2',
-				name: 		'Nadia',
-				avatarUri: 	'assets/images/pilots/avatarNadia.png',
-				clanName: 	'Black Widow',
-				clanUri: 	'assets/images/emblems/Black Widow.jpg'
+				pilotId: 	 '2',
+				name: 		 'Nadia',
+				avatarUri: 	 'assets/images/pilots/avatarNadia.png',
+				portraitUri: 'assets/images/pilots/portraitNadia.png',
+				clanName: 	 'Black Widow',
+				clanUri: 	 'assets/images/emblems/Black Widow.jpg'
 		};
 		pilotModel.pushRoster(pilot);
 		
 		var pilot = {
-				pilotId: 	'6',
-				name: 		'Jane',
-				avatarUri: 	'assets/images/pilots/avatarJane.png',
-				clanName: 	'Snake',
-				clanUri: 	'assets/images/emblems/Snake.jpg'
+				pilotId: 	 '6',
+				name: 		 'Jane',
+				avatarUri: 	 'assets/images/pilots/avatarJane.png',
+				portraitUri: 'assets/images/pilots/portraitJane.png',
+				clanName: 	 'Snake',
+				clanUri: 	 'assets/images/emblems/Snake.jpg'
 		};
 		pilotModel.pushRoster(pilot);
 
 		var pilot = {
-				pilotId: 	'7',
-				name: 		'Joe',
-				avatarUri: 	'assets/images/pilots/avatarJoe.png',
-				clanName: 	'Wasp',
-				clanUri: 	'assets/images/emblems/Wasp.jpg'
+				pilotId: 	 '7',
+				name: 		 'Joe',
+				avatarUri: 	 'assets/images/pilots/avatarJoe.png',
+				portraitUri: 'assets/images/pilots/portraitJoe.png',
+				clanName: 	 'Wasp',
+				clanUri: 	 'assets/images/emblems/Wasp.jpg'
 		};
 		pilotModel.pushRoster(pilot);
 

@@ -2,9 +2,9 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "0",
+  "max_length": "16",
   "text_id": "caption",
-  "text_type": ""
+  "text_type": "caption"
  },
  "metadata": {
   "delivery_unit": "",
@@ -15,15 +15,10 @@
   "edit": "true",
   "format_version": "",
   "is_deletion": "false",
-  "last_changed_at": "2014-02-06 17:13:06.9960000",
+  "last_changed_at": "2014-04-17 13:52:54.1220000",
   "type": "2",
   "version_id": "1"
  },
- "name": "",
- "package": "hpl.missioncontrol",
- "suffix": "project",
- "tenant": "",
- "type": "0",
  "version": {
   "owner": "SYSTEM",
   "versionType": "2",

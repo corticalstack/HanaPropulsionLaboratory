@@ -15,4 +15,16 @@
 	};
 
 	
+	myHplApp.pilot.model.getPilotById = function(id) {
+		
+		for (var i = 0; i < roster.length; i++) {
+		    if (roster[i].pilotId == id) {
+		    	return roster[i];
+		    }
+		}
+	};
+	
+	
+
+	
 } (myHplApp = window.myHplApp || {}));

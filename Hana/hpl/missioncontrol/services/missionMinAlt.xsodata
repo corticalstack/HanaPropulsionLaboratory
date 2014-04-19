@@ -1,7 +1,0 @@
-service namespace "hpl.missioncontrol.services" {
-   "hpl.missioncontrol.models::AN_MISSION_MIN_ALT" 
-    as "missionMinAlt" with ("MESSAGECATEGORYID","TEXT","MESSAGEID","AT_MESSAGE_ID_TEXT","MISSIONID_MISSIONID","VEHICLEID_VEHICLEID","PILOTID_PILOTID","CA_ALT_FT","GPSPOSALTITUDE")
-    keys generate local "ID"
-  	aggregates always
-  	parameters via entity "InputParams";   	   	 
-}

@@ -36,12 +36,12 @@
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
+			async: true,
 			success: myHplApp.missioncontrol.controller.processMissionLogPumpResponse,
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
 		
 		if (typeof feed.length != 'undefined') {
-			console.log('Feed length ',feed.length);
 			missioncontrolModel.addNetworkPacketOut(feed.length);
 		}
 	};
@@ -66,6 +66,7 @@
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
+			async: false,
 			success: myHplApp.missioncontrol.controller.processMissionCreateResponse,
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
@@ -97,6 +98,7 @@
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
+			async: false,			
 			success: myHplApp.missioncontrol.controller.processSetHomeLatLngAltResponse,
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
@@ -122,6 +124,7 @@
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
+			async: false,
 			success: myHplApp.missioncontrol.controller.processMissionNextIdResponse,
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
@@ -151,6 +154,7 @@
 			type: 'GET',
 			headers : {"Access-Control-Allow-Origin" : "*"},
 			crossDomain: true,
+			async: false,
 			success: myHplApp.missioncontrol.controller.processGetScenarioTerrainResponse,
 			error: function(xhr, status, error) { console.log('Error ', xhr); console.log(status); console.log(error);}
 		});	
@@ -160,8 +164,47 @@
 
 	
 	myHplApp.missioncontrol.controller.processGetScenarioTerrainResponse = function(data) {
-		myHplApp.missioncontrol.model.setScenarioTerrain(data);
-		myHplApp.cockpit.maps.controller.googleMapSetScenarioTerrain(data);
+		console.log('Mission control controller....process Get scenario terrain response');
+		myHplApp.missioncontrol.controller.setScenarioTerrain(data);	
+		myHplApp.cockpit.maps.controller.drawScenarioTerrainPolygons(myHplApp.missioncontrol.model.getScenarioTerrainPolygons());
+	};
+	
+
+	myHplApp.missioncontrol.controller.setScenarioTerrain = function(scenarioTerrain) {
+		console.log('Mission control controller....set scenario terrain');
+		for (var i = 0; i < scenarioTerrain.geoCollection.length; i++) {
+			switch(scenarioTerrain.geoCollection[i].geometry.type) {
+			case 'Polygon':
+				myHplApp.missioncontrol.controller.setScenarioTerrainPolygon(scenarioTerrain.geoCollection[i]);
+				break;
+			}
+				
+		}
+		
+	};
+	
+	
+	myHplApp.missioncontrol.controller.setScenarioTerrainPolygon = function(scenarioTerrainPolygon) {
+		var myMapPolygon = {};
+		for (var j = 0; j < scenarioTerrainPolygon.geometry.coordinates.length; j++) {
+			coordinates = scenarioTerrainPolygon.geometry.coordinates[j];			
+			var polygonLatLngCoords = [];
+			for (var k = 0; k < coordinates.length; k++) {
+				polygonLatLngCoords.push(new google.maps.LatLng(coordinates[k][1], coordinates[k][0]));				
+			}
+			myMapPolygon = new google.maps.Polygon({
+				    paths: polygonLatLngCoords,
+				    strokeColor: scenarioTerrainPolygon.strokeColourHex,
+				    strokeOpacity: scenarioTerrainPolygon.strokeOpacity,
+				    strokeWeight: scenarioTerrainPolygon.strokeWeight,
+				    fillColor: scenarioTerrainPolygon.fillColourHex,
+				    fillOpacity: scenarioTerrainPolygon.fillOpacity
+			});
+
+			myHplApp.missioncontrol.model.setScenarioTerrainPolygons(scenarioTerrainPolygon, myMapPolygon);
+
+		}
+				
 	};
 	
 	
@@ -177,6 +220,38 @@
 		}
     };
 
+    
+    myHplApp.missioncontrol.controller.getPilotScore = function() {
+		var myUrl =  myHplApp.missioncontrol.model.getConfigServicePilotScoreUri() +
+		'/InputParams(IP_MISSIONID=\'' +
+		myHplApp.missioncontrol.model.getActiveMissionId() +
+		'\',IP_VEHICLEID=\'' +
+		myHplApp.missioncontrol.model.getActiveVehicleId() +
+		'\',IP_PILOTID=\'' +
+		myHplApp.missioncontrol.model.getActivePilotId() + 
+			'\')/Results?$select=SCORE&$format=json';
+		$.ajax({ type: 'GET',
+	         url: myUrl,
+	         dataType: 'json',
+	         crossDomain: true,
+	         async: true,
+	         success: myHplApp.missioncontrol.controller.onLoadPilotScore,
+	         error: myHplApp.missioncontrol.controller.onErrorPilotScore 
+		});
+	};
+	
+		
+	myHplApp.missioncontrol.controller.onLoadPilotScore = function(myJSON) {
+		for (var i = 0; i < myJSON.d.results.length; i++) {
+			if (myJSON.d.results[i].SCORE != null) {
+				myHplApp.missioncontrol.model.setActivePilotScore(myJSON.d.results[i].SCORE);
+			}
+		};		
+	};
+	
+
+	myHplApp.missioncontrol.controller.onErrorPilotScore = function(jqXHR, textStatus, errorThrown){
+	};
 	
 	myHplApp.missioncontrol.controller.init();
 	

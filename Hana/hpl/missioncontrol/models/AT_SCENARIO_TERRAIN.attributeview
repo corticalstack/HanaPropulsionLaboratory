@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_SCENARIO_TERRAIN" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Scenario terrain"/>
+  <descriptions defaultDescription="Scenario terrain "/>
   <attributes>
-    <attribute id="SCENARIOID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+    <attribute id="SCENARIOID" order="1" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="SCENARIOID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" columnName="SCENARIOID"/>
     </attribute>
-    <attribute id="TERRAINID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="TERRAINID" order="2" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="TERRAINID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="TERRAINID"/>
     </attribute>
-    <attribute id="SHAPEID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="SHAPEID" order="3" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="SHAPEID"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="SHAPEID"/>
     </attribute>
-    <attribute id="TEXT" order="4" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="TEXT"/>
+    <attribute id="SHAPEDESCRIPTION" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SHAPEDESCRIPTION"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" columnName="TEXT"/>
     </attribute>
     <attribute id="SHAPE" order="5" attributeHierarchyActive="false" displayAttribute="false">
@@ -34,9 +34,29 @@
       <descriptions defaultDescription="MULTIPLIER"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="MULTIPLIER"/>
     </attribute>
-    <attribute id="INFILLCOLOURID" order="9" attributeHierarchyActive="false" displayAttribute="false">
-      <descriptions defaultDescription="INFILLCOLOURID"/>
-      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="INFILLCOLOURID"/>
+    <attribute id="TERRAINNAME" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TERRAINNAME"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2" columnName="TEXT"/>
+    </attribute>
+    <attribute id="STROKECOLOURHEX" order="10" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="STROKECOLOURHEX"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Colours" columnName="COLOURHEX"/>
+    </attribute>
+    <attribute id="STROKEOPACITY" order="11" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="STROKEOPACITY"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="STROKEOPACITY"/>
+    </attribute>
+    <attribute id="STROKEWEIGHT" order="12" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="STROKEWEIGHT"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="STROKEWEIGHT"/>
+    </attribute>
+    <attribute id="FILLCOLOURHEX" order="13" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="FILLCOLOURHEX"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Colours" alias="hpl_1" columnName="COLOURHEX"/>
+    </attribute>
+    <attribute id="FILLOPACITY" order="14" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="FILLOPACITY"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" columnName="FILLOPACITY"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -46,13 +66,22 @@
         <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
       </tableProxy>
       <tableProxy>
-        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
-      </tableProxy>
-      <tableProxy>
         <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
       </tableProxy>
       <tableProxy>
         <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Colours"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Colours" alias="hpl_1"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2"/>
       </tableProxy>
     </tableProxies>
     <joins>
@@ -68,8 +97,52 @@
         <properties joinOperator="Equal" joinType="referential"/>
       </join>
       <join languageColumn="LANGUAGE">
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
         <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+        <leftColumns>
+          <columnName>TEXTID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <leftColumns>
+          <columnName>TERRAINID.TERRAINID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TERRAINID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Colours"/>
+        <leftColumns>
+          <columnName>STROKECOLOURID.COLOURID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>COLOURID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="leftOuter"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Colours" alias="hpl_1"/>
+        <leftColumns>
+          <columnName>FILLCOLOURID.COLOURID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>COLOURID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="leftOuter"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2"/>
         <leftColumns>
           <columnName>NAME.TEXTID</columnName>
         </leftColumns>
@@ -78,31 +151,29 @@
         </rightColumns>
         <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
       </join>
-      <join>
-        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain"/>
-        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
-        <leftColumns>
-          <columnName>TERRAINID</columnName>
-        </leftColumns>
-        <rightColumns>
-          <columnName>TERRAINID.TERRAINID</columnName>
-        </rightColumns>
-        <properties joinOperator="Equal" joinType="referential"/>
-      </join>
     </joins>
     <layout>
       <shapes>
         <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="70" y="30"/>
-        </shape>
-        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="545" y="30"/>
+          <upperLeftCorner x="1441" y="64"/>
         </shape>
         <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="1012" y="30"/>
+          <upperLeftCorner x="443" y="16"/>
         </shape>
         <shape modelObjectName="hpl.missioncontrol.data::MC.Util.Texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
-          <upperLeftCorner x="1076" y="229"/>
+          <upperLeftCorner x="16" y="128"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Terrain" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="960" y="64"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Colours" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="443" y="145"/>
+        </shape>
+        <shape modelObjectName="hpl_1" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1441" y="209"/>
+        </shape>
+        <shape modelObjectName="hpl_2" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="443" y="242"/>
         </shape>
         <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
           <upperLeftCorner x="40" y="85"/>

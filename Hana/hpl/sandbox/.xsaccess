@@ -1,6 +1,0 @@
-{
-        "exposed":true,
-        "cors" : { "enabled" : true },
-        "authentication" : null,
-        "anonymous_connection" : "hpl.sandbox.services::anonConn"        
-}

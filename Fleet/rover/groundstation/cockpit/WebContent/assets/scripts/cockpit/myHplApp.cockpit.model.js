@@ -11,7 +11,8 @@
 			active:				false
 	};
 	
-		
+    var modelPilotScoreBreakdown = null;
+    
 	var indicators 	= [];	
 	var gauges 		= [];
 	
@@ -102,7 +103,11 @@
 		return gauges;
 	};
 
-	
+
+	myHplApp.cockpit.model.getPilotScoreBreakdown = function() {
+		return modelPilotScoreBreakdown;
+	};
+
 	myHplApp.cockpit.model.getChartNetworkTrafficInOptions = function() {
 		return chartNetworkTrafficInOptions;
 	};
@@ -118,7 +123,11 @@
 		state.active = bool;
 	};
 
-	
+
+	myHplApp.cockpit.model.setModelPilotScoreBreakdown = function(model) {
+		modelPilotScoreBreakdown = model;
+	};
+
 	myHplApp.cockpit.model.setGauge = function(mygauge) {
 		var gaugeId 	= mygauge['id'];
 		var gauge 		= {};

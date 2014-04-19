@@ -2,12 +2,12 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "0",
+  "max_length": "16",
   "text_id": "caption",
-  "text_type": ""
+  "text_type": "caption"
  },
  "metadata": {
-  "activated_at": "2014-02-04 08:47:03.5250000",
+  "activated_at": "2014-04-17 13:20:05.7270000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -22,12 +22,10 @@
   "type": "1",
   "version_id": "1"
  },
- "name": "missioncontrol",
- "package": "hpl.missioncontrol.data",
- "suffix": "hdbschema",
- "tenant": "",
- "type": "49",
  "version": {
   "versionType": "1"
- }
+ },
+ "package": "hpl.missioncontrol.data",
+ "name": "missioncontrol",
+ "suffix": "hdbschema"
 }

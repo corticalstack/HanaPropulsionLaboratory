@@ -1,0 +1,41 @@
+PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_time_idle" ( 
+		IN IP_MISSIONID NVARCHAR(6), IN IP_VEHICLEID NVARCHAR(3), IN IP_PILOTID NVARCHAR(3),
+		out ex_idle_seconds MISSIONCONTROL."hpl.missioncontrol.data::MC.Procedures.tt_seconds"  ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER 
+	--DEFAULT SCHEMA <default_schema_name>
+	READS SQL DATA AS
+BEGIN
+ 	declare lvStopTimestamp  		timestamp default null;
+ 	declare lvThrustTimestamp 		timestamp default null;
+    declare lvSecondsBetween  		integer;
+    declare lvTotalSecondsBetween  	integer default 0;
+	
+	declare CURSOR c_mission FOR
+ 		select missionlogid, loggedat, ts, messageid_messageid, throttle 
+ 	 			from "_SYS_BIC"."hpl.missioncontrol.models/AT_MISSION_LOG"
+				where missionid_missionid = :ip_missionid and
+    			  	  vehicleid_vehicleid = :ip_vehicleid and 
+    		      	  pilotid_pilotid     = :ip_pilotid   and
+			      	  (messageid_messageid = 'STP' or (messageid_messageid = 'THR' and throttle IS NOT NULL))
+			order by loggedat, ts;
+ 	 
+    
+	FOR cur_row as c_mission DO
+  		if cur_row.messageid_messageid = 'STP' then
+  			lvStopTimestamp := cur_row.TS;
+  		end if;
+  		if lvStopTimestamp is not null and cur_row.messageid_messageid = 'THR' and cur_row.throttle > 0 then
+  			lvThrustTimestamp := cur_row.TS;
+  		end if;
+  		if lvStopTimestamp is not null and lvThrustTimestamp is not null then
+  		    select seconds_between (lvStopTimestamp, lvThrustTimestamp) into lvSecondsBetween from dummy;
+  		    lvTotalSecondsBetween  := lvTotalSecondsBetween + lvSecondsBetween;
+  		    lvStopTimestamp  	:= null;
+  		    lvThrustTimestamp 	:= null;  		    
+  		end if;  		
+	END FOR;
+	
+	ex_idle_seconds = select 1 as "IDX", 'IDLE' AS "LABEL", lvTotalSecondsBetween as "SECONDS" from dummy;
+		
+END;

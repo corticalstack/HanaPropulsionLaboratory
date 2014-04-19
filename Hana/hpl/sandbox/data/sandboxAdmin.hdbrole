@@ -1,7 +1,0 @@
-role hpl.sandbox.data::sandboxAdmin 
-	extends role hpl.sandbox.data::sandboxUser
-{
-	catalog schema "SANDBOX": SELECT, INSERT, UPDATE, DELETE, DROP, EXECUTE;
-        application privilege:  hpl.sandbox::Admin;
-              
-}

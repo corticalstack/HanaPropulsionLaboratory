@@ -10,6 +10,9 @@
 	var cockpitHeartbeatTick    	= 0;
 	var keyFrameTick		    	= 0;
 	var cockpitMainRefreshTick    	= 0;	
+	var pilotScoreRefreshTick    	= 0;
+	var datalinkRefreshTick    		= 0;	
+	var orbitalRefreshTick    		= 0;
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
@@ -30,25 +33,48 @@
 		console.log('Initialising cockpit controller');		
 	};
 	
+	
+	myHplApp.cockpit.controller.launch = function() {
+		console.log('Launching cockpit controller');
+		myHplApp.cockpit.controller.setStateActive(true);
+		myHplApp.cockpit.maps.controller.googleMapInitialise();
+		myHplApp.cockpit.controller.initGauges();			
+		myHplApp.cockpit.controller.initIndicators();		
+		myHplApp.missioncontrol.controller.getMissionNextId();
+		myHplApp.missioncontrol.controller.getScenarioTerrain();
+		sap.ui.getCore().byId("viewCockpit").getController().init();
+		myHplApp.missioncontrol.controller.missionLogPump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdStop(), vehicleModel.getInstructionStop());  //Inject initial stop
+		myHplApp.cockpit.controller.setTicks();
 
+	};
+	
+	
 	myHplApp.cockpit.controller.setStateActive = function(bool) {
 		cockpitModel.setStateActive(bool);
-		switch(bool){
-			case false:
-				myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
-				myHplApp.cockpit.controller.clearKeyFrameTick();
-				myHplApp.cockpit.controller.clearCockpitMainRefreshTick();
-				myHplApp.cockpit.controller.clearAmmoPctTick();				
-				break;
-			case true:
-				myHplApp.missioncontrol.controller.getMissionNextId();
-				myHplApp.missioncontrol.controller.getScenarioTerrain();				
-				setTimeout(myHplApp.cockpit.controller.setCockpitHeartbeatTick,3000);
-				myHplApp.cockpit.controller.setKeyFrameTick();
-				myHplApp.cockpit.controller.setCockpitMainRefreshTick();
-				myHplApp.cockpit.controller.setAmmoPctTick();
-				break;
-		} 
+	};
+	
+	
+	myHplApp.cockpit.controller.setTicks = function() {
+		setTimeout(myHplApp.cockpit.controller.setCockpitHeartbeatTick,3000);
+		myHplApp.cockpit.controller.setKeyFrameTick();
+		myHplApp.cockpit.controller.setCockpitMainRefreshTick();
+		myHplApp.cockpit.controller.setPilotScoreRefreshTick();		
+		myHplApp.cockpit.controller.setAmmoPctTick();
+		myHplApp.cockpit.controller.setDatalinkRefreshTick();
+		myHplApp.cockpit.controller.setOrbitalRefreshTick();
+
+	};
+
+	
+	myHplApp.cockpit.controller.clearTicks = function() {
+		myHplApp.cockpit.controller.clearCockpitHeartbeatTick();
+		myHplApp.cockpit.controller.clearKeyFrameTick();
+		myHplApp.cockpit.controller.clearCockpitMainRefreshTick();
+		myHplApp.cockpit.controller.clearPilotScoreRefreshTick();
+		myHplApp.cockpit.controller.clearAmmoPctTick();				
+		myHplApp.cockpit.controller.clearDatalinkRefreshTick();
+		myHplApp.cockpit.controller.clearOrbitalRefreshTick();
+
 	};
 
 	
@@ -80,12 +106,23 @@
 		cockpitMainRefreshTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().cockpitMainRefresh()},25);
 	};
 
-
+	
 	myHplApp.cockpit.controller.clearCockpitMainRefreshTick  = function() {
 		clearInterval(cockpitMainRefreshTick);
 	};
 	
 	
+	myHplApp.cockpit.controller.setPilotScoreRefreshTick = function() {
+		console.log('Cockpit controller setting pilot score refresh.....');
+		cockpitMainRefreshTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setPilotScoreRefresh()},200);
+	};
+
+
+	myHplApp.cockpit.controller.clearPilotScoreRefreshTick  = function() {
+		clearInterval(pilotScoreRefreshTick);
+	};
+	
+
 	myHplApp.cockpit.controller.setAmmoPctTick = function() {
 		ammoPctTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setAmmoPct()},300);
 	};
@@ -94,7 +131,25 @@
 	myHplApp.cockpit.controller.clearAmmoPctTick = function() {
 		clearInterval(ammoPctTick);
 	};
+
+	myHplApp.cockpit.controller.setDatalinkRefreshTick = function() {
+		datalinkRefreshTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setDatalinkRefresh()},1000);
+	};
+
 	
+	myHplApp.cockpit.controller.clearDatalinkRefreshTick = function() {
+		clearInterval(datalinkRefreshTick);
+	};
+
+	myHplApp.cockpit.controller.setOrbitalRefreshTick = function() {
+		orbitalRefreshTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setOrbitalRefresh()},1000);
+	};
+
+	
+	myHplApp.cockpit.controller.clearDatalinkRefreshTick = function() {
+		clearInterval(orbitalRefreshTick);
+	};
+
 	myHplApp.cockpit.controller.initGauges = function() {
 		console.log('Initialising cockpit controller gauges');
 		

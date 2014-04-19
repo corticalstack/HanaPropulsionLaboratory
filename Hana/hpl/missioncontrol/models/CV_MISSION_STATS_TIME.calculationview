@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_MISSION_STATS_TIME" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="internal" calculationScenarioType="SCRIPT_BASED" dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true">
+  <descriptions defaultDescription="Mission idle time"/>
+  <localVariables>
+    <variable id="IP_MISSIONID" parameter="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <variableProperties datatype="NVARCHAR" length="6" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_VEHICLEID" parameter="true">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <variableProperties datatype="NVARCHAR" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_PILOTID" parameter="true">
+      <descriptions defaultDescription="Pilot ID"/>
+      <variableProperties datatype="NVARCHAR" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute datatype="NVARCHAR" id="LABEL" length="10"/>
+        <viewAttribute datatype="DECIMAL" id="SECONDS" length="7" scale="2"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <localVariable>#IP_MISSIONID</localVariable>
+      <localVariable>#IP_VEHICLEID</localVariable>
+      <localVariable>#IP_PILOTID</localVariable>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+
+
+	call &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.procedures::get_mission_time_idle&quot; (:IP_MISSIONID,IP_VEHICLEID,IP_PILOTID, lvSecondsIdle);
+	call &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.procedures::get_mission_time_motion&quot; (:IP_MISSIONID,IP_VEHICLEID,IP_PILOTID, lvSecondsMotion);     
+
+    var_out = select label, seconds from :lvSecondsIdle 
+    			union all 
+    		  select label, seconds from :lvSecondsMotion
+    		  	union all
+    		  select 'PCTIDLE' as &quot;LABEL&quot;, ABS(A.seconds / (A.seconds + B.seconds) * 100) from :lvSecondsIdle A 
+    		  	inner join :lvSecondsMotion B on A.IDX = B.IDX
+    		  	union all
+    		  select 'PCTMOTION' as &quot;LABEL&quot;, ABS(B.seconds / (A.seconds + B.seconds) * 100) from :lvSecondsIdle A 
+    		  	inner join :lvSecondsMotion B on A.IDX = B.IDX;
+	
+END /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="LABEL" order="1">
+        <descriptions defaultDescription="LABEL"/>
+        <keyMapping columnObjectName="Script_View" columnName="LABEL"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="SECONDS" order="2" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="SECONDS"/>
+        <measureMapping columnObjectName="Script_View" columnName="SECONDS"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

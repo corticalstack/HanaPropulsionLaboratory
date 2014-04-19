@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Scenario terrain",
+  "content": "Scenario terrain ",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-25 13:31:15.8060000",
+  "activated_at": "2014-04-17 14:31:47.5140000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,14 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "3"
+  "version_id": "1"
  },
- "name": "AT_SCENARIO_TERRAIN",
- "package": "hpl.missioncontrol.models",
- "suffix": "attributeview",
- "tenant": "",
- "type": "100",
  "version": {
   "versionType": "1"
- }
+ },
+ "package": "hpl.missioncontrol.models",
+ "name": "AT_SCENARIO_TERRAIN",
+ "suffix": "attributeview"
 }

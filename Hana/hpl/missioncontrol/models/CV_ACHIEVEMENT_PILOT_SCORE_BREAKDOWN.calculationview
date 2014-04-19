@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_ACHIEVEMENT_PILOT_SCORE_BREAKDOWN" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="Achievement breakdown by pilot  "/>
+  <localVariables>
+    <variable id="IP_MISSIONID" parameter="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_VEHICLEID" parameter="true">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_PILOTID" parameter="true">
+      <descriptions defaultDescription="Pilot ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="hpl.missioncontrol.models_DT_ACHIEVEMENT_PILOT_SCORE_RV" type="DATA_BASE_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="_SYS_BIC" columnObjectName="hpl.missioncontrol.models/DT_ACHIEVEMENT_PILOT_SCORE/RV" alias="hpl.missioncontrol.models_DT_ACHIEVEMENT_PILOT_SCORE_RV"/>
+    </DataSource>
+    <DataSource id="AT_ACHIEVEMENT" type="ATTRIBUTE_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/hpl.missioncontrol.models/attributeviews/AT_ACHIEVEMENT</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Score">
+      <viewAttributes>
+        <viewAttribute id="MISSIONID_MISSIONID">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_MISSIONID$$"/>
+        </viewAttribute>
+        <viewAttribute id="VEHICLEID_VEHICLEID">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_VEHICLEID$$"/>
+        </viewAttribute>
+        <viewAttribute id="PILOTID_PILOTID">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_PILOTID$$"/>
+        </viewAttribute>
+        <viewAttribute id="MESSAGECATEGORYID"/>
+        <viewAttribute id="MESSAGEID_MESSAGEID"/>
+        <viewAttribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <viewAttribute id="CONDITIONID"/>
+        <viewAttribute id="CA_ACHIEVEMENT_VALUE"/>
+        <viewAttribute id="SCORE">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="false" value="0"/>
+        </viewAttribute>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#hpl.missioncontrol.models_DT_ACHIEVEMENT_PILOT_SCORE_RV">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MISSIONID_MISSIONID" source="MISSIONID_MISSIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VEHICLEID_VEHICLEID" source="VEHICLEID_VEHICLEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PILOTID_PILOTID" source="PILOTID_PILOTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MESSAGECATEGORYID" source="MESSAGECATEGORYID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MESSAGEID_MESSAGEID" source="MESSAGEID_MESSAGEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CA_ACHIEVEMENT_KEYFRAME_GROUP" source="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CONDITIONID" source="CONDITIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CA_ACHIEVEMENT_VALUE" source="CA_ACHIEVEMENT_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCORE" source="PA_SCORE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Achievement">
+      <viewAttributes>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="VISUALURI"/>
+        <viewAttribute id="CONDITIONID"/>
+        <viewAttribute id="MULTIPLIER"/>
+        <viewAttribute id="POINTS"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="ACHIEVEMENTID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#AT_ACHIEVEMENT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VISUALURI" source="VISUALURI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CONDITIONID" source="CONDITIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MULTIPLIER" source="MULTIPLIER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POINTS" source="POINTS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ACHIEVEMENTID" source="ACHIEVEMENTID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <viewAttribute id="CONDITIONID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="VISUALURI"/>
+        <viewAttribute id="SCORE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Score">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CA_ACHIEVEMENT_KEYFRAME_GROUP" source="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CONDITIONID" source="CONDITIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCORE" source="SCORE"/>
+      </input>
+      <input node="#Achievement">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VISUALURI" source="VISUALURI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CONDITIONID" source="CONDITIONID"/>
+      </input>
+      <joinAttribute name="CONDITIONID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <attributes>
+      <attribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <keyMapping columnObjectName="Join_1" columnName="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+      </attribute>
+      <attribute id="CONDITIONID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CONDITIONID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CONDITIONID"/>
+      </attribute>
+      <attribute id="NAME" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TEXT"/>
+        <keyMapping columnObjectName="Join_1" columnName="NAME"/>
+      </attribute>
+      <attribute id="VISUALURI" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VISUALURI"/>
+        <keyMapping columnObjectName="Join_1" columnName="VISUALURI"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="SCORE" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="SCORE"/>
+        <measureMapping columnObjectName="Join_1" columnName="SCORE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Score" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="264"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Achievement" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="264"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="166"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -55,48 +55,49 @@ function missionLogPump(){
 
 	
 	
-	var commsTick           = null,
-		voltage             = null,		
-		current             = null,
-		amps                = null,
-		consumedMah         = null,
-        batteryRemaining    = null,
-        cameraPanPos        = null,
-        inertialAccelX      = null,
-        inertialAccelY      = null,
-        inertialAccelZ      = null,
-        proximityRear       = null,
-        proximityFront      = null,
-        proximityCam        = null,	
-        leftEngineThrust    = null,
-        rightEngineThrust   = null,
-        gpsSolFixType       = null,		
-        gpsSolNumSats       = null,
-        gpsPosLongitude     = null,
-        gpsPosLatitude      = null,
-        gpsPosAltitude      = null,
-        gpsVelHeading       = null,
-        gpsVelSpeedCms      = null,
-        compassBearing      = null,    
-        direction           = null,	
-        heading             = null,
-        throttle            = null,
-        rotate              = null,
-        stop                = null,
-        cameraPanTilt       = null,
-        weaponActive        = null,	
-        weaponFire          = null,
-        weaponStop			= null,
-        mapType             = null,
-        mapZoom             = null,
-        laser               = null;
+	var commsTick                    = null,
+		voltage                      = null,		
+		current                      = null,
+		amps                         = null,
+		consumedMah                  = null,
+        batteryRemaining             = null,
+        cameraPanPos                 = null,
+        inertialAccelX               = null,
+        inertialAccelY               = null,
+        inertialAccelZ               = null,
+        proximityRear                = null,
+        proximityFront               = null,
+        proximityCam                 = null,	
+        leftEngineThrust             = null,
+        rightEngineThrust            = null,
+        gpsSolFixType                = null,		
+        gpsSolNumSats                = null,
+        gpsPosLongitude              = null,
+        gpsPosLatitude               = null,
+        gpsPosAltitude               = null,
+        distanceTravelledPrevToHereM = null,
+        gpsVelHeading                = null,
+        gpsVelSpeedCms               = null,
+        compassBearing               = null,    
+        direction                    = null,	
+        heading                      = null,
+        throttle                     = null,
+        rotate                       = null,
+        stop                         = null,
+        cameraPanTilt                = null,
+        weaponActive                 = null,	
+        weaponFire                   = null,
+        weaponStop			         = null,
+        mapType                      = null,
+        mapZoom                      = null,
+        laser                        = null;
 		
 		
 			
 	try {
         p_timeStamp           = parseInt(p_timeStamp, 10);
         var messageFeedFields = p_feed.split(',');
-		query = 'INSERT INTO "hpl.missioncontrol.data::MC.Mission.MissionLog" values("MISSIONCONTROL"."hpl.missioncontrol.data::missionLogId".nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';		
+		query = 'INSERT INTO "hpl.missioncontrol.data::MC.Mission.MissionLog" values("MISSIONCONTROL"."hpl.missioncontrol.data::missionLogId".nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';		
 		pstmt = conn.prepareStatement(query);
 		
 		switch(p_messageCategoryId) {
@@ -149,9 +150,10 @@ function missionLogPump(){
 						gpsSolNumSats = parseInt(messageFeedFields[1],10);
 						break;
 					case messageId.gpsPos:
-						gpsPosLongitude = parseFloat(messageFeedFields[0]);
-						gpsPosLatitude  = parseFloat(messageFeedFields[1]);
-						gpsPosAltitude  = parseFloat(messageFeedFields[2]);
+						gpsPosLongitude              = parseFloat(messageFeedFields[0]);
+						gpsPosLatitude               = parseFloat(messageFeedFields[1]);
+						gpsPosAltitude               = parseFloat(messageFeedFields[2]);
+						distanceTravelledPrevToHereM = parseFloat(messageFeedFields[3]);
 						break;
 					case messageId.gpsVel:
 						gpsVelHeading  = parseInt(messageFeedFields[0],10);
@@ -295,6 +297,7 @@ function missionLogPump(){
 		else {
 			pstmt.setDecimal(16,inertialAccelY);
 		}
+		
 		
 		
 		if (inertialAccelY== null) {
@@ -497,6 +500,7 @@ function missionLogPump(){
 			pstmt.setString(41,mapZoom);			
 		}
 
+		
 		if (laser == null) {
 			pstmt.setNull(42);
 		}
@@ -505,6 +509,14 @@ function missionLogPump(){
 		}
 
 
+		if (distanceTravelledPrevToHereM == null) {
+			pstmt.setNull(43);
+		}
+		else {
+			pstmt.setDecimal(43,distanceTravelledPrevToHereM);			
+		}
+
+		
 		pstmt.execute();  
 
 		

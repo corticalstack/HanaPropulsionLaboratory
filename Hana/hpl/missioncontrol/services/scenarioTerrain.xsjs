@@ -3,12 +3,17 @@ function scenarioTerrain(){
 		 return {
 			 "terrainId": rs.getNString(2),
 			 "shapeId": rs.getNString(3),
-			 "text": rs.getString(4),
+			 "shapeDescription": rs.getString(4),
 			 "geometry": JSON.parse(rs.getNString(5)),
 			 "hitpoints": rs.getString(6),
 			 "healthpoints": rs.getString(7),
 			 "multiplier": rs.getString(8),
-			 "infillcoulourid": rs.getString(9)
+			 "terrainName": rs.getString(9),
+			 "strokeColourHex": rs.getString(10),
+			 "strokeOpacity": rs.getString(11),
+			 "strokeWeight": rs.getString(12),
+			 "fillColourHex": rs.getString(13),
+			 "fillOpacity": rs.getString(14)
 		 };
 	}
 	
@@ -23,7 +28,7 @@ function scenarioTerrain(){
 		
 	try {
     
-		query = 'select SCENARIOID, TERRAINID, SHAPEID, TEXT, SHAPE.ST_AsGeoJSON() as "GEOJSON", HITPOINTS, HEALTHPOINTS, MULTIPLIER, INFILLCOLOURID from "_SYS_BIC"."hpl.missioncontrol.models/AT_SCENARIO_TERRAIN"';		
+		query = 'select SCENARIOID, TERRAINID, SHAPEID, SHAPEDESCRIPTION, SHAPE.ST_AsGeoJSON() as "GEOJSON", HITPOINTS, HEALTHPOINTS, MULTIPLIER, TERRAINNAME, STROKECOLOURHEX, STROKEOPACITY, STROKEWEIGHT, FILLCOLOURHEX, FILLOPACITY from "_SYS_BIC"."hpl.missioncontrol.models/AT_SCENARIO_TERRAIN"';		
 		pstmt = conn.prepareStatement(query);						
 
 		var rs = pstmt.executeQuery();  

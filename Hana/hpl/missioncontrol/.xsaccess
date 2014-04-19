@@ -1,6 +1,6 @@
 {
         "exposed":true,
-        "cors" : { "enabled" : true },
+         "cors" : { "enabled" : true },
         "authentication" : null,
-        "anonymous_connection" : "hpl.missioncontrol.services::anonConn"        
+        "anonymous_connection" : "hpl.missioncontrol.services::anonConn"    
 }

@@ -1,0 +1,7 @@
+service namespace "hpl.missioncontrol.services" {
+   "hpl.missioncontrol.models::CV_ACHIEVEMENT_PILOT_SCORE" 
+    as "missionPilotScore" with ("SCORE")
+    keys generate local "ID"
+  	aggregates always
+  	parameters via entity "InputParams";   	  	    	 	
+}

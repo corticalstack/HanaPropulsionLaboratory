@@ -32,8 +32,8 @@ declare CURSOR c_mission FOR
     	SELECT MISSIONLOGID, GPSPOSLONGITUDE, GPSPOSLATITUDE 
     			from "hpl.missioncontrol.data::MC.Mission.MissionLog" 
     			where "MISSIONID.MISSIONID" = :im_missionid and
-    			 	  "VEHICLEID.VEHICLEID" = :im_missionid and
-    			      "PILOTID.PILOTID" = :im_missionid and
+    			 	  "VEHICLEID.VEHICLEID" = :im_vehicleid and
+    			      "PILOTID.PILOTID"     = :im_pilotid and
     			      "MESSAGEID.MESSAGEID" = 'GPP' 
     			order by MISSIONLOGID;
 

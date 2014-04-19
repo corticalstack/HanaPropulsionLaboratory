@@ -42,6 +42,12 @@ import = [
                 header = false;
             },
             { 
+                table = "hpl.missioncontrol.data::MC.MasterData.Colours";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:colours.csv";
+                header = false;
+            },                                                                                                                                                   
+            { 
                 table = "hpl.missioncontrol.data::MC.MasterData.Terrain";
                 schema = "MISSIONCONTROL"; 
                 file = "hpl.missioncontrol.data.loads:terrain.csv";

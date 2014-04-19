@@ -35,7 +35,8 @@ sap.ui.jsview("cockpit_ui_resources.cockpit", {
     	 
     	 buildPaneDrive(oController,oLayout);
     	 buildPaneGyro(oController,oLayout);
-    	 buildPaneEarthTime(oController,oLayout);    	         	
+    	 buildPaneEarthTime(oController,oLayout);    
+    	 buildPanePilotScore(oController,oLayout);
     	 buildPanePower(oController,oLayout);
     	 buildPanePrimarySystems(oController,oLayout);    	 
     	 buildPaneNavigation(oController,oLayout);
@@ -338,6 +339,48 @@ function buildPaneEarthTime(oController,oLayout){
 	
 }
 
+function buildPanePilotScore(oController,oLayout){
+	 
+	var omlPanePilotScore = new sap.ui.commons.layout.MatrixLayout({
+			id:				"mlPanePilotScore",			
+			columns:		2,
+			width:			"84px",
+		    layoutFixed: 	true
+	});	
+	
+	var oimgPilotPortrait = new sap.ui.commons.Image({
+	    	id: 			'imgPilotPortrait',
+	    	src: 			'assets/images/trans.jpg',
+	        width: 			"84px",
+	        height: 		"84px"
+	});
+	
+	var olblStatPilotScore = new sap.ui.commons.Label({
+			id:				"lblStatPilotScore", 
+			text: 			"Score",
+			width:			"100%",
+			textAlign: 		"Center",
+	});
+
+	var olblValPilotScore = new sap.ui.commons.Label({
+			id: 			"lblValPilotScore",	
+			text: 			"0",
+			width:			"100%",
+			textAlign: 		"Center",
+	});
+
+	
+	omlCell1 = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 2});
+	omlRow1	 = new sap.ui.commons.layout.MatrixLayoutRow();
+	omlCell1.addContent(oimgPilotPortrait);	
+	omlRow1.addCell(omlCell1);
+
+	omlPanePilotScore.addRow(omlRow1);	
+	omlPanePilotScore.createRow(olblStatPilotScore, olblValPilotScore);
+	oLayout.createRow(omlPanePilotScore);   	 
+}
+
+
 function buildPaneTotalNetworkTrafficIn(oController,oLayout){
 	var omlPaneTotalNetworkTrafficIn = new sap.ui.commons.layout.MatrixLayout({
 			id:				"mlPaneTotalNetworkTrafficIn",
@@ -550,21 +593,6 @@ function buildPaneNavigation(oController,oLayout){
     		text: 		"",
     		textAlign: 	"Right",
     		width: 		"70px"	    	
-	});
-
-
-	var olblStatusFixType = new sap.ui.commons.Label({
-	    	id: 		"lblStatusFixType",
-	    	text: 		myHplApp.controller.getTextFromBundle("fixtype"),
-	    	width: 		"75px"
-	});
-	
-	 
-	var olblValFixType = new sap.ui.commons.Label({
-	    	id: 		"lblValFixType",
-	    	text: 		"",
-	    	textAlign: 	"Right",
-	    	width: 		"70px"	    	
 	});
 
 
@@ -784,6 +812,7 @@ function buildPaneMissionControl(oController,oLayout){
     		width: 		"100%"
     });
 
+	var oControl; 
 	var omlCellPaneMissionControlTitle 	= new sap.ui.commons.layout.MatrixLayoutCell();
 	var omlRowPaneMissionControlTitle 	= new sap.ui.commons.layout.MatrixLayoutRow({height: "30px"});
 
@@ -800,59 +829,393 @@ function buildPaneMissionControl(oController,oLayout){
     });
 	
 
+    //Tab 1 - Mission
+	var omlMission = new sap.ui.commons.layout.MatrixLayout({
+		   id : "mlMission",
+		   width:"100%"
+	});
+
+	////
+	var missionPilotScoreBreakdownUri = myHplApp.missioncontrol.model.getConfigServicePilotScoreBreakdownUri();
+	var odataModelPilotScoreBreakdown = new sap.ui.model.odata.ODataModel(missionPilotScoreBreakdownUri, false);	
+	var otblPilotScoreBreakdown 	  = new sap.ui.table.Table({tableId: "tblPilotScoreBreakdown", 
+															    visibleRowCount: 		5, 
+															    columnHeaderVisible: 	false,
+															    selectionMode: 			"None", 
+															    editable: 				false, 
+															    enableColumnReordering: false
+	}); 
+
+	odataModelPilotScoreBreakdown.setCountSupported(false); 
+	
+	
+	  
+
+	oControl = new sap.ui.commons.TextField({value: "{CA_ACHIEVEMENT_KEYFRAME_GROUP}"}); 
+	otblPilotScoreBreakdown.addColumn(new sap.ui.table.Column({label: 			new sap.ui.commons.Label({text:"Keyframe Group"}), 
+													           visible: 		false, 
+													           template: 		oControl, 
+													           sortProperty: 	"CA_ACHIEVEMENT_KEYFRAME_GROUP", 
+													           filterProperty: 	"CA_ACHIEVEMENT_KEYFRAME_GROUP" 
+	})); 
+
+	
+	oControl = new sap.ui.commons.TextField({value: "{CONDITIONID}"}); 
+	otblPilotScoreBreakdown.addColumn(new sap.ui.table.Column({label:			new sap.ui.commons.Label({text:"Condition ID"}), 
+															   visible: 		false, 
+															   template: 		oControl, 
+															   sortProperty: 	"CONDITIONID", 
+															   filterProperty: 	"CONDITIONID" 
+	}));  
+
+	
+	oControl = new sap.ui.commons.Image({src: 		"{VISUALURI}", 
+										 width: 	"30px", 
+										 height: 	"30px" }); 
+	
+	otblPilotScoreBreakdown.addColumn(new sap.ui.table.Column({label:			new sap.ui.commons.Label({text:"URI"}), 
+		                                                       template: 		oControl, 
+		                                                       width: 			"30px" 
+	})); 
+
+	
+	oControl = new sap.ui.commons.TextField({value: "{NAME}"}); 
+	oControl.addStyleClass("lblPilotAchivementName");
+	otblPilotScoreBreakdown.addColumn(new sap.ui.table.Column({label:			new sap.ui.commons.Label({text:"Name"}), 
+															   template: 		oControl, 
+															   width: 			"50px" 
+	})); 
+
+	
+	oControl = new sap.ui.commons.TextField({value: "{SCORE}"}); 
+	oControl.addStyleClass("lblPilotAchivementScore");
+	otblPilotScoreBreakdown.addColumn(new sap.ui.table.Column({label:			new sap.ui.commons.Label({text:"Score"}), 
+															   template: 		oControl, 
+															   sortProperty: 	"SCORE", 
+															   filterProperty: 	"SCORE", 
+															   width: 			"50px" 
+	}));  
+
+	otblPilotScoreBreakdown.setModel(odataModelPilotScoreBreakdown); 
+	
+	var mdlSort = new sap.ui.model.Sorter("CA_ACHIEVEMENT_KEYFRAME_GROUP");
+	var pilotScoreBreakdownParams = '/InputParams(IP_MISSIONID=\'' +
+			myHplApp.missioncontrol.model.getActiveMissionId() +
+			'\',IP_VEHICLEID=\'' +
+			myHplApp.missioncontrol.model.getActiveVehicleId() +
+			'\',IP_PILOTID=\'' +
+			myHplApp.missioncontrol.model.getActivePilotId() + 
+			'\')/Results';
+	
+	otblPilotScoreBreakdown.bindRows(pilotScoreBreakdownParams,mdlSort);
+    omlMission.createRow(otblPilotScoreBreakdown);
     
-    //Tab 1 - Commlink Status
+    otstrMissionControl.createTab("Mission",omlMission);
+    myHplApp.cockpit.model.setModelPilotScoreBreakdown(odataModelPilotScoreBreakdown);
+    
+	
+    //Tab 2 - Commlink Status
 	var omlCommlink = new sap.ui.commons.layout.MatrixLayout({
-			id: 		"mlCommlink", 
-			width: 		"100%"
+		   id : "mlCommlink",
+		   columns: 2,
+		   width:"100%"
 	});
 	
-
-	var ohtmlIframeMcDatalink = new sap.ui.core.HTML({  
-    	content: '<iframe id="iframeMcDatalink" width="582px" height="482px" frameBorder="0">Mission Control Offline!!!</iframe>',
-    	preferDOM : true,   
-    	afterRendering: function() {  
-    		newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/datalink.html?missionId=' + 
-    		myHplApp.missioncontrol.model.getActiveMissionId() +
-    		'&vehicleId=' +
-    		myHplApp.missioncontrol.model.getActiveVehicleId() +
-    		'&pilotId=' +
-    		myHplApp.missioncontrol.model.getActivePilotId();
-    		$("#iframeMcDatalink").load(function() {  
-    			$("#iframeMcDatalink").attr("width","582px").attr("height","482px");  
-    		}).attr("src",newSrc);  
-    	}
+	
+	//Message Category ID counts
+	var olblStatCountNavigation = new sap.ui.commons.Label({
+			id:			"lblStatCountNavigation", 
+			text: 		'Navigation Count'
 	});
 
-    omlCommlink.createRow(ohtmlIframeMcDatalink);
+	var olblValStatCountNavigation = new sap.ui.commons.Label({
+			id: 		"lblValStatCountNavigation",	
+			text: 		""
+	});
+	
+	omlCommlink.createRow(olblStatCountNavigation, olblValStatCountNavigation);
+ 
+
+	var olblStatCountCockpit = new sap.ui.commons.Label({
+			id:			"lblStatCountCockpit", 
+			text: 		'Cockpit Count'
+	});
+	
+	var olblValStatCountCockpit = new sap.ui.commons.Label({
+			id:			"lblValStatCountCockpit",
+			text: 		""
+	});
+
+	omlCommlink.createRow(olblStatCountCockpit, olblValStatCountCockpit);
+ 
+ 
+	var olblStatCountNotification = new sap.ui.commons.Label({
+			id:			"lblStatCountNotification", 
+			text: 		'Notification Count'
+	});
+	
+	var olblValStatCountNotification = new sap.ui.commons.Label({
+			id: 		"lblValStatCountNotification",
+			text: 		""
+	});
+	
+	
+	omlCommlink.createRow(olblStatCountNotification, olblValStatCountNotification);
+ 
+
+	var olblStatCountSensor = new sap.ui.commons.Label({
+			id:			"lblStatCountSensor",
+			text: 		'Sensor Count'
+	});
+	
+	var olblValStatCountSensor = new sap.ui.commons.Label({
+			id:			"lblValStatCountSensor",
+			text: 		""
+	});
+
+	omlCommlink.createRow(olblStatCountSensor, olblValStatCountSensor);
+ 
+
+	var olblStatCountPower = new sap.ui.commons.Label({
+			id:			"lblStatCountPower",
+			text: 		'Power Count'
+	});
+	
+	var olblValStatCountPower = new sap.ui.commons.Label({
+			id:			"lblValStatCountPower",
+			text : ""
+	});
+	
+	omlCommlink.createRow(olblStatCountPower, olblValStatCountPower);
+
+ 
+	var olblStatCountDrive = new sap.ui.commons.Label({
+			id:			"lblStatCountDrive", 
+			text: 		'Drive Count'
+	});
+	
+	var olblValStatCountDrive = new sap.ui.commons.Label({
+			id:			"lblValStatCountDrive",
+			text: 		""
+	});
+	
+	omlCommlink.createRow(olblStatCountDrive, olblValStatCountDrive);
+
+     
     otstrMissionControl.createTab("COMMLINK STATUS",omlCommlink);
     
     
     
-    //Tab 2 - Orbital
+   
+    //Tab 2 - Orbital Status
 	var omlOrbital = new sap.ui.commons.layout.MatrixLayout({
-		id: 		"mlOrbital", 
-		width: 		"100%"
+		   id : "mlOrbital",
+		   columns: 2,
+		   width:"100%"
+	});
+	
+	
+	//Average Speed
+	var olblStatSpeedAvgCms = new sap.ui.commons.Label({
+			id:			"lblStatSpeedAvgCms", 
+			text: 		'Avg Speed CMS'
+	});
+	
+	var olblValStatSpeedAvgCms = new sap.ui.commons.Label({
+			id:			"lblValStatSpeedAvgCms",
+			text: 		""
 	});
 
+	omlOrbital.createRow(olblStatSpeedAvgCms, olblValStatSpeedAvgCms);
 
-	var ohtmlIframeMcOrbital = new sap.ui.core.HTML({  
-		content: '<iframe id="iframeMcOrbital" width="582px" height="482px" frameBorder="0">Mission Control Offline!!!</iframe>',
-		preferDOM : true,   
-		afterRendering: function() {  
-			newSrc = 'http://hanaserver/hpl/missioncontrol/MissionControl_UI/WebContent/orbital.html?missionId=' + 
-			myHplApp.missioncontrol.model.getActiveMissionId() +
-			'&vehicleId=' +
-			myHplApp.missioncontrol.model.getActiveVehicleId() +
-			'&pilotId=' +
-			myHplApp.missioncontrol.model.getActivePilotId();
-			$("#iframeMcOrbital").load(function() {  
-				$("#iframeMcOrbital").attr("width","582px").attr("height","482px");  
-			}).attr("src",newSrc);  
-		}
+
+	var olblStatSpeedAvgKph = new sap.ui.commons.Label({
+			id:			"lblStatSpeedAvgKph", 
+			text: 		'Avg Speed Kph'
+	});
+	
+	var olblValStatSpeedAvgKph = new sap.ui.commons.Label({
+			id:			"lblValStatSpeedAvgKph",
+			text: 		""
 	});
 
-	omlOrbital.createRow(ohtmlIframeMcOrbital);
+	omlOrbital.createRow(olblStatSpeedAvgKph, olblValStatSpeedAvgKph);
+
+ 
+	var olblStatSpeedAvgMph = new sap.ui.commons.Label({
+			id:			"lblStatSpeedAvgMph", 
+			text: 		'Avg Speed MPH'
+	});
+	
+	var olblValStatSpeedAvgMph = new sap.ui.commons.Label({
+			id:			"lblValStatSpeedAvgMph",
+			text: 		""
+	});
+	
+	omlOrbital.createRow(olblStatSpeedAvgMph, olblValStatSpeedAvgMph);
+
+ 
+	//Max Speed
+	var olblStatSpeedMaxCms = new sap.ui.commons.Label({
+			id:			"lblStatSpeedMaxCms", 
+			text: 		'Max Speed CMS'
+	});
+	
+	var olblValStatSpeedMaxCms = new sap.ui.commons.Label({
+			id:			"lblValStatSpeedMaxCms",
+			text: 		""
+	});
+
+	omlOrbital.createRow(olblStatSpeedMaxCms, olblValStatSpeedMaxCms);
+
+
+	var olblStatSpeedMaxKph = new sap.ui.commons.Label({
+			id:			"lblStatSpeedMaxKph", 
+			text: 		'Max Speed KPH'
+	});
+	
+	var olblValStatSpeedMaxKph = new sap.ui.commons.Label({
+			id:			"lblValStatSpeedMaxKph",
+			text: 		""
+	});
+
+	omlOrbital.createRow(olblStatSpeedMaxKph, olblValStatSpeedMaxKph);
+
+	var olblStatSpeedMaxMph = new sap.ui.commons.Label({
+			id:			"lblStatSpeedMaxMph", 
+			text: 		'Max Speed MPH'
+	});
+	
+	
+	var olblValStatSpeedMaxMph = new sap.ui.commons.Label({
+			id:			"lblValStatSpeedMaxMph",
+			text : ""
+	});
+		
+	omlOrbital.createRow(olblStatSpeedMaxMph, olblValStatSpeedMaxMph);
+
+ 
+	//Minimum Altitude
+	var olblStatAltMinM = new sap.ui.commons.Label({
+			id:			"lblStatAltMinM", 
+			text: 		'Min Alt M'
+	});
+	
+	var olblValStatAltMinM = new sap.ui.commons.Label({
+			id:			"lblValStatAltMinM",
+			text: 		""
+	});
+	
+	omlOrbital.createRow(olblStatAltMinM, olblValStatAltMinM);
+
+	
+	var olblStatAltMinFt = new sap.ui.commons.Label({
+			id:			"lblStatAltMinFt", 
+			text: 		'Min Alt Ft'
+	});
+	
+	var olblValStatAltMinFt = new sap.ui.commons.Label({
+			id:			"lblValStatAltMinFt",
+			text: 		""
+	});
+			
+	omlOrbital.createRow(olblStatAltMinFt, olblValStatAltMinFt);
+
+ 
+	//Maximum Altitude
+	var olblStatAltMaxM = new sap.ui.commons.Label({
+			id:			"lblStatAltMaxM", 
+			text: 		'Max AltM'
+	});
+	
+	var olblValStatAltMaxM = new sap.ui.commons.Label({
+			id:			"lblValStatAltMaxM",
+			text: 		""
+	});
+		
+	omlOrbital.createRow(olblStatAltMaxM, olblValStatAltMaxM);
+
+	
+	var olblStatAltMaxFt = new sap.ui.commons.Label({
+			id:			"lblStatAltMaxFt", 
+			text: 		'Max Alt Ft'
+	});
+	
+	var olblValStatAltMaxFt = new sap.ui.commons.Label({
+			id:			"lblValStatAltMaxFt",
+			text: 		""
+	});
+	
+	omlOrbital.createRow(olblStatAltMaxFt, olblValStatAltMaxFt);
+
+ 
+	//Average Altitude
+	var olblStatAltAvgM = new sap.ui.commons.Label({
+			id:			"lblStatAltAvgM", 
+			text: 		'Avg Alt M'
+	});
+	
+	var olblValStatAltAvgM = new sap.ui.commons.Label({
+			id:			"lblValStatAltAvgM",
+			text: 		""
+	});
+	
+	omlOrbital.createRow(olblStatAltAvgM, olblValStatAltAvgM);
+
+	var olblStatAltAvgFt = new sap.ui.commons.Label({
+			id:			"lblStatAltAvgFt", 
+			text: 		'Avg Alt Ft'
+	});
+	
+	var olblValStatAltAvgFt = new sap.ui.commons.Label({
+			id:			"lblValStatAltAvgFt",
+			text: 		""
+	});
+	
+	
+	omlOrbital.createRow(olblStatAltAvgFt, olblValStatAltAvgFt);
+
+     
+	//Distance Travelled
+	var olblStatTravelledM = new sap.ui.commons.Label({
+			id:			"lblStatTravelledM", 
+			text: 		'Travelled M'
+	});
+	
+	var olblValStatTravelledM = new sap.ui.commons.Label({
+			id:			"lblValStatTravelledM",
+			text: 		""
+	});
+	
+	omlOrbital.createRow(olblStatTravelledM, olblValStatTravelledM);
+	
+	
+	var olblStatTravelledKm = new sap.ui.commons.Label({
+		id:			"lblStatTravelledKm", 
+		text: 		'Travelled KM'
+	});
+
+	var olblValStatTravelledKm = new sap.ui.commons.Label({
+		id:			"lblValStatTravelledKm",
+		text: 		""
+	});
+
+	omlOrbital.createRow(olblStatTravelledKm, olblValStatTravelledKm);
+
+
+	var olblStatTravelledMiles = new sap.ui.commons.Label({
+		id:			"lblStatTravelledMiles", 
+		text: 		'Travelled Miles'
+	});
+
+	var olblValStatTravelledMiles = new sap.ui.commons.Label({
+		id:			"lblValStatTravelledMiles",
+		text: 		""
+	});
+
+	omlOrbital.createRow(olblStatTravelledMiles, olblValStatTravelledMiles);
+
+	
 	otstrMissionControl.createTab("ORBITAL STATUS",omlOrbital);
     
     

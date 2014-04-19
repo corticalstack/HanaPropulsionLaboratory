@@ -1,109 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_ACHIEVEMENT_PILOT_SCORE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="internal" calculationScenarioType="SCRIPT_BASED" dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_ACHIEVEMENT_PILOT_SCORE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
   <descriptions defaultDescription="Achievement pilot score"/>
   <localVariables>
-    <variable id="IP_MISSION_FROM" parameter="true">
-      <descriptions defaultDescription="Mission from"/>
-      <variableProperties datatype="NVARCHAR" length="6" mandatory="true">
+    <variable id="IP_MISSIONID" parameter="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="6" mandatory="false">
         <valueDomain type="empty"/>
         <selection multiLine="false" type="SingleValue"/>
       </variableProperties>
     </variable>
-    <variable id="IP_MISSION_TO" parameter="true">
-      <descriptions defaultDescription="Mission to"/>
-      <variableProperties datatype="NVARCHAR" length="6" mandatory="true">
+    <variable id="IP_VEHICLEID" parameter="true">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
         <valueDomain type="empty"/>
         <selection multiLine="false" type="SingleValue"/>
       </variableProperties>
     </variable>
-    <variable id="IP_PILOT_FROM" parameter="true">
-      <descriptions defaultDescription="Pilot from"/>
-      <variableProperties datatype="NVARCHAR" length="3" mandatory="true">
-        <valueDomain type="empty"/>
-        <selection multiLine="false" type="SingleValue"/>
-      </variableProperties>
-    </variable>
-    <variable id="IP_PILOT_TO" parameter="true">
-      <descriptions defaultDescription="Pilot to"/>
-      <variableProperties datatype="NVARCHAR" length="3" mandatory="true">
+    <variable id="IP_PILOTID" parameter="true">
+      <descriptions defaultDescription="Pilot ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
         <valueDomain type="empty"/>
         <selection multiLine="false" type="SingleValue"/>
       </variableProperties>
     </variable>
   </localVariables>
   <variableMappings/>
-  <dataSources/>
+  <dataSources>
+    <DataSource id="hpl.missioncontrol.models_DT_ACHIEVEMENT_PILOT_SCORE_RV" type="DATA_BASE_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="_SYS_BIC" columnObjectName="hpl.missioncontrol.models/DT_ACHIEVEMENT_PILOT_SCORE/RV" alias="hpl.missioncontrol.models_DT_ACHIEVEMENT_PILOT_SCORE_RV"/>
+    </DataSource>
+  </dataSources>
   <calculationViews>
-    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
       <viewAttributes>
-        <viewAttribute datatype="NVARCHAR" id="MISSIONID" length="6"/>
-        <viewAttribute datatype="NVARCHAR" id="VEHICLEID" length="3"/>
-        <viewAttribute datatype="NVARCHAR" id="PILOTID" length="3"/>
-        <viewAttribute datatype="INTEGER" id="ACHIEVEMENTKEYFRAMEGROUP"/>
-        <viewAttribute datatype="NVARCHAR" id="CONDITIONID" length="6"/>
-        <viewAttribute datatype="NVARCHAR" id="MESSAGECATEGORYID" length="3"/>
-        <viewAttribute datatype="NVARCHAR" id="MESSAGEID" length="3"/>
-        <viewAttribute datatype="DECIMAL" id="GPSPOSLONGITUDE" length="9" scale="6"/>
-        <viewAttribute datatype="DECIMAL" id="GPSPOSLATITUDE" length="9" scale="6"/>
-        <viewAttribute datatype="DECIMAL" id="ACHIEVEMENTVALUE" length="10" scale="2"/>
-        <viewAttribute datatype="INTEGER" id="COUNT"/>
+        <viewAttribute id="MISSIONID_MISSIONID">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_MISSIONID$$"/>
+        </viewAttribute>
+        <viewAttribute id="VEHICLEID_VEHICLEID">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_VEHICLEID$$"/>
+        </viewAttribute>
+        <viewAttribute id="PILOTID_PILOTID">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_PILOTID$$"/>
+        </viewAttribute>
+        <viewAttribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <viewAttribute id="CONDITIONID"/>
+        <viewAttribute id="SCORE"/>
       </viewAttributes>
       <calculatedViewAttributes/>
-      <localVariable>#IP_MISSION_FROM</localVariable>
-      <localVariable>#IP_MISSION_TO</localVariable>
-      <localVariable>#IP_PILOT_FROM</localVariable>
-      <localVariable>#IP_PILOT_TO</localVariable>
-      <definition> 
- /********* Begin Procedure Script ************/ 
- BEGIN 
-
-	CALL &quot;MISSIONCONTROL&quot;.&quot;hpl.missioncontrol.procedures::get_mission_pilot_achievement&quot;(:IP_MISSION_FROM, :IP_MISSION_TO, :IP_PILOT_FROM, IP_PILOT_TO, :var_out);
-
-
-END /********* End Procedure Script ***********/</definition>
+      <input node="#hpl.missioncontrol.models_DT_ACHIEVEMENT_PILOT_SCORE_RV">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MISSIONID_MISSIONID" source="MISSIONID_MISSIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VEHICLEID_VEHICLEID" source="VEHICLEID_VEHICLEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PILOTID_PILOTID" source="PILOTID_PILOTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CA_ACHIEVEMENT_KEYFRAME_GROUP" source="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CONDITIONID" source="CONDITIONID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCORE" source="PA_SCORE"/>
+      </input>
     </calculationView>
   </calculationViews>
-  <logicalModel id="Script_View">
+  <logicalModel id="Projection_1">
     <attributes>
-      <attribute id="MISSIONID" order="1">
-        <descriptions defaultDescription="MISSIONID"/>
-        <keyMapping columnObjectName="Script_View" columnName="MISSIONID"/>
-      </attribute>
-      <attribute id="VEHICLEID" order="2">
-        <descriptions defaultDescription="VEHICLEID"/>
-        <keyMapping columnObjectName="Script_View" columnName="VEHICLEID"/>
-      </attribute>
-      <attribute id="PILOTID" order="3">
-        <descriptions defaultDescription="PILOTID"/>
-        <keyMapping columnObjectName="Script_View" columnName="PILOTID"/>
-      </attribute>
-      <attribute id="ACHIEVEMENTKEYFRAMEGROUP" order="4">
-        <descriptions defaultDescription="ACHIEVEMENTKEYFRAMEGROUP"/>
-        <keyMapping columnObjectName="Script_View" columnName="ACHIEVEMENTKEYFRAMEGROUP"/>
-      </attribute>
-      <attribute id="CONDITIONID" order="5">
+      <attribute id="CONDITIONID" hidden="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CONDITIONID"/>
-        <keyMapping columnObjectName="Script_View" columnName="CONDITIONID"/>
-      </attribute>
-      <attribute id="MESSAGECATEGORYID" order="6">
-        <descriptions defaultDescription="MESSAGECATEGORYID"/>
-        <keyMapping columnObjectName="Script_View" columnName="MESSAGECATEGORYID"/>
-      </attribute>
-      <attribute id="MESSAGEID" order="7">
-        <descriptions defaultDescription="MESSAGEID"/>
-        <keyMapping columnObjectName="Script_View" columnName="MESSAGEID"/>
-      </attribute>
-      <attribute id="GPSPOSLONGITUDE" order="8">
-        <descriptions defaultDescription="GPSPOSLONGITUDE"/>
-        <keyMapping columnObjectName="Script_View" columnName="GPSPOSLONGITUDE"/>
-      </attribute>
-      <attribute id="GPSPOSLATITUDE" order="9">
-        <descriptions defaultDescription="GPSPOSLATITUDE"/>
-        <keyMapping columnObjectName="Script_View" columnName="GPSPOSLATITUDE"/>
-      </attribute>
-      <attribute id="ACHIEVEMENTVALUE" order="10">
-        <descriptions defaultDescription="ACHIEVEMENTVALUE"/>
-        <keyMapping columnObjectName="Script_View" columnName="ACHIEVEMENTVALUE"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CONDITIONID"/>
       </attribute>
     </attributes>
     <calculatedAttributes/>
@@ -115,9 +74,9 @@ END /********* End Procedure Script ***********/</definition>
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="COUNT" order="11" aggregationType="sum" measureType="simple">
-        <descriptions defaultDescription="COUNT"/>
-        <measureMapping columnObjectName="Script_View" columnName="COUNT"/>
+      <measure id="SCORE" order="1" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="SCORE"/>
+        <measureMapping columnObjectName="Projection_1" columnName="SCORE"/>
       </measure>
     </baseMeasures>
     <calculatedMeasures/>
@@ -126,8 +85,13 @@ END /********* End Procedure Script ***********/</definition>
   </logicalModel>
   <layout>
     <shapes>
-      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="40" y="85"/>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="166"/>
+        <rectangleSize height="-1" width="-1"/>
       </shape>
     </shapes>
   </layout>

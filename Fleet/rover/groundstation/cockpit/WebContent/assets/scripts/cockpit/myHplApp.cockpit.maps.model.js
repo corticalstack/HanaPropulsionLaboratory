@@ -42,6 +42,10 @@
 	
 	
 	//Get methods for state
+	myHplApp.cockpit.maps.model.getStateGoogleMap = function() {
+		return state.googleMap;
+	};
+	
 	myHplApp.cockpit.maps.model.getStateLatLng = function() {
 		return state.latlng;
 	};
@@ -83,10 +87,13 @@
 	
 	myHplApp.cockpit.maps.model.setStateGoogleMapMarker = function(title) {
 		console.log('Set state GoogleMap Marker');
+
+		var iconMapPin = 'assets/images/hud/mapPin.png';
 		state.googleMapMarker = new google.maps.Marker({
 			position: 	state.latlng,
 			map: 		state.googleMap,
-			title: 		title
+			title: 		title,
+			icon:       iconMapPin
 		});
 	};
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cube:cube xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_MISSION_COCKPIT_STOPS" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
+  <descriptions defaultDescription="Pilot cockpit stops"/>
+  <localVariables>
+    <variable id="IP_MISSIONID" parameter="true">
+      <descriptions defaultDescription="Mission ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="6" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_VEHICLEID" parameter="true">
+      <descriptions defaultDescription="Vehicle ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="IP_PILOTID" parameter="true">
+      <descriptions defaultDescription="Pilot ID"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="1" length="3" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <privateMeasureGroup id="MeasureGroup">
+    <attributes>
+      <attribute id="MESSAGECATEGORYID_MESSAGECATEGORYID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
+        <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGECATEGORYID.MESSAGECATEGORYID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies>
+        <tableProxy centralTable="true">
+          <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog"/>
+          <columnFilter columnName="MISSIONID.MISSIONID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_MISSIONID$$"/>
+          </columnFilter>
+          <columnFilter columnName="VEHICLEID.VEHICLEID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_VEHICLEID$$"/>
+          </columnFilter>
+          <columnFilter columnName="PILOTID.PILOTID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_PILOTID$$"/>
+          </columnFilter>
+          <columnFilter columnName="MESSAGEID.MESSAGEID">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="STP"/>
+          </columnFilter>
+        </tableProxy>
+      </tableProxies>
+      <joins/>
+      <layout>
+        <shapes>
+          <shape modelObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+            <upperLeftCorner x="70" y="30"/>
+          </shape>
+        </shapes>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="MESSAGEID_MESSAGEID" order="2" aggregationType="count" measureType="simple">
+        <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="MESSAGEID.MESSAGEID"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <sharedDimensions/>
+    <layout>
+      <shapes>
+        <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
+          <upperLeftCorner x="300" y="200"/>
+        </shape>
+        <shape modelObjectName="LogicalView" modelObjectNameSpace="MeasureGroup" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize height="0" width="0"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateMeasureGroup>
+</Cube:cube>

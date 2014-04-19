@@ -25,23 +25,37 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
 	 * This hook is the same one that SAPUI5 controls get after being rendered.
 	 */
-	   onAfterRendering: function() {
-	//
-			$("#gyroContainer").parent().css({"overflow":"visible"});
-			$("#gaugeCurrent").parent().css({"overflow":"visible"});
-			$("#gaugeAmps").parent().css({"overflow":"visible"});
-			$("#gaugeConsumedMah").parent().css({"overflow":"visible"});
-			$("#gaugeBattRemaining").parent().css({"overflow":"visible"});
-			
-			sap.ui.getCore().byId("viewCockpit").getController().drawCrosshair();
-	   },
+	onAfterRendering: function() { 
+		$("#gyroContainer").parent().css({"overflow":"visible"});
+	    $("#gaugeCurrent").parent().css({"overflow":"visible"});
+	    $("#gaugeAmps").parent().css({"overflow":"visible"});
+	    $("#gaugeConsumedMah").parent().css({"overflow":"visible"});
+	    $("#gaugeBattRemaining").parent().css({"overflow":"visible"});
+	    $(".sapUiTableVScr").css({"overflow-x":"hidden"});
+	    $(".sapUiTableVScr").css({"overflow-y":"hidden"});
+	    $(".sapUiTableVSb").css({"overflow-x":"hidden"});
+	    $(".sapUiTableVSb").css({"overflow-y":"hidden"});
 
+			
+	    sap.ui.getCore().byId("viewCockpit").getController().drawCrosshair();
+			
+	},
+
+	
+	init: function() {
+		var pilot   = myHplApp.pilot.model.getPilotById(myHplApp.missioncontrol.model.getActivePilotId());
+		$('#imgPilotPortrait').attr('src', pilot.portraitUri);
+	},
+	
 	
 	/**
 	 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 	 */
 	onExit: function() {
+		myHplApp.missioncontrol.controller.missionLogPump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdStop(), vehicleModel.getInstructionStop());  //Inject initial stop
 		myHplApp.cockpit.controller.setStateActive(false);
+		myHplApp.cockpit.controller.clearTicks();
+		
 	},
 	
 	
@@ -186,20 +200,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		//Inertial sensor message
 		if (data.substr(0,1) == 'I') {
 			var inertialsensor_msg_fields = data.split(',');
+			var accelx 		              = inertialsensor_msg_fields[0].substr(1);
+			var accely 		              = inertialsensor_msg_fields[1];
+			var accelz 		              = inertialsensor_msg_fields[2];
+			var coreTemp   	              = inertialsensor_msg_fields[3];
 			message = data.substr(1);
 			missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdSensor(), missioncontrolModel.getMessageIdInertial(), message );			
-//			sap.ui.getCore().byId("TvInsAccelX").setText(inertialsensor_msg_fields[0].substr(1));
-//			sap.ui.getCore().byId("TvInsAccelY").setText(inertialsensor_msg_fields[1]);
-//			sap.ui.getCore().byId("TvInsAccelZ").setText(inertialsensor_msg_fields[2]);
-//			sap.ui.getCore().byId("TvInsGyroX").setText(inertialsensor_msg_fields[3]);
-//			sap.ui.getCore().byId("TvInsGyroY").setText(inertialsensor_msg_fields[4]);
-//			sap.ui.getCore().byId("TvInsGyroZ").setText(inertialsensor_msg_fields[5]);
-			
-			var accelx 		= inertialsensor_msg_fields[0].substr(1);
-			var accely 		= inertialsensor_msg_fields[1];
-			var accelz 		= inertialsensor_msg_fields[2];
-			var coreTemp   	= inertialsensor_msg_fields[3];
-			
+						
 			accelx = accelx * -10;
 			accely = accely * -10;
 			accelz = accelz * -10;
@@ -232,10 +239,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			
 			switch(gps_msg_nav_sol_fields[0].substr(1)) {
 				case '2':
-					console.log('GPS Sol message.....type 2');
 					break;
 				case '3':
-					console.log('GPS Sol message.....type 3');
 					missioncontrolController.checkSetHomeLatLngAlt();
 					break;
 			}
@@ -247,16 +252,21 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		
 
 		//GPS posllh message 
-		if (data.substr(0,1) == 'P') {
+		if (data.substr(0,1) == 'P') {			
 			var gps_msg_nav_posllh_fields = data.split(',');
-			var longitude 	= parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
-			var latitude 	= parseFloat(gps_msg_nav_posllh_fields[1], 10);
-			var altitude  	= parseFloat(gps_msg_nav_posllh_fields[2], 10);
+			var longitude 	                 = parseFloat(gps_msg_nav_posllh_fields[0].substr(1), 10);
+			var latitude 	                 = parseFloat(gps_msg_nav_posllh_fields[1], 10);
+			var altitude  	                 = parseFloat(gps_msg_nav_posllh_fields[2], 10);
+			var distanceTravelledPrevToHereM = 0;
 			
-			longitude 		= longitude / 10000000;
-			latitude 		= latitude / 10000000;
-			altitude 		= altitude / 1000;
-			altitude 		= altitude.toFixed(2);
+			longitude 		                 = longitude / 10000000;
+			latitude 		                 = latitude / 10000000;
+			altitude 		                 = altitude / 1000;
+			altitude 		                 = altitude.toFixed(2);
+
+			missioncontrolModel.setPreviousLatitude(myHplApp.missioncontrol.model.getCurrentLatitude());
+			missioncontrolModel.setPreviousLongitude(myHplApp.missioncontrol.model.getCurrentLongitude());
+			missioncontrolModel.setPreviousAltitude(myHplApp.missioncontrol.model.getCurrentAltitude());
 			
 			missioncontrolModel.setCurrentLatitude(latitude);
 			missioncontrolModel.setCurrentLongitude(longitude);
@@ -264,7 +274,16 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			
 			//Have a solid GPS 3D fix
 			if (missioncontrolModel.getGps3DFixCount() > 10) {
-				message = longitude + ',' + latitude + ',' + altitude; 
+				
+				
+				
+
+				distanceTravelledPrevToHereM = myHplApp.controller.Distance(latitude, 
+						                                                    longitude,
+								                                            myHplApp.missioncontrol.model.getPreviousLatitude(),
+								                                            myHplApp.missioncontrol.model.getPreviousLongitude());
+										
+				message = longitude + ',' + latitude + ',' + altitude + ',' + distanceTravelledPrevToHereM;
 				missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdGpsPos(), message );
 
 				cockpitMapsModel.setStateGoogleMapLastLongitude(longitude);
@@ -295,7 +314,6 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			sap.ui.getCore().byId("lblValSpeedCms").setText(gps_msg_nav_velned_fields[0].substr(1));	
 			sap.ui.getCore().byId("lblValHeading").setText(heading + '°');
 			cockpitModel.setIndicatorVal({id: 'lblStatusSpeedCms', val: gps_msg_nav_velned_fields[0].substr(1)});
-			console.log('Speed cms', gps_msg_nav_velned_fields[0].substr(1));
 			cockpitModel.setIndicatorVal({id: 'lblStatusHeading', val: heading});
 			cockpitModel.setGaugeVal({id: 'gaugeSpeed', val: gps_msg_nav_velned_fields[0].substr(1)});
 		};
@@ -303,39 +321,6 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	},
 	
 	
-	gamepad_button_down: function(gamepadEvent) {
-	
-
-		if (gamepadEvent.control == gamepadCmdThrottlePadLeft) {
-			infoPanelIndex--;
-			
-			if (infoPanelIndex < infoPanelIndexMin) {
-			   infoPanelIndex = infoPanelIndexMax;
-			}
-			
-			sap.ui.getCore().byId("TabStrip1").setSelectedIndex(infoPanelIndex);
-		}
-		
-		
-		if (gamepadEvent.control == gamepadCmdThrottlePadRight) {
-			infoPanelIndex++;
-			
-			if (infoPanelIndex > infoPanelIndexMax) {
-			   infoPanelIndex = infoPanelIndexMin;
-			}
-
-			sap.ui.getCore().byId("TabStrip1").setSelectedIndex(infoPanelIndex);
-		}
-	},
-	
-	
-	
-	
-	execute: function(oEvent,oController){
-	
-	},
-	
-
 	cockpitMainRefresh: function() {
 		sap.ui.getCore().byId("viewCockpit").getController().setNetworkTrafficCharts();
 		sap.ui.getCore().byId("viewCockpit").getController().refreshIndicators(); 
@@ -538,6 +523,51 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 				myHplApp.controller.playSoundEffect({'effect': 'voicewarning', 'volume': 0.5});
 			}				
 		}
+	},
+	
+	
+	setPilotScoreRefresh: function() {
+		myHplApp.cockpit.model.getPilotScoreBreakdown().refresh();
+		myHplApp.missioncontrol.controller.getPilotScore();
+		sap.ui.getCore().byId("lblValPilotScore").setText(myHplApp.missioncontrol.model.getActivePilotScore());
+	},
+
+
+	
+	setDatalinkRefresh: function() {
+		myHplApp.cockpit.datalink.controller.getMissionStatsMessageCategoryId();
+		var missionStatsMessageCategoryId = myHplApp.cockpit.datalink.model.getStatsMessageCategoryId();
+		sap.ui.getCore().byId("lblValStatCountNavigation").setText(missionStatsMessageCategoryId.nav);
+		sap.ui.getCore().byId("lblValStatCountCockpit").setText(missionStatsMessageCategoryId.coc);
+		sap.ui.getCore().byId("lblValStatCountNotification").setText(missionStatsMessageCategoryId.not);
+		sap.ui.getCore().byId("lblValStatCountSensor").setText(missionStatsMessageCategoryId.sen);
+		sap.ui.getCore().byId("lblValStatCountPower").setText(missionStatsMessageCategoryId.pow);
+		sap.ui.getCore().byId("lblValStatCountDrive").setText(missionStatsMessageCategoryId.dri);
+	},
+	
+	
+	setOrbitalRefresh: function() {
+		myHplApp.cockpit.orbital.controller.getMissionStatsSpeed();
+		myHplApp.cockpit.orbital.controller.getMissionStatsAlt();
+		myHplApp.cockpit.orbital.controller.getMissionStatsDistance();
+		var missionStatsSpeed = myHplApp.cockpit.orbital.model.getStatsSpeed();
+		var missionStatsAlt   = myHplApp.cockpit.orbital.model.getStatsAlt();
+		var missionDistance   = myHplApp.cockpit.orbital.model.getStatsDistance();
+		sap.ui.getCore().byId("lblValStatSpeedMaxCms").setText(missionStatsSpeed.maxCms);
+		sap.ui.getCore().byId("lblValStatSpeedMaxKph").setText(missionStatsSpeed.maxKph);
+		sap.ui.getCore().byId("lblValStatSpeedMaxMph").setText(missionStatsSpeed.maxMph);
+		sap.ui.getCore().byId("lblValStatSpeedAvgCms").setText(missionStatsSpeed.avgCms);
+		sap.ui.getCore().byId("lblValStatSpeedAvgKph").setText(missionStatsSpeed.avgKph);
+		sap.ui.getCore().byId("lblValStatSpeedAvgMph").setText(missionStatsSpeed.avgMph);		
+		sap.ui.getCore().byId("lblValStatAltMinM").setText(missionStatsAlt.minM);
+		sap.ui.getCore().byId("lblValStatAltMinFt").setText(missionStatsAlt.minFt);
+		sap.ui.getCore().byId("lblValStatAltMaxM").setText(missionStatsAlt.maxM);
+		sap.ui.getCore().byId("lblValStatAltMaxFt").setText(missionStatsAlt.maxFt);
+		sap.ui.getCore().byId("lblValStatAltAvgM").setText(missionStatsAlt.avgM);
+		sap.ui.getCore().byId("lblValStatAltAvgFt").setText(missionStatsAlt.avgFt);
+		sap.ui.getCore().byId("lblValStatTravelledM").setText(missionDistance.travelledM);
+		sap.ui.getCore().byId("lblValStatTravelledKm").setText(missionDistance.travelledKm);
+		sap.ui.getCore().byId("lblValStatTravelledMiles").setText(missionDistance.travelledMiles);
 	},
 	
 	

@@ -2,12 +2,12 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "0",
+  "max_length": "16",
   "text_id": "caption",
-  "text_type": ""
+  "text_type": "caption"
  },
  "metadata": {
-  "activated_at": "2014-02-27 17:12:10.0020000",
+  "activated_at": "2014-04-17 13:21:36.1890000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,14 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "6"
+  "version_id": "1"
  },
- "name": "achievementconditionmessage",
- "package": "hpl.missioncontrol.data.loads",
- "suffix": "csv",
- "tenant": "",
- "type": "37",
  "version": {
   "versionType": "1"
- }
+ },
+ "package": "hpl.missioncontrol.data.loads",
+ "name": "achievementconditionmessage",
+ "suffix": "csv"
 }

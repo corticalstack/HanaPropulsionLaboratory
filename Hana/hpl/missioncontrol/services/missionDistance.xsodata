@@ -1,0 +1,7 @@
+service namespace "hpl.missioncontrol.services" {
+   "hpl.missioncontrol.models::AN_MISSION_DISTANCE" 
+    as "missionDistance" with ("MISSIONID_MISSIONID","VEHICLEID_VEHICLEID","PILOTID_PILOTID","DISTANCETRAVELLEDKM","DISTANCETRAVELLEDMILES","DISTANCETRAVELLEDPREVTOHEREM")
+    keys generate local "ID"
+  	aggregates always
+  	parameters via entity "InputParams";   	    		   	  
+}

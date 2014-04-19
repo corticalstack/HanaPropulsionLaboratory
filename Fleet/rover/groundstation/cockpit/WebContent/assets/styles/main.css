@@ -384,6 +384,17 @@ img.bg {
 	border-right: 2px solid rgb(6, 15, 40);
 }
 
+
+#mlPanePilotScore {	
+	position: fixed;
+	top: 	10px;
+  	left:	150px;
+  	width:	84px;
+  	height:	84px;
+	background-color: transparent;	
+}
+
+
 #mlPaneChartNetworkTrafficIn {	
 	position: fixed;
 	top: 	1034px;
@@ -858,6 +869,93 @@ img.bg {
 	padding: 2px 0px 2px 0px;
 }
 
+
+[id^="lblStatCount"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em;
+	margin: 6px; 
+	padding: 2px 2px 2px 5px;
+	border-left: 8px solid #003078;
+}
+
+
+[id^="lblStatSpeed"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em;
+	margin: 6px; 
+	padding: 2px 2px 2px 5px;
+	border-left: 8px solid #003078;
+}
+
+
+[id^="lblStatAlt"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em;
+	margin: 6px; 
+	padding: 2px 2px 2px 5px;
+	border-left: 8px solid #003078;
+}
+
+
+[id^="lblStatTravelled"] {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2em;
+	margin: 6px; 
+	padding: 2px 2px 2px 5px;
+	border-left: 8px solid #003078;
+}
+
+#lblStatPilotScore {
+	color: rgb(8,100,191);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.5em;
+	margin: 2px; 
+	padding: 2px 0px 0px 0px;
+}
+
+#lblValPilotScore {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.5em;
+	margin: 2px; 
+	padding: 2px 0px 0px 0px;	
+}
+
+.lblPilotAchivementName {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.5em;
+	margin: 2px; 
+	padding: 2px 0px 0px 0px;	
+}
+
+.lblPilotAchivementScore {
+	color: rgb(255,255,255);
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.5em;
+	margin: 2px; 
+	padding: 2px 0px 0px 0px;	
+}
 
 [id^="lblValTotalTraffic"] {
 	color: rgb(8,100,191);
@@ -1500,6 +1598,16 @@ img.bg {
 .sapUiTabBarCnt {
 	border-bottom-color: rgb(0, 46, 119);
 }	
+
+.sapUiTable>.sapUiTableCnt,  {
+	border: none;
+}
+
+.sapUiTableTr>td, .sapUiTableRowHdr, .sapUiTable>.sapUiTableCnt, .sapUiTable>div:last-child, .sapUiTable>div {
+	border: none;
+}
+
+
 
 /* ---------------------------
 	   Animation Keyframes

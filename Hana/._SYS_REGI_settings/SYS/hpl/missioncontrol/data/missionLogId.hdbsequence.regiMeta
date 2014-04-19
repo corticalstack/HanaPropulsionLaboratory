@@ -2,12 +2,12 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "0",
+  "max_length": "16",
   "text_id": "caption",
-  "text_type": ""
+  "text_type": "caption"
  },
  "metadata": {
-  "activated_at": "2014-02-11 15:58:15.0320000",
+  "activated_at": "2014-04-17 13:20:49.6180000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,14 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "3"
+  "version_id": "1"
  },
- "name": "missionLogId",
- "package": "hpl.missioncontrol.data",
- "suffix": "hdbsequence",
- "tenant": "",
- "type": "48",
  "version": {
   "versionType": "1"
- }
+ },
+ "package": "hpl.missioncontrol.data",
+ "name": "missionLogId",
+ "suffix": "hdbsequence"
 }

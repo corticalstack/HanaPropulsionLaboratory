@@ -1,5 +1,0 @@
-role hpl.sandbox.data::sandboxUser {
-	catalog schema "SANDBOX": SELECT;
-	
-    application privilege: hpl.sandbox::Basic;
-}

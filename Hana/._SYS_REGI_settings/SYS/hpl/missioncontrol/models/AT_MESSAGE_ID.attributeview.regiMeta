@@ -7,7 +7,7 @@
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-25 13:06:23.4200000",
+  "activated_at": "2014-04-17 13:24:28.9130000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,14 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "4"
+  "version_id": "1"
  },
- "name": "AT_MESSAGE_ID",
- "package": "hpl.missioncontrol.models",
- "suffix": "attributeview",
- "tenant": "",
- "type": "100",
  "version": {
   "versionType": "1"
- }
+ },
+ "package": "hpl.missioncontrol.models",
+ "name": "AT_MESSAGE_ID",
+ "suffix": "attributeview"
 }

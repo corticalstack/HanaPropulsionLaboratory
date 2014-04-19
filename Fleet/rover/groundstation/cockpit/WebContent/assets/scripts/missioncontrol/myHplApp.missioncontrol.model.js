@@ -4,6 +4,8 @@
 	
 	var config = {
 			servicePilotsUri: 								'http://hanaserver:80/hpl/missioncontrol/services/pilots.xsodata/pilots/?$format=json',
+			servicePilotScoreUri: 							'http://hanaserver:80/hpl/missioncontrol/services/missionPilotScore.xsodata',
+			servicePilotScoreBreakdownUri: 					'http://hanaserver:80/hpl/missioncontrol/services/missionPilotScoreBreakdown.xsodata/',
 			serviceMissionCreateUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionCreate.xsjs',
 			serviceMissionSetHomeLatLngAltUri: 				'http://hanaserver:80/hpl/missioncontrol/services/missionSetHomeLatLngAlt.xsjs',			
 			serviceMissionLogPumpUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionLogPump.xsjs',			
@@ -74,17 +76,21 @@
 	var activeMission = {
 			missionId: 										'0',
 			vehicleId: 										'1',
-			pilotId:   										'1',
+			pilotId:   										'0',
+			pilotScore:                                     0,
 			keyFrame:										0,
 			homeLatitude: 									0,
 			homeLongitude:									0,
 			homeAltitude:									0,
+			previousLatitude:								0,
+			previousLongitude:								0,
+			previousAltitude:								0,
 			currentLatitude:								0,
 			currentLongitude:								0,
 			currentAltitude:								0,
 			nextWaypointId:									'',
 			waypoints:										[],
-			scenarioTerrain:								null,
+			scenarioTerrainPolygons:						[],
 			prevNetworkPacketIn:							0,
 			prevNetworkPacketOut:							0,
 			networkPacketIn:								0,
@@ -104,6 +110,14 @@
 	//Get methods for config
 	myHplApp.missioncontrol.model.getConfigServicePilotsUri = function() { 
 		return config.servicePilotsUri;
+	};
+
+	myHplApp.missioncontrol.model.getConfigServicePilotScoreUri = function() { 
+		return config.servicePilotScoreUri;
+	};
+
+	myHplApp.missioncontrol.model.getConfigServicePilotScoreBreakdownUri = function() { 
+		return config.servicePilotScoreBreakdownUri;
 	};
 
 	myHplApp.missioncontrol.model.getConfigServiceMissionCreateUri = function() { 
@@ -355,6 +369,10 @@
 		return activeMission.pilotId;
 	};
 
+	myHplApp.missioncontrol.model.getActivePilotScore = function() { 
+		return activeMission.pilotScore;
+	};
+
 	myHplApp.missioncontrol.model.getActiveKeyFrame = function() { 
 		return activeMission.keyFrame;
 	};
@@ -383,8 +401,20 @@
 		return activeMission.currentAltitude;
 	};
 
-	myHplApp.missioncontrol.model.getScenarioTerrain = function() { 
-		return activeMission.scenarioTerrain;
+	myHplApp.missioncontrol.model.getPreviousLatitude = function() { 
+		return activeMission.previousLatitude;
+	};
+
+	myHplApp.missioncontrol.model.getPreviousLongitude = function() { 
+		return activeMission.previousLongitude;
+	};
+
+	myHplApp.missioncontrol.model.getPreviousAltitude = function() { 
+		return activeMission.PreviousAltitude;
+	};
+
+	myHplApp.missioncontrol.model.getScenarioTerrainPolygons = function() {
+		return activeMission.scenarioTerrainPolygons;		
 	};
 
 	myHplApp.missioncontrol.model.getNetworkPacketIn = function() { 
@@ -415,7 +445,7 @@
 	//Set methods for activeMission    
 	myHplApp.missioncontrol.model.setActiveHomeLatLngAlt = function() {
 		console.log('Mission control model.....Setting active home lat lng alt');
-		activeMission.homeLatitude = activeMission.currentLatitude; 
+		activeMission.homeLatitude  = activeMission.currentLatitude; 
 		activeMission.homeLongitude = activeMission.currentLongitude;
 		activeMission.homeAltitude  = activeMission.currentAltitude;
 	};
@@ -432,11 +462,28 @@
 	};
 
 	myHplApp.missioncontrol.model.setActivePilotId = function(val) { 
+		console.log('Setting active mission pilot ',val);
 		activeMission.pilotId = val;
+	};
+
+	myHplApp.missioncontrol.model.setActivePilotScore = function(val) { 		
+		activeMission.pilotScore = val;
 	};
 
 	myHplApp.missioncontrol.model.setActiveKeyFrame = function() { 
 		activeMission.keyFrame++;
+	};
+
+	myHplApp.missioncontrol.model.setPreviousLatitude = function(val) { 
+		activeMission.previousLatitude = val;
+	};
+
+	myHplApp.missioncontrol.model.setPreviousLongitude = function(val) { 
+		activeMission.previousLongitude = val;
+	};
+
+	myHplApp.missioncontrol.model.setPreviousAltitude = function(val) { 
+		activeMission.previousAltitude = val;
 	};
 
 	myHplApp.missioncontrol.model.setCurrentLatitude = function(val) { 
@@ -451,8 +498,16 @@
 		activeMission.currentAltitude = val;
 	};
 
-	myHplApp.missioncontrol.model.setScenarioTerrain = function(val) { 
-		activeMission.scenarioTerrain = val;
+	myHplApp.missioncontrol.model.setScenarioTerrainPolygons = function(scenarioTerrainPolygon, mapPolygon) { 
+		var myPolygon = {
+				terrainId: 		scenarioTerrainPolygon.terrainId,
+				text: 			scenarioTerrainPolygon.text,
+				hitpoints: 		scenarioTerrainPolygon.hitpoints,
+				healthpoints: 	scenarioTerrainPolygon.healthpoints,
+				multiplier: 	scenarioTerrainPolygon.multiplier,
+				mapPolygon:		mapPolygon
+		};
+		activeMission.scenarioTerrainPolygons.push(myPolygon); 		
 	};
 
 	

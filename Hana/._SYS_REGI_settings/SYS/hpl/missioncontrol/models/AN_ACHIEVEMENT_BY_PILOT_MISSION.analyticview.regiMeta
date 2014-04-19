@@ -7,7 +7,7 @@
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-02-27 09:40:00.2150000",
+  "activated_at": "2014-04-17 14:00:49.6620000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,14 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "50"
+  "version_id": "1"
  },
- "name": "AN_ACHIEVEMENT_BY_PILOT_MISSION",
- "package": "hpl.missioncontrol.models",
- "suffix": "analyticview",
- "tenant": "",
- "type": "101",
  "version": {
   "versionType": "1"
- }
+ },
+ "package": "hpl.missioncontrol.models",
+ "name": "AN_ACHIEVEMENT_BY_PILOT_MISSION",
+ "suffix": "analyticview"
 }

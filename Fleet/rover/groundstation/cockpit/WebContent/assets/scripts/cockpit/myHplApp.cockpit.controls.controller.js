@@ -319,6 +319,7 @@
 			if (throttle == 0) {
 				vehicleModel.setStateStopOff();
 				cockpitModel.setIndicatorVal({id: 'lblIndStop', val: 1});
+				missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdStop(), vehicleModel.getInstructionStop());
 			}
 
 			

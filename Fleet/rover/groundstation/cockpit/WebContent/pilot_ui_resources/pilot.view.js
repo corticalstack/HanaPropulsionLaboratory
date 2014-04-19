@@ -57,6 +57,7 @@ function buildPilotCarousel(oController,oLayout){
          	mlPilotId 				= 'mlPilot' + roster[i].pilotId,
          	lnkLaunchId				= 'lnkLaunch' + roster[i].pilotId;
         
+        console.log(lnkLaunchId);
         
         pilotCard.oimgAvatar = new sap.ui.commons.Image({
         	id: imgAvatarId,

@@ -2,12 +2,12 @@
  "caption": {
   "content": "",
   "lang": "",
-  "max_length": "0",
+  "max_length": "16",
   "text_id": "caption",
-  "text_type": ""
+  "text_type": "caption"
  },
  "metadata": {
-  "activated_at": "2014-02-04 08:50:46.7990000",
+  "activated_at": "2014-04-19 09:47:14.6710000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,14 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "1"
+  "version_id": "5"
  },
- "name": "",
- "package": "hpl.missioncontrol",
- "suffix": "xsaccess",
- "tenant": "",
- "type": "350",
  "version": {
   "versionType": "1"
- }
+ },
+ "package": "hpl.missioncontrol",
+ "name": "",
+ "suffix": "xsaccess"
 }

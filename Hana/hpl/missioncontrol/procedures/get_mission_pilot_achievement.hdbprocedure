@@ -3,7 +3,8 @@ PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_pilot_ach
 	IN  im_mission_to NVARCHAR(6),
 	IN  im_pilot_from NVARCHAR(3),
 	IN  im_pilot_to NVARCHAR(3),
-	OUT ex_pilot_achievement_tt MISSIONCONTROL."hpl.missioncontrol.data::MC.Procedures.tt_pilot_achievement" 
+	OUT ex_pilot_achievement_tt MISSIONCONTROL."hpl.missioncontrol.data::Procedures.tt_achieve" 
+
 	)   
 	LANGUAGE SQLSCRIPT
 	SQL SECURITY INVOKER 
@@ -12,10 +13,10 @@ PROCEDURE "MISSIONCONTROL"."hpl.missioncontrol.procedures::get_mission_pilot_ach
 BEGIN
 /***************************** 
 	Write your procedure logic 
- *****************************/
-  
- 	declare lvEarthRadius double default 6371000;
- 	declare lvToRad double default 0.01745329225199433;
+	 *****************************/
+    declare lvEarthRadius double default 6371000;
+
+	declare lvToRad double default 0.01745329225199433;
  
  	declare lvDistanceLatitude double default 0;
  	declare lvDistanceLongitude double default 0;
@@ -34,11 +35,11 @@ BEGIN
  	
  	declare lvGetDistance varchar(1) := '';
  
-	declare missionid varchar(6) ARRAY;
-	declare vehicleid varchar(3) ARRAY;  
-	declare pilotid varchar(3) ARRAY;
+	declare missionid nvarchar(6) ARRAY;
+	declare vehicleid nvarchar(3) ARRAY;  
+	declare pilotid nvarchar(3) ARRAY;
 	declare achievementkeyframegroup integer ARRAY;
-	declare conditionid varchar(6) ARRAY;
+	declare conditionid nvarchar(6) ARRAY;
 	declare messagecategoryid varchar(3) ARRAY;
 	declare messageid varchar(3) ARRAY;
 	declare gpsposlongitude decimal(9,6) ARRAY;
@@ -47,6 +48,7 @@ BEGIN
 	declare lvLastConditionHilAltitude decimal(10,2) default 0; 
 	declare lvAddEntry varchar(1) default 'X';
 	declare count integer ARRAY;  
+	declare score integer ARRAY;
   
   	declare i int := 0;
   	
@@ -126,9 +128,7 @@ BEGIN
  	END FOR;
    
  	ex_pilot_achievement_tt = unnest(:missionid, :vehicleid, :pilotid, :achievementkeyframegroup, :conditionid, :messagecategoryid, :messageid, :gpsposlongitude, 
- 									 :gpsposlattitude, :achievementvalue, :count ) 
+ 									 :gpsposlattitude, :achievementvalue, :count, :score ) 
                     		  as ("MISSIONID",  "VEHICLEID", "PILOTID", "ACHIEVEMENTKEYFRAMEGROUP", "CONDITIONID", "MESSAGECATEGORYID", "MESSAGEID", 
-                    		  	  "GPSPOSLONGITUDE", "GPSPOSLATITUDE", "ACHIEVEMENTVALUE", "COUNT");
-
-			
+                    		  	  "GPSPOSLONGITUDE", "GPSPOSLATITUDE", "ACHIEVEMENTVALUE", "COUNT", "SCORE");			
 END;

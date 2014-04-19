@@ -1,7 +1,0 @@
-table.schemaName = "MISSIONCONTROL"; 
-table.columns = [ {name = "Col1"; sqlType = VARCHAR; nullable = false; length = 20; comment = "dummy comment";}, 
-				  {name = "Col2"; sqlType = INTEGER; nullable = false;}, 
-				  {name = "Col3"; sqlType = NVARCHAR; nullable = true; length = 20; defaultValue = "Defaultvalue";}, 
-				  {name = "Col4"; sqlType = DECIMAL; nullable = false; precision = 12; scale = 3;}
-];
-table.primaryKey.pkcolumns = ["Col1", "Col2"];

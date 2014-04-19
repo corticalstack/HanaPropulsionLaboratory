@@ -3,6 +3,7 @@ namespace hpl.missioncontrol.data;
 @Schema: 'MISSIONCONTROL'
 
 context MC {
+	type VSStringT  						: String(10);
 	type SStringT  							: String(40);
 	type MStringT  							: String(60);
 	type LStringT  							: String(255);
@@ -24,6 +25,9 @@ context MC {
 	type terrainIdT							: String(6);
 	type scenarioIdT						: String(6);
 	type colourIdT							: String(6);
+	type colourHexT							: String(7);
+	type strokeWeightT                 		: Integer;
+	type opacityT  			 				: Decimal(2,1);
 	type textIdT							: String(10);
 	type gpsPosT							: Decimal(9,6);
 	type gpsAltT							: Decimal(7,2);
@@ -63,6 +67,8 @@ context MC {
 	type pointsT							: Integer;
 	type countT								: Integer;
 	type scoreT								: Integer;
+	type secondsT							: Decimal(7,2);				
+	type idxT								: Integer;
 	
 	context MasterData {
 		
@@ -103,8 +109,9 @@ context MC {
 	 		CLANNAME 						: SStringT;
 	 		CLANURI 						: LStringT;
 	 		ACTIVEMISSIONID					: Association [0..*] to Mission.Mission {MISSIONID}; 
+			PORTRAITURI						: LStringT;
 		};
-
+		
 
 		@Catalog.tableType : #COLUMN
 		@nokey 
@@ -134,17 +141,28 @@ context MC {
 			key MESSAGECATEGORYID			: Association [1] to MasterData.MessageCategoryId;			
 			key MESSAGEID  					: Association [1] to MasterData.MessageId;		 	
 		};		
-		
+
+
+		@Catalog.tableType : #COLUMN 
+		Entity Colours {
+    		key COLOURID					: colourIdT;
+			COLOURHEX						: colourHexT;
+		};
+					
 		
 		@Catalog.tableType : #COLUMN 
 		Entity Terrain {
     		key TERRAINID 					: terrainIdT;
-			key SHAPEID						: shapeIdT;			
-			NAME  							: Association [*] to Util.Texts {TEXTID};
+			key SHAPEID						: shapeIdT;					
 			HITPOINTS						: pointsT;
 			HEALTHPOINTS					: pointsT;
 			MULTIPLIER						: multiplierT;
-			INFILLCOLOURID					: colourIdT;
+			NAME  							: Association [*] to Util.Texts {TEXTID};			
+			STROKECOLOURID					: Association [*] to MasterData.Colours {COLOURID};	
+			STROKEOPACITY					: opacityT;
+			STROKEWEIGHT					: strokeWeightT;
+			FILLCOLOURID					: Association [*] to MasterData.Colours {COLOURID};	
+			FILLOPACITY						: opacityT;
 		};
 		
 		
@@ -158,7 +176,8 @@ context MC {
 		};		
 					
 	};
-
+	
+	
 	
 	context Mission {
 		@Catalog.tableType : #COLUMN 
@@ -220,6 +239,7 @@ context MC {
 			MAPTYPE 						: mapTypeT null;
 			MAPZOOM 						: mapZoomT null;
 			LASER 							: laserT null;
+			DISTANCETRAVELLEDPREVTOHEREM    : distanceTravelledT null;
 		};		
 	
 	};
@@ -245,6 +265,8 @@ context MC {
 		};
 	
 	};
+			
+			
 	
 	Context Procedures{
 		type tt_missionId {
@@ -254,6 +276,12 @@ context MC {
 		type tt_distance_travelled {
       		DISTANCETRAVELLED				: distanceTravelledT;
 		};
+
+		type tt_seconds {
+			IDX								: idxT;
+			LABEL							: VSStringT;
+      		SECONDS							: secondsT;
+		};		
 
 		type tt_pilot_achievement {
 			MISSIONID						: missionIdT;
