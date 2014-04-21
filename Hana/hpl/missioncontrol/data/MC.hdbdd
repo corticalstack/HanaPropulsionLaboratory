@@ -57,7 +57,7 @@ context MC {
 	type mapTypeT  							: String(1);
 	type mapZoomT  							: String(2);
 	type laserT  							: Integer;
-	type distanceTravelledT					: Decimal(7,2);
+	type distanceT							: Decimal(7,2);
 	type achievementIdT						: String(6);
 	type achievementValueT					: Decimal(10,2);
 	type conditionIdT						: String(6);
@@ -239,12 +239,11 @@ context MC {
 			MAPTYPE 						: mapTypeT null;
 			MAPZOOM 						: mapZoomT null;
 			LASER 							: laserT null;
-			DISTANCETRAVELLEDPREVTOHEREM    : distanceTravelledT null;
+			DISTANCE   						: distanceT null;
 		};		
 	
 	};
 		
-	
 	
 	context Util {
 		@Catalog.tableType : #COLUMN 
@@ -274,7 +273,7 @@ context MC {
 		};
 		
 		type tt_distance_travelled {
-      		DISTANCETRAVELLED				: distanceTravelledT;
+      		DISTANCETRAVELLED				: distanceT;
 		};
 
 		type tt_seconds {

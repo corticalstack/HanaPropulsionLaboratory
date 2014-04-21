@@ -114,7 +114,7 @@
 	
 	myHplApp.cockpit.controller.setPilotScoreRefreshTick = function() {
 		console.log('Cockpit controller setting pilot score refresh.....');
-		cockpitMainRefreshTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setPilotScoreRefresh()},200);
+		cockpitMainRefreshTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setPilotScoreRefresh()},2000);
 	};
 
 

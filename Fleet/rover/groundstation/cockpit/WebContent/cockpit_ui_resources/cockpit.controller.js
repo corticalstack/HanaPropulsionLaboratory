@@ -38,13 +38,13 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 
 			
 	    sap.ui.getCore().byId("viewCockpit").getController().drawCrosshair();
-			
+	    
+	    var pilot   = myHplApp.pilot.model.getPilotById(myHplApp.missioncontrol.model.getActivePilotId());		
+		$('#imgPilotPortrait').attr('src', pilot.portraitUri);			
 	},
 
 	
 	init: function() {
-		var pilot   = myHplApp.pilot.model.getPilotById(myHplApp.missioncontrol.model.getActivePilotId());
-		$('#imgPilotPortrait').attr('src', pilot.portraitUri);
 	},
 	
 	
@@ -409,6 +409,8 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
 		sap.ui.getCore().byId("lblValDistanceWp").setText(distance + 'm');
 		
+		myHplApp.missioncontrol.controller.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdHome(), distance );
+		
 	},
 	
 	
@@ -527,7 +529,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 	
 	
 	setPilotScoreRefresh: function() {
-		myHplApp.cockpit.model.getPilotScoreBreakdown().refresh();
+		//myHplApp.cockpit.model.getPilotScoreBreakdown().refresh();
 		myHplApp.missioncontrol.controller.getPilotScore();
 		sap.ui.getCore().byId("lblValPilotScore").setText(myHplApp.missioncontrol.model.getActivePilotScore());
 	},

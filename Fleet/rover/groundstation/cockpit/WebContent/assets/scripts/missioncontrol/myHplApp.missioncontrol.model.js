@@ -68,7 +68,8 @@
 			thrustFailsafe:									'TFS',
 			weaponActive:									'WEA',			
 			weaponFire:										'WEF',
-			weaponStop:										'WES',			
+			weaponStop:										'WES',		
+			home:                                           'HOM'
 	};
 
 	
@@ -354,6 +355,9 @@
     	return messageId.weaponStop;
     };
 
+    myHplApp.missioncontrol.model.getMessageIdHome = function() {
+    	return messageId.home;
+    };
 
     
     //Get methods for activeMission

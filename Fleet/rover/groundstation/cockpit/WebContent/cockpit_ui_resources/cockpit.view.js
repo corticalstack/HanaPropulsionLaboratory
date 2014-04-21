@@ -841,6 +841,7 @@ function buildPaneMissionControl(oController,oLayout){
 	var otblPilotScoreBreakdown 	  = new sap.ui.table.Table({tableId: "tblPilotScoreBreakdown", 
 															    visibleRowCount: 		5, 
 															    columnHeaderVisible: 	false,
+															    showNoData:				false,
 															    selectionMode: 			"None", 
 															    editable: 				false, 
 															    enableColumnReordering: false

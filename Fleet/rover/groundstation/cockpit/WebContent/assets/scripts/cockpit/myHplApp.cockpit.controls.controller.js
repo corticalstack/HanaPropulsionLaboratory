@@ -358,6 +358,7 @@
 			rotate = rotate * 100;
 			rotate = rotate.toFixed(0);	
 			if (rotate != vehicleModel.getStateRotateVal()) {
+				console.log("Rotate ", rotate);
 				vehicleModel.setStateRotateVal(rotate);
 				message = message + vehicleModel.getInstructionRotate()  + rotate + ':';
 				missioncontrolController.missionLogPump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdRotate(), rotate);

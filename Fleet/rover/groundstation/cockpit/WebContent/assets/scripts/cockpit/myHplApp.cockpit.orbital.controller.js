@@ -105,7 +105,7 @@
 			myHplApp.missioncontrol.model.getActiveVehicleId() +
 			'\',IP_PILOTID=\'' +
 			myHplApp.missioncontrol.model.getActivePilotId() + 
-			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,DISTANCETRAVELLEDKM,DISTANCETRAVELLEDMILES,DISTANCETRAVELLEDPREVTOHEREM&$format=json';
+			'\')/Results?$select=MISSIONID_MISSIONID,VEHICLEID_VEHICLEID,PILOTID_PILOTID,DISTANCETRAVELLEDKM,DISTANCETRAVELLEDMILES,DISTANCE&$format=json';
 		$.ajax({
 			type: 'GET',
 			url: myUrl,
@@ -123,7 +123,7 @@
 	myHplApp.cockpit.orbital.controller.onLoadMissionStatsDistance = function(myJSON) {
 		for (var i = 0; i < myJSON.d.results.length; i++) {
 			var orbitalStatsDistance = {
-					travelledM:     myJSON.d.results[i].DISTANCETRAVELLEDPREVTOHEREM,			
+					travelledM:     myJSON.d.results[i].DISTANCE,			
 					travelledKm:    myJSON.d.results[i].DISTANCETRAVELLEDKM,
 					travelledMiles: myJSON.d.results[i].DISTANCETRAVELLEDMILES,					
 			};

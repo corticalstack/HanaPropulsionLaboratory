@@ -38,6 +38,7 @@ function missionLogPump(){
 			weaponActive:				'WEA',			
 			weaponFire:					'WEF',
 			weaponStop:					'WES',			
+			home:						'HOM'
 	};
 	
 	var query,
@@ -75,7 +76,6 @@ function missionLogPump(){
         gpsPosLongitude              = null,
         gpsPosLatitude               = null,
         gpsPosAltitude               = null,
-        distanceTravelledPrevToHereM = null,
         gpsVelHeading                = null,
         gpsVelSpeedCms               = null,
         compassBearing               = null,    
@@ -90,7 +90,9 @@ function missionLogPump(){
         weaponStop			         = null,
         mapType                      = null,
         mapZoom                      = null,
-        laser                        = null;
+        laser                        = null,
+        distanceTravelledPrevToHereM = null,
+        distance 					 = null;
 		
 		
 			
@@ -146,22 +148,26 @@ function missionLogPump(){
             case messageCategoryId.navigation:
 				switch(p_messageId) {
 					case messageId.gpsSol:
-						gpsSolFixType = parseInt(messageFeedFields[0],10);		
-						gpsSolNumSats = parseInt(messageFeedFields[1],10);
+						gpsSolFixType		 = parseInt(messageFeedFields[0],10);		
+						gpsSolNumSats 		 = parseInt(messageFeedFields[1],10);
 						break;
 					case messageId.gpsPos:
-						gpsPosLongitude              = parseFloat(messageFeedFields[0]);
-						gpsPosLatitude               = parseFloat(messageFeedFields[1]);
-						gpsPosAltitude               = parseFloat(messageFeedFields[2]);
-						distanceTravelledPrevToHereM = parseFloat(messageFeedFields[3]);
+						gpsPosLongitude      = parseFloat(messageFeedFields[0]);
+						gpsPosLatitude       = parseFloat(messageFeedFields[1]);
+						gpsPosAltitude       = parseFloat(messageFeedFields[2]);
+						distance			 = parseFloat(messageFeedFields[3]);
 						break;
 					case messageId.gpsVel:
-						gpsVelHeading  = parseInt(messageFeedFields[0],10);
-						gpsVelSpeedCms = parseFloat(messageFeedFields[1]);							
+						gpsVelHeading  		 = parseInt(messageFeedFields[0],10);
+						gpsVelSpeedCms 		 = parseFloat(messageFeedFields[1]);							
 						break;
 					case messageId.compass:
-						compassBearing = parseFloat(messageFeedFields[0]);
+						compassBearing 		 = parseFloat(messageFeedFields[0]);
+						break;
+					case messageId.home:
+						distance 			 = parseFloat(messageFeedFields[0]);
 						break;						
+						
 				}
 				break;
 				

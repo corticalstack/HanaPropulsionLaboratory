@@ -3,5 +3,5 @@ service namespace "hpl.missioncontrol.services" {
     as "missionPilotScoreBreakdown"  with ("CA_ACHIEVEMENT_KEYFRAME_GROUP","CONDITIONID","NAME","VISUALURI","SCORE")
     keys generate local "ID"
   	aggregates always
-  	parameters via entity "InputParams";   	   	    	 	
+  	parameters via entity "InputParams";   	     		    	 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Cube:cube xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_MISSION_DISTANCE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
-  <descriptions defaultDescription="Mission distance"/>
+  <descriptions defaultDescription="Mission distance "/>
   <localVariables>
     <variable id="IP_MISSIONID" parameter="true">
       <descriptions defaultDescription="Mission ID"/>
@@ -40,16 +40,16 @@
       </attribute>
     </attributes>
     <calculatedAttributes>
-      <calculatedAttribute id="DISTANCETRAVELLEDKM" hidden="false" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <calculatedAttribute id="DISTANCETRAVELLEDKM" hidden="false" order="4" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="Distance travelled (KM)"/>
         <keyCalculation datatype="DECIMAL" length="7" scale="2">
-          <formula>&quot;DISTANCETRAVELLEDPREVTOHEREM&quot; * 0.001</formula>
+          <formula>&quot;DISTANCE&quot; * 0.001</formula>
         </keyCalculation>
       </calculatedAttribute>
-      <calculatedAttribute id="DISTANCETRAVELLEDMILES" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <calculatedAttribute id="DISTANCETRAVELLEDMILES" hidden="false" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="Distance travelled (miles)"/>
         <keyCalculation datatype="DECIMAL" length="7" scale="2">
-          <formula>&quot;DISTANCETRAVELLEDPREVTOHEREM&quot; * 0.000621371192</formula>
+          <formula>&quot;DISTANCE&quot; * 0.000621371192</formula>
         </keyCalculation>
       </calculatedAttribute>
     </calculatedAttributes>
@@ -84,9 +84,9 @@
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="DISTANCETRAVELLEDPREVTOHEREM" order="4" aggregationType="sum" measureType="simple">
-        <descriptions defaultDescription="DISTANCETRAVELLEDPREVTOHEREM"/>
-        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="DISTANCETRAVELLEDPREVTOHEREM"/>
+      <measure id="DISTANCE" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="DISTANCE"/>
+        <measureMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="DISTANCE"/>
       </measure>
     </baseMeasures>
     <calculatedMeasures/>
