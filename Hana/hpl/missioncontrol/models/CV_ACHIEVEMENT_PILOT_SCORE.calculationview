@@ -45,22 +45,26 @@
         </viewAttribute>
         <viewAttribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
         <viewAttribute id="CONDITIONID"/>
-        <viewAttribute id="SCORE"/>
+        <viewAttribute id="PA_SCORE"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="SCORE">
+          <formula>int(&quot;PA_SCORE&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
       <input node="#hpl.missioncontrol.models_DT_ACHIEVEMENT_PILOT_SCORE_RV">
         <mapping xsi:type="Calculation:AttributeMapping" target="MISSIONID_MISSIONID" source="MISSIONID_MISSIONID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="VEHICLEID_VEHICLEID" source="VEHICLEID_VEHICLEID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="PILOTID_PILOTID" source="PILOTID_PILOTID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CA_ACHIEVEMENT_KEYFRAME_GROUP" source="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CONDITIONID" source="CONDITIONID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCORE" source="PA_SCORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PA_SCORE" source="PA_SCORE"/>
       </input>
     </calculationView>
   </calculationViews>
   <logicalModel id="Projection_1">
     <attributes>
-      <attribute id="CONDITIONID" hidden="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <attribute id="CONDITIONID" hidden="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CONDITIONID"/>
         <keyMapping columnObjectName="Projection_1" columnName="CONDITIONID"/>
       </attribute>
@@ -74,7 +78,7 @@
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="SCORE" order="1" aggregationType="sum" measureType="simple">
+      <measure id="SCORE" order="2" aggregationType="sum" measureType="simple">
         <descriptions defaultDescription="SCORE"/>
         <measureMapping columnObjectName="Projection_1" columnName="SCORE"/>
       </measure>

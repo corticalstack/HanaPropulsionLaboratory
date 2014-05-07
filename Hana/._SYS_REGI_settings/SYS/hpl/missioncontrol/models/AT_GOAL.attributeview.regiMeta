@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Achievement breakdown by pilot ",
+  "content": "Goal",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-04-20 12:41:02.6280000",
+  "activated_at": "2014-04-28 08:51:55.1610000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,12 +20,12 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "10"
+  "version_id": "1"
  },
  "version": {
   "versionType": "1"
  },
  "package": "hpl.missioncontrol.models",
- "name": "CV_ACHIEVEMENT_PILOT_SCORE_BREAKDOWN",
- "suffix": "calculationview"
+ "name": "AT_GOAL",
+ "suffix": "attributeview"
 }

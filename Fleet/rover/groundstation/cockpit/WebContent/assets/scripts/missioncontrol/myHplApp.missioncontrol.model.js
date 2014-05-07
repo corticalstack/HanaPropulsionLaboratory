@@ -11,6 +11,7 @@
 			serviceMissionLogPumpUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionLogPump.xsjs',			
 			serviceMissionNextIdUri: 						'http://hanaserver:80/hpl/missioncontrol/services/missionNextId.xsjs',
 			serviceScenarioTerrainUri: 						'http://hanaserver:80/hpl/missioncontrol/services/scenarioTerrain.xsjs',
+			serviceScenarioGoalUri: 						'http://hanaserver:80/hpl/missioncontrol/services/scenarioGoal.xsjs',
 			chartNetworkTotalPoints: 						100,
 			chartNetworkUpdateInterval: 					30
 	};
@@ -78,6 +79,7 @@
 			missionId: 										'0',
 			vehicleId: 										'1',
 			pilotId:   										'0',
+			scenarioId:   									'1',
 			pilotScore:                                     0,
 			keyFrame:										0,
 			homeLatitude: 									0,
@@ -92,6 +94,7 @@
 			nextWaypointId:									'',
 			waypoints:										[],
 			scenarioTerrainPolygons:						[],
+			scenarioGoal:                                   [],
 			prevNetworkPacketIn:							0,
 			prevNetworkPacketOut:							0,
 			networkPacketIn:								0,
@@ -139,6 +142,10 @@
 
 	myHplApp.missioncontrol.model.getConfigServiceScenarioTerrainUri = function() { 
 		return config.serviceScenarioTerrainUri;
+	};
+
+	myHplApp.missioncontrol.model.getConfigServiceScenarioGoalUri = function() { 
+		return config.serviceScenarioGoalUri;
 	};
 
 	myHplApp.missioncontrol.model.getConfigChartNetworkTotalPoints = function() { 
@@ -373,6 +380,10 @@
 		return activeMission.pilotId;
 	};
 
+	myHplApp.missioncontrol.model.getActiveScenarioId = function() { 
+		return activeMission.scenarioId;
+	};
+
 	myHplApp.missioncontrol.model.getActivePilotScore = function() { 
 		return activeMission.pilotScore;
 	};
@@ -419,6 +430,10 @@
 
 	myHplApp.missioncontrol.model.getScenarioTerrainPolygons = function() {
 		return activeMission.scenarioTerrainPolygons;		
+	};
+
+	myHplApp.missioncontrol.model.getScenarioGoal = function() {
+		return activeMission.scenarioGoal;		
 	};
 
 	myHplApp.missioncontrol.model.getNetworkPacketIn = function() { 
@@ -470,6 +485,10 @@
 		activeMission.pilotId = val;
 	};
 
+	myHplApp.missioncontrol.model.setActiveScenarioId = function(val) { 
+		activeMission.scenarioId = val;
+	};
+
 	myHplApp.missioncontrol.model.setActivePilotScore = function(val) { 		
 		activeMission.pilotScore = val;
 	};
@@ -514,6 +533,9 @@
 		activeMission.scenarioTerrainPolygons.push(myPolygon); 		
 	};
 
+	myHplApp.missioncontrol.model.setScenarioGoal = function(val) { 
+		activeMission.scenarioGoal = val;
+	};
 	
 	myHplApp.missioncontrol.model.addNetworkPacketIn = function(val) { 
 		activeMission.networkPacketIn = activeMission.networkPacketIn + val;

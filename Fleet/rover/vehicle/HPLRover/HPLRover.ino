@@ -160,7 +160,7 @@ void ms200_loop(void* context) {
 
   hplrover_sharpsensor.read_front_bumper(hplrover_sharpsensor);
   hplrover_sharpsensor.read_rear_bumper(hplrover_sharpsensor);
-  hplrover_sharpsensor.read_cam_mounted(hplrover_sharpsensor);
+//  hplrover_sharpsensor.read_cam_mounted(hplrover_sharpsensor);
   hplrover_sharpsensor.output(hplrover_sharpsensor);
   hplrover_weapons.gun1(hplrover_command, hplrover_notify);
   hplrover_weapons.gun2(hplrover_command, hplrover_notify);

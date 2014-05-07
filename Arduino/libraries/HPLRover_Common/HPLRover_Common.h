@@ -131,8 +131,11 @@ const int 				cam_pan_val_min       				= 0;
 const int 				cam_pan_val_max       				= 180;
 const int 				cam_pan_val_centre    				= 90;
 
-const int 				cam_tilt_val_min      				= 90;
-const int 				cam_tilt_val_max      				= 180;
+//const int 				cam_tilt_val_min      				= 96;  
+//const int 				cam_tilt_val_max      				= 180;
+const int 				cam_tilt_val_min      				= 90;  
+const int 				cam_tilt_val_max      				= 160;
+
 const int 				cam_tilt_val_centre   				= 122;
 
 const int 				cam_sweep_delay       				= 25;

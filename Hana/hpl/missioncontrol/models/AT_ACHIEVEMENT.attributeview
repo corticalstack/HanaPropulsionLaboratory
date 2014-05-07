@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_ACHIEVEMENT" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Achievement "/>
+  <descriptions defaultDescription="Achievement  "/>
   <attributes>
     <attribute id="ACHIEVEMENTID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="ACHIEVEMENTID"/>

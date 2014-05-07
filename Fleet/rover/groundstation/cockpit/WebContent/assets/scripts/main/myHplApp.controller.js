@@ -49,8 +49,6 @@
 				break;
 			
 			case "lnkLaunch" + oControlEvent.getSource().getId().slice("lnkLaunch".length):
-				console.log(oControlEvent.getSource().getId().slice("lnkLaunch".length));
-				console.log(oControlEvent.getSource().getId());
 				model.setConfigCockpitView();
 				model.setConfigCurrentViewContent(model.getConfigCockpitView());
 				model.setLayoutHomeContent(model.getConfigCurrentViewContent());				

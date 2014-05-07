@@ -50,15 +50,16 @@ function buildPilotCarousel(oController,oLayout){
         var imgAvatarId 			= 'imgAvatar' + roster[i].pilotId,
          	lblPilotId 				= 'lblPilot' + roster[i].pilotId,
          	lblPilotNameId 			= 'lblPilotName' + roster[i].pilotId,
-         	lblComplChallengesId 	= 'lblComplChallenges' + roster[i].pilotId,
+         	lblOffenseId 	        = 'lblOffense' + roster[i].pilotId,
+         	lblDefenseId 	        = 'lblDefense' + roster[i].pilotId,
+         	lblAgilityId 	        = 'lblAgility' + roster[i].pilotId,
+         	lblPowerId 	        	= 'lblPower' + roster[i].pilotId,
          	prgIndId 				= 'prgInd' + roster[i].pilotId,
          	lblClanId 				= 'lblClan' + roster[i].pilotId,
          	imgClanId 				= 'imgClan' + roster[i].pilotId,
          	mlPilotId 				= 'mlPilot' + roster[i].pilotId,
          	lnkLaunchId				= 'lnkLaunch' + roster[i].pilotId;
-        
-        console.log(lnkLaunchId);
-        
+               
         pilotCard.oimgAvatar = new sap.ui.commons.Image({
         	id: imgAvatarId,
         	src: roster[i].avatarUri,
@@ -79,19 +80,27 @@ function buildPilotCarousel(oController,oLayout){
         });
         
 		
-        pilotCard.olblComplChallanges = new sap.ui.commons.Label({
-        	id: lblComplChallengesId,
-        	text: myHplApp.controller.getTextFromBundle("completedchallenges")
+        pilotCard.olblOffense = new sap.ui.commons.Label({
+        	id: lblOffenseId,
+        	text: myHplApp.controller.getTextFromBundle("offense")
         });
         
-        
-        pilotCard.oPrgInd = new sap.ui.commons.ProgressIndicator({
-        	id: 			prgIndId,
-	        width: 			"200px", 
-	        percentValue: 	20, 
-	        displayValue: 	"4 / 20"
-	    }); 
-		
+
+        pilotCard.olblDefense = new sap.ui.commons.Label({
+        	id: lblDefenseId,
+        	text: myHplApp.controller.getTextFromBundle("defense")
+        });
+
+        pilotCard.olblAgility = new sap.ui.commons.Label({
+        	id: lblAgilityId,
+        	text: myHplApp.controller.getTextFromBundle("agility")
+        });
+
+        pilotCard.olblPower = new sap.ui.commons.Label({
+        	id: lblPowerId,
+        	text: myHplApp.controller.getTextFromBundle("power")
+        });
+
 		
         pilotCard.olblClan = new sap.ui.commons.Label({
         	id: lblClanId,
@@ -123,9 +132,9 @@ function buildPilotCarousel(oController,oLayout){
         });
 
         
-		oCell1 = new sap.ui.commons.layout.MatrixLayoutCell({rowSpan: 3 });
-		oCell2 = new sap.ui.commons.layout.MatrixLayoutCell({rowSpan: 3 });
-		oCell3 = new sap.ui.commons.layout.MatrixLayoutCell({rowSpan: 3 });
+		oCell1 = new sap.ui.commons.layout.MatrixLayoutCell({rowSpan: 6 });
+		oCell2 = new sap.ui.commons.layout.MatrixLayoutCell({rowSpan: 6 });
+		oCell3 = new sap.ui.commons.layout.MatrixLayoutCell({rowSpan: 6 });
 		oCell4 = new sap.ui.commons.layout.MatrixLayoutCell({colSpan: 5 });
 	
 		
@@ -135,7 +144,10 @@ function buildPilotCarousel(oController,oLayout){
 		oCell4.addContent(pilotCard.olnkLaunch);
 		
 		pilotCard.omlPilot.createRow(oCell2, oCell1,  pilotCard.olblPilot,  pilotCard.olblPilotName, oCell3);
-		pilotCard.omlPilot.createRow( pilotCard.olblComplChallanges,  pilotCard.oPrgInd);	 
+		pilotCard.omlPilot.createRow( pilotCard.olblOffense);	 
+		pilotCard.omlPilot.createRow( pilotCard.olblDefense);
+		pilotCard.omlPilot.createRow( pilotCard.olblAgility);
+		pilotCard.omlPilot.createRow( pilotCard.olblPower);
 		pilotCard.omlPilot.createRow( pilotCard.olblClan,  pilotCard.oimgClan);		
 		pilotCard.omlPilot.createRow(oCell4);
 		

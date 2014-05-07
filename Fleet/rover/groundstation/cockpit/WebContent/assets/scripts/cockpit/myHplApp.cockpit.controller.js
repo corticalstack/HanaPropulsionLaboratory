@@ -13,6 +13,7 @@
 	var pilotScoreRefreshTick    	= 0;
 	var datalinkRefreshTick    		= 0;	
 	var orbitalRefreshTick    		= 0;
+	var missionMonitorTick    		= 0;
 	
 	
 	myHplApp.cockpit.controller.emitHeartbeat = function() {
@@ -42,6 +43,7 @@
 		myHplApp.cockpit.controller.initIndicators();		
 		myHplApp.missioncontrol.controller.getMissionNextId();
 		myHplApp.missioncontrol.controller.getScenarioTerrain();
+		myHplApp.missioncontrol.controller.getScenarioGoal();
 		sap.ui.getCore().byId("viewCockpit").getController().init();
 		myHplApp.missioncontrol.controller.missionLogPump(missioncontrolModel.getMessageCategoryIdCockpit(), missioncontrolModel.getMessageIdStop(), vehicleModel.getInstructionStop());  //Inject initial stop
 		myHplApp.cockpit.controller.setTicks();
@@ -62,6 +64,7 @@
 		myHplApp.cockpit.controller.setAmmoPctTick();
 		myHplApp.cockpit.controller.setDatalinkRefreshTick();
 		myHplApp.cockpit.controller.setOrbitalRefreshTick();
+		myHplApp.cockpit.controller.setMissionMonitorTick();
 
 	};
 
@@ -74,6 +77,7 @@
 		myHplApp.cockpit.controller.clearAmmoPctTick();				
 		myHplApp.cockpit.controller.clearDatalinkRefreshTick();
 		myHplApp.cockpit.controller.clearOrbitalRefreshTick();
+		myHplApp.cockpit.controller.clearMissionMonitorTick();
 
 	};
 
@@ -146,10 +150,21 @@
 	};
 
 	
-	myHplApp.cockpit.controller.clearDatalinkRefreshTick = function() {
+	myHplApp.cockpit.controller.clearOrbitalRefreshTick = function() {
 		clearInterval(orbitalRefreshTick);
 	};
 
+
+	myHplApp.cockpit.controller.setMissionMonitorTick = function() {
+		missionMonitorTick = setInterval(function(){sap.ui.getCore().byId("viewCockpit").getController().setMissionMonitor()},1000);
+	};
+
+	
+	myHplApp.cockpit.controller.clearMissionMonitorTick = function() {
+		clearInterval(missionMonitorTick);
+	};
+
+	
 	myHplApp.cockpit.controller.initGauges = function() {
 		console.log('Initialising cockpit controller gauges');
 		
@@ -523,7 +538,7 @@
 
 		
 		gaugeId 	= "gaugeShield";
-		gaugeVal 	= 0;
+		gaugeVal 	= 100;
 		ogauge 		= new JustGage({
 				id: gaugeId,
 				title: "",	

@@ -5,6 +5,7 @@
 0000000005,E,en,Power
 0000000006,E,en,Cockpit
 0000000007,E,en,Mission Control
+0000000008,E,en,Mission Objectives
 0000000101,E,en,System power up
 0000000102,E,en,GPS initialised
 0000000103,E,en,Inertial
@@ -33,6 +34,12 @@
 0000000126,E,en,Weapon fire
 0000000127,E,en,Weapon stop
 0000000128,E,en,Home
+0000000129,E,en,Waypoint 1
+0000000130,E,en,Waypoint 2
+0000000131,E,en,Waypoint 3
+0000000132,E,en,Waypoint 4
+0000000133,E,en,Waypoint 5
+0000000134,E,en,Destroy Enemy Base
 0000000500,E,en,Polygon
 0000001000,E,en,50M Club
 0000001001,E,en,50 metres journeyman!
@@ -78,23 +85,47 @@
 0000001041,E,en,Rolling is bad
 0000001042,E,en,Tipper
 0000001043,E,en,Tipping is bad
-0000002000,E,en,Polygon 1
-0000002001,E,en,Polygon 2
-0000002002,E,en,Polygon 3
-0000002003,E,en,Polygon 4
-0000002004,E,en,Polygon 5
-0000002005,E,en,Polygon 6
-0000002006,E,en,Polygon 7
-0000002007,E,en,Polygon 8
-0000002008,E,en,Polygon 9
-0000003000,E,en,Radiation zone 1
-0000003001,E,en,Radiation zone 2
-0000003002,E,en,Radiation zone 3
-0000003003,E,en,Radiation zone 4
-0000003004,E,en,Radiation zone 5
-0000003005,E,en,Radiation zone 6
-0000003006,E,en,Radiation zone 7
-0000003007,E,en,Radiation zone 8
-0000003008,E,en,Target zone 1
+0000001044,E,en,Recruit
+0000001045,E,en,Welcome Soldier!
+0000001500,E,en,Waypoint 1
+0000001501,E,en,Navigate to Waypoint 1
+0000001502,E,en,Destroy Enemy Base
+0000001503,E,en,Navigate to Enemy Base and destroy
+0000001504,E,en,Home
+0000001505,E,en,Return Home
+0000002001,E,en,Polygon 1
+0000002002,E,en,Polygon 2
+0000002003,E,en,Polygon 3
+0000002004,E,en,Polygon 4
+0000002005,E,en,Polygon 5
+0000002006,E,en,Polygon 6
+0000002007,E,en,Polygon 7
+0000002008,E,en,Polygon 8
+0000002009,E,en,Polygon 9
+0000002010,E,en,Polygon 10
+0000002011,E,en,Polygon 11
+0000002012,E,en,Polygon 12
+0000002013,E,en,Polygon 13
+0000002014,E,en,Polygon 14
+0000002015,E,en,Polygon 15
+0000002016,E,en,Polygon 16
+0000002017,E,en,Polygon 17
+0000003001,E,en,Radiation Zone 1
+0000003002,E,en,Radiation Zone 2
+0000003003,E,en,Radiation Zone 3
+0000003004,E,en,Radiation Zone 4
+0000003005,E,en,Radiation Zone 5
+0000003006,E,en,Radiation Zone 6
+0000003007,E,en,Radiation Zone 7
+0000003008,E,en,Radiation Zone 8
+0000003009,E,en,Radiation Zone 9
+0000003010,E,en,Radiation Zone 10
+0000003011,E,en,Radiation Zone 11
+0000003012,E,en,Radiation Zone 12
+0000003013,E,en,Radiation Zone 13
+0000003014,E,en,Energy Zone 1
+0000003015,E,en,Energy Zone 2
+0000003016,E,en,Energy Zone 3
+0000003017,E,en,Energy Zone 4
 0000004000,E,en,Navigate radiation alley and destroy the enemy base
 0000004001,E,en,Get through radiation alley avoiding critical damage then destroy the enemy base and return home

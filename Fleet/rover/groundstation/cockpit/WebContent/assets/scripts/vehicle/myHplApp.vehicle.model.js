@@ -38,6 +38,7 @@
 			rotateVal:							0,
 			camPanVal:							0,
 			laserVal:							false,
+			shield:                             100,
 			weaponRoundsFired:	 				0
 	};
 
@@ -214,6 +215,9 @@
         return state.laserVal;
     };
       
+    myHplApp.vehicle.model.getStateShield = function() { 
+        return state.shield;
+    };
     
 
     //Get functions for weapons
@@ -311,12 +315,24 @@
     myHplApp.vehicle.model.setStateCamPanVal = function(val) { 
         state.camPanVal = val;       	
     };
-
     
     myHplApp.vehicle.model.setStateLaserVal = function() {
         state.laserVal = !state.laserVal;       	
     };
-    
+        
+    myHplApp.vehicle.model.setStateShield = function(val) {
+    	console.log("Val ", val);
+    	var points = parseInt(val, 10);
+    	console.log("Points ", points);
+        state.shield = state.shield + points;       	
+        if (state.shield > 100) {
+        	state.shield = 100;
+        }
+        if (state.shield < 0) {
+        	state.shield = 0;
+        }
+        console.log(state.shield);
+    };
     
     
     //Set functions for weapons

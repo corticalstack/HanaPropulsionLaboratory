@@ -72,7 +72,8 @@ void HPLRover_SharpSensor::output(HPLRover_SharpSensor &sharpsensor) {
 	msg_sharpsensor_str += comma_separator;
 	msg_sharpsensor_str += sharpsensor.sharpsensor_msg.sensor2_valuecm;
 	msg_sharpsensor_str += comma_separator;
-	msg_sharpsensor_str += sharpsensor.sharpsensor_msg.sensor3_valuecm;
+//	msg_sharpsensor_str += sharpsensor.sharpsensor_msg.sensor3_valuecm;
+	msg_sharpsensor_str += 0;
 	msg_sharpsensor_str += msg_terminator;  
 	Serial.println(msg_sharpsensor_str);
 		

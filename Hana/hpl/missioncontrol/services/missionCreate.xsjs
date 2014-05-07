@@ -5,11 +5,12 @@ function missionCreate(){
 		p_missionId			= $.request.parameters.get('missionId'),
 		p_vehicleId			= $.request.parameters.get('vehicleId'),
 		p_pilotId			= $.request.parameters.get('pilotId'),
+		p_scenarioId		= $.request.parameters.get('scenarioId'),
 		p_timeStamp			= $.request.parameters.get('_'),
 		p_callback			= $.request.parameters.get('callback');
 
 	try {
-		query = 'INSERT INTO "hpl.missioncontrol.data::MC.Mission.Mission" values(?,?,?,?,?,?,?,?)';
+		query = 'INSERT INTO "hpl.missioncontrol.data::MC.Mission.Mission" values(?,?,?,?,?,?,?,?,?)';
 		pstmt = conn.prepareStatement(query);
 
 		p_timeStamp = parseInt(p_timeStamp, 10);
@@ -21,6 +22,7 @@ function missionCreate(){
 		pstmt.setNull(6);
 		pstmt.setNull(7);
 		pstmt.setNull(8);
+		pstmt.setString(9,p_scenarioId);
 		pstmt.execute();  
 		
 

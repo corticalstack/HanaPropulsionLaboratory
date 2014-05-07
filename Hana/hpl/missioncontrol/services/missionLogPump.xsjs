@@ -166,7 +166,11 @@ function missionLogPump(){
 						break;
 					case messageId.home:
 						distance 			 = parseFloat(messageFeedFields[0]);
+						break;
+					case messageId.distance:
+						distance 			 = parseFloat(messageFeedFields[0]);
 						break;						
+						
 						
 				}
 				break;
@@ -515,11 +519,11 @@ function missionLogPump(){
 		}
 
 
-		if (distanceTravelledPrevToHereM == null) {
+		if (distance == null) {
 			pstmt.setNull(43);
 		}
 		else {
-			pstmt.setDecimal(43,distanceTravelledPrevToHereM);			
+			pstmt.setDecimal(43,distance);			
 		}
 
 		

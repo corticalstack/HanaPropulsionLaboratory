@@ -409,7 +409,7 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		sap.ui.getCore().byId("lblValDistanceToWaypoint").setText(distance + 'm');
 		sap.ui.getCore().byId("lblValDistanceWp").setText(distance + 'm');
 		
-		myHplApp.missioncontrol.controller.missionLogPump(missioncontrolModel.getMessageCategoryIdNavigation(), missioncontrolModel.getMessageIdHome(), distance );
+		myHplApp.missioncontrol.controller.missionLogPump(myHplApp.missioncontrol.model.getMessageCategoryIdNavigation(), myHplApp.missioncontrol.model.getMessageIdHome(), distance );
 		
 	},
 	
@@ -520,16 +520,16 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 			}
 		}
 		
-		if ((frontProximity > 0 && frontProximity < 13) || (rearProximity > 0 && rearProximity < 13)) {
-			if (!myHplApp.controller.soundEffectIsPlaying('voicewarning')) {
-				myHplApp.controller.playSoundEffect({'effect': 'voicewarning', 'volume': 0.5});
-			}				
-		}
+//		if ((frontProximity > 0 && frontProximity < 13) || (rearProximity > 0 && rearProximity < 13)) {
+//			if (!myHplApp.controller.soundEffectIsPlaying('voicewarning')) {
+//				myHplApp.controller.playSoundEffect({'effect': 'voicewarning', 'volume': 0.5});
+//			}				
+//		}
 	},
 	
 	
 	setPilotScoreRefresh: function() {
-		//myHplApp.cockpit.model.getPilotScoreBreakdown().refresh();
+		myHplApp.cockpit.model.getPilotScoreBreakdown().refresh();
 		myHplApp.missioncontrol.controller.getPilotScore();
 		sap.ui.getCore().byId("lblValPilotScore").setText(myHplApp.missioncontrol.model.getActivePilotScore());
 	},
@@ -570,6 +570,21 @@ sap.ui.controller("cockpit_ui_resources.cockpit", {
 		sap.ui.getCore().byId("lblValStatTravelledM").setText(missionDistance.travelledM);
 		sap.ui.getCore().byId("lblValStatTravelledKm").setText(missionDistance.travelledKm);
 		sap.ui.getCore().byId("lblValStatTravelledMiles").setText(missionDistance.travelledMiles);
+	},
+	
+	
+	setMissionMonitor: function() {
+		var location = myHplApp.missioncontrol.controller.containsLocation();
+		if (location != null) {
+			if (location.hitpoints != 0) {
+				myHplApp.vehicle.model.setStateShield(location.hitpoints);
+				myHplApp.cockpit.model.setGaugeVal({id: 'gaugeShield', val: myHplApp.vehicle.model.getStateShield()});
+			}
+			if (location.healthpoints != 0) {
+				myHplApp.vehicle.model.setStateShield(location.healthpoints);
+				myHplApp.cockpit.model.setGaugeVal({id: 'gaugeShield', val: myHplApp.vehicle.model.getStateShield()});
+			}
+		}
 	},
 	
 	

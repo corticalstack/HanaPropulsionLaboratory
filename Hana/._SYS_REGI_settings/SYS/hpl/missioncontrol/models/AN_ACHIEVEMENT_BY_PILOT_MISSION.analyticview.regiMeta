@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Achievement by pilot mission ",
+  "content": "Achievement by pilot mission",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-04-17 14:00:49.6620000",
+  "activated_at": "2014-04-23 17:20:48.7460000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,7 +20,7 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "1"
+  "version_id": "2"
  },
  "version": {
   "versionType": "1"

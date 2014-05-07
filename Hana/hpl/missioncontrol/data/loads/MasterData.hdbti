@@ -1,4 +1,5 @@
 import = [ 
+
             { 
                 table = "hpl.missioncontrol.data::MC.MasterData.MessageCategoryId";
                 schema = "MISSIONCONTROL"; 
@@ -46,7 +47,13 @@ import = [
                 schema = "MISSIONCONTROL"; 
                 file = "hpl.missioncontrol.data.loads:colours.csv";
                 header = false;
-            },                                                                                                                                                   
+            },
+            { 
+                table = "hpl.missioncontrol.data::MC.MasterData.Goal";
+                schema = "MISSIONCONTROL"; 
+                file = "hpl.missioncontrol.data.loads:goal.csv";
+                header = false;
+            },                                                                                                                                                               
             { 
                 table = "hpl.missioncontrol.data::MC.MasterData.Terrain";
                 schema = "MISSIONCONTROL"; 

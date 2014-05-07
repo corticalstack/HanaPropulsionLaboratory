@@ -1,10 +1,10 @@
 function scenarioTerrain(){
-	function createShapeEntry(rs) {
+	function createTerrainEntry(rs) {
 		 return {
 			 "terrainId": rs.getNString(2),
 			 "shapeId": rs.getNString(3),
 			 "shapeDescription": rs.getString(4),
-			 "geometry": JSON.parse(rs.getNString(5)),
+			 "geometry": rs.getNString(5),
 			 "hitpoints": rs.getString(6),
 			 "healthpoints": rs.getString(7),
 			 "multiplier": rs.getString(8),
@@ -28,13 +28,13 @@ function scenarioTerrain(){
 		
 	try {
     
-		query = 'select SCENARIOID, TERRAINID, SHAPEID, SHAPEDESCRIPTION, SHAPE.ST_AsGeoJSON() as "GEOJSON", HITPOINTS, HEALTHPOINTS, MULTIPLIER, TERRAINNAME, STROKECOLOURHEX, STROKEOPACITY, STROKEWEIGHT, FILLCOLOURHEX, FILLOPACITY from "_SYS_BIC"."hpl.missioncontrol.models/AT_SCENARIO_TERRAIN"';		
+		query = 'select SCENARIOID, TERRAINID, SHAPEID, SHAPEDESCRIPTION, SHAPE.ST_AsWKT() as "SHAPEWKT", HITPOINTS, HEALTHPOINTS, MULTIPLIER, TERRAINNAME, STROKECOLOURHEX, STROKEOPACITY, STROKEWEIGHT, FILLCOLOURHEX, FILLOPACITY from "_SYS_BIC"."hpl.missioncontrol.models/AT_SCENARIO_TERRAIN"';		
 		pstmt = conn.prepareStatement(query);						
 
 		var rs = pstmt.executeQuery();  
 
 		while (rs.next()) {
-			geoCollection.push(createShapeEntry(rs));
+			geoCollection.push(createTerrainEntry(rs));
 		}
 
 		var bodyContent = JSON.stringify({

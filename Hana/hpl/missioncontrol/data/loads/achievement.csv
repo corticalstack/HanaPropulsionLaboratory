@@ -1,5 +1,16 @@
-1,0000001000,assets/images/achievements/50mclub.png,0000001001,50MC,1,50,1,10
-2,0000001002,assets/images/achievements/100mclub.png,0000001003,100MC,1,100,1,10
-3,0000001004,assets/images/achievements/500mclub.png,0000001005,500MC,1,500,1,10
-6,0000001010,assets/images/achievements/nocamping.png,0000001011,NCA,1,-250,1,15
-12,0000001022,assets/images/achievements/hill.png,0000001023,HIL,1,300,1,5
+1,0000001000,assets/images/achievements/50m Club 50x.jpg,0000001001,50MC,1,50,1,0
+2,0000001002,assets/images/achievements/100m Club 50x.jpg,0000001003,100MC,1,100,1,0
+3,0000001004,assets/images/achievements/500m Club 50x.jpg,0000001005,500MC,1,500,1,0
+6,0000001010,assets/images/achievements/No Camping 50x.jpg,0000001011,NCA,1,-250,1,10
+9,0000001016,assets/images/achievements/Lens 50x.jpg,0000001017,KOB,1,200,1,10
+12,0000001022,assets/images/achievements/The Hill 50x.jpg,0000001023,HIL,1,300,1,10
+13,0000001024,assets/images/achievements/Flaming Ninja 50x.jpg,0000001025,THU,1,200,1,10
+14,0000001026,assets/images/achievements/Flying Colors 50x.jpg,0000001027,PED,1,200,1,10
+16,0000001030,assets/images/achievements/Hogtire 50x.jpg,0000001031,ROT,1,75,1,20
+17,0000001032,assets/images/achievements/Snake 50x.jpg,0000001033,SNK,1,75,1,20
+18,0000001034,assets/images/achievements/Halt 50x.jpg,0000001035,CON,1,-150,1,20
+19,0000001036,assets/images/achievements/Anchor 50x.jpg,0000001037,STP,1,25,1,20
+20,0000001038,assets/images/achievements/BulletProof 50x.jpg,0000001039,BON,1,50,1,20
+21,0000001040,assets/images/achievements/Bonebreaker 50x.jpg,0000001041,ROL,1,-325,1,10
+22,0000001042,assets/images/achievements/Splatter 50x.jpg,0000001043,TIP,1,-325,1,10
+23,0000001044,assets/images/achievements/Recruit 50x.jpg,0000001045,RCR,1,200,1,0

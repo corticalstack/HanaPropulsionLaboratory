@@ -36,7 +36,11 @@
 					avatarUri: 	 myJSON.d.results[i].AVATARURI,
 					portraitUri: myJSON.d.results[i].PORTRAITURI,
 					clanName: 	 myJSON.d.results[i].CLANNAME,
-					clanUri: 	 myJSON.d.results[i].CLANURI
+					clanUri: 	 myJSON.d.results[i].CLANURI,
+					offense:	 myJSON.d.results[i].OFFENSE,
+					defense:	 myJSON.d.results[i].DEFENSE,
+					power:	 	 myJSON.d.results[i].POWER,
+					agility:	 myJSON.d.results[i].AGILITY
 			};
 			pilotModel.pushRoster(pilot);
 		};		
@@ -57,7 +61,11 @@
 				avatarUri: 	 'assets/images/pilots/avatarJP.png',
 				portraitUri: 'assets/images/pilots/portraitJP.png',
 				clanName: 	 'Wolf',
-				clanUri: 	 'assets/images/emblems/Wolf.jpg'
+				clanUri: 	 'assets/images/emblems/Wolf.jpg',
+				offense:      5,
+				defense:      5,
+				power:        5,
+				agility:      5
 		};
 		pilotModel.pushRoster(pilot);
 		
@@ -67,7 +75,11 @@
 				avatarUri: 	 'assets/images/pilots/avatarNadia.png',
 				portraitUri: 'assets/images/pilots/portraitNadia.png',
 				clanName: 	 'Black Widow',
-				clanUri: 	 'assets/images/emblems/Black Widow.jpg'
+				clanUri: 	 'assets/images/emblems/Black Widow.jpg',
+				offense:      5,
+				defense:      3,
+				power:        4,
+				agility:      2
 		};
 		pilotModel.pushRoster(pilot);
 		
@@ -77,7 +89,11 @@
 				avatarUri: 	 'assets/images/pilots/avatarJane.png',
 				portraitUri: 'assets/images/pilots/portraitJane.png',
 				clanName: 	 'Snake',
-				clanUri: 	 'assets/images/emblems/Snake.jpg'
+				clanUri: 	 'assets/images/emblems/Snake.jpg',
+				offense:      3,
+				defense:      3,
+				power:        3,
+				agility:      3				
 		};
 		pilotModel.pushRoster(pilot);
 
@@ -87,7 +103,11 @@
 				avatarUri: 	 'assets/images/pilots/avatarJoe.png',
 				portraitUri: 'assets/images/pilots/portraitJoe.png',
 				clanName: 	 'Wasp',
-				clanUri: 	 'assets/images/emblems/Wasp.jpg'
+				clanUri: 	 'assets/images/emblems/Wasp.jpg',
+				offense:      3,
+				defense:      3,
+				power:        3,
+				agility:      3				
 		};
 		pilotModel.pushRoster(pilot);
 

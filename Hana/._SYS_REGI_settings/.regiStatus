@@ -3,21 +3,27 @@
  "filenames": [
   {
    "filename": "hpl/missioncontrol/data/loads/achievementconditionmessage.csv",
-   "sha1value": "3076039989.24583735.3816922188.442646981.522216978",
-   "timest": "2014-04-20 09:42:37.262 UTC",
-   "filesize": "237"
+   "sha1value": "1640976145.671211630.2688259761.2120897305.2073857411",
+   "timest": "2014-04-24 14:55:34.91 UTC",
+   "filesize": "228"
   },
   {
    "filename": "hpl/missioncontrol/data/loads/pilot.csv",
-   "sha1value": "3421808720.4292179872.654034382.2434921596.2895925175",
-   "timest": "2014-03-30 17:57:34.386 UTC",
-   "filesize": "865"
+   "sha1value": "2932213568.34797242.762641766.2630803233.3892328557",
+   "timest": "2014-05-07 15:53:32.554 UTC",
+   "filesize": "921"
   },
   {
    "filename": "hpl/missioncontrol/models/AN_MISSION_COCKPIT_STOPS.analyticview",
    "sha1value": "278376538.691147228.2992906179.4181796390.895403915",
    "timest": "2014-04-17 14:37:29.665 UTC",
    "filesize": "4355"
+  },
+  {
+   "filename": "hpl/missioncontrol/models/AT_SCENARIO_GOAL.attributeview",
+   "sha1value": "3288420543.866752614.959183099.270203388.3582310486",
+   "timest": "2014-04-28 13:30:32.440 UTC",
+   "filesize": "9837"
   },
   {
    "filename": "hpl/missioncontrol/services/missionAvgAlt.xsodata",
@@ -33,21 +39,21 @@
   },
   {
    "filename": "hpl/missioncontrol/data/loads/scenario.csv",
-   "sha1value": "1738320056.508178238.2094858075.1373331534.3859362333",
-   "timest": "2014-02-28 13:48:01.551 UTC",
-   "filesize": "63"
+   "sha1value": "1642273582.569608822.1294221821.3584294217.591242325",
+   "timest": "2014-04-28 07:51:07.988 UTC",
+   "filesize": "65"
   },
   {
    "filename": "hpl/missioncontrol/models/AT_SCENARIO_TERRAIN.attributeview",
    "sha1value": "2123490965.1399684814.4035280882.1467474888.3899912727",
-   "timest": "2014-03-24 12:34:11.317 UTC",
+   "timest": "2014-04-25 13:21:05.518 UTC",
    "filesize": "11064"
   },
   {
    "filename": "hpl/missioncontrol/services/missionMessageCategoryIdRanking.xsodata",
-   "sha1value": "4103432873.3272671659.1697948675.2137705188.3934019431",
-   "timest": "2014-04-20 12:41:47.672 UTC",
-   "filesize": "386"
+   "sha1value": "1415673909.3495126669.3335090523.2881558359.790227497",
+   "timest": "2014-04-22 08:01:31.69 UTC",
+   "filesize": "389"
   },
   {
    "filename": "hpl/missioncontrol/procedures/reset_missionLogs.hdbprocedure",
@@ -57,9 +63,9 @@
   },
   {
    "filename": "hpl/missioncontrol/data/loads/terrain.csv",
-   "sha1value": "1675882671.4029708604.1790560801.2192337518.3335358883",
-   "timest": "2014-04-17 13:58:48.05 UTC",
-   "filesize": "288"
+   "sha1value": "1711637365.3700195251.3859443343.2252671812.2983113642",
+   "timest": "2014-04-25 13:25:16.432 UTC",
+   "filesize": "631"
   },
   {
    "filename": "hpl/missioncontrol/models/AT_MESSAGE_CATEGORY_ID.attributeview",
@@ -99,9 +105,9 @@
   },
   {
    "filename": "hpl/missioncontrol/services/pilots.xsodata",
-   "sha1value": "3633525261.50934046.2714438548.3693608192.2879611224",
-   "timest": "2014-03-30 18:11:30.383 UTC",
-   "filesize": "137"
+   "sha1value": "921385873.728153979.3609402714.1682124433.1813119100",
+   "timest": "2014-05-07 16:00:09.343 UTC",
+   "filesize": "136"
   },
   {
    "filename": "hpl/missioncontrol/data/loads/colours.csv",
@@ -132,6 +138,12 @@
    "sha1value": "1968779591.1448279294.969285433.3856147705.826138837",
    "timest": "2014-03-31 12:12:53.844 UTC",
    "filesize": "22521"
+  },
+  {
+   "filename": "hpl/missioncontrol/models/AT_GOAL.attributeview",
+   "sha1value": "893861011.1113042423.1413445650.1064858012.165661157",
+   "timest": "2014-04-28 08:51:48.772 UTC",
+   "filesize": "4998"
   },
   {
    "filename": "hpl/missioncontrol/data/loads/Util.hdbti",
@@ -171,39 +183,39 @@
   },
   {
    "filename": "hpl/missioncontrol/data/loads/texts.csv",
-   "sha1value": "1566693194.2089741262.3610418880.3075747536.3313447668",
-   "timest": "2014-04-20 09:37:44.474 UTC",
-   "filesize": "3250"
+   "sha1value": "3491751968.1760267543.2278131609.1892955478.4239600624",
+   "timest": "2014-04-28 08:32:35.647 UTC",
+   "filesize": "4219"
   },
   {
    "filename": "hpl/missioncontrol/data/loads/messageId.csv",
-   "sha1value": "1870577466.4216175649.3824361709.3655401396.3977603908",
-   "timest": "2014-04-20 09:37:15.854 UTC",
-   "filesize": "448"
+   "sha1value": "870736412.2445212897.2249433013.462445311.1300117396",
+   "timest": "2014-04-28 08:02:05.52 UTC",
+   "filesize": "542"
   },
   {
    "filename": "hpl/missioncontrol/services/scenarioTerrain.xsjs",
-   "sha1value": "622804862.3134364558.1091515548.2644286683.2387346680",
-   "timest": "2014-03-24 12:39:05.407 UTC",
-   "filesize": "1676"
+   "sha1value": "682937406.1930102806.3366869819.1759213174.3162455600",
+   "timest": "2014-04-28 13:38:22.605 UTC",
+   "filesize": "1665"
   },
   {
    "filename": "hpl/missioncontrol/models/AN_ACHIEVEMENT_BY_PILOT_MISSION.analyticview",
-   "sha1value": "2738047422.310446408.232683455.3496000458.1991398795",
-   "timest": "2014-02-28 13:48:01.580 UTC",
-   "filesize": "8988"
+   "sha1value": "3887436243.3184929534.945429475.3136524315.1138743423",
+   "timest": "2014-04-23 17:20:39.927 UTC",
+   "filesize": "8987"
   },
   {
    "filename": "hpl/missioncontrol/models/DT_ACHIEVEMENT_PILOT_SCORE.hdbruldec",
-   "sha1value": "3313086906.2642037155.3121668177.1307307284.905940578",
-   "timest": "2014-04-20 09:58:00.768 UTC",
-   "filesize": "33546"
+   "sha1value": "1832950040.3704865386.3921381512.791230092.3752557236",
+   "timest": "2014-04-24 16:14:42.635 UTC",
+   "filesize": "47018"
   },
   {
    "filename": "hpl/missioncontrol/data/loads/achievement.csv",
-   "sha1value": "911892107.3323332981.441996751.553666669.2279373320",
-   "timest": "2014-04-20 09:57:54.211 UTC",
-   "filesize": "399"
+   "sha1value": "35623131.559922707.3156053185.2856935653.1959697496",
+   "timest": "2014-04-24 14:55:30.777 UTC",
+   "filesize": "1358"
   },
   {
    "filename": "hpl/missioncontrol/.settings/.jsdtscope",
@@ -213,9 +225,9 @@
   },
   {
    "filename": "hpl/missioncontrol/services/missionPilotScore.xsodata",
-   "sha1value": "2874682452.3621865144.175137430.2741790565.2567172489",
-   "timest": "2014-04-10 16:53:25.387 UTC",
-   "filesize": "263"
+   "sha1value": "1907545787.604106007.3171913341.3270662988.2793447051",
+   "timest": "2014-04-24 15:47:45.208 UTC",
+   "filesize": "264"
   },
   {
    "filename": "hpl/missioncontrol/data/loads/colourPicker.csv",
@@ -231,9 +243,9 @@
   },
   {
    "filename": "hpl/missioncontrol/services/missionDistance.xsodata",
-   "sha1value": "4197431591.1827635294.3925837869.3603973433.45967208",
-   "timest": "2014-04-20 12:38:43.283 UTC",
-   "filesize": "362"
+   "sha1value": "1550032882.2289999865.6198813.2590611753.3217940577",
+   "timest": "2014-04-22 08:01:10.952 UTC",
+   "filesize": "364"
   },
   {
    "filename": "hpl/missioncontrol/procedures/get_mission_time_idle.hdbprocedure",
@@ -243,21 +255,15 @@
   },
   {
    "filename": "hpl/missioncontrol/models/AT_ACHIEVEMENT.attributeview",
-   "sha1value": "953048153.3777000255.702117425.2866439145.2815182470",
-   "timest": "2014-02-28 13:48:01.585 UTC",
-   "filesize": "5271"
-  },
-  {
-   "filename": "hpl/missioncontrol/models/CV_ACHIEVEMENT_PILOT_SCORE_BREAKDOWN.calculationview",
-   "sha1value": "3579579730.3646071772.2682000892.38211289.3019338876",
-   "timest": "2014-04-20 10:18:54.248 UTC",
-   "filesize": "9638"
+   "sha1value": "1912334565.2151048694.3583383943.2743505813.277750326",
+   "timest": "2014-04-23 16:14:11.40 UTC",
+   "filesize": "5272"
   },
   {
    "filename": "hpl/missioncontrol/data/MC.hdbdd",
-   "sha1value": "4069878155.3901936312.2960779131.3051433330.4180869151",
-   "timest": "2014-04-20 12:36:17.997 UTC",
-   "filesize": "9514"
+   "sha1value": "3529703831.3471368725.4229083005.925088397.674627008",
+   "timest": "2014-05-07 15:51:57.269 UTC",
+   "filesize": "10478"
   },
   {
    "filename": "hpl/missioncontrol/.xsapp",
@@ -267,15 +273,21 @@
   },
   {
    "filename": "hpl/missioncontrol/data/loads/MasterData.hdbti",
-   "sha1value": "243604743.940228557.1308638581.999327234.2901174992",
-   "timest": "2014-03-24 12:28:08.462 UTC",
-   "filesize": "3029"
+   "sha1value": "1586637923.3410904777.2599247395.3491775428.41936626",
+   "timest": "2014-05-07 16:03:44.504 UTC",
+   "filesize": "3291"
   },
   {
    "filename": "hpl/missioncontrol/models/AN_MISSION_MAX_SPEED.analyticview",
    "sha1value": "2630037721.458836164.2922484600.3008090457.3342887308",
    "timest": "2014-03-03 13:39:53.71 UTC",
    "filesize": "8048"
+  },
+  {
+   "filename": "hpl/missioncontrol/data/loads/goal.csv",
+   "sha1value": "2987328408.1989201886.1385380209.3429490016.3154509904",
+   "timest": "2014-04-28 12:29:20.623 UTC",
+   "filesize": "219"
   },
   {
    "filename": "hpl/missioncontrol/models/CV_MISSION_STATS_TIME.calculationview",
@@ -291,15 +303,15 @@
   },
   {
    "filename": "hpl/missioncontrol/models/CV_ACHIEVEMENT_PILOT_SCORE.calculationview",
-   "sha1value": "1246179186.428201913.186733600.1706206710.3620633650",
-   "timest": "2014-04-20 12:49:01.309 UTC",
-   "filesize": "5224"
+   "sha1value": "1729449074.3575860762.654458329.1872707001.914080118",
+   "timest": "2014-04-28 13:03:36.461 UTC",
+   "filesize": "5421"
   },
   {
    "filename": "hpl/missioncontrol/services/missionCreate.xsjs",
-   "sha1value": "4065410132.1333327384.292704178.3114849855.895331313",
-   "timest": "2014-02-28 13:48:01.600 UTC",
-   "filesize": "1296"
+   "sha1value": "538759545.3980297383.972245917.2916090193.235720395",
+   "timest": "2014-04-28 13:04:26.776 UTC",
+   "filesize": "1393"
   },
   {
    "filename": "hpl/missioncontrol/models/AT_TIME.attributeview",
@@ -327,9 +339,9 @@
   },
   {
    "filename": "hpl/missioncontrol/models/AT_ACHIEVEMENT_CONDITION_MESSAGE.attributeview",
-   "sha1value": "572858446.2596770656.1731027225.3042799929.4000597524",
-   "timest": "2014-02-28 13:48:01.603 UTC",
-   "filesize": "9285"
+   "sha1value": "1871173805.3075403531.433182694.2693960392.2274282414",
+   "timest": "2014-04-23 16:14:05.943 UTC",
+   "filesize": "9286"
   },
   {
    "filename": "hpl/missioncontrol/models/AN_MISSION_MIN_ALT.analyticview",
@@ -363,9 +375,9 @@
   },
   {
    "filename": "hpl/missioncontrol/models/AT_MISSION_LOG_ACHIEVEMENT_GROUP.attributeview",
-   "sha1value": "1615415080.1341693696.1330962457.1867095133.4093156582",
-   "timest": "2014-02-28 13:48:01.611 UTC",
-   "filesize": "22021"
+   "sha1value": "591078889.1622776879.1192562218.3573008613.1422844297",
+   "timest": "2014-04-23 16:14:46.96 UTC",
+   "filesize": "22686"
   },
   {
    "filename": "hpl/missioncontrol/data/missioncontrolAdmin.hdbrole",
@@ -375,9 +387,9 @@
   },
   {
    "filename": "hpl/missioncontrol/models/CV_ACHIEVEMENT_BY_PILOT_MISSION.calculationview",
-   "sha1value": "2177723437.2686348313.3029651204.2365487902.210080371",
-   "timest": "2014-04-03 16:28:02.173 UTC",
-   "filesize": "20836"
+   "sha1value": "304889746.3929110878.2348353715.2469417853.1598002109",
+   "timest": "2014-04-25 08:23:56.772 UTC",
+   "filesize": "22415"
   },
   {
    "filename": "hpl/missioncontrol/services/missionDistanceTravelled.xsjs",
@@ -417,9 +429,9 @@
   },
   {
    "filename": "hpl/missioncontrol/services/missionAvgSpeed.xsodata",
-   "sha1value": "1483885462.170294296.153587845.38671160.513358224",
-   "timest": "2014-04-20 12:41:29.870 UTC",
-   "filesize": "432"
+   "sha1value": "479500448.2873179653.533434298.2952077567.1616911962",
+   "timest": "2014-04-22 08:00:44.210 UTC",
+   "filesize": "436"
   },
   {
    "filename": "hpl/missioncontrol/services/messages.xsjslib",
@@ -429,9 +441,9 @@
   },
   {
    "filename": "hpl/missioncontrol/services/missionLogPump.xsjs",
-   "sha1value": "3782663575.3434586403.2734236715.847955357.173090077",
-   "timest": "2014-04-20 12:28:58.196 UTC",
-   "filesize": "12585"
+   "sha1value": "3378031295.3357557586.287076513.165775579.2611322603",
+   "timest": "2014-04-22 12:07:17.990 UTC",
+   "filesize": "12654"
   },
   {
    "filename": "hpl/missioncontrol/services/groundController.xsjs",
@@ -447,9 +459,15 @@
   },
   {
    "filename": "hpl/missioncontrol/data/loads/messageCategoryId.csv",
-   "sha1value": "3286535124.1577078891.2895455465.4219243696.1218042727",
-   "timest": "2014-02-28 13:48:01.683 UTC",
-   "filesize": "110"
+   "sha1value": "130222631.1903543409.2315714025.1105448444.3590450670",
+   "timest": "2014-04-28 07:30:43.626 UTC",
+   "filesize": "126"
+  },
+  {
+   "filename": "hpl/missioncontrol/services/scenarioGoal.xsjs",
+   "sha1value": "649165295.2803765520.4242046931.20111900.843388834",
+   "timest": "2014-04-28 13:47:37.507 UTC",
+   "filesize": "1617"
   },
   {
    "filename": "hpl/missioncontrol/services/bigApple.xsjs",
@@ -468,12 +486,6 @@
    "sha1value": "2446787657.1942302899.3029458675.604192371.2336679470",
    "timest": "2014-03-03 14:15:07.995 UTC",
    "filesize": "8755"
-  },
-  {
-   "filename": "hpl/missioncontrol/services/missionPilotScoreBreakdown.xsodata",
-   "sha1value": "2549952540.3171716301.2065076971.4023691694.323594242",
-   "timest": "2014-04-20 12:51:41.00 UTC",
-   "filesize": "351"
   },
   {
    "filename": "hpl/missioncontrol/data/loads/messages.csv",

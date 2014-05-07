@@ -3,5 +3,5 @@ service namespace "hpl.missioncontrol.services" {
     as "missionDistance" with ("MISSIONID_MISSIONID","VEHICLEID_VEHICLEID","PILOTID_PILOTID","DISTANCETRAVELLEDKM","DISTANCETRAVELLEDMILES","DISTANCE")
     keys generate local "ID"
   	aggregates always
-  	parameters via entity "InputParams";   	    		   	  
+  	parameters via entity "InputParams";   	   	   		   	 
 }

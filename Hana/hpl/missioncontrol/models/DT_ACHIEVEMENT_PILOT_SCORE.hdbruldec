@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dtmodel:decisionTableModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:alias="http://www.sap.com/ndb/Rules/Alias" xmlns:core="http://www.sap.com/ndb/Rules/Core" xmlns:dtmodel="http://www.sap.com/ndb/DecisionTableModel1.ecore" xmlns:table="http://www.sap.com/ndb/Rules/DecisionTable" schemaVersion="1.0" id="DT_ACHIEVEMENT_PILOT_SCORE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal">
-  <descriptions defaultDescription="Achievement pilot score"/>
+  <descriptions defaultDescription="DT_ACHIEVEMENT_PILOT_SCORE"/>
   <defaultSchema/>
   <dataSources>
     <DataSource id="CV_ACHIEVEMENT_BY_PILOT_MISSION" type="CALCULATION_VIEW">
@@ -14,13 +14,13 @@
     <layout>
       <shapes>
         <shape modelObjectName="/hpl.missioncontrol.models/calculationviews/CV_ACHIEVEMENT_BY_PILOT_MISSION.calculationview" modelObjectType="repository">
-          <upperLeftCorner x="70" y="30"/>
+          <upperLeftCorner x="523" y="389"/>
         </shape>
       </shapes>
     </layout>
   </privateDataFoundation>
   <dtmodel:variables>
-    <core:variable id="VAR1457e53e4bexe1c9b" core:assignable="true" core:length="7" core:name="PA_SCORE" core:scale="2" core:type="DECIMAL">
+    <core:variable id="VAR145935b5bddx7e979" core:assignable="true" core:length="7" core:name="PA_SCORE" core:scale="2" core:type="DECIMAL">
       <descriptions defaultDescription="Score"/>
       <core:simpleexp core:operator="" core:type="DECIMAL">
         <core:primitive core:value="0"/>
@@ -29,341 +29,432 @@
       <core:selection core:isMultiLine="false" core:type=""/>
     </core:variable>
   </dtmodel:variables>
-  <alias:aliasset alias:guid="AS14479015d5cx4f4b2">
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1447901ef59x4ce17" alias:visible="true" alias:columnName="CONDITIONID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
-      <descriptions defaultDescription="CONDITIONID"/>
-    </alias:basealias>
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1447901f37bx30188" alias:visible="true" alias:columnName="MESSAGECATEGORYID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
-      <descriptions defaultDescription="MESSAGECATEGORYID"/>
-    </alias:basealias>
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1447901f894x80d0" alias:visible="true" alias:columnName="MESSAGEID_MESSAGEID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
-      <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
-    </alias:basealias>
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14479020e67x96060" alias:visible="true" alias:columnName="CA_ACHIEVEMENT_VALUE" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="DECIMAL" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
-      <descriptions defaultDescription="CA_ACHIEVEMENT_VALUE"/>
-    </alias:basealias>
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1451e6e9668x7550e" alias:visible="true" alias:columnName="MISSIONID_MISSIONID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+  <alias:aliasset alias:guid="AS14593596598x3e1ecy1">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a2142x6c561" alias:visible="true" alias:columnName="MISSIONID_MISSIONID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
       <descriptions defaultDescription="MISSIONID_MISSIONID"/>
     </alias:basealias>
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1451e6e98c6x93784" alias:visible="true" alias:columnName="VEHICLEID_VEHICLEID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a2466xccd18" alias:visible="true" alias:columnName="VEHICLEID_VEHICLEID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
       <descriptions defaultDescription="VEHICLEID_VEHICLEID"/>
     </alias:basealias>
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL1451e6e9aeaxee085" alias:visible="true" alias:columnName="PILOTID_PILOTID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a298cx68527" alias:visible="true" alias:columnName="PILOTID_PILOTID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
       <descriptions defaultDescription="PILOTID_PILOTID"/>
     </alias:basealias>
-    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL14528e19890xde6c6" alias:visible="true" alias:columnName="CA_ACHIEVEMENT_KEYFRAME_GROUP" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="INTEGER" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a3781x42459" alias:visible="true" alias:columnName="CA_ACHIEVEMENT_KEYFRAME_GROUP" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="INTEGER" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
       <descriptions defaultDescription="CA_ACHIEVEMENT_KEYFRAME_GROUP"/>
     </alias:basealias>
-    <alias:basealias xsi:type="alias:Alias" id="VARAL1457e53e4bexd9bay1" alias:visible="true">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a487dx89dd9" alias:visible="true" alias:columnName="CONDITIONID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="CONDITIONID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a4bcdx9cc3d" alias:visible="true" alias:columnName="POINTS" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="DECIMAL" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="POINTS"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a5261x4e540" alias:visible="true" alias:columnName="MESSAGECATEGORYID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="MESSAGECATEGORYID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a5576x3e02a" alias:visible="true" alias:columnName="MESSAGEID_MESSAGEID" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="NVARCHAR" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL145935a658fx59449" alias:visible="true" alias:columnName="CA_ACHIEVEMENT_VALUE" alias:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" alias:columntype="DECIMAL" alias:modelType="calculation" alias:schemaName="_SYS_BIC">
+      <descriptions defaultDescription="CA_ACHIEVEMENT_VALUE"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:Alias" id="VARAL145935b5be0xae049" alias:visible="true">
       <descriptions defaultDescription="PA_SCORE"/>
       <alias:member alias:returntype="DECIMAL" alias:varname="PA_SCORE"/>
     </alias:basealias>
   </alias:aliasset>
-  <table:decisiontable table:guid="DT14479015d58x23a27" table:name="DT_ACHIEVEMENT_PILOT_SCORE">
-    <table:conditionstub table:id="CS14479021eacxd647d" table:conditionstubtype="regular" table:type="NVARCHAR">
+  <table:decisiontable table:guid="DT14593596598xe2bbb" table:name="DT_ACHIEVEMENT_PILOT_SCORE">
+    <table:conditionstub table:id="CS145935a9078x57dbc" table:conditionstubtype="regular" table:type="NVARCHAR">
       <core:lvalue>
         <core:simpleexp core:type="NVARCHAR">
           <core:abstractreference xsi:type="core:TableReference" core:columnName="CONDITIONID" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="NVARCHAR" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </core:lvalue>
-      <table:cv table:id="CV14479052364x212c7y19">
+      <table:cv table:id="CV145935c8ad1x5a1cdyf">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="RCR"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145935f3accx897b4y27">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="50MC"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790666f0x1740ey20">
+      <table:cv table:id="CV145936029f1xcd463y3b">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="100MC"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV1447906f0e8xa1004y28">
+      <table:cv table:id="CV145936069b5x6f5d6y41">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="500MC"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790782f2x5fcdcy35">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="1KC"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV14479086241x68532y3d">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="CON"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV1447909420fx15205y4a">
+      <table:cv table:id="CV14593610b32x8a6b3y49">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="NCA"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790a08f0x6b82y5a">
+      <table:cv table:id="CV1459366182bxac2e4y5a">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="PED"/>
+            <core:primitive core:value="CON"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790aa7eex71fb0y69">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="ROL"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790b933dxbd55cy79">
+      <table:cv table:id="CV1459366ddd9xb3c5y6f">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="THU"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790c5eb7xeeebby88">
+      <table:cv table:id="CV14593675840x28b19y7f">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="TIP"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790d413ex894ccy9a">
+      <table:cv table:id="CV1459367b590x9823ey8d">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="HIL"/>
+            <core:primitive core:value="ROL"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790e08ebx488abyab">
+      <table:cv table:id="CV14593949c95x4847y7">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="SNK"/>
+            <core:primitive core:value="ROT"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790ec498xb97e0ybc">
+      <table:cv table:id="CV145939ff630xb4218y18">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="KOB"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790f7ab8x33e5yc8">
+      <table:cv table:id="CV14593a92d23xdcd72y25">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="ROT"/>
+            <core:primitive core:value="STP"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145943e2df0xee9y3">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="PED"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145943ee477x66140yf">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="SNK"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145943fa588x990b5y1e">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="BON"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV1459482532fx3aae0y2a">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="HIL"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
     </table:conditionstub>
-    <table:conditionstub table:id="CS14479023169xd5941" table:conditionstubtype="regular" table:type="NVARCHAR">
+    <table:conditionstub table:id="CS145935aafecxcf103" table:conditionstubtype="regular" table:type="NVARCHAR">
       <core:lvalue>
         <core:simpleexp core:type="NVARCHAR">
           <core:abstractreference xsi:type="core:TableReference" core:columnName="MESSAGECATEGORYID" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="NVARCHAR" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </core:lvalue>
-      <table:cv table:id="CV1447903896bx4c1a7yf">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="NAV"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV14479087552x96c1ay41">
+      <table:cv table:id="CV145935ca608x480a0y12">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="NOT"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790a1b4cxd97c8y5f">
+      <table:cv table:id="CV145935f4fa6x29a62y2a">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="COC"/>
+            <core:primitive core:value="NAV"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790ab6d0x8e7e2y6e">
+      <table:cv table:id="CV14593676bbcxb89y83">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="SEN"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
+      <table:cv table:id="CV1459394b140x2b1acyb">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="COC"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
     </table:conditionstub>
-    <table:conditionstub table:id="CS14479023ae1xdcc77" table:conditionstubtype="regular" table:type="NVARCHAR">
+    <table:conditionstub table:id="CS145935ab69exa7925" table:conditionstubtype="regular" table:type="NVARCHAR">
       <core:lvalue>
         <core:simpleexp core:type="NVARCHAR">
           <core:abstractreference xsi:type="core:TableReference" core:columnName="MESSAGEID_MESSAGEID" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="NVARCHAR" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </core:lvalue>
-      <table:cv table:id="CV14479039de5xcc0f2y12">
+      <table:cv table:id="CV145935cb3b8x24bbdy15">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="GPP"/>
+            <core:primitive core:value="ARD"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790884b5x2231cy44">
+      <table:cv table:id="CV145935f6094xb1398y2d">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="TFS"/>
+            <core:primitive core:value="DST"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790a2a86x4194ay62">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="THR"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790ac875xe7b90y71">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="INE"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790bba51x9c335y81">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="GPV"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790e2940x73901yb4">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="HDG"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790ed7fexe889byc0">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="CAM"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790f8d66x4591ycc">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
-            <core:primitive core:value="ROT"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV1457e8559b6x10edcy3">
+      <table:cv table:id="CV145936125e3x134y4c">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
             <core:primitive core:value="HOM"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
+      <table:cv table:id="CV14593663d9ax73fb5y61">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="TFS"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14593670bfex28297y78">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="GPV"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14593678064xe6a0ey87">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="INE"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV1459394ca6fx5c1fbye">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="ROT"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14593a00ec4x36e25y1b">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="CAM"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14593a94330x9afcdy28">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="STP"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145943e5eaaxa925ey7">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="THR"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145943efd99x66875y12">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="HDG"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145943fc9c7xad4c6y22">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="WEF"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14594827a7bxa27dcy32">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="GPP"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
     </table:conditionstub>
-    <table:conditionstub table:id="CS14479026778x8874a" table:conditionstubtype="regular" table:type="DECIMAL">
+    <table:conditionstub table:id="CS145935ae1caxdab2c" table:conditionstubtype="regular" table:type="NVARCHAR">
+      <core:lvalue>
+        <core:simpleexp core:type="NVARCHAR">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="MISSIONID_MISSIONID" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="NVARCHAR" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </core:lvalue>
+      <table:cv table:id="CV145935cc29fx1b6c4y18">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="1"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145935f9628x70e7by31">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Between">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="1"/>
+          </core:simpleexp>
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="99999"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+    </table:conditionstub>
+    <table:conditionstub table:id="CS145935b0ca3xd6cec" table:conditionstubtype="regular" table:type="INTEGER">
+      <core:lvalue>
+        <core:simpleexp core:type="INTEGER">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="CA_ACHIEVEMENT_KEYFRAME_GROUP" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="INTEGER" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </core:lvalue>
+      <table:cv table:id="CV145935d0151x7b240y1b">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="INTEGER">
+            <core:primitive core:value="1"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145935fe67cx9e680y34">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Between">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="INTEGER">
+            <core:primitive core:value="1"/>
+          </core:simpleexp>
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="INTEGER">
+            <core:primitive core:value="99999"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14593791f66x21cf1y92">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Less Than">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="INTEGER">
+            <core:primitive core:value="6"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+    </table:conditionstub>
+    <table:conditionstub table:id="CS145935b1f93x1345c" table:conditionstubtype="regular" table:type="DECIMAL">
       <core:lvalue>
         <core:simpleexp core:type="DECIMAL">
           <core:abstractreference xsi:type="core:TableReference" core:columnName="CA_ACHIEVEMENT_VALUE" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </core:lvalue>
-      <table:cv table:id="CV1447905c14cx92efay1c">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Between">
+      <table:cv table:id="CV145935e19d0xe15fay23">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+            <core:primitive core:value="0"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14593600bddx45119y37">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
             <core:primitive core:value="50"/>
           </core:simpleexp>
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-            <core:primitive core:value="99"/>
-          </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV1447906c5efx3e66ey24">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Between">
+      <table:cv table:id="CV14593604106x2ffcfy3e">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
             <core:primitive core:value="100"/>
           </core:simpleexp>
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-            <core:primitive core:value="599"/>
-          </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV14479071cdaxf32ffy2d">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Between">
+      <table:cv table:id="CV14593607b27xdee3ay46">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than Equals">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
             <core:primitive core:value="500"/>
           </core:simpleexp>
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-            <core:primitive core:value="999"/>
-          </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV1447907b9bax60564y39">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-            <core:primitive core:value="1000"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV14479089ccex216f3y48">
+      <table:cv table:id="CV1459366bba7x27b7ay6c">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
             <core:primitive core:value="0"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV1447909ad51x5b287y56">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Less Than">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-            <core:primitive core:value="2"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790a3a60xc16ecy65">
+      <table:cv table:id="CV14593672f55x35076y7b">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
             <core:primitive core:value="30"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790b1178x18474y75">
+      <table:cv table:id="CV14593679805xee56cy8a">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
             <core:primitive core:value="1.5"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790e3feexf005ayb8">
+      <table:cv table:id="CV145937a7203x441e8y3">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Less Than">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+            <core:primitive core:value="6"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV1459396d035x97c4dy15">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+            <core:primitive core:value="60"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV14593a4ac0fx88eb1y21">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+            <core:primitive core:value="5"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+      <table:cv table:id="CV145943f2f5fx4fb33y16">
         <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
           <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
             <core:primitive core:value="20"/>
           </core:simpleexp>
         </core:rangeexpression>
       </table:cv>
-      <table:cv table:id="CV144790eef9fx7545eyc4">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-            <core:primitive core:value="6"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
-      <table:cv table:id="CV144790fa6b9xd52c4yd0">
-        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Greater Than">
-          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-            <core:primitive core:value="10"/>
-          </core:simpleexp>
-        </core:rangeexpression>
-      </table:cv>
     </table:conditionstub>
-    <table:actionstub table:id="AS1457e53f0a0x45a6c" table:actionstubtype="regular">
+    <table:actionstub table:id="AS145935b6c6dx3f5a4" table:actionstubtype="regular">
       <core:abstractaction xsi:type="core:Action" core:type="assign" core:varname="PA_SCORE">
         <core:assignmentvalue>
           <core:simpleexp core:type="DECIMAL">
@@ -371,146 +462,200 @@
           </core:simpleexp>
         </core:assignmentvalue>
       </core:abstractaction>
-      <table:av table:ce-id-refs="CV14479086241x68532y3d CV14479087552x96c1ay41 CV144790884b5x2231cy44 CV14479089ccex216f3y48" table:id="AV1457e5451d8x84765">
+      <table:av table:ce-id-refs="CV145935c8ad1x5a1cdyf CV145935ca608x480a0y12 CV145935cb3b8x24bbdy15 CV145935cc29fx1b6c4y18 CV145935d0151x7b240y1b CV145935e19d0xe15fay23" table:id="AV145935d38ffx534b0">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="-100"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790a08f0x6b82y5a CV144790a1b4cxd97c8y5f CV144790a2a86x4194ay62 CV144790a3a60xc16ecy65" table:id="AV1457e546ea8xa92af">
+      <table:av table:ce-id-refs="CV145935f3accx897b4y27 CV145935f4fa6x29a62y2a CV145935f6094xb1398y2d CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593600bddx45119y37" table:id="AV145935f3acex40b92">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="200"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790aa7eex71fb0y69 CV144790ab6d0x8e7e2y6e CV144790ac875xe7b90y71 CV144790b1178x18474y75" table:id="AV1457e547e00x27ce1">
+      <table:av table:ce-id-refs="CV145936029f1xcd463y3b CV145935f4fa6x29a62y2a CV145935f6094xb1398y2d CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593604106x2ffcfy3e" table:id="AV145936029f2x87b8c">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="-300"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790b933dxbd55cy79 CV1447903896bx4c1a7yf CV144790bba51x9c335y81 CV144790a3a60xc16ecy65" table:id="AV1457e548bb0x713e3">
+      <table:av table:ce-id-refs="CV145936069b5x6f5d6y41 CV145935f4fa6x29a62y2a CV145935f6094xb1398y2d CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593607b27xdee3ay46" table:id="AV145936069b5xb5b61y42">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="100"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790c5eb7xeeebby88 CV144790ab6d0x8e7e2y6e CV144790ac875xe7b90y71 CV144790b1178x18474y75" table:id="AV1457e549927x9c4da">
+      <table:av table:ce-id-refs="CV1459366182bxac2e4y5a CV145935ca608x480a0y12 CV14593663d9ax73fb5y61 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV1459366bba7x27b7ay6c" table:id="AV1459366182dx4d818">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="-300"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790e08ebx488abyab CV144790a1b4cxd97c8y5f CV144790e2940x73901yb4 CV144790e3feexf005ayb8" table:id="AV1457e54b2a0xeb036">
+      <table:av table:ce-id-refs="CV1459366ddd9xb3c5y6f CV145935f4fa6x29a62y2a CV14593670bfex28297y78 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593672f55x35076y7b" table:id="AV1459366ddd9xa90efy70">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="20"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790ec498xb97e0ybc CV144790a1b4cxd97c8y5f CV144790ed7fexe889byc0 CV144790eef9fx7545eyc4" table:id="AV1457e54bdb8x6a8e5">
+      <table:av table:ce-id-refs="CV14593675840x28b19y7f CV14593676bbcxb89y83 CV14593678064xe6a0ey87 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593679805xee56cy8a" table:id="AV14593675841xece3b">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="30"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790f7ab8x33e5yc8 CV144790a1b4cxd97c8y5f CV144790f8d66x4591ycc CV144790fa6b9xd52c4yd0" table:id="AV1457e54cde7x9f0a">
+      <table:av table:ce-id-refs="CV1459367b590x9823ey8d CV14593676bbcxb89y83 CV14593678064xe6a0ey87 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593679805xee56cy8a" table:id="AV1459367b590x64372y8e">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="15"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV144790d413ex894ccy9a CV1447903896bx4c1a7yf CV14479039de5xcc0f2y12 CV14479089ccex216f3y48" table:id="AV1457e55ecb2x9cd92">
+      <table:av table:ce-id-refs="CV14593610b32x8a6b3y49 CV145935f4fa6x29a62y2a CV145936125e3x134y4c CV145935f9628x70e7by31 CV14593791f66x21cf1y92 CV145937a7203x441e8y3" table:id="AV14593610b34x754b3">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </table:av>
+      <table:av table:ce-id-refs="CV14593949c95x4847y7 CV1459394b140x2b1acyb CV1459394ca6fx5c1fbye CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV1459396d035x97c4dy15" table:id="AV14593949c97x7f09b">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </table:av>
+      <table:av table:ce-id-refs="CV145939ff630xb4218y18 CV1459394b140x2b1acyb CV14593a00ec4x36e25y1b CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593a4ac0fx88eb1y21" table:id="AV145939ff631x95dd8">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </table:av>
+      <table:av table:ce-id-refs="CV145943e2df0xee9y3 CV1459394b140x2b1acyb CV145943e5eaaxa925ey7 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV14593672f55x35076y7b" table:id="AV145943e2df3xc74ac">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </table:av>
+      <table:av table:ce-id-refs="CV145943ee477x66140yf CV1459394b140x2b1acyb CV145943efd99x66875y12 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV145943f2f5fx4fb33y16" table:id="AV145943ee478x2a4b4">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </table:av>
+      <table:av table:ce-id-refs="CV145943fa588x990b5y1e CV1459394b140x2b1acyb CV145943fc9c7xad4c6y22 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV1459366bba7x27b7ay6c" table:id="AV145943f4786x6939y1b">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
+        </core:simpleexp>
+      </table:av>
+      <table:av table:ce-id-refs="CV1459482532fx3aae0y2a CV145935f4fa6x29a62y2a CV14594827a7bxa27dcy32 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV1459366bba7x27b7ay6c" table:id="AV14594825331x69d12">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
           <core:abstractreference xsi:type="core:TableReference" core:columnName="CA_ACHIEVEMENT_VALUE" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
-        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="/" core:type="DECIMAL">
-          <core:primitive core:value="10"/>
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="*" core:type="DECIMAL">
+          <core:primitive core:value="0.10"/>
         </core:simpleexp>
       </table:av>
-      <table:av table:ce-id-refs="CV14479052364x212c7y19 CV1447903896bx4c1a7yf CV1457e8559b6x10edcy3 CV1447905c14cx92efay1c" table:id="AV1457e540d37xb76e8">
+      <table:av table:ce-id-refs="CV14593a92d23xdcd72y25 CV1459394b140x2b1acyb CV14593a94330x9afcdy28 CV145935f9628x70e7by31 CV145935fe67cx9e680y34 CV1459366bba7x27b7ay6c" table:id="AV14593a92d25x54999">
         <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="500"/>
-        </core:simpleexp>
-      </table:av>
-      <table:av table:ce-id-refs="CV144790666f0x1740ey20 CV1447903896bx4c1a7yf CV1457e8559b6x10edcy3 CV1447906c5efx3e66ey24" table:id="AV1457e541c29x9767d">
-        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="1000"/>
-        </core:simpleexp>
-      </table:av>
-      <table:av table:ce-id-refs="CV1447906f0e8xa1004y28 CV1447903896bx4c1a7yf CV1457e8559b6x10edcy3 CV14479071cdaxf32ffy2d" table:id="AV1457e542d2ax77dfd">
-        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="5000"/>
-        </core:simpleexp>
-      </table:av>
-      <table:av table:ce-id-refs="CV144790782f2x5fcdcy35 CV1447903896bx4c1a7yf CV1457e8559b6x10edcy3 CV1447907b9bax60564y39" table:id="AV1457e544070x50587">
-        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="10000"/>
-        </core:simpleexp>
-      </table:av>
-      <table:av table:ce-id-refs="CV1447909420fx15205y4a CV1447903896bx4c1a7yf CV1457e8559b6x10edcy3 CV1447909ad51x5b287y56" table:id="AV1457e5460bdx638c8">
-        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="DECIMAL">
-          <core:primitive core:value="-1000"/>
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="POINTS" core:columnObjectName="hpl.missioncontrol.models/CV_ACHIEVEMENT_BY_PILOT_MISSION" core:columnType="DECIMAL" core:modelType="calculation" core:schemaName="_SYS_BIC"/>
         </core:simpleexp>
       </table:av>
     </table:actionstub>
     <table:tablelayout>
-      <table:conditionstub-layout table:stub-id="CS14479021eacxd647d" table:type="vertical">
-        <table:cell table:ref-id="CV14479052364x212c7y19" table:span="1"/>
-        <table:cell table:ref-id="CV144790666f0x1740ey20" table:span="1"/>
-        <table:cell table:ref-id="CV1447906f0e8xa1004y28" table:span="1"/>
-        <table:cell table:ref-id="CV144790782f2x5fcdcy35" table:span="1"/>
-        <table:cell table:ref-id="CV14479086241x68532y3d" table:span="1"/>
-        <table:cell table:ref-id="CV1447909420fx15205y4a" table:span="1"/>
-        <table:cell table:ref-id="CV144790a08f0x6b82y5a" table:span="1"/>
-        <table:cell table:ref-id="CV144790aa7eex71fb0y69" table:span="1"/>
-        <table:cell table:ref-id="CV144790b933dxbd55cy79" table:span="1"/>
-        <table:cell table:ref-id="CV144790c5eb7xeeebby88" table:span="1"/>
-        <table:cell table:ref-id="CV144790d413ex894ccy9a" table:span="1"/>
-        <table:cell table:ref-id="CV144790e08ebx488abyab" table:span="1"/>
-        <table:cell table:ref-id="CV144790ec498xb97e0ybc" table:span="1"/>
-        <table:cell table:ref-id="CV144790f7ab8x33e5yc8" table:span="1"/>
+      <table:conditionstub-layout table:stub-id="CS145935a9078x57dbc" table:type="vertical">
+        <table:cell table:ref-id="CV145935c8ad1x5a1cdyf" table:span="1"/>
+        <table:cell table:ref-id="CV145935f3accx897b4y27" table:span="1"/>
+        <table:cell table:ref-id="CV145936029f1xcd463y3b" table:span="1"/>
+        <table:cell table:ref-id="CV145936069b5x6f5d6y41" table:span="1"/>
+        <table:cell table:ref-id="CV14593610b32x8a6b3y49" table:span="1"/>
+        <table:cell table:ref-id="CV1459366182bxac2e4y5a" table:span="1"/>
+        <table:cell table:ref-id="CV1459366ddd9xb3c5y6f" table:span="1"/>
+        <table:cell table:ref-id="CV14593675840x28b19y7f" table:span="1"/>
+        <table:cell table:ref-id="CV1459367b590x9823ey8d" table:span="1"/>
+        <table:cell table:ref-id="CV14593949c95x4847y7" table:span="1"/>
+        <table:cell table:ref-id="CV145939ff630xb4218y18" table:span="1"/>
+        <table:cell table:ref-id="CV14593a92d23xdcd72y25" table:span="1"/>
+        <table:cell table:ref-id="CV145943e2df0xee9y3" table:span="1"/>
+        <table:cell table:ref-id="CV145943ee477x66140yf" table:span="1"/>
+        <table:cell table:ref-id="CV145943fa588x990b5y1e" table:span="1"/>
+        <table:cell table:ref-id="CV1459482532fx3aae0y2a" table:span="1"/>
       </table:conditionstub-layout>
-      <table:conditionstub-layout table:stub-id="CS14479023169xd5941" table:type="vertical">
-        <table:cell table:ref-id="CV1447903896bx4c1a7yf" table:span="1"/>
-        <table:cell table:ref-id="CV1447903896bx4c1a7yf" table:span="1"/>
-        <table:cell table:ref-id="CV1447903896bx4c1a7yf" table:span="1"/>
-        <table:cell table:ref-id="CV1447903896bx4c1a7yf" table:span="1"/>
-        <table:cell table:ref-id="CV14479087552x96c1ay41" table:span="1"/>
-        <table:cell table:ref-id="CV1447903896bx4c1a7yf" table:span="1"/>
-        <table:cell table:ref-id="CV144790a1b4cxd97c8y5f" table:span="1"/>
-        <table:cell table:ref-id="CV144790ab6d0x8e7e2y6e" table:span="1"/>
-        <table:cell table:ref-id="CV1447903896bx4c1a7yf" table:span="1"/>
-        <table:cell table:ref-id="CV144790ab6d0x8e7e2y6e" table:span="1"/>
-        <table:cell table:ref-id="CV1447903896bx4c1a7yf" table:span="1"/>
-        <table:cell table:ref-id="CV144790a1b4cxd97c8y5f" table:span="1"/>
-        <table:cell table:ref-id="CV144790a1b4cxd97c8y5f" table:span="1"/>
-        <table:cell table:ref-id="CV144790a1b4cxd97c8y5f" table:span="1"/>
+      <table:conditionstub-layout table:width="197" table:stub-id="CS145935aafecxcf103" table:type="vertical">
+        <table:cell table:ref-id="CV145935ca608x480a0y12" table:span="1"/>
+        <table:cell table:ref-id="CV145935f4fa6x29a62y2a" table:span="1"/>
+        <table:cell table:ref-id="CV145935f4fa6x29a62y2a" table:span="1"/>
+        <table:cell table:ref-id="CV145935f4fa6x29a62y2a" table:span="1"/>
+        <table:cell table:ref-id="CV145935f4fa6x29a62y2a" table:span="1"/>
+        <table:cell table:ref-id="CV145935ca608x480a0y12" table:span="1"/>
+        <table:cell table:ref-id="CV145935f4fa6x29a62y2a" table:span="1"/>
+        <table:cell table:ref-id="CV14593676bbcxb89y83" table:span="1"/>
+        <table:cell table:ref-id="CV14593676bbcxb89y83" table:span="1"/>
+        <table:cell table:ref-id="CV1459394b140x2b1acyb" table:span="1"/>
+        <table:cell table:ref-id="CV1459394b140x2b1acyb" table:span="1"/>
+        <table:cell table:ref-id="CV1459394b140x2b1acyb" table:span="1"/>
+        <table:cell table:ref-id="CV1459394b140x2b1acyb" table:span="1"/>
+        <table:cell table:ref-id="CV1459394b140x2b1acyb" table:span="1"/>
+        <table:cell table:ref-id="CV1459394b140x2b1acyb" table:span="1"/>
+        <table:cell table:ref-id="CV145935f4fa6x29a62y2a" table:span="1"/>
       </table:conditionstub-layout>
-      <table:conditionstub-layout table:stub-id="CS14479023ae1xdcc77" table:type="vertical">
-        <table:cell table:ref-id="CV1457e8559b6x10edcy3" table:span="1"/>
-        <table:cell table:ref-id="CV1457e8559b6x10edcy3" table:span="1"/>
-        <table:cell table:ref-id="CV1457e8559b6x10edcy3" table:span="1"/>
-        <table:cell table:ref-id="CV1457e8559b6x10edcy3" table:span="1"/>
-        <table:cell table:ref-id="CV144790884b5x2231cy44" table:span="1"/>
-        <table:cell table:ref-id="CV1457e8559b6x10edcy3" table:span="1"/>
-        <table:cell table:ref-id="CV144790a2a86x4194ay62" table:span="1"/>
-        <table:cell table:ref-id="CV144790ac875xe7b90y71" table:span="1"/>
-        <table:cell table:ref-id="CV144790bba51x9c335y81" table:span="1"/>
-        <table:cell table:ref-id="CV144790ac875xe7b90y71" table:span="1"/>
-        <table:cell table:ref-id="CV14479039de5xcc0f2y12" table:span="1"/>
-        <table:cell table:ref-id="CV144790e2940x73901yb4" table:span="1"/>
-        <table:cell table:ref-id="CV144790ed7fexe889byc0" table:span="1"/>
-        <table:cell table:ref-id="CV144790f8d66x4591ycc" table:span="1"/>
+      <table:conditionstub-layout table:stub-id="CS145935ab69exa7925" table:type="vertical">
+        <table:cell table:ref-id="CV145935cb3b8x24bbdy15" table:span="1"/>
+        <table:cell table:ref-id="CV145935f6094xb1398y2d" table:span="1"/>
+        <table:cell table:ref-id="CV145935f6094xb1398y2d" table:span="1"/>
+        <table:cell table:ref-id="CV145935f6094xb1398y2d" table:span="1"/>
+        <table:cell table:ref-id="CV145936125e3x134y4c" table:span="1"/>
+        <table:cell table:ref-id="CV14593663d9ax73fb5y61" table:span="1"/>
+        <table:cell table:ref-id="CV14593670bfex28297y78" table:span="1"/>
+        <table:cell table:ref-id="CV14593678064xe6a0ey87" table:span="1"/>
+        <table:cell table:ref-id="CV14593678064xe6a0ey87" table:span="1"/>
+        <table:cell table:ref-id="CV1459394ca6fx5c1fbye" table:span="1"/>
+        <table:cell table:ref-id="CV14593a00ec4x36e25y1b" table:span="1"/>
+        <table:cell table:ref-id="CV14593a94330x9afcdy28" table:span="1"/>
+        <table:cell table:ref-id="CV145943e5eaaxa925ey7" table:span="1"/>
+        <table:cell table:ref-id="CV145943efd99x66875y12" table:span="1"/>
+        <table:cell table:ref-id="CV145943fc9c7xad4c6y22" table:span="1"/>
+        <table:cell table:ref-id="CV14594827a7bxa27dcy32" table:span="1"/>
       </table:conditionstub-layout>
-      <table:conditionstub-layout table:width="172" table:stub-id="CS14479026778x8874a" table:type="vertical">
-        <table:cell table:ref-id="CV1447905c14cx92efay1c" table:span="1"/>
-        <table:cell table:ref-id="CV1447906c5efx3e66ey24" table:span="1"/>
-        <table:cell table:ref-id="CV14479071cdaxf32ffy2d" table:span="1"/>
-        <table:cell table:ref-id="CV1447907b9bax60564y39" table:span="1"/>
-        <table:cell table:ref-id="CV14479089ccex216f3y48" table:span="1"/>
-        <table:cell table:ref-id="CV1447909ad51x5b287y56" table:span="1"/>
-        <table:cell table:ref-id="CV144790a3a60xc16ecy65" table:span="1"/>
-        <table:cell table:ref-id="CV144790b1178x18474y75" table:span="1"/>
-        <table:cell table:ref-id="CV144790a3a60xc16ecy65" table:span="1"/>
-        <table:cell table:ref-id="CV144790b1178x18474y75" table:span="1"/>
-        <table:cell table:ref-id="CV14479089ccex216f3y48" table:span="1"/>
-        <table:cell table:ref-id="CV144790e3feexf005ayb8" table:span="1"/>
-        <table:cell table:ref-id="CV144790eef9fx7545eyc4" table:span="1"/>
-        <table:cell table:ref-id="CV144790fa6b9xd52c4yd0" table:span="1"/>
+      <table:conditionstub-layout table:width="218" table:stub-id="CS145935ae1caxdab2c" table:type="vertical">
+        <table:cell table:ref-id="CV145935cc29fx1b6c4y18" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
+        <table:cell table:ref-id="CV145935f9628x70e7by31" table:span="1"/>
       </table:conditionstub-layout>
-      <table:actionstub-layout table:width="271" table:stub-id="AS1457e53f0a0x45a6c"/>
+      <table:conditionstub-layout table:width="189" table:stub-id="CS145935b0ca3xd6cec" table:type="vertical">
+        <table:cell table:ref-id="CV145935d0151x7b240y1b" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV14593791f66x21cf1y92" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+        <table:cell table:ref-id="CV145935fe67cx9e680y34" table:span="1"/>
+      </table:conditionstub-layout>
+      <table:conditionstub-layout table:width="177" table:stub-id="CS145935b1f93x1345c" table:type="vertical">
+        <table:cell table:ref-id="CV145935e19d0xe15fay23" table:span="1"/>
+        <table:cell table:ref-id="CV14593600bddx45119y37" table:span="1"/>
+        <table:cell table:ref-id="CV14593604106x2ffcfy3e" table:span="1"/>
+        <table:cell table:ref-id="CV14593607b27xdee3ay46" table:span="1"/>
+        <table:cell table:ref-id="CV145937a7203x441e8y3" table:span="1"/>
+        <table:cell table:ref-id="CV1459366bba7x27b7ay6c" table:span="1"/>
+        <table:cell table:ref-id="CV14593672f55x35076y7b" table:span="1"/>
+        <table:cell table:ref-id="CV14593679805xee56cy8a" table:span="1"/>
+        <table:cell table:ref-id="CV14593679805xee56cy8a" table:span="1"/>
+        <table:cell table:ref-id="CV1459396d035x97c4dy15" table:span="1"/>
+        <table:cell table:ref-id="CV14593a4ac0fx88eb1y21" table:span="1"/>
+        <table:cell table:ref-id="CV1459366bba7x27b7ay6c" table:span="1"/>
+        <table:cell table:ref-id="CV14593672f55x35076y7b" table:span="1"/>
+        <table:cell table:ref-id="CV145943f2f5fx4fb33y16" table:span="1"/>
+        <table:cell table:ref-id="CV1459366bba7x27b7ay6c" table:span="1"/>
+        <table:cell table:ref-id="CV1459366bba7x27b7ay6c" table:span="1"/>
+      </table:conditionstub-layout>
+      <table:actionstub-layout table:width="100" table:stub-id="AS145935b6c6dx3f5a4"/>
     </table:tablelayout>
   </table:decisiontable>
 </dtmodel:decisionTableModel>

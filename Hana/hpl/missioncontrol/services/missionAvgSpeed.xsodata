@@ -3,5 +3,5 @@ service namespace "hpl.missioncontrol.services" {
     as "missionMaxSpeed" with ("MESSAGECATEGORYID","TEXT","MESSAGEID","AT_MESSAGE_ID_TEXT","MISSIONID_MISSIONID","VEHICLEID_VEHICLEID","PILOTID_PILOTID","CA_SPEED_CMS","CA_SPEED_KPH","CA_SPEED_MPH","GPSVELSPEEDCMS","KEYFRAME")
     keys generate local "ID"
   	aggregates always
-  	parameters via entity "InputParams";   	   	 
+  	parameters via entity "InputParams";   	  	  	   
 }

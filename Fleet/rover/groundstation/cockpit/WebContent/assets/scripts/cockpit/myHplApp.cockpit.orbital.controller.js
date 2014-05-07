@@ -129,6 +129,7 @@
 			};
 			
 			myHplApp.cockpit.orbital.model.setStatsDistance(orbitalStatsDistance);	
+			myHplApp.missioncontrol.controller.missionLogPump(myHplApp.missioncontrol.model.getMessageCategoryIdNavigation(), myHplApp.missioncontrol.model.getMessageIdDistance(), orbitalStatsDistance.travelledM);
 		};		
 	};
 	

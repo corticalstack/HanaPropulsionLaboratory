@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Cube:cube xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AN_ACHIEVEMENT_BY_PILOT_MISSION" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
-  <descriptions defaultDescription="Achievement by pilot mission "/>
+  <descriptions defaultDescription="Achievement by pilot mission"/>
   <localVariables/>
   <privateMeasureGroup id="MeasureGroup">
     <attributes>

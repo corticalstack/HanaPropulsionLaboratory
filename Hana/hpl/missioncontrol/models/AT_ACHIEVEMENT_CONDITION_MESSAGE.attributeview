@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_ACHIEVEMENT_CONDITION_MESSAGE" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Achievement condition message"/>
+  <descriptions defaultDescription="Achievement condition message "/>
   <attributes>
     <attribute id="ACHIEVEMENTID" order="1" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="ACHIEVEMENTID"/>

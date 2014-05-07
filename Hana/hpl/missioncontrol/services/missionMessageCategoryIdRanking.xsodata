@@ -3,5 +3,5 @@ service namespace "hpl.missioncontrol.services" {
     as "missionMessageCategoryIdRanking" with ("MISSIONID_MISSIONID","VEHICLEID_VEHICLEID","PILOTID_PILOTID","CM_NAV","CM_COC","CM_NOT","CM_SEN","CM_POW","CM_DRI")
     keys generate local "ID"
   	aggregates always
-  	parameters via entity "InputParams";   	   	 
+  	parameters via entity "InputParams";   	   	  	 
 } 

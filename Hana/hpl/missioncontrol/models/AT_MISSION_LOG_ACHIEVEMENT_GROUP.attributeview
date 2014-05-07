@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_MISSION_LOG_ACHIEVEMENT_GROUP" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
-  <descriptions defaultDescription="Mission log by achievement group"/>
+  <descriptions defaultDescription="Mission log by achievement group "/>
   <attributes>
     <attribute id="MISSIONLOGID" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
       <descriptions defaultDescription="MISSIONLOGID"/>
@@ -194,20 +194,28 @@
       <descriptions defaultDescription="LASER"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="LASER"/>
     </attribute>
-    <attribute id="ACHIEVEMENTMAXKEYFRAME" hidden="true" order="50" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="ACHIEVEMENTMAXKEYFRAME" hidden="false" order="50" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="MAXKEYFRAME"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="MAXKEYFRAME"/>
     </attribute>
-    <attribute id="FLIGHTDIRECTORMAXKEYFRAME" hidden="true" order="51" attributeHierarchyActive="false" displayAttribute="false">
+    <attribute id="POINTS" order="51" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="POINTS"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Achievement" columnName="POINTS"/>
+    </attribute>
+    <attribute id="FLIGHTDIRECTORMAXKEYFRAME" hidden="false" order="52" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="MAXKEYFRAME"/>
       <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.FlightDirector" columnName="MAXKEYFRAME"/>
+    </attribute>
+    <attribute id="DISTANCE" order="53" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="DISTANCE"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Mission.MissionLog" columnName="DISTANCE"/>
     </attribute>
   </attributes>
   <calculatedAttributes>
     <calculatedAttribute id="CA_ACHIEVEMENT_KEYFRAME_GROUP" hidden="false" order="11" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
       <descriptions defaultDescription="Achievement keyframe group"/>
       <keyCalculation datatype="INTEGER" length="5" scale="2">
-        <formula>int((double(&quot;KEYFRAME&quot; - 1) / (&quot;FLIGHTDIRECTORMAXKEYFRAME&quot; - 1)) * (&quot;ACHIEVEMENTMAXKEYFRAME&quot; - 1) + 1)</formula>
+        <formula>if (&quot;ACHIEVEMENTMAXKEYFRAME&quot; = 0, 1, int((double(&quot;KEYFRAME&quot; - 1) / (&quot;FLIGHTDIRECTORMAXKEYFRAME&quot; - 1)) * (&quot;ACHIEVEMENTMAXKEYFRAME&quot; - 1) + 1))</formula>
       </keyCalculation>
     </calculatedAttribute>
   </calculatedAttributes>

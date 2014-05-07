@@ -899,7 +899,8 @@ function buildPaneMissionControl(oController,oLayout){
 
 	otblPilotScoreBreakdown.setModel(odataModelPilotScoreBreakdown); 
 	
-	var mdlSort = new sap.ui.model.Sorter("CA_ACHIEVEMENT_KEYFRAME_GROUP");
+	var sortDescending = true;  
+	var mdlSort = new sap.ui.model.Sorter("CA_ACHIEVEMENT_KEYFRAME_GROUP", sortDescending);
 	var pilotScoreBreakdownParams = '/InputParams(IP_MISSIONID=\'' +
 			myHplApp.missioncontrol.model.getActiveMissionId() +
 			'\',IP_VEHICLEID=\'' +

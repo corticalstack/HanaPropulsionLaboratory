@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_SCENARIO_GOAL" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="Scenario Goal"/>
+  <attributes>
+    <attribute id="SCENARIOID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SCENARIOID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" columnName="SCENARIOID"/>
+    </attribute>
+    <attribute id="GOALSETID" order="2" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="GOALSETID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="GOALSETID"/>
+    </attribute>
+    <attribute id="GOALID" order="3" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="GOALID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="GOALID"/>
+    </attribute>
+    <attribute id="GOALNAME" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GOALNAME"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1" columnName="TEXT"/>
+    </attribute>
+    <attribute id="VISUALURI" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="VISUALURI"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="VISUALURI"/>
+    </attribute>
+    <attribute id="GOALDESCRIPTION" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="GOALDESCRIPTION"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2" columnName="TEXT"/>
+    </attribute>
+    <attribute id="SORT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SORT"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="SORT"/>
+    </attribute>
+    <attribute id="RANK" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="RANK"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="RANK"/>
+    </attribute>
+    <attribute id="MESSAGECATEGORYID_MESSAGECATEGORYID" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MESSAGECATEGORYID_MESSAGECATEGORYID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="MESSAGECATEGORYID.MESSAGECATEGORYID"/>
+    </attribute>
+    <attribute id="MESSAGEID_MESSAGEID" order="10" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MESSAGEID_MESSAGEID"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="MESSAGEID.MESSAGEID"/>
+    </attribute>
+    <attribute id="SHAPE" order="11" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SHAPE"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes" columnName="SHAPE"/>
+    </attribute>
+    <attribute id="TIMELIMITS" order="12" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TIMELIMITS"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="TIMELIMITS"/>
+    </attribute>
+    <attribute id="COMPLETE" order="13" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="COMPLETE"/>
+      <keyMapping schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" columnName="COMPLETE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario"/>
+        <leftColumns>
+          <columnName>GOALSETID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>GOALSETID.GOALSETID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
+        <leftColumns>
+          <columnName>SHAPEID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>SHAPEID</columnName>
+        </rightColumns>
+        <properties joinOperator="Equal" joinType="leftOuter"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts"/>
+        <leftColumns>
+          <columnName>TEXTID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_1"/>
+        <leftColumns>
+          <columnName>NAME.TEXTID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+      <join languageColumn="LANGUAGE">
+        <leftTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.MasterData.Goal"/>
+        <rightTable schemaName="MISSIONCONTROL" columnObjectName="hpl.missioncontrol.data::MC.Util.Texts" alias="hpl_2"/>
+        <leftColumns>
+          <columnName>DESCRIPTION.TEXTID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>TEXTID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="textTable"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Goal" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="480" y="32"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.Scenario" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="946" y="16"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.MasterData.SpatialShapes" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="946" y="177"/>
+        </shape>
+        <shape modelObjectName="hpl.missioncontrol.data::MC.Util.Texts" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="1463" y="96"/>
+        </shape>
+        <shape modelObjectName="hpl_1" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="16" y="32"/>
+        </shape>
+        <shape modelObjectName="hpl_2" modelObjectNameSpace="MISSIONCONTROL" modelObjectType="catalog">
+          <upperLeftCorner x="16" y="161"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize height="0" width="0"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

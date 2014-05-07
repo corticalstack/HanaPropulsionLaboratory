@@ -4,4 +4,4 @@ service namespace "hpl.missioncontrol.services" {
     keys generate local "ID"
   	aggregates always
   	parameters via entity "InputParams";   	  	    	 	
-}
+} 

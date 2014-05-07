@@ -286,9 +286,7 @@ img.bg {
 	padding-top: 10px;
 }
 
-
-
-[id^="lblComplChallenges"] {
+[id^="lblOffense"] {
 	color: rgb(255,255,255);
 	opacity: 1;
 	font-family:'BebasNeueRegular', serif;
@@ -298,6 +296,41 @@ img.bg {
 	line-height: 120%;	
 	padding-top: 10px;
 }
+
+[id^="lblDefense"] {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 3em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+[id^="lblAgility"] {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 3em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+[id^="lblPower"] {
+	color: rgb(255,255,255);
+	opacity: 1;
+	font-family:'BebasNeueRegular', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 3em;	
+	line-height: 120%;	
+	padding-top: 10px;
+}
+
+
 
 
 [id^="lnkLaunch"] {
@@ -1395,8 +1428,8 @@ img.bg {
 
 #lblValDistanceToWaypoint {
 	position: fixed;
-	top: 224px;
-  	left: 815px;
+	top: 204px;
+  	left: 855px;
   	width: 60px;
 	color: rgb(255,255,255);
 	font-family:'BebasNeueRegular', serif;

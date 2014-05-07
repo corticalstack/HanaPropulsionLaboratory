@@ -24,6 +24,7 @@ context MC {
 	type shapeCategoryIdT					: String(3);
 	type terrainIdT							: String(6);
 	type scenarioIdT						: String(6);
+	type goalIdT							: String(6);
 	type colourIdT							: String(6);
 	type colourHexT							: String(7);
 	type strokeWeightT                 		: Integer;
@@ -64,11 +65,13 @@ context MC {
 	type inMissionT							: Integer;
 	type endMissionT						: Integer;
 	type multiplierT						: Integer;
-	type pointsT							: Integer;
+	type pointsT							: Decimal(7,2);	
 	type countT								: Integer;
 	type scoreT								: Integer;
+	type statT								: Integer;
 	type secondsT							: Decimal(7,2);				
 	type idxT								: Integer;
+	type completeT  						: String(1);
 	
 	context MasterData {
 		
@@ -110,6 +113,10 @@ context MC {
 	 		CLANURI 						: LStringT;
 	 		ACTIVEMISSIONID					: Association [0..*] to Mission.Mission {MISSIONID}; 
 			PORTRAITURI						: LStringT;
+			OFFENSE							: statT;
+			DEFENSE							: statT;
+			AGILITY							: statT;
+			POWER							: statT;
 		};
 		
 
@@ -120,7 +127,7 @@ context MC {
     		MAXKEYFRAME						: keyFrameT;
 		};
 			
-				
+	
 		@Catalog.tableType : #COLUMN 
 		Entity Achievement {
     		key ACHIEVEMENTID				: achievementIdT;
@@ -136,21 +143,6 @@ context MC {
 
 
 		@Catalog.tableType : #COLUMN 
-		Entity AchievementConditionMessage {
-    		key CONDITIONID 				: Association [*] to MasterData.Achievement {CONDITIONID};	
-			key MESSAGECATEGORYID			: Association [1] to MasterData.MessageCategoryId;			
-			key MESSAGEID  					: Association [1] to MasterData.MessageId;		 	
-		};		
-
-
-		@Catalog.tableType : #COLUMN 
-		Entity Colours {
-    		key COLOURID					: colourIdT;
-			COLOURHEX						: colourHexT;
-		};
-					
-		
-		@Catalog.tableType : #COLUMN 
 		Entity Terrain {
     		key TERRAINID 					: terrainIdT;
 			key SHAPEID						: shapeIdT;					
@@ -164,15 +156,46 @@ context MC {
 			FILLCOLOURID					: Association [*] to MasterData.Colours {COLOURID};	
 			FILLOPACITY						: opacityT;
 		};
-		
-		
+
+		@Catalog.tableType : #COLUMN 
+		Entity Goal {
+    		key GOALSETID 					: goalIdT;
+			key GOALID						: goalIdT;	
+			NAME							: Association [*] to Util.Texts {TEXTID};
+			VISUALURI						: LStringT;
+	 		DESCRIPTION						: Association [*] to Util.Texts {TEXTID};
+	 		SORT							: Integer;
+	 		RANK                            : Integer;
+	 		MESSAGECATEGORYID				: Association [1] to MasterData.MessageCategoryId;			
+			MESSAGEID  						: Association [1] to MasterData.MessageId;
+			SHAPEID							: shapeIdT;	
+			TIMELIMITS						: secondsT;
+			COMPLETE						: completeT;
+		};
+
+		@Catalog.tableType : #COLUMN 
+		Entity AchievementConditionMessage {
+    		key CONDITIONID 				: Association [*] to MasterData.Achievement {CONDITIONID};	
+			key MESSAGECATEGORYID			: Association [1] to MasterData.MessageCategoryId;			
+			key MESSAGEID  					: Association [1] to MasterData.MessageId;		 	
+		};		
+
+
+		@Catalog.tableType : #COLUMN 
+		Entity Colours {
+    		key COLOURID					: colourIdT;
+			COLOURHEX						: colourHexT;
+		};
+					
+			
 		@Catalog.tableType : #COLUMN 
 		Entity Scenario {
     		key SCENARIOID 					: scenarioIdT;
     		NAME  							: Association [*] to Util.Texts {TEXTID};
     		VISUALURI						: LStringT;
     		DESCRIPTION						: Association [*] to Util.Texts {TEXTID};
-			TERRAINID						: Association [*] to MasterData.Terrain {TERRAINID};			
+			TERRAINID						: Association [*] to MasterData.Terrain {TERRAINID};	
+			GOALSETID                       : Association [*] to MasterData.Goal {GOALSETID};
 		};		
 					
 	};
@@ -190,6 +213,7 @@ context MC {
 			HOMEGPSPOSLONGITUDE				: gpsPosT null;
 			HOMEGPSPOSLATITUDE				: gpsPosT null;
 	    	HOMEGPSPOSALTITUDE				: gpsAltT null;
+	    	SCENARIOID 					    : Association [1] to MasterData.Scenario {SCENARIOID};
 		};
 
 

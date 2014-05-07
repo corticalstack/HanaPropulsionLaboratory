@@ -1,13 +1,13 @@
 {
  "caption": {
-  "content": "Achievement condition message",
+  "content": "Achievement condition message ",
   "lang": "",
   "max_length": "255",
   "text_id": "caption",
   "text_type": "XTIT"
  },
  "metadata": {
-  "activated_at": "2014-04-17 14:00:39.3260000",
+  "activated_at": "2014-04-23 16:14:35.8210000",
   "activated_by": "SYSTEM",
   "change_number": "0",
   "delivery_unit": "",
@@ -20,7 +20,7 @@
   "object_status": "0",
   "released_at": "null",
   "type": "1",
-  "version_id": "1"
+  "version_id": "2"
  },
  "version": {
   "versionType": "1"
